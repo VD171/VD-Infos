@@ -3,7 +3,7 @@
 # VD-Infos  
 Tópico no XDA: https://xdaforums.com/t/app-vd-infos-package-com-vitaodoidao-vdinfos.4097379/  
   
-![VDInfos](docs/vdinfos-pt-01.jpg) ![VDInfos](docs/vdinfos-pt-02.jpg)
+<img src="docs/vdinfos-pt-01.jpg" height="400"/> <img src="docs/vdinfos-pt-02.jpg" height="400"/>  
   
 Como todos já sabemos, o Android é um sistema operacional super potente e super versátil.  
 O que ninguém conta para você, é que todos os seus detalhes pessoais e informações confidenciais, estão disponíveis para todos os seus aplicativos instalados.  
