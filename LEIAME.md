@@ -94,6 +94,10 @@ https://github.com/Android1500/AndroidFaker
 https://github.com/Xposed-Modules-Repo/com.android1500.androidfaker  
 * **Device ID Masker:** Camufle suas informações privadas vitais de aplicativos de terceiros e de sistema.  
 https://bytesreverserapps.com/device-id-masker/  
+* **E-Government Liberator (formalmente Digitales Amt Liberator):** O E-Government Liberator remove quaisquer chamadas em apps do governo austríaco suportados para verificações de root e bootloader, portanto, fornece uma solução personalizada para executar o app em dispositivos com root.  
+https://github.com/Crazyphil/digitales-amt-liberator  
+* **BootloaderSpoofer:** Camufle o bootloader desbloqueado em atestados locais.  
+https://github.com/chiteroman/BootloaderSpoofer  
 * (Obsoleto) **XPrivacyLua:** Sucessor do XPrivacy. Negar o uso de permissões para os aplicativos, geralmente faz os aplicativos travarem ou apresentarem mau funcionamento. O XPrivacyLua resolve isso alimentando os aplicativos com dados falsos em vez de dados reais.  
 https://xdaforums.com/t/discussion-lsposed-unofficial-xprivacylua-android-privacy-manager.4533999/  
 https://xdaforums.com/t/closed-app-xposed-6-0-xprivacylua-android-privacy-manager-unsupported.3730663/  
