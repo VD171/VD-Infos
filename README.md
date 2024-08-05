@@ -63,13 +63,23 @@ If you want, you can disallow usage of internet with a firewall, or you can just
 * List INSTALLED APPLICATIONS.
 
 ## **How to protect yourself ?**
+* **Magisk:** A suite of open source software for customizing Android, supporting devices higher than Android 6.0.  
+https://github.com/topjohnwu/Magisk  
+https://xdaforums.com/t/magisk-the-magic-mask-for-android.3473445/  
 * **Kitsune Mask (Magisk Delta):** A fork of Magisk.  
-https://github.com/HuskyDG/magisk-files
+https://github.com/KitsuneMagisk/Magisk  
+https://github.com/HuskyDG/magisk-files  
+https://xdaforums.com/t/discussion-kitsune-mask-another-unofficial-mask-of-magisk.4460555/  
+* **APatch:** The patching of Android kernel and Android system.  
+https://github.com/bmax121/APatch  
+https://xdaforums.com/t/dev-apatch-an-alternative-root-solution-to-kernelsu-and-magisk.4655727/  
+* **KernelSU:** A Kernel-based root solution for Android devices.  
+https://github.com/tiann/KernelSU  
 * **LSPosed:** Successor of Xposed Framework.  
 https://xdaforums.com/t/lsposed-xposed-framework-8-1-13-0-simple-magisk-module.4228973/  
 https://github.com/LSPosed/LSPosed  
-* **LSPosed by pumPCin:** A fork of LSPosed.  
-https://github.com/pumPCin/LSPosed  
+* **LSPosed by JingMatrix:** A fork of LSPosed.  
+https://github.com/JingMatrix/LSPosed  
 * **LSPosed_mod by mywalkb:** A fork of LSPosed.  
 https://github.com/mywalkb/LSPosed_mod  
 * **LSPosed by CMDQ8575:** A fork of LSPosed.  
@@ -78,16 +88,47 @@ https://github.com/CMDQ8575/LSPosed
 https://xdaforums.com/t/xpl-ex-xprivacylua-ex-android-privacy-manager-hooking-manager-extended.4652573/  
 https://github.com/0bbedCode/XPL-EX  
 * **XPL-EX Pro (XPrivacyLua Ex Pro):** A fork of XPrivacyLuaPro.  
-https://github.com/0bbedCode/XPL-EX/releases
+https://github.com/0bbedCode/XPL-EX/releases  
 * **WeiJu2:** The first scriptable xposed module, provides a new way to change the application behavior. Powered by Lua and made with ♥  
 https://xdaforums.com/t/app-xposed-7-0-weiju2-scriptable-xposed-module.4482585/  
 https://github.com/ikws4/WeiJu2  
+* **Zygisk-Assistant:** A Zygisk module to hide root for KernelSU, Magisk and APatch, designed to work on Android 5.0 and above.  
+https://github.com/snake-4/Zygisk-Assistant  
+https://xdaforums.com/t/module-zygisk-assistant-foss-root-hider.4664761/  
 * **Shamiko:** A Zygisk module to hide Magisk root, Zygisk itself and Zygisk modules.  
 https://github.com/LSPosed/LSPosed.github.io/releases  
+* **Zygisk-maphide:** Wipe out the traces of mounted files of Magisk module for process on DenyList.  
+https://github.com/HuskyDG/zygisk-maphide  
+* **ZygiskNext:** Standalone implementation of Zygisk, providing Zygisk API support for KernelSU and a replacement of Magisk's built-in Zygisk.  
+https://github.com/Dr-TSNG/ZygiskNext  
+* **Zygisk_mod:** An open-source fork of Zygisk Next.  
+https://github.com/Admirepowered/Zygisk_mod  
+* **ReZygisk:** A fork of Zygisk Next, which is a standalone implementation of Zygisk, providing Zygisk API support for KernelSU, Magisk (besides built-in) and futurely APatch.  
+https://github.com/PerformanC/ReZygisk  
+* **Tricky Store:** A trick of keystore.  
+https://github.com/5ec1cff/TrickyStore  
+https://xdaforums.com/t/tricky-store-the-next-generation-pif.4683446/  
+* **Zygisk-KeystoreInjection:** Generate a valid certificate chain from scratch by injecting custom Keystore provider.  
+https://github.com/aviraxp/Zygisk-KeystoreInjection  
+* **PlayIntegrityFix:** The module tries to fix Play Integrity and SafetyNet verdicts to get a valid attestation.  
+https://github.com/chiteroman/PlayIntegrityFix  
+https://xdaforums.com/t/module-play-integrity-fix-safetynet-fix.4607985/  
+* **PlayIntegrityFork:** A fork of PlayIntegrityFix, to be more futureproof and develop more methodically.  
+https://github.com/osm0sis/PlayIntegrityFork  
+* **PlayIntegrityNEXT:** A module that downloads a working fingerprint instead of making a fork every time. The module is called 'playcurl,' and you simply need to install it alongside the official PlayIntegrityFix.  
+https://github.com/daboynb/PlayIntegrityNEXT  
+* **AutoPIF Next - PlayIntegrity Fix Next Fork:** Automatically download working pif.json online from the repository and bypass Google Play Integrity Check.  
+https://xdaforums.com/t/module-autopif-next-play-integrity-fix-fork-safetynet-fix.4652252/  
+https://github.com/x1337cn/AutoPIF-Next  
+* **Framework Patch:** Modify framework.jar to build on system level a valid certificate chain   
+https://github.com/chiteroman/FrameworkPatch  
+* **Framework Patcher GO:** A Magisk/KernelSU/APatch module to modify framework.jar directly on the phone, to build a valid system-level certificate chain.  
+https://github.com/changhuapeng/FrameworkPatcherGO  
+https://xdaforums.com/t/module-framework-patcher-go.4674536/  
 * **Geergit:** A Module to Protect Your Privacy.  
 https://xdaforums.com/t/app-xposed-5-0-13-geergit-a-module-to-protect-your-privacy.4573243/  
 https://github.com/pyshivam/geergit-discussion/releases  
-https://github.com/Xposed-Modules-Repo/com.pyshivam.geergit  
+https://github.com/Xposed-Modules-Repo/com.pyshivam.geergit/releases  
 * **Android Faker:** A Module For Spoof Your Device.  
 https://xdaforums.com/t/app-xposed-8-1-13-android-faker-a-module-for-spoof-your-device.4284233  
 https://github.com/Android1500/AndroidFaker  
@@ -98,6 +139,7 @@ https://bytesreverserapps.com/device-id-masker/
 https://github.com/Crazyphil/digitales-amt-liberator  
 * **BootloaderSpoofer:** Spoof locked bootloader on local attestations.  
 https://github.com/chiteroman/BootloaderSpoofer  
+https://xdaforums.com/t/spoof-locked-bootloader-bypass-tee-check.4586251/  
 * (Deprecated) **XPrivacyLua:** Successor of XPrivacy. Revoking Android permissions from apps often let apps crash or malfunction. XPrivacyLua solves this by feeding apps fake data instead of real data.  
 https://xdaforums.com/t/discussion-lsposed-unofficial-xprivacylua-android-privacy-manager.4533999/  
 https://xdaforums.com/t/closed-app-xposed-6-0-xprivacylua-android-privacy-manager-unsupported.3730663/  
@@ -107,10 +149,14 @@ https://xdaforums.com/t/closed-app-xposed-6-0-xprivacylua-pro-companion-app.3743
 https://bitbucket.org/M66B/xlua-companion/downloads/  
 * (Deprecated) **Magisk Hide:** Natively blocks root usage and detection.  
 https://xdaforums.com/apps/magisk/official-magisk-v7-universal-systemless-t3473445  
+https://github.com/topjohnwu/Magisk  
 * (Deprecated) **Riru - Enhanced mode for Magisk Hide:** Enable Enhanced mode for Magisk Hide. Allow Magisk Hide to handle isolated processes.  
 https://github.com/vvb2060/riru-unshare  
 * (Deprecated) **Riru - Momo Hider:** This module tries to make "Magisk Hide" more hidden.  
 https://github.com/canyie/Riru-MomoHider  
+* (Deprecated) **Universal SafetyNet Fix:** Magisk module to work around Google's SafetyNet and Play Integrity attestation.  
+https://xdaforums.com/t/magisk-module-universal-safetynet-fix-2-4-0.4217823/  
+https://github.com/kdrag0n/safetynet-fix  
 * (Deprecated) **RootCloak2:** Blocks the use and detection of root and also blocks the use of other commands that can be customized.  
 https://xdaforums.com/t/mod-xposed-4-0-rootcloak-completely-hide-root-from-specific-apps-2014-01-14.2574647/  
 https://mattj.io/rootcloak/  
@@ -124,75 +170,31 @@ https://github.com/M66B/XPrivacy
 https://xdaforums.com/t/official-xposed-for-lollipop-marshmallow-nougat-oreo-v90-beta3-2018-01-29.3034811/  
 https://xdaforums.com/t/xposed-general-info-versions-changelog.2714053/  
 https://github.com/rovo89?tab=repositories&q=xposed  
-
-## **Based on:**
-* **RootBeer Sample:** https://github.com/scottyab/rootbeer
-* **RootbeerFresh:** https://github.com/kimchangyoun/rootbeerFresh
-* **Native Root Checker:** https://github.com/DimaKoz/meat-grinder
-* **PiracyChecker** https://github.com/javiersantos/PiracyChecker
-* **Cordova Jailbreak/Root Detection Plugin** https://github.com/WuglyakBolgoink/cordova-plugin-iroot
-
-## **Tested on:**
-* **Android 4.4.2:** SDK 19
-* **Android 4.4.4:** SDK 19
-* **Android 5.0.2:** SDK 21
-* **Android 5.1.1:** SDK 22
-* **Android 6.0:** SDK 23
-* **Android 7.0:** SDK 24
-* **Android 7.1.1:** SDK 25
-* **Android 7.1.2:** SDK 25
-* **Android 8.0.0:** SDK 26
-* **Android 8.1.0:** SDK 27
-* **Android 9.0:** SDK 28
-* **Android 10.0:** SDK 29
-* **Android 11.0:** SDK 30
-* **Android 12.0:** SDK 31
-
-## **Contacts:**
-* **Skype:** VD.Priv8
-* **Telegram:** VD_Priv8
-* **E-mail:** vd.priv8 @ pm.me
-* **XDA-Developers:** VD171 https://xdaforums.com/m/vd171.4699873/
-
-## **Disclaimer:**
-* Use and distribute as you want and as you wish.
-
-## **Thanks to:**
-* **rovo89:** https://xdaforums.com/m/rovo89.4419114/
-* **rovo89:** https://github.com/rovo89
-* **pumPCin:** https://github.com/pumPCin
-* **mywalkb:** https://github.com/mywalkb
-* **CMDQ8575:** https://github.com/CMDQ8575
-* **ObbedCode:** https://xdaforums.com/m/obbedcode.12793605/
-* **ObbedCode:** https://github.com/0bbedCode
-* **zhipingne:** https://xdaforums.com/m/zhipingne.9027367/
-* **ikws4:** https://github.com/ikws4
-* **M66B:** https://xdaforums.com/m/m66b.2799345/
-* **M66B:** https://github.com/M66B
-* **Fif_:** https://xdaforums.com/member.php?u=5297163
-* **Fif_:** https://github.com/F-i-f
-* **AndroidX:** https://xdaforums.com/m/androidx.7762470/
-* **AndroidX:** https://github.com/Android1500
-* **Unique Solution:** https://deviceemulator.github.io/app
-* **BytesReverser:** https://xdaforums.com/member.php?u=8062804
-* **pyshivam:** https://xdaforums.com/m/pyshivam.9833141/
-* **pyshivam:** https://github.com/pyshivam
-* **scottyab:** https://xdaforums.com/member.php?u=2530687
-* **scottyab:** https://github.com/scottyab
-* **topjohnwu:** https://xdaforums.com/member.php?u=4470081
-* **topjohnwu:** https://github.com/topjohnwu
-* **devadvance:** https://xdaforums.com/member.php?u=2804938
-* **devadvance:** https://github.com/devadvance
-* **hikaritenchi:** https://xdaforums.com/member.php?u=3514987
-* **hikaritenchi:** https://github.com/hikaritenchi
-* **DimaKoz** https://github.com/DimaKoz
-* **kimchangyoun** https://github.com/KimChangYoun
-* **javiersantos** https://github.com/javiersantos
-* **WuglyakBolgoink** https://github.com/WuglyakBolgoink
-* **vvb2060:** https://github.com/vvb2060
-* **canyie:** https://github.com/canyie
-* **yujincheng08:** https://github.com/yujincheng08
-* **Dr-TSNG:** https://github.com/Dr-TSNG
+* **Dr-TSNG:** https://github.com/Dr-TSNG  
+* **5ec1cff:** https://github.com/5ec1cff  
+* **Admirepowered:** https://github.com/Admirepowered  
+* **aviraxp:** https://github.com/aviraxp  
+* **bmax121:** https://github.com/bmax121  
+* **changhuapeng:** https://github.com/changhuapeng  
+* **changhuapeng:** https://xdaforums.com/m/changhuapeng.12770876/  
+* **chiteroman:** https://github.com/chiteroman  
+* **chiteroman:** https://xdaforums.com/m/chiteroman.10277887/  
+* **Crazyphil:** https://github.com/Crazyphil  
+* **daboynb:** https://github.com/daboynb  
+* **HuskyDG:** https://github.com/HuskyDG  
+* **HuskyDG:** https://xdaforums.com/m/huskydg.11455139/  
+* **JingMatrix:** https://github.com/JingMatrix  
+* **kdrag0n:** https://github.com/kdrag0n  
+* **kdrag0n:** https://xdaforums.com/m/kdrag0n.7291478/  
+* **osm0sis:** https://github.com/osm0sis  
+* **osm0sis:** https://xdaforums.com/m/osm0sis.4544860/  
+* **PerformanC:** https://github.com/PerformanC  
+* **snake-4:** https://github.com/snake-4  
+* **snake-4:** https://xdaforums.com/m/snake-4.12839217/  
+* **tiann:** https://github.com/tiann  
+* **tomyan112:** https://xdaforums.com/m/tomyan112.5993032/  
+* **x1337cn:** https://github.com/x1337cn  
+* **x1337cn:** https://xdaforums.com/m/x1337cn.10497543/  
 
 ## **Download and support:**
 * https://github.com/VD171/VD-Infos
