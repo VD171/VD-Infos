@@ -63,13 +63,23 @@ Se quiser, você pode desautorizar o uso da internet com um firewall, ou você p
 * Lista os APLICATIVOS INSTALADOS.  
   
 ## **Como se proteger ?**  
+* **Magisk:** Um conjunto de código aberto para personalizar o Android, suportando dispositivos a partir do Android 6.0.  
+https://github.com/topjohnwu/Magisk  
+https://xdaforums.com/t/magisk-the-magic-mask-for-android.3473445/  
 * **Kitsune Mask (Magisk Delta):** Um fork do Magisk.  
+https://github.com/KitsuneMagisk/Magisk  
 https://github.com/HuskyDG/magisk-files  
+https://xdaforums.com/t/discussion-kitsune-mask-another-unofficial-mask-of-magisk.4460555/  
+* **APatch:** O patcher do kernel Android e do sistema Android.  
+https://github.com/bmax121/APatch  
+https://xdaforums.com/t/dev-apatch-an-alternative-root-solution-to-kernelsu-and-magisk.4655727/  
+* **KernelSU:** Uma solução root baseada no kernel para dispositivos Android.  
+https://github.com/tiann/KernelSU  
 * **LSPosed:** Sucessor do Xposed Framework.  
 https://xdaforums.com/t/lsposed-xposed-framework-8-1-13-0-simple-magisk-module.4228973/  
 https://github.com/LSPosed/LSPosed  
-* **LSPosed by pumPCin:** Um fork do LSPosed.  
-https://github.com/pumPCin/LSPosed  
+* **LSPosed by JingMatrix:** Um fork do LSPosed.  
+https://github.com/JingMatrix/LSPosed  
 * **LSPosed_mod by mywalkb:** Um fork do LSPosed.  
 https://github.com/mywalkb/LSPosed_mod  
 * **LSPosed by CMDQ8575:** Um fork do LSPosed.  
@@ -82,8 +92,39 @@ https://github.com/0bbedCode/XPL-EX/releases
 * **WeiJu2:** O primeiro módulo xposed programável, fornece uma nova maneira de alterar o comportamento dos aplicativos. Movido pelo Lua e feito com ♥  
 https://xdaforums.com/t/app-xposed-7-0-weiju2-scriptable-xposed-module.4482585/  
 https://github.com/ikws4/WeiJu2  
+* **Zygisk-Assistant:** Um módulo Zygisk para ocultar o root para Kernelsu, Magisk e Apatch, projetado para funcionar no Android 5.0 e acima.  
+https://github.com/snake-4/Zygisk-Assistant  
+https://xdaforums.com/t/module-zygisk-assistant-foss-root-hider.4664761/  
 * **Shamiko:** Um módulo Zygisk para esconder o root, o Magisk, o próprio Zygisk e outros módulos Zygisk.  
 https://github.com/LSPosed/LSPosed.github.io/releases  
+* **Zygisk-maphide:** Limpe os traços de arquivos montados dos módulos do Magisk para processo na Lista de Negação.  
+https://github.com/HuskyDG/zygisk-maphide  
+* **ZygiskNext:** Implementação independente do Zygisk, fornecendo suporte à API do Zygisk para KernelSU e uma substituição do Zygisk integrado do Magisk.  
+https://github.com/Dr-TSNG/ZygiskNext  
+* **Zygisk_mod:** Um fork de código aberto do Zygisk Next.  
+https://github.com/Admirepowered/Zygisk_mod  
+* **ReZygisk:** Um fork do Zygisk Next, que é uma implementação independente de Zygisk fornecendo suporte à API de Zygisk para KernelSU, Magisk (além de embutido) e Apatch futuramente.  
+https://github.com/PerformanC/ReZygisk  
+* **Tricky Store:** Um truque keystore.  
+https://github.com/5ec1cff/TrickyStore  
+https://xdaforums.com/t/tricky-store-the-next-generation-pif.4683446/  
+* **Zygisk-KeystoreInjection:** Gere uma cadeia de certificados válidos do zero, injetando o provedor de keystore personalizado.  
+https://github.com/aviraxp/Zygisk-KeystoreInjection  
+* **PlayIntegrityFix:** Um módulo que tenta corrigir o Play Integrity e o SafetyNet para obter um atestado válido.  
+https://github.com/chiteroman/PlayIntegrityFix  
+https://xdaforums.com/t/module-play-integrity-fix-safetynet-fix.4607985/  
+* **PlayIntegrityFork:** Um fork do PlayIntegrityFix, para ser mais à prova de futuro e desenvolver mais metodicamente.  
+https://github.com/osm0sis/PlayIntegrityFork  
+* **PlayIntegrityNEXT:** Um módulo que baixa uma impressão digital em vez de fazer um fork toda vez. O módulo é chamado de 'PlayCurl' e você simplesmente precisa instalá-lo junto ao PlayIntegrityFix oficial.  
+https://github.com/daboynb/PlayIntegrityNEXT  
+* **AutoPIF Next - PlayIntegrity Fix Next Fork:** Faz o download online automaticamente de um PIF.json funcionando do repositório e camufla o Google Play Integrity Check.  
+https://xdaforums.com/t/module-autopif-next-play-integrity-fix-fork-safetynet-fix.4652252/  
+https://github.com/x1337cn/AutoPIF-Next  
+* **Framework Patch:** Modifica o Framework.jar para construir uma cadeia de certificados válidos a nível do sistema.  
+https://github.com/chiteroman/FrameworkPatch  
+* **Framework Patcher GO:** Um módulo Magisk/KernelSU/APatch para modificar o framework.jar diretamente no aparelho, para criar uma cadeia de certificação válida a nível do sistema.  
+https://github.com/changhuapeng/FrameworkPatcherGO  
+https://xdaforums.com/t/module-framework-patcher-go.4674536/  
 * **Geergit:** Um Módulo Para Proteger Sua Privacidade.  
 https://xdaforums.com/t/app-xposed-5-0-13-geergit-a-module-to-protect-your-privacy.4573243/  
 https://github.com/pyshivam/geergit-discussion/releases  
@@ -98,6 +139,7 @@ https://bytesreverserapps.com/device-id-masker/
 https://github.com/Crazyphil/digitales-amt-liberator  
 * **BootloaderSpoofer:** Camufle o bootloader desbloqueado em atestados locais.  
 https://github.com/chiteroman/BootloaderSpoofer  
+https://xdaforums.com/t/spoof-locked-bootloader-bypass-tee-check.4586251/  
 * (Obsoleto) **XPrivacyLua:** Sucessor do XPrivacy. Negar o uso de permissões para os aplicativos, geralmente faz os aplicativos travarem ou apresentarem mau funcionamento. O XPrivacyLua resolve isso alimentando os aplicativos com dados falsos em vez de dados reais.  
 https://xdaforums.com/t/discussion-lsposed-unofficial-xprivacylua-android-privacy-manager.4533999/  
 https://xdaforums.com/t/closed-app-xposed-6-0-xprivacylua-android-privacy-manager-unsupported.3730663/  
@@ -107,10 +149,14 @@ https://xdaforums.com/t/closed-app-xposed-6-0-xprivacylua-pro-companion-app.3743
 https://bitbucket.org/M66B/xlua-companion/downloads/  
 * (Obsoleto) **Magisk Hide:** Bloqueia nativamente o uso e detecção do root (superusuário).  
 https://xdaforums.com/apps/magisk/official-magisk-v7-universal-systemless-t3473445  
+https://github.com/topjohnwu/Magisk  
 * (Obsoleto) **Riru - Enhanced mode for Magisk Hide:** Ativa o modo aprimorado para o Magisk Hide. Permite que o Magisk Hide possa lidar com processos isolados.  
 https://github.com/vvb2060/riru-unshare  
 * (Obsoleto) **Riru - Momo Hider:** Este módulo tenta deixar o "Magisk Hide" mais escondido.  
 https://github.com/canyie/Riru-MomoHider  
+* (Obsoleto) **Universal SafetyNet Fix:** Módulo Magisk para trabalhar em torno do SafetyNet do Google e reproduzir o atestado do Play Integrity.  
+https://xdaforums.com/t/magisk-module-universal-safetynet-fix-2-4-0.4217823/  
+https://github.com/kdrag0n/safetynet-fix  
 * (Obsoleto) **RootCloak2:** Bloqueia o uso e detecção do root (superusuário), além de também bloquear o uso de outros comandos que podem ser personalizados.  
 https://xdaforums.com/t/mod-xposed-4-0-rootcloak-completely-hide-root-from-specific-apps-2014-01-14.2574647/  
 https://mattj.io/rootcloak/  
@@ -193,7 +239,31 @@ https://github.com/rovo89?tab=repositories&q=xposed
 * **canyie:** https://github.com/canyie  
 * **yujincheng08:** https://github.com/yujincheng08  
 * **Dr-TSNG:** https://github.com/Dr-TSNG  
-  
+* **5ec1cff:** https://github.com/5ec1cff  
+* **Admirepowered:** https://github.com/Admirepowered  
+* **aviraxp:** https://github.com/aviraxp  
+* **bmax121:** https://github.com/bmax121  
+* **changhuapeng:** https://github.com/changhuapeng  
+* **changhuapeng:** https://xdaforums.com/m/changhuapeng.12770876/  
+* **chiteroman:** https://github.com/chiteroman  
+* **chiteroman:** https://xdaforums.com/m/chiteroman.10277887/  
+* **Crazyphil:** https://github.com/Crazyphil  
+* **daboynb:** https://github.com/daboynb  
+* **HuskyDG:** https://github.com/HuskyDG  
+* **HuskyDG:** https://xdaforums.com/m/huskydg.11455139/  
+* **JingMatrix:** https://github.com/JingMatrix  
+* **kdrag0n:** https://github.com/kdrag0n  
+* **kdrag0n:** https://xdaforums.com/m/kdrag0n.7291478/  
+* **osm0sis:** https://github.com/osm0sis  
+* **osm0sis:** https://xdaforums.com/m/osm0sis.4544860/  
+* **PerformanC:** https://github.com/PerformanC  
+* **snake-4:** https://github.com/snake-4  
+* **snake-4:** https://xdaforums.com/m/snake-4.12839217/  
+* **tiann:** https://github.com/tiann  
+* **tomyan112:** https://xdaforums.com/m/tomyan112.5993032/  
+* **x1337cn:** https://github.com/x1337cn  
+* **x1337cn:** https://xdaforums.com/m/x1337cn.10497543/  
+
 ## **Download e suporte:**  
 * https://github.com/VD171/VD-Infos  
 * https://xdaforums.com/t/VD-Infos.4097379/  
