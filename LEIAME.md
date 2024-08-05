@@ -215,21 +215,21 @@ https://github.com/rovo89?tab=repositories&q=xposed
 * **ikws4:** https://github.com/ikws4  
 * **M66B:** https://xdaforums.com/m/m66b.2799345/  
 * **M66B:** https://github.com/M66B  
-* **Fif_:** https://xdaforums.com/member.php?u=5297163  
+* **Fif_:** https://xdaforums.com/m/fif_.5297163/  
 * **Fif_:** https://github.com/F-i-f  
 * **AndroidX:** https://xdaforums.com/m/androidx.7762470/  
 * **AndroidX:** https://github.com/Android1500  
 * **Unique Solution:** https://deviceemulator.github.io/app  
-* **BytesReverser:** https://xdaforums.com/member.php?u=8062804  
+* **BytesReverser:** https://xdaforums.com/m/bytesreverser.8062804/  
 * **pyshivam:** https://xdaforums.com/m/pyshivam.9833141/  
 * **pyshivam:** https://github.com/pyshivam  
-* **scottyab:** https://xdaforums.com/member.php?u=2530687  
+* **scottyab:** https://xdaforums.com/m/scottyab.2530687/  
 * **scottyab:** https://github.com/scottyab  
-* **topjohnwu:** https://xdaforums.com/member.php?u=4470081  
+* **topjohnwu:** https://xdaforums.com/m/topjohnwu.4470081/  
 * **topjohnwu:** https://github.com/topjohnwu  
-* **devadvance:** https://xdaforums.com/member.php?u=2804938  
+* **devadvance:** https://xdaforums.com/m/devadvance.2804938/  
 * **devadvance:** https://github.com/devadvance  
-* **hikaritenchi:** https://xdaforums.com/member.php?u=3514987  
+* **hikaritenchi:** https://xdaforums.com/m/hikaritenchi.3514987/  
 * **hikaritenchi:** https://github.com/hikaritenchi  
 * **DimaKoz** https://github.com/DimaKoz  
 * **kimchangyoun** https://github.com/KimChangYoun  

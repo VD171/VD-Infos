@@ -170,6 +170,74 @@ https://github.com/M66B/XPrivacy
 https://xdaforums.com/t/official-xposed-for-lollipop-marshmallow-nougat-oreo-v90-beta3-2018-01-29.3034811/  
 https://xdaforums.com/t/xposed-general-info-versions-changelog.2714053/  
 https://github.com/rovo89?tab=repositories&q=xposed  
+
+## **Based on:**
+* **RootBeer Sample:** https://github.com/scottyab/rootbeer
+* **RootbeerFresh:** https://github.com/kimchangyoun/rootbeerFresh
+* **Native Root Checker:** https://github.com/DimaKoz/meat-grinder
+* **PiracyChecker** https://github.com/javiersantos/PiracyChecker
+* **Cordova Jailbreak/Root Detection Plugin** https://github.com/WuglyakBolgoink/cordova-plugin-iroot
+
+## **Tested on:**
+* **Android 4.4.2:** SDK 19
+* **Android 4.4.4:** SDK 19
+* **Android 5.0.2:** SDK 21
+* **Android 5.1.1:** SDK 22
+* **Android 6.0:** SDK 23
+* **Android 7.0:** SDK 24
+* **Android 7.1.1:** SDK 25
+* **Android 7.1.2:** SDK 25
+* **Android 8.0.0:** SDK 26
+* **Android 8.1.0:** SDK 27
+* **Android 9.0:** SDK 28
+* **Android 10.0:** SDK 29
+* **Android 11.0:** SDK 30
+* **Android 12.0:** SDK 31
+
+## **Contacts:**
+* **Skype:** VD.Priv8
+* **Telegram:** VD_Priv8
+* **E-mail:** vd.priv8 @ pm.me
+* **XDA-Developers:** VD171 https://xdaforums.com/m/vd171.4699873/
+
+## **Disclaimer:**
+* Use and distribute as you want and as you wish.
+
+## **Thanks to:**  
+* **rovo89:** https://xdaforums.com/m/rovo89.4419114/  
+* **rovo89:** https://github.com/rovo89  
+* **pumPCin:** https://github.com/pumPCin  
+* **mywalkb:** https://github.com/mywalkb  
+* **CMDQ8575:** https://github.com/CMDQ8575  
+* **ObbedCode:** https://xdaforums.com/m/obbedcode.12793605/  
+* **ObbedCode:** https://github.com/0bbedCode  
+* **zhipingne:** https://xdaforums.com/m/zhipingne.9027367/  
+* **ikws4:** https://github.com/ikws4  
+* **M66B:** https://xdaforums.com/m/m66b.2799345/  
+* **M66B:** https://github.com/M66B  
+* **Fif_:** https://xdaforums.com/m/fif_.5297163/  
+* **Fif_:** https://github.com/F-i-f  
+* **AndroidX:** https://xdaforums.com/m/androidx.7762470/  
+* **AndroidX:** https://github.com/Android1500  
+* **Unique Solution:** https://deviceemulator.github.io/app  
+* **BytesReverser:** https://xdaforums.com/m/bytesreverser.8062804/  
+* **pyshivam:** https://xdaforums.com/m/pyshivam.9833141/  
+* **pyshivam:** https://github.com/pyshivam  
+* **scottyab:** https://xdaforums.com/m/scottyab.2530687/  
+* **scottyab:** https://github.com/scottyab  
+* **topjohnwu:** https://xdaforums.com/m/topjohnwu.4470081/  
+* **topjohnwu:** https://github.com/topjohnwu  
+* **devadvance:** https://xdaforums.com/m/devadvance.2804938/  
+* **devadvance:** https://github.com/devadvance  
+* **hikaritenchi:** https://xdaforums.com/m/hikaritenchi.3514987/  
+* **hikaritenchi:** https://github.com/hikaritenchi  
+* **DimaKoz** https://github.com/DimaKoz  
+* **kimchangyoun** https://github.com/KimChangYoun  
+* **javiersantos** https://github.com/javiersantos  
+* **WuglyakBolgoink** https://github.com/WuglyakBolgoink  
+* **vvb2060:** https://github.com/vvb2060  
+* **canyie:** https://github.com/canyie  
+* **yujincheng08:** https://github.com/yujincheng08  
 * **Dr-TSNG:** https://github.com/Dr-TSNG  
 * **5ec1cff:** https://github.com/5ec1cff  
 * **Admirepowered:** https://github.com/Admirepowered  
