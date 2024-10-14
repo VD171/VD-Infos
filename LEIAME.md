@@ -66,6 +66,8 @@ Se quiser, você pode desautorizar o uso da internet com um firewall, ou você p
 * **Magisk:** Um conjunto de código aberto para personalizar o Android, suportando dispositivos a partir do Android 6.0.  
 https://github.com/topjohnwu/Magisk  
 https://xdaforums.com/t/magisk-the-magic-mask-for-android.3473445/  
+* **Magisk Alpha:** Um fork do Magisk.  
+https://t.me/magiskalpha
 * **Kitsune Mask (Magisk Delta):** Um fork do Magisk.  
 https://github.com/KitsuneMagisk/Magisk  
 https://github.com/HuskyDG/magisk-files  
@@ -78,6 +80,8 @@ https://github.com/tiann/KernelSU
 * **LSPosed:** Sucessor do Xposed Framework.  
 https://xdaforums.com/t/lsposed-xposed-framework-8-1-13-0-simple-magisk-module.4228973/  
 https://github.com/LSPosed/LSPosed  
+* **LSPosed NPM:** Um fork do LSPosed.  
+https://t.me/rormzhstjxm
 * **LSPosed by JingMatrix:** Um fork do LSPosed.  
 https://github.com/JingMatrix/LSPosed  
 * **LSPosed_mod by mywalkb:** Um fork do LSPosed.  
@@ -92,11 +96,16 @@ https://github.com/0bbedCode/XPL-EX/releases
 * **WeiJu2:** O primeiro módulo xposed programável, fornece uma nova maneira de alterar o comportamento dos aplicativos. Movido pelo Lua e feito com ♥  
 https://xdaforums.com/t/app-xposed-7-0-weiju2-scriptable-xposed-module.4482585/  
 https://github.com/ikws4/WeiJu2  
+* **Shamiko:** Um módulo Zygisk para esconder o root, o Magisk, o próprio Zygisk e outros módulos Zygisk.  
+https://github.com/LSPosed/LSPosed.github.io/releases  
 * **Zygisk-Assistant:** Um módulo Zygisk para ocultar o root para Kernelsu, Magisk e Apatch, projetado para funcionar no Android 5.0 e acima.  
 https://github.com/snake-4/Zygisk-Assistant  
 https://xdaforums.com/t/module-zygisk-assistant-foss-root-hider.4664761/  
-* **Shamiko:** Um módulo Zygisk para esconder o root, o Magisk, o próprio Zygisk e outros módulos Zygisk.  
-https://github.com/LSPosed/LSPosed.github.io/releases  
+* **Cheris Peekaboo:** Um tipo de alternatio do Shamiko para o APatch.  
+https://t.me/app_process64
+* **Sensitive Props mod:** Reseta propriedades sensíveis para um estado seguro.  
+https://www.pling.com/p/2129780
+https://t.me/PixelProps
 * **Zygisk-maphide:** Limpe os traços de arquivos montados dos módulos do Magisk para processo na Lista de Negação.  
 https://github.com/HuskyDG/zygisk-maphide  
 * **ZygiskNext:** Implementação independente do Zygisk, fornecendo suporte à API do Zygisk para KernelSU e uma substituição do Zygisk integrado do Magisk.  
@@ -108,6 +117,8 @@ https://github.com/PerformanC/ReZygisk
 * **Tricky Store:** Um truque keystore.  
 https://github.com/5ec1cff/TrickyStore  
 https://xdaforums.com/t/tricky-store-the-next-generation-pif.4683446/  
+* **TrickyStore by tryigit:** Um fork do TrickyStore.  
+https://github.com/tryigit/TrickyStore/
 * **Zygisk-KeystoreInjection:** Gere uma cadeia de certificados válidos do zero, injetando o provedor de keystore personalizado.  
 https://github.com/aviraxp/Zygisk-KeystoreInjection  
 * **PlayIntegrityFix:** Um módulo que tenta corrigir o Play Integrity e o SafetyNet para obter um atestado válido.  
@@ -115,16 +126,24 @@ https://github.com/chiteroman/PlayIntegrityFix
 https://xdaforums.com/t/module-play-integrity-fix-safetynet-fix.4607985/  
 * **PlayIntegrityFork:** Um fork do PlayIntegrityFix, para ser mais à prova de futuro e desenvolver mais metodicamente.  
 https://github.com/osm0sis/PlayIntegrityFork  
+* **PlayIntegrityFix by tryigit:** Um fork do PlayIntegrityFix.  
+https://github.com/tryigit/PlayIntegrityFix
 * **PlayIntegrityNEXT:** Um módulo que baixa uma impressão digital em vez de fazer um fork toda vez. O módulo é chamado de 'PlayCurl' e você simplesmente precisa instalá-lo junto ao PlayIntegrityFix oficial.  
 https://github.com/daboynb/PlayIntegrityNEXT  
 * **AutoPIF Next - PlayIntegrity Fix Next Fork:** Faz o download online automaticamente de um PIF.json funcionando do repositório e camufla o Google Play Integrity Check.  
 https://xdaforums.com/t/module-autopif-next-play-integrity-fix-fork-safetynet-fix.4652252/  
 https://github.com/x1337cn/AutoPIF-Next  
+* **playcurlNEXT:** Baixa automaticamente fingerprints para o play integrity fix.  
+https://github.com/daboynb/playcurlNEXT
 * **Framework Patch:** Modifica o Framework.jar para construir uma cadeia de certificados válidos a nível do sistema.  
 https://github.com/chiteroman/FrameworkPatch  
 * **Framework Patcher GO:** Um módulo Magisk/KernelSU/APatch para modificar o framework.jar diretamente no aparelho, para criar uma cadeia de certificação válida a nível do sistema.  
 https://github.com/changhuapeng/FrameworkPatcherGO  
 https://xdaforums.com/t/module-framework-patcher-go.4674536/  
+* **Hide My AppList:** Um módulo do Xposed para esconder apps ou rejeitas solicitações de listas de apps.  
+https://github.com/Dr-TSNG/Hide-My-Applist
+* **HMAL:** Um fork do Hide My AppList.  
+https://github.com/pumPCin/HMAL
 * **Geergit:** Um Módulo Para Proteger Sua Privacidade.  
 https://xdaforums.com/t/app-xposed-5-0-13-geergit-a-module-to-protect-your-privacy.4573243/  
 https://github.com/pyshivam/geergit-discussion/releases  
@@ -135,6 +154,9 @@ https://github.com/Android1500/AndroidFaker
 https://github.com/Xposed-Modules-Repo/com.android1500.androidfaker  
 * **Device ID Masker:** Camufle suas informações privadas vitais de aplicativos de terceiros e de sistema.  
 https://bytesreverserapps.com/device-id-masker/  
+* **I am not a developer:** Esconde o modo desenvolvedor, modo de depuração via USB e modo de depuração via wifi.  
+https://github.com/xfqwdsj/IAmNotADeveloper
+https://github.com/Xposed-Modules-Repo/xyz.xfqlittlefan.notdeveloper
 * **E-Government Liberator (formalmente Digitales Amt Liberator):** O E-Government Liberator remove quaisquer chamadas em apps do governo austríaco suportados para verificações de root e bootloader, portanto, fornece uma solução personalizada para executar o app em dispositivos com root.  
 https://github.com/Crazyphil/digitales-amt-liberator  
 * **BootloaderSpoofer:** Camufle o bootloader desbloqueado em atestados locais.  
@@ -263,6 +285,8 @@ https://github.com/rovo89?tab=repositories&q=xposed
 * **tomyan112:** https://xdaforums.com/m/tomyan112.5993032/  
 * **x1337cn:** https://github.com/x1337cn  
 * **x1337cn:** https://xdaforums.com/m/x1337cn.10497543/  
+* **tryigit:** https://github.com/tryigit  
+* **xfqwdsj:** https://github.com/xfqwdsj  
 
 ## **Download e suporte:**  
 * https://github.com/VD171/VD-Infos  
