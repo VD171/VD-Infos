@@ -10,7 +10,7 @@ What nobody tells you is that all your personal details and confidential informa
 Protect yourself against these types of invasions of privacy is an obligation.  
 The VD Infos app reads several of these details and information to show you an example of what can be captured from your device in use.  
 **NO ONE INFORMATION IS STORED, SENT OR TRANSMITTED TO ANY FILE OR SERVER.**  
-If you want, you can disallow usage of internet with a firewall, or you can just turn off the internet.
+If you want, you can disallow usage of internet with a firewall, or you can just turn off the internet.  
   
   
   
@@ -67,7 +67,7 @@ If you want, you can disallow usage of internet with a firewall, or you can just
 https://github.com/topjohnwu/Magisk  
 https://xdaforums.com/t/magisk-the-magic-mask-for-android.3473445/  
 * **Magisk Alpha:** A fork of Magisk.  
-https://t.me/magiskalpha
+https://t.me/magiskalpha  
 * **Kitsune Mask (Magisk Delta):** A fork of Magisk.  
 https://github.com/KitsuneMagisk/Magisk  
 https://github.com/HuskyDG/magisk-files  
@@ -81,7 +81,7 @@ https://github.com/tiann/KernelSU
 https://xdaforums.com/t/lsposed-xposed-framework-8-1-13-0-simple-magisk-module.4228973/  
 https://github.com/LSPosed/LSPosed  
 * **LSPosed NPM:** A fork of LSPosed.  
-https://t.me/rormzhstjxm
+https://t.me/rormzhstjxm  
 * **LSPosed by JingMatrix:** A fork of LSPosed.  
 https://github.com/JingMatrix/LSPosed  
 * **LSPosed_mod by mywalkb:** A fork of LSPosed.  
@@ -102,10 +102,10 @@ https://github.com/LSPosed/LSPosed.github.io/releases
 https://github.com/snake-4/Zygisk-Assistant  
 https://xdaforums.com/t/module-zygisk-assistant-foss-root-hider.4664761/  
 * **Cheris Peekaboo:** Some kind of alternative to Shamiko for APatch.  
-https://t.me/app_process64
+https://t.me/app_process64  
 * **Sensitive Props mod:** Reset sensitive properties to safe state.  
-https://www.pling.com/p/2129780
-https://t.me/PixelProps
+https://www.pling.com/p/2129780  
+https://t.me/PixelProps  
 * **Zygisk-maphide:** Wipe out the traces of mounted files of Magisk module for process on DenyList.  
 https://github.com/HuskyDG/zygisk-maphide  
 * **ZygiskNext:** Standalone implementation of Zygisk, providing Zygisk API support for KernelSU and a replacement of Magisk's built-in Zygisk.  
@@ -118,7 +118,7 @@ https://github.com/PerformanC/ReZygisk
 https://github.com/5ec1cff/TrickyStore  
 https://xdaforums.com/t/tricky-store-the-next-generation-pif.4683446/  
 * **TrickyStore by tryigit:** A fork of TrickyStore.  
-https://github.com/tryigit/TrickyStore/
+https://github.com/tryigit/TrickyStore/  
 * **Zygisk-KeystoreInjection:** Generate a valid certificate chain from scratch by injecting custom Keystore provider.  
 https://github.com/aviraxp/Zygisk-KeystoreInjection  
 * **PlayIntegrityFix:** The module tries to fix Play Integrity and SafetyNet verdicts to get a valid attestation.  
@@ -127,23 +127,23 @@ https://xdaforums.com/t/module-play-integrity-fix-safetynet-fix.4607985/
 * **PlayIntegrityFork:** A fork of PlayIntegrityFix, to be more futureproof and develop more methodically.  
 https://github.com/osm0sis/PlayIntegrityFork  
 * **PlayIntegrityFix by tryigit:** A fork of PlayIntegrityFix.  
-https://github.com/tryigit/PlayIntegrityFix
+https://github.com/tryigit/PlayIntegrityFix  
 * **PlayIntegrityNEXT:** A module that downloads a working fingerprint instead of making a fork every time. The module is called 'playcurl,' and you simply need to install it alongside the official PlayIntegrityFix.  
 https://github.com/daboynb/PlayIntegrityNEXT  
 * **AutoPIF Next - PlayIntegrity Fix Next Fork:** Automatically download working pif.json online from the repository and bypass Google Play Integrity Check.  
 https://xdaforums.com/t/module-autopif-next-play-integrity-fix-fork-safetynet-fix.4652252/  
 https://github.com/x1337cn/AutoPIF-Next  
 * **playcurlNEXT:** Fingerprint downloader for play integrity fix.  
-https://github.com/daboynb/playcurlNEXT
+https://github.com/daboynb/playcurlNEXT  
 * **Framework Patch:** Modify framework.jar to build on system level a valid certificate chain   
 https://github.com/chiteroman/FrameworkPatch  
 * **Framework Patcher GO:** A Magisk/KernelSU/APatch module to modify framework.jar directly on the phone, to build a valid system-level certificate chain.  
 https://github.com/changhuapeng/FrameworkPatcherGO  
 https://xdaforums.com/t/module-framework-patcher-go.4674536/  
 * **Hide My AppList:** An Xposed module to hide apps or reject app list requests.  
-https://github.com/Dr-TSNG/Hide-My-Applist
+https://github.com/Dr-TSNG/Hide-My-Applist  
 * **HMAL:** A fork of Hide My AppList.  
-https://github.com/pumPCin/HMAL
+https://github.com/pumPCin/HMAL  
 * **Geergit:** A Module to Protect Your Privacy.  
 https://xdaforums.com/t/app-xposed-5-0-13-geergit-a-module-to-protect-your-privacy.4573243/  
 https://github.com/pyshivam/geergit-discussion/releases  
@@ -155,8 +155,8 @@ https://github.com/Xposed-Modules-Repo/com.android1500.androidfaker
 * **Device ID Masker:** Spoof your vital private information from Third Party As Well As System Apps.  
 https://bytesreverserapps.com/device-id-masker/  
 * **I am not a developer:** Hide development mode, USB debugging mode and wireless debugging mode.  
-https://github.com/xfqwdsj/IAmNotADeveloper
-https://github.com/Xposed-Modules-Repo/xyz.xfqlittlefan.notdeveloper
+https://github.com/xfqwdsj/IAmNotADeveloper  
+https://github.com/Xposed-Modules-Repo/xyz.xfqlittlefan.notdeveloper  
 * **E-Government Liberator (formerly Digitales Amt Liberator):** E-Government Liberator removes any calls in supported Austrian e-government apps to root and bootloader checks and therefore provides a tailored solution to running the app on rooted devices.  
 https://github.com/Crazyphil/digitales-amt-liberator  
 * **BootloaderSpoofer:** Spoof locked bootloader on local attestations.  
@@ -222,8 +222,8 @@ https://github.com/rovo89?tab=repositories&q=xposed
 * **E-mail:** vd.priv8 @ pm.me  
 * **XDA-Developers:** VD171 https://xdaforums.com/m/vd171.4699873/  
   
-## **Disclaimer:**
-* Use and distribute as you want and as you wish.
+## **Disclaimer:**  
+* Use and distribute as you want and as you wish.  
   
 ## **Thanks to:**  
 * **rovo89:** https://xdaforums.com/m/rovo89.4419114/  
@@ -287,7 +287,7 @@ https://github.com/rovo89?tab=repositories&q=xposed
 * **x1337cn:** https://xdaforums.com/m/x1337cn.10497543/  
 * **tryigit:** https://github.com/tryigit  
 * **xfqwdsj:** https://github.com/xfqwdsj  
-
+  
 ## **Download and support:**  
 * https://github.com/VD171/VD-Infos  
 * https://xdaforums.com/t/VD-Infos.4097379/  
