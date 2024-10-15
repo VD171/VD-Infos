@@ -129,9 +129,9 @@ https://xdaforums.com/t/tricky-store-the-next-generation-pif.4683446/
 https://t.me/real5ec1cff  
 https://t.me/nullptr_dev  
 * **TrickyStore by N-X-T:** Um fork do TrickyStore.  
-https://github.com/N-X-T/TrickyStore/  
+https://github.com/N-X-T/TrickyStore  
 * **TrickyStore by tryigit:** Um fork do TrickyStore.  
-https://github.com/tryigit/TrickyStore/  
+https://github.com/tryigit/TrickyStore  
 * **Zygisk-KeystoreInjection:** Gere uma cadeia de certificados válidos do zero, injetando o provedor de keystore personalizado.  
 https://github.com/aviraxp/Zygisk-KeystoreInjection  
 * **PlayIntegrityFix:** Um módulo que tenta corrigir o Play Integrity e o SafetyNet para obter um atestado válido.  
