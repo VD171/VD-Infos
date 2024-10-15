@@ -117,6 +117,8 @@ https://github.com/PerformanC/ReZygisk
 * **Tricky Store:** A trick of keystore.  
 https://github.com/5ec1cff/TrickyStore  
 https://xdaforums.com/t/tricky-store-the-next-generation-pif.4683446/  
+* **TrickyStore by N-X-T:** A fork of TrickyStore.  
+https://github.com/N-X-T/TrickyStore/  
 * **TrickyStore by tryigit:** A fork of TrickyStore.  
 https://github.com/tryigit/TrickyStore/  
 * **Zygisk-KeystoreInjection:** Generate a valid certificate chain from scratch by injecting custom Keystore provider.  
@@ -285,6 +287,7 @@ https://github.com/rovo89?tab=repositories&q=xposed
 * **tomyan112:** https://xdaforums.com/m/tomyan112.5993032/  
 * **x1337cn:** https://github.com/x1337cn  
 * **x1337cn:** https://xdaforums.com/m/x1337cn.10497543/  
+* **N-X-T:** https://github.com/N-X-T  
 * **tryigit:** https://github.com/tryigit  
 * **xfqwdsj:** https://github.com/xfqwdsj  
   
