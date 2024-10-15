@@ -80,6 +80,10 @@ https://github.com/tiann/KernelSU
 * **LSPosed:** Sucessor do Xposed Framework.  
 https://xdaforums.com/t/lsposed-xposed-framework-8-1-13-0-simple-magisk-module.4228973/  
 https://github.com/LSPosed/LSPosed  
+https://t.me/LSPosed  
+https://t.me/LSPosedDiscussion  
+https://t.me/LSPosedArchives  
+https://t.me/lsposed_log  
 * **LSPosed NPM:** Um fork do LSPosed.  
 https://t.me/rormzhstjxm  
 * **LSPosed by JingMatrix:** Um fork do LSPosed.  
@@ -91,6 +95,8 @@ https://github.com/CMDQ8575/LSPosed
 * **XPL-EX (XPrivacyLua Ex):** Um fork do XPrivacyLua.  
 https://xdaforums.com/t/xpl-ex-xprivacylua-ex-android-privacy-manager-hooking-manager-extended.4652573/  
 https://github.com/0bbedCode/XPL-EX  
+https://t.me/XPL_EX  
+https://t.me/XPL_EX_CHAT  
 * **XPL-EX Pro (XPrivacyLua Ex Pro):** Um fork do XPrivacyLuaPro.  
 https://github.com/0bbedCode/XPL-EX/releases  
 * **WeiJu2:** O primeiro módulo xposed programável, fornece uma nova maneira de alterar o comportamento dos aplicativos. Movido pelo Lua e feito com ♥  
@@ -105,11 +111,14 @@ https://xdaforums.com/t/module-zygisk-assistant-foss-root-hider.4664761/
 https://t.me/app_process64  
 * **Sensitive Props mod:** Reseta propriedades sensíveis para um estado seguro.  
 https://www.pling.com/p/2129780  
+https://github.com/Pixel-Props/sensitive-props  
 https://t.me/PixelProps  
 * **Zygisk-maphide:** Limpe os traços de arquivos montados dos módulos do Magisk para processo na Lista de Negação.  
 https://github.com/HuskyDG/zygisk-maphide  
 * **ZygiskNext:** Implementação independente do Zygisk, fornecendo suporte à API do Zygisk para KernelSU e uma substituição do Zygisk integrado do Magisk.  
 https://github.com/Dr-TSNG/ZygiskNext  
+https://t.me/real5ec1cff  
+https://t.me/nullptr_dev  
 * **Zygisk_mod:** Um fork de código aberto do Zygisk Next.  
 https://github.com/Admirepowered/Zygisk_mod  
 * **ReZygisk:** Um fork do Zygisk Next, que é uma implementação independente de Zygisk fornecendo suporte à API de Zygisk para KernelSU, Magisk (além de embutido) e Apatch futuramente.  
@@ -117,6 +126,8 @@ https://github.com/PerformanC/ReZygisk
 * **Tricky Store:** Um truque keystore.  
 https://github.com/5ec1cff/TrickyStore  
 https://xdaforums.com/t/tricky-store-the-next-generation-pif.4683446/  
+https://t.me/real5ec1cff  
+https://t.me/nullptr_dev  
 * **TrickyStore by N-X-T:** Um fork do TrickyStore.  
 https://github.com/N-X-T/TrickyStore/  
 * **TrickyStore by tryigit:** Um fork do TrickyStore.  
@@ -126,6 +137,8 @@ https://github.com/aviraxp/Zygisk-KeystoreInjection
 * **PlayIntegrityFix:** Um módulo que tenta corrigir o Play Integrity e o SafetyNet para obter um atestado válido.  
 https://github.com/chiteroman/PlayIntegrityFix  
 https://xdaforums.com/t/module-play-integrity-fix-safetynet-fix.4607985/  
+https://t.me/playintegrityfix  
+https://t.me/playintegrityfixchat  
 * **PlayIntegrityFork:** Um fork do PlayIntegrityFix, para ser mais à prova de futuro e desenvolver mais metodicamente.  
 https://github.com/osm0sis/PlayIntegrityFork  
 * **PlayIntegrityFix by tryigit:** Um fork do PlayIntegrityFix.  
@@ -150,10 +163,12 @@ https://github.com/pumPCin/HMAL
 https://xdaforums.com/t/app-xposed-5-0-13-geergit-a-module-to-protect-your-privacy.4573243/  
 https://github.com/pyshivam/geergit-discussion/releases  
 https://github.com/Xposed-Modules-Repo/com.pyshivam.geergit/releases  
+https://t.me/geergit_xposed  
 * **Android Faker:** Um Módulo Para Camuflar Seu Aparelho.  
 https://xdaforums.com/t/app-xposed-8-1-13-android-faker-a-module-for-spoof-your-device.4284233  
 https://github.com/Android1500/AndroidFaker  
 https://github.com/Xposed-Modules-Repo/com.android1500.androidfaker  
+https://t.me/androidfakerofficial  
 * **Device ID Masker:** Camufle suas informações privadas vitais de aplicativos de terceiros e de sistema.  
 https://bytesreverserapps.com/device-id-masker/  
 * **I am not a developer:** Esconde o modo desenvolvedor, modo de depuração via USB e modo de depuração via wifi.  
