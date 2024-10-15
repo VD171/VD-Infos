@@ -92,12 +92,12 @@ https://github.com/JingMatrix/LSPosed
 https://github.com/mywalkb/LSPosed_mod  
 * **LSPosed by CMDQ8575:** A fork of LSPosed.  
 https://github.com/CMDQ8575/LSPosed  
-* **XPL-EX (XPrivacyLua Ex):** A fork of XPrivacyLua.  
+* **XPL-EX (XPrivacyLua Extended):** A fork of XPrivacyLua.  
 https://xdaforums.com/t/xpl-ex-xprivacylua-ex-android-privacy-manager-hooking-manager-extended.4652573/  
 https://github.com/0bbedCode/XPL-EX  
 https://t.me/XPL_EX  
 https://t.me/XPL_EX_CHAT  
-* **XPL-EX Pro (XPrivacyLua Ex Pro):** A fork of XPrivacyLuaPro.  
+* **XPL-EX Pro (XPrivacyLua Extended Pro):** A fork of XPrivacyLuaPro.  
 https://github.com/0bbedCode/XPL-EX/releases  
 * **WeiJu2:** The first scriptable xposed module, provides a new way to change the application behavior. Powered by Lua and made with ♥  
 https://xdaforums.com/t/app-xposed-7-0-weiju2-scriptable-xposed-module.4482585/  
@@ -161,8 +161,8 @@ https://github.com/Dr-TSNG/Hide-My-Applist
 https://github.com/pumPCin/HMAL  
 * **Geergit:** A Module to Protect Your Privacy.  
 https://xdaforums.com/t/app-xposed-5-0-13-geergit-a-module-to-protect-your-privacy.4573243/  
-https://github.com/pyshivam/geergit-discussion/releases  
-https://github.com/Xposed-Modules-Repo/com.pyshivam.geergit/releases  
+https://github.com/pyshivam/geergit-discussion  
+https://github.com/Xposed-Modules-Repo/com.pyshivam.geergit  
 https://t.me/geergit_xposed  
 * **Android Faker:** A Module For Spoof Your Device.  
 https://xdaforums.com/t/app-xposed-8-1-13-android-faker-a-module-for-spoof-your-device.4284233  
