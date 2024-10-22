@@ -63,6 +63,10 @@ Se quiser, você pode desautorizar o uso da internet com um firewall, ou você p
 * Lista os APLICATIVOS INSTALADOS.  
   
 ## **Como se proteger ?**  
+* **Blank's Integrity Guide:** Um guida sobre como esconder o root e passar o Strong Integrity.  
+https://t.me/BlankAssistance/7/2437  
+https://t.me/BlankAssistance  
+https://t.me/BlankAssistance_Integrity  
 * **Magisk:** Um conjunto de código aberto para personalizar o Android, suportando dispositivos a partir do Android 6.0.  
 https://github.com/topjohnwu/Magisk  
 https://xdaforums.com/t/magisk-the-magic-mask-for-android.3473445/  
@@ -200,7 +204,7 @@ https://github.com/kdrag0n/safetynet-fix
 https://xdaforums.com/t/mod-xposed-4-0-rootcloak-completely-hide-root-from-specific-apps-2014-01-14.2574647/  
 https://mattj.io/rootcloak/  
 https://github.com/devadvance/rootcloak  
-* (Obsoleto) **Device Emulator:** O melhor app para camuflar informações.  
+* (Obsoleto) **Device Emulator:** Módulo Xposed para mudar (MASCARAR) as várias identificações no telefone.  
 https://deviceemulator.github.io/app  
 * (Obsoleto) **XPrivacy:** Impede que aplicativos vazem dados confidenciais, restringindo as categorias de dados que um aplicativo pode acessar. O XPrivacy alimenta os aplicativos com dados falsos ou dados nenhum.  
 https://xdaforums.com/t/closed-xprivacy-the-ultimate-yet-easy-to-use-privacy-manager.2320783/  
@@ -243,6 +247,7 @@ https://github.com/rovo89?tab=repositories&q=xposed
 * Use e distribua da maneira que quiser e como você bem entender.  
   
 ## **Agradecimentos:**  
+* **AkaBlank517:** https://t.me/AkaBlank517  
 * **rovo89:** https://xdaforums.com/m/rovo89.4419114/  
 * **rovo89:** https://github.com/rovo89  
 * **pumPCin:** https://github.com/pumPCin  
