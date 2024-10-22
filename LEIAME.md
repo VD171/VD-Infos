@@ -63,7 +63,7 @@ Se quiser, você pode desautorizar o uso da internet com um firewall, ou você p
 * Lista os APLICATIVOS INSTALADOS.  
   
 ## **Como se proteger ?**  
-* **Blank's Integrity Guide:** Um guida sobre como esconder o root e passar o Strong Integrity.  
+* **Blank's Integrity Guide:** Um guia sobre como esconder o root e passar o Strong Integrity.  
 https://t.me/BlankAssistance/7/2437  
 https://t.me/BlankAssistance  
 https://t.me/BlankAssistance_Integrity  
