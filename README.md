@@ -63,6 +63,10 @@ If you want, you can disallow usage of internet with a firewall, or you can just
 * List INSTALLED APPLICATIONS.  
   
 ## **How to protect yourself ?**  
+* **Blank's Integrity Guide:** A guide to how to hide root and pass Strong Integrity.  
+https://t.me/BlankAssistance/7/2437  
+https://t.me/BlankAssistance  
+https://t.me/BlankAssistance_Integrity  
 * **Magisk:** A suite of open source software for customizing Android, supporting devices higher than Android 6.0.  
 https://github.com/topjohnwu/Magisk  
 https://xdaforums.com/t/magisk-the-magic-mask-for-android.3473445/  
@@ -164,7 +168,7 @@ https://xdaforums.com/t/app-xposed-5-0-13-geergit-a-module-to-protect-your-priva
 https://github.com/pyshivam/geergit-discussion  
 https://github.com/Xposed-Modules-Repo/com.pyshivam.geergit  
 https://t.me/geergit_xposed  
-* **Android Faker:** A Module For Spoof Your Device.  
+* **Android Faker:** A Module For Spoofing Your Device.  
 https://xdaforums.com/t/app-xposed-8-1-13-android-faker-a-module-for-spoof-your-device.4284233  
 https://github.com/Android1500/AndroidFaker  
 https://github.com/Xposed-Modules-Repo/com.android1500.androidfaker  
@@ -200,7 +204,7 @@ https://github.com/kdrag0n/safetynet-fix
 https://xdaforums.com/t/mod-xposed-4-0-rootcloak-completely-hide-root-from-specific-apps-2014-01-14.2574647/  
 https://mattj.io/rootcloak/  
 https://github.com/devadvance/rootcloak  
-* (Deprecated) **Device Emulator:** The best app to spoof informations.  
+* (Deprecated) **Device Emulator:** Xposed module for changing (MASKING) the various IDs in the phone.  
 https://deviceemulator.github.io/app  
 * (Deprecated) **XPrivacy:** Prevent applications from leaking privacy-sensitive data by restricting the categories of data an application can access. XPrivacy feeds applications fake data or no data at all.  
 https://xdaforums.com/t/closed-xprivacy-the-ultimate-yet-easy-to-use-privacy-manager.2320783/  
@@ -243,6 +247,7 @@ https://github.com/rovo89?tab=repositories&q=xposed
 * Use and distribute as you want and as you wish.  
   
 ## **Thanks to:**  
+* **AkaBlank517:** https://t.me/AkaBlank517  
 * **rovo89:** https://xdaforums.com/m/rovo89.4419114/  
 * **rovo89:** https://github.com/rovo89  
 * **pumPCin:** https://github.com/pumPCin  
