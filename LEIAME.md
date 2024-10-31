@@ -88,6 +88,8 @@ https://t.me/LSPosed
 https://t.me/LSPosedDiscussion  
 https://t.me/LSPosedArchives  
 https://t.me/lsposed_log  
+* **LSPosed Irena:** Um fork do LSPosed.  
+https://github.com/re-zero001/LSPosed-Irena  
 * **LSPosed NPM:** Um fork do LSPosed.  
 https://t.me/rormzhstjxm  
 * **LSPosed by JingMatrix:** Um fork do LSPosed.  
@@ -250,6 +252,7 @@ https://github.com/rovo89?tab=repositories&q=xposed
 * **AkaBlank517:** https://t.me/AkaBlank517  
 * **rovo89:** https://xdaforums.com/m/rovo89.4419114/  
 * **rovo89:** https://github.com/rovo89  
+* **re-zero001:** https://github.com/re-zero001  
 * **pumPCin:** https://github.com/pumPCin  
 * **mywalkb:** https://github.com/mywalkb  
 * **CMDQ8575:** https://github.com/CMDQ8575  
