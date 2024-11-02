@@ -113,7 +113,7 @@ https://github.com/LSPosed/LSPosed.github.io/releases
 * **Zygisk-Assistant:** Um módulo Zygisk para ocultar o root para Kernelsu, Magisk e Apatch, projetado para funcionar no Android 5.0 e acima.  
 https://github.com/snake-4/Zygisk-Assistant  
 https://xdaforums.com/t/module-zygisk-assistant-foss-root-hider.4664761/  
-* **Cheris Peekaboo:** Um tipo de alternatio do Shamiko para o APatch.  
+* **Cherish Peekaboo:** Um tipo de alternativa do Shamiko para o APatch.  
 https://t.me/app_process64  
 * **Sensitive Props mod:** Reseta propriedades sensíveis para um estado seguro.  
 https://www.pling.com/p/2129780  
@@ -127,7 +127,7 @@ https://t.me/real5ec1cff
 https://t.me/nullptr_dev  
 * **Zygisk_mod:** Um fork de código aberto do Zygisk Next.  
 https://github.com/Admirepowered/Zygisk_mod  
-* **ReZygisk:** Um fork do Zygisk Next, que é uma implementação independente de Zygisk fornecendo suporte à API de Zygisk para KernelSU, Magisk (além de embutido) e Apatch futuramente.  
+* **ReZygisk:** Um fork do Zygisk Next, que é uma implementação independente de Zygisk fornecendo suporte à API de Zygisk para KernelSU, Magisk (além de embutido) e Apatch (trabalho em progresso).  
 https://github.com/PerformanC/ReZygisk  
 * **Tricky Store:** Um truque keystore.  
 https://github.com/5ec1cff/TrickyStore  
