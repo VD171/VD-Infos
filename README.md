@@ -88,6 +88,8 @@ https://t.me/LSPosed
 https://t.me/LSPosedDiscussion  
 https://t.me/LSPosedArchives  
 https://t.me/lsposed_log  
+* **LSPosed Internal:** A fork of LSPosed by its own developers.  
+https://t.me/+VoX7SSzR6UUyN2I1  
 * **LSPosed Irena:** A fork of LSPosed.  
 https://github.com/re-zero001/LSPosed-Irena  
 * **LSPosed NPM:** A fork of LSPosed.  
@@ -119,6 +121,7 @@ https://t.me/app_process64
 https://www.pling.com/p/2129780  
 https://github.com/Pixel-Props/sensitive-props  
 https://t.me/PixelProps  
+https://t.me/pixelpropschat  
 * **Zygisk-maphide:** Wipe out the traces of mounted files of Magisk module for process on DenyList.  
 https://github.com/HuskyDG/zygisk-maphide  
 * **ZygiskNext:** Standalone implementation of Zygisk, providing Zygisk API support for KernelSU and a replacement of Magisk's built-in Zygisk.  
@@ -185,6 +188,23 @@ https://github.com/Crazyphil/digitales-amt-liberator
 * **BootloaderSpoofer:** Spoof locked bootloader on local attestations.  
 https://github.com/chiteroman/BootloaderSpoofer  
 https://xdaforums.com/t/spoof-locked-bootloader-bypass-tee-check.4586251/  
+* **Wa Revamp:** An Xposed Module to customize and enable privacy on WhatsApp.  
+https://github.com/ItsMadruga/WaRevamp  
+https://t.me/warevampmodule  
+* **Wa Enhancer:** An Xposed Module to customize and enable privacy on WhatsApp.  
+https://t.me/waenhancer  
+https://t.me/waenhancher  
+https://github.com/Dev4Mod/WaEnhancer  
+* **AdClose:** An Xposed module to prevent in-app advertising SDK initialization. Block the app's online ad requests. Allow screenshots and screen recordings to be taken freely in the app. Remove in-app VPN and system proxy detection. Used to disable sensor-based advertising jumps such as Shake. Removes general Root, Magisk and Xposed framework detection within the app.  
+https://github.com/Xposed-Modules-Repo/com.close.hook.ads  
+https://github.com/zjyzip/AdClose  
+* **NoVPNDetect:** An Xposed module prevent some apps detect your phone connected to VPN.  
+https://github.com/Xposed-Modules-Repo/me.hoshino.novpndetect  
+https://bitbucket.org/yuri-project/novpndetect  
+* **NeoBackup:** A modern backup manager for Android.  
+https://github.com/NeoApplications/Neo-Backup  
+https://t.me/neo_backup  
+https://xdaforums.com/t/app-8-0-open-source-root-neo-backup-apps-and-data-backup-tool-for-android.4167179/  
 * (Deprecated) **XPrivacyLua:** Successor of XPrivacy. Revoking Android permissions from apps often let apps crash or malfunction. XPrivacyLua solves this by feeding apps fake data instead of real data.  
 https://xdaforums.com/t/discussion-lsposed-unofficial-xprivacylua-android-privacy-manager.4533999/  
 https://xdaforums.com/t/closed-app-xposed-6-0-xprivacylua-android-privacy-manager-unsupported.3730663/  
@@ -215,6 +235,8 @@ https://github.com/M66B/XPrivacy
 https://xdaforums.com/t/official-xposed-for-lollipop-marshmallow-nougat-oreo-v90-beta3-2018-01-29.3034811/  
 https://xdaforums.com/t/xposed-general-info-versions-changelog.2714053/  
 https://github.com/rovo89?tab=repositories&q=xposed  
+* (Deprecated) **Mdg Wa:** An Xposed Module to customize and enable privacy on WhatsApp.  
+https://github.com/ItsMadruga/MdgWa  
   
 ## **Based on:**  
 * **RootBeer Sample:** https://github.com/scottyab/rootbeer  
@@ -238,6 +260,18 @@ https://github.com/rovo89?tab=repositories&q=xposed
 * **Android 10.0:** SDK 29  
 * **Android 11.0:** SDK 30  
 * **Android 12.0:** SDK 31  
+  
+## **How to detect root ?**  
+Use native detectors. Like:  
+  
+* **Holmes:** https://t.me/app_process64  
+* **Native Test:** https://t.me/nullptr_dev  
+* **Native Detector:** https://t.me/reveny1  
+* **Hunter:** https://t.me/Zhenxi233  
+* **Momo:** https://t.me/magiskalpha  
+* **Securify:** https://github.com/RabehX/Securify/releases  
+* **Memory Detector:** https://github.com/reveny/detection/blob/main/MemoryDetector_2.1.0.apk  
+* **Env Checks:** https://play.google.com/store/apps/details?id=com.dexprotector.detector.envchecks  
   
 ## **Contacts:**  
 * **Skype:** VD.Priv8  

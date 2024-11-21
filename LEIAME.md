@@ -88,6 +88,8 @@ https://t.me/LSPosed
 https://t.me/LSPosedDiscussion  
 https://t.me/LSPosedArchives  
 https://t.me/lsposed_log  
+* **LSPosed Internal:** Um fork do LSPosed de seus próprios desenvolvedores.  
+https://t.me/+VoX7SSzR6UUyN2I1  
 * **LSPosed Irena:** Um fork do LSPosed.  
 https://github.com/re-zero001/LSPosed-Irena  
 * **LSPosed NPM:** Um fork do LSPosed.  
@@ -119,6 +121,7 @@ https://t.me/app_process64
 https://www.pling.com/p/2129780  
 https://github.com/Pixel-Props/sensitive-props  
 https://t.me/PixelProps  
+https://t.me/pixelpropschat  
 * **Zygisk-maphide:** Limpe os traços de arquivos montados dos módulos do Magisk para processo na Lista de Negação.  
 https://github.com/HuskyDG/zygisk-maphide  
 * **ZygiskNext:** Implementação independente do Zygisk, fornecendo suporte à API do Zygisk para KernelSU e uma substituição do Zygisk integrado do Magisk.  
@@ -185,6 +188,23 @@ https://github.com/Crazyphil/digitales-amt-liberator
 * **BootloaderSpoofer:** Camufle o bootloader desbloqueado em atestados locais.  
 https://github.com/chiteroman/BootloaderSpoofer  
 https://xdaforums.com/t/spoof-locked-bootloader-bypass-tee-check.4586251/  
+* **Wa Revamp:** Um módulo do Xposed para personalizar e habilitar privacidade no WhatsApp..  
+https://github.com/ItsMadruga/WaRevamp  
+https://t.me/warevampmodule  
+* **Wa Enhancer:** Um módulo do Xposed para personalizar e habilitar privacidade no WhatsApp.  
+https://t.me/waenhancer  
+https://t.me/waenhancher  
+https://github.com/Dev4Mod/WaEnhancer  
+* **AdClose:** Um módulo do Xposed para prevenir propagandas comerciais dentro do app. Bloquear solicitações de propagandas comerciais. Permitir capturas e gravções de tela livremente. Remover deteção de VPN e proxy. Desativar propagandas comerciais basedas em sensores. Remover deteção geral do Root, Magisk e do Xposed.  
+https://github.com/Xposed-Modules-Repo/com.close.hook.ads  
+https://github.com/zjyzip/AdClose  
+* **NoVPNDetect:** Um módulo do Xposed para prevenir que apps possam detectar que o aparelho está conectado em uma VPN.  
+https://github.com/Xposed-Modules-Repo/me.hoshino.novpndetect  
+https://bitbucket.org/yuri-project/novpndetect  
+* **NeoBackup:** Um moderno gerenciador de backup para o Android.  
+https://github.com/NeoApplications/Neo-Backup  
+https://t.me/neo_backup  
+https://xdaforums.com/t/app-8-0-open-source-root-neo-backup-apps-and-data-backup-tool-for-android.4167179/  
 * (Obsoleto) **XPrivacyLua:** Sucessor do XPrivacy. Negar o uso de permissões para os aplicativos, geralmente faz os aplicativos travarem ou apresentarem mau funcionamento. O XPrivacyLua resolve isso alimentando os aplicativos com dados falsos em vez de dados reais.  
 https://xdaforums.com/t/discussion-lsposed-unofficial-xprivacylua-android-privacy-manager.4533999/  
 https://xdaforums.com/t/closed-app-xposed-6-0-xprivacylua-android-privacy-manager-unsupported.3730663/  
@@ -215,6 +235,8 @@ https://github.com/M66B/XPrivacy
 https://xdaforums.com/t/official-xposed-for-lollipop-marshmallow-nougat-oreo-v90-beta3-2018-01-29.3034811/  
 https://xdaforums.com/t/xposed-general-info-versions-changelog.2714053/  
 https://github.com/rovo89?tab=repositories&q=xposed  
+* (Obsoleto) **Mdg Wa:** Um módulo do Xposed para personalizar e habilitar privacidade no WhatsApp.  
+https://github.com/ItsMadruga/MdgWa  
   
 ## **Baseado em:**  
 * **RootBeer Sample:** https://github.com/scottyab/rootbeer  
@@ -238,6 +260,18 @@ https://github.com/rovo89?tab=repositories&q=xposed
 * **Android 10.0:** SDK 29  
 * **Android 11.0:** SDK 30  
 * **Android 12.0:** SDK 31  
+  
+## **Como detectar o root ?**  
+Use detectores nativos. Como:  
+  
+* **Holmes:** https://t.me/app_process64  
+* **Native Test:** https://t.me/nullptr_dev  
+* **Native Detector:** https://t.me/reveny1  
+* **Hunter:** https://t.me/Zhenxi233  
+* **Momo:** https://t.me/magiskalpha  
+* **Securify:** https://github.com/RabehX/Securify/releases  
+* **Memory Detector:** https://github.com/reveny/detection/blob/main/MemoryDetector_2.1.0.apk  
+* **Env Checks:** https://play.google.com/store/apps/details?id=com.dexprotector.detector.envchecks  
   
 ## **Contatos:**  
 * **Skype:** VD.Priv8  
