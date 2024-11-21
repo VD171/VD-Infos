@@ -347,6 +347,11 @@ Use native detectors. Like:
 * **N-X-T:** https://github.com/N-X-T  
 * **tryigit:** https://github.com/tryigit  
 * **xfqwdsj:** https://github.com/xfqwdsj  
+* **RabehX:** https://github.com/RabehX  
+* **Reveny:** https://github.com/Reveny  
+* **Dev4Mod:** https://github.com/Dev4Mod  
+* **ItsMadruga:** https://github.com/ItsMadruga  
+* **zjyzip:** https://github.com/zjyzip  
   
 ## **Download and support:**  
 * https://github.com/VD171/VD-Infos  
