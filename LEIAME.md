@@ -266,7 +266,7 @@ Use detectores nativos. Como:
   
 * **Holmes:** https://t.me/app_process64  
 * **Native Test:** https://t.me/nullptr_dev  
-* **Native Detector:** https://t.me/reveny1  
+* **Native Detector:** https://t.me/rootdetector  
 * **Hunter:** https://t.me/Zhenxi233  
 * **Momo:** https://t.me/magiskalpha  
 * **Securify:** https://github.com/RabehX/Securify/releases  
