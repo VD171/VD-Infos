@@ -264,6 +264,7 @@ https://github.com/ItsMadruga/MdgWa
 ## **Como detectar o root ?**  
 Use detectores nativos. Como:  
   
+* **TamJiGi:** https://t.me/rormzhstjxm  
 * **Holmes:** https://t.me/app_process64  
 * **Native Test:** https://t.me/nullptr_dev  
 * **Native Detector:** https://t.me/rootdetector  
