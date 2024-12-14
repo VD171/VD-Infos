@@ -266,7 +266,7 @@ Use native detectors. Like:
   
 * **TamJiGi:** https://t.me/rormzhstjxm  
 * **Holmes:** https://t.me/app_process64  
-* **Native Test:** https://t.me/nullptr_dev  
+* **Native Test:** https://t.me/qianqianzhuang  
 * **Native Detector:** https://t.me/rootdetector  
 * **Hunter:** https://t.me/Zhenxi233  
 * **Momo:** https://t.me/magiskalpha  
