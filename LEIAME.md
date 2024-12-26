@@ -195,6 +195,11 @@ https://t.me/warevampmodule
 https://t.me/waenhancer  
 https://t.me/waenhancher  
 https://github.com/Dev4Mod/WaEnhancer  
+* **Insta Eclipse:** Um módulo do Xposed para personalizar e habilitar privacidade no Instagram.  
+https://t.me/InstaEclipse  
+https://t.me/+UCGw09fMMQExNGZk  
+https://github.com/Xposed-Modules-Repo/ps.reso.instaeclipse  
+https://github.com/ReSo7200/InstaEclipse  
 * **AdClose:** Um módulo do Xposed para prevenir propagandas comerciais dentro do app. Bloquear solicitações de propagandas comerciais. Permitir capturas e gravções de tela livremente. Remover deteção de VPN e proxy. Desativar propagandas comerciais basedas em sensores. Remover deteção geral do Root, Magisk e do Xposed.  
 https://github.com/Xposed-Modules-Repo/com.close.hook.ads  
 https://github.com/zjyzip/AdClose  
@@ -353,6 +358,7 @@ Use detectores nativos. Como:
 * **Dev4Mod:** https://github.com/Dev4Mod  
 * **ItsMadruga:** https://github.com/ItsMadruga  
 * **zjyzip:** https://github.com/zjyzip  
+* **ReSo7200:** https://github.com/ReSo7200  
   
 ## **Download e suporte:**  
 * https://github.com/VD171/VD-Infos  

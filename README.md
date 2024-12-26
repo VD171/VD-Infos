@@ -195,6 +195,11 @@ https://t.me/warevampmodule
 https://t.me/waenhancer  
 https://t.me/waenhancher  
 https://github.com/Dev4Mod/WaEnhancer  
+* **Insta Eclipse:** An Instagram enhancer module with features like Developer Options, Ghost Mode, Ad-Free browsing, and Distraction-Free Mode.  
+https://t.me/InstaEclipse  
+https://t.me/+UCGw09fMMQExNGZk  
+https://github.com/Xposed-Modules-Repo/ps.reso.instaeclipse  
+https://github.com/ReSo7200/InstaEclipse  
 * **AdClose:** An Xposed module to prevent in-app advertising SDK initialization. Block the app's online ad requests. Allow screenshots and screen recordings to be taken freely in the app. Remove in-app VPN and system proxy detection. Used to disable sensor-based advertising jumps such as Shake. Removes general Root, Magisk and Xposed framework detection within the app.  
 https://github.com/Xposed-Modules-Repo/com.close.hook.ads  
 https://github.com/zjyzip/AdClose  
@@ -353,6 +358,7 @@ Use native detectors. Like:
 * **Dev4Mod:** https://github.com/Dev4Mod  
 * **ItsMadruga:** https://github.com/ItsMadruga  
 * **zjyzip:** https://github.com/zjyzip  
+* **ReSo7200:** https://github.com/ReSo7200  
   
 ## **Download and support:**  
 * https://github.com/VD171/VD-Infos  
