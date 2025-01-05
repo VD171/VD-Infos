@@ -140,7 +140,7 @@ https://t.me/real5ec1cff
 https://t.me/nullptr_dev  
 * **Zygisk_mod:** Um fork de código aberto do Zygisk Next.  
 https://github.com/Admirepowered/Zygisk_mod  
-* **ReZygisk:** Um fork do Zygisk Next, que é uma implementação independente de Zygisk fornecendo suporte à API de Zygisk para KernelSU, Magisk (além de embutido) e Apatch (trabalho em progresso).  
+* **ReZygisk:** Um fork do Zygisk Next, que é uma implementação independente de Zygisk fornecendo suporte à API de Zygisk para KernelSU, Magisk (além do embutido) e Apatch (trabalho em progresso).  
 https://github.com/PerformanC/ReZygisk  
 * **Tricky Store:** Um truque keystore.  
 https://github.com/5ec1cff/TrickyStore  
@@ -203,7 +203,7 @@ https://github.com/Crazyphil/digitales-amt-liberator
 * **BootloaderSpoofer:** Camufle o bootloader desbloqueado em atestados locais.  
 https://github.com/chiteroman/BootloaderSpoofer  
 https://xdaforums.com/t/spoof-locked-bootloader-bypass-tee-check.4586251/  
-* **Wa Revamp:** Um módulo do Xposed para personalizar e habilitar privacidade no WhatsApp..  
+* **Wa Revamp:** Um módulo do Xposed para personalizar e habilitar privacidade no WhatsApp.  
 https://github.com/ItsMadruga/WaRevamp  
 https://t.me/warevampmodule  
 * **Wa Enhancer:** Um módulo do Xposed para personalizar e habilitar privacidade no WhatsApp.  
@@ -350,10 +350,10 @@ Use detectores nativos. Como:
 * **devadvance:** https://github.com/devadvance  
 * **hikaritenchi:** https://xdaforums.com/m/hikaritenchi.3514987/  
 * **hikaritenchi:** https://github.com/hikaritenchi  
-* **DimaKoz** https://github.com/DimaKoz  
-* **kimchangyoun** https://github.com/KimChangYoun  
-* **javiersantos** https://github.com/javiersantos  
-* **WuglyakBolgoink** https://github.com/WuglyakBolgoink  
+* **DimaKoz:** https://github.com/DimaKoz  
+* **kimchangyoun:** https://github.com/KimChangYoun  
+* **javiersantos:** https://github.com/javiersantos  
+* **WuglyakBolgoink:** https://github.com/WuglyakBolgoink  
 * **vvb2060:** https://github.com/vvb2060  
 * **canyie:** https://github.com/canyie  
 * **yujincheng08:** https://github.com/yujincheng08  
