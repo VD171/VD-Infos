@@ -81,6 +81,14 @@ https://github.com/bmax121/APatch
 https://xdaforums.com/t/dev-apatch-an-alternative-root-solution-to-kernelsu-and-magisk.4655727/  
 * **KernelSU:** Uma solução root baseada no kernel para dispositivos Android.  
 https://github.com/tiann/KernelSU  
+* **LSPatch:** Implementação sem root do LSPosed, integrando a API do Xposed inserindo conteúdos DEX e SO no APK alvo.  
+https://github.com/LSPosed/LSPatch  
+https://t.me/LSPatchArchives  
+* **LSPatch by JingMatrix:** Um fork do LSPatch.  
+https://github.com/JingMatrix/LSPatch  
+* **Abootloop:** Um módulo do Magisk para proteção contra bootloop.  
+https://github.com/Magisk-Modules-Alt-Repo/abootloop  
+https://github.com/nedorazrab0/abootloop  
 * **LSPosed:** Sucessor do Xposed Framework.  
 https://xdaforums.com/t/lsposed-xposed-framework-8-1-13-0-simple-magisk-module.4228973/  
 https://github.com/LSPosed/LSPosed  
@@ -90,12 +98,14 @@ https://t.me/LSPosedArchives
 https://t.me/lsposed_log  
 * **LSPosed Internal:** Um fork do LSPosed de seus próprios desenvolvedores.  
 https://t.me/+VoX7SSzR6UUyN2I1  
+* **LSPosed by Dev4Mod:** Um fork do LSPosed.  
+https://github.com/Dev4Mod/LSPosed  
+* **LSPosed by JingMatrix:** Um fork do LSPosed.  
+https://github.com/JingMatrix/LSPosed  
 * **LSPosed Irena:** Um fork do LSPosed.  
 https://github.com/re-zero001/LSPosed-Irena  
 * **LSPosed NPM:** Um fork do LSPosed.  
 https://t.me/rormzhstjxm  
-* **LSPosed by JingMatrix:** Um fork do LSPosed.  
-https://github.com/JingMatrix/LSPosed  
 * **LSPosed_mod by mywalkb:** Um fork do LSPosed.  
 https://github.com/mywalkb/LSPosed_mod  
 * **LSPosed by CMDQ8575:** Um fork do LSPosed.  
@@ -148,6 +158,7 @@ https://github.com/chiteroman/PlayIntegrityFix
 https://xdaforums.com/t/module-play-integrity-fix-safetynet-fix.4607985/  
 https://t.me/playintegrityfix  
 https://t.me/playintegrityfixchat  
+https://t.me/chiteroman_chat  
 * **PlayIntegrityFork:** Um fork do PlayIntegrityFix, para ser mais à prova de futuro e desenvolver mais metodicamente.  
 https://github.com/osm0sis/PlayIntegrityFork  
 * **PlayIntegrityFix by tryigit:** Um fork do PlayIntegrityFix.  
@@ -159,6 +170,13 @@ https://xdaforums.com/t/module-autopif-next-play-integrity-fix-fork-safetynet-fi
 https://github.com/x1337cn/AutoPIF-Next  
 * **playcurlNEXT:** Baixa automaticamente fingerprints para o play integrity fix.  
 https://github.com/daboynb/playcurlNEXT  
+* **Android-VBMeta-Fixer:** Um módulo do Magisk/KernelSU/Apatch para corrigir detecções do VBMeta no Android.  
+https://github.com/reveny/Android-VBMeta-Fixer  
+https://t.me/reveny1  
+https://t.me/revenychat  
+* **Core Patch:** Desativa a verificação de assinatura no Android.  
+https://github.com/Xposed-Modules-Repo/com.coderstory.toolkit  
+https://github.com/LSPosed/CorePatch  
 * **Framework Patch:** Modifica o Framework.jar para construir uma cadeia de certificados válidos a nível do sistema.  
 https://github.com/chiteroman/FrameworkPatch  
 * **Framework Patcher GO:** Um módulo Magisk/KernelSU/APatch para modificar o framework.jar diretamente no aparelho, para criar uma cadeia de certificação válida a nível do sistema.  
@@ -180,9 +198,6 @@ https://github.com/Xposed-Modules-Repo/com.android1500.androidfaker
 https://t.me/androidfakerofficial  
 * **Device ID Masker:** Camufle suas informações privadas vitais de aplicativos de terceiros e de sistema.  
 https://bytesreverserapps.com/device-id-masker/  
-* **I am not a developer:** Esconde o modo desenvolvedor, modo de depuração via USB e modo de depuração via wifi.  
-https://github.com/xfqwdsj/IAmNotADeveloper  
-https://github.com/Xposed-Modules-Repo/xyz.xfqlittlefan.notdeveloper  
 * **E-Government Liberator (formalmente Digitales Amt Liberator):** O E-Government Liberator remove quaisquer chamadas em apps do governo austríaco suportados para verificações de root e bootloader, portanto, fornece uma solução personalizada para executar o app em dispositivos com root.  
 https://github.com/Crazyphil/digitales-amt-liberator  
 * **BootloaderSpoofer:** Camufle o bootloader desbloqueado em atestados locais.  
@@ -203,13 +218,28 @@ https://github.com/ReSo7200/InstaEclipse
 * **AdClose:** Um módulo do Xposed para prevenir propagandas comerciais dentro do app. Bloquear solicitações de propagandas comerciais. Permitir capturas e gravções de tela livremente. Remover deteção de VPN e proxy. Desativar propagandas comerciais basedas em sensores. Remover deteção geral do Root, Magisk e do Xposed.  
 https://github.com/Xposed-Modules-Repo/com.close.hook.ads  
 https://github.com/zjyzip/AdClose  
+https://t.me/AdClose  
+* **AdAway:** Um bloqueador de anúncios para Android, grátis e de código aberto.  
+https://github.com/AdAway/AdAway  
+* **DNSNet:** Um blouqueador de host baseado em DNS para Android.  
+https://github.com/t895/DNSNet  
+* **I am not a developer:** Esconde o modo desenvolvedor, modo de depuração via USB e modo de depuração via wifi.  
+https://github.com/xfqwdsj/IAmNotADeveloper  
+https://github.com/Xposed-Modules-Repo/xyz.xfqlittlefan.notdeveloper  
 * **NoVPNDetect:** Um módulo do Xposed para prevenir que apps possam detectar que o aparelho está conectado em uma VPN.  
 https://github.com/Xposed-Modules-Repo/me.hoshino.novpndetect  
 https://bitbucket.org/yuri-project/novpndetect  
+* **DoNotTryAccessibility:** Um módulo do Xposed para prevenir detecção das configurações de acessibilidade.  
+https://github.com/Xposed-Modules-Repo/io.github.nitsuya.donottryaccessibility  
+https://github.com/Nitsuya/DoNotTryAccessibility  
 * **NeoBackup:** Um moderno gerenciador de backup para o Android.  
 https://github.com/NeoApplications/Neo-Backup  
 https://t.me/neo_backup  
 https://xdaforums.com/t/app-8-0-open-source-root-neo-backup-apps-and-data-backup-tool-for-android.4167179/  
+* **DataBackup:** Aplicativo de backup de dados grátis e de código aberto.  
+https://github.com/XayahSuSuSu/Android-DataBackup  
+https://t.me/databackupchannel  
+https://t.me/databackupchat  
 * (Obsoleto) **XPrivacyLua:** Sucessor do XPrivacy. Negar o uso de permissões para os aplicativos, geralmente faz os aplicativos travarem ou apresentarem mau funcionamento. O XPrivacyLua resolve isso alimentando os aplicativos com dados falsos em vez de dados reais.  
 https://xdaforums.com/t/discussion-lsposed-unofficial-xprivacylua-android-privacy-manager.4533999/  
 https://xdaforums.com/t/closed-app-xposed-6-0-xprivacylua-android-privacy-manager-unsupported.3730663/  
@@ -278,6 +308,8 @@ Use detectores nativos. Como:
 * **Securify:** https://github.com/RabehX/Securify/releases  
 * **Memory Detector:** https://github.com/reveny/detection/blob/main/MemoryDetector_2.1.0.apk  
 * **Env Checks:** https://play.google.com/store/apps/details?id=com.dexprotector.detector.envchecks  
+* **KeyAttestation por vvb2060:** https://github.com/vvb2060/KeyAttestation  
+* **KeyAttestation por chiteroman:** https://github.com/chiteroman/KeyAttestation  
   
 ## **Contatos:**  
 * **Skype:** VD.Priv8  
