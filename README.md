@@ -350,10 +350,10 @@ Use native detectors. Like:
 * **devadvance:** https://github.com/devadvance  
 * **hikaritenchi:** https://xdaforums.com/m/hikaritenchi.3514987/  
 * **hikaritenchi:** https://github.com/hikaritenchi  
-* **DimaKoz** https://github.com/DimaKoz  
-* **kimchangyoun** https://github.com/KimChangYoun  
-* **javiersantos** https://github.com/javiersantos  
-* **WuglyakBolgoink** https://github.com/WuglyakBolgoink  
+* **DimaKoz:** https://github.com/DimaKoz  
+* **kimchangyoun:** https://github.com/KimChangYoun  
+* **javiersantos:** https://github.com/javiersantos  
+* **WuglyakBolgoink:** https://github.com/WuglyakBolgoink  
 * **vvb2060:** https://github.com/vvb2060  
 * **canyie:** https://github.com/canyie  
 * **yujincheng08:** https://github.com/yujincheng08  
