@@ -391,6 +391,10 @@ Use native detectors. Like:
 * **ItsMadruga:** https://github.com/ItsMadruga  
 * **zjyzip:** https://github.com/zjyzip  
 * **ReSo7200:** https://github.com/ReSo7200  
+* **nedorazrab0:** https://github.com/nedorazrab0  
+* **t895:** https://github.com/t895  
+* **Nitsuya:** https://github.com/Nitsuya  
+* **XayahSuSuSu:** https://github.com/XayahSuSuSu  
   
 ## **Download and support:**  
 * https://github.com/VD171/VD-Infos  
