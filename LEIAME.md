@@ -174,9 +174,13 @@ https://github.com/daboynb/playcurlNEXT
 https://github.com/reveny/Android-VBMeta-Fixer  
 https://t.me/reveny1  
 https://t.me/revenychat  
+* **ZygiskDetach:** Móudlo do Zygisk para desanexar apps instalados da PlayStore, camuflando o Binder.  
+https://github.com/j-hc/zygisk-detach  
 * **Core Patch:** Desativa a verificação de assinatura no Android.  
 https://github.com/Xposed-Modules-Repo/com.coderstory.toolkit  
 https://github.com/LSPosed/CorePatch  
+* **LetMeDowngrade:** Adicionar suporte para desatualizar apps no Android 12 até o Android 15 QPR1.  
+https://github.com/DavidBerdik/Let-Me-Downgrade  
 * **Framework Patch:** Modifica o Framework.jar para construir uma cadeia de certificados válidos a nível do sistema.  
 https://github.com/chiteroman/FrameworkPatch  
 * **Framework Patcher GO:** Um módulo Magisk/KernelSU/APatch para modificar o framework.jar diretamente no aparelho, para criar uma cadeia de certificação válida a nível do sistema.  
@@ -215,7 +219,9 @@ https://t.me/InstaEclipse
 https://t.me/+UCGw09fMMQExNGZk  
 https://github.com/Xposed-Modules-Repo/ps.reso.instaeclipse  
 https://github.com/ReSo7200/InstaEclipse  
-* **AdClose:** Um módulo do Xposed para prevenir propagandas comerciais dentro do app. Bloquear solicitações de propagandas comerciais. Permitir capturas e gravções de tela livremente. Remover deteção de VPN e proxy. Desativar propagandas comerciais basedas em sensores. Remover deteção geral do Root, Magisk e do Xposed.  
+* **MagiskAdBlockingModule:** Módulo do Magisk para bloquear anúncios/propagandas no Android.  
+https://github.com/pantsufan/Magisk-Ad-Blocking-Module  
+* **AdClose:** Um módulo do Xposed para prevenir anúncios/propagandas comerciais dentro do app. Bloquear solicitações de anúncios/propagandas comerciais. Permitir capturas e gravções de tela livremente. Remover deteção de VPN e proxy. Desativar anúncios/propagandas comerciais basedas em sensores. Remover deteção geral do Root, Magisk e do Xposed.  
 https://github.com/Xposed-Modules-Repo/com.close.hook.ads  
 https://github.com/zjyzip/AdClose  
 https://t.me/AdClose  
@@ -240,6 +246,8 @@ https://xdaforums.com/t/app-8-0-open-source-root-neo-backup-apps-and-data-backup
 https://github.com/XayahSuSuSu/Android-DataBackup  
 https://t.me/databackupchannel  
 https://t.me/databackupchat  
+* **NekoBoxForAndroid:** Proxy universal para o Android.  
+https://github.com/MatsuriDayo/NekoBoxForAndroid  
 * (Obsoleto) **XPrivacyLua:** Sucessor do XPrivacy. Negar o uso de permissões para os aplicativos, geralmente faz os aplicativos travarem ou apresentarem mau funcionamento. O XPrivacyLua resolve isso alimentando os aplicativos com dados falsos em vez de dados reais.  
 https://xdaforums.com/t/discussion-lsposed-unofficial-xprivacylua-android-privacy-manager.4533999/  
 https://xdaforums.com/t/closed-app-xposed-6-0-xprivacylua-android-privacy-manager-unsupported.3730663/  
@@ -395,9 +403,15 @@ Use detectores nativos. Como:
 * **t895:** https://github.com/t895  
 * **Nitsuya:** https://github.com/Nitsuya  
 * **XayahSuSuSu:** https://github.com/XayahSuSuSu  
+* **pantsufan:** https://github.com/pantsufan  
+* **j-hc:** https://github.com/j-hc  
+* **DavidBerdik:** https://github.com/DavidBerdik  
+* **MatsuriDayo:** https://github.com/MatsuriDayo  
   
 ## **Download e suporte:**  
 * https://github.com/VD171/VD-Infos  
 * https://xdaforums.com/t/VD-Infos.4097379/  
 * Espelho: https://priv8.in/VD_Infos.apk  
 * Espelho: https://priv8.ru/VD_Infos.apk  
+
+

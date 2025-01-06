@@ -174,9 +174,13 @@ https://github.com/daboynb/playcurlNEXT
 https://github.com/reveny/Android-VBMeta-Fixer  
 https://t.me/reveny1  
 https://t.me/revenychat  
+* **ZygiskDetach:** Zygisk module to detach installed apps from Play Store, hooking binder.  
+https://github.com/j-hc/zygisk-detach  
 * **Core Patch:** Disable signature verification for Android.  
 https://github.com/Xposed-Modules-Repo/com.coderstory.toolkit  
 https://github.com/LSPosed/CorePatch  
+* **LetMeDowngrade:** Add support for downgrading apps on Android 12 through 15 QPR1.  
+https://github.com/DavidBerdik/Let-Me-Downgrade  
 * **Framework Patch:** Modify framework.jar to build on system level a valid certificate chain   
 https://github.com/chiteroman/FrameworkPatch  
 * **Framework Patcher GO:** A Magisk/KernelSU/APatch module to modify framework.jar directly on the phone, to build a valid system-level certificate chain.  
@@ -215,6 +219,8 @@ https://t.me/InstaEclipse
 https://t.me/+UCGw09fMMQExNGZk  
 https://github.com/Xposed-Modules-Repo/ps.reso.instaeclipse  
 https://github.com/ReSo7200/InstaEclipse  
+* **MagiskAdBlockingModule:** Magisk Module to block ads on Android.  
+https://github.com/pantsufan/Magisk-Ad-Blocking-Module  
 * **AdClose:** An Xposed module to prevent in-app advertising SDK initialization. Block the app's online ad requests. Allow screenshots and screen recordings to be taken freely in the app. Remove in-app VPN and system proxy detection. Used to disable sensor-based advertising jumps such as Shake. Removes general Root, Magisk and Xposed framework detection within the app.  
 https://github.com/Xposed-Modules-Repo/com.close.hook.ads  
 https://github.com/zjyzip/AdClose  
@@ -240,6 +246,8 @@ https://xdaforums.com/t/app-8-0-open-source-root-neo-backup-apps-and-data-backup
 https://github.com/XayahSuSuSu/Android-DataBackup  
 https://t.me/databackupchannel  
 https://t.me/databackupchat  
+* **NekoBoxForAndroid:** Sing-box / universal proxy toolchain for Android.  
+https://github.com/MatsuriDayo/NekoBoxForAndroid  
 * (Deprecated) **XPrivacyLua:** Successor of XPrivacy. Revoking Android permissions from apps often let apps crash or malfunction. XPrivacyLua solves this by feeding apps fake data instead of real data.  
 https://xdaforums.com/t/discussion-lsposed-unofficial-xprivacylua-android-privacy-manager.4533999/  
 https://xdaforums.com/t/closed-app-xposed-6-0-xprivacylua-android-privacy-manager-unsupported.3730663/  
@@ -395,6 +403,10 @@ Use native detectors. Like:
 * **t895:** https://github.com/t895  
 * **Nitsuya:** https://github.com/Nitsuya  
 * **XayahSuSuSu:** https://github.com/XayahSuSuSu  
+* **pantsufan:** https://github.com/pantsufan  
+* **j-hc:** https://github.com/j-hc  
+* **DavidBerdik:** https://github.com/DavidBerdik  
+* **MatsuriDayo:** https://github.com/MatsuriDayo  
   
 ## **Download and support:**  
 * https://github.com/VD171/VD-Infos  
