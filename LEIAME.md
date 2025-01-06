@@ -174,12 +174,12 @@ https://github.com/daboynb/playcurlNEXT
 https://github.com/reveny/Android-VBMeta-Fixer  
 https://t.me/reveny1  
 https://t.me/revenychat  
-* **ZygiskDetach:** Móudlo do Zygisk para desanexar apps instalados da PlayStore, camuflando o Binder.  
+* **ZygiskDetach:** Módulo do Zygisk para desanexar apps instalados da PlayStore, camuflando o Binder.  
 https://github.com/j-hc/zygisk-detach  
 * **Core Patch:** Desativa a verificação de assinatura no Android.  
 https://github.com/Xposed-Modules-Repo/com.coderstory.toolkit  
 https://github.com/LSPosed/CorePatch  
-* **LetMeDowngrade:** Adicionar suporte para desatualizar apps no Android 12 até o Android 15 QPR1.  
+* **LetMeDowngrade:** Adiciona suporte para desatualizar apps no Android 12 até o Android 15 QPR1.  
 https://github.com/DavidBerdik/Let-Me-Downgrade  
 * **Framework Patch:** Modifica o Framework.jar para construir uma cadeia de certificados válidos a nível do sistema.  
 https://github.com/chiteroman/FrameworkPatch  
