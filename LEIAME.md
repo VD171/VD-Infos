@@ -142,6 +142,8 @@ https://t.me/nullptr_dev
 https://github.com/Admirepowered/Zygisk_mod  
 * **ReZygisk:** Um fork do Zygisk Next, que é uma implementação independente de Zygisk fornecendo suporte à API de Zygisk para KernelSU, Magisk (além do embutido) e Apatch (trabalho em progresso).  
 https://github.com/PerformanC/ReZygisk  
+* **NeoZygisk:** Um módulo de injeção do Zygote implementado usando ptrace, que fornece suporte a API do Zygisk para APatch/KernelSU e serve como substituto para o Zygisk nativo do Magisk.  
+https://github.com/JingMatrix/NeoZygisk  
 * **Tricky Store:** Um truque keystore.  
 https://github.com/5ec1cff/TrickyStore  
 https://xdaforums.com/t/tricky-store-the-next-generation-pif.4683446/  
@@ -207,6 +209,8 @@ https://github.com/Crazyphil/digitales-amt-liberator
 * **BootloaderSpoofer:** Camufle o bootloader desbloqueado em atestados locais.  
 https://github.com/chiteroman/BootloaderSpoofer  
 https://xdaforums.com/t/spoof-locked-bootloader-bypass-tee-check.4586251/  
+* **App Errors Tracking:** Adiciona mais recursos à caixa de diálogo de erros dos apps, a melhor experiência para o desenvolvedor Android.  
+https://github.com/KitsunePie/AppErrorsTracking  
 * **Wa Revamp:** Um módulo do Xposed para personalizar e habilitar privacidade no WhatsApp.  
 https://github.com/ItsMadruga/WaRevamp  
 https://t.me/warevampmodule  
@@ -229,6 +233,8 @@ https://t.me/AdClose
 https://github.com/AdAway/AdAway  
 * **DNSNet:** Um blouqueador de host baseado em DNS para Android.  
 https://github.com/t895/DNSNet  
+* **Net-Switch:** Um módulo do Magisk para isolar apps de acessarem a internet no seu aparelho Android. Esta ferramenta dá à você controle total sobre quais apps podem enviar ou receber dados, aumentando a segurança, privacidade e economizando banda.  
+https://github.com/Rem01Gaming/net-switch  
 * **I am not a developer:** Esconde o modo desenvolvedor, modo de depuração via USB e modo de depuração via wifi.  
 https://github.com/xfqwdsj/IAmNotADeveloper  
 https://github.com/Xposed-Modules-Repo/xyz.xfqlittlefan.notdeveloper  
@@ -407,6 +413,7 @@ Use detectores nativos. Como:
 * **j-hc:** https://github.com/j-hc  
 * **DavidBerdik:** https://github.com/DavidBerdik  
 * **MatsuriDayo:** https://github.com/MatsuriDayo  
+* **Rem01Gaming:** https://github.com/Rem01Gaming  
   
 ## **Download e suporte:**  
 * https://github.com/VD171/VD-Infos  
