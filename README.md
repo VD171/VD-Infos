@@ -142,6 +142,8 @@ https://t.me/nullptr_dev
 https://github.com/Admirepowered/Zygisk_mod  
 * **ReZygisk:** A fork of Zygisk Next, which is a standalone implementation of Zygisk, providing Zygisk API support for KernelSU, Magisk (besides built-in) and APatch (work in progress).  
 https://github.com/PerformanC/ReZygisk  
+* **NeoZygisk:** A Zygote injection module implemented using ptrace, which provides Zygisk API support for APatch/KernelSU and serves as a replacement of Magisk's built-in Zygisk.  
+https://github.com/JingMatrix/NeoZygisk  
 * **Tricky Store:** A trick of keystore.  
 https://github.com/5ec1cff/TrickyStore  
 https://xdaforums.com/t/tricky-store-the-next-generation-pif.4683446/  
@@ -207,6 +209,8 @@ https://github.com/Crazyphil/digitales-amt-liberator
 * **BootloaderSpoofer:** Spoof locked bootloader on local attestations.  
 https://github.com/chiteroman/BootloaderSpoofer  
 https://xdaforums.com/t/spoof-locked-bootloader-bypass-tee-check.4586251/  
+* **App Errors Tracking:** Added more features to app's errors dialog, fixed custom rom deleted dialog, the best experience to Android developer.  
+https://github.com/KitsunePie/AppErrorsTracking  
 * **Wa Revamp:** An Xposed Module to customize and enable privacy on WhatsApp.  
 https://github.com/ItsMadruga/WaRevamp  
 https://t.me/warevampmodule  
@@ -229,6 +233,8 @@ https://t.me/AdClose
 https://github.com/AdAway/AdAway  
 * **DNSNet:** A DNS-based host blocker for Android.  
 https://github.com/t895/DNSNet  
+* **Net-Switch:** A Magisk module to isolate apps from accessing the internet on your Android device. This tool gives you complete control over which apps can send or receive data, improving security, privacy, and saving bandwidth.  
+https://github.com/Rem01Gaming/net-switch  
 * **I am not a developer:** Hide development mode, USB debugging mode and wireless debugging mode.  
 https://github.com/xfqwdsj/IAmNotADeveloper  
 https://github.com/Xposed-Modules-Repo/xyz.xfqlittlefan.notdeveloper  
@@ -407,6 +413,7 @@ Use native detectors. Like:
 * **j-hc:** https://github.com/j-hc  
 * **DavidBerdik:** https://github.com/DavidBerdik  
 * **MatsuriDayo:** https://github.com/MatsuriDayo  
+* **Rem01Gaming:** https://github.com/Rem01Gaming  
   
 ## **Download and support:**  
 * https://github.com/VD171/VD-Infos  
