@@ -424,6 +424,11 @@ Use detectores nativos. Como:
 * **DavidBerdik:** https://github.com/DavidBerdik  
 * **MatsuriDayo:** https://github.com/MatsuriDayo  
 * **Rem01Gaming:** https://github.com/Rem01Gaming  
+* **backslashxx:** https://t.me/xfirstnamelastname  
+* **backslashxx:** https://github.com/backslashxx  
+* **T3SL4 (0x11DFE):** https://t.me/T3SL4  
+* **0x11DFE (T3SL4):** https://github.com/0x11DFE  
+* **frknkrc44:** https://github.com/frknkrc44  
   
 ## **Download e suporte:**  
 * https://github.com/VD171/VD-Infos  
