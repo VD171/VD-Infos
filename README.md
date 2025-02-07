@@ -81,6 +81,8 @@ https://github.com/bmax121/APatch
 https://xdaforums.com/t/dev-apatch-an-alternative-root-solution-to-kernelsu-and-magisk.4655727/  
 * **KernelSU:** A Kernel-based root solution for Android devices.  
 https://github.com/tiann/KernelSU  
+* **Ksu WebUI Standalone:** Implementação independente do do WebUI do KernelSU. Adequado para Magisk, Kernelsu e Apatch.  
+https://github.com/5ec1cff/KsuWebUIStandalone  
 * **LSPatch:** Rootless implementation of LSPosed framework, integrating Xposed API by inserting dex and so into the target APK.  
 https://github.com/LSPosed/LSPatch  
 https://t.me/LSPatchArchives  
@@ -172,6 +174,10 @@ https://xdaforums.com/t/module-autopif-next-play-integrity-fix-fork-safetynet-fi
 https://github.com/x1337cn/AutoPIF-Next  
 * **playcurlNEXT:** Fingerprint downloader for play integrity fix.  
 https://github.com/daboynb/playcurlNEXT  
+* **BetterKnownInstalled:** This Magisk/KernelSU/APatch module patches the packages.xml and cleans the packages-warnings.xml files to address DroidGuard's UNKNOWN_INSTALLED status. This helps resolve issues related to app installation and verification on devices with Play Services.  
+https://github.com/Pixel-Props/BetterKnownInstalled  
+* **BetterKnownInstalledGO:** A fork of BetterKnownInstalled.  
+https://github.com/frknkrc44/BetterKnownInstalledGO  
 * **Android-VBMeta-Fixer:** A Magisk/KernelSU/Apatch module to fix VBMeta detections on Android.  
 https://github.com/reveny/Android-VBMeta-Fixer  
 https://t.me/reveny1  
@@ -235,6 +241,10 @@ https://github.com/AdAway/AdAway
 https://github.com/t895/DNSNet  
 * **Net-Switch:** A Magisk module to isolate apps from accessing the internet on your Android device. This tool gives you complete control over which apps can send or receive data, improving security, privacy, and saving bandwidth.  
 https://github.com/Rem01Gaming/net-switch  
+* **Bind Hosts:** Systemless hosts for APatch, KernelSU and Magisk. Fully standalone, self-updating.  
+https://github.com/bindhosts/bindhosts  
+* **Hosts Redirect:** Let netd read hosts file from /data/adb/hostsredirect/hosts.  
+https://github.com/aviraxp/ZN-hostsredirect  
 * **I am not a developer:** Hide development mode, USB debugging mode and wireless debugging mode.  
 https://github.com/xfqwdsj/IAmNotADeveloper  
 https://github.com/Xposed-Modules-Repo/xyz.xfqlittlefan.notdeveloper  
