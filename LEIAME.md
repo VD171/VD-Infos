@@ -81,6 +81,8 @@ https://github.com/bmax121/APatch
 https://xdaforums.com/t/dev-apatch-an-alternative-root-solution-to-kernelsu-and-magisk.4655727/  
 * **KernelSU:** Uma solução root baseada no kernel para dispositivos Android.  
 https://github.com/tiann/KernelSU  
+* **Ksu WebUI Standalone:** Standalone implementation of KernelSU WebUI. Suitable for Magisk, KernelSU and APatch.  
+https://github.com/5ec1cff/KsuWebUIStandalone  
 * **LSPatch:** Implementação sem root do LSPosed, integrando a API do Xposed inserindo conteúdos DEX e SO no APK alvo.  
 https://github.com/LSPosed/LSPatch  
 https://t.me/LSPatchArchives  
@@ -172,6 +174,10 @@ https://xdaforums.com/t/module-autopif-next-play-integrity-fix-fork-safetynet-fi
 https://github.com/x1337cn/AutoPIF-Next  
 * **playcurlNEXT:** Baixa automaticamente fingerprints para o play integrity fix.  
 https://github.com/daboynb/playcurlNEXT  
+* **BetterKnownInstalled:** Este módulo para o Magisk/KernelSU/APatch, corrige o arqivo packages.xml e limpa o aquivo packages-warnings.xml para barrar o status de UNKNOWN_INSTALLED do DroidGuard. Isso ajuda a resolver problemas relacionados à instalação e verificação de aplicativos em dispositivos com o Play Services.  
+https://github.com/Pixel-Props/BetterKnownInstalled  
+* **BetterKnownInstalledGO:** Um fork do BetterKnownInstalled.  
+https://github.com/frknkrc44/BetterKnownInstalledGO  
 * **Android-VBMeta-Fixer:** Um módulo do Magisk/KernelSU/Apatch para corrigir detecções do VBMeta no Android.  
 https://github.com/reveny/Android-VBMeta-Fixer  
 https://t.me/reveny1  
@@ -235,6 +241,10 @@ https://github.com/AdAway/AdAway
 https://github.com/t895/DNSNet  
 * **Net-Switch:** Um módulo do Magisk para isolar apps de acessarem a internet no seu aparelho Android. Esta ferramenta dá à você controle total sobre quais apps podem enviar ou receber dados, aumentando a segurança, privacidade e economizando banda.  
 https://github.com/Rem01Gaming/net-switch  
+* **Bind Hosts:** Hosts sem sistema para APatch, KernelSU e Magisk. Totalmente independente, auto-atualizável.  
+https://github.com/bindhosts/bindhosts  
+* **Hosts Redirect:** Permite que o netd leia o arquivo hosts à partir de /data/adb/hostsredirect/hosts.  
+https://github.com/aviraxp/ZN-hostsredirect  
 * **I am not a developer:** Esconde o modo desenvolvedor, modo de depuração via USB e modo de depuração via wifi.  
 https://github.com/xfqwdsj/IAmNotADeveloper  
 https://github.com/Xposed-Modules-Repo/xyz.xfqlittlefan.notdeveloper  
