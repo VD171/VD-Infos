@@ -78,9 +78,13 @@ https://github.com/HuskyDG/magisk-files
 https://xdaforums.com/t/discussion-kitsune-mask-another-unofficial-mask-of-magisk.4460555/  
 * **APatch:** The patching of Android kernel and Android system.  
 https://github.com/bmax121/APatch  
+https://t.me/APatchChannel  
+https://t.me/apatch_discuss  
 https://xdaforums.com/t/dev-apatch-an-alternative-root-solution-to-kernelsu-and-magisk.4655727/  
 * **KernelSU:** A Kernel-based root solution for Android devices.  
 https://github.com/tiann/KernelSU  
+https://t.me/KernelSU  
+https://t.me/KernelSU_group  
 * **Ksu WebUI Standalone:** Implementação independente do do WebUI do KernelSU. Adequado para Magisk, Kernelsu e Apatch.  
 https://github.com/5ec1cff/KsuWebUIStandalone  
 * **LSPatch:** Rootless implementation of LSPosed framework, integrating Xposed API by inserting dex and so into the target APK.  
@@ -99,7 +103,7 @@ https://t.me/LSPosedDiscussion
 https://t.me/LSPosedArchives  
 https://t.me/lsposed_log  
 * **LSPosed Internal:** A fork of LSPosed by its own developers.  
-https://t.me/+VoX7SSzR6UUyN2I1  
+https://t.me/+j_OqF0kOrFw1Mjg1  
 * **LSPosed by Dev4Mod:** A fork of LSPosed.  
 https://github.com/Dev4Mod/LSPosed  
 * **LSPosed by JingMatrix:** A fork of LSPosed.  
@@ -144,6 +148,9 @@ https://t.me/nullptr_dev
 https://github.com/Admirepowered/Zygisk_mod  
 * **ReZygisk:** A fork of Zygisk Next, which is a standalone implementation of Zygisk, providing Zygisk API support for KernelSU, Magisk (besides built-in) and APatch (work in progress).  
 https://github.com/PerformanC/ReZygisk  
+https://t.me/rezygisk  
+https://t.me/rezygiskchat  
+https://t.me/performancorg  
 * **NeoZygisk:** A Zygote injection module implemented using ptrace, which provides Zygisk API support for APatch/KernelSU and serves as a replacement of Magisk's built-in Zygisk.  
 https://github.com/JingMatrix/NeoZygisk  
 * **Tricky Store:** A trick of keystore.  
@@ -196,6 +203,7 @@ https://github.com/changhuapeng/FrameworkPatcherGO
 https://xdaforums.com/t/module-framework-patcher-go.4674536/  
 * **Hide My AppList:** An Xposed module to hide apps or reject app list requests.  
 https://github.com/Dr-TSNG/Hide-My-Applist  
+https://t.me/HideMyApplist  
 * **HMAL:** A fork of Hide My AppList.  
 https://github.com/pumPCin/HMAL  
 * **Geergit:** A Module to Protect Your Privacy.  
@@ -226,6 +234,7 @@ https://t.me/waenhancher
 https://github.com/Dev4Mod/WaEnhancer  
 * **Insta Eclipse:** An Instagram enhancer module with features like Developer Options, Ghost Mode, Ad-Free browsing, and Distraction-Free Mode.  
 https://t.me/InstaEclipse  
+https://t.me/instaEclipse_discussion  
 https://t.me/+UCGw09fMMQExNGZk  
 https://github.com/Xposed-Modules-Repo/ps.reso.instaeclipse  
 https://github.com/ReSo7200/InstaEclipse  
