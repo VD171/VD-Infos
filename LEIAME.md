@@ -67,6 +67,10 @@ Se quiser, você pode desautorizar o uso da internet com um firewall, ou você p
 https://t.me/BlankAssistance/7/2437  
 https://t.me/BlankAssistance  
 https://t.me/BlankAssistance_Integrity  
+* **HUBERTHUB:** Everything root related + sometimes Xiaomi.  
+https://t.me/HubertHub  
+* **Zer0 Zone:** Root & Xposed, Tech Updates & Facts, Tools.  
+https://t.me/z3ro_zone  
 * **Magisk:** Um conjunto de código aberto para personalizar o Android, suportando dispositivos a partir do Android 6.0.  
 https://github.com/topjohnwu/Magisk  
 https://xdaforums.com/t/magisk-the-magic-mask-for-android.3473445/  
@@ -81,10 +85,16 @@ https://github.com/bmax121/APatch
 https://t.me/APatchChannel  
 https://t.me/apatch_discuss  
 https://xdaforums.com/t/dev-apatch-an-alternative-root-solution-to-kernelsu-and-magisk.4655727/  
+* **APatch Next:** Um fork do APatch.  
+https://t.me/app_process64  
 * **KernelSU:** Uma solução root baseada no kernel para dispositivos Android.  
 https://github.com/tiann/KernelSU  
 https://t.me/KernelSU  
 https://t.me/KernelSU_group  
+* **KernelSuNext:** Um fork do KernelSU.  
+https://github.com/rifsxd/KernelSU-Next  
+https://t.me/ksunext  
+https://t.me/ksunext_group  
 * **Ksu WebUI Standalone:** Standalone implementation of KernelSU WebUI. Suitable for Magisk, KernelSU and APatch.  
 https://github.com/5ec1cff/KsuWebUIStandalone  
 * **LSPatch:** Implementação sem root do LSPosed, integrando a API do Xposed inserindo conteúdos DEX e SO no APK alvo.  
@@ -116,6 +126,12 @@ https://t.me/rormzhstjxm
 https://github.com/mywalkb/LSPosed_mod  
 * **LSPosed by CMDQ8575:** Um fork do LSPosed.  
 https://github.com/CMDQ8575/LSPosed  
+* **Dreamland Framework:** Uma implementação do framework Xposed, você pode usá-lo para usar módulos Xposed.  
+https://github.com/canyie/Dreamland  
+https://t.me/DreamlandFramework  
+* **Dreamland Manager:** Instalador e gerenciador do Dreamland framework.  
+https://github.com/canyie/DreamlandManager  
+https://t.me/DreamlandFramework  
 * **XPL-EX (XPrivacyLua Extended):** Um fork do XPrivacyLua.  
 https://xdaforums.com/t/xpl-ex-xprivacylua-ex-android-privacy-manager-hooking-manager-extended.4652573/  
 https://github.com/0bbedCode/XPL-EX  
@@ -201,11 +217,16 @@ https://github.com/chiteroman/FrameworkPatch
 * **Framework Patcher GO:** Um módulo Magisk/KernelSU/APatch para modificar o framework.jar diretamente no aparelho, para criar uma cadeia de certificação válida a nível do sistema.  
 https://github.com/changhuapeng/FrameworkPatcherGO  
 https://xdaforums.com/t/module-framework-patcher-go.4674536/  
+* **SettingsFirewall:** Um módulo Xposed que bloqueia apps de acessar as configurações do seu sistema (por exemplo, verificar se as opções do desenvolvedor estão habilitadas no dispositivo ou verificar se há serviços de acessibilidade em execução).  
+https://github.com/canyie/SettingsFirewall  
+https://t.me/CanyieChannel  
 * **Hide My AppList:** Um módulo do Xposed para esconder apps ou rejeitas solicitações de listas de apps.  
 https://github.com/Dr-TSNG/Hide-My-Applist  
 https://t.me/HideMyApplist  
 * **HMAL:** Um fork do Hide My AppList.  
 https://github.com/pumPCin/HMAL  
+* **Guide HMA:** Um guia rápido para facilitar um pouco a vida de quem não conhece o Hide My Applist.  
+https://github.com/mModule/guide_hma  
 * **Geergit:** Um Módulo Para Proteger Sua Privacidade.  
 https://xdaforums.com/t/app-xposed-5-0-13-geergit-a-module-to-protect-your-privacy.4573243/  
 https://github.com/pyshivam/geergit-discussion  
@@ -273,6 +294,10 @@ https://t.me/databackupchannel
 https://t.me/databackupchat  
 * **NekoBoxForAndroid:** Proxy universal para o Android.  
 https://github.com/MatsuriDayo/NekoBoxForAndroid  
+* **Termux:** Um emulador de terminal para o Android extensível por uma variedade de pacotes.  
+https://github.com/termux/termux-app  
+* **Sshd4a:** Um servidor 'sshd' para o Android com acesso via shell, rsync e serviços scp/sftp.  
+https://github.com/tfonteyn/Sshd4a  
 * (Obsoleto) **XPrivacyLua:** Sucessor do XPrivacy. Negar o uso de permissões para os aplicativos, geralmente faz os aplicativos travarem ou apresentarem mau funcionamento. O XPrivacyLua resolve isso alimentando os aplicativos com dados falsos em vez de dados reais.  
 https://xdaforums.com/t/discussion-lsposed-unofficial-xprivacylua-android-privacy-manager.4533999/  
 https://xdaforums.com/t/closed-app-xposed-6-0-xprivacylua-android-privacy-manager-unsupported.3730663/  
