@@ -298,7 +298,7 @@ https://t.me/databackupchannel
 https://t.me/databackupchat  
 * **NekoBoxForAndroid:** Sing-box / universal proxy toolchain for Android.  
 https://github.com/MatsuriDayo/NekoBoxForAndroid  
-* **Proxy Pin:** Grátis e de código aberto. Captura o tráfego HTTP(S), com suporte completo de sistemas.  
+* **Proxy Pin:** Open source free capture HTTP(S) traffic software ProxyPin, supporting full platform systems.  
 https://github.com/wanghongenpin/proxypin  
 * **Trust User Certificates:** Injects all user certificates into system certificates.  
 https://github.com/lupohan44/TrustUserCertificates  
