@@ -67,6 +67,8 @@ Se quiser, você pode desautorizar o uso da internet com um firewall, ou você p
 https://t.me/BlankAssistance/7/2437  
 https://t.me/BlankAssistance  
 https://t.me/BlankAssistance_Integrity  
+* **Android Root Detected by @VD_Priv8:** Soluções para dispositivos Android com Root e coisas sobre apps atuais detectando root. Também uma grande coleção de Links de Grupos & Canais do Telegram e Links do GitHub & outros Repositórios.  
+https://t.me/RootDetected  
 * **HUBERTHUB:** Everything root related + sometimes Xiaomi.  
 https://t.me/HubertHub  
 * **Zer0 Zone:** Root & Xposed, Tech Updates & Facts, Tools.  
@@ -95,6 +97,8 @@ https://t.me/KernelSU_group
 https://github.com/rifsxd/KernelSU-Next  
 https://t.me/ksunext  
 https://t.me/ksunext_group  
+* **Shizuku:** Usa APIs do sistema diretamente com privilégios ADB/Root em apps normais por meio de um processo Java lançado junto com o app_process.  
+https://github.com/RikkaApps/Shizuku  
 * **Ksu WebUI Standalone:** Standalone implementation of KernelSU WebUI. Suitable for Magisk, KernelSU and APatch.  
 https://github.com/5ec1cff/KsuWebUIStandalone  
 * **LSPatch:** Implementação sem root do LSPosed, integrando a API do Xposed inserindo conteúdos DEX e SO no APK alvo.  
@@ -294,8 +298,14 @@ https://t.me/databackupchannel
 https://t.me/databackupchat  
 * **NekoBoxForAndroid:** Proxy universal para o Android.  
 https://github.com/MatsuriDayo/NekoBoxForAndroid  
+* **Proxy Pin:** Open source free capture HTTP(S) traffic software ProxyPin, supporting full platform systems.  
+https://github.com/wanghongenpin/proxypin  
+* **Trust User Certificates:** Injeta todos os certificados de usuário como certificados do sistema.  
+https://github.com/lupohan44/TrustUserCertificates  
 * **Termux:** Um emulador de terminal para o Android extensível por uma variedade de pacotes.  
 https://github.com/termux/termux-app  
+* **ReTerminal:** Um emulador de terminal Android simples. Elegante e inspirado no Material 3, projetado como uma alternativa moderna ao terminal legado do Jackpal. Construído no robusto TerminalView do Termux.  
+https://github.com/RohitKushvaha01/ReTerminal  
 * **Sshd4a:** Um servidor 'sshd' para o Android com acesso via shell, rsync e serviços scp/sftp.  
 https://github.com/tfonteyn/Sshd4a  
 * (Obsoleto) **XPrivacyLua:** Sucessor do XPrivacy. Negar o uso de permissões para os aplicativos, geralmente faz os aplicativos travarem ou apresentarem mau funcionamento. O XPrivacyLua resolve isso alimentando os aplicativos com dados falsos em vez de dados reais.  
@@ -475,6 +485,7 @@ Use detectores nativos. Como:
 * **saulhdev:** https://github.com/saulhdev  
 * **tfonteyn:** https://github.com/tfonteyn  
 * **wanghongenpin:** https://github.com/wanghongenpin  
+* **XHUBERTH (HUBERTH):** https://t.me/XHUBERTH  
   
 ## **Download e suporte:**  
 * https://github.com/VD171/VD-Infos  
