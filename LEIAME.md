@@ -69,10 +69,12 @@ https://t.me/BlankAssistance
 https://t.me/BlankAssistance_Integrity  
 * **Android Root Detected by @VD_Priv8:** Soluções para dispositivos Android com Root e coisas sobre apps atuais detectando root. Também uma grande coleção de Links de Grupos & Canais do Telegram e Links do GitHub & outros Repositórios.  
 https://t.me/RootDetected  
-* **HUBERTHUB:** Everything root related + sometimes Xiaomi.  
+* **HUBERTHUB:** Tudo relacionado à root + algumas vezes Xiaomi.  
 https://t.me/HubertHub  
-* **Zer0 Zone:** Root & Xposed, Tech Updates & Facts, Tools.  
+* **Zer0 Zone:** Root & Xposed, Atuzalizações Tech & Fatos, Ferramentas.  
 https://t.me/z3ro_zone  
+* **DroidHub.pro:** Vários conteúdos sobre o Android.  
+https://t.me/droidhub_pro  
 * **Magisk:** Um conjunto de código aberto para personalizar o Android, suportando dispositivos a partir do Android 6.0.  
 https://github.com/topjohnwu/Magisk  
 https://xdaforums.com/t/magisk-the-magic-mask-for-android.3473445/  
