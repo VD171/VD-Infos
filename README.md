@@ -73,6 +73,8 @@ https://t.me/RootDetected
 https://t.me/HubertHub  
 * **Zer0 Zone:** Root & Xposed, Tech Updates & Facts, Tools.  
 https://t.me/z3ro_zone  
+* **DroidHub.pro:** Some stuff about android.  
+https://t.me/droidhub_pro  
 * **Magisk:** A suite of open source software for customizing Android, supporting devices higher than Android 6.0.  
 https://github.com/topjohnwu/Magisk  
 https://xdaforums.com/t/magisk-the-magic-mask-for-android.3473445/  
