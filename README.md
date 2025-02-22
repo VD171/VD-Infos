@@ -463,6 +463,18 @@ Use native detectors. Like:
 * **T3SL4 (0x11DFE):** https://t.me/T3SL4  
 * **0x11DFE (T3SL4):** https://github.com/0x11DFE  
 * **frknkrc44:** https://github.com/frknkrc44  
+* **Zhenxi233:** https://t.me/Zhenxi233  
+* **haruue:** https://github.com/haruue  
+* **KOWX712:** https://github.com/KOWX712  
+* **lupohan44:** https://github.com/lupohan44  
+* **machiav3lli:** https://github.com/machiav3lli  
+* **nift4:** https://github.com/nift4  
+* **rifsxd:** https://github.com/rifsxd  
+* **RikkaW:** https://github.com/RikkaW  
+* **RohitKushvaha01:** https://github.com/RohitKushvaha01  
+* **saulhdev:** https://github.com/saulhdev  
+* **tfonteyn:** https://github.com/tfonteyn  
+* **wanghongenpin:** https://github.com/wanghongenpin  
   
 ## **Download and support:**  
 * https://github.com/VD171/VD-Infos  
