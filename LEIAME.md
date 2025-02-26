@@ -119,7 +119,7 @@ https://t.me/LSPosedDiscussion
 https://t.me/LSPosedArchives  
 https://t.me/lsposed_log  
 * **LSPosed Internal:** Um fork do LSPosed de seus próprios desenvolvedores.  
-https://t.me/+j_OqF0kOrFw1Mjg1  
+https://t.me/LSPosed/287  
 * **LSPosed by Dev4Mod:** Um fork do LSPosed.  
 https://github.com/Dev4Mod/LSPosed  
 * **LSPosed by JingMatrix:** Um fork do LSPosed.  
