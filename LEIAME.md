@@ -382,7 +382,6 @@ Use detectores nativos. Como:
 * **KeyAttestation por chiteroman:** https://github.com/chiteroman/KeyAttestation  
   
 ## **Contatos:**  
-* **Skype:** VD.Priv8  
 * **Telegram:** VD_Priv8  
 * **E-mail:** vd.priv8 @ pm.me  
 * **XDA-Developers:** VD171 https://xdaforums.com/m/vd171.4699873/  
