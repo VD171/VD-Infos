@@ -111,6 +111,9 @@ https://github.com/JingMatrix/LSPatch
 * **Abootloop:** A Magisk Module to protect from bootloop.  
 https://github.com/Magisk-Modules-Alt-Repo/abootloop  
 https://github.com/nedorazrab0/abootloop  
+* **YetAnotherBootloopProtector:** A module try to protect your device from bootloops and system ui failures caused by Magisk/KernelSU/APatch Modules.  
+https://github.com/Magisk-Modules-Alt-Repo/YetAnotherBootloopProtector  
+https://github.com/rhythmcache/YetAnotherBootloopProtector  
 * **LSPosed:** Successor of Xposed Framework.  
 https://xdaforums.com/t/lsposed-xposed-framework-8-1-13-0-simple-magisk-module.4228973/  
 https://github.com/LSPosed/LSPosed  
@@ -207,6 +210,8 @@ https://github.com/daboynb/playcurlNEXT
 https://github.com/Pixel-Props/BetterKnownInstalled  
 * **BetterKnownInstalledGO:** A fork of BetterKnownInstalled.  
 https://github.com/frknkrc44/BetterKnownInstalledGO  
+* **Android-XML-Converter:** Standalone abx2xml and xml2abx. An experimental code to convert between android xml formats (abx and xml).  
+https://github.com/rhythmcache/android-xml-converter  
 * **Android-VBMeta-Fixer:** A Magisk/KernelSU/Apatch module to fix VBMeta detections on Android.  
 https://github.com/reveny/Android-VBMeta-Fixer  
 https://t.me/reveny1  
