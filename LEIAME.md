@@ -278,7 +278,7 @@ https://github.com/zjyzip/AdClose
 https://t.me/AdClose  
 * **AdAway:** Um bloqueador de anúncios para Android, grátis e de código aberto.  
 https://github.com/AdAway/AdAway  
-* **NetGuard:** Provides simple and advanced ways to block access to the internet - no root required. Apps and addresses can individually be allowed or denied access to your Wi-Fi and/or mobile connection.  
+* **NetGuard:** Fornece maneiras simples e avançadas de bloquear o acesso à Internet - o root não é necessária. O acesso à sua conexão Wi-Fi e/ou móvel por apps e endereços podem ser permitidos ou negados individualmente.  
 https://www.netguard.me  
 https://github.com/M66B/NetGuard  
 https://xdaforums.com/t/closed-app-6-0-netguard-no-root-firewall.3233012/  
