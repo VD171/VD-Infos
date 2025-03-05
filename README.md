@@ -278,6 +278,10 @@ https://github.com/zjyzip/AdClose
 https://t.me/AdClose  
 * **AdAway:** A free and open source ad blocker for Android.  
 https://github.com/AdAway/AdAway  
+* **NetGuard:** Fornece maneiras simples e avançadas de bloquear o acesso à Internet - o root não é necessária. O acesso à sua conexão Wi-Fi e/ou móvel por apps e endereços podem ser permitidos ou negados individualmente.  
+https://www.netguard.me  
+https://github.com/M66B/NetGuard  
+https://xdaforums.com/t/closed-app-6-0-netguard-no-root-firewall.3233012/  
 * **DNSNet:** A DNS-based host blocker for Android.  
 https://github.com/t895/DNSNet  
 * **Net-Switch:** A Magisk module to isolate apps from accessing the internet on your Android device. This tool gives you complete control over which apps can send or receive data, improving security, privacy, and saving bandwidth.  
@@ -295,6 +299,9 @@ https://bitbucket.org/yuri-project/novpndetect
 * **DoNotTryAccessibility:** An Xposed module prevent apps to detect accessibility/accessibilities settings.  
 https://github.com/Xposed-Modules-Repo/io.github.nitsuya.donottryaccessibility  
 https://github.com/Nitsuya/DoNotTryAccessibility  
+* **DisableFlagSecure:** Enabling screenshots in apps that normally wouldn't allow it, and disabling screenshot(Android 14+) & screen record(Android 15+) detection.  
+https://github.com/LSPosed/DisableFlagSecure  
+https://github.com/Xposed-Modules-Repo/io.github.lsposed.disableflagsecure  
 * **NeoBackup:** A modern backup manager for Android.  
 https://github.com/NeoApplications/Neo-Backup  
 https://t.me/neo_backup  
