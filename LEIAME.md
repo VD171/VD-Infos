@@ -76,7 +76,7 @@ https://t.me/z3ro_zone
 * **DroidHub.pro:** Vários conteúdos sobre o Android.  
 https://t.me/droidhub_pro  
 * **Guide to Bypass DexProtector Apps:** Isso o guiará a contornar apps que usam protetores como DexProtector.  
-https://telegra.ph/Guide-to-Bypass-DexProtector-Apps-01-31#DexProtector's-Demo-App  
+https://telegra.ph/Guide-to-Bypass-DexProtector-Apps-01-31  
 * **Magisk:** Um conjunto de código aberto para personalizar o Android, suportando dispositivos a partir do Android 6.0.  
 https://github.com/topjohnwu/Magisk  
 https://xdaforums.com/t/magisk-the-magic-mask-for-android.3473445/  
@@ -403,6 +403,7 @@ Use detectores nativos. Como:
 * **XDA-Developers:** VD171 https://xdaforums.com/m/vd171.4699873/  
   
 ## **Licença:**  
+* Use e distribua da maneira que quiser e como você bem entender.  
   
 ## **Download e suporte:**  
 * https://github.com/VD171/VD-Infos  
