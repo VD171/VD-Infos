@@ -75,6 +75,8 @@ https://t.me/HubertHub
 https://t.me/z3ro_zone  
 * **DroidHub.pro:** Vários conteúdos sobre o Android.  
 https://t.me/droidhub_pro  
+* **Guide to Bypass DexProtector Apps:** Isso o guiará a contornar apps que usam protetores como DexProtector.  
+https://telegra.ph/Guide-to-Bypass-DexProtector-Apps-01-31#DexProtector's-Demo-App  
 * **Magisk:** Um conjunto de código aberto para personalizar o Android, suportando dispositivos a partir do Android 6.0.  
 https://github.com/topjohnwu/Magisk  
 https://xdaforums.com/t/magisk-the-magic-mask-for-android.3473445/  
@@ -238,6 +240,8 @@ https://t.me/HideMyApplist
 https://github.com/pumPCin/HMAL  
 * **Guide HMA:** Um guia rápido para facilitar um pouco a vida de quem não conhece o Hide My Applist.  
 https://github.com/mModule/guide_hma  
+* **Guide for Hide My Applist:** Um guia para o Hide My Applist.  
+https://telegra.ph/Guide-for-Hide-My-Applist-01-31  
 * **Geergit:** Um Módulo Para Proteger Sua Privacidade.  
 https://xdaforums.com/t/app-xposed-5-0-13-geergit-a-module-to-protect-your-privacy.4573243/  
 https://github.com/pyshivam/geergit-discussion  
@@ -399,7 +403,12 @@ Use detectores nativos. Como:
 * **XDA-Developers:** VD171 https://xdaforums.com/m/vd171.4699873/  
   
 ## **Licença:**  
-* Use e distribua da maneira que quiser e como você bem entender.  
+  
+## **Download e suporte:**  
+* https://github.com/VD171/VD-Infos  
+* https://xdaforums.com/t/VD-Infos.4097379/  
+* Espelho: https://priv8.in/VD_Infos.apk  
+* Espelho: https://priv8.ru/VD_Infos.apk  
   
 ## **Agradecimentos:**  
 * **AkaBlank517:** https://t.me/AkaBlank517  
@@ -499,11 +508,7 @@ Use detectores nativos. Como:
 * **tfonteyn:** https://github.com/tfonteyn  
 * **wanghongenpin:** https://github.com/wanghongenpin  
 * **XHUBERTH (HUBERTH):** https://t.me/XHUBERTH  
-  
-## **Download e suporte:**  
-* https://github.com/VD171/VD-Infos  
-* https://xdaforums.com/t/VD-Infos.4097379/  
-* Espelho: https://priv8.in/VD_Infos.apk  
-* Espelho: https://priv8.ru/VD_Infos.apk  
-
-
+* **rhythmcache:** https://github.com/rhythmcache  
+* **1f2003d5 (pomelohan):** https://t.me/real1f2003d5  
+* **pomelohan (1f2003d5):** https://github.com/pomelohan  
+* **NVG-064:** http://t.me/NVG064  
