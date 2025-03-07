@@ -76,7 +76,7 @@ https://t.me/z3ro_zone
 * **DroidHub.pro:** Some stuff about android.  
 https://t.me/droidhub_pro  
 * **Guide to Bypass DexProtector Apps:** This will guide you on bypassing apps that use protectors such as DexProtector.  
-https://telegra.ph/Guide-to-Bypass-DexProtector-Apps-01-31#DexProtector's-Demo-App  
+https://telegra.ph/Guide-to-Bypass-DexProtector-Apps-01-31  
 * **Magisk:** A suite of open source software for customizing Android, supporting devices higher than Android 6.0.  
 https://github.com/topjohnwu/Magisk  
 https://xdaforums.com/t/magisk-the-magic-mask-for-android.3473445/  
