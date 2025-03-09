@@ -231,6 +231,8 @@ https://t.me/reveny1
 https://t.me/revenychat  
 * **ZygiskDetach:** Zygisk module to detach installed apps from Play Store, hooking binder.  
 https://github.com/j-hc/zygisk-detach  
+* **Zygisk Detach App:** The app for zygisk-detach.  
+https://github.com/j-hc/zygisk-detach-app  
 * **Core Patch:** Disable signature verification for Android.  
 https://github.com/Xposed-Modules-Repo/com.coderstory.toolkit  
 https://github.com/LSPosed/CorePatch  
@@ -305,6 +307,8 @@ https://github.com/Rem01Gaming/net-switch
 https://github.com/bindhosts/bindhosts  
 * **Hosts Redirect:** Let netd read hosts file from /data/adb/hostsredirect/hosts.  
 https://github.com/aviraxp/ZN-hostsredirect  
+* **Private DNS Android:** A quick settings tile to switch your private dns provider. Supports any number of providers. Makes it easy to turn adblocking dns servers on or off with just a single tap.  
+https://github.com/karasevm/PrivateDNSAndroid  
 * **I am not a developer:** Hide development mode, USB debugging mode and wireless debugging mode.  
 https://github.com/xfqwdsj/IAmNotADeveloper  
 https://github.com/Xposed-Modules-Repo/xyz.xfqlittlefan.notdeveloper  
@@ -317,6 +321,8 @@ https://github.com/Nitsuya/DoNotTryAccessibility
 * **DisableFlagSecure:** Enabling screenshots in apps that normally wouldn't allow it, and disabling screenshot(Android 14+) & screen record(Android 15+) detection.  
 https://github.com/LSPosed/DisableFlagSecure  
 https://github.com/Xposed-Modules-Repo/io.github.lsposed.disableflagsecure  
+* **Flag Secure Patcher:** Magisk module to patch services jars on device using dexlib2 to stop apps from preventing taking screenshots and block screenshot listeners that was introduced in A14.  
+https://github.com/j-hc/FlagSecurePatcher  
 * **NeoBackup:** A modern backup manager for Android.  
 https://github.com/NeoApplications/Neo-Backup  
 https://t.me/neo_backup  
@@ -525,3 +531,4 @@ Use native detectors. Like:
 * **1f2003d5 (pomelohan):** https://t.me/real1f2003d5  
 * **pomelohan (1f2003d5):** https://github.com/pomelohan  
 * **NVG-064:** http://t.me/NVG064  
+* **karasevm:** https://github.com/karasevm  
