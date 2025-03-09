@@ -101,10 +101,21 @@ https://t.me/KernelSU_group
 https://github.com/rifsxd/KernelSU-Next  
 https://t.me/ksunext  
 https://t.me/ksunext_group  
+* **KernelSU by backslashxx:** Um fork do KernelSU.  
+https://github.com/backslashxx/KernelSU  
+https://t.me/krenalxx  
+* **KernelSU by 5ec1cff:** Um fork do KernelSU.  
+https://github.com/5ec1cff/KernelSU  
+https://t.me/mksu_ci  
 * **Shizuku:** Using system APIs directly with adb/root privileges from normal apps through a Java process started with app_process.  
 https://github.com/RikkaApps/Shizuku  
 * **Ksu WebUI Standalone:** Implementação independente do do WebUI do KernelSU. Adequado para Magisk, Kernelsu e Apatch.  
 https://github.com/5ec1cff/KsuWebUIStandalone  
+* **MMRL - Magisk Module Repo Loader:** Um aplicativo que ajuda a gerenciar seu próprio repositório de módulos.  
+https://github.com/MMRLApp/MMRL  
+https://t.me/MMRLApp  
+https://t.me/MMRLGroup  
+https://t.me/MMRLCI  
 * **LSPatch:** Rootless implementation of LSPosed framework, integrating Xposed API by inserting dex and so into the target APK.  
 https://github.com/LSPosed/LSPatch  
 https://t.me/LSPatchArchives  
@@ -450,6 +461,7 @@ Use native detectors. Like:
 * **yujincheng08:** https://github.com/yujincheng08  
 * **Dr-TSNG:** https://github.com/Dr-TSNG  
 * **5ec1cff:** https://github.com/5ec1cff  
+* **5ec1cff:** https://t.me/a13e300  
 * **Admirepowered:** https://github.com/Admirepowered  
 * **aviraxp:** https://github.com/aviraxp  
 * **bmax121:** https://github.com/bmax121  
