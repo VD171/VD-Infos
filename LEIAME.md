@@ -231,6 +231,8 @@ https://t.me/reveny1
 https://t.me/revenychat  
 * **ZygiskDetach:** Módulo do Zygisk para desanexar apps instalados da PlayStore, camuflando o Binder.  
 https://github.com/j-hc/zygisk-detach  
+* **Zygisk Detach App:** O app do Zygisk-Detach.  
+https://github.com/j-hc/zygisk-detach-app  
 * **Core Patch:** Desativa a verificação de assinatura no Android.  
 https://github.com/Xposed-Modules-Repo/com.coderstory.toolkit  
 https://github.com/LSPosed/CorePatch  
@@ -305,6 +307,8 @@ https://github.com/Rem01Gaming/net-switch
 https://github.com/bindhosts/bindhosts  
 * **Hosts Redirect:** Permite que o netd leia o arquivo hosts à partir de /data/adb/hostsredirect/hosts.  
 https://github.com/aviraxp/ZN-hostsredirect  
+* **Private DNS Android:** Uma configuração rápida para mudar seu provedor de DNS privado. Suporta qualquer quantidade de fornecedores. Facilita ativar/desativar os servidores DNS de bloqueadores de anúncios em apenas um único toque.  
+https://github.com/karasevm/PrivateDNSAndroid  
 * **I am not a developer:** Esconde o modo desenvolvedor, modo de depuração via USB e modo de depuração via wifi.  
 https://github.com/xfqwdsj/IAmNotADeveloper  
 https://github.com/Xposed-Modules-Repo/xyz.xfqlittlefan.notdeveloper  
@@ -317,6 +321,8 @@ https://github.com/Nitsuya/DoNotTryAccessibility
 * **DisableFlagSecure:** Ativa capturas de tela em apps que normalmente não permitiam, desativa a detecção de captura de tela (Android 14+) e gravação de tela (Android 15+).  
 https://github.com/LSPosed/DisableFlagSecure  
 https://github.com/Xposed-Modules-Repo/io.github.lsposed.disableflagsecure  
+* **Flag Secure Patcher:** Módulo Magisk para corrigir os services jars no dispositivo usando o dexlib2 para impedir que os apps impeçam de tirar capturas de tela e bloquear os listeners de captura de tela que foram introduzidos no A14.  
+https://github.com/j-hc/FlagSecurePatcher  
 * **NeoBackup:** Um moderno gerenciador de backup para o Android.  
 https://github.com/NeoApplications/Neo-Backup  
 https://t.me/neo_backup  
@@ -525,3 +531,4 @@ Use detectores nativos. Como:
 * **1f2003d5 (pomelohan):** https://t.me/real1f2003d5  
 * **pomelohan (1f2003d5):** https://github.com/pomelohan  
 * **NVG-064:** http://t.me/NVG064  
+* **karasevm:** https://github.com/karasevm  
