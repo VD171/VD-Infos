@@ -101,17 +101,17 @@ https://t.me/KernelSU_group
 https://github.com/rifsxd/KernelSU-Next  
 https://t.me/ksunext  
 https://t.me/ksunext_group  
-* **KernelSU by backslashxx:** A fork of KernelSU.  
+* **KernelSU by backslashxx:** Um fork do KernelSU.  
 https://github.com/backslashxx/KernelSU  
 https://t.me/krenalxx  
-* **KernelSU by 5ec1cff:** A fork of KernelSU.  
+* **KernelSU by 5ec1cff:** Um fork do KernelSU.  
 https://github.com/5ec1cff/KernelSU  
 https://t.me/mksu_ci  
 * **Shizuku:** Usa APIs do sistema diretamente com privilégios ADB/Root em apps normais por meio de um processo Java lançado junto com o app_process.  
 https://github.com/RikkaApps/Shizuku  
 * **Ksu WebUI Standalone:** Standalone implementation of KernelSU WebUI. Suitable for Magisk, KernelSU and APatch.  
 https://github.com/5ec1cff/KsuWebUIStandalone  
-* **MMRL - Magisk Module Repo Loader:** An app that helps manage your own modules repository.  
+* **MMRL - Magisk Module Repo Loader:** Um aplicativo que ajuda a gerenciar seu próprio repositório de módulos.  
 https://github.com/MMRLApp/MMRL  
 https://t.me/MMRLApp  
 https://t.me/MMRLGroup  
