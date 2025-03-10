@@ -345,6 +345,8 @@ https://github.com/termux/termux-app
 https://github.com/RohitKushvaha01/ReTerminal  
 * **Sshd4a:** An Android 'sshd' server with shell access, rsync and scp/sftp services.  
 https://github.com/tfonteyn/Sshd4a  
+* **Sqlite3 Magisk Module:** Provides a statically linked and stripped sqlite3 binary for arm64-v8a, armeabi-v7a, x86 and x86_64 devices.  
+https://github.com/rojenzaman/sqlite3-magisk-module  
 * **BCR - Basic Call Recorder:** A simple Android call recording app for rooted devices or devices running custom firmware. Once enabled, it stays out of the way and automatically records incoming and outgoing calls in the background.  
 https://github.com/chenxiaolong/BCR  
 * (Deprecated) **XPrivacyLua:** Successor of XPrivacy. Revoking Android permissions from apps often let apps crash or malfunction. XPrivacyLua solves this by feeding apps fake data instead of real data.  
@@ -538,3 +540,4 @@ Use native detectors. Like:
 * **karasevm:** https://github.com/karasevm  
 * **chenxiaolong:** https://github.com/chenxiaolong  
 * **Vaz15k:** https://github.com/Vaz15k  
+* **rojenzaman:** https://github.com/rojenzaman  
