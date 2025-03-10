@@ -295,7 +295,7 @@ https://github.com/zjyzip/AdClose
 https://t.me/AdClose  
 * **AdAway:** Um bloqueador de anúncios para Android, grátis e de código aberto.  
 https://github.com/AdAway/AdAway  
-* **Cubic-AdBloc:** Um simples bloqueador de anúncios basedo no /etc/hosts.  
+* **Cubic-AdBlock:** Um simples bloqueador de anúncios basedo no /etc/hosts.  
 https://github.com/Vaz15k/Cubic-AdBlock  
 * **NetGuard:** Fornece maneiras simples e avançadas de bloquear o acesso à Internet - o root não é necessária. O acesso à sua conexão Wi-Fi e/ou móvel por apps e endereços podem ser permitidos ou negados individualmente.  
 https://www.netguard.me  
