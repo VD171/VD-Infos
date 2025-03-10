@@ -295,7 +295,7 @@ https://github.com/zjyzip/AdClose
 https://t.me/AdClose  
 * **AdAway:** A free and open source ad blocker for Android.  
 https://github.com/AdAway/AdAway  
-* **Cubic-AdBloc:** A simple AdBlock module based in /etc/hosts.  
+* **Cubic-AdBlock:** A simple AdBlock module based in /etc/hosts.  
 https://github.com/Vaz15k/Cubic-AdBlock  
 * **NetGuard:** Provides simple and advanced ways to block access to the internet - no root required. Apps and addresses can individually be allowed or denied access to your Wi-Fi and/or mobile connection.  
 https://www.netguard.me  
