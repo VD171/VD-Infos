@@ -295,6 +295,8 @@ https://github.com/zjyzip/AdClose
 https://t.me/AdClose  
 * **AdAway:** Um bloqueador de anúncios para Android, grátis e de código aberto.  
 https://github.com/AdAway/AdAway  
+* **Cubic-AdBloc:** Um simples bloqueador de anúncios basedo no /etc/hosts.  
+https://github.com/Vaz15k/Cubic-AdBlock  
 * **NetGuard:** Fornece maneiras simples e avançadas de bloquear o acesso à Internet - o root não é necessária. O acesso à sua conexão Wi-Fi e/ou móvel por apps e endereços podem ser permitidos ou negados individualmente.  
 https://www.netguard.me  
 https://github.com/M66B/NetGuard  
@@ -343,6 +345,8 @@ https://github.com/termux/termux-app
 https://github.com/RohitKushvaha01/ReTerminal  
 * **Sshd4a:** Um servidor 'sshd' para o Android com acesso via shell, rsync e serviços scp/sftp.  
 https://github.com/tfonteyn/Sshd4a  
+* **BCR - Basic Call Recorder:** Um simples app de gravação de chamadas para dispositivos rooted ou dispositivos rodando custom rom. Uma vez ativado, ele fica fora do caminho e registra automaticamente chamadas realizadas e recebidas em segundo plano.  
+https://github.com/chenxiaolong/BCR  
 * (Obsoleto) **XPrivacyLua:** Sucessor do XPrivacy. Negar o uso de permissões para os aplicativos, geralmente faz os aplicativos travarem ou apresentarem mau funcionamento. O XPrivacyLua resolve isso alimentando os aplicativos com dados falsos em vez de dados reais.  
 https://xdaforums.com/t/discussion-lsposed-unofficial-xprivacylua-android-privacy-manager.4533999/  
 https://xdaforums.com/t/closed-app-xposed-6-0-xprivacylua-android-privacy-manager-unsupported.3730663/  
@@ -532,3 +536,5 @@ Use detectores nativos. Como:
 * **pomelohan (1f2003d5):** https://github.com/pomelohan  
 * **NVG-064:** http://t.me/NVG064  
 * **karasevm:** https://github.com/karasevm  
+* **chenxiaolong:** https://github.com/chenxiaolong  
+* **Vaz15k:** https://github.com/Vaz15k  
