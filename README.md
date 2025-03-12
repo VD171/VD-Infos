@@ -343,10 +343,10 @@ https://github.com/lupohan44/TrustUserCertificates
 https://github.com/termux/termux-app  
 * **ReTerminal:** A Simple Android Terminal Emulator. A sleek, Material 3-inspired terminal emulator designed as a modern alternative to the legacy Jackpal Terminal. Built on Termux's robust TerminalView.  
 https://github.com/RohitKushvaha01/ReTerminal  
-* **Sshd4a:** An Android 'sshd' server with shell access, rsync and scp/sftp services.  
-https://github.com/tfonteyn/Sshd4a  
 * **Sqlite3 Magisk Module:** Provides a statically linked and stripped sqlite3 binary for arm64-v8a, armeabi-v7a, x86 and x86_64 devices.  
 https://github.com/rojenzaman/sqlite3-magisk-module  
+* **SQLite3 for Android:** Provides an optimized version of SQLite3 for various Android architectures.  
+https://www.pling.com/p/2227258  
 * **BCR - Basic Call Recorder:** A simple Android call recording app for rooted devices or devices running custom firmware. Once enabled, it stays out of the way and automatically records incoming and outgoing calls in the background.  
 https://github.com/chenxiaolong/BCR  
 * (Deprecated) **XPrivacyLua:** Successor of XPrivacy. Revoking Android permissions from apps often let apps crash or malfunction. XPrivacyLua solves this by feeding apps fake data instead of real data.  
@@ -530,7 +530,6 @@ Use native detectors. Like:
 * **RikkaW:** https://github.com/RikkaW  
 * **RohitKushvaha01:** https://github.com/RohitKushvaha01  
 * **saulhdev:** https://github.com/saulhdev  
-* **tfonteyn:** https://github.com/tfonteyn  
 * **wanghongenpin:** https://github.com/wanghongenpin  
 * **XHUBERTH (HUBERTH):** https://t.me/XHUBERTH  
 * **rhythmcache:** https://github.com/rhythmcache  
