@@ -82,10 +82,6 @@ https://github.com/topjohnwu/Magisk
 https://xdaforums.com/t/magisk-the-magic-mask-for-android.3473445/  
 * **Magisk Alpha:** A fork of Magisk.  
 https://t.me/magiskalpha  
-* **Kitsune Mask (Magisk Delta):** A fork of Magisk.  
-https://github.com/KitsuneMagisk/Magisk  
-https://github.com/HuskyDG/magisk-files  
-https://xdaforums.com/t/discussion-kitsune-mask-another-unofficial-mask-of-magisk.4460555/  
 * **APatch:** The patching of Android kernel and Android system.  
 https://github.com/bmax121/APatch  
 https://t.me/APatchChannel  
@@ -107,6 +103,9 @@ https://t.me/krenalxx
 * **KernelSU by 5ec1cff:** A fork of KernelSU.  
 https://github.com/5ec1cff/KernelSU  
 https://t.me/mksu_ci  
+* **SukiSU:** A fork of KernelSU.  
+https://github.com/ShirkNeko/KernelSU  
+https://t.me/SukiSU_Ci  
 * **Shizuku:** Using system APIs directly with adb/root privileges from normal apps through a Java process started with app_process.  
 https://github.com/RikkaApps/Shizuku  
 * **Ksu WebUI Standalone:** Implementação independente do do WebUI do KernelSU. Adequado para Magisk, Kernelsu e Apatch.  
@@ -277,6 +276,7 @@ https://github.com/KitsunePie/AppErrorsTracking
 * **Wa Revamp:** An Xposed Module to customize and enable privacy on WhatsApp.  
 https://github.com/ItsMadruga/WaRevamp  
 https://t.me/warevampmodule  
+https://t.me/WaRevampGroup  
 * **Wa Enhancer:** An Xposed Module to customize and enable privacy on WhatsApp.  
 https://t.me/waenhancer  
 https://t.me/waenhancher  
@@ -349,6 +349,8 @@ https://github.com/rojenzaman/sqlite3-magisk-module
 https://www.pling.com/p/2227258  
 * **BCR - Basic Call Recorder:** A simple Android call recording app for rooted devices or devices running custom firmware. Once enabled, it stays out of the way and automatically records incoming and outgoing calls in the background.  
 https://github.com/chenxiaolong/BCR  
+* **Guide: How to fix "You Need The Official WhatsApp" Error:** A guide TESTED and CONFIRMED to bypass WhatsApp restriction at account registering.  
+https://t.me/BlankAssistance_Integrity/10  
 * (Deprecated) **XPrivacyLua:** Successor of XPrivacy. Revoking Android permissions from apps often let apps crash or malfunction. XPrivacyLua solves this by feeding apps fake data instead of real data.  
 https://xdaforums.com/t/discussion-lsposed-unofficial-xprivacylua-android-privacy-manager.4533999/  
 https://xdaforums.com/t/closed-app-xposed-6-0-xprivacylua-android-privacy-manager-unsupported.3730663/  
@@ -381,6 +383,10 @@ https://xdaforums.com/t/xposed-general-info-versions-changelog.2714053/
 https://github.com/rovo89?tab=repositories&q=xposed  
 * (Deprecated) **Mdg Wa:** An Xposed Module to customize and enable privacy on WhatsApp.  
 https://github.com/ItsMadruga/MdgWa  
+* (Deprecated) **Kitsune Mask (Magisk Delta):** A fork of Magisk.  
+https://github.com/KitsuneMagisk/Magisk  
+https://github.com/HuskyDG/magisk-files  
+https://xdaforums.com/t/discussion-kitsune-mask-another-unofficial-mask-of-magisk.4460555/  
   
 ## **Based on:**  
 * **RootBeer Sample:** https://github.com/scottyab/rootbeer  
@@ -540,3 +546,4 @@ Use native detectors. Like:
 * **chenxiaolong:** https://github.com/chenxiaolong  
 * **Vaz15k:** https://github.com/Vaz15k  
 * **rojenzaman:** https://github.com/rojenzaman  
+* **ShirkNeko:** https://github.com/ShirkNeko  
