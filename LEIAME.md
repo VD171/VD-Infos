@@ -77,6 +77,12 @@ https://t.me/z3ro_zone
 https://t.me/droidhub_pro  
 * **Guide to Bypass DexProtector Apps:** Isso o guiará a contornar apps que usam protetores como DexProtector.  
 https://telegra.ph/Guide-to-Bypass-DexProtector-Apps-01-31  
+* **Tutorial SUSFF:** Como instalar o SUSFS.  
+http://www.reddit.com/r/Magisk/comments/1i7sowe/tutorial_susfs_best_root_hiding_method_currently/  
+* **Android Kernel Tutorials:** Tutoriais de construção de kernel para qualquer dispositivo para iniciantes ..!  
+https://github.com/ravindu644/Android-Kernel-Tutorials  
+* **Simple Android Guides:** Aprenda sobre coisas do Android do zero. Útil para iniciantes.  
+https://github.com/ravindu644/Simple-Android-Guides  
 * **Magisk:** Um conjunto de código aberto para personalizar o Android, suportando dispositivos a partir do Android 6.0.  
 https://github.com/topjohnwu/Magisk  
 https://xdaforums.com/t/magisk-the-magic-mask-for-android.3473445/  
@@ -228,6 +234,8 @@ https://github.com/rhythmcache/android-xml-converter
 https://github.com/reveny/Android-VBMeta-Fixer  
 https://t.me/reveny1  
 https://t.me/revenychat  
+* **VBMeta Disguiser:** Um módulo do Magisk para disfarçar props VBMeta e o status de criptografia.  
+https://github.com/Astoritin/VBMetaDisguiser  
 * **ZygiskDetach:** Módulo do Zygisk para desanexar apps instalados da PlayStore, camuflando o Binder.  
 https://github.com/j-hc/zygisk-detach  
 * **Zygisk Detach App:** O app do Zygisk-Detach.  
@@ -235,6 +243,8 @@ https://github.com/j-hc/zygisk-detach-app
 * **Core Patch:** Desativa a verificação de assinatura no Android.  
 https://github.com/Xposed-Modules-Repo/com.coderstory.toolkit  
 https://github.com/LSPosed/CorePatch  
+* **PMPatch:** Desativa a verificação de assinatura para o Android.  
+https://github.com/vova7878-modules/PMPatch  
 * **LetMeDowngrade:** Adiciona suporte para desatualizar apps no Android 12 até o Android 15 QPR1.  
 https://github.com/DavidBerdik/Let-Me-Downgrade  
 * **Framework Patch:** Modifica o Framework.jar para construir uma cadeia de certificados válidos a nível do sistema.  
@@ -242,6 +252,8 @@ https://github.com/chiteroman/FrameworkPatch
 * **Framework Patcher GO:** Um módulo Magisk/KernelSU/APatch para modificar o framework.jar diretamente no aparelho, para criar uma cadeia de certificação válida a nível do sistema.  
 https://github.com/changhuapeng/FrameworkPatcherGO  
 https://xdaforums.com/t/module-framework-patcher-go.4674536/  
+* **Crond Start Jobs:** Use crond para agendar tarefas.  
+https://github.com/mengshouer/crond_start_jobs  
 * **SettingsFirewall:** Um módulo Xposed que bloqueia apps de acessar as configurações do seu sistema (por exemplo, verificar se as opções do desenvolvedor estão habilitadas no dispositivo ou verificar se há serviços de acessibilidade em execução).  
 https://github.com/canyie/SettingsFirewall  
 https://t.me/CanyieChannel  
@@ -297,6 +309,8 @@ https://t.me/AdClose
 https://github.com/AdAway/AdAway  
 * **Cubic-AdBlock:** Um simples bloqueador de anúncios basedo no /etc/hosts.  
 https://github.com/Vaz15k/Cubic-AdBlock  
+* **MagicalProtection:** Bloqueio de anúncios completamente sem sistema.  
+https://github.com/programminghoch10/MagicalProtection  
 * **NetGuard:** Fornece maneiras simples e avançadas de bloquear o acesso à Internet - o root não é necessária. O acesso à sua conexão Wi-Fi e/ou móvel por apps e endereços podem ser permitidos ou negados individualmente.  
 https://www.netguard.me  
 https://github.com/M66B/NetGuard  
@@ -325,6 +339,11 @@ https://github.com/LSPosed/DisableFlagSecure
 https://github.com/Xposed-Modules-Repo/io.github.lsposed.disableflagsecure  
 * **Flag Secure Patcher:** Módulo Magisk para corrigir os services jars no dispositivo usando o dexlib2 para impedir que os apps impeçam de tirar capturas de tela e bloquear os listeners de captura de tela que foram introduzidos no A14.  
 https://github.com/j-hc/FlagSecurePatcher  
+* **Xposed Translate Text:** App de tradução automática usando primeiro o cache local, depois a API de Gemini e com Fallback para API gratuita do Google.  
+https://github.com/tianci-sh/XPTranslateText  
+* **KnoxPatch:** Módulo LSPosed para obter apps/recursos da Samsung funcionando novamente em seu dispositivo Galaxy com root.  
+https://github.com/salvogiangri/KnoxPatch  
+https://github.com/Xposed-Modules-Repo/io.mesalabs.knoxpatch  
 * **NeoBackup:** Um moderno gerenciador de backup para o Android.  
 https://github.com/NeoApplications/Neo-Backup  
 https://t.me/neo_backup  
@@ -351,6 +370,20 @@ https://www.pling.com/p/2227258
 https://github.com/chenxiaolong/BCR  
 * **Guia: Como corrigir o erro "Use o app oficial do WhatsApp":** Um guia TESTADO e CONFIRMADO para contornar a restrição do WhatsApp ao registrar uma conta.  
 https://t.me/BlankAssistance_Integrity/10  
+* **WhatsApp Backup Google Driver Downloader Decryptor:** Uma ferramenta para baixar backups criptografados do WhatsApp do Google Drive e descriptografá-los localmente.  
+https://github.com/giacomoferretti/whatsapp-backup-downloader-decryptor  
+* **Whatsapp Parser Toolset:** Um conjunto de ferramentas forenses gráficas para analisar o WhatsApp do Android.  
+https://github.com/B16f00t/whapa  
+* **MagiskHluda:** Execute um servidor Frida mais indetectável no boot usando Magisk.  
+https://github.com/Exo1i/MagiskHluda  
+* **MagiskFrida:** Roda o Frida-Server no boot com o Magisk, sempre atualizado.  
+https://github.com/ViRb3/magisk-frida  
+* **Florida:** Frida-Server básico anti-detecção.  
+https://github.com/Ylarod/Florida  
+* **QtScrcpy:** Exibe e controla dispositivos Android via USB ou via rede. Não requer privilégios de root.  
+https://github.com/barry-ran/QtScrcpy  
+* **Infamick Script:** Um poderoso script de sistema para dispositivos Android rooted. Ele fornece acesso fácil a várias informações e configurações do sistema, tornando-o uma ferramenta essencial para todos os usuários.  
+https://github.com/Infamousmick/Infamick-script  
 * (Obsoleto) **XPrivacyLua:** Sucessor do XPrivacy. Negar o uso de permissões para os aplicativos, geralmente faz os aplicativos travarem ou apresentarem mau funcionamento. O XPrivacyLua resolve isso alimentando os aplicativos com dados falsos em vez de dados reais.  
 https://xdaforums.com/t/discussion-lsposed-unofficial-xprivacylua-android-privacy-manager.4533999/  
 https://xdaforums.com/t/closed-app-xposed-6-0-xprivacylua-android-privacy-manager-unsupported.3730663/  
@@ -547,3 +580,16 @@ Use detectores nativos. Como:
 * **Vaz15k:** https://github.com/Vaz15k  
 * **rojenzaman:** https://github.com/rojenzaman  
 * **ShirkNeko:** https://github.com/ShirkNeko  
+* **ravindu644:** https://github.com/ravindu644  
+* **Astoritin:** https://github.com/Astoritin  
+* **mengshouer:** https://github.com/mengshouer  
+* **programminghoch10:** https://github.com/programminghoch10  
+* **karasevm:** https://github.com/karasevm  
+* **salvogiangri:** https://github.com/salvogiangri  
+* **giacomoferretti:** https://github.com/giacomoferretti  
+* **B16f00t:** https://github.com/B16f00t  
+* **Exo1i:** https://github.com/Exo1i  
+* **ViRb3:** https://github.com/ViRb3  
+* **Ylarod:** https://github.com/Ylarod  
+* **barry-ran:** https://github.com/barry-ran  
+* **Infamousmick:** https://github.com/Infamousmick  
