@@ -254,6 +254,8 @@ https://github.com/changhuapeng/FrameworkPatcherGO
 https://xdaforums.com/t/module-framework-patcher-go.4674536/  
 * **Crond Start Jobs:** Use crond para agendar tarefas.  
 https://github.com/mengshouer/crond_start_jobs  
+* **PathProvider:** Injeta o MAGISKTMP no PATH da env.  
+https://github.com/aviraxp/PathProvider  
 * **SettingsFirewall:** Um módulo Xposed que bloqueia apps de acessar as configurações do seu sistema (por exemplo, verificar se as opções do desenvolvedor estão habilitadas no dispositivo ou verificar se há serviços de acessibilidade em execução).  
 https://github.com/canyie/SettingsFirewall  
 https://t.me/CanyieChannel  
@@ -384,6 +386,10 @@ https://github.com/Ylarod/Florida
 https://github.com/barry-ran/QtScrcpy  
 * **Infamick Script:** Um poderoso script de sistema para dispositivos Android rooted. Ele fornece acesso fácil a várias informações e configurações do sistema, tornando-o uma ferramenta essencial para todos os usuários.  
 https://github.com/Infamousmick/Infamick-script  
+* **APKEditor:** Poderoso editor de apk para Android - independente de aapt/aapt2.  
+https://github.com/REAndroid/APKEditor  
+* **APK-Explorer-Editor:** Uma ferramenta de código aberto para explorar o conteúdo de um APK instalado!  
+https://github.com/apk-editor/APK-Explorer-Editor  
 * (Obsoleto) **XPrivacyLua:** Sucessor do XPrivacy. Negar o uso de permissões para os aplicativos, geralmente faz os aplicativos travarem ou apresentarem mau funcionamento. O XPrivacyLua resolve isso alimentando os aplicativos com dados falsos em vez de dados reais.  
 https://xdaforums.com/t/discussion-lsposed-unofficial-xprivacylua-android-privacy-manager.4533999/  
 https://xdaforums.com/t/closed-app-xposed-6-0-xprivacylua-android-privacy-manager-unsupported.3730663/  
