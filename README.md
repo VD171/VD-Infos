@@ -77,6 +77,12 @@ https://t.me/z3ro_zone
 https://t.me/droidhub_pro  
 * **Guide to Bypass DexProtector Apps:** This will guide you on bypassing apps that use protectors such as DexProtector.  
 https://telegra.ph/Guide-to-Bypass-DexProtector-Apps-01-31  
+* **Tutorial SUSFF:** How to install SUSFS.  
+http://www.reddit.com/r/Magisk/comments/1i7sowe/tutorial_susfs_best_root_hiding_method_currently/  
+* **Android Kernel Tutorials:** Kernel building tutorials for Any device for newbies..!  
+https://github.com/ravindu644/Android-Kernel-Tutorials  
+* **Simple Android Guides:** Learn about Android stuffs from Scratch. Useful for Newbies.  
+https://github.com/ravindu644/Simple-Android-Guides  
 * **Magisk:** A suite of open source software for customizing Android, supporting devices higher than Android 6.0.  
 https://github.com/topjohnwu/Magisk  
 https://xdaforums.com/t/magisk-the-magic-mask-for-android.3473445/  
@@ -228,6 +234,8 @@ https://github.com/rhythmcache/android-xml-converter
 https://github.com/reveny/Android-VBMeta-Fixer  
 https://t.me/reveny1  
 https://t.me/revenychat  
+* **VBMeta Disguiser:** A Magisk module to disguise VBMeta props and the encryption status.  
+https://github.com/Astoritin/VBMetaDisguiser  
 * **ZygiskDetach:** Zygisk module to detach installed apps from Play Store, hooking binder.  
 https://github.com/j-hc/zygisk-detach  
 * **Zygisk Detach App:** The app for zygisk-detach.  
@@ -235,6 +243,8 @@ https://github.com/j-hc/zygisk-detach-app
 * **Core Patch:** Disable signature verification for Android.  
 https://github.com/Xposed-Modules-Repo/com.coderstory.toolkit  
 https://github.com/LSPosed/CorePatch  
+* **PMPatch:** Disable signature verification for Android.  
+https://github.com/vova7878-modules/PMPatch  
 * **LetMeDowngrade:** Add support for downgrading apps on Android 12 through 15 QPR1.  
 https://github.com/DavidBerdik/Let-Me-Downgrade  
 * **Framework Patch:** Modify framework.jar to build on system level a valid certificate chain   
@@ -242,6 +252,8 @@ https://github.com/chiteroman/FrameworkPatch
 * **Framework Patcher GO:** A Magisk/KernelSU/APatch module to modify framework.jar directly on the phone, to build a valid system-level certificate chain.  
 https://github.com/changhuapeng/FrameworkPatcherGO  
 https://xdaforums.com/t/module-framework-patcher-go.4674536/  
+* **Crond Start Jobs:** Use crond to schedule tasks.  
+https://github.com/mengshouer/crond_start_jobs  
 * **SettingsFirewall:** An Xposed module that blocks shitty apps from accessing your system settings (for example, check if development settings is enabled on the device, or check if there are running accessibility services).  
 https://github.com/canyie/SettingsFirewall  
 https://t.me/CanyieChannel  
@@ -297,6 +309,8 @@ https://t.me/AdClose
 https://github.com/AdAway/AdAway  
 * **Cubic-AdBlock:** A simple AdBlock module based in /etc/hosts.  
 https://github.com/Vaz15k/Cubic-AdBlock  
+* **MagicalProtection:** Magisk-only completely systemless adblocking.  
+https://github.com/programminghoch10/MagicalProtection  
 * **NetGuard:** Provides simple and advanced ways to block access to the internet - no root required. Apps and addresses can individually be allowed or denied access to your Wi-Fi and/or mobile connection.  
 https://www.netguard.me  
 https://github.com/M66B/NetGuard  
@@ -325,6 +339,11 @@ https://github.com/LSPosed/DisableFlagSecure
 https://github.com/Xposed-Modules-Repo/io.github.lsposed.disableflagsecure  
 * **Flag Secure Patcher:** Magisk module to patch services jars on device using dexlib2 to stop apps from preventing taking screenshots and block screenshot listeners that was introduced in A14.  
 https://github.com/j-hc/FlagSecurePatcher  
+* **Xposed Translate Text:** Auto-translate app text using Local Cache first, then Gemini API, with fallback to Free Google API.  
+https://github.com/tianci-sh/XPTranslateText  
+* **KnoxPatch:** LSPosed module to get Samsung apps/features working again in your rooted Galaxy device.  
+https://github.com/salvogiangri/KnoxPatch  
+https://github.com/Xposed-Modules-Repo/io.mesalabs.knoxpatch  
 * **NeoBackup:** A modern backup manager for Android.  
 https://github.com/NeoApplications/Neo-Backup  
 https://t.me/neo_backup  
@@ -351,6 +370,20 @@ https://www.pling.com/p/2227258
 https://github.com/chenxiaolong/BCR  
 * **Guide: How to fix "You Need The Official WhatsApp" Error:** A guide TESTED and CONFIRMED to bypass WhatsApp restriction at account registering.  
 https://t.me/BlankAssistance_Integrity/10  
+* **WhatsApp Backup Google Driver Downloader Decryptor:** A tool to download encrypted WhatsApp backups from Google Drive and decrypt them locallyv
+https://github.com/giacomoferretti/whatsapp-backup-downloader-decryptor  
+* **Whatsapp Parser Toolset:** A set of graphical forensic tools to analyze whatsapp from Android.  
+https://github.com/B16f00t/whapa  
+* **MagiskHluda:** Run a more undetectable frida server on boot using Magisk.  
+https://github.com/Exo1i/MagiskHluda  
+* **MagiskFrida:** Run frida-server on boot with Magisk, always up-to-date.  
+https://github.com/ViRb3/magisk-frida  
+* **Florida:** Basic anti-detection frida-server.  
+https://github.com/Ylarod/Florida  
+* **QtScrcpy:** Supports displaying and controlling Android devices via USB or over network. It does NOT require root privileges.  
+https://github.com/barry-ran/QtScrcpy  
+* **Infamick Script:** A powerful system utility script for rooted Android devices. It provides easy access to various system information and settings, making it an essential tool for all users.  
+https://github.com/Infamousmick/Infamick-script  
 * (Deprecated) **XPrivacyLua:** Successor of XPrivacy. Revoking Android permissions from apps often let apps crash or malfunction. XPrivacyLua solves this by feeding apps fake data instead of real data.  
 https://xdaforums.com/t/discussion-lsposed-unofficial-xprivacylua-android-privacy-manager.4533999/  
 https://xdaforums.com/t/closed-app-xposed-6-0-xprivacylua-android-privacy-manager-unsupported.3730663/  
@@ -547,3 +580,16 @@ Use native detectors. Like:
 * **Vaz15k:** https://github.com/Vaz15k  
 * **rojenzaman:** https://github.com/rojenzaman  
 * **ShirkNeko:** https://github.com/ShirkNeko  
+* **ravindu644:** https://github.com/ravindu644  
+* **Astoritin:** https://github.com/Astoritin  
+* **mengshouer:** https://github.com/mengshouer  
+* **programminghoch10:** https://github.com/programminghoch10  
+* **karasevm:** https://github.com/karasevm  
+* **salvogiangri:** https://github.com/salvogiangri  
+* **giacomoferretti:** https://github.com/giacomoferretti  
+* **B16f00t:** https://github.com/B16f00t  
+* **Exo1i:** https://github.com/Exo1i  
+* **ViRb3:** https://github.com/ViRb3  
+* **Ylarod:** https://github.com/Ylarod  
+* **barry-ran:** https://github.com/barry-ran  
+* **Infamousmick:** https://github.com/Infamousmick  
