@@ -556,7 +556,8 @@ Use detectores nativos. Como:
 * **Nitsuya:** https://github.com/Nitsuya  
 * **XayahSuSuSu:** https://github.com/XayahSuSuSu  
 * **pantsufan:** https://github.com/pantsufan  
-* **j-hc:** https://github.com/j-hc  
+* **j-hc:** https://github.com/j-hc
+* #peewpaw
 * **DavidBerdik:** https://github.com/DavidBerdik  
 * **MatsuriDayo:** https://github.com/MatsuriDayo  
 * **Rem01Gaming:** https://github.com/Rem01Gaming  
