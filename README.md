@@ -124,35 +124,14 @@ https://t.me/MMRLCI
 * **LSPatch:** Rootless implementation of LSPosed framework, integrating Xposed API by inserting dex and so into the target APK.  
 https://github.com/LSPosed/LSPatch  
 https://t.me/LSPatchArchives  
-* **LSPatch by JingMatrix:** A fork of LSPatch.  
-https://github.com/JingMatrix/LSPatch  
 * **Abootloop:** A Magisk Module to protect from bootloop.  
 https://github.com/Magisk-Modules-Alt-Repo/abootloop  
 https://github.com/nedorazrab0/abootloop  
 * **YetAnotherBootloopProtector:** A module try to protect your device from bootloops and system ui failures caused by Magisk/KernelSU/APatch Modules.  
 https://github.com/Magisk-Modules-Alt-Repo/YetAnotherBootloopProtector  
 https://github.com/rhythmcache/YetAnotherBootloopProtector  
-* **LSPosed:** Successor of Xposed Framework.  
-https://xdaforums.com/t/lsposed-xposed-framework-8-1-13-0-simple-magisk-module.4228973/  
-https://github.com/LSPosed/LSPosed  
-https://t.me/LSPosed  
-https://t.me/LSPosedDiscussion  
-https://t.me/LSPosedArchives  
-https://t.me/lsposed_log  
-* **LSPosed Internal:** A fork of LSPosed by its own developers.  
-https://t.me/LSPosed/287  
-* **LSPosed by Dev4Mod:** A fork of LSPosed.  
-https://github.com/Dev4Mod/LSPosed  
-* **LSPosed by JingMatrix:** A fork of LSPosed.  
-https://github.com/JingMatrix/LSPosed  
-* **LSPosed Irena:** A fork of LSPosed.  
-https://github.com/re-zero001/LSPosed-Irena  
-* **LSPosed NPM:** A fork of LSPosed.  
-https://t.me/rormzhstjxm  
-* **LSPosed_mod by mywalkb:** A fork of LSPosed.  
-https://github.com/mywalkb/LSPosed_mod  
-* **LSPosed by CMDQ8575:** A fork of LSPosed.  
-https://github.com/CMDQ8575/LSPosed  
+* **LSPosed by ThePedroo:** A fork of LSPosed.  
+https://github.com/ThePedroo/LSPosed  
 * **Dreamland Framework:** A Xposed framework implementation, you can use it to use Xposed modules.  
 https://github.com/canyie/Dreamland  
 https://t.me/DreamlandFramework  
@@ -194,8 +173,6 @@ https://github.com/PerformanC/ReZygisk
 https://t.me/rezygisk  
 https://t.me/rezygiskchat  
 https://t.me/performancorg  
-* **NeoZygisk:** A Zygote injection module implemented using ptrace, which provides Zygisk API support for APatch/KernelSU and serves as a replacement of Magisk's built-in Zygisk.  
-https://github.com/JingMatrix/NeoZygisk  
 * **Tricky Store:** A trick of keystore.  
 https://github.com/5ec1cff/TrickyStore  
 https://xdaforums.com/t/tricky-store-the-next-generation-pif.4683446/  
@@ -530,7 +507,6 @@ Use native detectors. Like:
 * **daboynb:** https://github.com/daboynb  
 * **HuskyDG:** https://github.com/HuskyDG  
 * **HuskyDG:** https://xdaforums.com/m/huskydg.11455139/  
-* **JingMatrix:** https://github.com/JingMatrix  
 * **kdrag0n:** https://github.com/kdrag0n  
 * **kdrag0n:** https://xdaforums.com/m/kdrag0n.7291478/  
 * **osm0sis:** https://github.com/osm0sis  
