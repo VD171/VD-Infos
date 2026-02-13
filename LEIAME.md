@@ -130,8 +130,8 @@ https://github.com/nedorazrab0/abootloop
 * **YetAnotherBootloopProtector:** Um módulo para tentar proteger seu aparelho de bootloops e falhas de interface do sistema causadas por módulos Magisk/KernelSU/APatch.  
 https://github.com/Magisk-Modules-Alt-Repo/YetAnotherBootloopProtector  
 https://github.com/rhythmcache/YetAnotherBootloopProtector  
-* **LSPosed by ThePedroo:** Um fork do LSPosed.  
-https://github.com/ThePedroo/LSPosed  
+* **ReLSPosed by ThePedroo:** Um fork do LSPosed.  
+https://github.com/ThePedroo/ReLSPosed  
 * **Dreamland Framework:** Uma implementação do framework Xposed, você pode usá-lo para usar módulos Xposed.  
 https://github.com/canyie/Dreamland  
 https://t.me/DreamlandFramework  
