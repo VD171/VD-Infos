@@ -130,8 +130,8 @@ https://github.com/nedorazrab0/abootloop
 * **YetAnotherBootloopProtector:** A module try to protect your device from bootloops and system ui failures caused by Magisk/KernelSU/APatch Modules.  
 https://github.com/Magisk-Modules-Alt-Repo/YetAnotherBootloopProtector  
 https://github.com/rhythmcache/YetAnotherBootloopProtector  
-* **LSPosed by ThePedroo:** A fork of LSPosed.  
-https://github.com/ThePedroo/LSPosed  
+* **ReLSPosed by ThePedroo:** A fork of LSPosed.  
+https://github.com/ThePedroo/ReLSPosed  
 * **Dreamland Framework:** A Xposed framework implementation, you can use it to use Xposed modules.  
 https://github.com/canyie/Dreamland  
 https://t.me/DreamlandFramework  
@@ -162,12 +162,6 @@ https://t.me/PixelProps
 https://t.me/pixelpropschat  
 * **Zygisk-maphide:** Wipe out the traces of mounted files of Magisk module for process on DenyList.  
 https://github.com/HuskyDG/zygisk-maphide  
-* **ZygiskNext:** Standalone implementation of Zygisk, providing Zygisk API support for KernelSU and a replacement of Magisk's built-in Zygisk.  
-https://github.com/Dr-TSNG/ZygiskNext  
-https://t.me/real5ec1cff  
-https://t.me/nullptr_dev  
-* **Zygisk_mod:** An open-source fork of Zygisk Next.  
-https://github.com/Admirepowered/Zygisk_mod  
 * **ReZygisk:** A fork of Zygisk Next, which is a standalone implementation of Zygisk, providing Zygisk API support for KernelSU, Magisk (besides built-in) and APatch (work in progress).  
 https://github.com/PerformanC/ReZygisk  
 https://t.me/rezygisk  
