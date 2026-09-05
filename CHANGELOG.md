@@ -8,16 +8,16 @@ The 2.x line is a ground-up rewrite; the last public 1.x release was
 
 ## [2.10]
 
-- **Menos falso-positivo nas identidades.** O veredito agora compara apenas leituras
-  do *mesmo* campo. Cada `Build.*` e comparado com sua propriedade canônica
-  (`ro.product.model`, `ro.build.fingerprint` ...) por Java/nativo/shell; as variantes
-  por partição (`ro.product.vendor.*`, `.system.*`, `.odm.*`), que o Android deixa
-  divergir de propósito, seguem visíveis mas marcadas como "contexto" e não geram
-  MISMATCH. A tag TEE só entra na comparação quando segue a mesma convenção de
-  nome do `Build.*` (brand/device/manufacturer); em model/product ela usa o codinome,
-  então aparece só como contexto. Assim model/product/fingerprint voltam a MATCH,
-  enquanto um hook real de `Build.*` (divergindo da propriedade canônica) ainda e pego
-  e a divergência TEE de patch de segurança continua vermelha.
+- **Fewer false positives on identity items.** The verdict now compares only readings
+  of the *same* field. Each `Build.*` is compared against its canonical property
+  (`ro.product.model`, `ro.build.fingerprint` ...) through Java/native/shell; the
+  per-partition variants (`ro.product.vendor.*`, `.system.*`, `.odm.*`), which Android
+  deliberately lets differ, stay visible but are marked as "context" and no longer
+  raise a MISMATCH. The TEE tag only joins the comparison when it follows the same
+  naming convention as `Build.*` (brand/device/manufacturer); for model/product it
+  uses the codename, so it is shown as context only. Model, product and fingerprint
+  are back to MATCH, while a real `Build.*` hook (diverging from the canonical
+  property) is still caught and the TEE security-patch divergence stays red.
 
 ## [2.09]
 
