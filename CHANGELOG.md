@@ -6,6 +6,19 @@ The 2.x line is a ground-up rewrite; the last public 1.x release was
 [v1.11-beta6](https://github.com/VD171/VD-Infos/releases/tag/v1.11-beta6)
 (2024-12-02). Everything between it and 2.00 is the rewrite described below.
 
+## [2.13]
+
+- **Fixed a native reading that could report a libc error message as a value.** The
+  native lens used `__system_property_get()`, whose buffer is 92 bytes
+  (`PROP_VALUE_MAX`). For a property longer than that, bionic refuses to truncate and
+  writes the literal string `Must use __system_property_read_callback() to read`
+  into the buffer. That placeholder is an error message, not a value: it was shown
+  as the native reading and diverged from the Java and shell ones, a false mismatch
+  on any device with a long property. The native lens now reads through
+  `__system_property_find()` + `__system_property_read_callback()`, which has no
+  length limit, and every label was updated to name the function actually used.
+  Verified against a 309 character property: all three lenses now return it whole.
+
 ## [2.12]
 
 - **About dialog made readable.** It opened with a dense paragraph of description and
