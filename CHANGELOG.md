@@ -18,6 +18,12 @@ The 2.x line is a ground-up rewrite; the last public 1.x release was
   uses the codename, so it is shown as context only. Model, product and fingerprint
   are back to MATCH, while a real `Build.*` hook (diverging from the canonical
   property) is still caught and the TEE security-patch divergence stays red.
+- **Fixed a crash when expanding a category.** A property present both in the raw
+  catalog and in a domain module that re-categorises it (emulator markers, integrity
+  flags, DNS, GPU) produced two probes sharing one id; the duplicate lazy-list key
+  crashed the screen as soon as both were drawn, which showed up first on the
+  Emulator section. The registry now keeps a single reading per id (the domain one,
+  which carries the more meaningful category).
 
 ## [2.09]
 
