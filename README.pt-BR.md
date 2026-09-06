@@ -86,7 +86,7 @@ cpp/            native_probes.cpp - a lente nativa, sem dependências
 
 ## Download e suporte
 
-* Release (APK): https://github.com/VD171/VD-Infos/releases/tag/v2.10
+* Release (APK): https://github.com/VD171/VD-Infos/releases/tag/v2.11
 * https://github.com/VD171/VD-Infos
 * https://xdaforums.com/t/VD-Infos.4097379/
 * https://t.me/RootDetected

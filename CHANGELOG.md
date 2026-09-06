@@ -6,6 +6,23 @@ The 2.x line is a ground-up rewrite; the last public 1.x release was
 [v1.11-beta6](https://github.com/VD171/VD-Infos/releases/tag/v1.11-beta6)
 (2024-12-02). Everything between it and 2.00 is the rewrite described below.
 
+## [2.11]
+
+- **About dialog.** Who wrote the app, where the source lives, the licence, and the
+  contacts (Telegram, e-mail, XDA, GitHub), one tap away in the top bar. The 2.x
+  rewrite had dropped this, so the information existed only in the README.
+- **An unexpected error now opens a copyable dialog instead of killing the app.**
+  The uncaught-exception handler writes the trace to the app's private files, the
+  app relaunches, and the next start shows the full stack trace in a scrollable
+  dialog with a copy button, so it can be pasted into a report. A guard stops a
+  start-up failure from looping the relaunch. Nothing is transmitted: there is no
+  crash reporting service and the app holds no INTERNET permission, so the report
+  only leaves the device if you copy it out yourself. The dialog also links straight
+  to the contacts, so the report can actually be sent somewhere.
+- Native readings in the attestation items now name the property they read
+  (`__system_property_get ro.boot.verifiedbootstate` instead of a bare
+  `__system_property_get`), matching how the Java readings are labelled.
+
 ## [2.10]
 
 - **Fewer false positives on identity items.** The verdict now compares only readings

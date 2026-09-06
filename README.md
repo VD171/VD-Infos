@@ -85,7 +85,7 @@ cpp/            native_probes.cpp - the native lens, dependency-free
 
 ## Download and support
 
-* Release (APK): https://github.com/VD171/VD-Infos/releases/tag/v2.10
+* Release (APK): https://github.com/VD171/VD-Infos/releases/tag/v2.11
 * https://github.com/VD171/VD-Infos
 * https://xdaforums.com/t/VD-Infos.4097379/
 * https://t.me/RootDetected
