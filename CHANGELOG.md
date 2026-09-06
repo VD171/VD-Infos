@@ -6,6 +6,13 @@ The 2.x line is a ground-up rewrite; the last public 1.x release was
 [v1.11-beta6](https://github.com/VD171/VD-Infos/releases/tag/v1.11-beta6)
 (2024-12-02). Everything between it and 2.00 is the rewrite described below.
 
+## [2.12]
+
+- **About dialog made readable.** It opened with a dense paragraph of description and
+  everything else in small type. The description is gone and the type is larger
+  (rows and links at body-large, section titles bold), so what is left is only what
+  matters: project, contacts and download.
+
 ## [2.11]
 
 - **About dialog.** Who wrote the app, where the source lives, the licence, and the
