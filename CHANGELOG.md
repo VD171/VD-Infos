@@ -6,6 +6,68 @@ The 2.x line is a ground-up rewrite; the last public 1.x release was
 [v1.11-beta6](https://github.com/VD171/VD-Infos/releases/tag/v1.11-beta6)
 (2024-12-02). Everything between it and 2.00 is the rewrite described below.
 
+## [2.14]
+
+- **The refusal is an answer too.** Surfaces the sandbox is meant to close are now
+  probed on purpose, because `EACCES` is the conformant reading: a device that hands
+  the content over instead is out of conformance and you want to see it. 19 items
+  (eMMC CID/serial, UFS and SoC identity, `/proc/cmdline`, `/proc/stat`, `/proc/1/*`,
+  `/dev/kmsg`, `/system/build.prop`) plus 22 `dumpsys` services. To compare a refusal
+  it has to be a value, so the native lens gained `__system_property`-style errno
+  reporting (`EACCES`/`ENOENT`/...), the Java lens normalises the exception, and the
+  shell lens folds stderr in and maps it to the same token. `dumpsys` refuses in two
+  shapes and both are normalised: `DENIED` (missing the DUMP permission) and
+  `NO_SERVICE` (servicemanager does not even expose the service to an app).
+- **Advertising ID actually reads now.** It was blank because it was read from the
+  settings stores, which is not where the GAID lives: it comes from a bound Play
+  Services service. Reimplemented with a raw binder transaction, no Play dependency.
+  The whole key family is swept as well (AAID, plus the OAID/VAID of the Chinese OEM
+  alliance and Huawei's `pps_*`) across the three settings stores.
+- **Every settings item is now read twice**, through the cached `Settings.*` API that
+  hooking frameworks rewrite and through the ContentResolver query that goes to the
+  store itself. A disagreement means the API is lying to the app.
+- **System features** are compared properly: the full set from
+  `getSystemAvailableFeatures()` against `pm list features` (another process asking
+  the same PackageManager), with the declaring `etc/permissions/*.xml` shown as
+  context because it legitimately differs. Plus 12 per-feature items.
+- **Ported from 1.x and from "My Dev IDs"**: 77 OEM identifier properties (Meizu,
+  Oppo, OnePlus, Asus, TCT, Verizon and the IMEI/MEID/ICCID/serial/MAC variants), and
+  13 settings keys the rewrite had dropped, including the hidden-api-policy trio (a
+  tamper tell) and the accessibility keys (an accessibility service can read the
+  screen). `READ_GSERVICES` and `AD_ID` are declared: both are protectionLevel
+  "normal", granted at install with no prompt, so what they unlock is squarely inside
+  what any installed app can read about you.
+- **x86** added to the ABIs (x86_64 was already there), so the app runs on 32 bit
+  emulators too.
+- Fixed three false divergences where the two lenses were answering different
+  questions: mount markers (a summary against raw mountinfo lines, and "overlay" as a
+  loose substring when OverlayFS is ordinary on Android), `which su` (a PATH walk
+  against one hardcoded path) and enabled input methods (the framework's filtered view
+  against the raw setting).
+- **A fourth false divergence, and the worst of them: the app was inventing root.**
+  The mount-marker probe scanned the whole `/proc/self/mountinfo` line for `ksu`, and
+  every ext4 line carries the mount option `journal_checksum`, which contains that
+  substring. A clean Samsung reported KernelSU. The probe now reads only the mount
+  point, the filesystem type and the source, never the options, in both lenses.
+- **Every probe title is translatable.** The 172 titles were literals in the probe
+  builders; they are string resources now, resolved at build time so an exported
+  report still carries readable prose.
+- **GSF ID knocks on both doors.** On Android 16 the `gservices` database moved from
+  `com.google.android.gsf` to the Play Services provider, so the old authority
+  answers empty on a device that does have the identifier. Both are queried.
+- **The snapshot and the shared report are written atomically.** The UI scan and the
+  background worker each held their own store and wrote the same file at the same
+  time; each stream truncates on open but then writes from zero independently, so the
+  shorter payload landed inside the longer one and the tail of the longer one survived
+  past its end. The result was a file with a complete JSON object followed by garbage,
+  which only showed on a device slow enough for the two to overlap. The writers are
+  serialised now and each write goes through a temporary file renamed into place.
+- Fixed two platform-type NPEs (the GSF ID cursor and the network interface
+  enumeration, both declared non-null by Kotlin and both nullable in practice).
+- **Search shows what it finds.** A match inside a collapsed section stayed hidden;
+  sections now open while a query is active. Plus a clear button in the search field
+  and a larger version string in the header.
+
 ## [2.13]
 
 - **Fixed a native reading that could report a libc error message as a value.** The
