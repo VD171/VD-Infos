@@ -43,6 +43,14 @@ compared side by side:
   GPU, Widevine DRM ID.
 * **Packages / accounts / WebView**: installed package list and count, per-app
   signing digests, this-app signature, self-package introspection, intent-resolution enumerations, accounts, call-log count, user agent.
+* **Sandbox conformance**: surfaces the sandbox is meant to CLOSE (eMMC CID/serial,
+  UFS and SoC identity, `/proc/cmdline`, `/proc/1/*`, `/dev/kmsg`,
+  `/system/build.prop`) and 22 `dumpsys` services. Here the refusal is the answer:
+  `EACCES`/`DENIED` is the conformant reading, and a device that hands the content
+  over instead is out of conformance.
+* **Advertising identifiers**: the GAID from the Play Services binder, plus the whole
+  key family (AAID, OAID/VAID and Huawei's `pps_*`) swept across the three settings
+  stores.
 * **Root / hook / emulator detectors**: `su`/Magisk/KernelSU/APatch/Xposed/LSPosed/
   Riru artifacts, injected libs in `/proc/self/maps`, known packages, dangerous and
   emulator properties, verified boot state.
@@ -69,7 +77,7 @@ ui/             Jetpack Compose, Material 3, dynamic colour, live progress
 cpp/            native_probes.cpp - the native lens, dependency-free
 ```
 
-* **Parallelism**: 586 probes fan out across the default dispatcher with a bounded
+* **Parallelism**: 732 probes fan out across the default dispatcher with a bounded
   permit count; results stream into the UI as they land.
 * **Background action**: a WorkManager job re-scans on a schedule, diffs against the
   last capture, and notifies when any value drifts.
@@ -85,7 +93,7 @@ cpp/            native_probes.cpp - the native lens, dependency-free
 
 ## Download and support
 
-* Release (APK): https://github.com/VD171/VD-Infos/releases/tag/v2.13
+* Release (APK): https://github.com/VD171/VD-Infos/releases/tag/v2.14
 * https://github.com/VD171/VD-Infos
 * https://xdaforums.com/t/VD-Infos.4097379/
 * https://t.me/RootDetected

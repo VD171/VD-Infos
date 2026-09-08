@@ -44,6 +44,13 @@ shell), comparados lado a lado:
   GPU, ID DRM Widevine.
 * **Pacotes / contas / WebView**: lista e contagem de pacotes instalados, digests
   de assinatura por app, assinatura deste app, auto-inspeção do próprio pacote, enumerações de resolução de intent, contas, contagem de call log, user agent.
+* **Conformidade do sandbox**: superfícies que o sandbox deve FECHAR (CID/serial do
+  eMMC, identidade do UFS e do SoC, `/proc/cmdline`, `/proc/1/*`, `/dev/kmsg`,
+  `/system/build.prop`) e 22 serviços do `dumpsys`. Aqui a recusa é a resposta: o
+  esperado é `EACCES`/`DENIED`, e um aparelho que entregar o conteúdo está fora de
+  conformidade.
+* **Identificadores de anúncio**: o GAID pelo serviço do Play, mais a família de
+  chaves (AAID, OAID/VAID e `pps_*`) varrida nos três settings stores.
 * **Detectores de root / hook / emulador**: artefatos de `su`/Magisk/KernelSU/
   APatch/Xposed/LSPosed/Riru, libs injetadas em `/proc/self/maps`, pacotes
   conhecidos, propriedades perigosas e de emulador, verified boot state.
@@ -70,7 +77,7 @@ ui/             Jetpack Compose, Material 3, cor dinâmica, progresso ao vivo
 cpp/            native_probes.cpp - a lente nativa, sem dependências
 ```
 
-* **Paralelismo**: 586 sondas em fan-out no dispatcher default com concorrência
+* **Paralelismo**: 732 sondas em fan-out no dispatcher default com concorrência
   limitada; os resultados entram no UI conforme chegam.
 * **Ação em background**: um job do WorkManager re-varre no cronograma, faz diff do
   último snapshot e notifica quando um valor muda.
@@ -86,7 +93,7 @@ cpp/            native_probes.cpp - a lente nativa, sem dependências
 
 ## Download e suporte
 
-* Release (APK): https://github.com/VD171/VD-Infos/releases/tag/v2.13
+* Release (APK): https://github.com/VD171/VD-Infos/releases/tag/v2.14
 * https://github.com/VD171/VD-Infos
 * https://xdaforums.com/t/VD-Infos.4097379/
 * https://t.me/RootDetected
