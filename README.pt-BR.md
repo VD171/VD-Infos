@@ -27,8 +27,12 @@ internet com um firewall ou simplesmente desligue a internet.
 Cada item é lido por todos os métodos que conseguem lê-lo (SDK Java / nativo /
 shell), comparados lado a lado:
 
-* **~360 propriedades do sistema** lidas de 3 formas: `SystemProperties.get`,
-  `__system_property_get` e `getprop`.
+* **~445 propriedades do sistema** lidas de CINCO formas: `SystemProperties.get`,
+  as duas entradas da bionic (`__system_property_read_callback` e a de 92 bytes,
+  `__system_property_get`), `getprop` disparado pela JVM e `getprop` disparado do
+  código nativo por `popen` - um comando de shell rodado pelo `ProcessBuilder` e o
+  mesmo comando rodado sem a JVM não são o mesmo ponto de vista, porque o primeiro
+  é uma superfície que um framework de ocultação reescreve e o segundo não.
 * **Identidade do device**: modelo, fabricante, marca, device, product, board,
   hardware, fingerprint, bootloader, build id/tags/type - cada campo `Build.*`
   contra todas as variantes `ro.product.*` (system/vendor/odm), nativo e shell.
@@ -77,7 +81,7 @@ ui/             Jetpack Compose, Material 3, cor dinâmica, progresso ao vivo
 cpp/            native_probes.cpp - a lente nativa, sem dependências
 ```
 
-* **Paralelismo**: 732 sondas em fan-out no dispatcher default com concorrência
+* **Paralelismo**: 777 sondas em fan-out no dispatcher default com concorrência
   limitada; os resultados entram no UI conforme chegam.
 * **Ação em background**: um job do WorkManager re-varre no cronograma, faz diff do
   último snapshot e notifica quando um valor muda.
@@ -93,7 +97,7 @@ cpp/            native_probes.cpp - a lente nativa, sem dependências
 
 ## Download e suporte
 
-* Release (APK): https://github.com/VD171/VD-Infos/releases/tag/v2.14
+* Release (APK): https://github.com/VD171/VD-Infos/releases/tag/v2.15
 * https://github.com/VD171/VD-Infos
 * https://xdaforums.com/t/VD-Infos.4097379/
 * https://t.me/RootDetected
