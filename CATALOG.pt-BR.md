@@ -222,6 +222,41 @@ Voltar ao README: [English](README.md) | [Português](README.pt-BR.md).
 | **FolkPatch** | Root patcheando a partição de boot, sobre um branch estendido do APatch com UI/UX própria; o FolkTool concede o root e o FolkLite é o branch MIUIX. | https://github.com/LyraVoid/FolkPatch<br>https://github.com/LyraVoid/FolkTool<br>https://github.com/LyraVoid/FolkLite<br>https://t.me/FolkPatch<br>https://t.me/FolkPatch_Kernel<br>https://t.me/FolkPatch_Chat<br>https://t.me/FP_CI |
 | **KowSU** | Um fork do KernelSU focado no tema Material do manager. | https://github.com/KOWX712/KernelSU<br>https://t.me/kowsu_build<br>https://t.me/kowchannel |
 | **Xposed Modules Repo** | O repositório que espelha os módulos do Xposed e do LSPosed, e os canais que os anunciam. | https://github.com/Xposed-Modules-Repo<br>https://t.me/Xposed_Repository<br>https://t.me/XposedRepositoryChat |
+
+## Detectar o root
+
+Use detectores nativos, como:
+
+| Detector | Links |
+|---|---|
+| **DuckDetector (refactoring)** | https://github.com/eltavine/Duck-Detector-Refactoring<br>https://github.com/rrr333nnn333/Duck-Detector-Refactoring<br>https://t.me/duck_detector |
+| **TamJiGi** | https://t.me/rormzhstjxm |
+| **Holmes** | https://t.me/app_process64 |
+| **Hunter** | https://t.me/Zhenxi233 |
+| **Native Test** | https://t.me/qianqianzhuang |
+| **Native Detector** | https://github.com/reveny/Android-Native-Root-Detector<br>https://t.me/rootdetector<br>https://t.me/reveny1<br>https://t.me/revenychat |
+| **Momo** | https://t.me/magiskalpha |
+| **Securify** | https://github.com/RabehX/Securify/releases |
+| **Memory Detector** | https://github.com/reveny/detection/blob/main/MemoryDetector_2.1.0.apk |
+| **Env Checks** | https://play.google.com/store/apps/details?id=com.dexprotector.detector.envchecks |
+| **KeyAttestation por vvb2060** | https://github.com/vvb2060/KeyAttestation |
+| **KeyAttestation by VisionR1** | https://github.com/VisionR1/KeyAttestation |
+| **Ruru** | https://github.com/NativeStar/Ruru |
+| **TrustAttestor** | https://github.com/LingQingBigKing/TrustAttestor |
+| **ZygoteNextProbe** | https://github.com/XiaoTong6666/ZygoteNextProbe |
+| **DetectZygisk** | https://github.com/apkunpacker/DetectZygisk |
+| **CheckBeer** | https://github.com/apkunpacker/CheckBeer |
+| **playIntegrityFixDetector** | https://github.com/IR0NBYTE/playIntegrityFixDetector |
+| **Mantle Verify** | https://github.com/get-mantle/Mantle-Verify<br>https://t.me/getmantle |
+| **Fingerprint Device Intelligence demo** | https://github.com/fingerprintjs/fingerprint-device-intelligence-android-demo |
+| **Known Root Detectors** | https://github.com/RiRiRawrZ615/Known-Root-Detectors |
+
+## Obsoletos
+
+Mantidos para referência. Não recebem mais manutenção; a tag **(Descontinuado)** foi mantida em cada um, para que uma linha copiada desta tabela ainda se leia como obsoleta.
+
+| Ferramenta | O que faz | Links |
+|---|---|---|
 | **(Descontinuado) Simple Android Guides** | Aprenda sobre coisas do Android do zero. Útil para iniciantes. | https://github.com/ravindu644/Simple-Android-Guides |
 | **(Descontinuado) APatch Next** | Um fork do APatch. | https://t.me/app_process64 |
 | **(Descontinuado) Ksu WebUI Standalone** | Implementação independente da WebUI do KernelSU. Serve para Magisk, KernelSU e APatch. | https://github.com/5ec1cff/KsuWebUIStandalone |
@@ -255,31 +290,4 @@ Voltar ao README: [English](README.md) | [Português](README.pt-BR.md).
 | **(Descontinuado) Xposed** | O Xposed é uma estrutura que permite aos desenvolvedores aplicar módulos à memória somente leitura (Read-Only Memory) (ROM) do Android com o objetivo de modificar o comportamento do app ou criar um app modificado. | https://xdaforums.com/t/official-xposed-for-lollipop-marshmallow-nougat-oreo-v90-beta3-2018-01-29.3034811/<br>https://xdaforums.com/t/xposed-general-info-versions-changelog.2714053/<br>https://github.com/rovo89?tab=repositories&q=xposed |
 | **(Descontinuado) Mdg Wa** | Um módulo do Xposed para personalizar e habilitar privacidade no WhatsApp. | https://github.com/ItsMadruga/MdgWa |
 | **(Descontinuado) Kitsune Mask (Magisk Delta)** | Um fork do Magisk. | https://github.com/KitsuneMagisk/Magisk<br>https://github.com/HuskyDG/magisk-files<br>https://xdaforums.com/t/discussion-kitsune-mask-another-unofficial-mask-of-magisk.4460555/ |
-## Detectar o root
-
-Use detectores nativos, como:
-
-| Detector | Links |
-|---|---|
-| **DuckDetector (refactoring)** | https://github.com/eltavine/Duck-Detector-Refactoring<br>https://github.com/rrr333nnn333/Duck-Detector-Refactoring<br>https://t.me/duck_detector |
-| **TamJiGi** | https://t.me/rormzhstjxm |
-| **Holmes** | https://t.me/app_process64 |
-| **Hunter** | https://t.me/Zhenxi233 |
-| **Native Test** | https://t.me/qianqianzhuang |
-| **Native Detector** | https://github.com/reveny/Android-Native-Root-Detector<br>https://t.me/rootdetector<br>https://t.me/reveny1<br>https://t.me/revenychat |
-| **Momo** | https://t.me/magiskalpha |
-| **Securify** | https://github.com/RabehX/Securify/releases |
-| **Memory Detector** | https://github.com/reveny/detection/blob/main/MemoryDetector_2.1.0.apk |
-| **Env Checks** | https://play.google.com/store/apps/details?id=com.dexprotector.detector.envchecks |
-| **KeyAttestation por vvb2060** | https://github.com/vvb2060/KeyAttestation |
-| **KeyAttestation by VisionR1** | https://github.com/VisionR1/KeyAttestation |
-| **Ruru** | https://github.com/NativeStar/Ruru |
-| **TrustAttestor** | https://github.com/LingQingBigKing/TrustAttestor |
-| **ZygoteNextProbe** | https://github.com/XiaoTong6666/ZygoteNextProbe |
-| **DetectZygisk** | https://github.com/apkunpacker/DetectZygisk |
-| **CheckBeer** | https://github.com/apkunpacker/CheckBeer |
-| **playIntegrityFixDetector** | https://github.com/IR0NBYTE/playIntegrityFixDetector |
-| **Mantle Verify** | https://github.com/get-mantle/Mantle-Verify<br>https://t.me/getmantle |
-| **Fingerprint Device Intelligence demo** | https://github.com/fingerprintjs/fingerprint-device-intelligence-android-demo |
-| **Known Root Detectors** | https://github.com/RiRiRawrZ615/Known-Root-Detectors |
-| **(Descontinuado) KeyAttestation by chiteroman** | https://github.com/chiteroman/KeyAttestation |
+| **(Descontinuado) KeyAttestation by chiteroman** | Um app que lê a cadeia de certificados de atestação de chave do hardware. | https://github.com/chiteroman/KeyAttestation |
