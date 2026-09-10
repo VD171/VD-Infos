@@ -13,12 +13,10 @@ The 2.x line is a ground-up rewrite; the last public 1.x release was
   nothing ever shows, which is work handed to whoever translates the app next. The
   written rule ("audit the strings in the same pass") failed three times because it
   is a rule someone has to remember; lint fails on an unused resource now.
-  🪤 The first attempt at that guard did not fire: a second `lint` block was added
-  above the one that already existed, and the later block won. It only counted as a
-  guard once an unused string was planted on purpose and the build was watched to
-  fail - a guard that does not fire is worse than none, because it grants
+  The guard is enforced by lint, and was validated by planting an unused string
+  and confirming the build fails on it - a guard that does not fire grants
   confidence without protection.
-  🔑 And it earned itself on its first honest run: the manifest declared
+  On its first run it caught a real defect: the manifest declared
   `android:roundIcon="@mipmap/ic_launcher"`, pointing the ROUND icon at the square
   one, so launchers asking for the round variant got the square and the round asset
   travelled dead inside the APK.
@@ -38,7 +36,7 @@ The 2.x line is a ground-up rewrite; the last public 1.x release was
 - **Everything `/proc/self` exposes that nothing was reading.** 22 probes, each
   through every door that reaches it - the Java file API, `readlink`/`open` from
   JNI, `android.system.Os` (the Java door to the same syscall) and the shell.
-  🔑 The namespaces are the sharpest: a process confined to its own MOUNT namespace
+  The namespaces are the sharpest: a process confined to its own MOUNT namespace
   sees a filesystem nobody else sees, which is precisely how Magisk and KernelSU
   hide their mounts from an app - and BOTH test devices show it, the app's `mnt`
   sitting outside the range the other namespaces use. Plus the real executable, the
@@ -48,7 +46,7 @@ The 2.x line is a ground-up rewrite; the last public 1.x release was
   as a fourth route beside `id -Z`, the cgroup, and the architecture claimed by
   three different layers. `readlink` had been implemented in the JNI layer and wired
   to nothing; it now has four consumers.
-  🪤 Three mistakes of mine, all caught by measuring: the shell readings were
+  Three defects, all caught by measuring: the shell readings were
   reading THE WRONG PROCESS (`/proc/self` in a shell is the shell - `proc:exe`
   answered `/system/bin/toybox`, the readlink binary describing itself, and the
   thread count came from `awk`); `File.canonicalPath` resolves the PATH and never
@@ -60,7 +58,7 @@ The 2.x line is a ground-up rewrite; the last public 1.x release was
 - **Readings that used one libc door and not the other.** bionic has two entry
   points into the property store and the app is meant to use both - the 92-byte one
   is what shipped a placeholder as a value in 2.13. Ten probes had only the callback
-  side, and then the owner spotted more: the audit script matched
+  side, and a further gap surfaced: the audit script matched
   `sysprop("literal-key")` and was blind to every call that passes the key as a
   VARIABLE, which is how the 24 Build fields, the radio properties and a whole
   helper read theirs. All paired now, and the check no longer depends on the key
@@ -120,12 +118,12 @@ The 2.x line is a ground-up rewrite; the last public 1.x release was
   `sys:selinux` and `hw:low_ram`. A well-made spoofer would have had the app lying
   on the identity screen and telling the truth on the properties screen.
   Rather than patch the 13, asking for a property now returns all of its doors at
-  once - the same lesson as pairing the shell routes in the constructor. 🪤 The four
+  once - the same lesson as pairing the shell routes in the constructor. The four
   attestation probes fold the property into the TEE's vocabulary before comparing
   ("green" to "verified", a date to YYYYMM), and that normalisation used to reach
   only the Java reading; the block applies it to every route, or the other three
-  would "diverge" over notation - the mistake already made with EACCES, with
-  Enforcing and with the ABI lists.
+  would "diverge" over notation - the classic false positive of comparing the
+  same fact written two different ways.
   The file dimension was checked too and had one gap: `/proc/meminfo` was read three
   ways in one probe and two in another. `id:serial` now carries 17 readings,
   `id:imei` 14, and a full scan is 3331.
@@ -153,7 +151,7 @@ The 2.x line is a ground-up rewrite; the last public 1.x release was
   voter, which was the very thing being fixed. And a probe comparing the framework's
   interface list against `/sys/class/net` was removed: an app cannot list that
   directory, so the comparison would be permanently one-sided.
-  🪤 That last one also exposed the pipeline trap AGAIN, in the half I had not
+  That last one also exposed the pipeline trap AGAIN, in the half I had not
   fixed: `ls /denied | sort | paste` exits 0 because the status is the last
   command's, so ls's complaint flowed down the pipe and was taken for data - the
   same shape that once reported "cat/proc/self/cmdline" as a package name. The
@@ -171,7 +169,7 @@ The 2.x line is a ground-up rewrite; the last public 1.x release was
   out as `0.0.15` against `Build.VERSION.RELEASE` = `15`: the record encodes MMmmss
   (150000 = Android 15) but some vendors write the bare major, and dividing that by
   10000 invented a disagreement where the TEE and the framework agreed completely.
-  🪤 Neither test device exercises this fix - both report proper MMmmss - so it is
+  Neither test device exercises this fix - both report proper MMmmss - so it is
   verified by walking the function through its cases, not by a device. Said plainly
   because "verified on both devices" would have been false here.
 - **A refusal now keeps the sentence behind the token.** `NOT_PERMITTED` next to
@@ -182,7 +180,7 @@ The 2.x line is a ground-up rewrite; the last public 1.x release was
   and it travels in the shared text digest too - that digest is what people paste
   into a message, and `NOT_PERMITTED` alone does not say which uid was refused by
   which rule.
-  🔑 The two test devices show exactly why the split is needed: Android 16 says
+  The two test devices show exactly why the split is needed: Android 16 says
   "The uid 10458" and Android 12 says "The user 14122" - identical refusals, wording
   that differs by version. Comparing the sentences would have measured the wording.
 - **The divergence counter uses a real plural** instead of "divergence(s)".
@@ -192,14 +190,13 @@ The 2.x line is a ground-up rewrite; the last public 1.x release was
   rewrites. The invariant moved into `probe()`, so the next person to add a probe
   cannot forget it - a `Method` carries its command now, which is what makes the
   twin buildable. 3268 readings, 668 on each shell route, none unpaired.
-  🔑 And the pairing immediately earned its keep: four probes started diverging on
+  And the pairing immediately earned its keep: four probes started diverging on
   both devices because the JVM route normalised a refusal to `EACCES` while the
   native twin passed through "cat: /proc/version: Permission denied". The routes
   agreed completely about the device and disagreed only about wording - the
   normalisation lived inside `runOrReason`, which only the JVM route calls. Two
   lenses answering the same question must answer in the same vocabulary, or the
-  comparison measures the translator instead of the fact. A full scan costs 37s on
-  the vienna and 31s on the Merlin2, up from 28s and 21s.
+  comparison measures the translator instead of the fact. A full scan costs about 37s and 31s on the two test devices, up from 28s and 21s.
 - **31 dead string resources removed.** Declared in both languages and referenced by
   no code: 26 `p_*` (friendly names for properties, from before the probes started
   using the property key itself as the title) and 5 `i_*` (integrity titles that
@@ -214,7 +211,7 @@ The 2.x line is a ground-up rewrite; the last public 1.x release was
   verdict, though it stays on screen, because a route that stops working is worth
   seeing. This was already doing damage: three environment probes were reported as
   divergent while three lenses agreed on the value and only the popen route said
-  `EXIT:-1`. 🪤 And that token was manufactured: `pclose` returns -1 when it cannot
+  `EXIT:-1`. And that token was manufactured: `pclose` returns -1 when it cannot
   reap the child, which happens inside a JVM because the runtime has its own SIGCHLD
   handling. The native side no longer claims a status it does not have.
 - **The lens names were hiding the very distinction that gives them value.** A shell
@@ -228,7 +225,7 @@ The 2.x line is a ground-up rewrite; the last public 1.x release was
   routes), the HTTP proxy, fake location providers, a debugger attached (framework
   against the kernel's TracerPid), whether a lock screen is really set, the sensor
   vendors and input devices that give an emulator away, and the nine app ops this
-  package holds. 🪤 `loc:test_providers` first mixed three different questions into
+  package holds. `loc:test_providers` first mixed three different questions into
   one probe - is a fake provider installed, may THIS app mock location, and a legacy
   setting - the same mistake as comparing `/sys/fs/selinux/enforce` with
   `ro.boot.selinux`. Only the first one votes.
@@ -239,7 +236,7 @@ The 2.x line is a ground-up rewrite; the last public 1.x release was
   now have three routes to the same question (libc `access()`, `Os.stat()`, and the
   shell). The environment variables gained it too, and there the pair is pointed:
   `System.getenv` returns a COPY cached when the VM started, `Os.getenv` asks libc
-  now. 🪤 The reference lists `Os.gethostname()` as public and the compiler
+  now. The reference lists `Os.gethostname()` as public and the compiler
   disagrees - it lives in libcore, not the SDK; `uname().nodename` is the public
   door to the same kernel answer.
 - **Four questions the framework answers and this app never asked**: running in a
@@ -253,7 +250,7 @@ The 2.x line is a ground-up rewrite; the last public 1.x release was
   through popen without the JVM. The two libc functions are different code with
   different contracts, and the two shell routes are not hooked the same way, so a
   framework that rewrites one and not the others shows up as a disagreement.
-  🪤 This was first limited to the "sensitive" properties to save forks, which was
+  This was first limited to the "sensitive" properties to save forks, which was
   wrong twice: `sensitive` means "mask in the UI", not "a spoofer cares", so
   `ro.build.fingerprint` and `ro.boot.verifiedbootstate` - the two most rewritten
   properties on a device - got one route FEWER than an unset IMEI property. And the
@@ -280,7 +277,7 @@ The 2.x line is a ground-up rewrite; the last public 1.x release was
   because it reaches the store through `getContentProviderExternal`, which needs
   shell/root - so the refusal is now on screen as the conformant reading, and a
   device that answers is the anomaly. Added as ONE conformance probe plus a reading
-  on the Android ID: 🪤 a single `content query` costs 2-3 seconds from inside an
+  on the Android ID: a single `content query` costs 2-3 seconds from inside an
   app, and chaining the three settings stores blew the timeout, reporting TIMEOUT 22
   times and hiding the real answer. The `gservices` provider stays out - the command
   cannot reach it even as root, only the Java lens can.
@@ -290,9 +287,9 @@ The 2.x line is a ground-up rewrite; the last public 1.x release was
   contradicted `getSerial()`, which refuses out loud, and the probe reported a
   divergence where the two actually AGREE: the app is denied the serial. Both
   normalise to the one refusal token now, so a conformant device matches and only a
-  device that hands the serial over stands out. 🪤 Scoped to that one reading on
+  device that hands the serial over stands out. Scoped to that one reading on
   purpose: `unknown` is the genuine content of `ro.bootloader` and `ro.carrier` on
-  the Merlin2, where all three lenses agree on it - normalising by value instead of
+  some devices, where all three lenses agree on it - normalising by value instead of
   by origin would have turned 18 true readings into false refusals.
 - **Two false divergences that only a second device could show.** The ABI lists were
   joined with `", "` on the Java side and with `","` in the property - formatting,
@@ -306,7 +303,7 @@ The 2.x line is a ground-up rewrite; the last public 1.x release was
   properties hold the same facts the TelephonyManager reports, so operator, MCC+MNC,
   country ISO, roaming and SIM count are compared against them through the native
   and shell lenses; SIM state, network type and baseband are shown as context
-  because the two speak different vocabularies for the same thing. 🪤 those
+  because the two speak different vocabularies for the same thing. those
   properties carry ONE VALUE PER SIM SLOT (`72423,`, `false,false`,
   `LOADED,NOT_READY`) while the API answers for the default subscription, so both
   new lenses keep the first slot - comparing raw would have flagged all ten.
@@ -377,7 +374,7 @@ The 2.x line is a ground-up rewrite; the last public 1.x release was
   `getSystemAvailableFeatures()` against `pm list features` (another process asking
   the same PackageManager), with the declaring `etc/permissions/*.xml` shown as
   context because it legitimately differs. Plus 12 per-feature items.
-- **Ported from 1.x and from "My Dev IDs"**: 77 OEM identifier properties (Meizu,
+- **OEM identifier properties and recovered settings keys**: 77 OEM identifier properties (Meizu,
   Oppo, OnePlus, Asus, TCT, Verizon and the IMEI/MEID/ICCID/serial/MAC variants), and
   13 settings keys the rewrite had dropped, including the hidden-api-policy trio (a
   tamper tell) and the accessibility keys (an accessibility service can read the
