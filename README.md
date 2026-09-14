@@ -26,7 +26,7 @@ block internet access with a firewall or just turn it off.
 Each item is read through every method that can read it (Java SDK / native / shell),
 compared side by side:
 
-* **~445 system properties** read FIVE ways: `SystemProperties.get`, both of
+* **~495 system properties** read FIVE ways: `SystemProperties.get`, both of
   bionic's entry points (`__system_property_read_callback` and the 92-byte
   `__system_property_get`), `getprop` spawned by the JVM, and `getprop` spawned
   from native code through `popen` - a shell command run by `ProcessBuilder` and
@@ -81,7 +81,7 @@ ui/             Jetpack Compose, Material 3, dynamic colour, live progress
 cpp/            native_probes.cpp - the native lens, dependency-free
 ```
 
-* **Parallelism**: 777 probes fan out across the default dispatcher with a bounded
+* **Parallelism**: 861 probes fan out across the default dispatcher with a bounded
   permit count; results stream into the UI as they land.
 * **Background action**: a WorkManager job re-scans on a schedule, diffs against the
   last capture, and notifies when any value drifts.

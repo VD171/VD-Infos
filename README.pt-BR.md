@@ -27,7 +27,7 @@ internet com um firewall ou simplesmente desligue a internet.
 Cada item é lido por todos os métodos que conseguem lê-lo (SDK Java / nativo /
 shell), comparados lado a lado:
 
-* **~445 propriedades do sistema** lidas de CINCO formas: `SystemProperties.get`,
+* **~495 propriedades do sistema** lidas de CINCO formas: `SystemProperties.get`,
   as duas entradas da bionic (`__system_property_read_callback` e a de 92 bytes,
   `__system_property_get`), `getprop` disparado pela JVM e `getprop` disparado do
   código nativo por `popen` - um comando de shell rodado pelo `ProcessBuilder` e o
@@ -81,7 +81,7 @@ ui/             Jetpack Compose, Material 3, cor dinâmica, progresso ao vivo
 cpp/            native_probes.cpp - a lente nativa, sem dependências
 ```
 
-* **Paralelismo**: 777 sondas em fan-out no dispatcher default com concorrência
+* **Paralelismo**: 861 sondas em fan-out no dispatcher default com concorrência
   limitada; os resultados entram no UI conforme chegam.
 * **Ação em background**: um job do WorkManager re-varre no cronograma, faz diff do
   último snapshot e notifica quando um valor muda.

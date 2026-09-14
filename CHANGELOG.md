@@ -6,6 +6,152 @@ The 2.x line is a ground-up rewrite; the last public 1.x release was
 [v1.11-beta6](https://github.com/VD171/VD-Infos/releases/tag/v1.11-beta6)
 (2024-12-02). Everything between it and 2.00 is the rewrite described below.
 
+## [Unreleased]
+
+## [2.16] - 2026-09-13
+
+- **Settings spoof consistency, read by every path.** A spoofed setting can be read
+  from an app through several different routes, and a spoofer does not always cover
+  them equally. The new spoof-consistency probes read each spoofed key
+  (`ad_aaid`, `android_id`, `device_name`, `bluetooth_name`, the accessibility and
+  developer toggles, `mock_location`, `oem_unlock_allowed`, `tts_default_synth`,
+  `stay_on_while_plugged_in`, and more) through all in-process routes at once:
+  `Settings.*.getString`, `ContentResolver.query` by appended path
+  (`content://settings/<store>/<key>`), by selection (`name=?`), by bulk table sweep,
+  and the provider `call(GET_<store>)` - across the global, secure and system stores,
+  with the unhooked shell `settings get` alongside as a reference. The engine crosses
+  them, so a value that is spoofed on one route and not another (`MISMATCH`) is a tell
+  that a real detector can exploit by simply switching routes. Measured on a Motorola
+  Android 16: the bulk-table sweep never returns synthetic spoof-only keys, and the
+  selection route only returns them on some backend builds - both real inconsistencies
+  that a single-method reader was blind to.
+
+- **Spoofed keys, the ad-id family and spoofed properties come from a central hub,
+  not the binary.** The root layer writes the current spoof matrix, the advertising-id
+  key family and the list of spoofed system properties into the app's own `filesDir`
+  (`vd_hub_matrix_keys.txt`, `vd_hub_ads_keys.txt`, `vd_hub_spoofed_props.txt`), which
+  an untrusted app can read where `/data/adb` cannot. When a hub file is present it
+  replaces the built-in default, so changing what is spoofed or validated is an edit
+  to the shared source of truth (`VD.json`) rather than a rebuild of the app; the
+  built-in lists stay as a fallback when the hub is absent.
+- **INT settings are also read through `getInt`, not only `getString`.** A method-level
+  spoofer can hook `Settings.*.getInt` without touching `getString` (XPL-EX-style privacy
+  modules hook the two separately); the consistency probes read an INT-typed key through
+  `getInt` across the three stores now, next to the `getString` sweep, so a hook on one
+  door and not the other stands out. Types come from the same central matrix, so which
+  keys are INT is data, not code.
+- **The validators now cover exactly what the root layer spoofs.** 38 system
+  properties the module rewrites had no cross-method validator and were added to the
+  catalogue; the advertising-id family (`ad_aaid` and its siblings) is read through
+  all five property and settings routes rather than one; and six more HMA-spoofed
+  settings keys joined the consistency matrix, keeping it in step with the detector's
+  own list.
+
+- **Spoof consistency went UNIVERSAL: every setting, not just our matrix.** The app is meant
+  to be public, so the spoof-consistency check can no longer live off a curated list of the keys
+  *we* know our own root layer spoofs. The new `spoof:sweep` probe enumerates each settings store
+  once (`global`/`secure`/`system`) and, for EVERY key the provider exposes, compares the value the
+  cached API (`Settings.*.getString`, what apps read and what hooks target) returns against the raw
+  provider `query` value - any key whose two doors disagree is a spoof that covers one and not the
+  other. Plus the injection case: a key served by the API but absent from the provider in ALL three
+  stores (the `ad_aaid` pattern - a value conjured only on the API path). The injection test is
+  cross-store on purpose, so a "moved" setting (e.g. `adb_enabled`, which `Settings.System.getString`
+  auto-redirects to Global on any device) is not mistaken for an injection. Measured on a Motorola
+  Android 16: 426 keys swept (229+140+57), all consistent, and the one real tell caught -
+  `ad_aaid` injected by the API with no provider row anywhere. ~26 s, cheaper than the old per-key
+  matrix (which re-scanned the whole store for every key). The curated per-key probes stay as the
+  focused, full-8-path detail for the highest-value keys; the sweep is the universal net.
+
+- **The device's own firmware props are the ruler: bootimage partition added.** The
+  stock `build.prop`/`prop.default` of this device's boot partitions
+  (`vienna-kernel-build/device/props`) is the ground truth a spoof diverges from. The
+  `init_boot`/`boot` ramdisk carries its OWN build identity, which stays at the
+  codename-shared values on stock (`ro.bootimage.build.id=...M...`,
+  `ro.product.bootimage.model=motorola edge 50 neo`, `ro.product.bootimage.name=vienna_g_sys`).
+  A fingerprint/model spoofer that rewrites `ro.build.*`/`ro.product.*` but forgets this
+  partition leaves a divergence - the same class as the b7524745 gap, across partitions.
+  18 firmware props that had no probe were added to the catalogue (measured on vienna: the app
+  reads `ro.hardware.soc.manufacturer`, `ro.build.ab_update`, `ro.treble.enabled` and
+  `ro.boot.dynamic_partitions`, while the `ro.bootimage.build.*`/`ro.product.bootimage.*` family and
+  `ro.mot.build.guid` come back null - their prop context is SELinux-restricted from untrusted_app,
+  so their cross-partition value applies where policy lets an app read them, or catches a future
+  exposure; all lenses agree on the null, so there is no false positive):
+  the `ro.bootimage.build.*` and `ro.product.bootimage.*` families (each read by getprop,
+  native read_callback, native property_get and shell, so a method-level hook on any one
+  stands out), plus `ro.mot.build.guid`, `ro.hardware.soc.manufacturer`, `ro.build.ab_update`,
+  `ro.treble.enabled` and `ro.boot.dynamic_partitions`. The bootimage product variant also
+  joins the `dev:model/brand/manufacturer/device/product` family view as non-voting context,
+  next to the vendor/system/odm variants, so the whole partition picture is visible at once.
+
+- **The advertising / anonymous-device IDs of Chinese OEMs are read now too.** Beyond Google's
+  advertising ID, the MSA-alliance identifiers an app can read on Xiaomi/MIUI and similar OEMs
+  (OAID, VAID, AAID, UDID) are read two ways each - the `com.android.id.impl.IdProviderImpl` class by
+  reflection and the `com.miui.idprovider` content provider - and the two are crossed, so a spoof
+  that covers one path and not the other stands out. Null on a device without the MSA provider
+  (e.g. Motorola). The user-profile creation time (`UserManager.getUserCreationTime`), an
+  anti-fingerprint spoof target, is read as well. Measured on a Xiaomi Android 12: VAID and AAID
+  resolve and agree across both paths.
+
+- **Structural property-area tamper, not just the value.** A new native probe
+  (`integrity:prop_area_holes`) reads the value of a property; this reads the SHAPE of
+  the store it lives in. bionic keeps each SELinux context's properties in a memory
+  file under `/dev/__properties__/`, laid out as a bump-allocated trie: a freshly built
+  area is one contiguous run. A `resetprop`/injection rewrites the area in place, and a
+  value that no longer fits its slot strands the old bytes - an aligned hole the trie no
+  longer points at. The probe walks every property area this process already has mapped
+  (enumerated from `/proc/self/maps`, so it needs no `opendir` of the `0711` directory
+  and no re-open that SELinux would gate per prop type - it reads memory the app legally
+  holds) and reports `AVAILABLE`, `CONTEXTS` and `HOLES`. A spoof that reads perfectly
+  clean by every getter still shows its footprint here. Measured on a Motorola Android
+  16 (build-time prop cloning, no runtime resetprop): 74 contexts, 0 holes, ~28 ms - the
+  expected clean baseline; a resetprop-based spoofer would report holes.
+
+- **The process's supplementary groups are surfaced (AID_READPROC).** The group set of the running
+  process is read three ways (`/proc/self/status` via the file API, native, and shell) and crossed; a
+  gid 3009 (`AID_READPROC`) in the set means the app can read other processes' `/proc` - a privilege
+  an ordinary app never holds, and the key the LSPosed Privisolated mount-view check keys on.
+
+- **Two builds now, one variable: the target SDK.** A `compat` product flavor
+  (applicationId suffix `.compat`, so it installs beside the normal app) targets
+  SDK 27 and therefore lands in the `untrusted_app_27` SELinux domain, while the
+  default `modern` build targets 35 and lands in the strict `untrusted_app`. The
+  two apps read the same device from two different sandboxes, so comparing their
+  snapshots isolates exactly what the platform gates on target SDK. The build
+  self-labels the result - `self:targetSdk` and `selinux:attr_current` print the
+  target and the domain each ran in - and the launcher icon carries the number in a
+  bottom-left badge so the two are told apart on the home screen.
+  Measured on a Motorola Android 16: dropping to target 27 restored PACKAGE
+  VISIBILITY (the compat build sees 509 installed packages against the modern
+  build's 482) but did NOT restore `ip`/netlink or `/sys/class/net` - those stay
+  refused to `untrusted_app_27` too on this ROM. So here package visibility is
+  target-gated and the netlink lockdown is not: it is the ROM's SELinux policy, not
+  the target SDK, that denies netlink to an untrusted app on this device.
+- **The target SDK is shown in the header and the About dialog**, read at runtime,
+  so the running build states which sandbox it is.
+- **The catalogue of root, hiding and detection apps was widened.** The root-manager
+  set gained the current Magisk and KernelSU forks; three sets were added - apps that
+  require root, apps that hunt for root (root, emulator and Play Integrity detectors)
+  and remote-access, ssh and root file managers - plus a set of root-adjacent tools.
+  Each set is checked in this process (getPackageInfo) against another process
+  (`pm list packages`), so a framework that hides an app from one door and not the
+  other is caught. Package names are matched by exact equality only.
+- **A false divergence on long properties is gone.** The 92-byte
+  `__system_property_get` cannot hold a value past its buffer and reports
+  `TOO_LONG_FOR_92B_API`; a long fingerprint overflowed it while the other four
+  routes read it in full. That reading now counts as an instrument limit, shown but
+  not voting, so the fingerprint no longer reads as divergent.
+- **The device serial reads the same on every target.** `Build.getSerial()` throws
+  for an app targeting Q or later (reported as a refusal) but degrades to the literal
+  "unknown" for one targeting P or earlier; that "unknown" is normalised to the same
+  refusal token now, so the serial no longer shows a false divergence on the compat
+  build.
+- **The installed-package shell check is portable across ROMs.** It passed patterns
+  as repeated `-e` flags, which some device `grep` builds honour only for the first,
+  collapsing a multi-package match to a single line; it passes them as one
+  newline-separated argument to `grep -Fx` now.
+- **A filter that leaves a single list opens it, and a single item expands it**, so a
+  narrow filter shows its content without another tap.
+
 ## [2.15]
 
 - **A dead string, for the third time, so the build enforces it now.** Removing a
