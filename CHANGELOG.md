@@ -8,6 +8,20 @@ The 2.x line is a ground-up rewrite; the last public 1.x release was
 
 ## [Unreleased]
 
+## [2.16.1] - 2026-09-14
+
+- **Per-key spoof-consistency compares the value, not which store holds it.** A "moved"
+  setting (`stay_on_while_plugged_in`, `tether_dun_required`, `adb_enabled`... live in Global)
+  makes `getString`/`query` redirect between stores differently, so each read path reports the same
+  key present in a different SET of stores (`global=0,system=0` vs `global=0,secure=0,system=0`) -
+  same value, different store membership. The per-key `spoof:<key>` probes compared the whole
+  `store=value` token and flagged that as a FALSE divergence; they now compare the distinct value(s)
+  only, so a consistent value across stores is consistent regardless of which stores expose it, while
+  a real injection (a value on one path, absent on another) or a genuine per-store value difference
+  still diverges. Same cross-store logic the universal `spoof:sweep` already used. Measured on a
+  Motorola Android 16: the settings divergences dropped from 6 to 2, and the 2 left are the real ones
+  (the advertising-id injection and a TEE-vs-property patch-level difference).
+
 ## [2.16] - 2026-09-13
 
 - **Settings spoof consistency, read by every path.** A spoofed setting can be read
