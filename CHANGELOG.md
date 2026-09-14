@@ -8,6 +8,19 @@ The 2.x line is a ground-up rewrite; the last public 1.x release was
 
 ## [Unreleased]
 
+## [2.16.2] - 2026-09-14
+
+- **A shell blocked by the sandbox no longer fakes a divergence.** On a modern target the app runs
+  in the strict `untrusted_app` domain, where a spawned shell is refused `pm`/`settings`/`dumpsys`
+  (EACCES) while the in-process JVM/JNI API reads the same fact. That shell EACCES was voting as a
+  divergence against the value another lens actually read - e.g. `PackageManager.nameForUid` returns
+  the package while `pm list packages --uid` gives EACCES, flagged as `divergent`. A shell EACCES/DENIED
+  now does not vote when a non-shell lens read the value: it is a limit of the shell lens, not the
+  device's answer about the fact. It still votes when EVERY lens refuses (a real denial -> match) and
+  on the compat target, where the shell runs and returns the value. `absent`/`(none)` (the command ran
+  and found nothing, like an injected setting missing from the provider) still votes and still diverges,
+  so the advertising-id injection and spoofed-value tells are untouched.
+
 ## [2.16.1] - 2026-09-14
 
 - **Per-key spoof-consistency compares the value, not which store holds it.** A "moved"
