@@ -5,7 +5,7 @@
 - **Como se proteger** - guias, soluções de root, módulos de ocultação/integridade, frameworks Xposed, privacidade/spoofing, rede e utilitários.
 - **Detectar o root** - detectores nativos pra testar seu setup.
 
-Voltar ao README: [English](README.md) | [Português](README.pt-BR.md).
+Voltar ao README: [English](README.md) | [Português](README.pt.md).
 
 ### Contatos
 

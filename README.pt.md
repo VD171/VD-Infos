@@ -1,10 +1,16 @@
-[English](README.md) | **Português**
+[English](README.md) | **Português** | [Español](README.es.md) | [Italiano](README.it.md) | [Deutsch](README.de.md) | [Français](README.fr.md) | [Русский](README.ru.md) | [Bahasa Indonesia](README.id.md) | [Türkçe](README.tr.md) | [Polski](README.pl.md) | [Nederlands](README.nl.md) | [Svenska](README.sv.md) | [Čeština](README.cs.md) | [Tiếng Việt](README.vi.md) | [中文](README.zh.md) | [日本語](README.ja.md) | [한국어](README.ko.md) | [فارسی](README.fa.md) | [हिन्दी](README.hi.md) | [العربية](README.ar.md) | [ไทย](README.th.md)
 
 # VD Infos
 
-Tópico no XDA: https://xdaforums.com/t/app-vd-infos-package-com-vitaodoidao-vdinfos.4097379/
+*Debugger de métodos*
 
-<img src="docs/vdinfos-01.png" height="420"/> <img src="docs/vdinfos-02.png" height="420"/>
+[![License: AGPL-3.0-or-later](https://img.shields.io/badge/license-AGPL--3.0--or--later-blue.svg)](LICENSE)
+[![Release](https://img.shields.io/github/v/release/VD171/VD-Infos)](https://github.com/VD171/VD-Infos/releases)
+[![Downloads](https://img.shields.io/github/downloads/VD171/VD-Infos/total)](https://github.com/VD171/VD-Infos/releases)
+[![Android 8.0+](https://img.shields.io/badge/Android-8.0%2B-3DDC84.svg)](https://github.com/VD171/VD-Infos/releases)
+[![Languages](https://img.shields.io/badge/languages-21-orange.svg)](README.md)
+
+<img src="images/vdinfos-01.png" height="420"/> <img src="images/vdinfos-02.png" height="420"/>
 
 O Android é um sistema operacional poderoso e versátil; o que ninguém te conta é
 que todos os seus detalhes pessoais e informações confidenciais ficam disponíveis
@@ -27,7 +33,7 @@ internet com um firewall ou simplesmente desligue a internet.
 Cada item é lido por todos os métodos que conseguem lê-lo (SDK Java / nativo /
 shell), comparados lado a lado:
 
-* **~495 propriedades do sistema** lidas de CINCO formas: `SystemProperties.get`,
+* **~493 propriedades do sistema** lidas de CINCO formas: `SystemProperties.get`,
   as duas entradas da bionic (`__system_property_read_callback` e a de 92 bytes,
   `__system_property_get`), `getprop` disparado pela JVM e `getprop` disparado do
   código nativo por `popen` - um comando de shell rodado pelo `ProcessBuilder` e o
@@ -61,7 +67,9 @@ shell), comparados lado a lado:
 
 ## Download e suporte
 
-* Release (APK): https://github.com/VD171/VD-Infos/releases/tag/v2.15
+Cada release publica dois APKs: **SDK_35** mira o sandbox moderno e estrito, e é o recomendado; **SDK_27** mira um nível de API mais antigo, com domínio SELinux mais frouxo, útil para comparação. Ambos instalam no Android 8.0 ou superior.
+
+* Release (APK): https://github.com/VD171/VD-Infos/releases
 * https://github.com/VD171/VD-Infos
 * https://xdaforums.com/t/VD-Infos.4097379/
 * https://t.me/RootDetected
@@ -69,7 +77,10 @@ shell), comparados lado a lado:
 
 ## Línguas
 
-Português Brasileiro e Inglês.
+21 idiomas de interface: Inglês, Português, Espanhol, Italiano, Alemão, Francês, Russo,
+Indonésio, Turco, Polonês, Holandês, Sueco, Tcheco, Vietnamita, Chinês, Japonês, Coreano,
+Persa, Hindi, Árabe e Tailandês. O app oferece uma escolha única de idioma na primeira
+execução (com opção "Padrão do sistema") e, fora isso, segue o idioma do sistema.
 
 ## Arquitetura
 
@@ -79,22 +90,41 @@ probe/          NativeBridge (JNI) - SystemProps (reflexão) - PropCatalog (dado
                 SemanticProbes - IntegrityProbes - ProbeRegistry
 engine/         ProbeEngine - fan-out em coroutines, streaming via Flow
 data/           SnapshotStore (persistência + diff) - Exporter (export JSON/texto)
-work/           SnapshotWorker - varredura periódica em background + notificação
 ui/             Jetpack Compose, Material 3, cor dinâmica, progresso ao vivo
 cpp/            native_probes.cpp - a lente nativa, sem dependências
 ```
 
-* **Paralelismo**: 861 sondas em fan-out no dispatcher default com concorrência
+* **Paralelismo**: 885 sondas em fan-out no dispatcher default com concorrência
   limitada; os resultados entram no UI conforme chegam.
-* **Ação em background**: um job do WorkManager re-varre no cronograma, faz diff do
-  último snapshot e notifica quando um valor muda.
+* **Nada em background**: sem serviços nem varreduras agendadas; o app roda só
+  enquanto está aberto e se fecha sozinho quando fica ocioso.
 * **Camada nativa**: um `.so` pequeno, ligado por nome via `RegisterNatives`,
   deliberadamente minúsculo porque é a parte que precisa ser difícil de enganar.
+
+## Contribuindo
+
+A maioria das contribuições não exige Kotlin: as listas são texto puro em `VDInfos/app/src/main/assets/data/`. Adicione ou remova uma linha e abra um pull request.
+
+* `*_apps.txt` - um nome de pacote por linha
+* `props.txt` - o catálogo de propriedades do sistema, `CATEGORIA<tab>chave`
+* `spoof_keys.txt` - a matriz de spoof de settings, `chave:TIPO`
+
+Um `#` inicia um comentário; linhas vazias são ignoradas. Contribuições de código também são bem-vindas. Ao contribuir, você concorda que seu trabalho segue a AGPL-3.0-or-later deste projeto.
 
 ## Catálogo
 
 As referências de ocultação e detecção de root (guias, módulos, frameworks,
-detectores) ficam num catálogo dedicado: [CATALOG.pt-BR.md](CATALOG.pt-BR.md).
+detectores) ficam num catálogo dedicado: [CATALOG.pt.md](CATALOG.pt.md).
+
+## Agradecimentos
+
+Agradecimento especial ao **[frknkrc44](https://github.com/frknkrc44)**, desenvolvedor
+do **[HMA-OSS](https://github.com/frknkrc44/HMA-OSS)**, pelo carinho dedicado a ele.
+O HMA-OSS é onde várias das correções que este app sugere
+são aplicadas - esconder apps-alvo e definir presets de spoof - e toda menção a ele
+dentro do app leva de volta à sua fonte.
+
+Seus links, canais e como apoiá-lo: [HMA-OSS.md](HMA-OSS.md).
 
 ## Contatos
 

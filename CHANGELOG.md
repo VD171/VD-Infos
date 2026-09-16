@@ -8,7 +8,90 @@ The 2.x line is a ground-up rewrite; the last public 1.x release was
 
 ## [Unreleased]
 
-## [2.16.2] - 2026-09-14
+## [2.17] - 2026-09-16
+
+- **Coverage checkup (2026-09-16): +20 probes, 865 -> 885.** A cross-tool audit against the
+  house evasion stack and a native RASP closed the gaps no VD Infos probe covered and
+  ported the behaviour-based lenses the RASP had and this app lacked. New `IntegrityExtraProbes`:
+  `integrity:kmods` (loaded kernel modules via `/proc/modules` + `lsmod` - catches KSU-Next in
+  LKM mode, which a `/data/adb/ksu` path check misses); `integrity:kernel_syscall_age` (kernel
+  measured by which syscalls answer - pidfd_open/openat2/faccessat2/close_range - so a syscall
+  newer than the version `uname` claims flags an old-kernel-in-new-ROM spoof); `integrity:su_libc_hook`
+  (su paths read by RAW faccessat syscall vs libc access() vs Java - a divergence is an inline hook
+  of libc); `integrity:self_lib_origin` (dladdr on our own .so: `(deleted)`/`memfd:`/`/data/adb`
+  = injected); `integrity:uid_coherence` (process uid vs data-dir owner, plus system/clone flags);
+  `integrity:backup_tools` (root backup tools by filesystem path - the rollback threat allowBackup
+  does not stop); `integrity:local_tmp` (root staging in `/data/local/tmp`); `integrity:documents_providers`
+  (registered DocumentsProviders, to spot an injected one); `integrity:zero_width_names`
+  (invisible-Unicode app hiding); `net:resolv_conf` (DNS-hijack of resolv.conf); `pkg:store_version`
+  (Play Store / GMS version); `self:debuggable` (this app's FLAG_DEBUGGABLE / a BUILD-DEBUG
+  versionName - a store build must not be debuggable). New `AttestExtraProbes`:
+  `attest:key_secure_hw` (KeyInfo.isInsideSecureHardware / getSecurityLevel next to the attestation
+  record); `attest:keybox_ec_vs_rsa` (EC attests tee/strongbox but RSA does not = a keybox that
+  covers EC only, the shape of a leaked keybox); `attest:app_id` (attestationApplicationId, the
+  package + signature the secure hardware bound to the key, compared with our real ones - a forged
+  attestation cannot bind the true pair). Plus LineageOS system features joined the per-feature set.
+  Every item is read through more than one route, VD Infos style, so a hook on one shows as a divergence.
+
+
+- **Releases signed with v2 + v3.** The APK Signature Scheme v3 was enabled (v2 was already on), so both APKs carry the v2+v3 signatures under the same key; the v3 block also leaves room for a future key rotation. Two APKs per release as before: `SDK_35` (strict modern sandbox) and `SDK_27` (looser domain, for comparison).
+- **The locale probe no longer diverges against the app's own language setting.** Its JVM lens
+  read the process default locale, which the in-app language choice re-tags, so picking a language
+  other than the system's made `Locale` report the chosen tag (`pt`) against the device property
+  (`pt-BR`) - a divergence the app created itself. The lens now reads the system resources, which
+  no app setting re-tags, so the probe reports the device again and a real spoof still diverges.
+- **Two vendor device UUIDs added** (issue #7, reported by w3struk): `extm_uuid` on Xiaomi and
+  `op_security_uuid` on OnePlus. Both are stable, identity-bearing settings absent on other
+  vendors; each is read through every settings route like any other identifier, and both joined
+  the spoof-consistency matrix.
+- **Community-editable data lists.** The detection package lists (root managers, root-based
+  tools, root-requiring apps, root detectors, suspicious apps, analysis/emulator apps, hiding
+  apps, Xposed managers), the ~495-entry system-property catalog, and the settings-spoof key
+  matrix moved out of Kotlin into plain-text assets under `assets/data/` - one entry per line,
+  `#` comments. A contributor can add or remove an entry with a one-line pull request and no
+  Kotlin; the files are loaded and cached at runtime via `AssetData`.
+- **No more background work; the app closes itself when idle.** The periodic drift scanner
+  (`SnapshotWorker`) and its notification are gone, along with the `POST_NOTIFICATIONS`
+  permission and the WorkManager dependency - VD Infos no longer runs anything in the
+  background. Instead, once it has sat in the background for a few minutes without being
+  reopened, it finishes itself and drops out of recents.
+- **HMA-OSS credited and linked.** Every in-app solution that mentions HMA-OSS now shows a
+  tappable link to its source (github.com/frknkrc44/HMA-OSS), every README gained a short
+  Acknowledgements section thanking its developer, and a dedicated `HMA-OSS.md` collects the
+  project's GitHub, Telegram and donation links.
+- **One-time language chooser + per-app language.** On first launch a dialog offers the app
+  language, with "System default" as an option; the answer is saved in SharedPreferences and never
+  asked again. The picker is a dropdown whose trigger row is the fixed English word "Language"
+  (constant regardless of locale, by design), listing each language by its own-script endonym. The
+  choice is applied by re-tagging the activity context in `attachBaseContext` (no appcompat, no
+  framework locale service); "System default" leaves the context untouched. All 21 UI languages are
+  selectable.
+- **Title bar tidied.** The version moved up next to the app name in a larger type; the line below
+  now carries only the tagline and the target SDK, not the version.
+- **About dialog redesigned.** A header with an emblem, the app name and a version pill over the
+  tagline; the information grouped into rounded cards with a leading icon per row (developer,
+  source, license, target SDK, the contacts, the support links) under small accent section labels,
+  instead of flat "label: value" lines and dividers; and the privacy note as a highlighted panel.
+- **A "how to fix" button on common divergences.** Probes that carry a solution now show an
+  outlined lightbulb button next to the verdict; tapping it opens a dialog with the fix, separate
+  from expanding the card. Solution text is per-probe and assigned deliberately, never by heuristic.
+  Three fixes back all the wired probes: the keybox `target.txt` note (TrickyStore/TEE Simulator/
+  OhMyKeyMint), the HMA-OSS / Hide My Applist hide-target note, and the HMA-OSS spoof-preset note.
+  Which probes get each was the maintainer's call from a proposed candidate list; the wired set is:
+  - keybox note -> `Device locked`, `Verified boot state`, `Verified boot key`, `Verified boot hash /
+    vbmeta`, `Attestation security level`, `Attestation / keymaster version`, attested OS version and
+    the OS/boot/vendor patch levels, `Attestation provisioning (signer)`.
+  - hide-target note -> `Root detector apps`, `Root manager apps`, `Root-based tools`, `Apps requiring
+    root`, `Suspicious apps`, `Analysis / emulator apps`, `Hiding / cloaking apps`, `Xposed manager apps`.
+  - spoof-preset note -> `Spoof consistency: *`, `ADB enabled`, `Developer options enabled`.
+  Left out on purpose (proposed but declined): the root-engine presence and filesystem/mount tells.
+- **18 new UI languages.** Full translations of every string (plus the solution copy) for Spanish,
+  Italian, German, French, Russian, Indonesian, Turkish, Polish, Dutch, Swedish, Czech, Vietnamese,
+  Chinese, Japanese, Korean, Persian, Hindi, Arabic and Thai - joining the existing English and
+  Portuguese. Source labels and value tokens stay untranslated by design; RTL (Arabic, Persian)
+  is handled by the manifest's `supportsRtl`.
+- **No hardcoded UI copy left.** The one remaining literal placeholder (`(empty)`, shown for a lens
+  that read null) moved to a `reading_empty` string resource, translated across all 21 locales.## [2.16.2] - 2026-09-14
 
 - **A shell blocked by the sandbox no longer fakes a divergence.** On a modern target the app runs
   in the strict `untrusted_app` domain, where a spawned shell is refused `pm`/`settings`/`dumpsys`
@@ -492,7 +575,6 @@ The 2.x line is a ground-up rewrite; the last public 1.x release was
   the earlier i18n pass because they go through a helper rather than the probe
   builders directly.
 
-
 - **The refusal is the reading, everywhere.** A permission failure used to land in
   the ERROR bucket, which reads as "the app broke" and left the interesting case
   with nothing to compare against: a device that DOES hand an ordinary app the IMEI
@@ -734,7 +816,7 @@ The 2.x line is a ground-up rewrite; the last public 1.x release was
 
 - **Bilingual app**: every user-facing string moved to resources - English default
   (`values/`) plus pt-BR (`values-pt/`); the app follows the device language.
-- **Bilingual docs**: `README.md` (English) and `README.pt-BR.md`.
+- **Bilingual docs**: `README.md` (English) and `README.pt.md`.
 - **License**: GNU **AGPL-3.0-or-later** (was MIT). Copyleft with the network
   clause, chosen to keep forks of a research/anti-detection tool open.
 
@@ -796,3 +878,15 @@ Last public 1.x release. Highlights:
 `1.10`, `1.09`, `1.08`, `1.06` and the rest: see the
 [releases page](https://github.com/VD171/VD-Infos/releases) for their notes and
 signed APKs.
+
+---
+
+## Contacts
+
+* https://vd171.ru
+* https://vd.priv8.ru
+* **Telegram:** @VD_Priv8 https://t.me/VD_Priv8
+* **Discord:** @VD.Priv8 https://discord.com/users/1296831918989639721
+* **E-mail:** vd.priv8@pm.me
+* **XDA-Developers:** @VD171 https://xdaforums.com/m/vd171.4699873/
+* **GitHub:** @VD171 https://github.com/VD171

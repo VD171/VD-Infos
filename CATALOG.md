@@ -1,12 +1,12 @@
 # Catalog: hiding root and detecting it
 
-*Leia em [Português](CATALOG.pt-BR.md).*
+*Leia em [Português](CATALOG.pt.md).*
 
 - **Protect yourself** - guides, root solutions, hiding/integrity modules, Xposed
   frameworks, privacy/spoofing, network and utilities.
 - **Detect root** - native detectors worth testing your setup against.
 
-Back to the README: [English](README.md) | [Português](README.pt-BR.md).
+Back to the README: [English](README.md) | [Português](README.pt.md).
 
 ### Contacts
 
