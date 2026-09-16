@@ -91,7 +91,9 @@ The 2.x line is a ground-up rewrite; the last public 1.x release was
   Portuguese. Source labels and value tokens stay untranslated by design; RTL (Arabic, Persian)
   is handled by the manifest's `supportsRtl`.
 - **No hardcoded UI copy left.** The one remaining literal placeholder (`(empty)`, shown for a lens
-  that read null) moved to a `reading_empty` string resource, translated across all 21 locales.## [2.16.2] - 2026-09-14
+  that read null) moved to a `reading_empty` string resource, translated across all 21 locales.
+
+## [2.16.2] - 2026-09-14
 
 - **A shell blocked by the sandbox no longer fakes a divergence.** On a modern target the app runs
   in the strict `untrusted_app` domain, where a spawned shell is refused `pm`/`settings`/`dumpsys`
