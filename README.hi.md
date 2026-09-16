@@ -67,6 +67,7 @@ cpp/            native_probes.cpp - नेटिव लेंस, बिना �
 * `*_apps.txt` - प्रति पंक्ति एक पैकेज नाम
 * `props.txt` - सिस्टम प्रॉपर्टी कैटलॉग, `श्रेणी<tab>कुंजी`
 * `spoof_keys.txt` - settings स्पूफ़ मैट्रिक्स, `कुंजी:प्रकार`
+* अन्य `.txt` फ़ाइलें - इनमें भी प्रति पंक्ति एक प्रविष्टि (कर्नेल-मॉड्यूल नाम के अंश, `/data/local/tmp` के नाम)
 
 `#` टिप्पणी शुरू करता है; खाली पंक्तियाँ अनदेखी की जाती हैं। कोड योगदान का भी स्वागत है। योगदान देकर आप सहमत होते हैं कि आपका कार्य इस परियोजना के AGPL-3.0-or-later के अंतर्गत जारी होगा।
 
@@ -93,3 +94,7 @@ root छिपाने और पहचानने के संदर्भ (
 ## लाइसेंस
 
 **GNU AGPL-3.0-or-later** - देखें [LICENSE](LICENSE)। कॉपीलेफ़्ट, नेटवर्क क्लॉज़ सहित: जो कोई संशोधित संस्करण चलाता है (सेवा के रूप में भी) उसे उसका स्रोत देना होगा। forks को खुला रखने के लिए एक शोध/एंटी-डिटेक्शन उपकरण हेतु जानबूझकर चुना गया।
+
+---
+
+`android` `privacy` `security` `root-detection` `hook-detection` `spoof-detection` `anti-detection` `tamper-detection` `device-fingerprint` `magisk` `kernelsu` `xposed` `play-integrity` `attestation` `tee` `keystore` `scanner` `diagnostics` `reverse-engineering` `kotlin`

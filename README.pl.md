@@ -67,6 +67,7 @@ Większość wkładów nie wymaga Kotlina: listy to zwykły tekst w `VDInfos/app
 * `*_apps.txt` - jedna nazwa pakietu na linię
 * `props.txt` - katalog właściwości systemowych, `KATEGORIA<tab>klucz`
 * `spoof_keys.txt` - macierz spoof ustawień, `klucz:TYP`
+* pozostałe pliki `.txt` - również jeden wpis na wiersz (fragmenty nazw modułów jądra, nazwy w `/data/local/tmp`)
 
 `#` rozpoczyna komentarz; puste linie są ignorowane. Wkłady w kod również są mile widziane. Współtworząc, zgadzasz się, że Twoja praca jest udostępniana na AGPL-3.0-or-later tego projektu.
 
@@ -93,3 +94,7 @@ Jego linki, kanały i jak go wesprzeć: [HMA-OSS.md](HMA-OSS.md).
 ## Licencja
 
 **GNU AGPL-3.0-or-later** - zobacz [LICENSE](LICENSE). Copyleft, w tym klauzula sieciowa: każdy, kto uruchamia zmodyfikowaną wersję (nawet jako usługę), musi udostępnić jej źródło. Wybrana celowo dla narzędzia badawczego/anti-detekcyjnego, aby forki pozostały otwarte.
+
+---
+
+`android` `privacy` `security` `root-detection` `hook-detection` `spoof-detection` `anti-detection` `tamper-detection` `device-fingerprint` `magisk` `kernelsu` `xposed` `play-integrity` `attestation` `tee` `keystore` `scanner` `diagnostics` `reverse-engineering` `kotlin`

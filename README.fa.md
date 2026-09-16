@@ -67,6 +67,7 @@ cpp/            native_probes.cpp - لنز بومی، بدون وابستگی
 * `*_apps.txt` - در هر خط یک نام بسته
 * `props.txt` - فهرست ویژگی‌های سیستم، `دسته<tab>کلید`
 * `spoof_keys.txt` - ماتریس spoof تنظیمات، `کلید:نوع`
+* دیگر فایل‌های `.txt` - آن‌ها هم هر خط یک ورودی (تکه‌های نام ماژول کرنل، نام‌های داخل `/data/local/tmp`)
 
 یک `#` آغاز توضیح است؛ خطوط خالی نادیده گرفته می‌شوند. مشارکت در کد نیز پذیرفته می‌شود. با مشارکت می‌پذیرید که کارتان تحت AGPL-3.0-or-later این پروژه منتشر شود.
 
@@ -93,3 +94,7 @@ cpp/            native_probes.cpp - لنز بومی، بدون وابستگی
 ## مجوز
 
 **GNU AGPL-3.0-or-later** - نگاه کنید به [LICENSE](LICENSE). کپی‌لفت، شامل بند شبکه: هرکس نسخه‌ای اصلاح‌شده را اجرا کند (حتی به‌عنوان سرویس) باید منبع آن را ارائه دهد. عمداً برای ابزاری پژوهشی/ضدتشخیص انتخاب شده تا fork‌ها باز بمانند.
+
+---
+
+`android` `privacy` `security` `root-detection` `hook-detection` `spoof-detection` `anti-detection` `tamper-detection` `device-fingerprint` `magisk` `kernelsu` `xposed` `play-integrity` `attestation` `tee` `keystore` `scanner` `diagnostics` `reverse-engineering` `kotlin`

@@ -67,6 +67,7 @@ Die meisten Beiträge brauchen kein Kotlin: die Listen liegen als reiner Text un
 * `*_apps.txt` - ein Paketname pro Zeile
 * `props.txt` - der Katalog der Systemeigenschaften, `KATEGORIE<tab>Schlüssel`
 * `spoof_keys.txt` - die Settings-Spoof-Matrix, `Schlüssel:TYP`
+* weitere `.txt`-Dateien - ebenfalls ein Eintrag pro Zeile (Kernelmodul-Namensfragmente, Namen in `/data/local/tmp`)
 
 Ein `#` beginnt einen Kommentar; leere Zeilen werden ignoriert. Code-Beiträge sind ebenfalls willkommen. Mit deinem Beitrag stimmst du zu, dass er unter der AGPL-3.0-or-later dieses Projekts erscheint.
 
@@ -93,3 +94,7 @@ Seine Links, Kanäle und wie man es unterstützt: [HMA-OSS.md](HMA-OSS.md).
 ## Lizenz
 
 **GNU AGPL-3.0-or-later** - siehe [LICENSE](LICENSE). Copyleft, einschließlich der Netzwerkklausel: Wer eine geänderte Version ausführt (auch als Dienst), muss ihren Quellcode anbieten. Bewusst für ein Forschungs-/Anti-Erkennungs-Tool gewählt, um Forks offen zu halten.
+
+---
+
+`android` `privacy` `security` `root-detection` `hook-detection` `spoof-detection` `anti-detection` `tamper-detection` `device-fingerprint` `magisk` `kernelsu` `xposed` `play-integrity` `attestation` `tee` `keystore` `scanner` `diagnostics` `reverse-engineering` `kotlin`

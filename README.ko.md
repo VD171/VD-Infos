@@ -67,6 +67,7 @@ cpp/            native_probes.cpp - 네이티브 렌즈, 의존성 없음
 * `*_apps.txt` - 한 줄에 패키지 이름 하나
 * `props.txt` - 시스템 속성 카탈로그, `카테고리<tab>키`
 * `spoof_keys.txt` - settings spoof 행렬, `키:타입`
+* 기타 `.txt` 파일 - 마찬가지로 한 줄에 하나의 항목(커널 모듈 이름 조각, `/data/local/tmp` 파일 이름)
 
 `#` 는 주석을 시작하며 빈 줄은 무시됩니다. 코드 기여도 환영합니다. 기여하면 귀하의 작업이 이 프로젝트의 AGPL-3.0-or-later 로 배포되는 데 동의하는 것입니다.
 
@@ -93,3 +94,7 @@ root 은닉 및 탐지 참고자료(가이드, 모듈, 프레임워크, 탐지�
 ## 라이선스
 
 **GNU AGPL-3.0-or-later** - [LICENSE](LICENSE) 참조. 네트워크 조항을 포함한 카피레프트: 수정본을 (서비스로라도) 실행하는 누구든 그 소스를 제공해야 합니다. fork를 열린 상태로 유지하기 위해 연구/반탐지 도구용으로 의도적으로 선택했습니다.
+
+---
+
+`android` `privacy` `security` `root-detection` `hook-detection` `spoof-detection` `anti-detection` `tamper-detection` `device-fingerprint` `magisk` `kernelsu` `xposed` `play-integrity` `attestation` `tee` `keystore` `scanner` `diagnostics` `reverse-engineering` `kotlin`

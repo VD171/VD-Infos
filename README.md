@@ -108,6 +108,7 @@ Most contributions need no Kotlin: the lists live as plain text under `VDInfos/a
 * `*_apps.txt` - one package name per line
 * `props.txt` - the system-property catalog, `CATEGORY<tab>key`
 * `spoof_keys.txt` - the settings-spoof matrix, `key:TYPE`
+* other `.txt` files - one entry per line too (kernel-module name fragments, `/data/local/tmp` file names)
 
 A `#` starts a comment; blank lines are ignored. Code contributions are welcome too. By contributing you agree your work ships under this project's AGPL-3.0-or-later.
 
@@ -141,3 +142,7 @@ Its links, channels and how to support it: [HMA-OSS.md](HMA-OSS.md).
 **GNU AGPL-3.0-or-later** - see [LICENSE](LICENSE). Copyleft, including the network
 clause: anyone who runs a modified version (even as a service) must offer its
 source. Chosen deliberately for a research/anti-detection tool, to keep forks open.
+
+---
+
+`android` `privacy` `security` `root-detection` `hook-detection` `spoof-detection` `anti-detection` `tamper-detection` `device-fingerprint` `magisk` `kernelsu` `xposed` `play-integrity` `attestation` `tee` `keystore` `scanner` `diagnostics` `reverse-engineering` `kotlin`

@@ -67,6 +67,7 @@ Většina příspěvků nevyžaduje Kotlin: seznamy jsou prostý text v `VDInfos
 * `*_apps.txt` - jedno jméno balíčku na řádek
 * `props.txt` - katalog systémových vlastností, `KATEGORIE<tab>klíč`
 * `spoof_keys.txt` - matice spoof nastavení, `klíč:TYP`
+* ostatní soubory `.txt` - také jeden záznam na řádek (fragmenty názvů modulů jádra, názvy v `/data/local/tmp`)
 
 `#` začíná komentář; prázdné řádky se ignorují. Příspěvky v kódu jsou také vítány. Přispěním souhlasíte, že vaše práce bude šířena pod AGPL-3.0-or-later tohoto projektu.
 
@@ -93,3 +94,7 @@ Jeho odkazy, kanály a jak jej podpořit: [HMA-OSS.md](HMA-OSS.md).
 ## Licence
 
 **GNU AGPL-3.0-or-later** - viz [LICENSE](LICENSE). Copyleft včetně síťové klauzule: kdokoli spustí upravenou verzi (i jako službu), musí nabídnout její zdrojový kód. Zvoleno záměrně pro výzkumný/anti-detekční nástroj, aby forky zůstaly otevřené.
+
+---
+
+`android` `privacy` `security` `root-detection` `hook-detection` `spoof-detection` `anti-detection` `tamper-detection` `device-fingerprint` `magisk` `kernelsu` `xposed` `play-integrity` `attestation` `tee` `keystore` `scanner` `diagnostics` `reverse-engineering` `kotlin`

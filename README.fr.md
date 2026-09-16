@@ -67,6 +67,7 @@ La plupart des contributions ne demandent pas de Kotlin : les listes sont du tex
 * `*_apps.txt` - un nom de paquet par ligne
 * `props.txt` - le catalogue des propriétés système, `CATÉGORIE<tab>clé`
 * `spoof_keys.txt` - la matrice de spoof des settings, `clé:TYPE`
+* autres fichiers `.txt` - une entrée par ligne également (fragments de nom de modules du noyau, noms dans `/data/local/tmp`)
 
 Un `#` commence un commentaire ; les lignes vides sont ignorées. Les contributions de code sont aussi bienvenues. En contribuant, vous acceptez que votre travail soit diffusé sous l'AGPL-3.0-or-later de ce projet.
 
@@ -93,3 +94,7 @@ Ses liens, ses canaux et comment le soutenir : [HMA-OSS.md](HMA-OSS.md).
 ## Licence
 
 **GNU AGPL-3.0-or-later** - voir [LICENSE](LICENSE). Copyleft, y compris la clause réseau : quiconque exécute une version modifiée (même en tant que service) doit en offrir le code source. Choisie délibérément pour un outil de recherche/anti-détection, afin de garder les forks ouverts.
+
+---
+
+`android` `privacy` `security` `root-detection` `hook-detection` `spoof-detection` `anti-detection` `tamper-detection` `device-fingerprint` `magisk` `kernelsu` `xposed` `play-integrity` `attestation` `tee` `keystore` `scanner` `diagnostics` `reverse-engineering` `kotlin`

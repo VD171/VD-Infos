@@ -67,6 +67,7 @@ cpp/            native_probes.cpp - เลนส์เนทีฟ ไม่ม�
 * `*_apps.txt` - หนึ่งชื่อแพ็กเกจต่อบรรทัด
 * `props.txt` - แคตตาล็อกพร็อพเพอร์ตี้ระบบ `หมวดหมู่<tab>คีย์`
 * `spoof_keys.txt` - เมทริกซ์ spoof ของ settings `คีย์:ชนิด`
+* ไฟล์ `.txt` อื่น ๆ - หนึ่งรายการต่อบรรทัดเช่นกัน (ชิ้นส่วนชื่อโมดูลเคอร์เนล, ชื่อไฟล์ใน `/data/local/tmp`)
 
 เครื่องหมาย `#` เริ่มคอมเมนต์ และบรรทัดว่างจะถูกข้าม ยินดีรับการมีส่วนร่วมด้านโค้ดเช่นกัน การมีส่วนร่วมถือว่าคุณยอมรับให้ผลงานเผยแพร่ภายใต้ AGPL-3.0-or-later ของโครงการนี้
 
@@ -93,3 +94,7 @@ cpp/            native_probes.cpp - เลนส์เนทีฟ ไม่ม�
 ## สัญญาอนุญาต
 
 **GNU AGPL-3.0-or-later** - ดู [LICENSE](LICENSE) เป็น copyleft รวมถึงข้อกำหนดเครือข่าย: ผู้ใดรันเวอร์ชันที่แก้ไข (แม้ในรูปแบบบริการ) ต้องเสนอซอร์สของมัน เลือกโดยเจตนาสำหรับเครื่องมือวิจัย/ต่อต้านการตรวจจับ เพื่อให้ fork เปิดอยู่เสมอ
+
+---
+
+`android` `privacy` `security` `root-detection` `hook-detection` `spoof-detection` `anti-detection` `tamper-detection` `device-fingerprint` `magisk` `kernelsu` `xposed` `play-integrity` `attestation` `tee` `keystore` `scanner` `diagnostics` `reverse-engineering` `kotlin`

@@ -67,6 +67,7 @@ Katkıların çoğu Kotlin gerektirmez: listeler `VDInfos/app/src/main/assets/da
 * `*_apps.txt` - satır başına bir paket adı
 * `props.txt` - sistem özellikleri kataloğu, `KATEGORİ<tab>anahtar`
 * `spoof_keys.txt` - settings spoof matrisi, `anahtar:TİP`
+* diğer `.txt` dosyaları - yine satır başına bir girdi (çekirdek modülü ad parçaları, `/data/local/tmp` adları)
 
 Bir `#` yorum başlatır; boş satırlar yok sayılır. Kod katkıları da memnuniyetle karşılanır. Katkıda bulunarak çalışmanızın bu projenin AGPL-3.0-or-later lisansıyla dağıtılmasını kabul edersiniz.
 
@@ -93,3 +94,7 @@ Bağlantıları, kanalları ve nasıl destek olabileceğiniz: [HMA-OSS.md](HMA-O
 ## Lisans
 
 **GNU AGPL-3.0-or-later** - bkz. [LICENSE](LICENSE). Copyleft, ağ maddesi dahil: değiştirilmiş bir sürümü çalıştıran herkes (hizmet olarak bile) kaynağını sunmak zorundadır. Fork'ları açık tutmak için bir araştırma/anti-tespit aracına bilerek seçilmiştir.
+
+---
+
+`android` `privacy` `security` `root-detection` `hook-detection` `spoof-detection` `anti-detection` `tamper-detection` `device-fingerprint` `magisk` `kernelsu` `xposed` `play-integrity` `attestation` `tee` `keystore` `scanner` `diagnostics` `reverse-engineering` `kotlin`

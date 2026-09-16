@@ -67,6 +67,7 @@ Hầu hết đóng góp không cần Kotlin: các danh sách là văn bản thu�
 * `*_apps.txt` - mỗi dòng một tên gói
 * `props.txt` - danh mục thuộc tính hệ thống, `DANH_MỤC<tab>khóa`
 * `spoof_keys.txt` - ma trận spoof settings, `khóa:KIỂU`
+* các tệp `.txt` khác - cũng một mục mỗi dòng (mảnh tên mô-đun nhân, tên trong `/data/local/tmp`)
 
 Dấu `#` bắt đầu một chú thích; dòng trống bị bỏ qua. Đóng góp mã nguồn cũng được hoan nghênh. Khi đóng góp, bạn đồng ý rằng công việc của mình được phát hành theo AGPL-3.0-or-later của dự án này.
 
@@ -93,3 +94,7 @@ Các liên kết, kênh và cách ủng hộ: [HMA-OSS.md](HMA-OSS.md).
 ## Giấy phép
 
 **GNU AGPL-3.0-or-later** - xem [LICENSE](LICENSE). Copyleft, bao gồm điều khoản mạng: bất kỳ ai chạy một phiên bản đã sửa đổi (kể cả dưới dạng dịch vụ) phải cung cấp mã nguồn của nó. Được chọn có chủ đích cho một công cụ nghiên cứu/chống phát hiện, để giữ cho các fork luôn mở.
+
+---
+
+`android` `privacy` `security` `root-detection` `hook-detection` `spoof-detection` `anti-detection` `tamper-detection` `device-fingerprint` `magisk` `kernelsu` `xposed` `play-integrity` `attestation` `tee` `keystore` `scanner` `diagnostics` `reverse-engineering` `kotlin`

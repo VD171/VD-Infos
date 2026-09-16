@@ -67,6 +67,7 @@ De flesta bidrag kräver ingen Kotlin: listorna ligger som ren text under `VDInf
 * `*_apps.txt` - ett paketnamn per rad
 * `props.txt` - katalogen över systemegenskaper, `KATEGORI<tab>nyckel`
 * `spoof_keys.txt` - spoof-matrisen för settings, `nyckel:TYP`
+* övriga `.txt`-filer - även en post per rad (namnfragment för kärnmoduler, namn i `/data/local/tmp`)
 
 Ett `#` inleder en kommentar; tomma rader ignoreras. Kodbidrag är också välkomna. Genom att bidra godtar du att ditt arbete sprids under projektets AGPL-3.0-or-later.
 
@@ -93,3 +94,7 @@ Dess länkar, kanaler och hur du stöder det: [HMA-OSS.md](HMA-OSS.md).
 ## Licens
 
 **GNU AGPL-3.0-or-later** - se [LICENSE](LICENSE). Copyleft, inklusive nätverksklausulen: den som kör en modifierad version (även som tjänst) måste erbjuda dess källkod. Vald medvetet för ett forsknings-/anti-detektionsverktyg, för att hålla forkar öppna.
+
+---
+
+`android` `privacy` `security` `root-detection` `hook-detection` `spoof-detection` `anti-detection` `tamper-detection` `device-fingerprint` `magisk` `kernelsu` `xposed` `play-integrity` `attestation` `tee` `keystore` `scanner` `diagnostics` `reverse-engineering` `kotlin`

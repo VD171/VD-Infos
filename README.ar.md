@@ -67,6 +67,7 @@ cpp/            native_probes.cpp - العدسة الأصلية، دون تبع�
 * `*_apps.txt` - اسم حزمة واحد في كل سطر
 * `props.txt` - فهرس خصائص النظام، `الفئة<tab>المفتاح`
 * `spoof_keys.txt` - مصفوفة spoof الإعدادات، `المفتاح:النوع`
+* ملفات `.txt` الأخرى - أيضًا إدخال واحد لكل سطر (أجزاء أسماء وحدات النواة، الأسماء في `/data/local/tmp`)
 
 العلامة `#` تبدأ تعليقًا؛ والأسطر الفارغة تُتجاهل. مساهمات الكود مرحّب بها أيضًا. بمساهمتك توافق على نشر عملك بموجب AGPL-3.0-or-later الخاص بهذا المشروع.
 
@@ -93,3 +94,7 @@ cpp/            native_probes.cpp - العدسة الأصلية، دون تبع�
 ## الترخيص
 
 **GNU AGPL-3.0-or-later** - انظر [LICENSE](LICENSE). حقوق متروكة (Copyleft)، بما في ذلك بند الشبكة: أي شخص يشغّل نسخة معدّلة (حتى كخدمة) يجب أن يوفّر مصدرها. اختير عمدًا لأداة بحثية/مضادة للكشف، للإبقاء على الـ forks مفتوحة.
+
+---
+
+`android` `privacy` `security` `root-detection` `hook-detection` `spoof-detection` `anti-detection` `tamper-detection` `device-fingerprint` `magisk` `kernelsu` `xposed` `play-integrity` `attestation` `tee` `keystore` `scanner` `diagnostics` `reverse-engineering` `kotlin`

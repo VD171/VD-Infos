@@ -67,6 +67,7 @@ cpp/            native_probes.cpp - нативная линза, без зави
 * `*_apps.txt` - по одному имени пакета в строке
 * `props.txt` - каталог системных свойств, `КАТЕГОРИЯ<tab>ключ`
 * `spoof_keys.txt` - матрица спуфа настроек, `ключ:ТИП`
+* другие файлы `.txt` - тоже по одной записи в строке (фрагменты имён модулей ядра, имена в `/data/local/tmp`)
 
 `#` начинает комментарий; пустые строки игнорируются. Вклады кодом тоже приветствуются. Внося вклад, вы соглашаетесь, что он распространяется под AGPL-3.0-or-later этого проекта.
 
@@ -93,3 +94,7 @@ cpp/            native_probes.cpp - нативная линза, без зави
 ## Лицензия
 
 **GNU AGPL-3.0-or-later** - см. [LICENSE](LICENSE). Копилефт, включая сетевую оговорку: любой, кто запускает изменённую версию (даже как сервис), обязан предоставить её исходный код. Выбрана намеренно для исследовательского/анти-детекционного инструмента, чтобы форки оставались открытыми.
+
+---
+
+`android` `privacy` `security` `root-detection` `hook-detection` `spoof-detection` `anti-detection` `tamper-detection` `device-fingerprint` `magisk` `kernelsu` `xposed` `play-integrity` `attestation` `tee` `keystore` `scanner` `diagnostics` `reverse-engineering` `kotlin`

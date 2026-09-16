@@ -67,6 +67,7 @@ cpp/            native_probes.cpp - 原生透镜，无依赖
 * `*_apps.txt` - 每行一个包名
 * `props.txt` - 系统属性目录，`类别<tab>键`
 * `spoof_keys.txt` - settings 的 spoof 矩阵，`键:类型`
+* 其他 `.txt` 文件 - 同样每行一个条目（内核模块名片段、`/data/local/tmp` 中的文件名）
 
 `#` 开始注释；空行会被忽略。也欢迎代码贡献。提交贡献即表示你同意其以本项目的 AGPL-3.0-or-later 发布。
 
@@ -93,3 +94,7 @@ Root 隐藏与检测的参考（指南、模块、框架、检测器）收录于
 ## 许可证
 
 **GNU AGPL-3.0-or-later** - 见 [LICENSE](LICENSE)。Copyleft，含网络条款：任何运行修改版（即使作为服务）的人都必须提供其源代码。为一款研究/反检测工具刻意选择，以保持 fork 开放。
+
+---
+
+`android` `privacy` `security` `root-detection` `hook-detection` `spoof-detection` `anti-detection` `tamper-detection` `device-fingerprint` `magisk` `kernelsu` `xposed` `play-integrity` `attestation` `tee` `keystore` `scanner` `diagnostics` `reverse-engineering` `kotlin`

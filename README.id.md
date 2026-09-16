@@ -67,6 +67,7 @@ Sebagian besar kontribusi tidak butuh Kotlin: daftarnya berupa teks biasa di `VD
 * `*_apps.txt` - satu nama paket per baris
 * `props.txt` - katalog properti sistem, `KATEGORI<tab>kunci`
 * `spoof_keys.txt` - matriks spoof settings, `kunci:TIPE`
+* berkas `.txt` lainnya - juga satu entri per baris (potongan nama modul kernel, nama di `/data/local/tmp`)
 
 Tanda `#` memulai komentar; baris kosong diabaikan. Kontribusi kode juga diterima. Dengan berkontribusi Anda setuju karya Anda dirilis di bawah AGPL-3.0-or-later proyek ini.
 
@@ -93,3 +94,7 @@ Tautan, kanal, dan cara mendukungnya: [HMA-OSS.md](HMA-OSS.md).
 ## Lisensi
 
 **GNU AGPL-3.0-or-later** - lihat [LICENSE](LICENSE). Copyleft, termasuk klausul jaringan: siapa pun yang menjalankan versi yang dimodifikasi (bahkan sebagai layanan) wajib menyediakan sumbernya. Dipilih dengan sengaja untuk alat riset/anti-deteksi, agar fork tetap terbuka.
+
+---
+
+`android` `privacy` `security` `root-detection` `hook-detection` `spoof-detection` `anti-detection` `tamper-detection` `device-fingerprint` `magisk` `kernelsu` `xposed` `play-integrity` `attestation` `tee` `keystore` `scanner` `diagnostics` `reverse-engineering` `kotlin`

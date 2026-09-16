@@ -67,6 +67,7 @@ cpp/            native_probes.cpp - ネイティブレンズ、依存なし
 * `*_apps.txt` - 1 行に 1 つのパッケージ名
 * `props.txt` - システムプロパティのカタログ、`カテゴリ<tab>キー`
 * `spoof_keys.txt` - settings の spoof マトリクス、`キー:型`
+* その他の `.txt` ファイル - こちらも 1 行に 1 項目（カーネルモジュール名の断片、`/data/local/tmp` のファイル名）
 
 `#` はコメントの開始で、空行は無視されます。コードの貢献も歓迎します。貢献することで、その成果が本プロジェクトの AGPL-3.0-or-later で配布されることに同意したものとみなされます。
 
@@ -93,3 +94,7 @@ root の隠蔽と検出に関する参照（ガイド、モジュール、フレ
 ## ライセンス
 
 **GNU AGPL-3.0-or-later** - [LICENSE](LICENSE) を参照。ネットワーク条項を含むコピーレフト: 改変版を（サービスとしてであっても）実行する者は、そのソースを提供しなければなりません。fork を開いたまま保つため、研究/反検出ツール向けに意図的に選択しました。
+
+---
+
+`android` `privacy` `security` `root-detection` `hook-detection` `spoof-detection` `anti-detection` `tamper-detection` `device-fingerprint` `magisk` `kernelsu` `xposed` `play-integrity` `attestation` `tee` `keystore` `scanner` `diagnostics` `reverse-engineering` `kotlin`
