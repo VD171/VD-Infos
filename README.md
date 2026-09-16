@@ -59,14 +59,17 @@ compared side by side:
   Riru artifacts, injected libs in `/proc/self/maps`, known packages, dangerous and
   emulator properties, verified boot state.
 
+## Download and support
+
+* Release (APK): https://github.com/VD171/VD-Infos/releases/tag/v2.15
+* https://github.com/VD171/VD-Infos
+* https://xdaforums.com/t/VD-Infos.4097379/
+* https://t.me/RootDetected
+* https://t.me/BlankAssistance
+
 ## Languages
 
 Brazilian Portuguese and English.
-
-## Catalog
-
-Root hiding and detection references (guides, modules, frameworks, detectors) live
-in a dedicated catalog: [CATALOG.md](CATALOG.md).
 
 ## Architecture
 
@@ -88,6 +91,11 @@ cpp/            native_probes.cpp - the native lens, dependency-free
 * **Native layer**: one small `.so`, bound by name via `RegisterNatives`, kept
   deliberately tiny because it is the part that must be hard to fool.
 
+## Catalog
+
+Root hiding and detection references (guides, modules, frameworks, detectors) live
+in a dedicated catalog: [CATALOG.md](CATALOG.md).
+
 ## Contacts
 
 * https://vd171.ru
@@ -97,14 +105,6 @@ cpp/            native_probes.cpp - the native lens, dependency-free
 * **E-mail:** vd.priv8@pm.me
 * **XDA-Developers:** @VD171 https://xdaforums.com/m/vd171.4699873/
 * **GitHub:** @VD171 https://github.com/VD171
-
-## Download and support
-
-* Release (APK): https://github.com/VD171/VD-Infos/releases/tag/v2.15
-* https://github.com/VD171/VD-Infos
-* https://xdaforums.com/t/VD-Infos.4097379/
-* https://t.me/RootDetected
-* https://t.me/BlankAssistance
 
 ## License
 

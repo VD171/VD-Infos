@@ -59,14 +59,17 @@ shell), comparados lado a lado:
   APatch/Xposed/LSPosed/Riru, libs injetadas em `/proc/self/maps`, pacotes
   conhecidos, propriedades perigosas e de emulador, verified boot state.
 
+## Download e suporte
+
+* Release (APK): https://github.com/VD171/VD-Infos/releases/tag/v2.15
+* https://github.com/VD171/VD-Infos
+* https://xdaforums.com/t/VD-Infos.4097379/
+* https://t.me/RootDetected
+* https://t.me/BlankAssistance
+
 ## Línguas
 
 Português Brasileiro e Inglês.
-
-## Catálogo
-
-As referências de ocultação e detecção de root (guias, módulos, frameworks,
-detectores) ficam num catálogo dedicado: [CATALOG.pt-BR.md](CATALOG.pt-BR.md).
 
 ## Arquitetura
 
@@ -88,6 +91,11 @@ cpp/            native_probes.cpp - a lente nativa, sem dependências
 * **Camada nativa**: um `.so` pequeno, ligado por nome via `RegisterNatives`,
   deliberadamente minúsculo porque é a parte que precisa ser difícil de enganar.
 
+## Catálogo
+
+As referências de ocultação e detecção de root (guias, módulos, frameworks,
+detectores) ficam num catálogo dedicado: [CATALOG.pt-BR.md](CATALOG.pt-BR.md).
+
 ## Contatos
 
 * https://vd171.ru
@@ -97,14 +105,6 @@ cpp/            native_probes.cpp - a lente nativa, sem dependências
 * **E-mail:** vd.priv8@pm.me
 * **XDA-Developers:** @VD171 https://xdaforums.com/m/vd171.4699873/
 * **GitHub:** @VD171 https://github.com/VD171
-
-## Download e suporte
-
-* Release (APK): https://github.com/VD171/VD-Infos/releases/tag/v2.15
-* https://github.com/VD171/VD-Infos
-* https://xdaforums.com/t/VD-Infos.4097379/
-* https://t.me/RootDetected
-* https://t.me/BlankAssistance
 
 ## Licença
 
