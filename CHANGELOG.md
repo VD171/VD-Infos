@@ -6,12 +6,66 @@ The 2.x line is a ground-up rewrite; the last public 1.x release was
 [v1.11-beta6](https://github.com/VD171/VD-Infos/releases/tag/v1.11-beta6)
 (2024-12-02). Everything between it and 2.00 is the rewrite described below.
 
-## [Unreleased]
+## [2.18] - 2026-09-18
+
+- **The security-patch probes now point at the fix that actually applies to each.** The three
+  attested-patch probes (OS, vendor, boot) carried the locked-boot note, which does not touch a
+  patch date. They now explain the keybox tools that do: TrickyStore's security_patch.txt and
+  OhMyKeymint's config.toml [trust] section - both of which change only the attestation, not the
+  properties. And the two framework-vs-property probes (Build.VERSION.SECURITY_PATCH against the
+  property) now say the opposite where it matters: those tools will not help there, because the
+  gap is a property override that has to be aligned with resetprop.
+- **Two lenses that say the same thing in different words no longer look like a divergence.** A
+  fact read from different sources comes back in each source's vocabulary: the framework answers
+  `false` where the property holding the same fact answers `0`, and the attestation record says
+  `true` where its property says `1`. Compared as text those are different, so the probe reported a
+  divergence that was only spelling. When EVERY comparable reading of a probe is a yes/no word
+  (`true`/`1`/`yes`/`on`/`enabled` against `false`/`0`/`no`/`off`/`disabled`), the verdict is now
+  decided on polarity: it diverges when one route says yes and another says no, and only then.
+  Values that are not yes/no words are untouched, so a model name, a patch level or a SIM operator
+  is still compared exactly as before.
+
+- **A finished scan with nothing to report now says so.** When every probe has run and no lens
+  disagreed with another, the headline turns the same green the app already uses for a matching
+  reading and carries a trophy and a check. It only appears on a COMPLETED scan: zero divergences
+  halfway through means nothing yet. It reports agreement between lenses, not a clean device - a
+  hook that rewrites every route coherently reads this way too.
+
+- **The "how to fix" stopped offering a fix that does not fix.** Five probes carried the
+  hide-target note, which tells the reader to add the packages found to a hiding framework - but
+  none of them reads a list of installed detector apps. Loaded kernel modules, an inline libc hook,
+  files staged in `/data/local/tmp`, root backup tools found by filesystem path and this app's own
+  debuggable flag are not fixed by hiding a package. They carry no solution now; the note stays on
+  the eight probes that do list installed apps, which was the maintainer's original wiring.
+- **A lens that cannot see no longer answers "no".** On a modern target an app can neither
+  enumerate network interfaces (the list comes back empty, without even `lo`) nor list
+  `/sys/class/net`, so the "is there a tun/ppp/tap interface?" readings answered `false` out of
+  blindness - and outvoted the connectivity API, which had correctly reported an active VPN. Those
+  readings report the new `RESTRICTED` token instead, which is shown and never votes. Where the
+  platform does allow the look (the compat target, older releases), they answer as before and a
+  real divergence still shows.
+- **The screen no longer mixes two languages.** The in-app language choice re-tagged only the
+  activity, while every probe title was resolved from the application context, which kept the
+  system's language. On a device whose system is one language and whose app choice is another, the
+  chrome answered in the chosen one and each probe title in the system one, side by side. The
+  application context is re-tagged too now, so one language answers for the whole app.
+- **Two false divergences are gone.** `This app: debuggable / debug build` compared the app's own
+  `FLAG_DEBUGGABLE` against the system-wide `ro.debuggable`, which are different facts - a release
+  app on a userdebug ROM diverged from itself, on every such device; the global property is shown
+  as context now and never compared. And `com.rarlab.rar` left the root-backup-tools list: RAR is a
+  general archiver, not a tool that copies another app's data with root.
+- **A probe that runs out of time says so in your language.** The timeout message was the last
+  piece of the app's own prose still hardcoded in English.
+- **More detection data became community-editable.** The kernel-module needles, the root-backup
+  package list, the `/data/local/tmp` artifact names and the advertising-id key family moved out of
+  Kotlin into `assets/data`, joining the lists that were already there. What stays in code is only
+  structural: the PATH a `su` lookup walks, the partition set, the settings stores and the SDK's own
+  app-op constants.
 
 ## [2.17] - 2026-09-16
 
 - **Coverage checkup (2026-09-16): +20 probes, 865 -> 885.** A cross-tool audit against the
-  house evasion stack and a native RASP closed the gaps no VD Infos probe covered and
+  house evasion stack and a commercial native RASP closed the gaps no VD Infos probe covered and
   ported the behaviour-based lenses the RASP had and this app lacked. New `IntegrityExtraProbes`:
   `integrity:kmods` (loaded kernel modules via `/proc/modules` + `lsmod` - catches KSU-Next in
   LKM mode, which a `/data/adb/ksu` path check misses); `integrity:kernel_syscall_age` (kernel

@@ -1,0 +1,28 @@
+# ======================================================================
+#  VD INFOS  ::  method debugger
+#  Copyright (C) 2026  VD171   SPDX-License-Identifier: AGPL-3.0-or-later
+#
+#  Site           : https://vd171.ru
+#  Site           : https://vd.priv8.ru
+#  Source         : https://github.com/VD171/VD-Infos
+#  GitHub         : @VD171 https://github.com/VD171
+#  XDA-Developers : @VD171 https://xdaforums.com/m/vd171.4699873/
+#  Telegram       : @VD_Priv8 https://t.me/VD_Priv8
+#  Discord        : @VD.Priv8 https://discord.com/users/1296831918989639721
+#  E-mail         : vd.priv8@pm.me
+# ======================================================================
+
+# root_manager_apps: one package name per line. '#' starts a comment.
+com.topjohnwu.magisk
+io.github.huskydg.magisk
+io.github.vvb2060.magisk
+me.weishu.kernelsu
+com.rifsxd.ksunext
+com.sukisu.ultra
+me.bmax.apatch
+eu.chainfire.supersu
+com.koushikdutta.superuser
+com.thirdparty.superuser
+com.noshufou.android.su
+com.kingroot.kinguser
+com.kingouser.com

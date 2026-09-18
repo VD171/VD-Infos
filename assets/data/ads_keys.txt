@@ -1,0 +1,43 @@
+# ======================================================================
+#  VD INFOS  ::  method debugger
+#  Copyright (C) 2026  VD171   SPDX-License-Identifier: AGPL-3.0-or-later
+#
+#  Site           : https://vd171.ru
+#  Site           : https://vd.priv8.ru
+#  Source         : https://github.com/VD171/VD-Infos
+#  GitHub         : @VD171 https://github.com/VD171
+#  XDA-Developers : @VD171 https://xdaforums.com/m/vd171.4699873/
+#  Telegram       : @VD_Priv8 https://t.me/VD_Priv8
+#  Discord        : @VD.Priv8 https://discord.com/users/1296831918989639721
+#  E-mail         : vd.priv8@pm.me
+# ======================================================================
+
+# ads_keys: the advertising-ID key family, one key per line. '#' starts a comment.
+# AAID (Google), OAID/VAID (the Chinese OEM alliance), the pps_* set (Huawei)
+# and the loose aliases seen in the wild.
+a_aid
+aaid
+ad_aaid
+ad_adid
+ad_id
+ad_oaid
+ad_vaid
+addid
+adid
+advertising_id
+aid
+guid
+guid_uuid
+new_aaid
+oaid
+old_aaid
+pps_aaid
+pps_aaid_c
+pps_adid
+pps_adid_c
+pps_oaid
+pps_oaid_c
+pps_vaid
+pps_vaid_c
+uuid
+vaid

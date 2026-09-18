@@ -1,0 +1,63 @@
+# ======================================================================
+#  VD INFOS  ::  method debugger
+#  Copyright (C) 2026  VD171   SPDX-License-Identifier: AGPL-3.0-or-later
+#
+#  Site           : https://vd171.ru
+#  Site           : https://vd.priv8.ru
+#  Source         : https://github.com/VD171/VD-Infos
+#  GitHub         : @VD171 https://github.com/VD171
+#  XDA-Developers : @VD171 https://xdaforums.com/m/vd171.4699873/
+#  Telegram       : @VD_Priv8 https://t.me/VD_Priv8
+#  Discord        : @VD.Priv8 https://discord.com/users/1296831918989639721
+#  E-mail         : vd.priv8@pm.me
+# ======================================================================
+
+# root_detector_apps: one package name per line. '#' starts a comment.
+com.reveny.nativecheck
+icu.nullptr.nativetest
+io.github.rabehx.securify
+com.zhenxi.hunter
+io.github.vvb2060.mahoshojo
+io.github.huskydg.memorydetector
+org.akanework.checker
+icu.nullptr.applistdetector
+com.byxiaorun.detector
+com.kimchangyoun.rootbeerFresh.sample
+com.androidfung.drminfo
+com.kikyps.crackme
+org.matrix.demo
+com.rem01gaming.disclosure
+luna.safe.luna
+com.AndroLua
+com.detect.mt
+io.liankong.riskdetector
+com.suisho.rc
+com.ahmed.security_tester
+id.my.pjm.qbcd_okr_dvii
+wu.Zygisk.Detector
+com.atominvention.rootchecker
+com.joeykrim.rootcheck
+com.studio.duckdetector
+com.eltavine.duckdetector
+com.chuqniudetector
+com.chunqiudetector
+com.longz.detector
+com.anycheck.app
+com.lingqing.detector
+com.android.nativetest
+com.youhu.laifu
+chunqiu.safe.detector
+chunqiu.safe
+wu.Rookie.Detector
+com.fkjc.zcro
+wu.keyChain.test
+at.persie0.root_detection_app
+at.austriao.fake_gps_detector_app
+io.ngankbakaa.lineage.detector
+com.dexprotector.detector.envchecks
+krypton.tbsafetychecker
+gr.nikolasspyr.integritycheck
+com.henrikherzig.playintegritychecker
+com.thend.integritychecker
+com.flinkapps.safteynet
+com.bryancandi.knoxcheck
