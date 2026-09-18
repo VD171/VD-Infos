@@ -18,7 +18,7 @@ Android son derece güçlü ve çok yönlü bir işletim sistemidir; kimsenin s�
 
 Her öğe onu okuyabilen her yöntemle okunur (Java SDK / native / shell) ve yan yana karşılaştırılır:
 
-* **~493 sistem özelliği** BEŞ şekilde okunur: `SystemProperties.get`, bionic'in iki giriş noktası (`__system_property_read_callback` ve 92 baytlık `__system_property_get`), JVM tarafından başlatılan `getprop` ve native koddan `popen` ile başlatılan `getprop` - `ProcessBuilder` tarafından çalıştırılan bir shell komutu ile aynı komutun JVM olmadan çalıştırılması aynı bakış açısı değildir, çünkü ilki bir root gizleme çerçevesinin yeniden yazdığı bir yüzeydir, ikincisi değildir.
+* **~488 sistem özelliği** BEŞ şekilde okunur: `SystemProperties.get`, bionic'in iki giriş noktası (`__system_property_read_callback` ve 92 baytlık `__system_property_get`), JVM tarafından başlatılan `getprop` ve native koddan `popen` ile başlatılan `getprop` - `ProcessBuilder` tarafından çalıştırılan bir shell komutu ile aynı komutun JVM olmadan çalıştırılması aynı bakış açısı değildir, çünkü ilki bir root gizleme çerçevesinin yeniden yazdığı bir yüzeydir, ikincisi değildir.
 * **Cihaz kimliği**: model, üretici, marka, device, product, board, hardware, fingerprint, bootloader, build id/tags/type - her `Build.*` alanı tüm `ro.product.*` (system/vendor/odm) varyantlarına, native ve shell'e karşı.
 * **Tanımlayıcılar**: serial (birçok getter), Android ID (settings ve provider), GSF ID, advertising ID, IMEI/primary IMEI/MEID/IMSI/ICCID, user serial.
 * **Telefon**: TelephonyManager yüzeyi (operatör, SIM, ağ, roaming...), SubscriptionManager (çoklu SIM), cell info.

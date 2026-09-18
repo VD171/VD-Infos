@@ -18,7 +18,7 @@ Android je nesmírně výkonný a všestranný operační systém; co vám nikdo
 
 Každá položka se čte každou metodou, která ji dokáže přečíst (Java SDK / nativně / shell), a porovnává vedle sebe:
 
-* **~493 systémových vlastností** čtených PĚTI způsoby: `SystemProperties.get`, oba vstupní body bionicu (`__system_property_read_callback` a 92bajtový `__system_property_get`), `getprop` spuštěný JVM a `getprop` spuštěný z nativního kódu přes `popen` - shellový příkaz spuštěný přes `ProcessBuilder` a tentýž příkaz spuštěný bez JVM nejsou stejný úhel pohledu, protože první je plocha, kterou framework skrývající root přepisuje, a druhý ne.
+* **~488 systémových vlastností** čtených PĚTI způsoby: `SystemProperties.get`, oba vstupní body bionicu (`__system_property_read_callback` a 92bajtový `__system_property_get`), `getprop` spuštěný JVM a `getprop` spuštěný z nativního kódu přes `popen` - shellový příkaz spuštěný přes `ProcessBuilder` a tentýž příkaz spuštěný bez JVM nejsou stejný úhel pohledu, protože první je plocha, kterou framework skrývající root přepisuje, a druhý ne.
 * **Identita zařízení**: model, výrobce, značka, device, product, board, hardware, fingerprint, bootloader, build id/tags/type - každé pole `Build.*` proti všem jeho variantám `ro.product.*` (system/vendor/odm), nativně a přes shell.
 * **Identifikátory**: serial (mnoho getterů), Android ID (settings a provider), GSF ID, advertising ID, IMEI/primary IMEI/MEID/IMSI/ICCID, user serial.
 * **Telefonie**: plocha TelephonyManageru (operátor, SIM, síť, roaming...), SubscriptionManager (multi-SIM), cell info.

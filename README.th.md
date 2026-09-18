@@ -18,7 +18,7 @@ Android เป็นระบบปฏิบัติการที่ทรง
 
 แต่ละรายการถูกอ่านผ่านทุกวิธีที่สามารถอ่านได้ (Java SDK / เนทีฟ / shell) และเปรียบเทียบเคียงข้างกัน:
 
-* **ประมาณ 493 พร็อพเพอร์ตี้ของระบบ** อ่านห้าวิธี: `SystemProperties.get`, จุดเข้าทั้งสองของ bionic (`__system_property_read_callback` และ `__system_property_get` ขนาด 92 ไบต์), `getprop` ที่ JVM เรียก, และ `getprop` ที่เรียกจากโค้ดเนทีฟผ่าน `popen` - คำสั่ง shell ที่รันโดย `ProcessBuilder` กับคำสั่งเดียวกันที่รันโดยไม่มี JVM ไม่ใช่มุมมองเดียวกัน เพราะอย่างแรกเป็นพื้นผิวที่เฟรมเวิร์กซ่อน root เขียนใหม่ ส่วนอย่างหลังไม่ใช่
+* **ประมาณ 488 พร็อพเพอร์ตี้ของระบบ** อ่านห้าวิธี: `SystemProperties.get`, จุดเข้าทั้งสองของ bionic (`__system_property_read_callback` และ `__system_property_get` ขนาด 92 ไบต์), `getprop` ที่ JVM เรียก, และ `getprop` ที่เรียกจากโค้ดเนทีฟผ่าน `popen` - คำสั่ง shell ที่รันโดย `ProcessBuilder` กับคำสั่งเดียวกันที่รันโดยไม่มี JVM ไม่ใช่มุมมองเดียวกัน เพราะอย่างแรกเป็นพื้นผิวที่เฟรมเวิร์กซ่อน root เขียนใหม่ ส่วนอย่างหลังไม่ใช่
 * **อัตลักษณ์อุปกรณ์**: รุ่น, ผู้ผลิต, แบรนด์, device, product, board, hardware, fingerprint, bootloader, build id/tags/type - แต่ละฟิลด์ `Build.*` เทียบกับทุกตัวแปร `ro.product.*` (system/vendor/odm), เนทีฟ และ shell
 * **ตัวระบุ**: serial (getter หลายตัว), Android ID (settings และ provider), GSF ID, advertising ID, IMEI/primary IMEI/MEID/IMSI/ICCID, user serial
 * **โทรศัพท์**: พื้นผิว TelephonyManager (ผู้ให้บริการ, SIM, เครือข่าย, โรมมิ่ง…), SubscriptionManager (หลาย SIM), cell info

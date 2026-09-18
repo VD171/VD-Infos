@@ -18,7 +18,7 @@ Android 是一个极其强大且灵活的操作系统；没有人告诉你的是
 
 每一项都通过所有能读取它的方法读取（Java SDK / 原生 / shell），并排比较：
 
-* **约 493 个系统属性**以五种方式读取：`SystemProperties.get`、bionic 的两个入口（`__system_property_read_callback` 和 92 字节的 `__system_property_get`）、由 JVM 启动的 `getprop`，以及从原生代码经 `popen` 启动的 `getprop` - 由 `ProcessBuilder` 运行的 shell 命令与不经 JVM 运行的同一命令并非同一视角，因为前者是隐藏 root 的框架会改写的表面，后者不是。
+* **约 488 个系统属性**以五种方式读取：`SystemProperties.get`、bionic 的两个入口（`__system_property_read_callback` 和 92 字节的 `__system_property_get`）、由 JVM 启动的 `getprop`，以及从原生代码经 `popen` 启动的 `getprop` - 由 `ProcessBuilder` 运行的 shell 命令与不经 JVM 运行的同一命令并非同一视角，因为前者是隐藏 root 的框架会改写的表面，后者不是。
 * **设备身份**：型号、制造商、品牌、device、product、board、hardware、fingerprint、bootloader、build id/tags/type - 每个 `Build.*` 字段对照它所有的 `ro.product.*`（system/vendor/odm）变体、原生与 shell。
 * **标识符**：serial（多个 getter）、Android ID（settings 与 provider）、GSF ID、advertising ID、IMEI/primary IMEI/MEID/IMSI/ICCID、user serial。
 * **电话**：TelephonyManager 表面（运营商、SIM、网络、漫游……）、SubscriptionManager（多 SIM）、cell info。

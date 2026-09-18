@@ -18,7 +18,7 @@
 
 يُقرأ كل عنصر عبر كل طريقة قادرة على قراءته (Java SDK / أصلي / shell)، وتُقارَن جنبًا إلى جنب:
 
-* **نحو 493 خاصية نظام** تُقرأ بخمس طرق: `SystemProperties.get`، ونقطتا دخول bionic (`__system_property_read_callback` و`__system_property_get` بحجم 92 بايت)، و`getprop` المُشغَّل من JVM، و`getprop` المُشغَّل من كود أصلي عبر `popen` - أمر shell يشغّله `ProcessBuilder` والأمر نفسه مُشغَّلًا دون JVM ليسا وجهة النظر ذاتها، لأن الأول سطح يعيد إطار إخفاء الروت كتابته والثاني لا.
+* **نحو 488 خاصية نظام** تُقرأ بخمس طرق: `SystemProperties.get`، ونقطتا دخول bionic (`__system_property_read_callback` و`__system_property_get` بحجم 92 بايت)، و`getprop` المُشغَّل من JVM، و`getprop` المُشغَّل من كود أصلي عبر `popen` - أمر shell يشغّله `ProcessBuilder` والأمر نفسه مُشغَّلًا دون JVM ليسا وجهة النظر ذاتها، لأن الأول سطح يعيد إطار إخفاء الروت كتابته والثاني لا.
 * **هوية الجهاز**: الطراز، الشركة المصنّعة، العلامة التجارية، device، product، board، hardware، fingerprint، bootloader، build id/tags/type - كل حقل `Build.*` مقابل جميع متغيّرات `ro.product.*` (system/vendor/odm) الخاصة به، أصلي وshell.
 * **المعرّفات**: serial (عدة getters)، Android ID (settings وprovider)، GSF ID، advertising ID، IMEI/primary IMEI/MEID/IMSI/ICCID، user serial.
 * **الهاتف**: سطح TelephonyManager (المشغّل، SIM، الشبكة، التجوال…)، SubscriptionManager (متعدد SIM)، cell info.

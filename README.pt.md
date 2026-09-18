@@ -33,7 +33,7 @@ internet com um firewall ou simplesmente desligue a internet.
 Cada item é lido por todos os métodos que conseguem lê-lo (SDK Java / nativo /
 shell), comparados lado a lado:
 
-* **~493 propriedades do sistema** lidas de CINCO formas: `SystemProperties.get`,
+* **~488 propriedades do sistema** lidas de CINCO formas: `SystemProperties.get`,
   as duas entradas da bionic (`__system_property_read_callback` e a de 92 bytes,
   `__system_property_get`), `getprop` disparado pela JVM e `getprop` disparado do
   código nativo por `popen` - um comando de shell rodado pelo `ProcessBuilder` e o

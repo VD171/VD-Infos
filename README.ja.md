@@ -18,7 +18,7 @@ Android は非常に強力で多機能なオペレーティングシステムで
 
 各項目は、それを読み取れるあらゆる方法（Java SDK / ネイティブ / shell）で読み取られ、並べて比較されます:
 
-* **約 493 のシステムプロパティ**を五通りで読み取り: `SystemProperties.get`、bionic の 2 つのエントリポイント（`__system_property_read_callback` と 92 バイトの `__system_property_get`）、JVM が起動する `getprop`、ネイティブコードから `popen` 経由で起動する `getprop` - `ProcessBuilder` が実行する shell コマンドと、JVM を介さず実行する同じコマンドは同じ視点ではありません。前者は root 隠蔽フレームワークが書き換える表面であり、後者はそうではないからです。
+* **約 488 のシステムプロパティ**を五通りで読み取り: `SystemProperties.get`、bionic の 2 つのエントリポイント（`__system_property_read_callback` と 92 バイトの `__system_property_get`）、JVM が起動する `getprop`、ネイティブコードから `popen` 経由で起動する `getprop` - `ProcessBuilder` が実行する shell コマンドと、JVM を介さず実行する同じコマンドは同じ視点ではありません。前者は root 隠蔽フレームワークが書き換える表面であり、後者はそうではないからです。
 * **端末の識別情報**: モデル、メーカー、ブランド、device、product、board、hardware、fingerprint、bootloader、build id/tags/type - 各 `Build.*` フィールドをそのすべての `ro.product.*`（system/vendor/odm）バリアント、ネイティブ、shell と照合。
 * **識別子**: serial（多数のゲッター）、Android ID（settings と provider）、GSF ID、advertising ID、IMEI/primary IMEI/MEID/IMSI/ICCID、user serial。
 * **テレフォニー**: TelephonyManager の表面（通信事業者、SIM、ネットワーク、ローミング…）、SubscriptionManager（マルチ SIM）、cell info。

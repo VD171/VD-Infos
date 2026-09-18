@@ -18,7 +18,7 @@ Android ist ein enorm leistungsfähiges und vielseitiges Betriebssystem; was dir
 
 Jeder Punkt wird über jede Methode gelesen, die ihn lesen kann (Java-SDK / nativ / Shell), nebeneinander verglichen:
 
-* **~493 Systemeigenschaften** auf FÜNF Wegen gelesen: `SystemProperties.get`, beide Einstiegspunkte von bionic (`__system_property_read_callback` und das 92-Byte-`__system_property_get`), von der JVM gestartetes `getprop` und aus nativem Code über `popen` gestartetes `getprop` - ein von `ProcessBuilder` ausgeführter Shell-Befehl und derselbe Befehl ohne JVM sind nicht derselbe Blickwinkel, denn Ersteres ist eine Oberfläche, die ein Root-Verbergungs-Framework umschreibt, Letzteres nicht.
+* **~488 Systemeigenschaften** auf FÜNF Wegen gelesen: `SystemProperties.get`, beide Einstiegspunkte von bionic (`__system_property_read_callback` und das 92-Byte-`__system_property_get`), von der JVM gestartetes `getprop` und aus nativem Code über `popen` gestartetes `getprop` - ein von `ProcessBuilder` ausgeführter Shell-Befehl und derselbe Befehl ohne JVM sind nicht derselbe Blickwinkel, denn Ersteres ist eine Oberfläche, die ein Root-Verbergungs-Framework umschreibt, Letzteres nicht.
 * **Geräteidentität**: Modell, Hersteller, Marke, device, product, board, hardware, fingerprint, bootloader, build id/tags/type - jedes `Build.*`-Feld gegen alle seine `ro.product.*`-Varianten (system/vendor/odm), nativ und Shell.
 * **Kennungen**: serial (viele Getter), Android ID (settings und provider), GSF ID, advertising ID, IMEI/primary IMEI/MEID/IMSI/ICCID, user serial.
 * **Telefonie**: die TelephonyManager-Oberfläche (Betreiber, SIM, Netz, Roaming...), SubscriptionManager (Multi-SIM), cell info.

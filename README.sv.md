@@ -18,7 +18,7 @@ Android är ett oerhört kraftfullt och mångsidigt operativsystem; vad ingen be
 
 Varje post läses via varje metod som kan läsa den (Java-SDK / nativ / shell), jämförda sida vid sida:
 
-* **~493 systemegenskaper** lästa på FEM sätt: `SystemProperties.get`, båda bionics ingångspunkter (`__system_property_read_callback` och den 92-byte stora `__system_property_get`), `getprop` startad av JVM:en och `getprop` startad från nativ kod via `popen` - ett shell-kommando kört av `ProcessBuilder` och samma kommando kört utan JVM är inte samma synvinkel, eftersom det första är en yta som ett root-döljande ramverk skriver om och det andra inte.
+* **~488 systemegenskaper** lästa på FEM sätt: `SystemProperties.get`, båda bionics ingångspunkter (`__system_property_read_callback` och den 92-byte stora `__system_property_get`), `getprop` startad av JVM:en och `getprop` startad från nativ kod via `popen` - ett shell-kommando kört av `ProcessBuilder` och samma kommando kört utan JVM är inte samma synvinkel, eftersom det första är en yta som ett root-döljande ramverk skriver om och det andra inte.
 * **Enhetsidentitet**: modell, tillverkare, märke, device, product, board, hardware, fingerprint, bootloader, build id/tags/type - varje `Build.*`-fält mot alla dess `ro.product.*`-varianter (system/vendor/odm), nativt och shell.
 * **Identifierare**: serial (många getters), Android ID (settings och provider), GSF ID, advertising ID, IMEI/primary IMEI/MEID/IMSI/ICCID, user serial.
 * **Telefoni**: TelephonyManager-ytan (operatör, SIM, nätverk, roaming...), SubscriptionManager (multi-SIM), cell info.

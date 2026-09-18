@@ -18,7 +18,7 @@
 
 هر مورد با هر روشی که قادر به خواندن آن است خوانده می‌شود (Java SDK / بومی / shell) و کنار هم مقایسه می‌شود:
 
-* **حدود ۴۹۳ ویژگی سیستم** به پنج روش خوانده می‌شوند: `SystemProperties.get`، هر دو نقطه ورود bionic (`__system_property_read_callback` و `__system_property_get` ۹۲ بایتی)، `getprop` اجراشده توسط JVM، و `getprop` اجراشده از کد بومی از طریق `popen` - یک فرمان shell که `ProcessBuilder` اجرا می‌کند و همان فرمان که بدون JVM اجرا شود یک زاویه دید نیستند، چون اولی سطحی است که چارچوب پنهان‌سازی root آن را بازنویسی می‌کند و دومی نه.
+* **حدود ۴۸۸ ویژگی سیستم** به پنج روش خوانده می‌شوند: `SystemProperties.get`، هر دو نقطه ورود bionic (`__system_property_read_callback` و `__system_property_get` ۹۲ بایتی)، `getprop` اجراشده توسط JVM، و `getprop` اجراشده از کد بومی از طریق `popen` - یک فرمان shell که `ProcessBuilder` اجرا می‌کند و همان فرمان که بدون JVM اجرا شود یک زاویه دید نیستند، چون اولی سطحی است که چارچوب پنهان‌سازی root آن را بازنویسی می‌کند و دومی نه.
 * **هویت دستگاه**: مدل، سازنده، برند، device، product، board، hardware، fingerprint، bootloader، build id/tags/type - هر فیلد `Build.*` در برابر همه گونه‌های `ro.product.*` آن (system/vendor/odm)، بومی و shell.
 * **شناسه‌ها**: serial (گترهای متعدد)، Android ID (settings و provider)، GSF ID، advertising ID، IMEI/primary IMEI/MEID/IMSI/ICCID، user serial.
 * **تلفن**: سطح TelephonyManager (اپراتور، SIM، شبکه، رومینگ…)، SubscriptionManager (چند SIM)، cell info.

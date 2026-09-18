@@ -18,7 +18,7 @@ Android - очень мощная и гибкая операционная си�
 
 Каждый пункт читается всеми методами, способными его прочитать (Java SDK / нативный / shell), и сравнивается бок о бок:
 
-* **~493 системных свойств** читаются ПЯТЬЮ способами: `SystemProperties.get`, обе точки входа bionic (`__system_property_read_callback` и 92-байтная `__system_property_get`), `getprop`, запущенный из JVM, и `getprop`, запущенный из нативного кода через `popen` - shell-команда, запущенная `ProcessBuilder`, и та же команда без JVM - это не одна и та же точка обзора, потому что первая - поверхность, которую фреймворк сокрытия root переписывает, а вторая - нет.
+* **~488 системных свойств** читаются ПЯТЬЮ способами: `SystemProperties.get`, обе точки входа bionic (`__system_property_read_callback` и 92-байтная `__system_property_get`), `getprop`, запущенный из JVM, и `getprop`, запущенный из нативного кода через `popen` - shell-команда, запущенная `ProcessBuilder`, и та же команда без JVM - это не одна и та же точка обзора, потому что первая - поверхность, которую фреймворк сокрытия root переписывает, а вторая - нет.
 * **Идентичность устройства**: модель, производитель, бренд, device, product, board, hardware, fingerprint, bootloader, build id/tags/type - каждое поле `Build.*` против всех его вариантов `ro.product.*` (system/vendor/odm), нативно и через shell.
 * **Идентификаторы**: serial (много геттеров), Android ID (settings и provider), GSF ID, advertising ID, IMEI/primary IMEI/MEID/IMSI/ICCID, user serial.
 * **Телефония**: поверхность TelephonyManager (оператор, SIM, сеть, роуминг...), SubscriptionManager (multi-SIM), cell info.

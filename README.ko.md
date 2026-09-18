@@ -18,7 +18,7 @@ Android는 매우 강력하고 다재다능한 운영체제이지만, 아무도 
 
 각 항목은 그것을 읽을 수 있는 모든 방법(Java SDK / 네이티브 / shell)으로 읽혀 나란히 비교됩니다:
 
-* **약 493개의 시스템 속성**을 다섯 가지 방식으로 읽습니다: `SystemProperties.get`, bionic의 두 진입점(`__system_property_read_callback`과 92바이트 `__system_property_get`), JVM이 실행하는 `getprop`, 그리고 네이티브 코드에서 `popen`으로 실행하는 `getprop` - `ProcessBuilder`가 실행한 shell 명령과 JVM 없이 실행한 같은 명령은 동일한 관점이 아닙니다. 전자는 root 은닉 프레임워크가 다시 쓰는 표면이고 후자는 아니기 때문입니다.
+* **약 488개의 시스템 속성**을 다섯 가지 방식으로 읽습니다: `SystemProperties.get`, bionic의 두 진입점(`__system_property_read_callback`과 92바이트 `__system_property_get`), JVM이 실행하는 `getprop`, 그리고 네이티브 코드에서 `popen`으로 실행하는 `getprop` - `ProcessBuilder`가 실행한 shell 명령과 JVM 없이 실행한 같은 명령은 동일한 관점이 아닙니다. 전자는 root 은닉 프레임워크가 다시 쓰는 표면이고 후자는 아니기 때문입니다.
 * **기기 신원**: 모델, 제조사, 브랜드, device, product, board, hardware, fingerprint, bootloader, build id/tags/type - 각 `Build.*` 필드를 그 모든 `ro.product.*`(system/vendor/odm) 변형, 네이티브, shell과 대조.
 * **식별자**: serial(여러 게터), Android ID(settings와 provider), GSF ID, advertising ID, IMEI/primary IMEI/MEID/IMSI/ICCID, user serial.
 * **전화**: TelephonyManager 표면(통신사, SIM, 네트워크, 로밍…), SubscriptionManager(멀티 SIM), cell info.

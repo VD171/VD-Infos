@@ -335,7 +335,6 @@ EMULATOR	qemu.sf.lcd_density
 EMULATOR	qemu.timezone
 EMULATOR	ro.qemu.init.completed
 EMULATOR	ro.qemu.initrc
-SYSTEM	androidboot.selinux
 SYSTEM	http.agent
 SYSTEM	persist.adb.nonblocking_ffs
 SYSTEM	persist.adb.notify
@@ -382,10 +381,6 @@ SYSTEM	ro.runtime.firstboot
 SYSTEM	ro.secure
 SYSTEM	ro.telephony.sim.count
 SYSTEM	ro.warranty_bit
-SYSTEM	security.perf_harden
-SYSTEM	selinux.reload_policy
-SYSTEM	selinux.sec.restorecon
-SYSTEM	service.adb.root
 SYSTEM	sys.initd
 SYSTEM	telephony.active_modems.max_count
 SYSTEM	vendor.boot.mode

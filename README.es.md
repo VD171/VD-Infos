@@ -18,7 +18,7 @@ Android es un sistema operativo súper potente y versátil; lo que nadie te cuen
 
 Cada elemento se lee por todos los métodos capaces de leerlo (SDK Java / nativo / shell), comparados lado a lado:
 
-* **~493 propiedades del sistema** leídas de CINCO formas: `SystemProperties.get`, las dos entradas de bionic (`__system_property_read_callback` y la de 92 bytes `__system_property_get`), `getprop` lanzado por la JVM, y `getprop` lanzado desde código nativo con `popen` - un comando de shell ejecutado por `ProcessBuilder` y el mismo comando ejecutado sin la JVM no son el mismo punto de vista, porque el primero es una superficie que un framework de ocultación reescribe y el segundo no.
+* **~488 propiedades del sistema** leídas de CINCO formas: `SystemProperties.get`, las dos entradas de bionic (`__system_property_read_callback` y la de 92 bytes `__system_property_get`), `getprop` lanzado por la JVM, y `getprop` lanzado desde código nativo con `popen` - un comando de shell ejecutado por `ProcessBuilder` y el mismo comando ejecutado sin la JVM no son el mismo punto de vista, porque el primero es una superficie que un framework de ocultación reescribe y el segundo no.
 * **Identidad del dispositivo**: modelo, fabricante, marca, device, product, board, hardware, fingerprint, bootloader, build id/tags/type - cada campo `Build.*` contra todas sus variantes `ro.product.*` (system/vendor/odm), nativo y shell.
 * **Identificadores**: serial (varios getters), Android ID (settings y provider), GSF ID, advertising ID, IMEI/primary IMEI/MEID/IMSI/ICCID, user serial.
 * **Telefonía**: la superficie de TelephonyManager (operadora, SIM, red, roaming...), SubscriptionManager (multi-SIM), cell info.

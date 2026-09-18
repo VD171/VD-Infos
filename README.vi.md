@@ -18,7 +18,7 @@ Android là một hệ điều hành cực kỳ mạnh mẽ và linh hoạt; đi
 
 Mỗi mục được đọc qua mọi phương thức có thể đọc được nó (Java SDK / native / shell), so sánh cạnh nhau:
 
-* **~493 thuộc tính hệ thống** được đọc theo NĂM cách: `SystemProperties.get`, cả hai điểm vào của bionic (`__system_property_read_callback` và `__system_property_get` 92 byte), `getprop` do JVM khởi chạy, và `getprop` khởi chạy từ mã native qua `popen` - một lệnh shell chạy bởi `ProcessBuilder` và cùng lệnh đó chạy không có JVM không phải cùng một góc nhìn, vì cái đầu là một bề mặt mà framework ẩn root viết lại, còn cái sau thì không.
+* **~488 thuộc tính hệ thống** được đọc theo NĂM cách: `SystemProperties.get`, cả hai điểm vào của bionic (`__system_property_read_callback` và `__system_property_get` 92 byte), `getprop` do JVM khởi chạy, và `getprop` khởi chạy từ mã native qua `popen` - một lệnh shell chạy bởi `ProcessBuilder` và cùng lệnh đó chạy không có JVM không phải cùng một góc nhìn, vì cái đầu là một bề mặt mà framework ẩn root viết lại, còn cái sau thì không.
 * **Danh tính thiết bị**: model, nhà sản xuất, thương hiệu, device, product, board, hardware, fingerprint, bootloader, build id/tags/type - mỗi trường `Build.*` đối chiếu với tất cả biến thể `ro.product.*` (system/vendor/odm), native và shell.
 * **Định danh**: serial (nhiều getter), Android ID (settings và provider), GSF ID, advertising ID, IMEI/primary IMEI/MEID/IMSI/ICCID, user serial.
 * **Điện thoại**: bề mặt TelephonyManager (nhà mạng, SIM, mạng, roaming...), SubscriptionManager (đa SIM), cell info.

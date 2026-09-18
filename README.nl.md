@@ -18,7 +18,7 @@ Android is een enorm krachtig en veelzijdig besturingssysteem; wat niemand je ve
 
 Elk item wordt gelezen via elke methode die het kan lezen (Java-SDK / native / shell), naast elkaar vergeleken:
 
-* **~493 systeemeigenschappen** op VIJF manieren gelezen: `SystemProperties.get`, beide toegangspunten van bionic (`__system_property_read_callback` en de 92-byte `__system_property_get`), `getprop` gestart door de JVM, en `getprop` gestart vanuit native code via `popen` - een shell-commando uitgevoerd door `ProcessBuilder` en hetzelfde commando zonder de JVM zijn niet hetzelfde gezichtspunt, want het eerste is een oppervlak dat een root-verbergframework herschrijft en het tweede niet.
+* **~488 systeemeigenschappen** op VIJF manieren gelezen: `SystemProperties.get`, beide toegangspunten van bionic (`__system_property_read_callback` en de 92-byte `__system_property_get`), `getprop` gestart door de JVM, en `getprop` gestart vanuit native code via `popen` - een shell-commando uitgevoerd door `ProcessBuilder` en hetzelfde commando zonder de JVM zijn niet hetzelfde gezichtspunt, want het eerste is een oppervlak dat een root-verbergframework herschrijft en het tweede niet.
 * **Toestelidentiteit**: model, fabrikant, merk, device, product, board, hardware, fingerprint, bootloader, build id/tags/type - elk `Build.*`-veld tegen al zijn `ro.product.*`-varianten (system/vendor/odm), native en shell.
 * **Identifiers**: serial (veel getters), Android ID (settings en provider), GSF ID, advertising ID, IMEI/primary IMEI/MEID/IMSI/ICCID, user serial.
 * **Telefonie**: het TelephonyManager-oppervlak (operator, SIM, netwerk, roaming...), SubscriptionManager (multi-SIM), cell info.

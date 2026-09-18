@@ -18,7 +18,7 @@ Android एक बेहद शक्तिशाली और बहुमु�
 
 प्रत्येक आइटम को हर उस विधि से पढ़ा जाता है जो उसे पढ़ सकती है (Java SDK / नेटिव / shell), और साथ-साथ तुलना की जाती है:
 
-* **~493 सिस्टम प्रॉपर्टीज़** पाँच तरीकों से पढ़ी जाती हैं: `SystemProperties.get`, bionic के दोनों प्रवेश-बिंदु (`__system_property_read_callback` और 92-बाइट वाला `__system_property_get`), JVM द्वारा चलाया गया `getprop`, और नेटिव कोड से `popen` के ज़रिए चलाया गया `getprop` - `ProcessBuilder` द्वारा चलाया गया shell कमांड और वही कमांड JVM के बिना चलाया गया एक ही दृष्टिकोण नहीं हैं, क्योंकि पहला एक सतह है जिसे root-छिपाने वाला फ्रेमवर्क फिर से लिखता है और दूसरा नहीं।
+* **~488 सिस्टम प्रॉपर्टीज़** पाँच तरीकों से पढ़ी जाती हैं: `SystemProperties.get`, bionic के दोनों प्रवेश-बिंदु (`__system_property_read_callback` और 92-बाइट वाला `__system_property_get`), JVM द्वारा चलाया गया `getprop`, और नेटिव कोड से `popen` के ज़रिए चलाया गया `getprop` - `ProcessBuilder` द्वारा चलाया गया shell कमांड और वही कमांड JVM के बिना चलाया गया एक ही दृष्टिकोण नहीं हैं, क्योंकि पहला एक सतह है जिसे root-छिपाने वाला फ्रेमवर्क फिर से लिखता है और दूसरा नहीं।
 * **डिवाइस पहचान**: मॉडल, निर्माता, ब्रांड, device, product, board, hardware, fingerprint, bootloader, build id/tags/type - प्रत्येक `Build.*` फ़ील्ड उसके सभी `ro.product.*` (system/vendor/odm) रूपों, नेटिव और shell के विरुद्ध।
 * **पहचानकर्ता**: serial (कई getter), Android ID (settings और provider), GSF ID, advertising ID, IMEI/primary IMEI/MEID/IMSI/ICCID, user serial।
 * **टेलीफ़ोनी**: TelephonyManager सतह (ऑपरेटर, SIM, नेटवर्क, रोमिंग…), SubscriptionManager (मल्टी-SIM), cell info।

@@ -32,7 +32,7 @@ block internet access with a firewall or just turn it off.
 Each item is read through every method that can read it (Java SDK / native / shell),
 compared side by side:
 
-* **~493 system properties** read FIVE ways: `SystemProperties.get`, both of
+* **~488 system properties** read FIVE ways: `SystemProperties.get`, both of
   bionic's entry points (`__system_property_read_callback` and the 92-byte
   `__system_property_get`), `getprop` spawned by the JVM, and `getprop` spawned
   from native code through `popen` - a shell command run by `ProcessBuilder` and

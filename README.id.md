@@ -18,7 +18,7 @@ Android adalah sistem operasi yang sangat kuat dan serbaguna; yang tidak diberit
 
 Setiap item dibaca lewat setiap metode yang mampu membacanya (Java SDK / native / shell), dibandingkan berdampingan:
 
-* **~493 properti sistem** dibaca LIMA cara: `SystemProperties.get`, kedua titik masuk bionic (`__system_property_read_callback` dan `__system_property_get` 92-byte), `getprop` yang dijalankan JVM, dan `getprop` yang dijalankan dari kode native lewat `popen` - perintah shell yang dijalankan `ProcessBuilder` dan perintah sama yang dijalankan tanpa JVM bukan sudut pandang yang sama, karena yang pertama adalah permukaan yang ditulis ulang framework penyembunyi root, dan yang kedua tidak.
+* **~488 properti sistem** dibaca LIMA cara: `SystemProperties.get`, kedua titik masuk bionic (`__system_property_read_callback` dan `__system_property_get` 92-byte), `getprop` yang dijalankan JVM, dan `getprop` yang dijalankan dari kode native lewat `popen` - perintah shell yang dijalankan `ProcessBuilder` dan perintah sama yang dijalankan tanpa JVM bukan sudut pandang yang sama, karena yang pertama adalah permukaan yang ditulis ulang framework penyembunyi root, dan yang kedua tidak.
 * **Identitas perangkat**: model, pabrikan, merek, device, product, board, hardware, fingerprint, bootloader, build id/tags/type - setiap field `Build.*` terhadap semua varian `ro.product.*` (system/vendor/odm), native, dan shell.
 * **Pengenal**: serial (banyak getter), Android ID (settings dan provider), GSF ID, advertising ID, IMEI/primary IMEI/MEID/IMSI/ICCID, user serial.
 * **Telepon**: permukaan TelephonyManager (operator, SIM, jaringan, roaming...), SubscriptionManager (multi-SIM), cell info.
