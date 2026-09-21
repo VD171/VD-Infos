@@ -56,7 +56,7 @@ ui/             Jetpack Compose, Material 3, couleur dynamique, progression en d
 cpp/            native_probes.cpp - la lentille native, sans dépendances
 ```
 
-* **Parallélisme** : 885 sondes se déploient sur le dispatcher par défaut avec un nombre de permis borné ; les résultats affluent dans l'UI au fur et à mesure.
+* **Parallélisme** : 907 sondes se déploient sur le dispatcher par défaut avec un nombre de permis borné ; les résultats affluent dans l'UI au fur et à mesure.
 * **Rien en arrière-plan** : aucun service ni analyse planifiée ; l'app ne s'exécute que lorsqu'elle est ouverte et se ferme d'elle-même lorsqu'elle reste inactive.
 * **Couche native** : un petit `.so`, lié par nom via `RegisterNatives`, gardé délibérément minuscule car c'est la partie qui doit être difficile à tromper.
 

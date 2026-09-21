@@ -21,6 +21,8 @@ com.xayah.databackup              # DataBackup
 com.xayah.databackup.premium      # DataBackup Premium
 com.keramidas.TitaniumBackup      # Titanium Backup
 com.keramidas.TitaniumBackupPro   # Titanium Backup Pro
+com.keramidas.TitaniumBackupAddon # Titanium Backup Add-on (plugin)
+com.keramidas.MarketUpdateHelper  # Titanium Backup Market Update Helper
 com.swift.backup                  # Swift Backup (legacy id)
 org.swiftapps.swiftbackup         # Swift Backup
 dk.tacit.android.foldersync.full  # FolderSync (root plugin)

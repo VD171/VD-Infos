@@ -6,6 +6,54 @@ The 2.x line is a ground-up rewrite; the last public 1.x release was
 [v1.11-beta6](https://github.com/VD171/VD-Infos/releases/tag/v1.11-beta6)
 (2024-12-02). Everything between it and 2.00 is the rewrite described below.
 
+## [2.19] - 2026-09-21
+
+- **New: the install-source surface, read two ways, over every app.** The app's own installer,
+  initiating, originating and packageSource are each read through every lens that can answer (the
+  new `getInstallSourceInfo`, the legacy `getInstallerPackageName`, `dumpsys`, `pm`), so a hook that
+  rewrites one code path and not the others shows up as a divergence. A build whose `dumpsys` does
+  not print a field (MIUI 11/12 omit initiating/originating/packageSource) reports a refusal there
+  instead of a fake null. Then one pass over all visible apps cross-checks installer, initiating, the
+  initiator's signing certificate, originating and FLAG_SYSTEM against each other and lists, per gap,
+  the apps that trip it. The strongest is root-free: the JVM lens can be hooked to dress a sideload
+  up as the Play Store, while the `pm` command in another process is left untouched, so where the
+  JVM names a store and `pm` denies it the spoof is exposed (on a device with the hook this fires in
+  the hundreds; on a clean device, zero). The initiator's recorded certificate is compared to that
+  package's certificate as installed today, with no pinned key, so it self-calibrates per device.
+
+- **The installed-packages and installed-applications counts now name the divergent packages.**
+  Besides the number, when the framework's package set and what `pm` lists disagree, the two new
+  companion items spell out which packages are seen by one lens and not the other (only-JVM and
+  only-pm), scoped to the same user. A hook or a cross-user scope that only shifts the count now
+  shows exactly which packages moved.
+
+- **A package count that could not be read no longer reports zero.** The shell lens counted
+  `pm list packages` with the error stream discarded, so on a device where `pm` refuses the app the
+  empty output became a legitimate-looking `0` and diverged from the framework's real count. The
+  error is now read instead of thrown away, and a refusal is reported as a refusal. The lens is also
+  scoped to the app's own user: the framework call always answers for that user, while `pm` picks
+  its own default - on a Xiaomi device with Dual Apps that default is user 999, so the two lenses
+  were describing different users and a cross-user denial looked like a missing package list.
+  Reported from a HyperOS device; reproduced and fixed with the reporter's help.
+
+- **Remote key provisioning is now read by the chain's shape, not only by the signer's lifetime.**
+  Since 2026 Google signs remotely provisioned attestation keys under a new root (Key Attestation
+  CA1), through Droid CA2 and Droid CA3. The provisioning probe used to guess from how long the
+  signing certificate lives (short = remote, years = factory batch). It now also checks the shape
+  Google's own verifier uses (the certificate right under the root is `Droid CA2`) and compares the
+  two; they agree on a genuine device, so a split between them is a finding. The root's name and the
+  signer's lifetime are shown next to them for context.
+- **New probe: attestation ProvisioningInfo.** The remote-provisioning extension
+  (`1.3.6.1.4.1.11129.2.1.30`) is decoded and shown: certificates issued in the last 30 days,
+  manufacturer, attested entity and lost-device flag when present. Keys the documentation does not
+  list are shown as they come, never treated as an error.
+- **The boot counter is now read from two independent writers, and compared.** Android's framework
+  keeps `boot_count` in the settings store; Play Services keeps its own copy under
+  `Phenotype_boot_count`, in the same store but written by a different party. Both are now read
+  through every settings route inside one probe, so they line up side by side. A device that has
+  `boot_count` reset to look freshly flashed, while the Play Services copy still carries the real
+  count, diverges here. The two agree on an untouched device (measured on Android 11, 12 and 16).
+
 ## [2.18] - 2026-09-18
 
 - **The security-patch probes now point at the fix that actually applies to each.** The three
