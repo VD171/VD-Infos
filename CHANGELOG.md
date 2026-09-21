@@ -6,6 +6,16 @@ The 2.x line is a ground-up rewrite; the last public 1.x release was
 [v1.11-beta6](https://github.com/VD171/VD-Infos/releases/tag/v1.11-beta6)
 (2024-12-02). Everything between it and 2.00 is the rewrite described below.
 
+## [2.19.1] - 2026-09-21
+
+- **The installer-cert probe no longer cries wolf over a key rotation.** `self_initiator_sig` and the
+  all-apps `initiator cert recorded != installed` gap compared the installer's primary signer, so an
+  installer (a store) that legitimately rotated its signing key (v3 key rotation) read as divergent
+  even though it was the same app. They now compare the whole signing lineage: the two are the same
+  identity when their cert sets share any certificate, and diverge only when the sets are disjoint - a
+  genuinely swapped or repackaged installer. Google Play, for one, signs with a rotated key (root and
+  current differ), so a device where Play installed the app before its rotation used to trip this.
+
 ## [2.19] - 2026-09-21
 
 - **New: the install-source surface, read two ways, over every app.** The app's own installer,
