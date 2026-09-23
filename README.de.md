@@ -69,7 +69,7 @@ Die meisten Beiträge brauchen kein Kotlin: die Listen liegen als reiner Text un
 * `spoof_keys.txt` - die Settings-Spoof-Matrix, `Schlüssel:TYP`
 * weitere `.txt`-Dateien - ebenfalls ein Eintrag pro Zeile (Kernelmodul-Namensfragmente, Namen in `/data/local/tmp`)
 
-Ein `#` beginnt einen Kommentar; leere Zeilen werden ignoriert. Code-Beiträge sind ebenfalls willkommen. Mit deinem Beitrag stimmst du zu, dass er unter der AGPL-3.0-or-later dieses Projekts erscheint.
+Ein `#` beginnt einen Kommentar; leere Zeilen werden ignoriert. Einige Dateien enthalten mehrere durch Leerzeichen oder Tab getrennte Felder pro Zeile oder optionale Marker (`S` und `@field` in `props.txt`); behalte die Form der bereits vorhandenen Zeilen bei. Code-Beiträge sind ebenfalls willkommen. Mit deinem Beitrag stimmst du zu, dass er unter der AGPL-3.0-or-later dieses Projekts erscheint.
 
 ## Katalog
 

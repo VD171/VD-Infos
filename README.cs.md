@@ -69,7 +69,7 @@ Většina příspěvků nevyžaduje Kotlin: seznamy jsou prostý text v `VDInfos
 * `spoof_keys.txt` - matice spoof nastavení, `klíč:TYP`
 * ostatní soubory `.txt` - také jeden záznam na řádek (fragmenty názvů modulů jádra, názvy v `/data/local/tmp`)
 
-`#` začíná komentář; prázdné řádky se ignorují. Příspěvky v kódu jsou také vítány. Přispěním souhlasíte, že vaše práce bude šířena pod AGPL-3.0-or-later tohoto projektu.
+`#` začíná komentář; prázdné řádky se ignorují. Některé soubory obsahují na řádku několik polí oddělených mezerou nebo tabulátorem, případně volitelné značky (`S` a `@field` v `props.txt`); zachovejte podobu řádků, které už v souboru jsou. Příspěvky v kódu jsou také vítány. Přispěním souhlasíte, že vaše práce bude šířena pod AGPL-3.0-or-later tohoto projektu.
 
 ## Katalog
 

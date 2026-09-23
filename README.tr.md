@@ -69,7 +69,7 @@ Katkıların çoğu Kotlin gerektirmez: listeler `VDInfos/app/src/main/assets/da
 * `spoof_keys.txt` - settings spoof matrisi, `anahtar:TİP`
 * diğer `.txt` dosyaları - yine satır başına bir girdi (çekirdek modülü ad parçaları, `/data/local/tmp` adları)
 
-Bir `#` yorum başlatır; boş satırlar yok sayılır. Kod katkıları da memnuniyetle karşılanır. Katkıda bulunarak çalışmanızın bu projenin AGPL-3.0-or-later lisansıyla dağıtılmasını kabul edersiniz.
+Bir `#` yorum başlatır; boş satırlar yok sayılır. Bazı dosyalar satır başına boşluk veya sekme ile ayrılmış birkaç alan ya da isteğe bağlı işaretler (`props.txt` içinde `S` ve `@field`) içerir; dosyada zaten bulunan satırların biçimini koru. Kod katkıları da memnuniyetle karşılanır. Katkıda bulunarak çalışmanızın bu projenin AGPL-3.0-or-later lisansıyla dağıtılmasını kabul edersiniz.
 
 ## Katalog
 

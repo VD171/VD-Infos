@@ -69,7 +69,7 @@ La maggior parte dei contributi non richiede Kotlin: gli elenchi sono testo semp
 * `spoof_keys.txt` - la matrice di spoof delle settings, `chiave:TIPO`
 * altri file `.txt` - anche una voce per riga (frammenti di nome dei moduli del kernel, nomi in `/data/local/tmp`)
 
-Un `#` inizia un commento; le righe vuote sono ignorate. Anche i contributi di codice sono benvenuti. Contribuendo accetti che il tuo lavoro sia distribuito sotto la AGPL-3.0-or-later di questo progetto.
+Un `#` inizia un commento; le righe vuote sono ignorate. Alcuni file contengono più campi separati da spazio o tab per riga, o marcatori opzionali (`S` e `@field` in `props.txt`); mantieni la forma delle righe già presenti nel file. Anche i contributi di codice sono benvenuti. Contribuendo accetti che il tuo lavoro sia distribuito sotto la AGPL-3.0-or-later di questo progetto.
 
 ## Catalogo
 

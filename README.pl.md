@@ -69,7 +69,7 @@ Większość wkładów nie wymaga Kotlina: listy to zwykły tekst w `VDInfos/app
 * `spoof_keys.txt` - macierz spoof ustawień, `klucz:TYP`
 * pozostałe pliki `.txt` - również jeden wpis na wiersz (fragmenty nazw modułów jądra, nazwy w `/data/local/tmp`)
 
-`#` rozpoczyna komentarz; puste linie są ignorowane. Wkłady w kod również są mile widziane. Współtworząc, zgadzasz się, że Twoja praca jest udostępniana na AGPL-3.0-or-later tego projektu.
+`#` rozpoczyna komentarz; puste linie są ignorowane. Niektóre pliki zawierają kilka pól oddzielonych spacją lub tabulatorem w wierszu albo opcjonalne znaczniki (`S` i `@field` w `props.txt`); zachowaj kształt wierszy już obecnych w pliku. Wkłady w kod również są mile widziane. Współtworząc, zgadzasz się, że Twoja praca jest udostępniana na AGPL-3.0-or-later tego projektu.
 
 ## Katalog
 

@@ -69,7 +69,7 @@ La mayoría de las contribuciones no requieren Kotlin: las listas son texto plan
 * `spoof_keys.txt` - la matriz de spoof de settings, `clave:TIPO`
 * otros archivos `.txt` - también una entrada por línea (fragmentos de nombre de módulos del kernel, nombres en `/data/local/tmp`)
 
-Un `#` inicia un comentario; las líneas vacías se ignoran. Las contribuciones de código también son bienvenidas. Al contribuir aceptas que tu trabajo se distribuya bajo la AGPL-3.0-or-later de este proyecto.
+Un `#` inicia un comentario; las líneas vacías se ignoran. Algunos archivos llevan varios campos separados por espacio o tab por línea, o marcadores opcionales (`S` y `@field` en `props.txt`); conserva la forma de las líneas que ya están en el archivo. Las contribuciones de código también son bienvenidas. Al contribuir aceptas que tu trabajo se distribuya bajo la AGPL-3.0-or-later de este proyecto.
 
 ## Catálogo
 

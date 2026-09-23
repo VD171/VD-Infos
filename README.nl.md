@@ -69,7 +69,7 @@ De meeste bijdragen hebben geen Kotlin nodig: de lijsten staan als platte tekst 
 * `spoof_keys.txt` - de settings-spoofmatrix, `sleutel:TYPE`
 * overige `.txt`-bestanden - eveneens één item per regel (fragmenten van kernelmodulenamen, namen in `/data/local/tmp`)
 
-Een `#` begint een opmerking; lege regels worden genegeerd. Codebijdragen zijn ook welkom. Door bij te dragen ga je ermee akkoord dat je werk onder de AGPL-3.0-or-later van dit project valt.
+Een `#` begint een opmerking; lege regels worden genegeerd. Sommige bestanden bevatten enkele door spatie of tab gescheiden velden per regel, of optionele markeringen (`S` en `@field` in `props.txt`); behoud de vorm van de regels die al in het bestand staan. Codebijdragen zijn ook welkom. Door bij te dragen ga je ermee akkoord dat je werk onder de AGPL-3.0-or-later van dit project valt.
 
 ## Catalogus
 

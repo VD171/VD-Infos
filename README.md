@@ -110,7 +110,7 @@ Most contributions need no Kotlin: the lists live as plain text under `VDInfos/a
 * `spoof_keys.txt` - the settings-spoof matrix, `key:TYPE`
 * other `.txt` files - one entry per line too (kernel-module name fragments, `/data/local/tmp` file names)
 
-A `#` starts a comment; blank lines are ignored. Code contributions are welcome too. By contributing you agree your work ships under this project's AGPL-3.0-or-later.
+A `#` starts a comment; blank lines are ignored. Some files pack a few space- or tab-separated fields per line, or optional markers (`S` and `@field` in `props.txt`); keep the shape of the lines already in the file. Code contributions are welcome too. By contributing you agree your work ships under this project's AGPL-3.0-or-later.
 
 ## Catalog
 

@@ -69,7 +69,7 @@ Hầu hết đóng góp không cần Kotlin: các danh sách là văn bản thu�
 * `spoof_keys.txt` - ma trận spoof settings, `khóa:KIỂU`
 * các tệp `.txt` khác - cũng một mục mỗi dòng (mảnh tên mô-đun nhân, tên trong `/data/local/tmp`)
 
-Dấu `#` bắt đầu một chú thích; dòng trống bị bỏ qua. Đóng góp mã nguồn cũng được hoan nghênh. Khi đóng góp, bạn đồng ý rằng công việc của mình được phát hành theo AGPL-3.0-or-later của dự án này.
+Dấu `#` bắt đầu một chú thích; dòng trống bị bỏ qua. Một số tệp chứa vài trường phân tách bằng dấu cách hoặc tab trên mỗi dòng, hoặc các dấu tùy chọn (`S` và `@field` trong `props.txt`); hãy giữ đúng dạng của các dòng đã có trong tệp. Đóng góp mã nguồn cũng được hoan nghênh. Khi đóng góp, bạn đồng ý rằng công việc của mình được phát hành theo AGPL-3.0-or-later của dự án này.
 
 ## Danh mục
 

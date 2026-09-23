@@ -69,7 +69,7 @@ Sebagian besar kontribusi tidak butuh Kotlin: daftarnya berupa teks biasa di `VD
 * `spoof_keys.txt` - matriks spoof settings, `kunci:TIPE`
 * berkas `.txt` lainnya - juga satu entri per baris (potongan nama modul kernel, nama di `/data/local/tmp`)
 
-Tanda `#` memulai komentar; baris kosong diabaikan. Kontribusi kode juga diterima. Dengan berkontribusi Anda setuju karya Anda dirilis di bawah AGPL-3.0-or-later proyek ini.
+Tanda `#` memulai komentar; baris kosong diabaikan. Beberapa berkas memuat beberapa bidang yang dipisah spasi atau tab per baris, atau penanda opsional (`S` dan `@field` di `props.txt`); pertahankan bentuk baris yang sudah ada di berkas. Kontribusi kode juga diterima. Dengan berkontribusi Anda setuju karya Anda dirilis di bawah AGPL-3.0-or-later proyek ini.
 
 ## Katalog
 

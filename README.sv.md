@@ -69,7 +69,7 @@ De flesta bidrag kräver ingen Kotlin: listorna ligger som ren text under `VDInf
 * `spoof_keys.txt` - spoof-matrisen för settings, `nyckel:TYP`
 * övriga `.txt`-filer - även en post per rad (namnfragment för kärnmoduler, namn i `/data/local/tmp`)
 
-Ett `#` inleder en kommentar; tomma rader ignoreras. Kodbidrag är också välkomna. Genom att bidra godtar du att ditt arbete sprids under projektets AGPL-3.0-or-later.
+Ett `#` inleder en kommentar; tomma rader ignoreras. Vissa filer har flera fält per rad åtskilda med mellanslag eller tabb, eller valfria markörer (`S` och `@field` i `props.txt`); behåll formen på raderna som redan finns i filen. Kodbidrag är också välkomna. Genom att bidra godtar du att ditt arbete sprids under projektets AGPL-3.0-or-later.
 
 ## Katalog
 
