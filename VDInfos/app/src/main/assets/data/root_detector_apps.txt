@@ -1,6 +1,12 @@
 # ======================================================================
 #  VD INFOS  ::  method debugger
-#  Copyright (C) 2026  VD171   SPDX-License-Identifier: AGPL-3.0-or-later
+#  Read every device info by every method, then compare. A divergence is a hook.
+#
+#  Copyright (C) 2026  VD171
+#  SPDX-License-Identifier: AGPL-3.0-or-later
+#
+#  Free software under the GNU AGPL v3 or later. NETWORK COPYLEFT: run a
+#  modified version, even as a service, and you MUST offer its source.
 #
 #  Site           : https://vd171.ru
 #  Site           : https://vd.priv8.ru
@@ -12,7 +18,6 @@
 #  E-mail         : vd.priv8@pm.me
 # ======================================================================
 
-# root_detector_apps: one package name per line. '#' starts a comment.
 com.reveny.nativecheck
 icu.nullptr.nativetest
 io.github.rabehx.securify

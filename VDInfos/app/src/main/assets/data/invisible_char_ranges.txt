@@ -18,9 +18,20 @@
 #  E-mail         : vd.priv8@pm.me
 # ======================================================================
 
-com.bluestacks
-com.bignox.app
-com.vphone.launcher
-com.microvirt.launcher
-de.robv.android.xposed
-com.android.emulator
+00AD
+034F
+061C
+115F 1160
+17B4 17B5
+180B 180E
+200B 200F
+202A 202E
+2060 2064
+2066 206F
+2800
+3164
+FE00 FE0F
+FEFF
+FFA0
+E0000 E007F
+E0100 E01EF

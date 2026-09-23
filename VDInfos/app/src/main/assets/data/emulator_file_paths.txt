@@ -18,9 +18,9 @@
 #  E-mail         : vd.priv8@pm.me
 # ======================================================================
 
-com.bluestacks
-com.bignox.app
-com.vphone.launcher
-com.microvirt.launcher
-de.robv.android.xposed
-com.android.emulator
+/dev/socket/qemud
+/dev/qemu_pipe
+/system/lib/libc_malloc_debug_qemu.so
+/sys/qemu_trace
+/system/bin/qemu-props
+/dev/goldfish_pipe

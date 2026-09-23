@@ -18,9 +18,6 @@
 #  E-mail         : vd.priv8@pm.me
 # ======================================================================
 
-com.bluestacks
-com.bignox.app
-com.vphone.launcher
-com.microvirt.launcher
-de.robv.android.xposed
-com.android.emulator
+system_file:execute u:object_r:system_file:s0 file execute
+shell_exec:execute u:object_r:shell_exec:s0 file execute
+selinuxfs:write u:object_r:selinuxfs:s0 file write

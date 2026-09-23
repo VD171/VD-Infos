@@ -18,9 +18,11 @@
 #  E-mail         : vd.priv8@pm.me
 # ======================================================================
 
-com.bluestacks
-com.bignox.app
-com.vphone.launcher
-com.microvirt.launcher
-de.robv.android.xposed
-com.android.emulator
+untrusted_app:u:r:untrusted_app:s0
+bogus:u:object_r:vdinfos_no_such_type:s0
+su:u:r:su:s0
+su_exec:u:object_r:su_exec:s0
+magisk:u:r:magisk:s0
+magisk_file:u:object_r:magisk_file:s0
+ksu:u:r:ksu:s0
+zygisk:u:r:zygisk:s0

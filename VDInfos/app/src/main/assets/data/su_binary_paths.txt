@@ -18,9 +18,12 @@
 #  E-mail         : vd.priv8@pm.me
 # ======================================================================
 
-com.bluestacks
-com.bignox.app
-com.vphone.launcher
-com.microvirt.launcher
-de.robv.android.xposed
-com.android.emulator
+/system/bin/su
+/system/xbin/su
+/sbin/su
+/su/bin/su
+/data/adb/su/su
+/debug_ramdisk/su
+/system/sbin/su
+/vendor/bin/su
+/magisk/.core/bin/su

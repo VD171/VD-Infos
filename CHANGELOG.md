@@ -6,6 +6,91 @@ The 2.x line is a ground-up rewrite; the last public 1.x release was
 [v1.11-beta6](https://github.com/VD171/VD-Infos/releases/tag/v1.11-beta6)
 (2024-12-02). Everything between it and 2.00 is the rewrite described below.
 
+## [2.20] - 2026-09-23
+
+- **VD Infos is now open source.** The full app - Kotlin/Compose, the native lens, the Gradle build -
+  is published under the GNU AGPL v3, alongside the docs and the screenshots. Run a modified copy, even
+  as a service, and you must offer its source.
+
+- **The detection data is now community-editable.** The package lists, su paths, SELinux contexts,
+  injection needles, the Build-to-property map, the invisible-character ranges and every other list now
+  live as plain-text `assets/data/*.txt`, read at runtime - curate what the app looks for without
+  touching the code or recompiling. Each shell probe builds its `grep` pattern from the same list, so a
+  native lens and its shell twin can never drift apart.
+
+- **Invisible-name detection widened, and now cross-checked by lens.** `integrity:zero_width_names`
+  decoded only three 3-byte zero-width ranges; it now decodes real UTF-8 (2/3/4-byte) against an
+  editable range list that also covers the soft hyphen, the Hangul fillers, the braille blank, the
+  variation selectors and the 4-byte TAGS block. A JVM `File.list` lens was added next to the native
+  `getdents64` scan, both reading the same ranges, so a hook that filters an invisible entry from the
+  Java listing but not from the raw syscall now shows up as a divergence.
+
+- **Changing the app language no longer needs a restart to retitle the probes.** Probe titles are
+  resolved when the scan engine is built, and the language switch kept the old engine, so the titles
+  stayed in the previous language until the app was reopened. The switch now rebuilds the engine, so
+  every title follows the chosen language at once.
+
+- **The SIM/network operator fields no longer diverge on a dual-SIM phone.** `TelephonyManager`
+  follows the active-data subscription while the `gsm.*` operator props without a slot suffix follow
+  whatever slot the RIL last wrote, so on a dual-SIM phone with two carriers the JVM and the prop
+  read different SIMs (e.g. 51001 vs 51010) - a slot ambiguity, not a hook, unresolvable from an app.
+  The six operator/name/ISO fields (SIM and network) now show every value but leave the prop out of
+  the verdict, so the value is still visible and the false divergence is gone.
+
+- **The initiator-certificate cross-check now covers every app, not only the known stores.** The
+  all-apps `initiator cert recorded != installed` gap was gated to initiators in the built-in store
+  list, so an app installed by a custom or unlisted installer that was later re-signed slipped past
+  it - the self probe had no such gate. It now checks any installed initiator that is not a bare
+  sideloader; a v3 key rotation still shares the lineage and does not trip.
+
+- **New: the loaded SELinux policy answers for itself.** `selinux:status` reads the kernel status
+  page (the `policyload` counter a runtime policy injection bumps, plus `seq`), and `selinux:policy_probe`
+  asks the policy which types it knows and what it grants this app, through selinuxfs and the kernel's
+  own AVC. A stock device shuts that door, so a refusal is the normal answer and a policy that lets an
+  app interrogate it is the finding.
+- **New: root/Xposed managers checked through every PackageManager door.** `integrity:manager_doors`
+  asks the same "is this manager here?" through the package list, `getPackageInfo`, `getApplicationInfo`,
+  the launch intent, the component tables and `getPackagesHoldingPermissions`, and flags a manager that
+  answers on one door but hides on another - the seam a detector walks through by broadcasting straight
+  at a `Probe_<random>` receiver. Seven detector-target packages were added to the lists.
+
+- **Three settings-spoof keys added to the matrix, to mirror the house apply/verify set.**
+  `verifier_verify_adb_installs` (INT), `install_non_market_apps` (INT) and `default_input_method`
+  (STR) are applied on the real system and checked by the sibling verifier, but VD Infos did not
+  probe them. Added to `spoof_keys.txt`, so each is now swept across every read route (getString,
+  getInt for the two INTs, appended-path, `name=?` selection, bulk-all, provider `call GET_<store>`,
+  and the shell reference) in all three stores. Probe count 907 -> 910.
+
+- **Two false divergences on a clean device are gone.** `selinux:context` compared the kernel file
+  (`u:r:...`) against `id -Z`, but some toybox builds print `context=u:r:...`; the shell read now
+  drops that prefix, so the identical context stops reading as a mismatch. And `hw:cpuinfo` dropped the
+  legacy `Processor: AArch64 Processor rev N` header line, which reflects whichever core the reader was
+  scheduled on and so swung between clusters on a big.LITTLE SoC (rev 4 vs rev 2); the per-core blocks,
+  the real CPU identity a hook would fake, are still compared. Reported from a locked-bootloader device.
+
+- **New: nine detector-frontier probes.** The surfaces a hostile app interrogates for root, hiding
+  and injection, rebuilt in VD Infos' idiom in a new `FrontierProbes`. For the structural
+  `/proc` reads the verdict is driven by LENS AGREEMENT on a normalised digest, never a raw threshold,
+  so a filter that hides an entry from one lens diverges while an unusually-laid-out ROM does not
+  false-positive. (1) `net:sock_diag` - a confined app must be denied a `NETLINK_SOCK_DIAG` socket; a
+  reply means the netlink policy was loosened (new native entry point, and by design it answers on the
+  compat/`untrusted_app_27` build and refuses on modern). (2) `mount:peer_gap` - the mount peer-group
+  id set read three ways; a per-lens gap is a hidden mount. (3) `mount:fdinfo_mnt` - an open descriptor
+  whose `mnt_id` is absent from mountinfo points at a mount hidden from the view. (4) `proc:readproc_gid`
+  - a missing AID_READPROC (GID 3009) is a trace some app-hiders leave. (5) `proc:fd_graph` - a
+  descriptor census (informational). (6) `mem:anon_exec` - executable pages with no backing file, the
+  typical injection/Zygisk residue, counted and cross-checked. (7) `kernel:selfbuild` - `-dirty`, git
+  and SUSFS build markers a stock kernel never carries. (8) `tee:soter` - the Tencent Soter service
+  program against its service property. (9) `proc:cgroup_format` - a cloned/dual-app container diverging
+  from the canonical `uid_/pid_` unified cgroup path. All strings localised across the 21 locales.
+  Probe count 913 -> 922; the READMEs' count is updated in every locale.
+
+- **Detector-blacklist parity: 52 packages added, curated by philosophy.** The missing
+  stealth-relevant entries from a detector's package blacklist were routed into the matching lists -
+  `root_tools_apps` (+17), `suspicious_apps` (+30), `hiding_apps` (+3), `xposed_manager_apps` (+2). The
+  pure game-cheat / injection-cheat cluster (21 packages) was intentionally left out: it only adds noise
+  to a privacy-phone scan and does not bear on the stealth audit.
+
 ## [2.19.1] - 2026-09-21
 
 - **The installer-cert probe no longer cries wolf over a key rotation.** `self_initiator_sig` and the

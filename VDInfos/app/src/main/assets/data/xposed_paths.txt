@@ -18,9 +18,12 @@
 #  E-mail         : vd.priv8@pm.me
 # ======================================================================
 
-com.bluestacks
-com.bignox.app
-com.vphone.launcher
-com.microvirt.launcher
-de.robv.android.xposed
-com.android.emulator
+/data/adb/lspd
+/data/adb/lspod
+/data/adb/riru
+/data/adb/modules/riru_core
+/system/framework/XposedBridge.jar
+/system/lib/libriru.so
+/system/lib64/libriru.so
+/data/misc/riru
+/data/adb/zygisk

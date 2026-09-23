@@ -1,6 +1,12 @@
 # ======================================================================
 #  VD INFOS  ::  method debugger
-#  Copyright (C) 2026  VD171   SPDX-License-Identifier: AGPL-3.0-or-later
+#  Read every device info by every method, then compare. A divergence is a hook.
+#
+#  Copyright (C) 2026  VD171
+#  SPDX-License-Identifier: AGPL-3.0-or-later
+#
+#  Free software under the GNU AGPL v3 or later. NETWORK COPYLEFT: run a
+#  modified version, even as a service, and you MUST offer its source.
 #
 #  Site           : https://vd171.ru
 #  Site           : https://vd.priv8.ru
@@ -12,12 +18,10 @@
 #  E-mail         : vd.priv8@pm.me
 # ======================================================================
 
-# System-property catalog: CATEGORY<TAB>key  (trailing 'S' = force sensitive).
-# One property per line. Probed via Java (SystemProperties.get) and native.
 IDENTITY	gsm.sim.preiccid_0
 IDENTITY	gsm.sim.preiccid_1
 IDENTITY	persist.odm.ril.factory_id
-IDENTITY	persist.odm.ril.oem.btmac
+NETWORK	persist.odm.ril.oem.btmac S
 IDENTITY	persist.odm.ril.oem.imei
 IDENTITY	persist.odm.ril.oem.imei0
 IDENTITY	persist.odm.ril.oem.imei1
@@ -54,15 +58,15 @@ IDENTITY	ro.ril.oem.wifimac
 IDENTITY	ro.serialno
 IDENTITY	sys.serialnumber
 IDENTITY	vendor.gsm.serial
-FINGERPRINT	ro.bootimage.build.fingerprint
-FINGERPRINT	ro.build.fingerprint
+FINGERPRINT	ro.bootimage.build.fingerprint @fingerprint
+FINGERPRINT	ro.build.fingerprint @fingerprint*
 FINGERPRINT	ro.build.version.preview_sdk_fingerprint
-FINGERPRINT	ro.odm.build.fingerprint
-FINGERPRINT	ro.product.build.fingerprint
+FINGERPRINT	ro.odm.build.fingerprint @fingerprint
+FINGERPRINT	ro.product.build.fingerprint @fingerprint
 FINGERPRINT	ro.product.fingerprint
-FINGERPRINT	ro.system.build.fingerprint
+FINGERPRINT	ro.system.build.fingerprint @fingerprint
 FINGERPRINT	ro.system_ext.build.fingerprint
-FINGERPRINT	ro.vendor.build.fingerprint
+FINGERPRINT	ro.vendor.build.fingerprint @fingerprint
 TELEPHONY	gsm.network.type
 TELEPHONY	gsm.operator.alpha
 TELEPHONY	gsm.operator.numeric
@@ -80,13 +84,13 @@ NETWORK	net.dns2
 NETWORK	net.hostname
 NETWORK	persist.netd.stable_secret
 BOOT	init.svc.flash_recovery
-BOOT	init.svc.qemud
+EMULATOR	init.svc.qemud
 BOOT	ro.boot.boot_devices
 BOOT	ro.boot.bootreason
 BOOT	ro.boot.cpuid
 BOOT	ro.boot.dynamic_partitions
 BOOT	ro.boot.efuse
-BOOT	ro.boot.flash.locked
+INTEGRITY	ro.boot.flash.locked
 BOOT	ro.boot.hardware
 BOOT	ro.boot.hwc
 BOOT	ro.boot.hwlevel
@@ -97,11 +101,12 @@ BOOT	ro.boot.rsc
 BOOT	ro.boot.secureboot
 BOOT	ro.boot.selinux
 BOOT	ro.boot.vbmeta.device_state
-BOOT	ro.boot.verifiedbootstate
-BOOT	ro.boot.veritymode
+INTEGRITY	ro.boot.verifiedbootstate
+INTEGRITY	ro.boot.veritymode
 BOOT	ro.boot.warranty_bit
-BOOT	ro.bootloader
-BOOT	ro.bootmode
+BOOT	ro.bootloader @bootloader*
+BOOT	ro.boot.bootloader @bootloader
+EMULATOR	ro.bootmode
 BOOT	ro.boottime.daemonsu
 BOOT	ro.crypto.state
 BOOT	ro.crypto.type
@@ -111,7 +116,7 @@ BOOT	ro.kernel.android.qemud
 BOOT	ro.kernel.androidboot.hardware
 BOOT	ro.kernel.androidboot.verifiedbootstate
 BOOT	ro.kernel.androidboot.veritymode
-BOOT	ro.kernel.qemu
+EMULATOR	ro.kernel.qemu
 BOOT	ro.kernel.qemu.encrypt
 BOOT	ro.kernel.qemu.gles
 BOOT	ro.kernel.qemu.gltransport
@@ -142,37 +147,37 @@ BUILD	ro.build.brand
 BUILD	ro.build.cpu_abi
 BUILD	ro.build.cpu_abi2
 BUILD	ro.build.date
-BUILD	ro.build.date.utc
+BUILD	ro.build.date.utc @build_time_utc*
 BUILD	ro.build.description
 BUILD	ro.build.device
-BUILD	ro.build.display.id
+BUILD	ro.build.display.id @displayid*
 BUILD	ro.build.flavor
 BUILD	ro.build.hardware
-BUILD	ro.build.host
-BUILD	ro.build.id
+BUILD	ro.build.host @host*
+BUILD	ro.build.id @buildid*
 BUILD	ro.build.manufacturer
 BUILD	ro.build.model
 BUILD	ro.build.name
 BUILD	ro.build.product
-BUILD	ro.build.selinux
+INTEGRITY	ro.build.selinux
 BUILD	ro.build.selinux.enforce
 BUILD	ro.build.supported_abis
 BUILD	ro.build.system_root_image
-BUILD	ro.build.tags
+INTEGRITY	ro.build.tags @tags*
 BUILD	ro.build.time
-BUILD	ro.build.type
+BUILD	ro.build.type @type*
 BUILD	ro.build.user
 BUILD	ro.build.version.all_codenames
 BUILD	ro.build.version.base_os
-BUILD	ro.build.version.codename
-BUILD	ro.build.version.incremental
+BUILD	ro.build.version.codename @version_codename*
+BUILD	ro.build.version.incremental @version_incremental*
 BUILD	ro.build.version.min_supported_target_sdk
 BUILD	ro.build.version.preview_sdk
-BUILD	ro.build.version.release
+BUILD	ro.build.version.release @version_release*
 BUILD	ro.build.version.release_or_codename
-BUILD	ro.build.version.sdk
+BUILD	ro.build.version.sdk @version_sdk*
 BUILD	ro.build.version.sdk_int
-BUILD	ro.build.version.security_patch
+BUILD	ro.build.version.security_patch @security_patch*
 BUILD	ro.com.google.clientidbase
 BUILD	ro.com.google.clientidbase.ax
 BUILD	ro.com.google.clientidbase.ms
@@ -200,14 +205,14 @@ BUILD	ro.odm.build.version.sdk
 BUILD	ro.odm.product.cpu.abilist
 BUILD	ro.odm.product.cpu.abilist32
 BUILD	ro.odm.product.cpu.abilist64
-BUILD	ro.product.board
-BUILD	ro.product.bootimage.brand
-BUILD	ro.product.bootimage.device
-BUILD	ro.product.bootimage.manufacturer
-BUILD	ro.product.bootimage.model
-BUILD	ro.product.bootimage.name
+BUILD	ro.product.board @board*
+BUILD	ro.product.bootimage.brand @brand
+BUILD	ro.product.bootimage.device @device
+BUILD	ro.product.bootimage.manufacturer @manufacturer
+BUILD	ro.product.bootimage.model @model
+BUILD	ro.product.bootimage.name @product
 BUILD	ro.product.bootloader
-BUILD	ro.product.brand
+BUILD	ro.product.brand @brand*
 BUILD	ro.product.build.date
 BUILD	ro.product.build.date.utc
 BUILD	ro.product.build.id
@@ -225,7 +230,7 @@ BUILD	ro.product.cpu.abilist32
 BUILD	ro.product.cpu.abilist64
 BUILD	ro.product.cpu_abi
 BUILD	ro.product.cpu_abi2
-BUILD	ro.product.device
+BUILD	ro.product.device @device*
 BUILD	ro.product.display
 BUILD	ro.product.first_api_level
 BUILD	ro.product.hardware
@@ -234,17 +239,17 @@ BUILD	ro.product.id
 BUILD	ro.product.locale
 BUILD	ro.product.locale.language
 BUILD	ro.product.locale.region
-BUILD	ro.product.manufacturer
+BUILD	ro.product.manufacturer @manufacturer*
 BUILD	ro.product.marketname
 BUILD	ro.product.mod_device
-BUILD	ro.product.model
-BUILD	ro.product.name
-BUILD	ro.product.odm.brand
-BUILD	ro.product.odm.device
-BUILD	ro.product.odm.manufacturer
+BUILD	ro.product.model @model*
+BUILD	ro.product.name @product*
+BUILD	ro.product.odm.brand @brand
+BUILD	ro.product.odm.device @device
+BUILD	ro.product.odm.manufacturer @manufacturer
 BUILD	ro.product.odm.marketname
-BUILD	ro.product.odm.model
-BUILD	ro.product.odm.name
+BUILD	ro.product.odm.model @model
+BUILD	ro.product.odm.name @product
 BUILD	ro.product.product
 BUILD	ro.product.product.brand
 BUILD	ro.product.product.device
@@ -254,12 +259,12 @@ BUILD	ro.product.product.marketname
 BUILD	ro.product.product.model
 BUILD	ro.product.product.name
 BUILD	ro.product.supported_abis
-BUILD	ro.product.system.brand
-BUILD	ro.product.system.device
-BUILD	ro.product.system.manufacturer
+BUILD	ro.product.system.brand @brand
+BUILD	ro.product.system.device @device
+BUILD	ro.product.system.manufacturer @manufacturer
 BUILD	ro.product.system.marketname
-BUILD	ro.product.system.model
-BUILD	ro.product.system.name
+BUILD	ro.product.system.model @model
+BUILD	ro.product.system.name @product
 BUILD	ro.product.system_ext.brand
 BUILD	ro.product.system_ext.device
 BUILD	ro.product.system_ext.manufacturer
@@ -270,12 +275,12 @@ BUILD	ro.product.tags
 BUILD	ro.product.time
 BUILD	ro.product.type
 BUILD	ro.product.user
-BUILD	ro.product.vendor.brand
-BUILD	ro.product.vendor.device
-BUILD	ro.product.vendor.manufacturer
+BUILD	ro.product.vendor.brand @brand
+BUILD	ro.product.vendor.device @device
+BUILD	ro.product.vendor.manufacturer @manufacturer
 BUILD	ro.product.vendor.marketname
-BUILD	ro.product.vendor.model
-BUILD	ro.product.vendor.name
+BUILD	ro.product.vendor.model @model
+BUILD	ro.product.vendor.name @product
 BUILD	ro.product.version
 BUILD	ro.product.version.codename
 BUILD	ro.product.version.incremental
@@ -358,7 +363,7 @@ SYSTEM	persist.vendor.mtk.provision.mccmnc.1
 SYSTEM	persist.vendor.sys.fp.module
 SYSTEM	persist.vendor.sys.fp.uid
 SYSTEM	persist.vendor.sys.fp.vendor
-SYSTEM	ro.adb.secure
+INTEGRITY	ro.adb.secure
 SYSTEM	ro.allow.mock.location
 SYSTEM	ro.base_build
 SYSTEM	ro.baseband
@@ -366,19 +371,19 @@ SYSTEM	ro.board.platform
 SYSTEM	ro.carrier
 SYSTEM	ro.cold_boot_done
 SYSTEM	ro.control_privapp_permissions
-SYSTEM	ro.debuggable
+INTEGRITY	ro.debuggable
 SYSTEM	ro.fota.oem
 SYSTEM	ro.frp.pst
-SYSTEM	ro.hardware
-SYSTEM	ro.hardware.egl
+SYSTEM	ro.hardware @hardware*
+HARDWARE	ro.hardware.egl
 SYSTEM	ro.hardware.soc.manufacturer
 SYSTEM	ro.mediatek.version.branch
 SYSTEM	ro.netflix.bsp_rev
 SYSTEM	ro.oem_unlock_supported
-SYSTEM	ro.opengles.version
+HARDWARE	ro.opengles.version
 SYSTEM	ro.rom.zone
 SYSTEM	ro.runtime.firstboot
-SYSTEM	ro.secure
+INTEGRITY	ro.secure
 SYSTEM	ro.telephony.sim.count
 SYSTEM	ro.warranty_bit
 SYSTEM	sys.initd
@@ -502,3 +507,10 @@ SYSTEM	sys.usb.ffs.ready
 SYSTEM	sys.usb.state
 SYSTEM	vendor.bootmode
 INTEGRITY	vzw.os.rooted
+INTEGRITY	sys.oem_unlock_allowed
+EMULATOR	ro.hardware.virtual_device
+EMULATOR	ro.boot.qemu
+NETWORK	net.dns3
+NETWORK	net.dns4
+NETWORK	ro.boot.btmacaddr S
+HARDWARE	ro.hardware.vulkan

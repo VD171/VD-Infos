@@ -18,9 +18,15 @@
 #  E-mail         : vd.priv8@pm.me
 # ======================================================================
 
-com.bluestacks
-com.bignox.app
-com.vphone.launcher
-com.microvirt.launcher
-de.robv.android.xposed
-com.android.emulator
+frida
+gum-js
+lsplant
+riru
+zygisk
+xposed
+sandhook
+epic
+whale
+substrate
+magisk
+lspd

@@ -18,9 +18,13 @@
 #  E-mail         : vd.priv8@pm.me
 # ======================================================================
 
-com.bluestacks
-com.bignox.app
-com.vphone.launcher
-com.microvirt.launcher
-de.robv.android.xposed
-com.android.emulator
+com.android.vending
+com.aurora.store
+org.fdroid.fdroid
+org.fdroid.basic
+com.xiaomi.discover
+com.xiaomi.mipicks
+com.amazon.venezia
+com.sec.android.app.samsungapps
+com.huawei.appmarket
+com.google.android.feedback

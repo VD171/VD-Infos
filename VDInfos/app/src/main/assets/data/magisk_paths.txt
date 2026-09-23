@@ -18,9 +18,10 @@
 #  E-mail         : vd.priv8@pm.me
 # ======================================================================
 
-com.bluestacks
-com.bignox.app
-com.vphone.launcher
-com.microvirt.launcher
-de.robv.android.xposed
-com.android.emulator
+/data/adb/magisk
+/data/adb/magisk.db
+/data/adb/modules
+/sbin/.magisk
+/cache/.disable_magisk
+/data/adb/magisk.img
+/init.magisk.rc

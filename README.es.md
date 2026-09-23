@@ -56,7 +56,7 @@ ui/             Jetpack Compose, Material 3, color dinámico, progreso en vivo
 cpp/            native_probes.cpp - la lente nativa, sin dependencias
 ```
 
-* **Paralelismo**: 907 sondas se despliegan en el dispatcher por defecto con un número de permisos acotado; los resultados fluyen a la UI a medida que llegan.
+* **Paralelismo**: 922 sondas se despliegan en el dispatcher por defecto con un número de permisos acotado; los resultados fluyen a la UI a medida que llegan.
 * **Nada en segundo plano**: sin servicios ni escaneos programados; la app se ejecuta solo mientras está abierta y se cierra sola cuando queda inactiva.
 * **Capa nativa**: un `.so` pequeño, enlazado por nombre vía `RegisterNatives`, deliberadamente diminuto porque es la parte que debe ser difícil de engañar.
 
