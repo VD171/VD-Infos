@@ -1,0 +1,435 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    ======================================================================
+     VD INFOS  ::  method debugger
+     Read every device info by every method, then compare. A divergence is a hook.
+
+     Copyright (C) 2026  VD171
+     SPDX-License-Identifier: AGPL-3.0-or-later
+
+     Free software under the GNU AGPL v3 or later. NETWORK COPYLEFT: run a
+     modified version, even as a service, and you MUST offer its source.
+
+     Site           : https://vd171.ru
+     Site           : https://vd.priv8.ru
+     Source         : https://github.com/VD171/VD-Infos
+     GitHub         : @VD171 https://github.com/VD171
+     XDA-Developers : @VD171 https://xdaforums.com/m/vd171.4699873/
+     Telegram       : @VD_Priv8 https://t.me/VD_Priv8
+     Discord        : @VD.Priv8 https://discord.com/users/1296831918989639721
+     E-mail         : vd.priv8@pm.me
+    ======================================================================
+-->
+<resources>
+    <string name="app_tagline">اشکال‌زدای روش‌ها</string>
+
+    <!-- کنش‌ها -->
+    <string name="action_reveal">نمایش شناسه‌ها</string>
+    <string name="action_export">اشتراک‌گذاری گزارش</string>
+    <string name="action_save">ذخیره در فایل</string>
+    <string name="action_rescan">اسکن مجدد</string>
+    <string name="save_ok">گزارش ذخیره شد</string>
+    <string name="save_fail">ذخیره فایل ناموفق بود</string>
+
+    <!-- خلاصه -->
+    <plurals name="summary_divergences">
+        <item quantity="one">%d واگرایی</item>
+        <item quantity="other">%d واگرایی</item>
+    </plurals>
+    <string name="summary_line">%1$d/%2$d کاوشگر · %3$d منطبق</string>
+    <string name="summary_native_off"> · بومی در دسترس نیست</string>
+
+    <!-- جستجو و فیلتر -->
+    <string name="search_hint">جستجوی prop، مقدار…</string>
+    <string name="filter_divergent">فقط واگرا</string>
+    <string name="filter_all">همه</string>
+
+    <!-- احکام -->
+    <string name="verdict_mismatch">واگرا</string>
+    <string name="verdict_match">منطبق</string>
+    <string name="verdict_single">تکی</string>
+    <string name="verdict_info">اطلاعات</string>
+    <string name="reading_context_only">زمینه</string>
+    <string name="reading_empty">(خالی)</string>
+    <string name="verdict_empty">خالی</string>
+    <string name="verdict_error">خطا</string>
+
+    <!-- دسته‌ها -->
+    <string name="cat_identity">هویت</string>
+    <string name="cat_fingerprint">Fingerprint</string>
+    <string name="cat_telephony">تلفن / RIL</string>
+    <string name="cat_network">شبکه</string>
+    <string name="cat_locale">Locale / زمان</string>
+    <string name="cat_boot">Boot / کرنل</string>
+    <string name="cat_build">Build / ROM</string>
+    <string name="cat_display">نمایشگر</string>
+    <string name="cat_sensors">حسگرها</string>
+    <string name="cat_media">رسانه / DRM</string>
+    <string name="cat_packages">بسته‌ها</string>
+    <string name="cat_accounts">حساب‌ها</string>
+    <string name="cat_webview">WebView</string>
+    <string name="cat_hardware">سخت‌افزار</string>
+    <string name="cat_storage">فضای ذخیره‌سازی</string>
+    <string name="cat_process">فرآیند</string>
+    <string name="cat_security">امنیت</string>
+    <string name="cat_integrity">Root / یکپارچگی</string>
+    <string name="cat_emulator">شبیه‌ساز</string>
+    <string name="cat_system">سیستم</string>
+
+    <!-- اعلان‌های تغییر در پس‌زمینه -->
+    <string name="action_about">درباره</string>
+    <string name="action_close">بستن</string>
+    <string name="action_copy">کپی</string>
+    <string name="copied">کپی شد</string>
+    <string name="about_developer">توسعه‌دهنده</string>
+    <string name="about_source">کد منبع</string>
+    <string name="about_license">مجوز</string>
+    <string name="about_contacts">تماس</string>
+    <string name="about_privacy">هیچ اطلاعاتی ذخیره، ارسال یا منتقل نمی‌شود. همه چیز روی دستگاه اجرا می‌شود و گزارش فقط زمانی از آن خارج می‌شود که خودتان آن را به اشتراک بگذارید یا ذخیره کنید.</string>
+    <string name="crash_title">خطای غیرمنتظره</string>
+    <string name="crash_body">برنامه با خطای غیرمنتظره‌ای مواجه شد. چیزی به هیچ جایی ارسال نشد. می‌توانید جزئیات زیر را کپی کرده و برای توسعه‌دهنده ارسال کنید.</string>
+    <string name="about_project">پروژه</string>
+    <string name="about_support">دانلود و پشتیبانی</string>
+    <string name="action_clear">پاک کردن جستجو</string>
+    <string name="lang_dialog_title">زبان</string>
+    <string name="lang_dialog_body">زبان برنامه را انتخاب کنید یا از تنظیم سیستم پیروی کنید.</string>
+    <string name="lang_system_default">پیش‌فرض سیستم</string>
+    <string name="lang_apply">اعمال</string>
+
+    <!-- راه‌حل -->
+    <string name="sol_title">چگونه رفع کنیم</string>
+    <string name="sol_boot">این چیزی است که attestation سخت‌افزاری (TEE) درباره وضعیت بوت گزارش می‌دهد. ابزارهای دور زدن keybox (TrickyStore، TEE Simulator، OhMyKeyMint) فقط برای برنامه‌هایی که مشخص می‌کنید attestation را بازنویسی می‌کنند. بسته این برنامه را به فهرست هدف این ابزارها (مثلاً target.txt) اضافه کنید تا attestation آن دستگاه قفل‌شده با verified boot سبز را گزارش دهد.</string>
+    <string name="sol_root_detector">این برنامه‌های نصب‌شده به دنبال root، شبیه‌ساز یا Play Integrity ناموفق می‌گردند. بسته‌های یافت‌شده در اینجا را به عنوان هدف به چارچوب پنهان‌سازی خود (HMA-OSS) اضافه کنید تا برنامه‌ها و ماژول‌های root شما از این آشکارسازها پنهان بمانند.</string>
+    <string name="sol_spoof">این تنظیم در مسیرهایی که یک برنامه ممکن است استفاده کند متفاوت خوانده می‌شود (spoof همه را پوشش نمی‌دهد). این تنظیم را به پیش‌تنظیم‌های spoof در HMA-OSS اضافه کنید تا هر مسیر خواندن همان مقدار را برگرداند.</string>
+    <string name="sol_attest_patch">key attestation سطح وصله‌ای متفاوت از ویژگی سیستم گزارش می‌کند. آن را در ابزار keybox خود تنظیم کنید - TrickyStore در security_patch.txt (یک تاریخ، یا system=/boot=/vendor=/all=، یا \'prop\')؛ OhMyKeymint در config.toml زیر [trust]. هر دو فقط attestation را تغییر می‌دهند، نه ویژگی‌ها را.</string>
+    <string name="sol_patch_prop">Build.VERSION.SECURITY_PATCH (فریم‌ورک) و ویژگی ro.build.version.security_patch تاریخ‌های متفاوتی نشان می‌دهند. آن‌ها را با resetprop هم‌تراز کنید. security_patch.txt و config.toml اینجا کمکی نمی‌کنند - فقط key attestation را تغییر می‌دهند، نه ویژگی‌ها را.</string>
+
+    <string name="note_gsf">در اندروید ۱۶ و بالاتر وجود ندارد: مخزن سرویس‌های Google به Play Services منتقل شد که خود Google درِ آن را &quot;do.not.use&quot; نامیده و به برنامه‌های دیگر پاسخ نمی‌دهد. هر دو در بالا امتحان می‌شوند.</string>
+    <string name="t_attestation_app_id">شناسه برنامه در گواهی‌سنجی (بسته + امضا)</string>
+    <string name="t_dev_ptmx_present">/dev/ptmx موجود است</string>
+    <string name="t_documents_providers">DocumentsProviders ثبت‌شده</string>
+    <string name="t_kernel_modules">ماژول‌های بارگذاری‌شده هسته (KernelSU/SuSFS)</string>
+    <string name="t_kernel_syscall_fingerprint">نسخه هسته بر پایه اثرانگشت syscall</string>
+    <string name="t_key_inside_secure_hw">کلید درون سخت‌افزار امن (KeyInfo)</string>
+    <string name="t_keybox_ec_vs_rsa">پوشش keybox: گواهی EC در برابر RSA</string>
+    <string name="t_local_tmp_contents">محتوای /data/local/tmp</string>
+    <string name="t_native_lib_origin">خاستگاه کتابخانه بومی (dladdr)</string>
+    <string name="t_own_debuggable">این برنامه: debuggable / ساخت اشکال‌زدایی</string>
+    <string name="t_play_store_version">نسخه Play Store / GMS</string>
+    <string name="t_resolv_conf">resolv.conf / پیکربندی DNS</string>
+    <string name="t_root_backup_tools">ابزارهای پشتیبان‌گیری روت موجود است</string>
+    <string name="t_su_libc_inline_hook">su: syscall خام در برابر libc و Java</string>
+    <string name="t_system_build_prop">/system/build.prop</string>
+    <string name="t_system_build_prop_present">/system/build.prop موجود است</string>
+    <string name="t_adb_enabled">ADB فعال</string>
+    <string name="t_apatch">APatch</string>
+    <string name="t_accessibility_enabled">دسترس‌پذیری فعال</string>
+    <string name="t_accounts">حساب‌ها</string>
+    <string name="t_active_subscriptions">اشتراک‌های فعال</string>
+    <string name="t_advertising_id">شناسه تبلیغاتی</string>
+    <string name="t_advertising_id_keys_settings_stores">کلیدهای شناسه تبلیغاتی (settings)</string>
+    <string name="t_spoof_consistency">سازگاری spoof: %1$s</string>
+    <string name="t_spoof_sweep">پویش سازگاری spoof (همه settings)</string>
+    <string name="t_analysis_emulator_apps">برنامه‌های تحلیل / شبیه‌ساز</string>
+    <string name="t_android_id">Android ID</string>
+    <string name="t_another_process_cmdline_init">cmdline فرآیند دیگر (init)</string>
+    <string name="t_another_process_maps_init">maps فرآیند دیگر (init)</string>
+    <string name="t_attestation_keymaster_version">نسخه attestation / keymaster</string>
+    <string name="t_attestation_available">attestation در دسترس</string>
+    <string name="t_attestation_provisioning_signer">provisioning attestation (امضاکننده)</string>
+    <string name="t_attestation_provisioning_info">Attestation ProvisioningInfo (RKP)</string>
+    <string name="t_attestation_security_level">سطح امنیتی attestation</string>
+    <string name="t_block_untrusted_touches">مسدود کردن لمس‌های نامعتبر</string>
+    <string name="t_bluetooth_mac">MAC بلوتوث</string>
+    <string name="t_bluetooth_bonded_devices">دستگاه‌های جفت‌شده بلوتوث</string>
+    <string name="t_bluetooth_name">نام بلوتوث</string>
+    <string name="t_bluetooth_name_bt_name">نام بلوتوث (bt_name)</string>
+    <string name="t_bluetooth_name_btname">نام بلوتوث (btname)</string>
+    <string name="t_bluetooth_name_settings">نام بلوتوث (settings)</string>
+    <string name="t_bluetooth_scan_mode">حالت اسکن بلوتوث</string>
+    <string name="t_bluetooth_state">وضعیت بلوتوث</string>
+    <string name="t_board">Board</string>
+    <string name="t_boot_id">Boot ID</string>
+    <string name="t_boot_count">تعداد بوت</string>
+    <string name="t_boot_patch_level">سطح وصله boot</string>
+    <string name="t_boot_time_epoch_proc_stat_btime">زمان بوت (epoch, /proc/stat btime)</string>
+    <string name="t_bootloader">Bootloader</string>
+    <string name="t_brand">برند</string>
+    <string name="t_build_id">Build ID</string>
+    <string name="t_build_host">Build host</string>
+    <string name="t_build_tags">Build tags</string>
+    <string name="t_build_time_utc_epoch">زمان build (UTC epoch)</string>
+    <string name="t_build_type">نوع build</string>
+    <string name="t_cpu_cores">هسته‌های CPU</string>
+    <string name="t_call_log_entries">ورودی‌های گزارش تماس</string>
+    <string name="t_cameras">دوربین‌ها</string>
+    <string name="t_cell_info">اطلاعات سلول</string>
+    <string name="t_data_roaming">رومینگ داده</string>
+    <string name="t_default_input_method">روش ورودی پیش‌فرض</string>
+    <string name="t_developer_settings_enabled">گزینه‌های توسعه‌دهنده فعال</string>
+    <string name="t_device">Device</string>
+    <string name="t_device_locked">دستگاه قفل شده</string>
+    <string name="t_device_name">نام دستگاه</string>
+    <string name="t_display_id">Display ID</string>
+    <string name="t_display_metrics">معیارهای نمایشگر</string>
+    <string name="t_emulator_files">فایل‌های شبیه‌ساز</string>
+    <string name="t_enabled_accessibility_services">سرویس‌های دسترس‌پذیری فعال</string>
+    <string name="t_enabled_input_methods">روش‌های ورودی فعال</string>
+    <string name="t_fingerprint">Fingerprint</string>
+    <string name="t_gsf_id_hex">GSF ID (hex)</string>
+    <string name="t_gsf_id_raw">GSF ID (خام)</string>
+    <string name="t_http_proxy">پروکسی HTTP</string>
+    <string name="t_hardware">سخت‌افزار</string>
+    <string name="t_hidden_api_policy">سیاست API پنهان</string>
+    <string name="t_hidden_api_policy_p_apps">سیاست API پنهان (برنامه‌های P)</string>
+    <string name="t_hidden_api_policy_pre_p_apps">سیاست API پنهان (برنامه‌های پیش از P)</string>
+    <string name="t_hiding_cloaking_apps">برنامه‌های پنهان‌ساز</string>
+    <string name="t_hostname">Hostname</string>
+    <string name="t_imei">IMEI</string>
+    <string name="t_imsi_subscriber">IMSI (مشترک)</string>
+    <string name="t_incremental">Incremental</string>
+    <string name="t_injected_libs_proc_self_maps">کتابخانه‌های تزریق‌شده (/proc/self/maps)</string>
+    <string name="t_installed_app_signing_digests">چکیده امضای برنامه‌های نصب‌شده</string>
+    <string name="t_installed_applications">برنامه‌های نصب‌شده</string>
+    <string name="t_installed_input_methods">روش‌های ورودی نصب‌شده</string>
+    <string name="t_installed_packages">بسته‌های نصب‌شده</string>
+    <string name="t_installed_packages_list">بسته‌های نصب‌شده (فهرست)</string>
+    <string name="t_kernel_release">کرنل (release)</string>
+    <string name="t_kernel_version">کرنل (نسخه)</string>
+    <string name="t_kernel_cmdline">cmdline کرنل</string>
+    <string name="t_kernel_log">گزارش کرنل</string>
+    <string name="t_kernel_stat">stat کرنل</string>
+    <string name="t_kernelsu">KernelSU</string>
+    <string name="t_limit_ad_tracking">محدود کردن ردیابی تبلیغات</string>
+    <string name="t_locale">Locale</string>
+    <string name="t_mac">MAC %1$s</string>
+    <string name="t_meid">MEID</string>
+    <string name="t_magisk">Magisk</string>
+    <string name="t_manufacturer">سازنده</string>
+    <string name="t_model">مدل</string>
+    <string name="t_mount_markers_magisk_overlay">نشانگرهای mount (magisk/overlay)</string>
+    <string name="t_network_interfaces">رابط‌های شبکه</string>
+    <string name="t_os_release">نسخه سیستم‌عامل</string>
+    <string name="t_os_security_patch_level">سطح وصله امنیتی سیستم‌عامل</string>
+    <string name="t_os_version_attested">نسخه سیستم‌عامل (تأییدشده)</string>
+    <string name="t_pid">PID</string>
+    <string name="t_primary_abi">ABI اصلی</string>
+    <string name="t_primary_imei">IMEI اصلی</string>
+    <string name="t_product">Product</string>
+    <string name="t_root_manager_apps">برنامه‌های مدیر root</string>
+    <string name="t_root_tools_apps">ابزارهای مبتنی بر root</string>
+    <string name="t_rooted_apps">برنامه‌های نیازمند root</string>
+    <string name="t_root_detector_apps">برنامه‌های آشکارساز root</string>
+    <string name="t_suspicious_apps">برنامه‌های مشکوک</string>
+    <string name="t_running_app_processes">فرآیندهای برنامه در حال اجرا</string>
+    <string name="t_running_services">سرویس‌های در حال اجرا</string>
+    <string name="t_sdk_int">SDK int</string>
+    <string name="t_selinux_mls_enabled">SELinux MLS فعال</string>
+    <string name="t_selinux_context_self">زمینه SELinux (خود)</string>
+    <string name="t_selinux_enforce">SELinux enforce</string>
+    <string name="t_selinux_policy_version">نسخه policy SELinux</string>
+    <string name="t_sim_serial_iccid">سریال SIM (ICCID)</string>
+    <string name="t_screen_capture_disabled_policy">ضبط صفحه غیرفعال (سیاست)</string>
+    <string name="t_security_patch">وصله امنیتی</string>
+    <string name="t_sensor_count">تعداد حسگرها</string>
+    <string name="t_sensors">حسگرها</string>
+    <string name="t_serial">سریال</string>
+    <string name="t_soc_family">خانواده SoC</string>
+    <string name="t_soc_id">SoC ID</string>
+    <string name="t_soc_machine">ماشین SoC</string>
+    <string name="t_soc_serial_number">شماره سریال SoC</string>
+    <string name="t_storage_data_total_bytes">فضای /data کل (بایت)</string>
+    <string name="t_system_features_count">System features (تعداد)</string>
+    <string name="t_system_features_full_set">System features (مجموعه کامل)</string>
+    <string name="t_tether_dun_required">tether DUN لازم است</string>
+    <string name="t_this_app_installer">نصب‌کننده این برنامه</string>
+    <string name="t_this_app_signing_sha_256">SHA-256 امضای این برنامه</string>
+    <string name="t_time_zone_settings">منطقه زمانی (settings)</string>
+    <string name="t_timezone">منطقه زمانی</string>
+    <string name="t_total_ram_bytes">RAM کل (بایت)</string>
+    <string name="t_touch_exploration_enabled">کاوش لمسی فعال</string>
+    <string name="t_touch_exploration_granted_services">سرویس‌های دارای کاوش لمسی</string>
+    <string name="t_tracerpid_debugger">TracerPid (اشکال‌زدا)</string>
+    <string name="t_ufs_model">مدل UFS</string>
+    <string name="t_ufs_revision">بازبینی UFS</string>
+    <string name="t_ufs_vendor">فروشنده UFS</string>
+    <string name="t_uid">UID</string>
+    <string name="t_uid_coherence">همخوانی UID/GID</string>
+    <string name="t_uptime_s">زمان روشن‌بودن (ثانیه)</string>
+    <string name="t_user_serial_number">شماره سریال کاربر</string>
+    <string name="t_oaid">OAID (شناسه ناشناس MSA)</string>
+    <string name="t_vaid">VAID (شناسه ناشناس فروشنده MSA)</string>
+    <string name="t_aaid_msa">AAID (شناسه ناشناس برنامه MSA)</string>
+    <string name="t_udid">UDID (MSA)</string>
+    <string name="t_extm_uuid">extm_uuid (Xiaomi)</string>
+    <string name="t_op_security_uuid">op_security_uuid (OnePlus)</string>
+    <string name="t_user_creation_time">زمان ایجاد کاربر</string>
+    <string name="t_vendor_patch_level">سطح وصله فروشنده</string>
+    <string name="t_verified_boot_hash_vbmeta_digest">هش verified boot / چکیده vbmeta</string>
+    <string name="t_verified_boot_key">کلید verified boot</string>
+    <string name="t_verified_boot_state">وضعیت verified boot</string>
+    <string name="t_prop_area_tamper">دستکاری ناحیه property (حفره/زمینه)</string>
+    <string name="t_supplementary_groups">گروه‌های تکمیلی (3009=AID_READPROC)</string>
+    <string name="t_version_codename">نام رمز نسخه</string>
+    <string name="t_webview_provider">ارائه‌دهنده WebView</string>
+    <string name="t_webview_user_agent">user agent WebView</string>
+    <string name="t_wi_fi_bssid">Wi-Fi BSSID</string>
+    <string name="t_wi_fi_ip">Wi-Fi IP</string>
+    <string name="t_wi_fi_mac_wifiinfo">Wi-Fi MAC (WifiInfo)</string>
+    <string name="t_wi_fi_mac_settings">Wi-Fi MAC (settings)</string>
+    <string name="t_wi_fi_rssi">Wi-Fi RSSI</string>
+    <string name="t_wi_fi_ssid">Wi-Fi SSID</string>
+    <string name="t_wi_fi_frequency_mhz">فرکانس Wi-Fi (MHz)</string>
+    <string name="t_wi_fi_link_speed_mbps">سرعت لینک Wi-Fi (Mbps)</string>
+    <string name="t_wi_fi_network_id">شناسه شبکه Wi-Fi</string>
+    <string name="t_widevine_device_id">شناسه دستگاه Widevine</string>
+    <string name="t_widevine_vendor_version">فروشنده/نسخه Widevine</string>
+    <string name="t_xposed_lsposed_riru">Xposed / LSPosed / Riru</string>
+    <string name="t_xposed_manager_apps">برنامه‌های مدیر Xposed</string>
+    <string name="t_cpuinfo">cpuinfo</string>
+    <string name="t_emmc_cid">eMMC CID</string>
+    <string name="t_emmc_oem_id">eMMC OEM id</string>
+    <string name="t_emmc_manufacture_date">تاریخ ساخت eMMC</string>
+    <string name="t_emmc_manufacturer_id">شناسه سازنده eMMC</string>
+    <string name="t_emmc_name">نام eMMC</string>
+    <string name="t_emmc_serial">سریال eMMC</string>
+    <string name="t_env">env %1$s</string>
+    <string name="t_http_agent">http.agent</string>
+    <string name="t_meminfo">meminfo</string>
+    <string name="t_querybroadcastreceivers_boot_completed">queryBroadcastReceivers (BOOT_COMPLETED)</string>
+    <string name="t_queryinstrumentation_all">queryInstrumentation (همه)</string>
+    <string name="t_queryintentactivities_call_tel">queryIntentActivities (CALL tel:)</string>
+    <string name="t_queryintentactivities_main_launcher">queryIntentActivities (MAIN/LAUNCHER)</string>
+    <string name="t_queryintentactivities_view_http">queryIntentActivities (VIEW http)</string>
+    <string name="t_queryintentcontentproviders_view">queryIntentContentProviders (VIEW)</string>
+    <string name="t_queryintentservices_main">queryIntentServices (MAIN)</string>
+    <string name="t_resolveactivity_main_launcher">resolveActivity (MAIN/LAUNCHER)</string>
+    <string name="t_su_binary">باینری su</string>
+    <string name="t_su_on_path">su در PATH</string>
+    <string name="t_tel_networkOperatorName">نام اپراتور شبکه</string>
+    <string name="t_tel_networkOperator">اپراتور شبکه (MCC+MNC)</string>
+    <string name="t_tel_networkCountryIso">ISO کشور شبکه</string>
+    <string name="t_tel_simOperatorName">نام اپراتور SIM</string>
+    <string name="t_tel_simOperator">اپراتور SIM (MCC+MNC)</string>
+    <string name="t_tel_simCountryIso">ISO کشور SIM</string>
+    <string name="t_tel_simState">وضعیت SIM</string>
+    <string name="t_tel_phoneType">نوع تلفن</string>
+    <string name="t_tel_networkType">نوع شبکه داده</string>
+    <string name="t_tel_dataState">وضعیت داده</string>
+    <string name="t_tel_callState">وضعیت تماس</string>
+    <string name="t_tel_isNetworkRoaming">رومینگ شبکه</string>
+    <string name="t_tel_line1Number">شماره خط ۱</string>
+    <string name="t_tel_voiceMailNumber">شماره پست صوتی</string>
+    <string name="t_tel_groupIdLevel1">Group ID level 1</string>
+    <string name="t_tel_mmsUserAgent">user agent MMS</string>
+    <string name="t_tel_mmsUAProfUrl">URL UAProf MMS</string>
+    <string name="t_tel_phoneCount">تعداد تلفن/SIM</string>
+    <string name="t_tel_isDataEnabled">داده فعال</string>
+    <string name="t_tel_isVoiceCapable">پشتیبانی از صدا</string>
+    <string name="t_tel_isSmsCapable">پشتیبانی از SMS</string>
+    <string name="t_tel_subscriberId">IMSI (subscriberId)</string>
+    <string name="t_tel_deviceSoftwareVersion">نسخه نرم‌افزار دستگاه</string>
+    <string name="t_self_packageName">نام این بسته</string>
+    <string name="t_self_uid">UID این برنامه</string>
+    <string name="t_self_packagesForUid">بسته‌های به‌اشتراک‌گذارنده این UID</string>
+    <string name="t_self_nameForUid">نام برای UID</string>
+    <string name="t_self_packageGids">GIDهای بسته</string>
+    <string name="t_self_packageUid">UID بسته (PM)</string>
+    <string name="t_self_installer">بسته نصب‌کننده</string>
+    <string name="t_self_installSource">منبع نصب</string>
+    <string name="t_self_times">اولین نصب / آخرین به‌روزرسانی</string>
+    <string name="t_self_versionCode">versionCode این برنامه</string>
+    <string name="t_self_targetSdk">targetSdk این برنامه</string>
+    <string name="t_self_enabledSetting">وضعیت فعال‌سازی برنامه</string>
+    <string name="t_self_isInstantApp">Instant app</string>
+    <string name="t_self_isPackageSuspended">بسته معلق شده</string>
+    <string name="t_self_autoRevokeWhitelisted">معاف از لغو خودکار</string>
+    <string name="t_self_syntheticDetails">جزئیات ترکیبی برنامه فعال</string>
+    <string name="t_self_whitelistedRestricted">مجوزهای محدود مجاز</string>
+    <string name="t_self_moduleInfo">اطلاعات ماژول</string>
+    <string name="t_self_checkAdId">checkPermission(AD_ID)</string>
+    <string name="t_self_launchIntent">دارای intent راه‌اندازی</string>
+    <string name="t_self_leanbackIntent">دارای intent راه‌اندازی leanback</string>
+    <string name="t_self_xposedMeta">کلیدهای متادیتای Xposed خود</string>
+    <string name="t_self_resourcesForApp">منابع برنامه</string>
+    <string name="t_content_command">ارائه‌دهنده از طریق فرمان `content`</string>
+    <string name="t_test_harness">در حال اجرا در test harness</string>
+    <string name="t_user_test_harness">در حال اجرا در test harness کاربر</string>
+    <string name="t_user_a_monkey">تحت کنترل Monkey</string>
+    <string name="t_low_ram_device">دستگاه با RAM کم</string>
+    <string name="t_vpn_active">VPN فعال</string>
+    <string name="t_vpn_interfaces">رابط‌های tunnel</string>
+    <string name="t_location_providers">ارائه‌دهندگان مکان</string>
+    <string name="t_mock_location">مکان جعلی</string>
+    <string name="t_debugger_attached">اشکال‌زدا متصل شده</string>
+    <string name="t_device_secure">قفل صفحه تنظیم شده</string>
+    <string name="t_sensor_vendors">فروشندگان حسگر</string>
+    <string name="t_input_devices">دستگاه‌های ورودی</string>
+    <string name="t_appop">App op: %1$s</string>
+    <string name="t_mem_total_kb">RAM کل (kB)</string>
+    <string name="t_ns_mnt">namespace mount</string>
+    <string name="t_ns_net">namespace شبکه</string>
+    <string name="t_ns_pid">namespace PID</string>
+    <string name="t_ns_uts">namespace UTS</string>
+    <string name="t_ns_ipc">namespace IPC</string>
+    <string name="t_ns_user">namespace کاربر</string>
+    <string name="t_ns_cgroup">namespace cgroup</string>
+    <string name="t_ns_time">namespace زمان</string>
+    <string name="t_proc_exe">فایل اجرایی فرآیند</string>
+    <string name="t_proc_cwd">دایرکتوری کاری</string>
+    <string name="t_proc_root">ریشه سیستم فایل</string>
+    <string name="t_seccomp">حالت seccomp</string>
+    <string name="t_no_new_privs">NoNewPrivs</string>
+    <string name="t_cap_effective">capabilityهای مؤثر</string>
+    <string name="t_cap_bounding">capabilityهای bounding</string>
+    <string name="t_status_uid">خط UID (کرنل)</string>
+    <string name="t_status_gid">خط GID (کرنل)</string>
+    <string name="t_status_groups">گروه‌های تکمیلی</string>
+    <string name="t_status_threads">رشته‌ها</string>
+    <string name="t_selinux_attr">زمینه SELinux (attr/current)</string>
+    <string name="t_cgroup">Cgroup</string>
+    <string name="t_architecture">معماری</string>
+    <string name="t_zero_width_names">نام‌های دارای نویسه با عرض صفر / نامرئی</string>
+    <string name="err_probe_timeout">زمان کاوش به پایان رسید</string>
+    <string name="t_isrc_self_installer">منبع نصب (self): installer</string>
+    <string name="t_isrc_self_initiating">منبع نصب (self): initiating</string>
+    <string name="t_isrc_self_originating">منبع نصب (self): originating</string>
+    <string name="t_isrc_self_pkgsource">منبع نصب (self): packageSource</string>
+    <string name="t_isrc_self_initiator_sig">منبع نصب (self): گواهی initiator در برابر نصب‌شده</string>
+    <string name="t_isrc_gap_jvm_store_pm_denies">ناهمخوانی: JVM installer فروشگاه می‌گوید، pm رد می‌کند (hook)</string>
+    <string name="t_isrc_gap_jvm_pm_other">ناهمخوانی: installer JVM ≠ installer pm (دیده‌شدن)</string>
+    <string name="t_isrc_gap_installer_ne_initiating">ناهمخوانی: installer ≠ initiating</string>
+    <string name="t_isrc_gap_store_installer_sideload">ناهمخوانی: installer فروشگاه، initiating sideload</string>
+    <string name="t_isrc_gap_installer_set_no_initiator">ناهمخوانی: installer تنظیم‌شده، initiating null</string>
+    <string name="t_isrc_gap_initiator_store_no_installer">ناهمخوانی: initiating فروشگاه، installer null</string>
+    <string name="t_isrc_gap_initiator_sig_mismatch">ناهمخوانی: گواهی initiator ثبت‌شده ≠ نصب‌شده</string>
+    <string name="t_isrc_gap_initiator_orphan">ناهمخوانی: بستهٔ initiating نصب نشده</string>
+    <string name="t_isrc_gap_installer_orphan">ناهمخوانی: بستهٔ installer نصب نشده</string>
+    <string name="t_isrc_gap_originating_ne_initiating">ناهمخوانی: originating ≠ initiating (به نمایندگی)</string>
+    <string name="t_isrc_gap_ghost_user_install">ناهمخوانی: برنامهٔ کاربر بدون منبع نصب</string>
+    <string name="t_isrc_gap_system_shell_installed">ناهمخوانی: برنامهٔ سیستمی نصب‌شده از طریق shell</string>
+    <string name="t_isrc_gap_update_owner_drift">ناهمخوانی: updateOwner ≠ installer</string>
+    <string name="t_isrc_gap_self_declared_installer">ناهمخوانی: برنامه installer خودش است</string>
+    <string name="t_installed_packages_diff">بسته‌های نصب‌شده: متفاوت (JVM x pm)</string>
+    <string name="t_installed_applications_diff">برنامه‌های نصب‌شده: متفاوت (JVM x pm)</string>
+    <string name="t_selinux_status">صفحهٔ status سلینوکس (policyload/seq)</string>
+    <string name="t_selinux_policy_probe">کاوشگر سیاست SELinux (نوع‌ها + AVC)</string>
+    <string name="t_manager_doors">مدیر root/Xposed: دیده‌شدن بر پایهٔ درِ PackageManager</string>
+    <string name="t_net_sock_diag">سیاست Netlink sock_diag</string>
+    <string name="n_net_sock_diag">برنامهٔ محدودشده باید NETLINK_SOCK_DIAG را رد شود؛ رسیدن پاسخ یعنی سیاست netlink سست شده است.</string>
+    <string name="t_mount_peer_gap">یکپارچگی peer-group سوارسازی‌ها</string>
+    <string name="n_mount_peer_gap">مجموعهٔ شناسه‌های peer-group باید از هر عدسه یکسان خوانده شود؛ شکاف در یک عدسه یعنی سوارسازی پنهان.</string>
+    <string name="t_mount_fdinfo_mnt">شناسهٔ سوارسازی در برابر توصیف‌گرهای باز</string>
+    <string name="n_mount_fdinfo_mnt">توصیف‌گر بازی که mnt_id آن در mountinfo نیست به سوارسازی پنهان از دید اشاره دارد.</string>
+    <string name="t_proc_readproc_gid">GID 3009 زایگوت (AID_READPROC)</string>
+    <string name="n_proc_readproc_gid">نبود GID مکمل AID_READPROC ردی است که برخی ماژول‌های پنهان‌سازی برنامه بر جای می‌گذارند.</string>
+    <string name="t_proc_fd_graph">سرشماری توصیف‌گرها</string>
+    <string name="t_mem_anon_exec">نگاشت‌های اجراییِ بی‌نام</string>
+    <string name="n_mem_anon_exec">صفحات اجرایی بدون فایل پشتیبان باقی‌ماندهٔ معمول تزریق/Zygisk هستند؛ شمار باید میان عدسه‌ها یکسان باشد.</string>
+    <string name="t_kernel_selfbuild">هستهٔ خودساخته / وصله‌خورده</string>
+    <string name="n_kernel_selfbuild">هستهٔ کارخانه نشانهٔ ساخت -dirty، git یا SUSFS ندارد؛ نشانه‌ها باید میان عدسه‌ها یکسان باشند.</string>
+    <string name="t_tee_soter">سرویس Soter در برابر ویژگی</string>
+    <string name="n_tee_soter">برنامهٔ سرویس Soter از Tencent را با وضعیت ویژگی سرویس آن مقابله می‌کند.</string>
+    <string name="t_proc_cgroup_format">قالب مسیر cgroup</string>
+    <string name="n_proc_cgroup_format">کانتینر همتاسازی‌شده / دو-برنامه‌ای مسیر یکپارچهٔ cgroup را از شکل متعارف uid_/pid_ منحرف می‌کند.</string>
+</resources>

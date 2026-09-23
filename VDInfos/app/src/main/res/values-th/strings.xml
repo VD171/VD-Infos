@@ -1,0 +1,434 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    ======================================================================
+     VD INFOS  ::  method debugger
+     Read every device info by every method, then compare. A divergence is a hook.
+
+     Copyright (C) 2026  VD171
+     SPDX-License-Identifier: AGPL-3.0-or-later
+
+     Free software under the GNU AGPL v3 or later. NETWORK COPYLEFT: run a
+     modified version, even as a service, and you MUST offer its source.
+
+     Site           : https://vd171.ru
+     Site           : https://vd.priv8.ru
+     Source         : https://github.com/VD171/VD-Infos
+     GitHub         : @VD171 https://github.com/VD171
+     XDA-Developers : @VD171 https://xdaforums.com/m/vd171.4699873/
+     Telegram       : @VD_Priv8 https://t.me/VD_Priv8
+     Discord        : @VD.Priv8 https://discord.com/users/1296831918989639721
+     E-mail         : vd.priv8@pm.me
+    ======================================================================
+-->
+<resources>
+    <string name="app_tagline">ตัวดีบักเมธอด</string>
+
+    <!-- การกระทำ -->
+    <string name="action_reveal">แสดงข้อมูลระบุตัวตน</string>
+    <string name="action_export">แชร์รายงาน</string>
+    <string name="action_save">บันทึกลงไฟล์</string>
+    <string name="action_rescan">สแกนอีกครั้ง</string>
+    <string name="save_ok">บันทึกรายงานแล้ว</string>
+    <string name="save_fail">บันทึกไฟล์ไม่สำเร็จ</string>
+
+    <!-- สรุป -->
+    <plurals name="summary_divergences">
+        <item quantity="other">%d ความไม่สอดคล้อง</item>
+    </plurals>
+    <string name="summary_line">%1$d/%2$d โพรบ · %3$d ตรงกัน</string>
+    <string name="summary_native_off"> · เนทีฟไม่พร้อมใช้งาน</string>
+
+    <!-- ค้นหาและกรอง -->
+    <string name="search_hint">ค้นหา prop, ค่า…</string>
+    <string name="filter_divergent">เฉพาะที่ไม่สอดคล้อง</string>
+    <string name="filter_all">ทั้งหมด</string>
+
+    <!-- คำตัดสิน -->
+    <string name="verdict_mismatch">ไม่สอดคล้อง</string>
+    <string name="verdict_match">ตรงกัน</string>
+    <string name="verdict_single">เดี่ยว</string>
+    <string name="verdict_info">ข้อมูล</string>
+    <string name="reading_context_only">บริบท</string>
+    <string name="reading_empty">(ว่าง)</string>
+    <string name="verdict_empty">ว่าง</string>
+    <string name="verdict_error">ข้อผิดพลาด</string>
+
+    <!-- หมวดหมู่ -->
+    <string name="cat_identity">ข้อมูลระบุตัวตน</string>
+    <string name="cat_fingerprint">Fingerprint</string>
+    <string name="cat_telephony">โทรศัพท์ / RIL</string>
+    <string name="cat_network">เครือข่าย</string>
+    <string name="cat_locale">Locale / เวลา</string>
+    <string name="cat_boot">Boot / เคอร์เนล</string>
+    <string name="cat_build">Build / ROM</string>
+    <string name="cat_display">การแสดงผล</string>
+    <string name="cat_sensors">เซ็นเซอร์</string>
+    <string name="cat_media">มีเดีย / DRM</string>
+    <string name="cat_packages">แพ็กเกจ</string>
+    <string name="cat_accounts">บัญชี</string>
+    <string name="cat_webview">WebView</string>
+    <string name="cat_hardware">ฮาร์ดแวร์</string>
+    <string name="cat_storage">ที่จัดเก็บ</string>
+    <string name="cat_process">โปรเซส</string>
+    <string name="cat_security">ความปลอดภัย</string>
+    <string name="cat_integrity">Root / ความสมบูรณ์</string>
+    <string name="cat_emulator">อีมูเลเตอร์</string>
+    <string name="cat_system">ระบบ</string>
+
+    <!-- การแจ้งเตือนการเปลี่ยนแปลงในพื้นหลัง -->
+    <string name="action_about">เกี่ยวกับ</string>
+    <string name="action_close">ปิด</string>
+    <string name="action_copy">คัดลอก</string>
+    <string name="copied">คัดลอกแล้ว</string>
+    <string name="about_developer">ผู้พัฒนา</string>
+    <string name="about_source">ซอร์สโค้ด</string>
+    <string name="about_license">สัญญาอนุญาต</string>
+    <string name="about_contacts">ติดต่อ</string>
+    <string name="about_privacy">ไม่มีการจัดเก็บ ส่ง หรือถ่ายโอนข้อมูลใด ๆ ทุกอย่างทำงานบนอุปกรณ์ และรายงานจะออกจากอุปกรณ์เฉพาะเมื่อคุณแชร์หรือบันทึกเองเท่านั้น</string>
+    <string name="crash_title">ข้อผิดพลาดที่ไม่คาดคิด</string>
+    <string name="crash_body">แอปพบข้อผิดพลาดที่ไม่คาดคิด ไม่มีการส่งอะไรไปที่ใดทั้งสิ้น คุณสามารถคัดลอกรายละเอียดด้านล่างและส่งให้ผู้พัฒนาได้</string>
+    <string name="about_project">โปรเจกต์</string>
+    <string name="about_support">ดาวน์โหลดและการสนับสนุน</string>
+    <string name="action_clear">ล้างการค้นหา</string>
+    <string name="lang_dialog_title">ภาษา</string>
+    <string name="lang_dialog_body">เลือกภาษาของแอป หรือใช้ตามการตั้งค่าระบบ</string>
+    <string name="lang_system_default">ค่าเริ่มต้นของระบบ</string>
+    <string name="lang_apply">ใช้</string>
+
+    <!-- วิธีแก้ไข -->
+    <string name="sol_title">วิธีแก้ไข</string>
+    <string name="sol_boot">นี่คือสิ่งที่ attestation ของฮาร์ดแวร์ (TEE) รายงานเกี่ยวกับสถานะบูต เครื่องมือข้าม keybox (TrickyStore, TEE Simulator, OhMyKeyMint) จะเขียน attestation ใหม่เฉพาะแอปที่คุณระบุเท่านั้น เพิ่มแพ็กเกจของแอปนี้ลงในรายการเป้าหมายของเครื่องมือเหล่านั้น (เช่น target.txt) เพื่อให้ attestation รายงานว่าอุปกรณ์ถูกล็อกและ verified boot เป็นสีเขียว</string>
+    <string name="sol_root_detector">แอปที่ติดตั้งเหล่านี้มองหา root, อีมูเลเตอร์ หรือ Play Integrity ที่ล้มเหลว เพิ่มแพ็กเกจที่พบที่นี่เป็นเป้าหมายในเฟรมเวิร์กการซ่อนของคุณ (HMA-OSS) เพื่อให้แอปและโมดูล root ของคุณถูกซ่อนจากตัวตรวจจับเหล่านี้</string>
+    <string name="sol_spoof">การตั้งค่านี้อ่านได้แตกต่างกันในเส้นทางที่แอปอาจใช้ (spoof ไม่ครอบคลุมทั้งหมด) เพิ่มการตั้งค่าลงในพรีเซ็ต spoof ของ HMA-OSS เพื่อให้ทุกเส้นทางการอ่านคืนค่าเดียวกัน</string>
+    <string name="sol_attest_patch">key attestation รายงานระดับแพตช์ต่างจากพร็อพเพอร์ตี้ระบบ ตั้งค่าในเครื่องมือ keybox ของคุณ - TrickyStore ที่ security_patch.txt (วันที่ หรือ system=/boot=/vendor=/all= หรือ \'prop\'); OhMyKeymint ที่ config.toml ใต้ [trust] ทั้งคู่เปลี่ยนเฉพาะ attestation ไม่ใช่พร็อพเพอร์ตี้</string>
+    <string name="sol_patch_prop">Build.VERSION.SECURITY_PATCH (เฟรมเวิร์ก) กับพร็อพเพอร์ตี้ ro.build.version.security_patch แสดงวันที่ต่างกัน ปรับให้ตรงกันด้วย resetprop security_patch.txt และ config.toml ไม่ช่วยตรงนี้ - มันเปลี่ยนเฉพาะ key attestation ไม่ใช่พร็อพเพอร์ตี้</string>
+
+    <string name="note_gsf">ไม่มีใน Android 16 ขึ้นไป: ที่จัดเก็บบริการ Google ย้ายไปยัง Play Services ซึ่ง Google ตั้งชื่อประตูของมันเองว่า &quot;do.not.use&quot; และไม่ตอบสนองแอปอื่น ทั้งสองถูกลองด้านบน</string>
+    <string name="t_attestation_app_id">รหัสแอปของการรับรอง (แพ็กเกจ + ลายเซ็น)</string>
+    <string name="t_dev_ptmx_present">มี /dev/ptmx</string>
+    <string name="t_documents_providers">DocumentsProviders ที่ลงทะเบียน</string>
+    <string name="t_kernel_modules">โมดูลเคอร์เนลที่โหลดอยู่ (KernelSU/SuSFS)</string>
+    <string name="t_kernel_syscall_fingerprint">เวอร์ชันเคอร์เนลจากลายนิ้วมือ syscall</string>
+    <string name="t_key_inside_secure_hw">คีย์อยู่ในฮาร์ดแวร์นิรภัย (KeyInfo)</string>
+    <string name="t_keybox_ec_vs_rsa">ความครอบคลุมของ keybox: การรับรอง EC เทียบกับ RSA</string>
+    <string name="t_local_tmp_contents">เนื้อหาใน /data/local/tmp</string>
+    <string name="t_native_lib_origin">ที่มาของไลบรารีเนทีฟ (dladdr)</string>
+    <string name="t_own_debuggable">แอปนี้: debuggable / บิลด์ดีบัก</string>
+    <string name="t_play_store_version">เวอร์ชัน Play Store / GMS</string>
+    <string name="t_resolv_conf">resolv.conf / การตั้งค่า DNS</string>
+    <string name="t_root_backup_tools">มีเครื่องมือสำรองข้อมูลที่ใช้รูท</string>
+    <string name="t_su_libc_inline_hook">su: syscall ดิบ เทียบกับ libc และ Java</string>
+    <string name="t_system_build_prop">/system/build.prop</string>
+    <string name="t_system_build_prop_present">มี /system/build.prop</string>
+    <string name="t_adb_enabled">เปิด ADB แล้ว</string>
+    <string name="t_apatch">APatch</string>
+    <string name="t_accessibility_enabled">เปิดการช่วยเหลือพิเศษแล้ว</string>
+    <string name="t_accounts">บัญชี</string>
+    <string name="t_active_subscriptions">การสมัครสมาชิกที่ใช้งานอยู่</string>
+    <string name="t_advertising_id">ID โฆษณา</string>
+    <string name="t_advertising_id_keys_settings_stores">คีย์ ID โฆษณา (settings)</string>
+    <string name="t_spoof_consistency">ความสอดคล้อง spoof: %1$s</string>
+    <string name="t_spoof_sweep">การกวาดความสอดคล้อง spoof (ทุก settings)</string>
+    <string name="t_analysis_emulator_apps">แอปวิเคราะห์ / อีมูเลเตอร์</string>
+    <string name="t_android_id">Android ID</string>
+    <string name="t_another_process_cmdline_init">cmdline ของโปรเซสอื่น (init)</string>
+    <string name="t_another_process_maps_init">maps ของโปรเซสอื่น (init)</string>
+    <string name="t_attestation_keymaster_version">เวอร์ชัน attestation / keymaster</string>
+    <string name="t_attestation_available">attestation พร้อมใช้งาน</string>
+    <string name="t_attestation_provisioning_signer">provisioning attestation (ผู้ลงนาม)</string>
+    <string name="t_attestation_provisioning_info">Attestation ProvisioningInfo (RKP)</string>
+    <string name="t_attestation_security_level">ระดับความปลอดภัย attestation</string>
+    <string name="t_block_untrusted_touches">บล็อกการสัมผัสที่ไม่น่าเชื่อถือ</string>
+    <string name="t_bluetooth_mac">MAC บลูทูธ</string>
+    <string name="t_bluetooth_bonded_devices">อุปกรณ์บลูทูธที่จับคู่แล้ว</string>
+    <string name="t_bluetooth_name">ชื่อบลูทูธ</string>
+    <string name="t_bluetooth_name_bt_name">ชื่อบลูทูธ (bt_name)</string>
+    <string name="t_bluetooth_name_btname">ชื่อบลูทูธ (btname)</string>
+    <string name="t_bluetooth_name_settings">ชื่อบลูทูธ (settings)</string>
+    <string name="t_bluetooth_scan_mode">โหมดสแกนบลูทูธ</string>
+    <string name="t_bluetooth_state">สถานะบลูทูธ</string>
+    <string name="t_board">Board</string>
+    <string name="t_boot_id">Boot ID</string>
+    <string name="t_boot_count">จำนวนครั้งที่บูต</string>
+    <string name="t_boot_patch_level">ระดับแพตช์ boot</string>
+    <string name="t_boot_time_epoch_proc_stat_btime">เวลาบูต (epoch, /proc/stat btime)</string>
+    <string name="t_bootloader">Bootloader</string>
+    <string name="t_brand">แบรนด์</string>
+    <string name="t_build_id">Build ID</string>
+    <string name="t_build_host">Build host</string>
+    <string name="t_build_tags">Build tags</string>
+    <string name="t_build_time_utc_epoch">เวลา build (UTC epoch)</string>
+    <string name="t_build_type">ชนิด build</string>
+    <string name="t_cpu_cores">คอร์ CPU</string>
+    <string name="t_call_log_entries">รายการบันทึกการโทร</string>
+    <string name="t_cameras">กล้อง</string>
+    <string name="t_cell_info">ข้อมูลเซลล์</string>
+    <string name="t_data_roaming">โรมมิ่งข้อมูล</string>
+    <string name="t_default_input_method">วิธีป้อนข้อมูลเริ่มต้น</string>
+    <string name="t_developer_settings_enabled">เปิดตัวเลือกสำหรับผู้พัฒนาแล้ว</string>
+    <string name="t_device">Device</string>
+    <string name="t_device_locked">อุปกรณ์ถูกล็อก</string>
+    <string name="t_device_name">ชื่ออุปกรณ์</string>
+    <string name="t_display_id">Display ID</string>
+    <string name="t_display_metrics">เมตริกการแสดงผล</string>
+    <string name="t_emulator_files">ไฟล์อีมูเลเตอร์</string>
+    <string name="t_enabled_accessibility_services">บริการช่วยเหลือพิเศษที่เปิดใช้</string>
+    <string name="t_enabled_input_methods">วิธีป้อนข้อมูลที่เปิดใช้</string>
+    <string name="t_fingerprint">Fingerprint</string>
+    <string name="t_gsf_id_hex">GSF ID (hex)</string>
+    <string name="t_gsf_id_raw">GSF ID (ดิบ)</string>
+    <string name="t_http_proxy">พร็อกซี HTTP</string>
+    <string name="t_hardware">ฮาร์ดแวร์</string>
+    <string name="t_hidden_api_policy">นโยบาย API ที่ซ่อน</string>
+    <string name="t_hidden_api_policy_p_apps">นโยบาย API ที่ซ่อน (แอป P)</string>
+    <string name="t_hidden_api_policy_pre_p_apps">นโยบาย API ที่ซ่อน (แอปก่อน P)</string>
+    <string name="t_hiding_cloaking_apps">แอปซ่อนพราง</string>
+    <string name="t_hostname">Hostname</string>
+    <string name="t_imei">IMEI</string>
+    <string name="t_imsi_subscriber">IMSI (ผู้ใช้บริการ)</string>
+    <string name="t_incremental">Incremental</string>
+    <string name="t_injected_libs_proc_self_maps">ไลบรารีที่ถูกฉีด (/proc/self/maps)</string>
+    <string name="t_installed_app_signing_digests">ไดเจสต์ลายเซ็นแอปที่ติดตั้ง</string>
+    <string name="t_installed_applications">แอปพลิเคชันที่ติดตั้ง</string>
+    <string name="t_installed_input_methods">วิธีป้อนข้อมูลที่ติดตั้ง</string>
+    <string name="t_installed_packages">แพ็กเกจที่ติดตั้ง</string>
+    <string name="t_installed_packages_list">แพ็กเกจที่ติดตั้ง (รายการ)</string>
+    <string name="t_kernel_release">เคอร์เนล (release)</string>
+    <string name="t_kernel_version">เคอร์เนล (เวอร์ชัน)</string>
+    <string name="t_kernel_cmdline">cmdline เคอร์เนล</string>
+    <string name="t_kernel_log">บันทึกเคอร์เนล</string>
+    <string name="t_kernel_stat">stat เคอร์เนล</string>
+    <string name="t_kernelsu">KernelSU</string>
+    <string name="t_limit_ad_tracking">จำกัดการติดตามโฆษณา</string>
+    <string name="t_locale">Locale</string>
+    <string name="t_mac">MAC %1$s</string>
+    <string name="t_meid">MEID</string>
+    <string name="t_magisk">Magisk</string>
+    <string name="t_manufacturer">ผู้ผลิต</string>
+    <string name="t_model">รุ่น</string>
+    <string name="t_mount_markers_magisk_overlay">เครื่องหมาย mount (magisk/overlay)</string>
+    <string name="t_network_interfaces">อินเทอร์เฟซเครือข่าย</string>
+    <string name="t_os_release">เวอร์ชัน OS</string>
+    <string name="t_os_security_patch_level">ระดับแพตช์ความปลอดภัย OS</string>
+    <string name="t_os_version_attested">เวอร์ชัน OS (รับรองแล้ว)</string>
+    <string name="t_pid">PID</string>
+    <string name="t_primary_abi">ABI หลัก</string>
+    <string name="t_primary_imei">IMEI หลัก</string>
+    <string name="t_product">Product</string>
+    <string name="t_root_manager_apps">แอปจัดการ root</string>
+    <string name="t_root_tools_apps">เครื่องมือที่ใช้ root</string>
+    <string name="t_rooted_apps">แอปที่ต้องใช้ root</string>
+    <string name="t_root_detector_apps">แอปตรวจจับ root</string>
+    <string name="t_suspicious_apps">แอปที่น่าสงสัย</string>
+    <string name="t_running_app_processes">โปรเซสแอปที่กำลังทำงาน</string>
+    <string name="t_running_services">บริการที่กำลังทำงาน</string>
+    <string name="t_sdk_int">SDK int</string>
+    <string name="t_selinux_mls_enabled">เปิด SELinux MLS แล้ว</string>
+    <string name="t_selinux_context_self">บริบท SELinux (ตนเอง)</string>
+    <string name="t_selinux_enforce">SELinux enforce</string>
+    <string name="t_selinux_policy_version">เวอร์ชัน policy SELinux</string>
+    <string name="t_sim_serial_iccid">ซีเรียล SIM (ICCID)</string>
+    <string name="t_screen_capture_disabled_policy">ปิดการจับภาพหน้าจอ (นโยบาย)</string>
+    <string name="t_security_patch">แพตช์ความปลอดภัย</string>
+    <string name="t_sensor_count">จำนวนเซ็นเซอร์</string>
+    <string name="t_sensors">เซ็นเซอร์</string>
+    <string name="t_serial">ซีเรียล</string>
+    <string name="t_soc_family">ตระกูล SoC</string>
+    <string name="t_soc_id">SoC ID</string>
+    <string name="t_soc_machine">เครื่อง SoC</string>
+    <string name="t_soc_serial_number">หมายเลขซีเรียล SoC</string>
+    <string name="t_storage_data_total_bytes">ที่จัดเก็บ /data รวม (ไบต์)</string>
+    <string name="t_system_features_count">System features (จำนวน)</string>
+    <string name="t_system_features_full_set">System features (ชุดเต็ม)</string>
+    <string name="t_tether_dun_required">ต้องใช้ tether DUN</string>
+    <string name="t_this_app_installer">ตัวติดตั้งของแอปนี้</string>
+    <string name="t_this_app_signing_sha_256">SHA-256 ลายเซ็นของแอปนี้</string>
+    <string name="t_time_zone_settings">เขตเวลา (settings)</string>
+    <string name="t_timezone">เขตเวลา</string>
+    <string name="t_total_ram_bytes">RAM รวม (ไบต์)</string>
+    <string name="t_touch_exploration_enabled">เปิดการสำรวจด้วยการสัมผัสแล้ว</string>
+    <string name="t_touch_exploration_granted_services">บริการที่มีการสำรวจด้วยการสัมผัส</string>
+    <string name="t_tracerpid_debugger">TracerPid (ตัวดีบัก)</string>
+    <string name="t_ufs_model">รุ่น UFS</string>
+    <string name="t_ufs_revision">รีวิชัน UFS</string>
+    <string name="t_ufs_vendor">ผู้จำหน่าย UFS</string>
+    <string name="t_uid">UID</string>
+    <string name="t_uid_coherence">ความสอดคล้องของ UID/GID</string>
+    <string name="t_uptime_s">เวลาทำงาน (วินาที)</string>
+    <string name="t_user_serial_number">หมายเลขซีเรียลผู้ใช้</string>
+    <string name="t_oaid">OAID (id นิรนาม MSA)</string>
+    <string name="t_vaid">VAID (id นิรนามผู้จำหน่าย MSA)</string>
+    <string name="t_aaid_msa">AAID (id นิรนามแอป MSA)</string>
+    <string name="t_udid">UDID (MSA)</string>
+    <string name="t_extm_uuid">extm_uuid (Xiaomi)</string>
+    <string name="t_op_security_uuid">op_security_uuid (OnePlus)</string>
+    <string name="t_user_creation_time">เวลาสร้างผู้ใช้</string>
+    <string name="t_vendor_patch_level">ระดับแพตช์ผู้จำหน่าย</string>
+    <string name="t_verified_boot_hash_vbmeta_digest">แฮช verified boot / ไดเจสต์ vbmeta</string>
+    <string name="t_verified_boot_key">คีย์ verified boot</string>
+    <string name="t_verified_boot_state">สถานะ verified boot</string>
+    <string name="t_prop_area_tamper">การดัดแปลงพื้นที่ property (ช่องโหว่/บริบท)</string>
+    <string name="t_supplementary_groups">กลุ่มเสริม (3009=AID_READPROC)</string>
+    <string name="t_version_codename">ชื่อรหัสเวอร์ชัน</string>
+    <string name="t_webview_provider">ผู้ให้บริการ WebView</string>
+    <string name="t_webview_user_agent">WebView user agent</string>
+    <string name="t_wi_fi_bssid">Wi-Fi BSSID</string>
+    <string name="t_wi_fi_ip">Wi-Fi IP</string>
+    <string name="t_wi_fi_mac_wifiinfo">Wi-Fi MAC (WifiInfo)</string>
+    <string name="t_wi_fi_mac_settings">Wi-Fi MAC (settings)</string>
+    <string name="t_wi_fi_rssi">Wi-Fi RSSI</string>
+    <string name="t_wi_fi_ssid">Wi-Fi SSID</string>
+    <string name="t_wi_fi_frequency_mhz">ความถี่ Wi-Fi (MHz)</string>
+    <string name="t_wi_fi_link_speed_mbps">ความเร็วลิงก์ Wi-Fi (Mbps)</string>
+    <string name="t_wi_fi_network_id">ID เครือข่าย Wi-Fi</string>
+    <string name="t_widevine_device_id">ID อุปกรณ์ Widevine</string>
+    <string name="t_widevine_vendor_version">ผู้จำหน่าย/เวอร์ชัน Widevine</string>
+    <string name="t_xposed_lsposed_riru">Xposed / LSPosed / Riru</string>
+    <string name="t_xposed_manager_apps">แอปจัดการ Xposed</string>
+    <string name="t_cpuinfo">cpuinfo</string>
+    <string name="t_emmc_cid">eMMC CID</string>
+    <string name="t_emmc_oem_id">eMMC OEM id</string>
+    <string name="t_emmc_manufacture_date">วันที่ผลิต eMMC</string>
+    <string name="t_emmc_manufacturer_id">ID ผู้ผลิต eMMC</string>
+    <string name="t_emmc_name">ชื่อ eMMC</string>
+    <string name="t_emmc_serial">ซีเรียล eMMC</string>
+    <string name="t_env">env %1$s</string>
+    <string name="t_http_agent">http.agent</string>
+    <string name="t_meminfo">meminfo</string>
+    <string name="t_querybroadcastreceivers_boot_completed">queryBroadcastReceivers (BOOT_COMPLETED)</string>
+    <string name="t_queryinstrumentation_all">queryInstrumentation (ทั้งหมด)</string>
+    <string name="t_queryintentactivities_call_tel">queryIntentActivities (CALL tel:)</string>
+    <string name="t_queryintentactivities_main_launcher">queryIntentActivities (MAIN/LAUNCHER)</string>
+    <string name="t_queryintentactivities_view_http">queryIntentActivities (VIEW http)</string>
+    <string name="t_queryintentcontentproviders_view">queryIntentContentProviders (VIEW)</string>
+    <string name="t_queryintentservices_main">queryIntentServices (MAIN)</string>
+    <string name="t_resolveactivity_main_launcher">resolveActivity (MAIN/LAUNCHER)</string>
+    <string name="t_su_binary">ไบนารี su</string>
+    <string name="t_su_on_path">su ใน PATH</string>
+    <string name="t_tel_networkOperatorName">ชื่อผู้ให้บริการเครือข่าย</string>
+    <string name="t_tel_networkOperator">ผู้ให้บริการเครือข่าย (MCC+MNC)</string>
+    <string name="t_tel_networkCountryIso">ISO ประเทศเครือข่าย</string>
+    <string name="t_tel_simOperatorName">ชื่อผู้ให้บริการ SIM</string>
+    <string name="t_tel_simOperator">ผู้ให้บริการ SIM (MCC+MNC)</string>
+    <string name="t_tel_simCountryIso">ISO ประเทศ SIM</string>
+    <string name="t_tel_simState">สถานะ SIM</string>
+    <string name="t_tel_phoneType">ชนิดโทรศัพท์</string>
+    <string name="t_tel_networkType">ชนิดเครือข่ายข้อมูล</string>
+    <string name="t_tel_dataState">สถานะข้อมูล</string>
+    <string name="t_tel_callState">สถานะการโทร</string>
+    <string name="t_tel_isNetworkRoaming">โรมมิ่งเครือข่าย</string>
+    <string name="t_tel_line1Number">หมายเลขสาย 1</string>
+    <string name="t_tel_voiceMailNumber">หมายเลขวอยซ์เมล</string>
+    <string name="t_tel_groupIdLevel1">Group ID level 1</string>
+    <string name="t_tel_mmsUserAgent">MMS user agent</string>
+    <string name="t_tel_mmsUAProfUrl">MMS UAProf URL</string>
+    <string name="t_tel_phoneCount">จำนวนโทรศัพท์/SIM</string>
+    <string name="t_tel_isDataEnabled">เปิดข้อมูลแล้ว</string>
+    <string name="t_tel_isVoiceCapable">รองรับเสียง</string>
+    <string name="t_tel_isSmsCapable">รองรับ SMS</string>
+    <string name="t_tel_subscriberId">IMSI (subscriberId)</string>
+    <string name="t_tel_deviceSoftwareVersion">เวอร์ชันซอฟต์แวร์อุปกรณ์</string>
+    <string name="t_self_packageName">ชื่อแพ็กเกจนี้</string>
+    <string name="t_self_uid">UID ของแอปนี้</string>
+    <string name="t_self_packagesForUid">แพ็กเกจที่ใช้ UID นี้ร่วมกัน</string>
+    <string name="t_self_nameForUid">ชื่อสำหรับ UID</string>
+    <string name="t_self_packageGids">GID แพ็กเกจ</string>
+    <string name="t_self_packageUid">UID แพ็กเกจ (PM)</string>
+    <string name="t_self_installer">แพ็กเกจตัวติดตั้ง</string>
+    <string name="t_self_installSource">แหล่งติดตั้ง</string>
+    <string name="t_self_times">ติดตั้งครั้งแรก / อัปเดตล่าสุด</string>
+    <string name="t_self_versionCode">versionCode ของแอปนี้</string>
+    <string name="t_self_targetSdk">targetSdk ของแอปนี้</string>
+    <string name="t_self_enabledSetting">สถานะการเปิดใช้แอป</string>
+    <string name="t_self_isInstantApp">Instant app</string>
+    <string name="t_self_isPackageSuspended">แพ็กเกจถูกระงับ</string>
+    <string name="t_self_autoRevokeWhitelisted">ยกเว้นการเพิกถอนอัตโนมัติ</string>
+    <string name="t_self_syntheticDetails">รายละเอียดสังเคราะห์ของแอปที่ทำงานอยู่</string>
+    <string name="t_self_whitelistedRestricted">สิทธิ์ที่จำกัดที่อนุญาต</string>
+    <string name="t_self_moduleInfo">ข้อมูลโมดูล</string>
+    <string name="t_self_checkAdId">checkPermission(AD_ID)</string>
+    <string name="t_self_launchIntent">มี intent เปิดใช้งาน</string>
+    <string name="t_self_leanbackIntent">มี intent เปิดใช้งาน leanback</string>
+    <string name="t_self_xposedMeta">คีย์เมทาดาทา Xposed ของตนเอง</string>
+    <string name="t_self_resourcesForApp">ทรัพยากรแอป</string>
+    <string name="t_content_command">ผู้ให้บริการผ่านคำสั่ง `content`</string>
+    <string name="t_test_harness">ทำงานใน test harness</string>
+    <string name="t_user_test_harness">ทำงานใน test harness ของผู้ใช้</string>
+    <string name="t_user_a_monkey">ควบคุมโดย Monkey</string>
+    <string name="t_low_ram_device">อุปกรณ์ RAM ต่ำ</string>
+    <string name="t_vpn_active">VPN ทำงานอยู่</string>
+    <string name="t_vpn_interfaces">อินเทอร์เฟซทันเนล</string>
+    <string name="t_location_providers">ผู้ให้บริการตำแหน่ง</string>
+    <string name="t_mock_location">ตำแหน่งจำลอง</string>
+    <string name="t_debugger_attached">แนบตัวดีบักแล้ว</string>
+    <string name="t_device_secure">ตั้งค่าล็อกหน้าจอแล้ว</string>
+    <string name="t_sensor_vendors">ผู้จำหน่ายเซ็นเซอร์</string>
+    <string name="t_input_devices">อุปกรณ์ป้อนข้อมูล</string>
+    <string name="t_appop">App op: %1$s</string>
+    <string name="t_mem_total_kb">RAM รวม (kB)</string>
+    <string name="t_ns_mnt">Mount namespace</string>
+    <string name="t_ns_net">Namespace เครือข่าย</string>
+    <string name="t_ns_pid">PID namespace</string>
+    <string name="t_ns_uts">UTS namespace</string>
+    <string name="t_ns_ipc">IPC namespace</string>
+    <string name="t_ns_user">Namespace ผู้ใช้</string>
+    <string name="t_ns_cgroup">cgroup namespace</string>
+    <string name="t_ns_time">Namespace เวลา</string>
+    <string name="t_proc_exe">ไฟล์ปฏิบัติการของโปรเซส</string>
+    <string name="t_proc_cwd">ไดเรกทอรีทำงาน</string>
+    <string name="t_proc_root">รากระบบไฟล์</string>
+    <string name="t_seccomp">โหมด seccomp</string>
+    <string name="t_no_new_privs">NoNewPrivs</string>
+    <string name="t_cap_effective">capability ที่มีผล</string>
+    <string name="t_cap_bounding">Bounding capability</string>
+    <string name="t_status_uid">บรรทัด UID (เคอร์เนล)</string>
+    <string name="t_status_gid">บรรทัด GID (เคอร์เนล)</string>
+    <string name="t_status_groups">กลุ่มเสริม</string>
+    <string name="t_status_threads">เธรด</string>
+    <string name="t_selinux_attr">บริบท SELinux (attr/current)</string>
+    <string name="t_cgroup">Cgroup</string>
+    <string name="t_architecture">สถาปัตยกรรม</string>
+    <string name="t_zero_width_names">ชื่อที่มีอักขระความกว้างศูนย์ / มองไม่เห็น</string>
+    <string name="err_probe_timeout">การตรวจหมดเวลา</string>
+    <string name="t_isrc_self_installer">แหล่งติดตั้ง (self): installer</string>
+    <string name="t_isrc_self_initiating">แหล่งติดตั้ง (self): initiating</string>
+    <string name="t_isrc_self_originating">แหล่งติดตั้ง (self): originating</string>
+    <string name="t_isrc_self_pkgsource">แหล่งติดตั้ง (self): packageSource</string>
+    <string name="t_isrc_self_initiator_sig">แหล่งติดตั้ง (self): cert ของ initiator เทียบกับที่ติดตั้ง</string>
+    <string name="t_isrc_gap_jvm_store_pm_denies">ความไม่สอดคล้อง: JVM บอก installer จากสโตร์ pm ปฏิเสธ (hook)</string>
+    <string name="t_isrc_gap_jvm_pm_other">ความไม่สอดคล้อง: installer JVM ≠ installer pm (การมองเห็น)</string>
+    <string name="t_isrc_gap_installer_ne_initiating">ความไม่สอดคล้อง: installer ≠ initiating</string>
+    <string name="t_isrc_gap_store_installer_sideload">ความไม่สอดคล้อง: installer จากสโตร์, initiating sideload</string>
+    <string name="t_isrc_gap_installer_set_no_initiator">ความไม่สอดคล้อง: installer ถูกตั้ง, initiating null</string>
+    <string name="t_isrc_gap_initiator_store_no_installer">ความไม่สอดคล้อง: initiating จากสโตร์, installer null</string>
+    <string name="t_isrc_gap_initiator_sig_mismatch">ความไม่สอดคล้อง: cert ของ initiator ที่บันทึก ≠ ที่ติดตั้ง</string>
+    <string name="t_isrc_gap_initiator_orphan">ความไม่สอดคล้อง: แพ็กเกจ initiating ไม่ได้ติดตั้ง</string>
+    <string name="t_isrc_gap_installer_orphan">ความไม่สอดคล้อง: แพ็กเกจ installer ไม่ได้ติดตั้ง</string>
+    <string name="t_isrc_gap_originating_ne_initiating">ความไม่สอดคล้อง: originating ≠ initiating (ในนามของ)</string>
+    <string name="t_isrc_gap_ghost_user_install">ความไม่สอดคล้อง: แอปผู้ใช้ที่ไม่มีแหล่งติดตั้ง</string>
+    <string name="t_isrc_gap_system_shell_installed">ความไม่สอดคล้อง: แอประบบติดตั้งผ่าน shell</string>
+    <string name="t_isrc_gap_update_owner_drift">ความไม่สอดคล้อง: updateOwner ≠ installer</string>
+    <string name="t_isrc_gap_self_declared_installer">ความไม่สอดคล้อง: แอปเป็น installer ของตัวเอง</string>
+    <string name="t_installed_packages_diff">แพ็กเกจที่ติดตั้ง: ต่างกัน (JVM x pm)</string>
+    <string name="t_installed_applications_diff">แอปพลิเคชันที่ติดตั้ง: ต่างกัน (JVM x pm)</string>
+    <string name="t_selinux_status">หน้า status ของ SELinux (policyload/seq)</string>
+    <string name="t_selinux_policy_probe">โพรบนโยบาย SELinux (ชนิด + AVC)</string>
+    <string name="t_manager_doors">ตัวจัดการ root/Xposed: การมองเห็นตามประตู PackageManager</string>
+    <string name="t_net_sock_diag">นโยบาย Netlink sock_diag</string>
+    <string name="n_net_sock_diag">แอปที่ถูกจำกัดต้องถูกปฏิเสธ NETLINK_SOCK_DIAG หากมีคำตอบกลับมาแปลว่านโยบาย netlink ถูกผ่อนปรน</string>
+    <string name="t_mount_peer_gap">ความสมบูรณ์ของ peer-group ของ mount</string>
+    <string name="n_mount_peer_gap">ชุด id ของ peer-group ต้องอ่านได้เหมือนกันในทุกเลนส์ ช่องว่างในเลนส์ใดหมายถึง mount ที่ถูกซ่อน</string>
+    <string name="t_mount_fdinfo_mnt">mount id เทียบกับ descriptor ที่เปิดอยู่</string>
+    <string name="n_mount_fdinfo_mnt">descriptor ที่เปิดอยู่ซึ่ง mnt_id ไม่มีใน mountinfo ชี้ไปยัง mount ที่ถูกซ่อนจากมุมมอง</string>
+    <string name="t_proc_readproc_gid">GID 3009 ของ zygote (AID_READPROC)</string>
+    <string name="n_proc_readproc_gid">การขาด GID เสริม AID_READPROC เป็นร่องรอยที่บางโมดูลซ่อนแอปทิ้งไว้</string>
+    <string name="t_proc_fd_graph">การนับ descriptor</string>
+    <string name="t_mem_anon_exec">การแมปที่รันได้แบบไม่ระบุชื่อ</string>
+    <string name="n_mem_anon_exec">หน้ารันได้ที่ไม่มีไฟล์รองรับคือเศษเหลือทั่วไปของการฉีด/Zygisk จำนวนต้องตรงกันระหว่างเลนส์</string>
+    <string name="t_kernel_selfbuild">เคอร์เนลที่คอมไพล์เอง / แพตช์</string>
+    <string name="n_kernel_selfbuild">เคอร์เนลจากโรงงานไม่มีเครื่องหมายบิลด์ -dirty, git หรือ SUSFS เครื่องหมายต้องตรงกันระหว่างเลนส์</string>
+    <string name="t_tee_soter">บริการ Soter เทียบกับพร็อพเพอร์ตี้</string>
+    <string name="n_tee_soter">ตรวจสอบไขว้โปรแกรมบริการ Soter ของ Tencent กับสถานะพร็อพเพอร์ตี้บริการของมัน</string>
+    <string name="t_proc_cgroup_format">รูปแบบเส้นทาง cgroup</string>
+    <string name="n_proc_cgroup_format">คอนเทนเนอร์โคลน / dual-app ทำให้เส้นทาง cgroup แบบรวมเบี่ยงจากรูปแบบมาตรฐาน uid_/pid_</string>
+</resources>

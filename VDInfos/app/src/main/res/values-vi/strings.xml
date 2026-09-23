@@ -1,0 +1,434 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    ======================================================================
+     VD INFOS  ::  method debugger
+     Read every device info by every method, then compare. A divergence is a hook.
+
+     Copyright (C) 2026  VD171
+     SPDX-License-Identifier: AGPL-3.0-or-later
+
+     Free software under the GNU AGPL v3 or later. NETWORK COPYLEFT: run a
+     modified version, even as a service, and you MUST offer its source.
+
+     Site           : https://vd171.ru
+     Site           : https://vd.priv8.ru
+     Source         : https://github.com/VD171/VD-Infos
+     GitHub         : @VD171 https://github.com/VD171
+     XDA-Developers : @VD171 https://xdaforums.com/m/vd171.4699873/
+     Telegram       : @VD_Priv8 https://t.me/VD_Priv8
+     Discord        : @VD.Priv8 https://discord.com/users/1296831918989639721
+     E-mail         : vd.priv8@pm.me
+    ======================================================================
+-->
+<resources>
+    <string name="app_tagline">Trình gỡ lỗi phương thức</string>
+
+    <!-- Hành động -->
+    <string name="action_reveal">Hiện danh tính</string>
+    <string name="action_export">Chia sẻ báo cáo</string>
+    <string name="action_save">Lưu vào tệp</string>
+    <string name="action_rescan">Quét lại</string>
+    <string name="save_ok">Đã lưu báo cáo</string>
+    <string name="save_fail">Không thể lưu tệp</string>
+
+    <!-- Tóm tắt -->
+    <plurals name="summary_divergences">
+        <item quantity="other">%d khác biệt</item>
+    </plurals>
+    <string name="summary_line">%1$d/%2$d thăm dò · %3$d khớp</string>
+    <string name="summary_native_off"> · native không khả dụng</string>
+
+    <!-- Tìm kiếm và lọc -->
+    <string name="search_hint">Tìm prop, giá trị…</string>
+    <string name="filter_divergent">Chỉ khác biệt</string>
+    <string name="filter_all">Tất cả</string>
+
+    <!-- Kết luận -->
+    <string name="verdict_mismatch">khác biệt</string>
+    <string name="verdict_match">khớp</string>
+    <string name="verdict_single">đơn lẻ</string>
+    <string name="verdict_info">thông tin</string>
+    <string name="reading_context_only">ngữ cảnh</string>
+    <string name="reading_empty">(trống)</string>
+    <string name="verdict_empty">trống</string>
+    <string name="verdict_error">lỗi</string>
+
+    <!-- Danh mục -->
+    <string name="cat_identity">Danh tính</string>
+    <string name="cat_fingerprint">Fingerprint</string>
+    <string name="cat_telephony">Điện thoại / RIL</string>
+    <string name="cat_network">Mạng</string>
+    <string name="cat_locale">Locale / Thời gian</string>
+    <string name="cat_boot">Boot / Kernel</string>
+    <string name="cat_build">Build / ROM</string>
+    <string name="cat_display">Màn hình</string>
+    <string name="cat_sensors">Cảm biến</string>
+    <string name="cat_media">Media / DRM</string>
+    <string name="cat_packages">Gói</string>
+    <string name="cat_accounts">Tài khoản</string>
+    <string name="cat_webview">WebView</string>
+    <string name="cat_hardware">Phần cứng</string>
+    <string name="cat_storage">Lưu trữ</string>
+    <string name="cat_process">Tiến trình</string>
+    <string name="cat_security">Bảo mật</string>
+    <string name="cat_integrity">Root / Toàn vẹn</string>
+    <string name="cat_emulator">Giả lập</string>
+    <string name="cat_system">Hệ thống</string>
+
+    <!-- Thông báo thay đổi ở nền -->
+    <string name="action_about">Giới thiệu</string>
+    <string name="action_close">Đóng</string>
+    <string name="action_copy">Sao chép</string>
+    <string name="copied">Đã sao chép</string>
+    <string name="about_developer">Nhà phát triển</string>
+    <string name="about_source">Mã nguồn</string>
+    <string name="about_license">Giấy phép</string>
+    <string name="about_contacts">Liên hệ</string>
+    <string name="about_privacy">Không có thông tin nào được lưu trữ, gửi hoặc truyền đi. Mọi thứ đều chạy trên thiết bị, và báo cáo chỉ rời khỏi thiết bị khi chính bạn chia sẻ hoặc lưu nó.</string>
+    <string name="crash_title">Lỗi không mong đợi</string>
+    <string name="crash_body">Ứng dụng gặp phải lỗi không mong đợi. Không có gì được gửi đi đâu cả. Bạn có thể sao chép chi tiết bên dưới và gửi cho nhà phát triển.</string>
+    <string name="about_project">Dự án</string>
+    <string name="about_support">Tải xuống và hỗ trợ</string>
+    <string name="action_clear">Xóa tìm kiếm</string>
+    <string name="lang_dialog_title">Ngôn ngữ</string>
+    <string name="lang_dialog_body">Chọn ngôn ngữ ứng dụng, hoặc theo cài đặt hệ thống.</string>
+    <string name="lang_system_default">Mặc định hệ thống</string>
+    <string name="lang_apply">Áp dụng</string>
+
+    <!-- Giải pháp -->
+    <string name="sol_title">Cách khắc phục</string>
+    <string name="sol_boot">Đây là những gì attestation phần cứng (TEE) báo cáo về trạng thái boot. Các công cụ vượt qua keybox (TrickyStore, TEE Simulator, OhMyKeyMint) chỉ viết lại attestation cho các ứng dụng bạn chỉ định. Thêm gói của ứng dụng này vào danh sách mục tiêu của các công cụ đó (ví dụ target.txt) để attestation của nó báo cáo thiết bị đã khóa với verified boot màu xanh.</string>
+    <string name="sol_root_detector">Các ứng dụng đã cài đặt này tìm kiếm root, giả lập hoặc Play Integrity thất bại. Thêm các gói tìm thấy ở đây làm mục tiêu vào framework ẩn của bạn (HMA-OSS) để ứng dụng và mô-đun root của bạn được ẩn khỏi các trình phát hiện này.</string>
+    <string name="sol_spoof">Cài đặt này được đọc khác nhau qua các đường dẫn mà một ứng dụng có thể dùng (spoof không bao phủ tất cả). Thêm cài đặt vào preset spoof của HMA-OSS để mọi đường dẫn đọc trả về cùng một giá trị.</string>
+    <string name="sol_attest_patch">key attestation báo mức vá khác với thuộc tính hệ thống. Đặt trong công cụ keybox của bạn - TrickyStore ở security_patch.txt (một ngày, hoặc system=/boot=/vendor=/all=, hoặc \'prop\'); OhMyKeymint ở config.toml trong [trust]. Cả hai chỉ đổi attestation, không đổi thuộc tính.</string>
+    <string name="sol_patch_prop">Build.VERSION.SECURITY_PATCH (framework) và thuộc tính ro.build.version.security_patch hiển thị ngày khác nhau. Căn chỉnh bằng resetprop. security_patch.txt và config.toml không giúp được ở đây - chúng chỉ đổi key attestation, không đổi thuộc tính.</string>
+
+    <string name="note_gsf">Không có trên Android 16 trở lên: kho dịch vụ Google đã chuyển vào Play Services, cửa của nó được chính Google đặt tên &quot;do.not.use&quot; và không trả lời các ứng dụng khác. Cả hai đều được thử ở trên.</string>
+    <string name="t_attestation_app_id">Id ứng dụng trong chứng thực (gói + chữ ký)</string>
+    <string name="t_dev_ptmx_present">/dev/ptmx tồn tại</string>
+    <string name="t_documents_providers">DocumentsProviders đã đăng ký</string>
+    <string name="t_kernel_modules">Mô-đun nhân đã nạp (KernelSU/SuSFS)</string>
+    <string name="t_kernel_syscall_fingerprint">Phiên bản nhân theo dấu vân syscall</string>
+    <string name="t_key_inside_secure_hw">Khóa nằm trong phần cứng bảo mật (KeyInfo)</string>
+    <string name="t_keybox_ec_vs_rsa">Phạm vi keybox: chứng thực EC so với RSA</string>
+    <string name="t_local_tmp_contents">Nội dung /data/local/tmp</string>
+    <string name="t_native_lib_origin">Nguồn gốc thư viện native (dladdr)</string>
+    <string name="t_own_debuggable">Ứng dụng này: debuggable / bản dựng debug</string>
+    <string name="t_play_store_version">Phiên bản Play Store / GMS</string>
+    <string name="t_resolv_conf">resolv.conf / cấu hình DNS</string>
+    <string name="t_root_backup_tools">Có công cụ sao lưu cần root</string>
+    <string name="t_su_libc_inline_hook">su: syscall thô so với libc và Java</string>
+    <string name="t_system_build_prop">/system/build.prop</string>
+    <string name="t_system_build_prop_present">/system/build.prop tồn tại</string>
+    <string name="t_adb_enabled">ADB đã bật</string>
+    <string name="t_apatch">APatch</string>
+    <string name="t_accessibility_enabled">Trợ năng đã bật</string>
+    <string name="t_accounts">Tài khoản</string>
+    <string name="t_active_subscriptions">Thuê bao đang hoạt động</string>
+    <string name="t_advertising_id">ID quảng cáo</string>
+    <string name="t_advertising_id_keys_settings_stores">Khóa ID quảng cáo (settings)</string>
+    <string name="t_spoof_consistency">Nhất quán spoof: %1$s</string>
+    <string name="t_spoof_sweep">Quét nhất quán spoof (tất cả settings)</string>
+    <string name="t_analysis_emulator_apps">Ứng dụng phân tích / giả lập</string>
+    <string name="t_android_id">Android ID</string>
+    <string name="t_another_process_cmdline_init">cmdline của tiến trình khác (init)</string>
+    <string name="t_another_process_maps_init">maps của tiến trình khác (init)</string>
+    <string name="t_attestation_keymaster_version">Phiên bản attestation / keymaster</string>
+    <string name="t_attestation_available">Attestation khả dụng</string>
+    <string name="t_attestation_provisioning_signer">Provisioning attestation (người ký)</string>
+    <string name="t_attestation_provisioning_info">Attestation ProvisioningInfo (RKP)</string>
+    <string name="t_attestation_security_level">Mức bảo mật attestation</string>
+    <string name="t_block_untrusted_touches">Chặn chạm không tin cậy</string>
+    <string name="t_bluetooth_mac">MAC Bluetooth</string>
+    <string name="t_bluetooth_bonded_devices">Thiết bị Bluetooth đã ghép nối</string>
+    <string name="t_bluetooth_name">Tên Bluetooth</string>
+    <string name="t_bluetooth_name_bt_name">Tên Bluetooth (bt_name)</string>
+    <string name="t_bluetooth_name_btname">Tên Bluetooth (btname)</string>
+    <string name="t_bluetooth_name_settings">Tên Bluetooth (settings)</string>
+    <string name="t_bluetooth_scan_mode">Chế độ quét Bluetooth</string>
+    <string name="t_bluetooth_state">Trạng thái Bluetooth</string>
+    <string name="t_board">Board</string>
+    <string name="t_boot_id">Boot ID</string>
+    <string name="t_boot_count">Số lần boot</string>
+    <string name="t_boot_patch_level">Mức vá boot</string>
+    <string name="t_boot_time_epoch_proc_stat_btime">Thời gian boot (epoch, /proc/stat btime)</string>
+    <string name="t_bootloader">Bootloader</string>
+    <string name="t_brand">Thương hiệu</string>
+    <string name="t_build_id">Build ID</string>
+    <string name="t_build_host">Build host</string>
+    <string name="t_build_tags">Build tags</string>
+    <string name="t_build_time_utc_epoch">Thời gian build (UTC epoch)</string>
+    <string name="t_build_type">Loại build</string>
+    <string name="t_cpu_cores">Nhân CPU</string>
+    <string name="t_call_log_entries">Mục nhật ký cuộc gọi</string>
+    <string name="t_cameras">Camera</string>
+    <string name="t_cell_info">Thông tin ô mạng</string>
+    <string name="t_data_roaming">Chuyển vùng dữ liệu</string>
+    <string name="t_default_input_method">Phương thức nhập mặc định</string>
+    <string name="t_developer_settings_enabled">Tùy chọn nhà phát triển đã bật</string>
+    <string name="t_device">Device</string>
+    <string name="t_device_locked">Thiết bị đã khóa</string>
+    <string name="t_device_name">Tên thiết bị</string>
+    <string name="t_display_id">Display ID</string>
+    <string name="t_display_metrics">Thông số màn hình</string>
+    <string name="t_emulator_files">Tệp giả lập</string>
+    <string name="t_enabled_accessibility_services">Dịch vụ trợ năng đã bật</string>
+    <string name="t_enabled_input_methods">Phương thức nhập đã bật</string>
+    <string name="t_fingerprint">Fingerprint</string>
+    <string name="t_gsf_id_hex">GSF ID (hex)</string>
+    <string name="t_gsf_id_raw">GSF ID (thô)</string>
+    <string name="t_http_proxy">Proxy HTTP</string>
+    <string name="t_hardware">Phần cứng</string>
+    <string name="t_hidden_api_policy">Chính sách API ẩn</string>
+    <string name="t_hidden_api_policy_p_apps">Chính sách API ẩn (ứng dụng P)</string>
+    <string name="t_hidden_api_policy_pre_p_apps">Chính sách API ẩn (ứng dụng trước P)</string>
+    <string name="t_hiding_cloaking_apps">Ứng dụng ẩn giấu</string>
+    <string name="t_hostname">Hostname</string>
+    <string name="t_imei">IMEI</string>
+    <string name="t_imsi_subscriber">IMSI (thuê bao)</string>
+    <string name="t_incremental">Incremental</string>
+    <string name="t_injected_libs_proc_self_maps">Thư viện được tiêm (/proc/self/maps)</string>
+    <string name="t_installed_app_signing_digests">Digest chữ ký ứng dụng đã cài</string>
+    <string name="t_installed_applications">Ứng dụng đã cài đặt</string>
+    <string name="t_installed_input_methods">Phương thức nhập đã cài</string>
+    <string name="t_installed_packages">Gói đã cài đặt</string>
+    <string name="t_installed_packages_list">Gói đã cài đặt (danh sách)</string>
+    <string name="t_kernel_release">Kernel (release)</string>
+    <string name="t_kernel_version">Kernel (phiên bản)</string>
+    <string name="t_kernel_cmdline">cmdline kernel</string>
+    <string name="t_kernel_log">Nhật ký kernel</string>
+    <string name="t_kernel_stat">stat kernel</string>
+    <string name="t_kernelsu">KernelSU</string>
+    <string name="t_limit_ad_tracking">Giới hạn theo dõi quảng cáo</string>
+    <string name="t_locale">Locale</string>
+    <string name="t_mac">MAC %1$s</string>
+    <string name="t_meid">MEID</string>
+    <string name="t_magisk">Magisk</string>
+    <string name="t_manufacturer">Nhà sản xuất</string>
+    <string name="t_model">Model</string>
+    <string name="t_mount_markers_magisk_overlay">Dấu mount (magisk/overlay)</string>
+    <string name="t_network_interfaces">Giao diện mạng</string>
+    <string name="t_os_release">Phiên bản OS</string>
+    <string name="t_os_security_patch_level">Mức vá bảo mật OS</string>
+    <string name="t_os_version_attested">Phiên bản OS (đã chứng thực)</string>
+    <string name="t_pid">PID</string>
+    <string name="t_primary_abi">ABI chính</string>
+    <string name="t_primary_imei">IMEI chính</string>
+    <string name="t_product">Product</string>
+    <string name="t_root_manager_apps">Ứng dụng quản lý root</string>
+    <string name="t_root_tools_apps">Công cụ dựa trên root</string>
+    <string name="t_rooted_apps">Ứng dụng cần root</string>
+    <string name="t_root_detector_apps">Ứng dụng phát hiện root</string>
+    <string name="t_suspicious_apps">Ứng dụng đáng ngờ</string>
+    <string name="t_running_app_processes">Tiến trình ứng dụng đang chạy</string>
+    <string name="t_running_services">Dịch vụ đang chạy</string>
+    <string name="t_sdk_int">SDK int</string>
+    <string name="t_selinux_mls_enabled">SELinux MLS đã bật</string>
+    <string name="t_selinux_context_self">Ngữ cảnh SELinux (chính mình)</string>
+    <string name="t_selinux_enforce">SELinux enforce</string>
+    <string name="t_selinux_policy_version">Phiên bản policy SELinux</string>
+    <string name="t_sim_serial_iccid">Số serial SIM (ICCID)</string>
+    <string name="t_screen_capture_disabled_policy">Chụp màn hình bị tắt (chính sách)</string>
+    <string name="t_security_patch">Bản vá bảo mật</string>
+    <string name="t_sensor_count">Số cảm biến</string>
+    <string name="t_sensors">Cảm biến</string>
+    <string name="t_serial">Serial</string>
+    <string name="t_soc_family">Dòng SoC</string>
+    <string name="t_soc_id">SoC ID</string>
+    <string name="t_soc_machine">Máy SoC</string>
+    <string name="t_soc_serial_number">Số serial SoC</string>
+    <string name="t_storage_data_total_bytes">Lưu trữ /data tổng (byte)</string>
+    <string name="t_system_features_count">System features (số lượng)</string>
+    <string name="t_system_features_full_set">System features (bộ đầy đủ)</string>
+    <string name="t_tether_dun_required">Yêu cầu tether DUN</string>
+    <string name="t_this_app_installer">Trình cài đặt ứng dụng này</string>
+    <string name="t_this_app_signing_sha_256">SHA-256 chữ ký ứng dụng này</string>
+    <string name="t_time_zone_settings">Múi giờ (settings)</string>
+    <string name="t_timezone">Múi giờ</string>
+    <string name="t_total_ram_bytes">Tổng RAM (byte)</string>
+    <string name="t_touch_exploration_enabled">Khám phá bằng chạm đã bật</string>
+    <string name="t_touch_exploration_granted_services">Dịch vụ có khám phá bằng chạm</string>
+    <string name="t_tracerpid_debugger">TracerPid (trình gỡ lỗi)</string>
+    <string name="t_ufs_model">Model UFS</string>
+    <string name="t_ufs_revision">Bản sửa đổi UFS</string>
+    <string name="t_ufs_vendor">Nhà cung cấp UFS</string>
+    <string name="t_uid">UID</string>
+    <string name="t_uid_coherence">Tính nhất quán UID/GID</string>
+    <string name="t_uptime_s">Thời gian hoạt động (s)</string>
+    <string name="t_user_serial_number">Số serial người dùng</string>
+    <string name="t_oaid">OAID (id ẩn danh MSA)</string>
+    <string name="t_vaid">VAID (id ẩn danh nhà cung cấp MSA)</string>
+    <string name="t_aaid_msa">AAID (id ẩn danh ứng dụng MSA)</string>
+    <string name="t_udid">UDID (MSA)</string>
+    <string name="t_extm_uuid">extm_uuid (Xiaomi)</string>
+    <string name="t_op_security_uuid">op_security_uuid (OnePlus)</string>
+    <string name="t_user_creation_time">Thời gian tạo người dùng</string>
+    <string name="t_vendor_patch_level">Mức vá nhà cung cấp</string>
+    <string name="t_verified_boot_hash_vbmeta_digest">Hash verified boot / digest vbmeta</string>
+    <string name="t_verified_boot_key">Khóa verified boot</string>
+    <string name="t_verified_boot_state">Trạng thái verified boot</string>
+    <string name="t_prop_area_tamper">Can thiệp vùng property (lỗ hổng/ngữ cảnh)</string>
+    <string name="t_supplementary_groups">Nhóm bổ sung (3009=AID_READPROC)</string>
+    <string name="t_version_codename">Tên mã phiên bản</string>
+    <string name="t_webview_provider">Nhà cung cấp WebView</string>
+    <string name="t_webview_user_agent">User agent WebView</string>
+    <string name="t_wi_fi_bssid">Wi-Fi BSSID</string>
+    <string name="t_wi_fi_ip">Wi-Fi IP</string>
+    <string name="t_wi_fi_mac_wifiinfo">Wi-Fi MAC (WifiInfo)</string>
+    <string name="t_wi_fi_mac_settings">Wi-Fi MAC (settings)</string>
+    <string name="t_wi_fi_rssi">Wi-Fi RSSI</string>
+    <string name="t_wi_fi_ssid">Wi-Fi SSID</string>
+    <string name="t_wi_fi_frequency_mhz">Tần số Wi-Fi (MHz)</string>
+    <string name="t_wi_fi_link_speed_mbps">Tốc độ liên kết Wi-Fi (Mbps)</string>
+    <string name="t_wi_fi_network_id">ID mạng Wi-Fi</string>
+    <string name="t_widevine_device_id">ID thiết bị Widevine</string>
+    <string name="t_widevine_vendor_version">Nhà cung cấp/phiên bản Widevine</string>
+    <string name="t_xposed_lsposed_riru">Xposed / LSPosed / Riru</string>
+    <string name="t_xposed_manager_apps">Ứng dụng quản lý Xposed</string>
+    <string name="t_cpuinfo">cpuinfo</string>
+    <string name="t_emmc_cid">eMMC CID</string>
+    <string name="t_emmc_oem_id">eMMC OEM id</string>
+    <string name="t_emmc_manufacture_date">Ngày sản xuất eMMC</string>
+    <string name="t_emmc_manufacturer_id">ID nhà sản xuất eMMC</string>
+    <string name="t_emmc_name">Tên eMMC</string>
+    <string name="t_emmc_serial">Serial eMMC</string>
+    <string name="t_env">env %1$s</string>
+    <string name="t_http_agent">http.agent</string>
+    <string name="t_meminfo">meminfo</string>
+    <string name="t_querybroadcastreceivers_boot_completed">queryBroadcastReceivers (BOOT_COMPLETED)</string>
+    <string name="t_queryinstrumentation_all">queryInstrumentation (tất cả)</string>
+    <string name="t_queryintentactivities_call_tel">queryIntentActivities (CALL tel:)</string>
+    <string name="t_queryintentactivities_main_launcher">queryIntentActivities (MAIN/LAUNCHER)</string>
+    <string name="t_queryintentactivities_view_http">queryIntentActivities (VIEW http)</string>
+    <string name="t_queryintentcontentproviders_view">queryIntentContentProviders (VIEW)</string>
+    <string name="t_queryintentservices_main">queryIntentServices (MAIN)</string>
+    <string name="t_resolveactivity_main_launcher">resolveActivity (MAIN/LAUNCHER)</string>
+    <string name="t_su_binary">tệp nhị phân su</string>
+    <string name="t_su_on_path">su trong PATH</string>
+    <string name="t_tel_networkOperatorName">Tên nhà mạng</string>
+    <string name="t_tel_networkOperator">Nhà mạng (MCC+MNC)</string>
+    <string name="t_tel_networkCountryIso">ISO quốc gia mạng</string>
+    <string name="t_tel_simOperatorName">Tên nhà mạng SIM</string>
+    <string name="t_tel_simOperator">Nhà mạng SIM (MCC+MNC)</string>
+    <string name="t_tel_simCountryIso">ISO quốc gia SIM</string>
+    <string name="t_tel_simState">Trạng thái SIM</string>
+    <string name="t_tel_phoneType">Loại điện thoại</string>
+    <string name="t_tel_networkType">Loại mạng dữ liệu</string>
+    <string name="t_tel_dataState">Trạng thái dữ liệu</string>
+    <string name="t_tel_callState">Trạng thái cuộc gọi</string>
+    <string name="t_tel_isNetworkRoaming">Chuyển vùng mạng</string>
+    <string name="t_tel_line1Number">Số line 1</string>
+    <string name="t_tel_voiceMailNumber">Số hộp thư thoại</string>
+    <string name="t_tel_groupIdLevel1">Group ID level 1</string>
+    <string name="t_tel_mmsUserAgent">User agent MMS</string>
+    <string name="t_tel_mmsUAProfUrl">URL UAProf MMS</string>
+    <string name="t_tel_phoneCount">Số điện thoại/SIM</string>
+    <string name="t_tel_isDataEnabled">Dữ liệu đã bật</string>
+    <string name="t_tel_isVoiceCapable">Hỗ trợ thoại</string>
+    <string name="t_tel_isSmsCapable">Hỗ trợ SMS</string>
+    <string name="t_tel_subscriberId">IMSI (subscriberId)</string>
+    <string name="t_tel_deviceSoftwareVersion">Phiên bản phần mềm thiết bị</string>
+    <string name="t_self_packageName">Tên gói này</string>
+    <string name="t_self_uid">UID của ứng dụng này</string>
+    <string name="t_self_packagesForUid">Gói chia sẻ UID này</string>
+    <string name="t_self_nameForUid">Tên cho UID</string>
+    <string name="t_self_packageGids">GID gói</string>
+    <string name="t_self_packageUid">UID gói (PM)</string>
+    <string name="t_self_installer">Gói trình cài đặt</string>
+    <string name="t_self_installSource">Nguồn cài đặt</string>
+    <string name="t_self_times">Cài đầu tiên / cập nhật cuối</string>
+    <string name="t_self_versionCode">versionCode của ứng dụng này</string>
+    <string name="t_self_targetSdk">targetSdk của ứng dụng này</string>
+    <string name="t_self_enabledSetting">Trạng thái kích hoạt ứng dụng</string>
+    <string name="t_self_isInstantApp">Instant app</string>
+    <string name="t_self_isPackageSuspended">Gói bị tạm ngưng</string>
+    <string name="t_self_autoRevokeWhitelisted">Miễn thu hồi tự động</string>
+    <string name="t_self_syntheticDetails">Chi tiết tổng hợp ứng dụng đang chạy</string>
+    <string name="t_self_whitelistedRestricted">Quyền hạn chế được phép</string>
+    <string name="t_self_moduleInfo">Thông tin mô-đun</string>
+    <string name="t_self_checkAdId">checkPermission(AD_ID)</string>
+    <string name="t_self_launchIntent">Có intent khởi chạy</string>
+    <string name="t_self_leanbackIntent">Có intent khởi chạy leanback</string>
+    <string name="t_self_xposedMeta">Khóa metadata Xposed riêng</string>
+    <string name="t_self_resourcesForApp">Tài nguyên ứng dụng</string>
+    <string name="t_content_command">Provider qua lệnh `content`</string>
+    <string name="t_test_harness">Chạy trong test harness</string>
+    <string name="t_user_test_harness">Chạy trong test harness người dùng</string>
+    <string name="t_user_a_monkey">Điều khiển bởi Monkey</string>
+    <string name="t_low_ram_device">Thiết bị RAM thấp</string>
+    <string name="t_vpn_active">VPN đang hoạt động</string>
+    <string name="t_vpn_interfaces">Giao diện tunnel</string>
+    <string name="t_location_providers">Nhà cung cấp vị trí</string>
+    <string name="t_mock_location">Vị trí giả</string>
+    <string name="t_debugger_attached">Trình gỡ lỗi đã gắn</string>
+    <string name="t_device_secure">Đã đặt khóa màn hình</string>
+    <string name="t_sensor_vendors">Nhà cung cấp cảm biến</string>
+    <string name="t_input_devices">Thiết bị nhập</string>
+    <string name="t_appop">App op: %1$s</string>
+    <string name="t_mem_total_kb">Tổng RAM (kB)</string>
+    <string name="t_ns_mnt">Namespace mount</string>
+    <string name="t_ns_net">Namespace mạng</string>
+    <string name="t_ns_pid">Namespace PID</string>
+    <string name="t_ns_uts">Namespace UTS</string>
+    <string name="t_ns_ipc">Namespace IPC</string>
+    <string name="t_ns_user">Namespace người dùng</string>
+    <string name="t_ns_cgroup">Namespace cgroup</string>
+    <string name="t_ns_time">Namespace thời gian</string>
+    <string name="t_proc_exe">Tệp thực thi tiến trình</string>
+    <string name="t_proc_cwd">Thư mục làm việc</string>
+    <string name="t_proc_root">Gốc hệ thống tệp</string>
+    <string name="t_seccomp">Chế độ seccomp</string>
+    <string name="t_no_new_privs">NoNewPrivs</string>
+    <string name="t_cap_effective">Capability hiệu lực</string>
+    <string name="t_cap_bounding">Capability bounding</string>
+    <string name="t_status_uid">Dòng UID (kernel)</string>
+    <string name="t_status_gid">Dòng GID (kernel)</string>
+    <string name="t_status_groups">Nhóm bổ sung</string>
+    <string name="t_status_threads">Luồng</string>
+    <string name="t_selinux_attr">Ngữ cảnh SELinux (attr/current)</string>
+    <string name="t_cgroup">Cgroup</string>
+    <string name="t_architecture">Kiến trúc</string>
+    <string name="t_zero_width_names">Tên chứa ký tự rộng bằng không / vô hình</string>
+    <string name="err_probe_timeout">đầu dò hết thời gian chờ</string>
+    <string name="t_isrc_self_installer">Nguồn cài đặt (self): installer</string>
+    <string name="t_isrc_self_initiating">Nguồn cài đặt (self): initiating</string>
+    <string name="t_isrc_self_originating">Nguồn cài đặt (self): originating</string>
+    <string name="t_isrc_self_pkgsource">Nguồn cài đặt (self): packageSource</string>
+    <string name="t_isrc_self_initiator_sig">Nguồn cài đặt (self): cert của initiator vs đã cài</string>
+    <string name="t_isrc_gap_jvm_store_pm_denies">Khác biệt: JVM báo installer của store, pm phủ nhận (hook)</string>
+    <string name="t_isrc_gap_jvm_pm_other">Khác biệt: installer JVM ≠ installer pm (khả năng thấy)</string>
+    <string name="t_isrc_gap_installer_ne_initiating">Khác biệt: installer ≠ initiating</string>
+    <string name="t_isrc_gap_store_installer_sideload">Khác biệt: installer của store, initiating sideload</string>
+    <string name="t_isrc_gap_installer_set_no_initiator">Khác biệt: installer đã đặt, initiating null</string>
+    <string name="t_isrc_gap_initiator_store_no_installer">Khác biệt: initiating của store, installer null</string>
+    <string name="t_isrc_gap_initiator_sig_mismatch">Khác biệt: cert của initiator đã ghi ≠ đã cài</string>
+    <string name="t_isrc_gap_initiator_orphan">Khác biệt: gói initiating chưa cài</string>
+    <string name="t_isrc_gap_installer_orphan">Khác biệt: gói installer chưa cài</string>
+    <string name="t_isrc_gap_originating_ne_initiating">Khác biệt: originating ≠ initiating (thay mặt)</string>
+    <string name="t_isrc_gap_ghost_user_install">Khác biệt: ứng dụng người dùng không có nguồn cài đặt</string>
+    <string name="t_isrc_gap_system_shell_installed">Khác biệt: ứng dụng hệ thống cài qua shell</string>
+    <string name="t_isrc_gap_update_owner_drift">Khác biệt: updateOwner ≠ installer</string>
+    <string name="t_isrc_gap_self_declared_installer">Khác biệt: ứng dụng tự làm installer của chính nó</string>
+    <string name="t_installed_packages_diff">Gói đã cài đặt: khác biệt (JVM x pm)</string>
+    <string name="t_installed_applications_diff">Ứng dụng đã cài đặt: khác biệt (JVM x pm)</string>
+    <string name="t_selinux_status">Trang status SELinux (policyload/seq)</string>
+    <string name="t_selinux_policy_probe">Thăm dò chính sách SELinux (kiểu + AVC)</string>
+    <string name="t_manager_doors">Trình quản lý root/Xposed: khả năng thấy theo cửa PackageManager</string>
+    <string name="t_net_sock_diag">Chính sách Netlink sock_diag</string>
+    <string name="n_net_sock_diag">Ứng dụng bị giới hạn phải bị từ chối NETLINK_SOCK_DIAG; có phản hồi nghĩa là chính sách netlink đã bị nới lỏng.</string>
+    <string name="t_mount_peer_gap">Tính toàn vẹn peer-group của mount</string>
+    <string name="n_mount_peer_gap">Tập id peer-group phải đọc giống nhau qua mọi lăng kính; một lỗ hổng theo lăng kính nghĩa là có mount bị ẩn.</string>
+    <string name="t_mount_fdinfo_mnt">Mount id vs mô tả tệp đang mở</string>
+    <string name="n_mount_fdinfo_mnt">Một mô tả đang mở có mnt_id vắng trong mountinfo trỏ tới một mount bị ẩn khỏi khung nhìn.</string>
+    <string name="t_proc_readproc_gid">GID 3009 của zygote (AID_READPROC)</string>
+    <string name="n_proc_readproc_gid">Thiếu GID bổ sung AID_READPROC là dấu vết mà một số mô-đun ẩn ứng dụng để lại.</string>
+    <string name="t_proc_fd_graph">Kiểm đếm mô tả tệp</string>
+    <string name="t_mem_anon_exec">Ánh xạ khả thi ẩn danh</string>
+    <string name="n_mem_anon_exec">Trang khả thi không có tệp nền là cặn tiêm/Zygisk điển hình; số lượng phải khớp giữa các lăng kính.</string>
+    <string name="t_kernel_selfbuild">Nhân tự biên dịch / vá</string>
+    <string name="n_kernel_selfbuild">Nhân gốc không mang dấu build -dirty, git hay SUSFS; các dấu phải khớp giữa các lăng kính.</string>
+    <string name="t_tee_soter">Dịch vụ Soter vs thuộc tính</string>
+    <string name="n_tee_soter">Đối chiếu chương trình dịch vụ Soter của Tencent với trạng thái thuộc tính dịch vụ của nó.</string>
+    <string name="t_proc_cgroup_format">Định dạng đường dẫn cgroup</string>
+    <string name="n_proc_cgroup_format">Một container nhân bản / dual-app khiến đường dẫn cgroup hợp nhất lệch khỏi dạng chuẩn uid_/pid_.</string>
+</resources>

@@ -1,0 +1,437 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    ======================================================================
+     VD INFOS  ::  method debugger
+     Read every device info by every method, then compare. A divergence is a hook.
+
+     Copyright (C) 2026  VD171
+     SPDX-License-Identifier: AGPL-3.0-or-later
+
+     Free software under the GNU AGPL v3 or later. NETWORK COPYLEFT: run a
+     modified version, even as a service, and you MUST offer its source.
+
+     Site           : https://vd171.ru
+     Site           : https://vd.priv8.ru
+     Source         : https://github.com/VD171/VD-Infos
+     GitHub         : @VD171 https://github.com/VD171
+     XDA-Developers : @VD171 https://xdaforums.com/m/vd171.4699873/
+     Telegram       : @VD_Priv8 https://t.me/VD_Priv8
+     Discord        : @VD.Priv8 https://discord.com/users/1296831918989639721
+     E-mail         : vd.priv8@pm.me
+    ======================================================================
+-->
+<resources>
+    <string name="app_tagline">Debuger metod</string>
+
+    <!-- Akcje -->
+    <string name="action_reveal">Pokaż tożsamości</string>
+    <string name="action_export">Udostępnij raport</string>
+    <string name="action_save">Zapisz do pliku</string>
+    <string name="action_rescan">Skanuj ponownie</string>
+    <string name="save_ok">Raport zapisany</string>
+    <string name="save_fail">Nie udało się zapisać pliku</string>
+
+    <!-- Podsumowanie -->
+    <plurals name="summary_divergences">
+        <item quantity="one">%d rozbieżność</item>
+        <item quantity="few">%d rozbieżności</item>
+        <item quantity="many">%d rozbieżności</item>
+        <item quantity="other">%d rozbieżności</item>
+    </plurals>
+    <string name="summary_line">%1$d/%2$d sond · %3$d zgodnych</string>
+    <string name="summary_native_off"> · kod natywny niedostępny</string>
+
+    <!-- Wyszukiwanie i filtr -->
+    <string name="search_hint">Szukaj właściwości, wartości…</string>
+    <string name="filter_divergent">Tylko rozbieżne</string>
+    <string name="filter_all">Wszystkie</string>
+
+    <!-- Werdykty -->
+    <string name="verdict_mismatch">rozbieżne</string>
+    <string name="verdict_match">zgodne</string>
+    <string name="verdict_single">pojedyncze</string>
+    <string name="verdict_info">info</string>
+    <string name="reading_context_only">kontekst</string>
+    <string name="reading_empty">(puste)</string>
+    <string name="verdict_empty">puste</string>
+    <string name="verdict_error">błąd</string>
+
+    <!-- Kategorie -->
+    <string name="cat_identity">Tożsamość</string>
+    <string name="cat_fingerprint">Fingerprint</string>
+    <string name="cat_telephony">Telefonia / RIL</string>
+    <string name="cat_network">Sieć</string>
+    <string name="cat_locale">Ustawienia regionalne / Czas</string>
+    <string name="cat_boot">Boot / Jądro</string>
+    <string name="cat_build">Build / ROM</string>
+    <string name="cat_display">Ekran</string>
+    <string name="cat_sensors">Czujniki</string>
+    <string name="cat_media">Media / DRM</string>
+    <string name="cat_packages">Pakiety</string>
+    <string name="cat_accounts">Konta</string>
+    <string name="cat_webview">WebView</string>
+    <string name="cat_hardware">Sprzęt</string>
+    <string name="cat_storage">Pamięć</string>
+    <string name="cat_process">Proces</string>
+    <string name="cat_security">Bezpieczeństwo</string>
+    <string name="cat_integrity">Root / Integralność</string>
+    <string name="cat_emulator">Emulator</string>
+    <string name="cat_system">System</string>
+
+    <!-- Powiadomienia o zmianach w tle -->
+    <string name="action_about">O aplikacji</string>
+    <string name="action_close">Zamknij</string>
+    <string name="action_copy">Kopiuj</string>
+    <string name="copied">Skopiowano</string>
+    <string name="about_developer">Deweloper</string>
+    <string name="about_source">Kod źródłowy</string>
+    <string name="about_license">Licencja</string>
+    <string name="about_contacts">Kontakt</string>
+    <string name="about_privacy">Żadne informacje nie są przechowywane, wysyłane ani przesyłane. Wszystko działa na urządzeniu, a raport opuszcza je tylko wtedy, gdy sam go udostępnisz lub zapiszesz.</string>
+    <string name="crash_title">Nieoczekiwany błąd</string>
+    <string name="crash_body">Aplikacja napotkała nieoczekiwany błąd. Nic nigdzie nie wysłano. Możesz skopiować poniższe szczegóły i wysłać je do dewelopera.</string>
+    <string name="about_project">Projekt</string>
+    <string name="about_support">Pobieranie i wsparcie</string>
+    <string name="action_clear">Wyczyść wyszukiwanie</string>
+    <string name="lang_dialog_title">Język</string>
+    <string name="lang_dialog_body">Wybierz język aplikacji lub podążaj za ustawieniem systemu.</string>
+    <string name="lang_system_default">Domyślny systemu</string>
+    <string name="lang_apply">Zastosuj</string>
+
+    <!-- Rozwiązanie -->
+    <string name="sol_title">Jak naprawić</string>
+    <string name="sol_boot">To zgłasza sprzętowe attestation (TEE) o stanie rozruchu. Narzędzia obchodzące keybox (TrickyStore, TEE Simulator, OhMyKeyMint) przepisują attestation tylko dla aplikacji, które wskażesz. Dodaj pakiet tej aplikacji do listy celów tych narzędzi (np. target.txt), aby jej attestation zgłaszało zablokowane urządzenie z zielonym verified boot.</string>
+    <string name="sol_root_detector">Te zainstalowane aplikacje szukają roota, emulatora lub nieudanego Play Integrity. Dodaj znalezione tutaj pakiety do swojego frameworka ukrywania (HMA-OSS) jako cele, aby twoje aplikacje i moduły roota były ukryte przed tymi detektorami.</string>
+    <string name="sol_spoof">To ustawienie jest odczytywane różnie w ścieżkach, których może użyć aplikacja (spoof nie zamyka wszystkich). Dodaj ustawienie do presetów spoof HMA-OSS, aby każda ścieżka odczytu zwracała tę samą wartość.</string>
+    <string name="sol_attest_patch">Key attestation podaje inny poziom poprawki niż właściwość systemu. Ustaw to w narzędziu keybox - TrickyStore w security_patch.txt (data, albo system=/boot=/vendor=/all=, albo \'prop\'); OhMyKeymint w config.toml w sekcji [trust]. Oba zmieniają tylko atestację, nie właściwości.</string>
+    <string name="sol_patch_prop">Build.VERSION.SECURITY_PATCH (framework) i właściwość ro.build.version.security_patch pokazują różne daty. Wyrównaj je przez resetprop. security_patch.txt i config.toml tu nie pomogą - zmieniają tylko key attestation, nie właściwości.</string>
+
+    <string name="note_gsf">Nieobecne w Androidzie 16 i nowszych: magazyn usług Google przeniósł się do Play Services, którego drzwi sama Google nazwała &quot;do.not.use&quot; i które nie odpowiada innym aplikacjom. Oba są próbowane powyżej.</string>
+    <string name="t_attestation_app_id">Identyfikator aplikacji w atestacji (pakiet + podpis)</string>
+    <string name="t_dev_ptmx_present">/dev/ptmx obecny</string>
+    <string name="t_documents_providers">Zarejestrowane DocumentsProviders</string>
+    <string name="t_kernel_modules">Załadowane moduły jądra (KernelSU/SuSFS)</string>
+    <string name="t_kernel_syscall_fingerprint">Wersja jądra z odcisku syscalli</string>
+    <string name="t_key_inside_secure_hw">Klucz w bezpiecznym sprzęcie (KeyInfo)</string>
+    <string name="t_keybox_ec_vs_rsa">Zasięg keyboksa: atestacja EC vs RSA</string>
+    <string name="t_local_tmp_contents">Zawartość /data/local/tmp</string>
+    <string name="t_native_lib_origin">Pochodzenie biblioteki natywnej (dladdr)</string>
+    <string name="t_own_debuggable">Ta aplikacja: debuggable / kompilacja debug</string>
+    <string name="t_play_store_version">Wersja Play Store / GMS</string>
+    <string name="t_resolv_conf">resolv.conf / konfiguracja DNS</string>
+    <string name="t_root_backup_tools">Obecne narzędzia kopii zapasowych z rootem</string>
+    <string name="t_su_libc_inline_hook">su: surowy syscall vs libc vs Java</string>
+    <string name="t_system_build_prop">/system/build.prop</string>
+    <string name="t_system_build_prop_present">/system/build.prop obecny</string>
+    <string name="t_adb_enabled">ADB włączone</string>
+    <string name="t_apatch">APatch</string>
+    <string name="t_accessibility_enabled">Dostępność włączona</string>
+    <string name="t_accounts">Konta</string>
+    <string name="t_active_subscriptions">Aktywne subskrypcje</string>
+    <string name="t_advertising_id">Identyfikator reklamowy</string>
+    <string name="t_advertising_id_keys_settings_stores">Klucze identyfikatora reklamowego (settings)</string>
+    <string name="t_spoof_consistency">Spójność spoof: %1$s</string>
+    <string name="t_spoof_sweep">Przegląd spójności spoof (wszystkie ustawienia)</string>
+    <string name="t_analysis_emulator_apps">Aplikacje analityczne / emulatory</string>
+    <string name="t_android_id">Android ID</string>
+    <string name="t_another_process_cmdline_init">cmdline innego procesu (init)</string>
+    <string name="t_another_process_maps_init">maps innego procesu (init)</string>
+    <string name="t_attestation_keymaster_version">Wersja attestation / keymaster</string>
+    <string name="t_attestation_available">Attestation dostępne</string>
+    <string name="t_attestation_provisioning_signer">Provisioning attestation (podpisujący)</string>
+    <string name="t_attestation_provisioning_info">Attestation ProvisioningInfo (RKP)</string>
+    <string name="t_attestation_security_level">Poziom bezpieczeństwa attestation</string>
+    <string name="t_block_untrusted_touches">Blokuj niezaufane dotknięcia</string>
+    <string name="t_bluetooth_mac">MAC Bluetooth</string>
+    <string name="t_bluetooth_bonded_devices">Sparowane urządzenia Bluetooth</string>
+    <string name="t_bluetooth_name">Nazwa Bluetooth</string>
+    <string name="t_bluetooth_name_bt_name">Nazwa Bluetooth (bt_name)</string>
+    <string name="t_bluetooth_name_btname">Nazwa Bluetooth (btname)</string>
+    <string name="t_bluetooth_name_settings">Nazwa Bluetooth (settings)</string>
+    <string name="t_bluetooth_scan_mode">Tryb skanowania Bluetooth</string>
+    <string name="t_bluetooth_state">Stan Bluetooth</string>
+    <string name="t_board">Board</string>
+    <string name="t_boot_id">Boot ID</string>
+    <string name="t_boot_count">Liczba uruchomień</string>
+    <string name="t_boot_patch_level">Poziom łatki boot</string>
+    <string name="t_boot_time_epoch_proc_stat_btime">Czas uruchomienia (epoch, /proc/stat btime)</string>
+    <string name="t_bootloader">Bootloader</string>
+    <string name="t_brand">Marka</string>
+    <string name="t_build_id">Build ID</string>
+    <string name="t_build_host">Host build</string>
+    <string name="t_build_tags">Tagi build</string>
+    <string name="t_build_time_utc_epoch">Czas build (UTC epoch)</string>
+    <string name="t_build_type">Typ build</string>
+    <string name="t_cpu_cores">Rdzenie CPU</string>
+    <string name="t_call_log_entries">Wpisy dziennika połączeń</string>
+    <string name="t_cameras">Aparaty</string>
+    <string name="t_cell_info">Informacje o komórce</string>
+    <string name="t_data_roaming">Roaming danych</string>
+    <string name="t_default_input_method">Domyślna metoda wprowadzania</string>
+    <string name="t_developer_settings_enabled">Opcje programisty włączone</string>
+    <string name="t_device">Device</string>
+    <string name="t_device_locked">Urządzenie zablokowane</string>
+    <string name="t_device_name">Nazwa urządzenia</string>
+    <string name="t_display_id">Display ID</string>
+    <string name="t_display_metrics">Metryki ekranu</string>
+    <string name="t_emulator_files">Pliki emulatora</string>
+    <string name="t_enabled_accessibility_services">Włączone usługi dostępności</string>
+    <string name="t_enabled_input_methods">Włączone metody wprowadzania</string>
+    <string name="t_fingerprint">Fingerprint</string>
+    <string name="t_gsf_id_hex">GSF ID (hex)</string>
+    <string name="t_gsf_id_raw">GSF ID (surowe)</string>
+    <string name="t_http_proxy">Proxy HTTP</string>
+    <string name="t_hardware">Sprzęt</string>
+    <string name="t_hidden_api_policy">Polityka ukrytego API</string>
+    <string name="t_hidden_api_policy_p_apps">Polityka ukrytego API (aplikacje P)</string>
+    <string name="t_hidden_api_policy_pre_p_apps">Polityka ukrytego API (aplikacje pre-P)</string>
+    <string name="t_hiding_cloaking_apps">Aplikacje ukrywające</string>
+    <string name="t_hostname">Hostname</string>
+    <string name="t_imei">IMEI</string>
+    <string name="t_imsi_subscriber">IMSI (abonent)</string>
+    <string name="t_incremental">Incremental</string>
+    <string name="t_injected_libs_proc_self_maps">Wstrzyknięte biblioteki (/proc/self/maps)</string>
+    <string name="t_installed_app_signing_digests">Skróty podpisów zainstalowanych aplikacji</string>
+    <string name="t_installed_applications">Zainstalowane aplikacje</string>
+    <string name="t_installed_input_methods">Zainstalowane metody wprowadzania</string>
+    <string name="t_installed_packages">Zainstalowane pakiety</string>
+    <string name="t_installed_packages_list">Zainstalowane pakiety (lista)</string>
+    <string name="t_kernel_release">Jądro (release)</string>
+    <string name="t_kernel_version">Jądro (wersja)</string>
+    <string name="t_kernel_cmdline">cmdline jądra</string>
+    <string name="t_kernel_log">Dziennik jądra</string>
+    <string name="t_kernel_stat">stat jądra</string>
+    <string name="t_kernelsu">KernelSU</string>
+    <string name="t_limit_ad_tracking">Ogranicz śledzenie reklam</string>
+    <string name="t_locale">Ustawienia regionalne</string>
+    <string name="t_mac">MAC %1$s</string>
+    <string name="t_meid">MEID</string>
+    <string name="t_magisk">Magisk</string>
+    <string name="t_manufacturer">Producent</string>
+    <string name="t_model">Model</string>
+    <string name="t_mount_markers_magisk_overlay">Znaczniki montowania (magisk/overlay)</string>
+    <string name="t_network_interfaces">Interfejsy sieciowe</string>
+    <string name="t_os_release">Wersja systemu</string>
+    <string name="t_os_security_patch_level">Poziom łatki bezpieczeństwa OS</string>
+    <string name="t_os_version_attested">Wersja OS (poświadczona)</string>
+    <string name="t_pid">PID</string>
+    <string name="t_primary_abi">Główne ABI</string>
+    <string name="t_primary_imei">Główny IMEI</string>
+    <string name="t_product">Product</string>
+    <string name="t_root_manager_apps">Aplikacje menedżera roota</string>
+    <string name="t_root_tools_apps">Narzędzia oparte na roocie</string>
+    <string name="t_rooted_apps">Aplikacje wymagające roota</string>
+    <string name="t_root_detector_apps">Aplikacje wykrywające roota</string>
+    <string name="t_suspicious_apps">Podejrzane aplikacje</string>
+    <string name="t_running_app_processes">Działające procesy aplikacji</string>
+    <string name="t_running_services">Działające usługi</string>
+    <string name="t_sdk_int">SDK int</string>
+    <string name="t_selinux_mls_enabled">SELinux MLS włączone</string>
+    <string name="t_selinux_context_self">Kontekst SELinux (własny)</string>
+    <string name="t_selinux_enforce">SELinux enforce</string>
+    <string name="t_selinux_policy_version">Wersja polityki SELinux</string>
+    <string name="t_sim_serial_iccid">Numer seryjny SIM (ICCID)</string>
+    <string name="t_screen_capture_disabled_policy">Przechwytywanie ekranu wyłączone (polityka)</string>
+    <string name="t_security_patch">Łatka bezpieczeństwa</string>
+    <string name="t_sensor_count">Liczba czujników</string>
+    <string name="t_sensors">Czujniki</string>
+    <string name="t_serial">Numer seryjny</string>
+    <string name="t_soc_family">Rodzina SoC</string>
+    <string name="t_soc_id">SoC ID</string>
+    <string name="t_soc_machine">Maszyna SoC</string>
+    <string name="t_soc_serial_number">Numer seryjny SoC</string>
+    <string name="t_storage_data_total_bytes">Pamięć /data łącznie (bajty)</string>
+    <string name="t_system_features_count">System features (liczba)</string>
+    <string name="t_system_features_full_set">System features (pełny zestaw)</string>
+    <string name="t_tether_dun_required">Wymagany tether DUN</string>
+    <string name="t_this_app_installer">Instalator tej aplikacji</string>
+    <string name="t_this_app_signing_sha_256">SHA-256 podpisu tej aplikacji</string>
+    <string name="t_time_zone_settings">Strefa czasowa (settings)</string>
+    <string name="t_timezone">Strefa czasowa</string>
+    <string name="t_total_ram_bytes">Łączny RAM (bajty)</string>
+    <string name="t_touch_exploration_enabled">Eksploracja dotykiem włączona</string>
+    <string name="t_touch_exploration_granted_services">Usługi z eksploracją dotykiem</string>
+    <string name="t_tracerpid_debugger">TracerPid (debuger)</string>
+    <string name="t_ufs_model">Model UFS</string>
+    <string name="t_ufs_revision">Rewizja UFS</string>
+    <string name="t_ufs_vendor">Dostawca UFS</string>
+    <string name="t_uid">UID</string>
+    <string name="t_uid_coherence">Spójność UID/GID</string>
+    <string name="t_uptime_s">Czas działania (s)</string>
+    <string name="t_user_serial_number">Numer seryjny użytkownika</string>
+    <string name="t_oaid">OAID (anonimowy id MSA)</string>
+    <string name="t_vaid">VAID (anonimowy id dostawcy MSA)</string>
+    <string name="t_aaid_msa">AAID (anonimowy id aplikacji MSA)</string>
+    <string name="t_udid">UDID (MSA)</string>
+    <string name="t_extm_uuid">extm_uuid (Xiaomi)</string>
+    <string name="t_op_security_uuid">op_security_uuid (OnePlus)</string>
+    <string name="t_user_creation_time">Czas utworzenia użytkownika</string>
+    <string name="t_vendor_patch_level">Poziom łatki dostawcy</string>
+    <string name="t_verified_boot_hash_vbmeta_digest">Hash verified boot / skrót vbmeta</string>
+    <string name="t_verified_boot_key">Klucz verified boot</string>
+    <string name="t_verified_boot_state">Stan verified boot</string>
+    <string name="t_prop_area_tamper">Manipulacja obszarem właściwości (dziura/kontekst)</string>
+    <string name="t_supplementary_groups">Grupy dodatkowe (3009=AID_READPROC)</string>
+    <string name="t_version_codename">Nazwa kodowa wersji</string>
+    <string name="t_webview_provider">Dostawca WebView</string>
+    <string name="t_webview_user_agent">User agent WebView</string>
+    <string name="t_wi_fi_bssid">BSSID Wi-Fi</string>
+    <string name="t_wi_fi_ip">IP Wi-Fi</string>
+    <string name="t_wi_fi_mac_wifiinfo">MAC Wi-Fi (WifiInfo)</string>
+    <string name="t_wi_fi_mac_settings">MAC Wi-Fi (settings)</string>
+    <string name="t_wi_fi_rssi">RSSI Wi-Fi</string>
+    <string name="t_wi_fi_ssid">SSID Wi-Fi</string>
+    <string name="t_wi_fi_frequency_mhz">Częstotliwość Wi-Fi (MHz)</string>
+    <string name="t_wi_fi_link_speed_mbps">Prędkość łącza Wi-Fi (Mbps)</string>
+    <string name="t_wi_fi_network_id">ID sieci Wi-Fi</string>
+    <string name="t_widevine_device_id">ID urządzenia Widevine</string>
+    <string name="t_widevine_vendor_version">Dostawca/wersja Widevine</string>
+    <string name="t_xposed_lsposed_riru">Xposed / LSPosed / Riru</string>
+    <string name="t_xposed_manager_apps">Aplikacje menedżera Xposed</string>
+    <string name="t_cpuinfo">cpuinfo</string>
+    <string name="t_emmc_cid">CID eMMC</string>
+    <string name="t_emmc_oem_id">OEM id eMMC</string>
+    <string name="t_emmc_manufacture_date">Data produkcji eMMC</string>
+    <string name="t_emmc_manufacturer_id">ID producenta eMMC</string>
+    <string name="t_emmc_name">Nazwa eMMC</string>
+    <string name="t_emmc_serial">Numer seryjny eMMC</string>
+    <string name="t_env">env %1$s</string>
+    <string name="t_http_agent">http.agent</string>
+    <string name="t_meminfo">meminfo</string>
+    <string name="t_querybroadcastreceivers_boot_completed">queryBroadcastReceivers (BOOT_COMPLETED)</string>
+    <string name="t_queryinstrumentation_all">queryInstrumentation (wszystkie)</string>
+    <string name="t_queryintentactivities_call_tel">queryIntentActivities (CALL tel:)</string>
+    <string name="t_queryintentactivities_main_launcher">queryIntentActivities (MAIN/LAUNCHER)</string>
+    <string name="t_queryintentactivities_view_http">queryIntentActivities (VIEW http)</string>
+    <string name="t_queryintentcontentproviders_view">queryIntentContentProviders (VIEW)</string>
+    <string name="t_queryintentservices_main">queryIntentServices (MAIN)</string>
+    <string name="t_resolveactivity_main_launcher">resolveActivity (MAIN/LAUNCHER)</string>
+    <string name="t_su_binary">plik binarny su</string>
+    <string name="t_su_on_path">su w PATH</string>
+    <string name="t_tel_networkOperatorName">Nazwa operatora sieci</string>
+    <string name="t_tel_networkOperator">Operator sieci (MCC+MNC)</string>
+    <string name="t_tel_networkCountryIso">ISO kraju sieci</string>
+    <string name="t_tel_simOperatorName">Nazwa operatora SIM</string>
+    <string name="t_tel_simOperator">Operator SIM (MCC+MNC)</string>
+    <string name="t_tel_simCountryIso">ISO kraju SIM</string>
+    <string name="t_tel_simState">Stan SIM</string>
+    <string name="t_tel_phoneType">Typ telefonu</string>
+    <string name="t_tel_networkType">Typ sieci danych</string>
+    <string name="t_tel_dataState">Stan danych</string>
+    <string name="t_tel_callState">Stan połączenia</string>
+    <string name="t_tel_isNetworkRoaming">Roaming sieci</string>
+    <string name="t_tel_line1Number">Numer linii 1</string>
+    <string name="t_tel_voiceMailNumber">Numer poczty głosowej</string>
+    <string name="t_tel_groupIdLevel1">Group ID level 1</string>
+    <string name="t_tel_mmsUserAgent">User agent MMS</string>
+    <string name="t_tel_mmsUAProfUrl">URL UAProf MMS</string>
+    <string name="t_tel_phoneCount">Liczba telefonów/SIM</string>
+    <string name="t_tel_isDataEnabled">Dane włączone</string>
+    <string name="t_tel_isVoiceCapable">Obsługuje głos</string>
+    <string name="t_tel_isSmsCapable">Obsługuje SMS</string>
+    <string name="t_tel_subscriberId">IMSI (subscriberId)</string>
+    <string name="t_tel_deviceSoftwareVersion">Wersja oprogramowania urządzenia</string>
+    <string name="t_self_packageName">Nazwa tego pakietu</string>
+    <string name="t_self_uid">UID tej aplikacji</string>
+    <string name="t_self_packagesForUid">Pakiety współdzielące ten UID</string>
+    <string name="t_self_nameForUid">Nazwa dla UID</string>
+    <string name="t_self_packageGids">GID-y pakietu</string>
+    <string name="t_self_packageUid">UID pakietu (PM)</string>
+    <string name="t_self_installer">Pakiet instalatora</string>
+    <string name="t_self_installSource">Źródło instalacji</string>
+    <string name="t_self_times">Pierwsza instalacja / ostatnia aktualizacja</string>
+    <string name="t_self_versionCode">versionCode tej aplikacji</string>
+    <string name="t_self_targetSdk">targetSdk tej aplikacji</string>
+    <string name="t_self_enabledSetting">Stan włączenia aplikacji</string>
+    <string name="t_self_isInstantApp">Instant app</string>
+    <string name="t_self_isPackageSuspended">Pakiet zawieszony</string>
+    <string name="t_self_autoRevokeWhitelisted">Zwolniony z automatycznego cofania</string>
+    <string name="t_self_syntheticDetails">Szczegóły syntetyczne aktywnej aplikacji</string>
+    <string name="t_self_whitelistedRestricted">Dozwolone ograniczone uprawnienia</string>
+    <string name="t_self_moduleInfo">Informacje o module</string>
+    <string name="t_self_checkAdId">checkPermission(AD_ID)</string>
+    <string name="t_self_launchIntent">Ma intent uruchamiający</string>
+    <string name="t_self_leanbackIntent">Ma intent uruchamiający leanback</string>
+    <string name="t_self_xposedMeta">Własne klucze meta Xposed</string>
+    <string name="t_self_resourcesForApp">Zasoby aplikacji</string>
+    <string name="t_content_command">Dostawca przez polecenie `content`</string>
+    <string name="t_test_harness">Działa w test harness</string>
+    <string name="t_user_test_harness">Działa w test harness użytkownika</string>
+    <string name="t_user_a_monkey">Sterowany przez Monkey</string>
+    <string name="t_low_ram_device">Urządzenie o niskim RAM</string>
+    <string name="t_vpn_active">VPN aktywne</string>
+    <string name="t_vpn_interfaces">Interfejsy tunelu</string>
+    <string name="t_location_providers">Dostawcy lokalizacji</string>
+    <string name="t_mock_location">Fałszywa lokalizacja</string>
+    <string name="t_debugger_attached">Debuger podłączony</string>
+    <string name="t_device_secure">Blokada ekranu ustawiona</string>
+    <string name="t_sensor_vendors">Dostawcy czujników</string>
+    <string name="t_input_devices">Urządzenia wejściowe</string>
+    <string name="t_appop">App op: %1$s</string>
+    <string name="t_mem_total_kb">Łączny RAM (kB)</string>
+    <string name="t_ns_mnt">Namespace montowania</string>
+    <string name="t_ns_net">Namespace sieci</string>
+    <string name="t_ns_pid">Namespace PID</string>
+    <string name="t_ns_uts">Namespace UTS</string>
+    <string name="t_ns_ipc">Namespace IPC</string>
+    <string name="t_ns_user">Namespace użytkownika</string>
+    <string name="t_ns_cgroup">Namespace cgroup</string>
+    <string name="t_ns_time">Namespace czasu</string>
+    <string name="t_proc_exe">Plik wykonywalny procesu</string>
+    <string name="t_proc_cwd">Katalog roboczy</string>
+    <string name="t_proc_root">Korzeń systemu plików</string>
+    <string name="t_seccomp">Tryb seccomp</string>
+    <string name="t_no_new_privs">NoNewPrivs</string>
+    <string name="t_cap_effective">Efektywne capability</string>
+    <string name="t_cap_bounding">Bounding capability</string>
+    <string name="t_status_uid">Wiersz UID (jądro)</string>
+    <string name="t_status_gid">Wiersz GID (jądro)</string>
+    <string name="t_status_groups">Grupy dodatkowe</string>
+    <string name="t_status_threads">Wątki</string>
+    <string name="t_selinux_attr">Kontekst SELinux (attr/current)</string>
+    <string name="t_cgroup">Cgroup</string>
+    <string name="t_architecture">Architektura</string>
+    <string name="t_zero_width_names">Nazwy ze znakami zerowej szerokości / niewidoczne</string>
+    <string name="err_probe_timeout">przekroczono czas sondy</string>
+    <string name="t_isrc_self_installer">Źródło instalacji (self): installer</string>
+    <string name="t_isrc_self_initiating">Źródło instalacji (self): initiating</string>
+    <string name="t_isrc_self_originating">Źródło instalacji (self): originating</string>
+    <string name="t_isrc_self_pkgsource">Źródło instalacji (self): packageSource</string>
+    <string name="t_isrc_self_initiator_sig">Źródło instalacji (self): cert initiatora vs zainstalowany</string>
+    <string name="t_isrc_gap_jvm_store_pm_denies">Rozbieżność: JVM podaje installer ze sklepu, pm zaprzecza (hook)</string>
+    <string name="t_isrc_gap_jvm_pm_other">Rozbieżność: installer JVM ≠ installer pm (widoczność)</string>
+    <string name="t_isrc_gap_installer_ne_initiating">Rozbieżność: installer ≠ initiating</string>
+    <string name="t_isrc_gap_store_installer_sideload">Rozbieżność: installer ze sklepu, initiating sideload</string>
+    <string name="t_isrc_gap_installer_set_no_initiator">Rozbieżność: installer ustawiony, initiating null</string>
+    <string name="t_isrc_gap_initiator_store_no_installer">Rozbieżność: initiating ze sklepu, installer null</string>
+    <string name="t_isrc_gap_initiator_sig_mismatch">Rozbieżność: cert initiatora zapisany ≠ zainstalowany</string>
+    <string name="t_isrc_gap_initiator_orphan">Rozbieżność: pakiet initiating nie zainstalowany</string>
+    <string name="t_isrc_gap_installer_orphan">Rozbieżność: pakiet installer nie zainstalowany</string>
+    <string name="t_isrc_gap_originating_ne_initiating">Rozbieżność: originating ≠ initiating (w imieniu)</string>
+    <string name="t_isrc_gap_ghost_user_install">Rozbieżność: aplikacja użytkownika bez źródła instalacji</string>
+    <string name="t_isrc_gap_system_shell_installed">Rozbieżność: aplikacja systemowa zainstalowana przez shell</string>
+    <string name="t_isrc_gap_update_owner_drift">Rozbieżność: updateOwner ≠ installer</string>
+    <string name="t_isrc_gap_self_declared_installer">Rozbieżność: aplikacja jest własnym installerem</string>
+    <string name="t_installed_packages_diff">Zainstalowane pakiety: rozbieżne (JVM x pm)</string>
+    <string name="t_installed_applications_diff">Zainstalowane aplikacje: rozbieżne (JVM x pm)</string>
+    <string name="t_selinux_status">Strona status SELinux (policyload/seq)</string>
+    <string name="t_selinux_policy_probe">Sonda polityki SELinux (typy + AVC)</string>
+    <string name="t_manager_doors">Menedżer root/Xposed: widoczność wg drzwi PackageManagera</string>
+    <string name="t_net_sock_diag">Polityka Netlink sock_diag</string>
+    <string name="n_net_sock_diag">Ograniczonej aplikacji należy odmówić NETLINK_SOCK_DIAG; odpowiedź oznacza, że politykę netlink poluzowano.</string>
+    <string name="t_mount_peer_gap">Integralność peer-group montowań</string>
+    <string name="n_mount_peer_gap">Zbiór id peer-group musi być taki sam przez każdą soczewkę; luka w soczewce oznacza ukryte montowanie.</string>
+    <string name="t_mount_fdinfo_mnt">Mount id vs otwarte deskryptory</string>
+    <string name="n_mount_fdinfo_mnt">Otwarty deskryptor, którego mnt_id brakuje w mountinfo, wskazuje na montowanie ukryte przed widokiem.</string>
+    <string name="t_proc_readproc_gid">GID 3009 zygote (AID_READPROC)</string>
+    <string name="n_proc_readproc_gid">Brak dodatkowego GID AID_READPROC to ślad pozostawiany przez niektóre moduły ukrywania aplikacji.</string>
+    <string name="t_proc_fd_graph">Spis deskryptorów</string>
+    <string name="t_mem_anon_exec">Anonimowe mapowania wykonywalne</string>
+    <string name="n_mem_anon_exec">Strony wykonywalne bez pliku źródłowego to typowa pozostałość wstrzyknięcia/Zygisk; liczba musi się zgadzać między soczewkami.</string>
+    <string name="t_kernel_selfbuild">Samodzielnie zbudowane / załatane jądro</string>
+    <string name="n_kernel_selfbuild">Fabryczne jądro nie nosi znacznika -dirty, git ani SUSFS; markery muszą się zgadzać między soczewkami.</string>
+    <string name="t_tee_soter">Usługa Soter vs właściwość</string>
+    <string name="n_tee_soter">Porównuje program usługi Soter firmy Tencent ze stanem jego właściwości usługi.</string>
+    <string name="t_proc_cgroup_format">Format ścieżki cgroup</string>
+    <string name="n_proc_cgroup_format">Sklonowany / dual-app kontener sprawia, że ujednolicona ścieżka cgroup odbiega od kanonicznej postaci uid_/pid_.</string>
+</resources>

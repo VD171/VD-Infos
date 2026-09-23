@@ -1,0 +1,435 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    ======================================================================
+     VD INFOS  ::  method debugger
+     Read every device info by every method, then compare. A divergence is a hook.
+
+     Copyright (C) 2026  VD171
+     SPDX-License-Identifier: AGPL-3.0-or-later
+
+     Free software under the GNU AGPL v3 or later. NETWORK COPYLEFT: run a
+     modified version, even as a service, and you MUST offer its source.
+
+     Site           : https://vd171.ru
+     Site           : https://vd.priv8.ru
+     Source         : https://github.com/VD171/VD-Infos
+     GitHub         : @VD171 https://github.com/VD171
+     XDA-Developers : @VD171 https://xdaforums.com/m/vd171.4699873/
+     Telegram       : @VD_Priv8 https://t.me/VD_Priv8
+     Discord        : @VD.Priv8 https://discord.com/users/1296831918989639721
+     E-mail         : vd.priv8@pm.me
+    ======================================================================
+-->
+<resources>
+    <string name="app_tagline">मेथड डिबगर</string>
+
+    <!-- क्रियाएँ -->
+    <string name="action_reveal">पहचान दिखाएँ</string>
+    <string name="action_export">रिपोर्ट साझा करें</string>
+    <string name="action_save">फ़ाइल में सहेजें</string>
+    <string name="action_rescan">फिर से स्कैन करें</string>
+    <string name="save_ok">रिपोर्ट सहेजी गई</string>
+    <string name="save_fail">फ़ाइल सहेजने में विफल</string>
+
+    <!-- सारांश -->
+    <plurals name="summary_divergences">
+        <item quantity="one">%d विचलन</item>
+        <item quantity="other">%d विचलन</item>
+    </plurals>
+    <string name="summary_line">%1$d/%2$d प्रोब · %3$d मेल</string>
+    <string name="summary_native_off"> · नेटिव उपलब्ध नहीं</string>
+
+    <!-- खोज और फ़िल्टर -->
+    <string name="search_hint">prop, मान खोजें…</string>
+    <string name="filter_divergent">केवल विचलित</string>
+    <string name="filter_all">सभी</string>
+
+    <!-- निर्णय -->
+    <string name="verdict_mismatch">विचलित</string>
+    <string name="verdict_match">मेल</string>
+    <string name="verdict_single">एकल</string>
+    <string name="verdict_info">जानकारी</string>
+    <string name="reading_context_only">संदर्भ</string>
+    <string name="reading_empty">(खाली)</string>
+    <string name="verdict_empty">खाली</string>
+    <string name="verdict_error">त्रुटि</string>
+
+    <!-- श्रेणियाँ -->
+    <string name="cat_identity">पहचान</string>
+    <string name="cat_fingerprint">Fingerprint</string>
+    <string name="cat_telephony">टेलीफ़ोनी / RIL</string>
+    <string name="cat_network">नेटवर्क</string>
+    <string name="cat_locale">Locale / समय</string>
+    <string name="cat_boot">Boot / कर्नेल</string>
+    <string name="cat_build">Build / ROM</string>
+    <string name="cat_display">डिस्प्ले</string>
+    <string name="cat_sensors">सेंसर</string>
+    <string name="cat_media">मीडिया / DRM</string>
+    <string name="cat_packages">पैकेज</string>
+    <string name="cat_accounts">खाते</string>
+    <string name="cat_webview">WebView</string>
+    <string name="cat_hardware">हार्डवेयर</string>
+    <string name="cat_storage">भंडारण</string>
+    <string name="cat_process">प्रक्रिया</string>
+    <string name="cat_security">सुरक्षा</string>
+    <string name="cat_integrity">Root / अखंडता</string>
+    <string name="cat_emulator">एमुलेटर</string>
+    <string name="cat_system">सिस्टम</string>
+
+    <!-- पृष्ठभूमि परिवर्तन सूचनाएँ -->
+    <string name="action_about">परिचय</string>
+    <string name="action_close">बंद करें</string>
+    <string name="action_copy">कॉपी करें</string>
+    <string name="copied">कॉपी किया गया</string>
+    <string name="about_developer">डेवलपर</string>
+    <string name="about_source">स्रोत कोड</string>
+    <string name="about_license">लाइसेंस</string>
+    <string name="about_contacts">संपर्क</string>
+    <string name="about_privacy">कोई भी जानकारी संग्रहीत, भेजी या प्रेषित नहीं की जाती। सब कुछ डिवाइस पर चलता है, और रिपोर्ट केवल तभी डिवाइस छोड़ती है जब आप स्वयं इसे साझा या सहेजते हैं।</string>
+    <string name="crash_title">अप्रत्याशित त्रुटि</string>
+    <string name="crash_body">ऐप में एक अप्रत्याशित त्रुटि हुई। कहीं कुछ नहीं भेजा गया। आप नीचे दिए विवरण कॉपी करके डेवलपर को भेज सकते हैं।</string>
+    <string name="about_project">परियोजना</string>
+    <string name="about_support">डाउनलोड और सहायता</string>
+    <string name="action_clear">खोज साफ़ करें</string>
+    <string name="lang_dialog_title">भाषा</string>
+    <string name="lang_dialog_body">ऐप की भाषा चुनें, या अपने सिस्टम की सेटिंग का पालन करें।</string>
+    <string name="lang_system_default">सिस्टम डिफ़ॉल्ट</string>
+    <string name="lang_apply">लागू करें</string>
+
+    <!-- समाधान -->
+    <string name="sol_title">कैसे ठीक करें</string>
+    <string name="sol_boot">यह वही है जो हार्डवेयर attestation (TEE) बूट स्थिति के बारे में रिपोर्ट करता है। keybox बायपास उपकरण (TrickyStore, TEE Simulator, OhMyKeyMint) केवल उन ऐप्स के लिए attestation को फिर से लिखते हैं जिन्हें आप निर्दिष्ट करते हैं। इस ऐप का पैकेज उन उपकरणों की लक्ष्य सूची (जैसे target.txt) में जोड़ें ताकि इसका attestation एक लॉक डिवाइस और हरे verified boot की रिपोर्ट दे।</string>
+    <string name="sol_root_detector">ये इंस्टॉल किए गए ऐप्स root, एमुलेटर या विफल Play Integrity की तलाश करते हैं। यहाँ पाए गए पैकेजों को अपने छिपाव फ्रेमवर्क (HMA-OSS) में लक्ष्य के रूप में जोड़ें ताकि आपके ऐप्स और root मॉड्यूल इन डिटेक्टरों से छिपे रहें।</string>
+    <string name="sol_spoof">यह सेटिंग उन रास्तों में अलग-अलग पढ़ी जाती है जिन्हें कोई ऐप उपयोग कर सकता है (spoof सभी को कवर नहीं करता)। सेटिंग को HMA-OSS के spoof प्रीसेट में जोड़ें ताकि हर पढ़ने का रास्ता समान मान लौटाए।</string>
+    <string name="sol_attest_patch">key attestation, सिस्टम प्रॉपर्टी से अलग पैच स्तर बताती है। इसे अपने keybox टूल में सेट करें - TrickyStore में security_patch.txt (एक तारीख़, या system=/boot=/vendor=/all=, या \'prop\'); OhMyKeymint में config.toml के [trust] में। दोनों केवल attestation बदलते हैं, प्रॉपर्टीज़ नहीं।</string>
+    <string name="sol_patch_prop">Build.VERSION.SECURITY_PATCH (फ़्रेमवर्क) और ro.build.version.security_patch प्रॉपर्टी अलग-अलग तारीख़ें दिखाते हैं। इन्हें resetprop से मिलाएँ। security_patch.txt और config.toml यहाँ मदद नहीं करते - वे केवल key attestation बदलते हैं, प्रॉपर्टीज़ नहीं।</string>
+
+    <string name="note_gsf">Android 16 और उसके बाद अनुपस्थित: Google सेवाओं का स्टोर Play Services में चला गया, जिसके द्वार को स्वयं Google ने &quot;do.not.use&quot; नाम दिया और जो अन्य ऐप्स को उत्तर नहीं देता। ऊपर दोनों आज़माए जाते हैं।</string>
+    <string name="t_attestation_app_id">अटेस्टेशन ऐप्लिकेशन आईडी (पैकेज + हस्ताक्षर)</string>
+    <string name="t_dev_ptmx_present">/dev/ptmx मौजूद</string>
+    <string name="t_documents_providers">पंजीकृत DocumentsProviders</string>
+    <string name="t_kernel_modules">लोड किए गए कर्नेल मॉड्यूल (KernelSU/SuSFS)</string>
+    <string name="t_kernel_syscall_fingerprint">syscall फ़िंगरप्रिंट से कर्नेल संस्करण</string>
+    <string name="t_key_inside_secure_hw">सुरक्षित हार्डवेयर में कुंजी (KeyInfo)</string>
+    <string name="t_keybox_ec_vs_rsa">keybox कवरेज: EC बनाम RSA अटेस्टेशन</string>
+    <string name="t_local_tmp_contents">/data/local/tmp की सामग्री</string>
+    <string name="t_native_lib_origin">नेटिव लाइब्रेरी का स्रोत (dladdr)</string>
+    <string name="t_own_debuggable">यह ऐप: debuggable / डिबग बिल्ड</string>
+    <string name="t_play_store_version">Play Store / GMS संस्करण</string>
+    <string name="t_resolv_conf">resolv.conf / DNS कॉन्फ़िग</string>
+    <string name="t_root_backup_tools">रूट बैकअप टूल मौजूद</string>
+    <string name="t_su_libc_inline_hook">su: रॉ syscall बनाम libc बनाम Java</string>
+    <string name="t_system_build_prop">/system/build.prop</string>
+    <string name="t_system_build_prop_present">/system/build.prop मौजूद</string>
+    <string name="t_adb_enabled">ADB सक्षम</string>
+    <string name="t_apatch">APatch</string>
+    <string name="t_accessibility_enabled">सुगम्यता सक्षम</string>
+    <string name="t_accounts">खाते</string>
+    <string name="t_active_subscriptions">सक्रिय सदस्यताएँ</string>
+    <string name="t_advertising_id">विज्ञापन ID</string>
+    <string name="t_advertising_id_keys_settings_stores">विज्ञापन ID कुंजियाँ (settings)</string>
+    <string name="t_spoof_consistency">Spoof संगति: %1$s</string>
+    <string name="t_spoof_sweep">Spoof संगति स्वीप (सभी settings)</string>
+    <string name="t_analysis_emulator_apps">विश्लेषण / एमुलेटर ऐप्स</string>
+    <string name="t_android_id">Android ID</string>
+    <string name="t_another_process_cmdline_init">अन्य प्रक्रिया का cmdline (init)</string>
+    <string name="t_another_process_maps_init">अन्य प्रक्रिया का maps (init)</string>
+    <string name="t_attestation_keymaster_version">Attestation / keymaster संस्करण</string>
+    <string name="t_attestation_available">Attestation उपलब्ध</string>
+    <string name="t_attestation_provisioning_signer">Attestation provisioning (हस्ताक्षरकर्ता)</string>
+    <string name="t_attestation_provisioning_info">Attestation ProvisioningInfo (RKP)</string>
+    <string name="t_attestation_security_level">Attestation सुरक्षा स्तर</string>
+    <string name="t_block_untrusted_touches">अविश्वसनीय स्पर्श अवरुद्ध करें</string>
+    <string name="t_bluetooth_mac">Bluetooth MAC</string>
+    <string name="t_bluetooth_bonded_devices">युग्मित Bluetooth डिवाइस</string>
+    <string name="t_bluetooth_name">Bluetooth नाम</string>
+    <string name="t_bluetooth_name_bt_name">Bluetooth नाम (bt_name)</string>
+    <string name="t_bluetooth_name_btname">Bluetooth नाम (btname)</string>
+    <string name="t_bluetooth_name_settings">Bluetooth नाम (settings)</string>
+    <string name="t_bluetooth_scan_mode">Bluetooth स्कैन मोड</string>
+    <string name="t_bluetooth_state">Bluetooth स्थिति</string>
+    <string name="t_board">Board</string>
+    <string name="t_boot_id">Boot ID</string>
+    <string name="t_boot_count">बूट गिनती</string>
+    <string name="t_boot_patch_level">Boot पैच स्तर</string>
+    <string name="t_boot_time_epoch_proc_stat_btime">बूट समय (epoch, /proc/stat btime)</string>
+    <string name="t_bootloader">Bootloader</string>
+    <string name="t_brand">ब्रांड</string>
+    <string name="t_build_id">Build ID</string>
+    <string name="t_build_host">Build host</string>
+    <string name="t_build_tags">Build tags</string>
+    <string name="t_build_time_utc_epoch">Build समय (UTC epoch)</string>
+    <string name="t_build_type">Build प्रकार</string>
+    <string name="t_cpu_cores">CPU कोर</string>
+    <string name="t_call_log_entries">कॉल लॉग प्रविष्टियाँ</string>
+    <string name="t_cameras">कैमरे</string>
+    <string name="t_cell_info">सेल जानकारी</string>
+    <string name="t_data_roaming">डेटा रोमिंग</string>
+    <string name="t_default_input_method">डिफ़ॉल्ट इनपुट विधि</string>
+    <string name="t_developer_settings_enabled">डेवलपर विकल्प सक्षम</string>
+    <string name="t_device">Device</string>
+    <string name="t_device_locked">डिवाइस लॉक</string>
+    <string name="t_device_name">डिवाइस नाम</string>
+    <string name="t_display_id">Display ID</string>
+    <string name="t_display_metrics">डिस्प्ले मेट्रिक्स</string>
+    <string name="t_emulator_files">एमुलेटर फ़ाइलें</string>
+    <string name="t_enabled_accessibility_services">सक्षम सुगम्यता सेवाएँ</string>
+    <string name="t_enabled_input_methods">सक्षम इनपुट विधियाँ</string>
+    <string name="t_fingerprint">Fingerprint</string>
+    <string name="t_gsf_id_hex">GSF ID (hex)</string>
+    <string name="t_gsf_id_raw">GSF ID (कच्चा)</string>
+    <string name="t_http_proxy">HTTP प्रॉक्सी</string>
+    <string name="t_hardware">हार्डवेयर</string>
+    <string name="t_hidden_api_policy">छिपी API नीति</string>
+    <string name="t_hidden_api_policy_p_apps">छिपी API नीति (P ऐप्स)</string>
+    <string name="t_hidden_api_policy_pre_p_apps">छिपी API नीति (P-पूर्व ऐप्स)</string>
+    <string name="t_hiding_cloaking_apps">छिपाने वाले ऐप्स</string>
+    <string name="t_hostname">Hostname</string>
+    <string name="t_imei">IMEI</string>
+    <string name="t_imsi_subscriber">IMSI (सब्सक्राइबर)</string>
+    <string name="t_incremental">Incremental</string>
+    <string name="t_injected_libs_proc_self_maps">इंजेक्ट की गई लाइब्रेरी (/proc/self/maps)</string>
+    <string name="t_installed_app_signing_digests">इंस्टॉल किए ऐप्स के हस्ताक्षर डाइजेस्ट</string>
+    <string name="t_installed_applications">इंस्टॉल किए गए अनुप्रयोग</string>
+    <string name="t_installed_input_methods">इंस्टॉल की गई इनपुट विधियाँ</string>
+    <string name="t_installed_packages">इंस्टॉल किए गए पैकेज</string>
+    <string name="t_installed_packages_list">इंस्टॉल किए गए पैकेज (सूची)</string>
+    <string name="t_kernel_release">कर्नेल (release)</string>
+    <string name="t_kernel_version">कर्नेल (संस्करण)</string>
+    <string name="t_kernel_cmdline">कर्नेल cmdline</string>
+    <string name="t_kernel_log">कर्नेल लॉग</string>
+    <string name="t_kernel_stat">कर्नेल stat</string>
+    <string name="t_kernelsu">KernelSU</string>
+    <string name="t_limit_ad_tracking">विज्ञापन ट्रैकिंग सीमित करें</string>
+    <string name="t_locale">Locale</string>
+    <string name="t_mac">MAC %1$s</string>
+    <string name="t_meid">MEID</string>
+    <string name="t_magisk">Magisk</string>
+    <string name="t_manufacturer">निर्माता</string>
+    <string name="t_model">मॉडल</string>
+    <string name="t_mount_markers_magisk_overlay">Mount मार्कर (magisk/overlay)</string>
+    <string name="t_network_interfaces">नेटवर्क इंटरफ़ेस</string>
+    <string name="t_os_release">OS संस्करण</string>
+    <string name="t_os_security_patch_level">OS सुरक्षा पैच स्तर</string>
+    <string name="t_os_version_attested">OS संस्करण (प्रमाणित)</string>
+    <string name="t_pid">PID</string>
+    <string name="t_primary_abi">प्राथमिक ABI</string>
+    <string name="t_primary_imei">प्राथमिक IMEI</string>
+    <string name="t_product">Product</string>
+    <string name="t_root_manager_apps">Root प्रबंधक ऐप्स</string>
+    <string name="t_root_tools_apps">Root-आधारित उपकरण</string>
+    <string name="t_rooted_apps">Root की आवश्यकता वाले ऐप्स</string>
+    <string name="t_root_detector_apps">Root डिटेक्टर ऐप्स</string>
+    <string name="t_suspicious_apps">संदिग्ध ऐप्स</string>
+    <string name="t_running_app_processes">चल रही ऐप प्रक्रियाएँ</string>
+    <string name="t_running_services">चल रही सेवाएँ</string>
+    <string name="t_sdk_int">SDK int</string>
+    <string name="t_selinux_mls_enabled">SELinux MLS सक्षम</string>
+    <string name="t_selinux_context_self">SELinux संदर्भ (स्वयं)</string>
+    <string name="t_selinux_enforce">SELinux enforce</string>
+    <string name="t_selinux_policy_version">SELinux policy संस्करण</string>
+    <string name="t_sim_serial_iccid">SIM सीरियल (ICCID)</string>
+    <string name="t_screen_capture_disabled_policy">स्क्रीन कैप्चर अक्षम (नीति)</string>
+    <string name="t_security_patch">सुरक्षा पैच</string>
+    <string name="t_sensor_count">सेंसर गिनती</string>
+    <string name="t_sensors">सेंसर</string>
+    <string name="t_serial">सीरियल</string>
+    <string name="t_soc_family">SoC परिवार</string>
+    <string name="t_soc_id">SoC ID</string>
+    <string name="t_soc_machine">SoC मशीन</string>
+    <string name="t_soc_serial_number">SoC सीरियल नंबर</string>
+    <string name="t_storage_data_total_bytes">/data भंडारण कुल (बाइट)</string>
+    <string name="t_system_features_count">System features (गिनती)</string>
+    <string name="t_system_features_full_set">System features (पूर्ण सेट)</string>
+    <string name="t_tether_dun_required">Tether DUN आवश्यक</string>
+    <string name="t_this_app_installer">इस ऐप का इंस्टॉलर</string>
+    <string name="t_this_app_signing_sha_256">इस ऐप के हस्ताक्षर SHA-256</string>
+    <string name="t_time_zone_settings">समय क्षेत्र (settings)</string>
+    <string name="t_timezone">समय क्षेत्र</string>
+    <string name="t_total_ram_bytes">कुल RAM (बाइट)</string>
+    <string name="t_touch_exploration_enabled">स्पर्श अन्वेषण सक्षम</string>
+    <string name="t_touch_exploration_granted_services">स्पर्श अन्वेषण वाली सेवाएँ</string>
+    <string name="t_tracerpid_debugger">TracerPid (डिबगर)</string>
+    <string name="t_ufs_model">UFS मॉडल</string>
+    <string name="t_ufs_revision">UFS संशोधन</string>
+    <string name="t_ufs_vendor">UFS विक्रेता</string>
+    <string name="t_uid">UID</string>
+    <string name="t_uid_coherence">UID/GID सुसंगति</string>
+    <string name="t_uptime_s">अपटाइम (से)</string>
+    <string name="t_user_serial_number">उपयोगकर्ता सीरियल नंबर</string>
+    <string name="t_oaid">OAID (MSA गुमनाम id)</string>
+    <string name="t_vaid">VAID (MSA विक्रेता गुमनाम id)</string>
+    <string name="t_aaid_msa">AAID (MSA ऐप गुमनाम id)</string>
+    <string name="t_udid">UDID (MSA)</string>
+    <string name="t_extm_uuid">extm_uuid (Xiaomi)</string>
+    <string name="t_op_security_uuid">op_security_uuid (OnePlus)</string>
+    <string name="t_user_creation_time">उपयोगकर्ता निर्माण समय</string>
+    <string name="t_vendor_patch_level">विक्रेता पैच स्तर</string>
+    <string name="t_verified_boot_hash_vbmeta_digest">Verified boot हैश / vbmeta डाइजेस्ट</string>
+    <string name="t_verified_boot_key">Verified boot कुंजी</string>
+    <string name="t_verified_boot_state">Verified boot स्थिति</string>
+    <string name="t_prop_area_tamper">property क्षेत्र छेड़छाड़ (होल/संदर्भ)</string>
+    <string name="t_supplementary_groups">पूरक समूह (3009=AID_READPROC)</string>
+    <string name="t_version_codename">संस्करण कोडनेम</string>
+    <string name="t_webview_provider">WebView प्रदाता</string>
+    <string name="t_webview_user_agent">WebView user agent</string>
+    <string name="t_wi_fi_bssid">Wi-Fi BSSID</string>
+    <string name="t_wi_fi_ip">Wi-Fi IP</string>
+    <string name="t_wi_fi_mac_wifiinfo">Wi-Fi MAC (WifiInfo)</string>
+    <string name="t_wi_fi_mac_settings">Wi-Fi MAC (settings)</string>
+    <string name="t_wi_fi_rssi">Wi-Fi RSSI</string>
+    <string name="t_wi_fi_ssid">Wi-Fi SSID</string>
+    <string name="t_wi_fi_frequency_mhz">Wi-Fi आवृत्ति (MHz)</string>
+    <string name="t_wi_fi_link_speed_mbps">Wi-Fi लिंक गति (Mbps)</string>
+    <string name="t_wi_fi_network_id">Wi-Fi नेटवर्क ID</string>
+    <string name="t_widevine_device_id">Widevine डिवाइस ID</string>
+    <string name="t_widevine_vendor_version">Widevine विक्रेता/संस्करण</string>
+    <string name="t_xposed_lsposed_riru">Xposed / LSPosed / Riru</string>
+    <string name="t_xposed_manager_apps">Xposed प्रबंधक ऐप्स</string>
+    <string name="t_cpuinfo">cpuinfo</string>
+    <string name="t_emmc_cid">eMMC CID</string>
+    <string name="t_emmc_oem_id">eMMC OEM id</string>
+    <string name="t_emmc_manufacture_date">eMMC निर्माण तिथि</string>
+    <string name="t_emmc_manufacturer_id">eMMC निर्माता ID</string>
+    <string name="t_emmc_name">eMMC नाम</string>
+    <string name="t_emmc_serial">eMMC सीरियल</string>
+    <string name="t_env">env %1$s</string>
+    <string name="t_http_agent">http.agent</string>
+    <string name="t_meminfo">meminfo</string>
+    <string name="t_querybroadcastreceivers_boot_completed">queryBroadcastReceivers (BOOT_COMPLETED)</string>
+    <string name="t_queryinstrumentation_all">queryInstrumentation (सभी)</string>
+    <string name="t_queryintentactivities_call_tel">queryIntentActivities (CALL tel:)</string>
+    <string name="t_queryintentactivities_main_launcher">queryIntentActivities (MAIN/LAUNCHER)</string>
+    <string name="t_queryintentactivities_view_http">queryIntentActivities (VIEW http)</string>
+    <string name="t_queryintentcontentproviders_view">queryIntentContentProviders (VIEW)</string>
+    <string name="t_queryintentservices_main">queryIntentServices (MAIN)</string>
+    <string name="t_resolveactivity_main_launcher">resolveActivity (MAIN/LAUNCHER)</string>
+    <string name="t_su_binary">su बाइनरी</string>
+    <string name="t_su_on_path">PATH में su</string>
+    <string name="t_tel_networkOperatorName">नेटवर्क ऑपरेटर नाम</string>
+    <string name="t_tel_networkOperator">नेटवर्क ऑपरेटर (MCC+MNC)</string>
+    <string name="t_tel_networkCountryIso">नेटवर्क देश ISO</string>
+    <string name="t_tel_simOperatorName">SIM ऑपरेटर नाम</string>
+    <string name="t_tel_simOperator">SIM ऑपरेटर (MCC+MNC)</string>
+    <string name="t_tel_simCountryIso">SIM देश ISO</string>
+    <string name="t_tel_simState">SIM स्थिति</string>
+    <string name="t_tel_phoneType">फ़ोन प्रकार</string>
+    <string name="t_tel_networkType">डेटा नेटवर्क प्रकार</string>
+    <string name="t_tel_dataState">डेटा स्थिति</string>
+    <string name="t_tel_callState">कॉल स्थिति</string>
+    <string name="t_tel_isNetworkRoaming">नेटवर्क रोमिंग</string>
+    <string name="t_tel_line1Number">लाइन 1 नंबर</string>
+    <string name="t_tel_voiceMailNumber">वॉइसमेल नंबर</string>
+    <string name="t_tel_groupIdLevel1">Group ID level 1</string>
+    <string name="t_tel_mmsUserAgent">MMS user agent</string>
+    <string name="t_tel_mmsUAProfUrl">MMS UAProf URL</string>
+    <string name="t_tel_phoneCount">फ़ोन/SIM गिनती</string>
+    <string name="t_tel_isDataEnabled">डेटा सक्षम</string>
+    <string name="t_tel_isVoiceCapable">वॉइस सक्षम</string>
+    <string name="t_tel_isSmsCapable">SMS सक्षम</string>
+    <string name="t_tel_subscriberId">IMSI (subscriberId)</string>
+    <string name="t_tel_deviceSoftwareVersion">डिवाइस सॉफ़्टवेयर संस्करण</string>
+    <string name="t_self_packageName">इस पैकेज का नाम</string>
+    <string name="t_self_uid">इस ऐप का UID</string>
+    <string name="t_self_packagesForUid">इस UID को साझा करने वाले पैकेज</string>
+    <string name="t_self_nameForUid">UID के लिए नाम</string>
+    <string name="t_self_packageGids">पैकेज GID</string>
+    <string name="t_self_packageUid">पैकेज UID (PM)</string>
+    <string name="t_self_installer">इंस्टॉलर पैकेज</string>
+    <string name="t_self_installSource">इंस्टॉल स्रोत</string>
+    <string name="t_self_times">पहला इंस्टॉल / अंतिम अपडेट</string>
+    <string name="t_self_versionCode">इस ऐप का versionCode</string>
+    <string name="t_self_targetSdk">इस ऐप का targetSdk</string>
+    <string name="t_self_enabledSetting">ऐप सक्षमता स्थिति</string>
+    <string name="t_self_isInstantApp">Instant app</string>
+    <string name="t_self_isPackageSuspended">पैकेज निलंबित</string>
+    <string name="t_self_autoRevokeWhitelisted">स्वतः निरस्तीकरण से छूट</string>
+    <string name="t_self_syntheticDetails">सक्रिय ऐप कृत्रिम विवरण</string>
+    <string name="t_self_whitelistedRestricted">अनुमत प्रतिबंधित अनुमतियाँ</string>
+    <string name="t_self_moduleInfo">मॉड्यूल जानकारी</string>
+    <string name="t_self_checkAdId">checkPermission(AD_ID)</string>
+    <string name="t_self_launchIntent">लॉन्च intent है</string>
+    <string name="t_self_leanbackIntent">leanback लॉन्च intent है</string>
+    <string name="t_self_xposedMeta">स्वयं की Xposed मेटाडेटा कुंजियाँ</string>
+    <string name="t_self_resourcesForApp">ऐप संसाधन</string>
+    <string name="t_content_command">`content` कमांड के माध्यम से प्रदाता</string>
+    <string name="t_test_harness">test harness में चल रहा है</string>
+    <string name="t_user_test_harness">उपयोगकर्ता test harness में चल रहा है</string>
+    <string name="t_user_a_monkey">Monkey द्वारा नियंत्रित</string>
+    <string name="t_low_ram_device">कम RAM वाला डिवाइस</string>
+    <string name="t_vpn_active">VPN सक्रिय</string>
+    <string name="t_vpn_interfaces">टनल इंटरफ़ेस</string>
+    <string name="t_location_providers">स्थान प्रदाता</string>
+    <string name="t_mock_location">नकली स्थान</string>
+    <string name="t_debugger_attached">डिबगर संलग्न</string>
+    <string name="t_device_secure">स्क्रीन लॉक सेट</string>
+    <string name="t_sensor_vendors">सेंसर विक्रेता</string>
+    <string name="t_input_devices">इनपुट डिवाइस</string>
+    <string name="t_appop">App op: %1$s</string>
+    <string name="t_mem_total_kb">कुल RAM (kB)</string>
+    <string name="t_ns_mnt">Mount namespace</string>
+    <string name="t_ns_net">नेटवर्क namespace</string>
+    <string name="t_ns_pid">PID namespace</string>
+    <string name="t_ns_uts">UTS namespace</string>
+    <string name="t_ns_ipc">IPC namespace</string>
+    <string name="t_ns_user">उपयोगकर्ता namespace</string>
+    <string name="t_ns_cgroup">cgroup namespace</string>
+    <string name="t_ns_time">समय namespace</string>
+    <string name="t_proc_exe">प्रक्रिया निष्पादन योग्य</string>
+    <string name="t_proc_cwd">कार्यशील निर्देशिका</string>
+    <string name="t_proc_root">फ़ाइल सिस्टम रूट</string>
+    <string name="t_seccomp">seccomp मोड</string>
+    <string name="t_no_new_privs">NoNewPrivs</string>
+    <string name="t_cap_effective">प्रभावी capability</string>
+    <string name="t_cap_bounding">Bounding capability</string>
+    <string name="t_status_uid">UID पंक्ति (कर्नेल)</string>
+    <string name="t_status_gid">GID पंक्ति (कर्नेल)</string>
+    <string name="t_status_groups">पूरक समूह</string>
+    <string name="t_status_threads">थ्रेड</string>
+    <string name="t_selinux_attr">SELinux संदर्भ (attr/current)</string>
+    <string name="t_cgroup">Cgroup</string>
+    <string name="t_architecture">आर्किटेक्चर</string>
+    <string name="t_zero_width_names">शून्य-चौड़ाई / अदृश्य वर्ण वाले नाम</string>
+    <string name="err_probe_timeout">प्रोब का समय समाप्त</string>
+    <string name="t_isrc_self_installer">इंस्टॉल स्रोत (self): installer</string>
+    <string name="t_isrc_self_initiating">इंस्टॉल स्रोत (self): initiating</string>
+    <string name="t_isrc_self_originating">इंस्टॉल स्रोत (self): originating</string>
+    <string name="t_isrc_self_pkgsource">इंस्टॉल स्रोत (self): packageSource</string>
+    <string name="t_isrc_self_initiator_sig">इंस्टॉल स्रोत (self): initiator cert बनाम इंस्टॉल किया गया</string>
+    <string name="t_isrc_gap_jvm_store_pm_denies">विसंगति: JVM store installer बताता है, pm नकारता है (hook)</string>
+    <string name="t_isrc_gap_jvm_pm_other">विसंगति: installer JVM ≠ installer pm (दृश्यता)</string>
+    <string name="t_isrc_gap_installer_ne_initiating">विसंगति: installer ≠ initiating</string>
+    <string name="t_isrc_gap_store_installer_sideload">विसंगति: store installer, initiating sideload</string>
+    <string name="t_isrc_gap_installer_set_no_initiator">विसंगति: installer सेट, initiating null</string>
+    <string name="t_isrc_gap_initiator_store_no_installer">विसंगति: store initiating, installer null</string>
+    <string name="t_isrc_gap_initiator_sig_mismatch">विसंगति: initiator cert दर्ज ≠ इंस्टॉल किया गया</string>
+    <string name="t_isrc_gap_initiator_orphan">विसंगति: initiating पैकेज इंस्टॉल नहीं</string>
+    <string name="t_isrc_gap_installer_orphan">विसंगति: installer पैकेज इंस्टॉल नहीं</string>
+    <string name="t_isrc_gap_originating_ne_initiating">विसंगति: originating ≠ initiating (की ओर से)</string>
+    <string name="t_isrc_gap_ghost_user_install">विसंगति: बिना इंस्टॉल स्रोत वाला यूज़र ऐप</string>
+    <string name="t_isrc_gap_system_shell_installed">विसंगति: सिस्टम ऐप shell से इंस्टॉल</string>
+    <string name="t_isrc_gap_update_owner_drift">विसंगति: updateOwner ≠ installer</string>
+    <string name="t_isrc_gap_self_declared_installer">विसंगति: ऐप खुद अपना installer है</string>
+    <string name="t_installed_packages_diff">इंस्टॉल किए गए पैकेज: भिन्न (JVM x pm)</string>
+    <string name="t_installed_applications_diff">इंस्टॉल किए गए अनुप्रयोग: भिन्न (JVM x pm)</string>
+    <string name="t_selinux_status">SELinux status पेज (policyload/seq)</string>
+    <string name="t_selinux_policy_probe">SELinux नीति प्रोब (टाइप + AVC)</string>
+    <string name="t_manager_doors">root/Xposed मैनेजर: PackageManager द्वार के अनुसार दृश्यता</string>
+    <string name="t_net_sock_diag">Netlink sock_diag नीति</string>
+    <string name="n_net_sock_diag">सीमित ऐप को NETLINK_SOCK_DIAG अस्वीकृत होना चाहिए; उत्तर मिलना यानी netlink नीति ढीली कर दी गई।</string>
+    <string name="t_mount_peer_gap">माउंट peer-group अखंडता</string>
+    <string name="n_mount_peer_gap">peer-group id समूह हर लेंस से एक-सा पढ़ा जाना चाहिए; किसी लेंस में अंतर छिपे माउंट का संकेत है।</string>
+    <string name="t_mount_fdinfo_mnt">माउंट id बनाम खुले डिस्क्रिप्टर</string>
+    <string name="n_mount_fdinfo_mnt">जिस खुले डिस्क्रिप्टर का mnt_id mountinfo में नहीं है, वह दृश्य से छिपे माउंट की ओर इशारा करता है।</string>
+    <string name="t_proc_readproc_gid">zygote का GID 3009 (AID_READPROC)</string>
+    <string name="n_proc_readproc_gid">AID_READPROC पूरक GID का न होना कुछ ऐप-छिपाव मॉड्यूल द्वारा छोड़ा गया निशान है।</string>
+    <string name="t_proc_fd_graph">डिस्क्रिप्टर गणना</string>
+    <string name="t_mem_anon_exec">अनाम निष्पादन-योग्य मैपिंग</string>
+    <string name="n_mem_anon_exec">बिना आधार फ़ाइल वाले निष्पादन-योग्य पृष्ठ सामान्य इंजेक्शन/Zygisk अवशेष हैं; गिनती लेंसों में मेल खानी चाहिए।</string>
+    <string name="t_kernel_selfbuild">स्व-निर्मित / पैच किया कर्नेल</string>
+    <string name="n_kernel_selfbuild">फ़ैक्ट्री कर्नेल पर -dirty, git या SUSFS बिल्ड चिह्न नहीं होता; चिह्न लेंसों में मेल खाने चाहिए।</string>
+    <string name="t_tee_soter">Soter सेवा बनाम प्रॉपर्टी</string>
+    <string name="n_tee_soter">Tencent के Soter सेवा प्रोग्राम को उसकी सेवा-प्रॉपर्टी की स्थिति से मिलाकर जाँचता है।</string>
+    <string name="t_proc_cgroup_format">cgroup पथ प्रारूप</string>
+    <string name="n_proc_cgroup_format">क्लोन / dual-app कंटेनर एकीकृत cgroup पथ को विहित uid_/pid_ रूप से विचलित कर देता है।</string>
+</resources>

@@ -1,0 +1,434 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    ======================================================================
+     VD INFOS  ::  method debugger
+     Read every device info by every method, then compare. A divergence is a hook.
+
+     Copyright (C) 2026  VD171
+     SPDX-License-Identifier: AGPL-3.0-or-later
+
+     Free software under the GNU AGPL v3 or later. NETWORK COPYLEFT: run a
+     modified version, even as a service, and you MUST offer its source.
+
+     Site           : https://vd171.ru
+     Site           : https://vd.priv8.ru
+     Source         : https://github.com/VD171/VD-Infos
+     GitHub         : @VD171 https://github.com/VD171
+     XDA-Developers : @VD171 https://xdaforums.com/m/vd171.4699873/
+     Telegram       : @VD_Priv8 https://t.me/VD_Priv8
+     Discord        : @VD.Priv8 https://discord.com/users/1296831918989639721
+     E-mail         : vd.priv8@pm.me
+    ======================================================================
+-->
+<resources>
+    <string name="app_tagline">メソッドデバッガー</string>
+
+    <!-- アクション -->
+    <string name="action_reveal">識別情報を表示</string>
+    <string name="action_export">レポートを共有</string>
+    <string name="action_save">ファイルに保存</string>
+    <string name="action_rescan">再スキャン</string>
+    <string name="save_ok">レポートを保存しました</string>
+    <string name="save_fail">ファイルの保存に失敗しました</string>
+
+    <!-- サマリー -->
+    <plurals name="summary_divergences">
+        <item quantity="other">%d 件の相違</item>
+    </plurals>
+    <string name="summary_line">%1$d/%2$d プローブ · %3$d 一致</string>
+    <string name="summary_native_off"> · ネイティブ利用不可</string>
+
+    <!-- 検索とフィルター -->
+    <string name="search_hint">プロパティ、値を検索…</string>
+    <string name="filter_divergent">相違のみ</string>
+    <string name="filter_all">すべて</string>
+
+    <!-- 判定 -->
+    <string name="verdict_mismatch">相違</string>
+    <string name="verdict_match">一致</string>
+    <string name="verdict_single">単一</string>
+    <string name="verdict_info">情報</string>
+    <string name="reading_context_only">コンテキスト</string>
+    <string name="reading_empty">（空）</string>
+    <string name="verdict_empty">空</string>
+    <string name="verdict_error">エラー</string>
+
+    <!-- カテゴリー -->
+    <string name="cat_identity">識別情報</string>
+    <string name="cat_fingerprint">Fingerprint</string>
+    <string name="cat_telephony">テレフォニー / RIL</string>
+    <string name="cat_network">ネットワーク</string>
+    <string name="cat_locale">ロケール / 時刻</string>
+    <string name="cat_boot">Boot / カーネル</string>
+    <string name="cat_build">Build / ROM</string>
+    <string name="cat_display">ディスプレイ</string>
+    <string name="cat_sensors">センサー</string>
+    <string name="cat_media">メディア / DRM</string>
+    <string name="cat_packages">パッケージ</string>
+    <string name="cat_accounts">アカウント</string>
+    <string name="cat_webview">WebView</string>
+    <string name="cat_hardware">ハードウェア</string>
+    <string name="cat_storage">ストレージ</string>
+    <string name="cat_process">プロセス</string>
+    <string name="cat_security">セキュリティ</string>
+    <string name="cat_integrity">Root / 整合性</string>
+    <string name="cat_emulator">エミュレーター</string>
+    <string name="cat_system">システム</string>
+
+    <!-- バックグラウンドの変更通知 -->
+    <string name="action_about">アプリについて</string>
+    <string name="action_close">閉じる</string>
+    <string name="action_copy">コピー</string>
+    <string name="copied">コピーしました</string>
+    <string name="about_developer">開発者</string>
+    <string name="about_source">ソースコード</string>
+    <string name="about_license">ライセンス</string>
+    <string name="about_contacts">連絡先</string>
+    <string name="about_privacy">情報は一切保存、送信、転送されません。すべては端末上で動作し、レポートはご自身で共有または保存した場合にのみ端末から出ます。</string>
+    <string name="crash_title">予期しないエラー</string>
+    <string name="crash_body">アプリで予期しないエラーが発生しました。どこにも何も送信されていません。以下の詳細をコピーして開発者に送信できます。</string>
+    <string name="about_project">プロジェクト</string>
+    <string name="about_support">ダウンロードとサポート</string>
+    <string name="action_clear">検索をクリア</string>
+    <string name="lang_dialog_title">言語</string>
+    <string name="lang_dialog_body">アプリの言語を選ぶか、システム設定に従います。</string>
+    <string name="lang_system_default">システムの既定</string>
+    <string name="lang_apply">適用</string>
+
+    <!-- 解決方法 -->
+    <string name="sol_title">解決方法</string>
+    <string name="sol_boot">これはハードウェア attestation (TEE) が報告するブート状態です。keybox バイパスツール（TrickyStore、TEE Simulator、OhMyKeyMint）は、指定したアプリに対してのみ attestation を書き換えます。このアプリのパッケージをこれらのツールのターゲットリスト（例: target.txt）に追加すると、その attestation がロック済み端末と緑の verified boot を報告するようになります。</string>
+    <string name="sol_root_detector">これらのインストール済みアプリは、root、エミュレーター、または失敗した Play Integrity を探します。ここで見つかったパッケージを隠蔽フレームワーク（HMA-OSS）のターゲットとして追加すると、アプリと root モジュールがこれらの検出器から隠されます。</string>
+    <string name="sol_spoof">この設定は、アプリが使用しうる各経路で異なる値として読み取られます（spoof がすべてを網羅していません）。設定を HMA-OSS の spoof プリセットに追加すると、すべての読み取り経路が同じ値を返すようになります。</string>
+    <string name="sol_attest_patch">key attestation はシステムプロパティと異なるパッチレベルを報告します。keybox ツールで設定します - TrickyStore は security_patch.txt（日付、または system=/boot=/vendor=/all=、または \'prop\'）、OhMyKeymint は config.toml の [trust]。どちらも attestation のみを変更し、プロパティは変えません。</string>
+    <string name="sol_patch_prop">Build.VERSION.SECURITY_PATCH（フレームワーク）と ro.build.version.security_patch プロパティが異なる日付を示します。resetprop でそろえてください。security_patch.txt と config.toml はここでは役立ちません。key attestation のみを変更し、プロパティは変えません。</string>
+
+    <string name="note_gsf">Android 16 以降では存在しません: Google サービスのストアは Play Services に移行し、その入口を Google 自身が &quot;do.not.use&quot; と名付け、他のアプリには応答しません。上記で両方を試行します。</string>
+    <string name="t_attestation_app_id">アテステーションのアプリ ID（パッケージ + 署名）</string>
+    <string name="t_dev_ptmx_present">/dev/ptmx あり</string>
+    <string name="t_documents_providers">登録済みの DocumentsProviders</string>
+    <string name="t_kernel_modules">読み込まれたカーネルモジュール（KernelSU/SuSFS）</string>
+    <string name="t_kernel_syscall_fingerprint">syscall 指紋によるカーネルバージョン</string>
+    <string name="t_key_inside_secure_hw">セキュアハードウェア内の鍵（KeyInfo）</string>
+    <string name="t_keybox_ec_vs_rsa">keybox の対応範囲: EC と RSA のアテステーション</string>
+    <string name="t_local_tmp_contents">/data/local/tmp の中身</string>
+    <string name="t_native_lib_origin">ネイティブライブラリの出所（dladdr）</string>
+    <string name="t_own_debuggable">このアプリ: debuggable / デバッグビルド</string>
+    <string name="t_play_store_version">Play Store / GMS のバージョン</string>
+    <string name="t_resolv_conf">resolv.conf / DNS 設定</string>
+    <string name="t_root_backup_tools">root 権限のバックアップツールあり</string>
+    <string name="t_su_libc_inline_hook">su: 生の syscall と libc と Java</string>
+    <string name="t_system_build_prop">/system/build.prop</string>
+    <string name="t_system_build_prop_present">/system/build.prop あり</string>
+    <string name="t_adb_enabled">ADB 有効</string>
+    <string name="t_apatch">APatch</string>
+    <string name="t_accessibility_enabled">ユーザー補助 有効</string>
+    <string name="t_accounts">アカウント</string>
+    <string name="t_active_subscriptions">有効なサブスクリプション</string>
+    <string name="t_advertising_id">広告 ID</string>
+    <string name="t_advertising_id_keys_settings_stores">広告 ID キー (settings)</string>
+    <string name="t_spoof_consistency">Spoof 整合性: %1$s</string>
+    <string name="t_spoof_sweep">Spoof 整合性スイープ（全 settings）</string>
+    <string name="t_analysis_emulator_apps">解析 / エミュレーターアプリ</string>
+    <string name="t_android_id">Android ID</string>
+    <string name="t_another_process_cmdline_init">他プロセスの cmdline (init)</string>
+    <string name="t_another_process_maps_init">他プロセスの maps (init)</string>
+    <string name="t_attestation_keymaster_version">Attestation / keymaster バージョン</string>
+    <string name="t_attestation_available">Attestation 利用可能</string>
+    <string name="t_attestation_provisioning_signer">Attestation provisioning（署名者）</string>
+    <string name="t_attestation_provisioning_info">Attestation ProvisioningInfo (RKP)</string>
+    <string name="t_attestation_security_level">Attestation セキュリティレベル</string>
+    <string name="t_block_untrusted_touches">信頼できないタッチをブロック</string>
+    <string name="t_bluetooth_mac">Bluetooth MAC</string>
+    <string name="t_bluetooth_bonded_devices">ペア設定済み Bluetooth 端末</string>
+    <string name="t_bluetooth_name">Bluetooth 名</string>
+    <string name="t_bluetooth_name_bt_name">Bluetooth 名 (bt_name)</string>
+    <string name="t_bluetooth_name_btname">Bluetooth 名 (btname)</string>
+    <string name="t_bluetooth_name_settings">Bluetooth 名 (settings)</string>
+    <string name="t_bluetooth_scan_mode">Bluetooth スキャンモード</string>
+    <string name="t_bluetooth_state">Bluetooth 状態</string>
+    <string name="t_board">Board</string>
+    <string name="t_boot_id">Boot ID</string>
+    <string name="t_boot_count">起動回数</string>
+    <string name="t_boot_patch_level">Boot パッチレベル</string>
+    <string name="t_boot_time_epoch_proc_stat_btime">起動時刻 (epoch, /proc/stat btime)</string>
+    <string name="t_bootloader">Bootloader</string>
+    <string name="t_brand">ブランド</string>
+    <string name="t_build_id">Build ID</string>
+    <string name="t_build_host">Build host</string>
+    <string name="t_build_tags">Build tags</string>
+    <string name="t_build_time_utc_epoch">Build 時刻 (UTC epoch)</string>
+    <string name="t_build_type">Build タイプ</string>
+    <string name="t_cpu_cores">CPU コア</string>
+    <string name="t_call_log_entries">通話履歴エントリ</string>
+    <string name="t_cameras">カメラ</string>
+    <string name="t_cell_info">セル情報</string>
+    <string name="t_data_roaming">データローミング</string>
+    <string name="t_default_input_method">デフォルト入力方式</string>
+    <string name="t_developer_settings_enabled">開発者向けオプション 有効</string>
+    <string name="t_device">Device</string>
+    <string name="t_device_locked">端末ロック済み</string>
+    <string name="t_device_name">端末名</string>
+    <string name="t_display_id">Display ID</string>
+    <string name="t_display_metrics">ディスプレイ指標</string>
+    <string name="t_emulator_files">エミュレーターファイル</string>
+    <string name="t_enabled_accessibility_services">有効なユーザー補助サービス</string>
+    <string name="t_enabled_input_methods">有効な入力方式</string>
+    <string name="t_fingerprint">Fingerprint</string>
+    <string name="t_gsf_id_hex">GSF ID (hex)</string>
+    <string name="t_gsf_id_raw">GSF ID (生)</string>
+    <string name="t_http_proxy">HTTP プロキシ</string>
+    <string name="t_hardware">ハードウェア</string>
+    <string name="t_hidden_api_policy">隠し API ポリシー</string>
+    <string name="t_hidden_api_policy_p_apps">隠し API ポリシー (P アプリ)</string>
+    <string name="t_hidden_api_policy_pre_p_apps">隠し API ポリシー (P 以前のアプリ)</string>
+    <string name="t_hiding_cloaking_apps">隠蔽系アプリ</string>
+    <string name="t_hostname">Hostname</string>
+    <string name="t_imei">IMEI</string>
+    <string name="t_imsi_subscriber">IMSI（加入者）</string>
+    <string name="t_incremental">Incremental</string>
+    <string name="t_injected_libs_proc_self_maps">注入されたライブラリ (/proc/self/maps)</string>
+    <string name="t_installed_app_signing_digests">インストール済みアプリの署名ダイジェスト</string>
+    <string name="t_installed_applications">インストール済みアプリケーション</string>
+    <string name="t_installed_input_methods">インストール済み入力方式</string>
+    <string name="t_installed_packages">インストール済みパッケージ</string>
+    <string name="t_installed_packages_list">インストール済みパッケージ（一覧）</string>
+    <string name="t_kernel_release">カーネル (release)</string>
+    <string name="t_kernel_version">カーネル（バージョン）</string>
+    <string name="t_kernel_cmdline">カーネル cmdline</string>
+    <string name="t_kernel_log">カーネルログ</string>
+    <string name="t_kernel_stat">カーネル stat</string>
+    <string name="t_kernelsu">KernelSU</string>
+    <string name="t_limit_ad_tracking">広告トラッキングを制限</string>
+    <string name="t_locale">ロケール</string>
+    <string name="t_mac">MAC %1$s</string>
+    <string name="t_meid">MEID</string>
+    <string name="t_magisk">Magisk</string>
+    <string name="t_manufacturer">メーカー</string>
+    <string name="t_model">モデル</string>
+    <string name="t_mount_markers_magisk_overlay">Mount マーカー (magisk/overlay)</string>
+    <string name="t_network_interfaces">ネットワークインターフェース</string>
+    <string name="t_os_release">OS バージョン</string>
+    <string name="t_os_security_patch_level">OS セキュリティパッチレベル</string>
+    <string name="t_os_version_attested">OS バージョン（認証済み）</string>
+    <string name="t_pid">PID</string>
+    <string name="t_primary_abi">主 ABI</string>
+    <string name="t_primary_imei">主 IMEI</string>
+    <string name="t_product">Product</string>
+    <string name="t_root_manager_apps">Root マネージャーアプリ</string>
+    <string name="t_root_tools_apps">Root ベースのツール</string>
+    <string name="t_rooted_apps">Root が必要なアプリ</string>
+    <string name="t_root_detector_apps">Root 検出アプリ</string>
+    <string name="t_suspicious_apps">疑わしいアプリ</string>
+    <string name="t_running_app_processes">実行中のアプリプロセス</string>
+    <string name="t_running_services">実行中のサービス</string>
+    <string name="t_sdk_int">SDK int</string>
+    <string name="t_selinux_mls_enabled">SELinux MLS 有効</string>
+    <string name="t_selinux_context_self">SELinux コンテキスト（自身）</string>
+    <string name="t_selinux_enforce">SELinux enforce</string>
+    <string name="t_selinux_policy_version">SELinux policy バージョン</string>
+    <string name="t_sim_serial_iccid">SIM シリアル (ICCID)</string>
+    <string name="t_screen_capture_disabled_policy">画面キャプチャ無効（ポリシー）</string>
+    <string name="t_security_patch">セキュリティパッチ</string>
+    <string name="t_sensor_count">センサー数</string>
+    <string name="t_sensors">センサー</string>
+    <string name="t_serial">シリアル</string>
+    <string name="t_soc_family">SoC ファミリー</string>
+    <string name="t_soc_id">SoC ID</string>
+    <string name="t_soc_machine">SoC マシン</string>
+    <string name="t_soc_serial_number">SoC シリアル番号</string>
+    <string name="t_storage_data_total_bytes">/data ストレージ合計（バイト）</string>
+    <string name="t_system_features_count">System features（数）</string>
+    <string name="t_system_features_full_set">System features（完全なセット）</string>
+    <string name="t_tether_dun_required">Tether DUN 必須</string>
+    <string name="t_this_app_installer">このアプリのインストーラー</string>
+    <string name="t_this_app_signing_sha_256">このアプリの署名 SHA-256</string>
+    <string name="t_time_zone_settings">タイムゾーン (settings)</string>
+    <string name="t_timezone">タイムゾーン</string>
+    <string name="t_total_ram_bytes">合計 RAM（バイト）</string>
+    <string name="t_touch_exploration_enabled">タッチガイド 有効</string>
+    <string name="t_touch_exploration_granted_services">タッチガイド付きサービス</string>
+    <string name="t_tracerpid_debugger">TracerPid（デバッガー）</string>
+    <string name="t_ufs_model">UFS モデル</string>
+    <string name="t_ufs_revision">UFS リビジョン</string>
+    <string name="t_ufs_vendor">UFS ベンダー</string>
+    <string name="t_uid">UID</string>
+    <string name="t_uid_coherence">UID/GID の整合性</string>
+    <string name="t_uptime_s">稼働時間（秒）</string>
+    <string name="t_user_serial_number">ユーザーシリアル番号</string>
+    <string name="t_oaid">OAID（MSA 匿名 id）</string>
+    <string name="t_vaid">VAID（MSA ベンダー匿名 id）</string>
+    <string name="t_aaid_msa">AAID（MSA アプリ匿名 id）</string>
+    <string name="t_udid">UDID (MSA)</string>
+    <string name="t_extm_uuid">extm_uuid (Xiaomi)</string>
+    <string name="t_op_security_uuid">op_security_uuid (OnePlus)</string>
+    <string name="t_user_creation_time">ユーザー作成時刻</string>
+    <string name="t_vendor_patch_level">ベンダーパッチレベル</string>
+    <string name="t_verified_boot_hash_vbmeta_digest">Verified boot ハッシュ / vbmeta ダイジェスト</string>
+    <string name="t_verified_boot_key">Verified boot キー</string>
+    <string name="t_verified_boot_state">Verified boot 状態</string>
+    <string name="t_prop_area_tamper">プロパティ領域の改ざん（ホール/コンテキスト）</string>
+    <string name="t_supplementary_groups">補助グループ (3009=AID_READPROC)</string>
+    <string name="t_version_codename">バージョンコードネーム</string>
+    <string name="t_webview_provider">WebView プロバイダー</string>
+    <string name="t_webview_user_agent">WebView user agent</string>
+    <string name="t_wi_fi_bssid">Wi-Fi BSSID</string>
+    <string name="t_wi_fi_ip">Wi-Fi IP</string>
+    <string name="t_wi_fi_mac_wifiinfo">Wi-Fi MAC (WifiInfo)</string>
+    <string name="t_wi_fi_mac_settings">Wi-Fi MAC (settings)</string>
+    <string name="t_wi_fi_rssi">Wi-Fi RSSI</string>
+    <string name="t_wi_fi_ssid">Wi-Fi SSID</string>
+    <string name="t_wi_fi_frequency_mhz">Wi-Fi 周波数 (MHz)</string>
+    <string name="t_wi_fi_link_speed_mbps">Wi-Fi リンク速度 (Mbps)</string>
+    <string name="t_wi_fi_network_id">Wi-Fi ネットワーク ID</string>
+    <string name="t_widevine_device_id">Widevine 端末 ID</string>
+    <string name="t_widevine_vendor_version">Widevine ベンダー/バージョン</string>
+    <string name="t_xposed_lsposed_riru">Xposed / LSPosed / Riru</string>
+    <string name="t_xposed_manager_apps">Xposed マネージャーアプリ</string>
+    <string name="t_cpuinfo">cpuinfo</string>
+    <string name="t_emmc_cid">eMMC CID</string>
+    <string name="t_emmc_oem_id">eMMC OEM id</string>
+    <string name="t_emmc_manufacture_date">eMMC 製造日</string>
+    <string name="t_emmc_manufacturer_id">eMMC 製造元 ID</string>
+    <string name="t_emmc_name">eMMC 名</string>
+    <string name="t_emmc_serial">eMMC シリアル</string>
+    <string name="t_env">env %1$s</string>
+    <string name="t_http_agent">http.agent</string>
+    <string name="t_meminfo">meminfo</string>
+    <string name="t_querybroadcastreceivers_boot_completed">queryBroadcastReceivers (BOOT_COMPLETED)</string>
+    <string name="t_queryinstrumentation_all">queryInstrumentation（すべて）</string>
+    <string name="t_queryintentactivities_call_tel">queryIntentActivities (CALL tel:)</string>
+    <string name="t_queryintentactivities_main_launcher">queryIntentActivities (MAIN/LAUNCHER)</string>
+    <string name="t_queryintentactivities_view_http">queryIntentActivities (VIEW http)</string>
+    <string name="t_queryintentcontentproviders_view">queryIntentContentProviders (VIEW)</string>
+    <string name="t_queryintentservices_main">queryIntentServices (MAIN)</string>
+    <string name="t_resolveactivity_main_launcher">resolveActivity (MAIN/LAUNCHER)</string>
+    <string name="t_su_binary">su バイナリ</string>
+    <string name="t_su_on_path">PATH 上の su</string>
+    <string name="t_tel_networkOperatorName">ネットワーク事業者名</string>
+    <string name="t_tel_networkOperator">ネットワーク事業者 (MCC+MNC)</string>
+    <string name="t_tel_networkCountryIso">ネットワーク国 ISO</string>
+    <string name="t_tel_simOperatorName">SIM 事業者名</string>
+    <string name="t_tel_simOperator">SIM 事業者 (MCC+MNC)</string>
+    <string name="t_tel_simCountryIso">SIM 国 ISO</string>
+    <string name="t_tel_simState">SIM 状態</string>
+    <string name="t_tel_phoneType">電話タイプ</string>
+    <string name="t_tel_networkType">データネットワークタイプ</string>
+    <string name="t_tel_dataState">データ状態</string>
+    <string name="t_tel_callState">通話状態</string>
+    <string name="t_tel_isNetworkRoaming">ネットワークローミング</string>
+    <string name="t_tel_line1Number">回線 1 番号</string>
+    <string name="t_tel_voiceMailNumber">ボイスメール番号</string>
+    <string name="t_tel_groupIdLevel1">Group ID level 1</string>
+    <string name="t_tel_mmsUserAgent">MMS user agent</string>
+    <string name="t_tel_mmsUAProfUrl">MMS UAProf URL</string>
+    <string name="t_tel_phoneCount">電話/SIM 数</string>
+    <string name="t_tel_isDataEnabled">データ 有効</string>
+    <string name="t_tel_isVoiceCapable">音声対応</string>
+    <string name="t_tel_isSmsCapable">SMS 対応</string>
+    <string name="t_tel_subscriberId">IMSI (subscriberId)</string>
+    <string name="t_tel_deviceSoftwareVersion">端末ソフトウェアバージョン</string>
+    <string name="t_self_packageName">このパッケージ名</string>
+    <string name="t_self_uid">このアプリの UID</string>
+    <string name="t_self_packagesForUid">この UID を共有するパッケージ</string>
+    <string name="t_self_nameForUid">UID の名前</string>
+    <string name="t_self_packageGids">パッケージ GID</string>
+    <string name="t_self_packageUid">パッケージ UID (PM)</string>
+    <string name="t_self_installer">インストーラーパッケージ</string>
+    <string name="t_self_installSource">インストール元</string>
+    <string name="t_self_times">初回インストール / 最終更新</string>
+    <string name="t_self_versionCode">このアプリの versionCode</string>
+    <string name="t_self_targetSdk">このアプリの targetSdk</string>
+    <string name="t_self_enabledSetting">アプリの有効状態</string>
+    <string name="t_self_isInstantApp">Instant app</string>
+    <string name="t_self_isPackageSuspended">パッケージ停止中</string>
+    <string name="t_self_autoRevokeWhitelisted">自動取り消しの対象外</string>
+    <string name="t_self_syntheticDetails">アクティブアプリの合成詳細</string>
+    <string name="t_self_whitelistedRestricted">許可された制限付き権限</string>
+    <string name="t_self_moduleInfo">モジュール情報</string>
+    <string name="t_self_checkAdId">checkPermission(AD_ID)</string>
+    <string name="t_self_launchIntent">起動 intent あり</string>
+    <string name="t_self_leanbackIntent">leanback 起動 intent あり</string>
+    <string name="t_self_xposedMeta">自身の Xposed メタデータキー</string>
+    <string name="t_self_resourcesForApp">アプリリソース</string>
+    <string name="t_content_command">`content` コマンド経由のプロバイダー</string>
+    <string name="t_test_harness">test harness で実行中</string>
+    <string name="t_user_test_harness">ユーザー test harness で実行中</string>
+    <string name="t_user_a_monkey">Monkey により制御</string>
+    <string name="t_low_ram_device">低 RAM 端末</string>
+    <string name="t_vpn_active">VPN 有効</string>
+    <string name="t_vpn_interfaces">トンネルインターフェース</string>
+    <string name="t_location_providers">位置情報プロバイダー</string>
+    <string name="t_mock_location">モックロケーション</string>
+    <string name="t_debugger_attached">デバッガー接続済み</string>
+    <string name="t_device_secure">画面ロック設定済み</string>
+    <string name="t_sensor_vendors">センサーベンダー</string>
+    <string name="t_input_devices">入力デバイス</string>
+    <string name="t_appop">App op: %1$s</string>
+    <string name="t_mem_total_kb">合計 RAM (kB)</string>
+    <string name="t_ns_mnt">Mount namespace</string>
+    <string name="t_ns_net">ネットワーク namespace</string>
+    <string name="t_ns_pid">PID namespace</string>
+    <string name="t_ns_uts">UTS namespace</string>
+    <string name="t_ns_ipc">IPC namespace</string>
+    <string name="t_ns_user">ユーザー namespace</string>
+    <string name="t_ns_cgroup">cgroup namespace</string>
+    <string name="t_ns_time">時刻 namespace</string>
+    <string name="t_proc_exe">プロセス実行ファイル</string>
+    <string name="t_proc_cwd">作業ディレクトリ</string>
+    <string name="t_proc_root">ファイルシステムルート</string>
+    <string name="t_seccomp">seccomp モード</string>
+    <string name="t_no_new_privs">NoNewPrivs</string>
+    <string name="t_cap_effective">実効 capability</string>
+    <string name="t_cap_bounding">Bounding capability</string>
+    <string name="t_status_uid">UID 行（カーネル）</string>
+    <string name="t_status_gid">GID 行（カーネル）</string>
+    <string name="t_status_groups">補助グループ</string>
+    <string name="t_status_threads">スレッド</string>
+    <string name="t_selinux_attr">SELinux コンテキスト (attr/current)</string>
+    <string name="t_cgroup">Cgroup</string>
+    <string name="t_architecture">アーキテクチャ</string>
+    <string name="t_zero_width_names">ゼロ幅文字を含む名前 / 不可視</string>
+    <string name="err_probe_timeout">プローブがタイムアウトしました</string>
+    <string name="t_isrc_self_installer">インストール元 (self): installer</string>
+    <string name="t_isrc_self_initiating">インストール元 (self): initiating</string>
+    <string name="t_isrc_self_originating">インストール元 (self): originating</string>
+    <string name="t_isrc_self_pkgsource">インストール元 (self): packageSource</string>
+    <string name="t_isrc_self_initiator_sig">インストール元 (self): initiator の cert とインストール済みの比較</string>
+    <string name="t_isrc_gap_jvm_store_pm_denies">不整合: JVM は store の installer と言うが pm は否定 (hook)</string>
+    <string name="t_isrc_gap_jvm_pm_other">不整合: installer JVM ≠ installer pm (可視性)</string>
+    <string name="t_isrc_gap_installer_ne_initiating">不整合: installer ≠ initiating</string>
+    <string name="t_isrc_gap_store_installer_sideload">不整合: store の installer、initiating は sideload</string>
+    <string name="t_isrc_gap_installer_set_no_initiator">不整合: installer 設定済み、initiating null</string>
+    <string name="t_isrc_gap_initiator_store_no_installer">不整合: store の initiating、installer null</string>
+    <string name="t_isrc_gap_initiator_sig_mismatch">不整合: initiator の cert 記録 ≠ インストール済み</string>
+    <string name="t_isrc_gap_initiator_orphan">不整合: initiating パッケージ未インストール</string>
+    <string name="t_isrc_gap_installer_orphan">不整合: installer パッケージ未インストール</string>
+    <string name="t_isrc_gap_originating_ne_initiating">不整合: originating ≠ initiating (代理)</string>
+    <string name="t_isrc_gap_ghost_user_install">不整合: インストール元のないユーザーアプリ</string>
+    <string name="t_isrc_gap_system_shell_installed">不整合: システムアプリが shell 経由でインストール</string>
+    <string name="t_isrc_gap_update_owner_drift">不整合: updateOwner ≠ installer</string>
+    <string name="t_isrc_gap_self_declared_installer">不整合: アプリが自身の installer</string>
+    <string name="t_installed_packages_diff">インストール済みパッケージ: 相違 (JVM x pm)</string>
+    <string name="t_installed_applications_diff">インストール済みアプリケーション: 相違 (JVM x pm)</string>
+    <string name="t_selinux_status">SELinux status ページ (policyload/seq)</string>
+    <string name="t_selinux_policy_probe">SELinux ポリシープローブ (型 + AVC)</string>
+    <string name="t_manager_doors">root/Xposed マネージャー: PackageManager の口ごとの可視性</string>
+    <string name="t_net_sock_diag">Netlink sock_diag ポリシー</string>
+    <string name="n_net_sock_diag">制限されたアプリは NETLINK_SOCK_DIAG を拒否されるべきで、応答が返ればネットリンクポリシーが緩められている。</string>
+    <string name="t_mount_peer_gap">マウント peer-group の整合性</string>
+    <string name="n_mount_peer_gap">peer-group id 集合はどのレンズでも同一に読めるべきで、レンズごとの欠落は隠されたマウントを意味する。</string>
+    <string name="t_mount_fdinfo_mnt">マウント id と開いた記述子</string>
+    <string name="n_mount_fdinfo_mnt">mnt_id が mountinfo に無い開いた記述子は、ビューから隠されたマウントを指す。</string>
+    <string name="t_proc_readproc_gid">zygote の GID 3009 (AID_READPROC)</string>
+    <string name="n_proc_readproc_gid">補助 GID AID_READPROC の欠落は、一部のアプリ隠蔽モジュールが残す痕跡。</string>
+    <string name="t_proc_fd_graph">記述子の集計</string>
+    <string name="t_mem_anon_exec">匿名の実行可能マッピング</string>
+    <string name="n_mem_anon_exec">裏付けファイルの無い実行可能ページは典型的なインジェクション/Zygisk 残渣で、数はレンズ間で一致すべき。</string>
+    <string name="t_kernel_selfbuild">自前ビルド / パッチ済みカーネル</string>
+    <string name="n_kernel_selfbuild">純正カーネルは -dirty・git・SUSFS のビルド標識を持たず、標識はレンズ間で一致すべき。</string>
+    <string name="t_tee_soter">Soter サービスとプロパティ</string>
+    <string name="n_tee_soter">Tencent の Soter サービスプログラムを、そのサービスプロパティの状態と照合する。</string>
+    <string name="t_proc_cgroup_format">cgroup パス形式</string>
+    <string name="n_proc_cgroup_format">クローン / デュアルアプリのコンテナは統一 cgroup パスを正規の uid_/pid_ 形式から逸脱させる。</string>
+</resources>

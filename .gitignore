@@ -1,0 +1,10 @@
+# Repo root. The Gradle project keeps its own ignore file at VDInfos/.gitignore.
+/local.properties
+.gradle/
+.kotlin/
+.idea/
+.DS_Store
+*.iml
+
+# Original 1.x version snapshots, kept on disk as archive, out of git.
+/_arquivos/

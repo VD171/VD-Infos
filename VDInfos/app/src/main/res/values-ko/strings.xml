@@ -1,0 +1,434 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    ======================================================================
+     VD INFOS  ::  method debugger
+     Read every device info by every method, then compare. A divergence is a hook.
+
+     Copyright (C) 2026  VD171
+     SPDX-License-Identifier: AGPL-3.0-or-later
+
+     Free software under the GNU AGPL v3 or later. NETWORK COPYLEFT: run a
+     modified version, even as a service, and you MUST offer its source.
+
+     Site           : https://vd171.ru
+     Site           : https://vd.priv8.ru
+     Source         : https://github.com/VD171/VD-Infos
+     GitHub         : @VD171 https://github.com/VD171
+     XDA-Developers : @VD171 https://xdaforums.com/m/vd171.4699873/
+     Telegram       : @VD_Priv8 https://t.me/VD_Priv8
+     Discord        : @VD.Priv8 https://discord.com/users/1296831918989639721
+     E-mail         : vd.priv8@pm.me
+    ======================================================================
+-->
+<resources>
+    <string name="app_tagline">메서드 디버거</string>
+
+    <!-- 작업 -->
+    <string name="action_reveal">식별 정보 표시</string>
+    <string name="action_export">보고서 공유</string>
+    <string name="action_save">파일로 저장</string>
+    <string name="action_rescan">다시 스캔</string>
+    <string name="save_ok">보고서 저장됨</string>
+    <string name="save_fail">파일 저장 실패</string>
+
+    <!-- 요약 -->
+    <plurals name="summary_divergences">
+        <item quantity="other">불일치 %d개</item>
+    </plurals>
+    <string name="summary_line">%1$d/%2$d 프로브 · %3$d 일치</string>
+    <string name="summary_native_off"> · 네이티브 사용 불가</string>
+
+    <!-- 검색 및 필터 -->
+    <string name="search_hint">속성, 값 검색…</string>
+    <string name="filter_divergent">불일치만</string>
+    <string name="filter_all">전체</string>
+
+    <!-- 판정 -->
+    <string name="verdict_mismatch">불일치</string>
+    <string name="verdict_match">일치</string>
+    <string name="verdict_single">단일</string>
+    <string name="verdict_info">정보</string>
+    <string name="reading_context_only">컨텍스트</string>
+    <string name="reading_empty">(비어 있음)</string>
+    <string name="verdict_empty">비어 있음</string>
+    <string name="verdict_error">오류</string>
+
+    <!-- 카테고리 -->
+    <string name="cat_identity">식별 정보</string>
+    <string name="cat_fingerprint">Fingerprint</string>
+    <string name="cat_telephony">전화 / RIL</string>
+    <string name="cat_network">네트워크</string>
+    <string name="cat_locale">로케일 / 시간</string>
+    <string name="cat_boot">Boot / 커널</string>
+    <string name="cat_build">Build / ROM</string>
+    <string name="cat_display">디스플레이</string>
+    <string name="cat_sensors">센서</string>
+    <string name="cat_media">미디어 / DRM</string>
+    <string name="cat_packages">패키지</string>
+    <string name="cat_accounts">계정</string>
+    <string name="cat_webview">WebView</string>
+    <string name="cat_hardware">하드웨어</string>
+    <string name="cat_storage">저장소</string>
+    <string name="cat_process">프로세스</string>
+    <string name="cat_security">보안</string>
+    <string name="cat_integrity">Root / 무결성</string>
+    <string name="cat_emulator">에뮬레이터</string>
+    <string name="cat_system">시스템</string>
+
+    <!-- 백그라운드 변경 알림 -->
+    <string name="action_about">정보</string>
+    <string name="action_close">닫기</string>
+    <string name="action_copy">복사</string>
+    <string name="copied">복사됨</string>
+    <string name="about_developer">개발자</string>
+    <string name="about_source">소스 코드</string>
+    <string name="about_license">라이선스</string>
+    <string name="about_contacts">연락처</string>
+    <string name="about_privacy">어떤 정보도 저장, 전송, 발신되지 않습니다. 모든 것은 기기에서 실행되며, 보고서는 직접 공유하거나 저장할 때만 기기를 벗어납니다.</string>
+    <string name="crash_title">예기치 않은 오류</string>
+    <string name="crash_body">앱에서 예기치 않은 오류가 발생했습니다. 어디에도 아무것도 전송되지 않았습니다. 아래 세부 정보를 복사하여 개발자에게 보낼 수 있습니다.</string>
+    <string name="about_project">프로젝트</string>
+    <string name="about_support">다운로드 및 지원</string>
+    <string name="action_clear">검색 지우기</string>
+    <string name="lang_dialog_title">언어</string>
+    <string name="lang_dialog_body">앱 언어를 선택하거나 시스템 설정을 따릅니다.</string>
+    <string name="lang_system_default">시스템 기본값</string>
+    <string name="lang_apply">적용</string>
+
+    <!-- 해결 방법 -->
+    <string name="sol_title">해결 방법</string>
+    <string name="sol_boot">이것은 하드웨어 attestation(TEE)이 부팅 상태에 대해 보고하는 내용입니다. keybox 우회 도구(TrickyStore, TEE Simulator, OhMyKeyMint)는 지정한 앱에 대해서만 attestation을 다시 씁니다. 이 앱의 패키지를 해당 도구의 대상 목록(예: target.txt)에 추가하면 attestation이 잠긴 기기와 녹색 verified boot를 보고하게 됩니다.</string>
+    <string name="sol_root_detector">이 설치된 앱들은 root, 에뮬레이터 또는 실패한 Play Integrity를 찾습니다. 여기서 발견된 패키지를 은폐 프레임워크(HMA-OSS)에 대상으로 추가하면 앱과 root 모듈이 이 감지기로부터 숨겨집니다.</string>
+    <string name="sol_spoof">이 설정은 앱이 사용할 수 있는 경로마다 다르게 읽힙니다(spoof가 모두를 다루지 않음). 설정을 HMA-OSS의 spoof 프리셋에 추가하면 모든 읽기 경로가 같은 값을 반환합니다.</string>
+    <string name="sol_attest_patch">key attestation이 시스템 속성과 다른 패치 수준을 보고합니다. keybox 도구에서 설정하세요 - TrickyStore는 security_patch.txt(날짜, 또는 system=/boot=/vendor=/all=, 또는 \'prop\'); OhMyKeymint는 config.toml의 [trust]. 둘 다 attestation만 바꾸고 속성은 바꾸지 않습니다.</string>
+    <string name="sol_patch_prop">Build.VERSION.SECURITY_PATCH(프레임워크)와 ro.build.version.security_patch 속성이 서로 다른 날짜를 표시합니다. resetprop로 맞추세요. security_patch.txt와 config.toml은 여기서 도움이 안 됩니다 - key attestation만 바꾸고 속성은 바꾸지 않습니다.</string>
+
+    <string name="note_gsf">Android 16 이상에서는 없음: Google 서비스 저장소가 Play Services로 이동했으며, 그 입구를 Google이 직접 &quot;do.not.use&quot;로 명명했고 다른 앱에 응답하지 않습니다. 위에서 둘 다 시도합니다.</string>
+    <string name="t_attestation_app_id">증명 애플리케이션 ID(패키지 + 서명)</string>
+    <string name="t_dev_ptmx_present">/dev/ptmx 있음</string>
+    <string name="t_documents_providers">등록된 DocumentsProviders</string>
+    <string name="t_kernel_modules">로드된 커널 모듈(KernelSU/SuSFS)</string>
+    <string name="t_kernel_syscall_fingerprint">syscall 지문으로 본 커널 버전</string>
+    <string name="t_key_inside_secure_hw">보안 하드웨어 내부의 키(KeyInfo)</string>
+    <string name="t_keybox_ec_vs_rsa">keybox 적용 범위: EC 대 RSA 증명</string>
+    <string name="t_local_tmp_contents">/data/local/tmp 내용</string>
+    <string name="t_native_lib_origin">네이티브 라이브러리 출처(dladdr)</string>
+    <string name="t_own_debuggable">이 앱: debuggable / 디버그 빌드</string>
+    <string name="t_play_store_version">Play 스토어 / GMS 버전</string>
+    <string name="t_resolv_conf">resolv.conf / DNS 설정</string>
+    <string name="t_root_backup_tools">루트 백업 도구 존재</string>
+    <string name="t_su_libc_inline_hook">su: 원시 syscall 대 libc 대 Java</string>
+    <string name="t_system_build_prop">/system/build.prop</string>
+    <string name="t_system_build_prop_present">/system/build.prop 있음</string>
+    <string name="t_adb_enabled">ADB 사용 설정됨</string>
+    <string name="t_apatch">APatch</string>
+    <string name="t_accessibility_enabled">접근성 사용 설정됨</string>
+    <string name="t_accounts">계정</string>
+    <string name="t_active_subscriptions">활성 구독</string>
+    <string name="t_advertising_id">광고 ID</string>
+    <string name="t_advertising_id_keys_settings_stores">광고 ID 키 (settings)</string>
+    <string name="t_spoof_consistency">Spoof 일관성: %1$s</string>
+    <string name="t_spoof_sweep">Spoof 일관성 스윕(모든 settings)</string>
+    <string name="t_analysis_emulator_apps">분석 / 에뮬레이터 앱</string>
+    <string name="t_android_id">Android ID</string>
+    <string name="t_another_process_cmdline_init">다른 프로세스 cmdline (init)</string>
+    <string name="t_another_process_maps_init">다른 프로세스 maps (init)</string>
+    <string name="t_attestation_keymaster_version">Attestation / keymaster 버전</string>
+    <string name="t_attestation_available">Attestation 사용 가능</string>
+    <string name="t_attestation_provisioning_signer">Attestation provisioning(서명자)</string>
+    <string name="t_attestation_provisioning_info">Attestation ProvisioningInfo (RKP)</string>
+    <string name="t_attestation_security_level">Attestation 보안 수준</string>
+    <string name="t_block_untrusted_touches">신뢰할 수 없는 터치 차단</string>
+    <string name="t_bluetooth_mac">Bluetooth MAC</string>
+    <string name="t_bluetooth_bonded_devices">페어링된 Bluetooth 기기</string>
+    <string name="t_bluetooth_name">Bluetooth 이름</string>
+    <string name="t_bluetooth_name_bt_name">Bluetooth 이름 (bt_name)</string>
+    <string name="t_bluetooth_name_btname">Bluetooth 이름 (btname)</string>
+    <string name="t_bluetooth_name_settings">Bluetooth 이름 (settings)</string>
+    <string name="t_bluetooth_scan_mode">Bluetooth 스캔 모드</string>
+    <string name="t_bluetooth_state">Bluetooth 상태</string>
+    <string name="t_board">Board</string>
+    <string name="t_boot_id">Boot ID</string>
+    <string name="t_boot_count">부팅 횟수</string>
+    <string name="t_boot_patch_level">Boot 패치 수준</string>
+    <string name="t_boot_time_epoch_proc_stat_btime">부팅 시간 (epoch, /proc/stat btime)</string>
+    <string name="t_bootloader">Bootloader</string>
+    <string name="t_brand">브랜드</string>
+    <string name="t_build_id">Build ID</string>
+    <string name="t_build_host">Build host</string>
+    <string name="t_build_tags">Build tags</string>
+    <string name="t_build_time_utc_epoch">Build 시간 (UTC epoch)</string>
+    <string name="t_build_type">Build 유형</string>
+    <string name="t_cpu_cores">CPU 코어</string>
+    <string name="t_call_log_entries">통화 기록 항목</string>
+    <string name="t_cameras">카메라</string>
+    <string name="t_cell_info">셀 정보</string>
+    <string name="t_data_roaming">데이터 로밍</string>
+    <string name="t_default_input_method">기본 입력기</string>
+    <string name="t_developer_settings_enabled">개발자 옵션 사용 설정됨</string>
+    <string name="t_device">Device</string>
+    <string name="t_device_locked">기기 잠김</string>
+    <string name="t_device_name">기기 이름</string>
+    <string name="t_display_id">Display ID</string>
+    <string name="t_display_metrics">디스플레이 지표</string>
+    <string name="t_emulator_files">에뮬레이터 파일</string>
+    <string name="t_enabled_accessibility_services">사용 설정된 접근성 서비스</string>
+    <string name="t_enabled_input_methods">사용 설정된 입력기</string>
+    <string name="t_fingerprint">Fingerprint</string>
+    <string name="t_gsf_id_hex">GSF ID (hex)</string>
+    <string name="t_gsf_id_raw">GSF ID (원시)</string>
+    <string name="t_http_proxy">HTTP 프록시</string>
+    <string name="t_hardware">하드웨어</string>
+    <string name="t_hidden_api_policy">숨겨진 API 정책</string>
+    <string name="t_hidden_api_policy_p_apps">숨겨진 API 정책 (P 앱)</string>
+    <string name="t_hidden_api_policy_pre_p_apps">숨겨진 API 정책 (P 이전 앱)</string>
+    <string name="t_hiding_cloaking_apps">은폐 앱</string>
+    <string name="t_hostname">Hostname</string>
+    <string name="t_imei">IMEI</string>
+    <string name="t_imsi_subscriber">IMSI(가입자)</string>
+    <string name="t_incremental">Incremental</string>
+    <string name="t_injected_libs_proc_self_maps">주입된 라이브러리 (/proc/self/maps)</string>
+    <string name="t_installed_app_signing_digests">설치된 앱 서명 다이제스트</string>
+    <string name="t_installed_applications">설치된 애플리케이션</string>
+    <string name="t_installed_input_methods">설치된 입력기</string>
+    <string name="t_installed_packages">설치된 패키지</string>
+    <string name="t_installed_packages_list">설치된 패키지(목록)</string>
+    <string name="t_kernel_release">커널 (release)</string>
+    <string name="t_kernel_version">커널(버전)</string>
+    <string name="t_kernel_cmdline">커널 cmdline</string>
+    <string name="t_kernel_log">커널 로그</string>
+    <string name="t_kernel_stat">커널 stat</string>
+    <string name="t_kernelsu">KernelSU</string>
+    <string name="t_limit_ad_tracking">광고 추적 제한</string>
+    <string name="t_locale">로케일</string>
+    <string name="t_mac">MAC %1$s</string>
+    <string name="t_meid">MEID</string>
+    <string name="t_magisk">Magisk</string>
+    <string name="t_manufacturer">제조사</string>
+    <string name="t_model">모델</string>
+    <string name="t_mount_markers_magisk_overlay">Mount 마커 (magisk/overlay)</string>
+    <string name="t_network_interfaces">네트워크 인터페이스</string>
+    <string name="t_os_release">OS 버전</string>
+    <string name="t_os_security_patch_level">OS 보안 패치 수준</string>
+    <string name="t_os_version_attested">OS 버전(인증됨)</string>
+    <string name="t_pid">PID</string>
+    <string name="t_primary_abi">기본 ABI</string>
+    <string name="t_primary_imei">기본 IMEI</string>
+    <string name="t_product">Product</string>
+    <string name="t_root_manager_apps">Root 관리자 앱</string>
+    <string name="t_root_tools_apps">Root 기반 도구</string>
+    <string name="t_rooted_apps">Root가 필요한 앱</string>
+    <string name="t_root_detector_apps">Root 감지 앱</string>
+    <string name="t_suspicious_apps">의심스러운 앱</string>
+    <string name="t_running_app_processes">실행 중인 앱 프로세스</string>
+    <string name="t_running_services">실행 중인 서비스</string>
+    <string name="t_sdk_int">SDK int</string>
+    <string name="t_selinux_mls_enabled">SELinux MLS 사용 설정됨</string>
+    <string name="t_selinux_context_self">SELinux 컨텍스트(자신)</string>
+    <string name="t_selinux_enforce">SELinux enforce</string>
+    <string name="t_selinux_policy_version">SELinux policy 버전</string>
+    <string name="t_sim_serial_iccid">SIM 시리얼 (ICCID)</string>
+    <string name="t_screen_capture_disabled_policy">화면 캡처 비활성화(정책)</string>
+    <string name="t_security_patch">보안 패치</string>
+    <string name="t_sensor_count">센서 개수</string>
+    <string name="t_sensors">센서</string>
+    <string name="t_serial">시리얼</string>
+    <string name="t_soc_family">SoC 제품군</string>
+    <string name="t_soc_id">SoC ID</string>
+    <string name="t_soc_machine">SoC 머신</string>
+    <string name="t_soc_serial_number">SoC 시리얼 번호</string>
+    <string name="t_storage_data_total_bytes">/data 저장소 총량(바이트)</string>
+    <string name="t_system_features_count">System features(개수)</string>
+    <string name="t_system_features_full_set">System features(전체 집합)</string>
+    <string name="t_tether_dun_required">Tether DUN 필요</string>
+    <string name="t_this_app_installer">이 앱의 설치 프로그램</string>
+    <string name="t_this_app_signing_sha_256">이 앱 서명 SHA-256</string>
+    <string name="t_time_zone_settings">시간대 (settings)</string>
+    <string name="t_timezone">시간대</string>
+    <string name="t_total_ram_bytes">총 RAM(바이트)</string>
+    <string name="t_touch_exploration_enabled">터치 탐색 사용 설정됨</string>
+    <string name="t_touch_exploration_granted_services">터치 탐색 서비스</string>
+    <string name="t_tracerpid_debugger">TracerPid(디버거)</string>
+    <string name="t_ufs_model">UFS 모델</string>
+    <string name="t_ufs_revision">UFS 리비전</string>
+    <string name="t_ufs_vendor">UFS 공급업체</string>
+    <string name="t_uid">UID</string>
+    <string name="t_uid_coherence">UID/GID 일관성</string>
+    <string name="t_uptime_s">가동 시간(초)</string>
+    <string name="t_user_serial_number">사용자 시리얼 번호</string>
+    <string name="t_oaid">OAID(MSA 익명 id)</string>
+    <string name="t_vaid">VAID(MSA 공급업체 익명 id)</string>
+    <string name="t_aaid_msa">AAID(MSA 앱 익명 id)</string>
+    <string name="t_udid">UDID (MSA)</string>
+    <string name="t_extm_uuid">extm_uuid (Xiaomi)</string>
+    <string name="t_op_security_uuid">op_security_uuid (OnePlus)</string>
+    <string name="t_user_creation_time">사용자 생성 시간</string>
+    <string name="t_vendor_patch_level">공급업체 패치 수준</string>
+    <string name="t_verified_boot_hash_vbmeta_digest">Verified boot 해시 / vbmeta 다이제스트</string>
+    <string name="t_verified_boot_key">Verified boot 키</string>
+    <string name="t_verified_boot_state">Verified boot 상태</string>
+    <string name="t_prop_area_tamper">속성 영역 변조(구멍/컨텍스트)</string>
+    <string name="t_supplementary_groups">보조 그룹 (3009=AID_READPROC)</string>
+    <string name="t_version_codename">버전 코드네임</string>
+    <string name="t_webview_provider">WebView 공급자</string>
+    <string name="t_webview_user_agent">WebView user agent</string>
+    <string name="t_wi_fi_bssid">Wi-Fi BSSID</string>
+    <string name="t_wi_fi_ip">Wi-Fi IP</string>
+    <string name="t_wi_fi_mac_wifiinfo">Wi-Fi MAC (WifiInfo)</string>
+    <string name="t_wi_fi_mac_settings">Wi-Fi MAC (settings)</string>
+    <string name="t_wi_fi_rssi">Wi-Fi RSSI</string>
+    <string name="t_wi_fi_ssid">Wi-Fi SSID</string>
+    <string name="t_wi_fi_frequency_mhz">Wi-Fi 주파수 (MHz)</string>
+    <string name="t_wi_fi_link_speed_mbps">Wi-Fi 링크 속도 (Mbps)</string>
+    <string name="t_wi_fi_network_id">Wi-Fi 네트워크 ID</string>
+    <string name="t_widevine_device_id">Widevine 기기 ID</string>
+    <string name="t_widevine_vendor_version">Widevine 공급업체/버전</string>
+    <string name="t_xposed_lsposed_riru">Xposed / LSPosed / Riru</string>
+    <string name="t_xposed_manager_apps">Xposed 관리자 앱</string>
+    <string name="t_cpuinfo">cpuinfo</string>
+    <string name="t_emmc_cid">eMMC CID</string>
+    <string name="t_emmc_oem_id">eMMC OEM id</string>
+    <string name="t_emmc_manufacture_date">eMMC 제조일</string>
+    <string name="t_emmc_manufacturer_id">eMMC 제조사 ID</string>
+    <string name="t_emmc_name">eMMC 이름</string>
+    <string name="t_emmc_serial">eMMC 시리얼</string>
+    <string name="t_env">env %1$s</string>
+    <string name="t_http_agent">http.agent</string>
+    <string name="t_meminfo">meminfo</string>
+    <string name="t_querybroadcastreceivers_boot_completed">queryBroadcastReceivers (BOOT_COMPLETED)</string>
+    <string name="t_queryinstrumentation_all">queryInstrumentation(전체)</string>
+    <string name="t_queryintentactivities_call_tel">queryIntentActivities (CALL tel:)</string>
+    <string name="t_queryintentactivities_main_launcher">queryIntentActivities (MAIN/LAUNCHER)</string>
+    <string name="t_queryintentactivities_view_http">queryIntentActivities (VIEW http)</string>
+    <string name="t_queryintentcontentproviders_view">queryIntentContentProviders (VIEW)</string>
+    <string name="t_queryintentservices_main">queryIntentServices (MAIN)</string>
+    <string name="t_resolveactivity_main_launcher">resolveActivity (MAIN/LAUNCHER)</string>
+    <string name="t_su_binary">su 바이너리</string>
+    <string name="t_su_on_path">PATH의 su</string>
+    <string name="t_tel_networkOperatorName">네트워크 사업자 이름</string>
+    <string name="t_tel_networkOperator">네트워크 사업자 (MCC+MNC)</string>
+    <string name="t_tel_networkCountryIso">네트워크 국가 ISO</string>
+    <string name="t_tel_simOperatorName">SIM 사업자 이름</string>
+    <string name="t_tel_simOperator">SIM 사업자 (MCC+MNC)</string>
+    <string name="t_tel_simCountryIso">SIM 국가 ISO</string>
+    <string name="t_tel_simState">SIM 상태</string>
+    <string name="t_tel_phoneType">전화 유형</string>
+    <string name="t_tel_networkType">데이터 네트워크 유형</string>
+    <string name="t_tel_dataState">데이터 상태</string>
+    <string name="t_tel_callState">통화 상태</string>
+    <string name="t_tel_isNetworkRoaming">네트워크 로밍</string>
+    <string name="t_tel_line1Number">회선 1 번호</string>
+    <string name="t_tel_voiceMailNumber">음성 사서함 번호</string>
+    <string name="t_tel_groupIdLevel1">Group ID level 1</string>
+    <string name="t_tel_mmsUserAgent">MMS user agent</string>
+    <string name="t_tel_mmsUAProfUrl">MMS UAProf URL</string>
+    <string name="t_tel_phoneCount">전화/SIM 수</string>
+    <string name="t_tel_isDataEnabled">데이터 사용 설정됨</string>
+    <string name="t_tel_isVoiceCapable">음성 지원</string>
+    <string name="t_tel_isSmsCapable">SMS 지원</string>
+    <string name="t_tel_subscriberId">IMSI (subscriberId)</string>
+    <string name="t_tel_deviceSoftwareVersion">기기 소프트웨어 버전</string>
+    <string name="t_self_packageName">이 패키지 이름</string>
+    <string name="t_self_uid">이 앱의 UID</string>
+    <string name="t_self_packagesForUid">이 UID를 공유하는 패키지</string>
+    <string name="t_self_nameForUid">UID의 이름</string>
+    <string name="t_self_packageGids">패키지 GID</string>
+    <string name="t_self_packageUid">패키지 UID (PM)</string>
+    <string name="t_self_installer">설치 프로그램 패키지</string>
+    <string name="t_self_installSource">설치 출처</string>
+    <string name="t_self_times">첫 설치 / 마지막 업데이트</string>
+    <string name="t_self_versionCode">이 앱의 versionCode</string>
+    <string name="t_self_targetSdk">이 앱의 targetSdk</string>
+    <string name="t_self_enabledSetting">앱 활성화 상태</string>
+    <string name="t_self_isInstantApp">Instant app</string>
+    <string name="t_self_isPackageSuspended">패키지 일시 중지됨</string>
+    <string name="t_self_autoRevokeWhitelisted">자동 취소 면제</string>
+    <string name="t_self_syntheticDetails">활성 앱 합성 세부정보</string>
+    <string name="t_self_whitelistedRestricted">허용된 제한 권한</string>
+    <string name="t_self_moduleInfo">모듈 정보</string>
+    <string name="t_self_checkAdId">checkPermission(AD_ID)</string>
+    <string name="t_self_launchIntent">실행 intent 있음</string>
+    <string name="t_self_leanbackIntent">leanback 실행 intent 있음</string>
+    <string name="t_self_xposedMeta">자체 Xposed 메타데이터 키</string>
+    <string name="t_self_resourcesForApp">앱 리소스</string>
+    <string name="t_content_command">`content` 명령을 통한 제공자</string>
+    <string name="t_test_harness">test harness에서 실행 중</string>
+    <string name="t_user_test_harness">사용자 test harness에서 실행 중</string>
+    <string name="t_user_a_monkey">Monkey로 제어됨</string>
+    <string name="t_low_ram_device">저 RAM 기기</string>
+    <string name="t_vpn_active">VPN 활성</string>
+    <string name="t_vpn_interfaces">터널 인터페이스</string>
+    <string name="t_location_providers">위치 제공자</string>
+    <string name="t_mock_location">모의 위치</string>
+    <string name="t_debugger_attached">디버거 연결됨</string>
+    <string name="t_device_secure">화면 잠금 설정됨</string>
+    <string name="t_sensor_vendors">센서 공급업체</string>
+    <string name="t_input_devices">입력 기기</string>
+    <string name="t_appop">App op: %1$s</string>
+    <string name="t_mem_total_kb">총 RAM (kB)</string>
+    <string name="t_ns_mnt">Mount namespace</string>
+    <string name="t_ns_net">네트워크 namespace</string>
+    <string name="t_ns_pid">PID namespace</string>
+    <string name="t_ns_uts">UTS namespace</string>
+    <string name="t_ns_ipc">IPC namespace</string>
+    <string name="t_ns_user">사용자 namespace</string>
+    <string name="t_ns_cgroup">cgroup namespace</string>
+    <string name="t_ns_time">시간 namespace</string>
+    <string name="t_proc_exe">프로세스 실행 파일</string>
+    <string name="t_proc_cwd">작업 디렉터리</string>
+    <string name="t_proc_root">파일 시스템 루트</string>
+    <string name="t_seccomp">seccomp 모드</string>
+    <string name="t_no_new_privs">NoNewPrivs</string>
+    <string name="t_cap_effective">유효 capability</string>
+    <string name="t_cap_bounding">Bounding capability</string>
+    <string name="t_status_uid">UID 행(커널)</string>
+    <string name="t_status_gid">GID 행(커널)</string>
+    <string name="t_status_groups">보조 그룹</string>
+    <string name="t_status_threads">스레드</string>
+    <string name="t_selinux_attr">SELinux 컨텍스트 (attr/current)</string>
+    <string name="t_cgroup">Cgroup</string>
+    <string name="t_architecture">아키텍처</string>
+    <string name="t_zero_width_names">너비 0 문자 / 보이지 않는 이름</string>
+    <string name="err_probe_timeout">프로브 시간 초과</string>
+    <string name="t_isrc_self_installer">설치 출처 (self): installer</string>
+    <string name="t_isrc_self_initiating">설치 출처 (self): initiating</string>
+    <string name="t_isrc_self_originating">설치 출처 (self): originating</string>
+    <string name="t_isrc_self_pkgsource">설치 출처 (self): packageSource</string>
+    <string name="t_isrc_self_initiator_sig">설치 출처 (self): initiator 인증서 vs 설치됨</string>
+    <string name="t_isrc_gap_jvm_store_pm_denies">불일치: JVM은 store installer라 하나 pm은 부인 (hook)</string>
+    <string name="t_isrc_gap_jvm_pm_other">불일치: installer JVM ≠ installer pm (가시성)</string>
+    <string name="t_isrc_gap_installer_ne_initiating">불일치: installer ≠ initiating</string>
+    <string name="t_isrc_gap_store_installer_sideload">불일치: store installer, initiating은 sideload</string>
+    <string name="t_isrc_gap_installer_set_no_initiator">불일치: installer 설정됨, initiating null</string>
+    <string name="t_isrc_gap_initiator_store_no_installer">불일치: store initiating, installer null</string>
+    <string name="t_isrc_gap_initiator_sig_mismatch">불일치: initiator 인증서 기록 ≠ 설치됨</string>
+    <string name="t_isrc_gap_initiator_orphan">불일치: initiating 패키지 미설치</string>
+    <string name="t_isrc_gap_installer_orphan">불일치: installer 패키지 미설치</string>
+    <string name="t_isrc_gap_originating_ne_initiating">불일치: originating ≠ initiating (대행)</string>
+    <string name="t_isrc_gap_ghost_user_install">불일치: 설치 출처 없는 사용자 앱</string>
+    <string name="t_isrc_gap_system_shell_installed">불일치: 시스템 앱이 shell로 설치됨</string>
+    <string name="t_isrc_gap_update_owner_drift">불일치: updateOwner ≠ installer</string>
+    <string name="t_isrc_gap_self_declared_installer">불일치: 앱이 자신의 installer</string>
+    <string name="t_installed_packages_diff">설치된 패키지: 불일치 (JVM x pm)</string>
+    <string name="t_installed_applications_diff">설치된 애플리케이션: 불일치 (JVM x pm)</string>
+    <string name="t_selinux_status">SELinux status 페이지 (policyload/seq)</string>
+    <string name="t_selinux_policy_probe">SELinux 정책 프로브 (타입 + AVC)</string>
+    <string name="t_manager_doors">root/Xposed 매니저: PackageManager 통로별 가시성</string>
+    <string name="t_net_sock_diag">Netlink sock_diag 정책</string>
+    <string name="n_net_sock_diag">제한된 앱은 NETLINK_SOCK_DIAG가 거부되어야 하며, 응답이 오면 netlink 정책이 완화된 것이다.</string>
+    <string name="t_mount_peer_gap">마운트 peer-group 무결성</string>
+    <string name="n_mount_peer_gap">peer-group id 집합은 모든 렌즈에서 동일하게 읽혀야 하며, 렌즈별 공백은 숨겨진 마운트를 뜻한다.</string>
+    <string name="t_mount_fdinfo_mnt">마운트 id 대 열린 디스크립터</string>
+    <string name="n_mount_fdinfo_mnt">mnt_id가 mountinfo에 없는 열린 디스크립터는 뷰에서 숨겨진 마운트를 가리킨다.</string>
+    <string name="t_proc_readproc_gid">zygote GID 3009 (AID_READPROC)</string>
+    <string name="n_proc_readproc_gid">AID_READPROC 보조 GID 누락은 일부 앱 은닉 모듈이 남기는 흔적이다.</string>
+    <string name="t_proc_fd_graph">디스크립터 집계</string>
+    <string name="t_mem_anon_exec">익명 실행 매핑</string>
+    <string name="n_mem_anon_exec">백업 파일이 없는 실행 페이지는 전형적인 인젝션/Zygisk 잔여물이며, 개수는 렌즈 간에 일치해야 한다.</string>
+    <string name="t_kernel_selfbuild">자체 빌드 / 패치된 커널</string>
+    <string name="n_kernel_selfbuild">정품 커널은 -dirty, git, SUSFS 빌드 표식을 갖지 않으며, 표식은 렌즈 간에 일치해야 한다.</string>
+    <string name="t_tee_soter">Soter 서비스 대 속성</string>
+    <string name="n_tee_soter">Tencent의 Soter 서비스 프로그램을 그 서비스 속성 상태와 교차 확인한다.</string>
+    <string name="t_proc_cgroup_format">cgroup 경로 형식</string>
+    <string name="n_proc_cgroup_format">복제 / 듀얼 앱 컨테이너는 통합 cgroup 경로를 정규 uid_/pid_ 형식에서 벗어나게 한다.</string>
+</resources>

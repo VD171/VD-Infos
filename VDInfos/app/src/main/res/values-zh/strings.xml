@@ -1,0 +1,434 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    ======================================================================
+     VD INFOS  ::  method debugger
+     Read every device info by every method, then compare. A divergence is a hook.
+
+     Copyright (C) 2026  VD171
+     SPDX-License-Identifier: AGPL-3.0-or-later
+
+     Free software under the GNU AGPL v3 or later. NETWORK COPYLEFT: run a
+     modified version, even as a service, and you MUST offer its source.
+
+     Site           : https://vd171.ru
+     Site           : https://vd.priv8.ru
+     Source         : https://github.com/VD171/VD-Infos
+     GitHub         : @VD171 https://github.com/VD171
+     XDA-Developers : @VD171 https://xdaforums.com/m/vd171.4699873/
+     Telegram       : @VD_Priv8 https://t.me/VD_Priv8
+     Discord        : @VD.Priv8 https://discord.com/users/1296831918989639721
+     E-mail         : vd.priv8@pm.me
+    ======================================================================
+-->
+<resources>
+    <string name="app_tagline">方法调试器</string>
+
+    <!-- 操作 -->
+    <string name="action_reveal">显示身份信息</string>
+    <string name="action_export">分享报告</string>
+    <string name="action_save">保存到文件</string>
+    <string name="action_rescan">重新扫描</string>
+    <string name="save_ok">报告已保存</string>
+    <string name="save_fail">无法保存文件</string>
+
+    <!-- 摘要 -->
+    <plurals name="summary_divergences">
+        <item quantity="other">%d 处不一致</item>
+    </plurals>
+    <string name="summary_line">%1$d/%2$d 个探针 · %3$d 个一致</string>
+    <string name="summary_native_off"> · 本机代码不可用</string>
+
+    <!-- 搜索与过滤 -->
+    <string name="search_hint">搜索属性、值…</string>
+    <string name="filter_divergent">仅不一致</string>
+    <string name="filter_all">全部</string>
+
+    <!-- 判定 -->
+    <string name="verdict_mismatch">不一致</string>
+    <string name="verdict_match">一致</string>
+    <string name="verdict_single">单一</string>
+    <string name="verdict_info">信息</string>
+    <string name="reading_context_only">上下文</string>
+    <string name="reading_empty">（空）</string>
+    <string name="verdict_empty">空</string>
+    <string name="verdict_error">错误</string>
+
+    <!-- 分类 -->
+    <string name="cat_identity">身份</string>
+    <string name="cat_fingerprint">Fingerprint</string>
+    <string name="cat_telephony">电话 / RIL</string>
+    <string name="cat_network">网络</string>
+    <string name="cat_locale">区域 / 时间</string>
+    <string name="cat_boot">Boot / 内核</string>
+    <string name="cat_build">Build / ROM</string>
+    <string name="cat_display">显示</string>
+    <string name="cat_sensors">传感器</string>
+    <string name="cat_media">媒体 / DRM</string>
+    <string name="cat_packages">软件包</string>
+    <string name="cat_accounts">账户</string>
+    <string name="cat_webview">WebView</string>
+    <string name="cat_hardware">硬件</string>
+    <string name="cat_storage">存储</string>
+    <string name="cat_process">进程</string>
+    <string name="cat_security">安全</string>
+    <string name="cat_integrity">Root / 完整性</string>
+    <string name="cat_emulator">模拟器</string>
+    <string name="cat_system">系统</string>
+
+    <!-- 后台更改通知 -->
+    <string name="action_about">关于</string>
+    <string name="action_close">关闭</string>
+    <string name="action_copy">复制</string>
+    <string name="copied">已复制</string>
+    <string name="about_developer">开发者</string>
+    <string name="about_source">源代码</string>
+    <string name="about_license">许可证</string>
+    <string name="about_contacts">联系方式</string>
+    <string name="about_privacy">不存储、不发送、不传输任何信息。一切都在设备上运行，报告只有在您自己分享或保存时才会离开设备。</string>
+    <string name="crash_title">意外错误</string>
+    <string name="crash_body">应用遇到意外错误。没有向任何地方发送任何内容。您可以复制下方详情并发送给开发者。</string>
+    <string name="about_project">项目</string>
+    <string name="about_support">下载与支持</string>
+    <string name="action_clear">清除搜索</string>
+    <string name="lang_dialog_title">语言</string>
+    <string name="lang_dialog_body">选择应用语言，或跟随系统设置。</string>
+    <string name="lang_system_default">系统默认</string>
+    <string name="lang_apply">应用</string>
+
+    <!-- 解决方案 -->
+    <string name="sol_title">如何修复</string>
+    <string name="sol_boot">这是硬件认证 (TEE) 报告的启动状态。keybox 绕过工具（TrickyStore、TEE Simulator、OhMyKeyMint）只会为您指定的应用重写认证。将此应用的包名添加到这些工具的目标列表（如 target.txt），使其认证报告为已锁定设备且 verified boot 为绿色。</string>
+    <string name="sol_root_detector">这些已安装的应用会查找 root、模拟器或失败的 Play Integrity。将此处找到的包名作为目标添加到您的隐藏框架（HMA-OSS），使您的应用和 root 模块对这些检测器隐藏。</string>
+    <string name="sol_spoof">此设置在应用可能使用的各个路径中读取结果不同（spoof 未覆盖全部）。将该设置添加到 HMA-OSS 的 spoof 预设，使每条读取路径都返回相同的值。</string>
+    <string name="sol_attest_patch">key attestation 报告的补丁级别与系统属性不同。在你的 keybox 工具中设置 - TrickyStore 用 security_patch.txt（日期，或 system=/boot=/vendor=/all=，或 \'prop\'）；OhMyKeymint 用 config.toml 的 [trust]。两者都只改 attestation，不改属性。</string>
+    <string name="sol_patch_prop">Build.VERSION.SECURITY_PATCH（框架）与 ro.build.version.security_patch 属性显示的日期不同。用 resetprop 对齐它们。security_patch.txt 和 config.toml 在这里没用 - 它们只改 key attestation，不改属性。</string>
+
+    <string name="note_gsf">在 Android 16 及更高版本中不存在：Google 服务存储已迁移到 Play Services，其入口被 Google 自己命名为 &quot;do.not.use&quot;，且不响应其他应用。以上两者都会尝试。</string>
+    <string name="t_attestation_app_id">证明应用 ID（包名 + 签名）</string>
+    <string name="t_dev_ptmx_present">存在 /dev/ptmx</string>
+    <string name="t_documents_providers">已注册的 DocumentsProviders</string>
+    <string name="t_kernel_modules">已加载的内核模块（KernelSU/SuSFS）</string>
+    <string name="t_kernel_syscall_fingerprint">按 syscall 指纹判断的内核版本</string>
+    <string name="t_key_inside_secure_hw">密钥位于安全硬件中（KeyInfo）</string>
+    <string name="t_keybox_ec_vs_rsa">keybox 覆盖范围：EC 与 RSA 证明</string>
+    <string name="t_local_tmp_contents">/data/local/tmp 的内容</string>
+    <string name="t_native_lib_origin">本地库来源（dladdr）</string>
+    <string name="t_own_debuggable">本应用：debuggable / 调试构建</string>
+    <string name="t_play_store_version">Play Store / GMS 版本</string>
+    <string name="t_resolv_conf">resolv.conf / DNS 配置</string>
+    <string name="t_root_backup_tools">存在需要 root 的备份工具</string>
+    <string name="t_su_libc_inline_hook">su：原始 syscall 与 libc、Java 对比</string>
+    <string name="t_system_build_prop">/system/build.prop</string>
+    <string name="t_system_build_prop_present">存在 /system/build.prop</string>
+    <string name="t_adb_enabled">ADB 已启用</string>
+    <string name="t_apatch">APatch</string>
+    <string name="t_accessibility_enabled">无障碍已启用</string>
+    <string name="t_accounts">账户</string>
+    <string name="t_active_subscriptions">活跃订阅</string>
+    <string name="t_advertising_id">广告 ID</string>
+    <string name="t_advertising_id_keys_settings_stores">广告 ID 键 (settings)</string>
+    <string name="t_spoof_consistency">Spoof 一致性：%1$s</string>
+    <string name="t_spoof_sweep">Spoof 一致性扫描（所有 settings）</string>
+    <string name="t_analysis_emulator_apps">分析 / 模拟器应用</string>
+    <string name="t_android_id">Android ID</string>
+    <string name="t_another_process_cmdline_init">其他进程 cmdline (init)</string>
+    <string name="t_another_process_maps_init">其他进程 maps (init)</string>
+    <string name="t_attestation_keymaster_version">Attestation / keymaster 版本</string>
+    <string name="t_attestation_available">Attestation 可用</string>
+    <string name="t_attestation_provisioning_signer">Attestation provisioning（签名者）</string>
+    <string name="t_attestation_provisioning_info">Attestation ProvisioningInfo (RKP)</string>
+    <string name="t_attestation_security_level">Attestation 安全级别</string>
+    <string name="t_block_untrusted_touches">阻止不受信任的触摸</string>
+    <string name="t_bluetooth_mac">蓝牙 MAC</string>
+    <string name="t_bluetooth_bonded_devices">已配对蓝牙设备</string>
+    <string name="t_bluetooth_name">蓝牙名称</string>
+    <string name="t_bluetooth_name_bt_name">蓝牙名称 (bt_name)</string>
+    <string name="t_bluetooth_name_btname">蓝牙名称 (btname)</string>
+    <string name="t_bluetooth_name_settings">蓝牙名称 (settings)</string>
+    <string name="t_bluetooth_scan_mode">蓝牙扫描模式</string>
+    <string name="t_bluetooth_state">蓝牙状态</string>
+    <string name="t_board">Board</string>
+    <string name="t_boot_id">Boot ID</string>
+    <string name="t_boot_count">启动次数</string>
+    <string name="t_boot_patch_level">Boot 补丁级别</string>
+    <string name="t_boot_time_epoch_proc_stat_btime">启动时间 (epoch, /proc/stat btime)</string>
+    <string name="t_bootloader">Bootloader</string>
+    <string name="t_brand">品牌</string>
+    <string name="t_build_id">Build ID</string>
+    <string name="t_build_host">Build host</string>
+    <string name="t_build_tags">Build tags</string>
+    <string name="t_build_time_utc_epoch">Build 时间 (UTC epoch)</string>
+    <string name="t_build_type">Build 类型</string>
+    <string name="t_cpu_cores">CPU 核心</string>
+    <string name="t_call_log_entries">通话记录条目</string>
+    <string name="t_cameras">摄像头</string>
+    <string name="t_cell_info">蜂窝信息</string>
+    <string name="t_data_roaming">数据漫游</string>
+    <string name="t_default_input_method">默认输入法</string>
+    <string name="t_developer_settings_enabled">开发者选项已启用</string>
+    <string name="t_device">Device</string>
+    <string name="t_device_locked">设备已锁定</string>
+    <string name="t_device_name">设备名称</string>
+    <string name="t_display_id">Display ID</string>
+    <string name="t_display_metrics">显示参数</string>
+    <string name="t_emulator_files">模拟器文件</string>
+    <string name="t_enabled_accessibility_services">已启用的无障碍服务</string>
+    <string name="t_enabled_input_methods">已启用的输入法</string>
+    <string name="t_fingerprint">Fingerprint</string>
+    <string name="t_gsf_id_hex">GSF ID (hex)</string>
+    <string name="t_gsf_id_raw">GSF ID (原始)</string>
+    <string name="t_http_proxy">HTTP 代理</string>
+    <string name="t_hardware">硬件</string>
+    <string name="t_hidden_api_policy">隐藏 API 策略</string>
+    <string name="t_hidden_api_policy_p_apps">隐藏 API 策略 (P 应用)</string>
+    <string name="t_hidden_api_policy_pre_p_apps">隐藏 API 策略 (P 之前应用)</string>
+    <string name="t_hiding_cloaking_apps">隐藏类应用</string>
+    <string name="t_hostname">Hostname</string>
+    <string name="t_imei">IMEI</string>
+    <string name="t_imsi_subscriber">IMSI（订户）</string>
+    <string name="t_incremental">Incremental</string>
+    <string name="t_injected_libs_proc_self_maps">注入的库 (/proc/self/maps)</string>
+    <string name="t_installed_app_signing_digests">已安装应用签名摘要</string>
+    <string name="t_installed_applications">已安装应用程序</string>
+    <string name="t_installed_input_methods">已安装的输入法</string>
+    <string name="t_installed_packages">已安装软件包</string>
+    <string name="t_installed_packages_list">已安装软件包（列表）</string>
+    <string name="t_kernel_release">内核 (release)</string>
+    <string name="t_kernel_version">内核（版本）</string>
+    <string name="t_kernel_cmdline">内核 cmdline</string>
+    <string name="t_kernel_log">内核日志</string>
+    <string name="t_kernel_stat">内核 stat</string>
+    <string name="t_kernelsu">KernelSU</string>
+    <string name="t_limit_ad_tracking">限制广告跟踪</string>
+    <string name="t_locale">区域</string>
+    <string name="t_mac">MAC %1$s</string>
+    <string name="t_meid">MEID</string>
+    <string name="t_magisk">Magisk</string>
+    <string name="t_manufacturer">制造商</string>
+    <string name="t_model">型号</string>
+    <string name="t_mount_markers_magisk_overlay">Mount 标记 (magisk/overlay)</string>
+    <string name="t_network_interfaces">网络接口</string>
+    <string name="t_os_release">系统版本</string>
+    <string name="t_os_security_patch_level">系统安全补丁级别</string>
+    <string name="t_os_version_attested">系统版本（已认证）</string>
+    <string name="t_pid">PID</string>
+    <string name="t_primary_abi">主 ABI</string>
+    <string name="t_primary_imei">主 IMEI</string>
+    <string name="t_product">Product</string>
+    <string name="t_root_manager_apps">Root 管理器应用</string>
+    <string name="t_root_tools_apps">基于 root 的工具</string>
+    <string name="t_rooted_apps">需要 root 的应用</string>
+    <string name="t_root_detector_apps">Root 检测器应用</string>
+    <string name="t_suspicious_apps">可疑应用</string>
+    <string name="t_running_app_processes">运行中的应用进程</string>
+    <string name="t_running_services">运行中的服务</string>
+    <string name="t_sdk_int">SDK int</string>
+    <string name="t_selinux_mls_enabled">SELinux MLS 已启用</string>
+    <string name="t_selinux_context_self">SELinux 上下文（自身）</string>
+    <string name="t_selinux_enforce">SELinux enforce</string>
+    <string name="t_selinux_policy_version">SELinux policy 版本</string>
+    <string name="t_sim_serial_iccid">SIM 序列号 (ICCID)</string>
+    <string name="t_screen_capture_disabled_policy">屏幕捕获已禁用（策略）</string>
+    <string name="t_security_patch">安全补丁</string>
+    <string name="t_sensor_count">传感器数量</string>
+    <string name="t_sensors">传感器</string>
+    <string name="t_serial">序列号</string>
+    <string name="t_soc_family">SoC 系列</string>
+    <string name="t_soc_id">SoC ID</string>
+    <string name="t_soc_machine">SoC 机器</string>
+    <string name="t_soc_serial_number">SoC 序列号</string>
+    <string name="t_storage_data_total_bytes">/data 存储总量（字节）</string>
+    <string name="t_system_features_count">System features（数量）</string>
+    <string name="t_system_features_full_set">System features（完整集）</string>
+    <string name="t_tether_dun_required">需要 tether DUN</string>
+    <string name="t_this_app_installer">此应用的安装程序</string>
+    <string name="t_this_app_signing_sha_256">此应用签名 SHA-256</string>
+    <string name="t_time_zone_settings">时区 (settings)</string>
+    <string name="t_timezone">时区</string>
+    <string name="t_total_ram_bytes">总 RAM（字节）</string>
+    <string name="t_touch_exploration_enabled">触摸浏览已启用</string>
+    <string name="t_touch_exploration_granted_services">具有触摸浏览的服务</string>
+    <string name="t_tracerpid_debugger">TracerPid（调试器）</string>
+    <string name="t_ufs_model">UFS 型号</string>
+    <string name="t_ufs_revision">UFS 修订版</string>
+    <string name="t_ufs_vendor">UFS 厂商</string>
+    <string name="t_uid">UID</string>
+    <string name="t_uid_coherence">UID/GID 一致性</string>
+    <string name="t_uptime_s">运行时间（秒）</string>
+    <string name="t_user_serial_number">用户序列号</string>
+    <string name="t_oaid">OAID（MSA 匿名 id）</string>
+    <string name="t_vaid">VAID（MSA 厂商匿名 id）</string>
+    <string name="t_aaid_msa">AAID（MSA 应用匿名 id）</string>
+    <string name="t_udid">UDID (MSA)</string>
+    <string name="t_extm_uuid">extm_uuid (Xiaomi)</string>
+    <string name="t_op_security_uuid">op_security_uuid (OnePlus)</string>
+    <string name="t_user_creation_time">用户创建时间</string>
+    <string name="t_vendor_patch_level">厂商补丁级别</string>
+    <string name="t_verified_boot_hash_vbmeta_digest">Verified boot 哈希 / vbmeta 摘要</string>
+    <string name="t_verified_boot_key">Verified boot 密钥</string>
+    <string name="t_verified_boot_state">Verified boot 状态</string>
+    <string name="t_prop_area_tamper">属性区域篡改（漏洞/上下文）</string>
+    <string name="t_supplementary_groups">补充组 (3009=AID_READPROC)</string>
+    <string name="t_version_codename">版本代号</string>
+    <string name="t_webview_provider">WebView 提供者</string>
+    <string name="t_webview_user_agent">WebView user agent</string>
+    <string name="t_wi_fi_bssid">Wi-Fi BSSID</string>
+    <string name="t_wi_fi_ip">Wi-Fi IP</string>
+    <string name="t_wi_fi_mac_wifiinfo">Wi-Fi MAC (WifiInfo)</string>
+    <string name="t_wi_fi_mac_settings">Wi-Fi MAC (settings)</string>
+    <string name="t_wi_fi_rssi">Wi-Fi RSSI</string>
+    <string name="t_wi_fi_ssid">Wi-Fi SSID</string>
+    <string name="t_wi_fi_frequency_mhz">Wi-Fi 频率 (MHz)</string>
+    <string name="t_wi_fi_link_speed_mbps">Wi-Fi 链路速度 (Mbps)</string>
+    <string name="t_wi_fi_network_id">Wi-Fi 网络 ID</string>
+    <string name="t_widevine_device_id">Widevine 设备 ID</string>
+    <string name="t_widevine_vendor_version">Widevine 厂商/版本</string>
+    <string name="t_xposed_lsposed_riru">Xposed / LSPosed / Riru</string>
+    <string name="t_xposed_manager_apps">Xposed 管理器应用</string>
+    <string name="t_cpuinfo">cpuinfo</string>
+    <string name="t_emmc_cid">eMMC CID</string>
+    <string name="t_emmc_oem_id">eMMC OEM id</string>
+    <string name="t_emmc_manufacture_date">eMMC 制造日期</string>
+    <string name="t_emmc_manufacturer_id">eMMC 制造商 ID</string>
+    <string name="t_emmc_name">eMMC 名称</string>
+    <string name="t_emmc_serial">eMMC 序列号</string>
+    <string name="t_env">env %1$s</string>
+    <string name="t_http_agent">http.agent</string>
+    <string name="t_meminfo">meminfo</string>
+    <string name="t_querybroadcastreceivers_boot_completed">queryBroadcastReceivers (BOOT_COMPLETED)</string>
+    <string name="t_queryinstrumentation_all">queryInstrumentation（全部）</string>
+    <string name="t_queryintentactivities_call_tel">queryIntentActivities (CALL tel:)</string>
+    <string name="t_queryintentactivities_main_launcher">queryIntentActivities (MAIN/LAUNCHER)</string>
+    <string name="t_queryintentactivities_view_http">queryIntentActivities (VIEW http)</string>
+    <string name="t_queryintentcontentproviders_view">queryIntentContentProviders (VIEW)</string>
+    <string name="t_queryintentservices_main">queryIntentServices (MAIN)</string>
+    <string name="t_resolveactivity_main_launcher">resolveActivity (MAIN/LAUNCHER)</string>
+    <string name="t_su_binary">su 二进制文件</string>
+    <string name="t_su_on_path">PATH 中的 su</string>
+    <string name="t_tel_networkOperatorName">网络运营商名称</string>
+    <string name="t_tel_networkOperator">网络运营商 (MCC+MNC)</string>
+    <string name="t_tel_networkCountryIso">网络国家 ISO</string>
+    <string name="t_tel_simOperatorName">SIM 运营商名称</string>
+    <string name="t_tel_simOperator">SIM 运营商 (MCC+MNC)</string>
+    <string name="t_tel_simCountryIso">SIM 国家 ISO</string>
+    <string name="t_tel_simState">SIM 状态</string>
+    <string name="t_tel_phoneType">电话类型</string>
+    <string name="t_tel_networkType">数据网络类型</string>
+    <string name="t_tel_dataState">数据状态</string>
+    <string name="t_tel_callState">通话状态</string>
+    <string name="t_tel_isNetworkRoaming">网络漫游</string>
+    <string name="t_tel_line1Number">线路 1 号码</string>
+    <string name="t_tel_voiceMailNumber">语音信箱号码</string>
+    <string name="t_tel_groupIdLevel1">Group ID level 1</string>
+    <string name="t_tel_mmsUserAgent">MMS user agent</string>
+    <string name="t_tel_mmsUAProfUrl">MMS UAProf URL</string>
+    <string name="t_tel_phoneCount">电话/SIM 数量</string>
+    <string name="t_tel_isDataEnabled">数据已启用</string>
+    <string name="t_tel_isVoiceCapable">支持语音</string>
+    <string name="t_tel_isSmsCapable">支持短信</string>
+    <string name="t_tel_subscriberId">IMSI (subscriberId)</string>
+    <string name="t_tel_deviceSoftwareVersion">设备软件版本</string>
+    <string name="t_self_packageName">此软件包名称</string>
+    <string name="t_self_uid">此应用的 UID</string>
+    <string name="t_self_packagesForUid">共享此 UID 的软件包</string>
+    <string name="t_self_nameForUid">UID 对应名称</string>
+    <string name="t_self_packageGids">软件包 GID</string>
+    <string name="t_self_packageUid">软件包 UID (PM)</string>
+    <string name="t_self_installer">安装程序软件包</string>
+    <string name="t_self_installSource">安装来源</string>
+    <string name="t_self_times">首次安装 / 最后更新</string>
+    <string name="t_self_versionCode">此应用的 versionCode</string>
+    <string name="t_self_targetSdk">此应用的 targetSdk</string>
+    <string name="t_self_enabledSetting">应用启用状态</string>
+    <string name="t_self_isInstantApp">Instant app</string>
+    <string name="t_self_isPackageSuspended">软件包已暂停</string>
+    <string name="t_self_autoRevokeWhitelisted">免于自动撤销</string>
+    <string name="t_self_syntheticDetails">活动应用综合详情</string>
+    <string name="t_self_whitelistedRestricted">允许的受限权限</string>
+    <string name="t_self_moduleInfo">模块信息</string>
+    <string name="t_self_checkAdId">checkPermission(AD_ID)</string>
+    <string name="t_self_launchIntent">有启动 intent</string>
+    <string name="t_self_leanbackIntent">有 leanback 启动 intent</string>
+    <string name="t_self_xposedMeta">自身 Xposed 元数据键</string>
+    <string name="t_self_resourcesForApp">应用资源</string>
+    <string name="t_content_command">通过 `content` 命令的提供者</string>
+    <string name="t_test_harness">在 test harness 中运行</string>
+    <string name="t_user_test_harness">在用户 test harness 中运行</string>
+    <string name="t_user_a_monkey">由 Monkey 控制</string>
+    <string name="t_low_ram_device">低 RAM 设备</string>
+    <string name="t_vpn_active">VPN 活跃</string>
+    <string name="t_vpn_interfaces">隧道接口</string>
+    <string name="t_location_providers">位置提供者</string>
+    <string name="t_mock_location">模拟位置</string>
+    <string name="t_debugger_attached">调试器已附加</string>
+    <string name="t_device_secure">已设置屏幕锁</string>
+    <string name="t_sensor_vendors">传感器厂商</string>
+    <string name="t_input_devices">输入设备</string>
+    <string name="t_appop">App op: %1$s</string>
+    <string name="t_mem_total_kb">总 RAM (kB)</string>
+    <string name="t_ns_mnt">Mount namespace</string>
+    <string name="t_ns_net">网络 namespace</string>
+    <string name="t_ns_pid">PID namespace</string>
+    <string name="t_ns_uts">UTS namespace</string>
+    <string name="t_ns_ipc">IPC namespace</string>
+    <string name="t_ns_user">用户 namespace</string>
+    <string name="t_ns_cgroup">cgroup namespace</string>
+    <string name="t_ns_time">时间 namespace</string>
+    <string name="t_proc_exe">进程可执行文件</string>
+    <string name="t_proc_cwd">工作目录</string>
+    <string name="t_proc_root">文件系统根</string>
+    <string name="t_seccomp">seccomp 模式</string>
+    <string name="t_no_new_privs">NoNewPrivs</string>
+    <string name="t_cap_effective">有效 capability</string>
+    <string name="t_cap_bounding">Bounding capability</string>
+    <string name="t_status_uid">UID 行（内核）</string>
+    <string name="t_status_gid">GID 行（内核）</string>
+    <string name="t_status_groups">补充组</string>
+    <string name="t_status_threads">线程</string>
+    <string name="t_selinux_attr">SELinux 上下文 (attr/current)</string>
+    <string name="t_cgroup">Cgroup</string>
+    <string name="t_architecture">架构</string>
+    <string name="t_zero_width_names">含零宽字符的名称 / 不可见</string>
+    <string name="err_probe_timeout">探测超时</string>
+    <string name="t_isrc_self_installer">安装来源 (self): installer</string>
+    <string name="t_isrc_self_initiating">安装来源 (self): initiating</string>
+    <string name="t_isrc_self_originating">安装来源 (self): originating</string>
+    <string name="t_isrc_self_pkgsource">安装来源 (self): packageSource</string>
+    <string name="t_isrc_self_initiator_sig">安装来源 (self): initiator 证书 vs 已安装</string>
+    <string name="t_isrc_gap_jvm_store_pm_denies">差异: JVM 称 store installer，pm 否认 (hook)</string>
+    <string name="t_isrc_gap_jvm_pm_other">差异: installer JVM ≠ installer pm (可见性)</string>
+    <string name="t_isrc_gap_installer_ne_initiating">差异: installer ≠ initiating</string>
+    <string name="t_isrc_gap_store_installer_sideload">差异: store installer，initiating 为 sideload</string>
+    <string name="t_isrc_gap_installer_set_no_initiator">差异: installer 已设，initiating null</string>
+    <string name="t_isrc_gap_initiator_store_no_installer">差异: store initiating，installer null</string>
+    <string name="t_isrc_gap_initiator_sig_mismatch">差异: initiator 证书记录 ≠ 已安装</string>
+    <string name="t_isrc_gap_initiator_orphan">差异: initiating 软件包未安装</string>
+    <string name="t_isrc_gap_installer_orphan">差异: installer 软件包未安装</string>
+    <string name="t_isrc_gap_originating_ne_initiating">差异: originating ≠ initiating (代为)</string>
+    <string name="t_isrc_gap_ghost_user_install">差异: 无安装来源的用户应用</string>
+    <string name="t_isrc_gap_system_shell_installed">差异: 系统应用经 shell 安装</string>
+    <string name="t_isrc_gap_update_owner_drift">差异: updateOwner ≠ installer</string>
+    <string name="t_isrc_gap_self_declared_installer">差异: 应用是自己的 installer</string>
+    <string name="t_installed_packages_diff">已安装软件包: 差异 (JVM x pm)</string>
+    <string name="t_installed_applications_diff">已安装应用程序: 差异 (JVM x pm)</string>
+    <string name="t_selinux_status">SELinux status 页 (policyload/seq)</string>
+    <string name="t_selinux_policy_probe">SELinux 策略探针 (类型 + AVC)</string>
+    <string name="t_manager_doors">root/Xposed 管理器：按 PackageManager 入口的可见性</string>
+    <string name="t_net_sock_diag">Netlink sock_diag 策略</string>
+    <string name="n_net_sock_diag">受限应用应被拒绝 NETLINK_SOCK_DIAG；若有回复，说明 netlink 策略被放宽。</string>
+    <string name="t_mount_peer_gap">挂载 peer-group 完整性</string>
+    <string name="n_mount_peer_gap">peer-group id 集合应在每个视角读到相同；某个视角出现缺口即表示存在被隐藏的挂载。</string>
+    <string name="t_mount_fdinfo_mnt">挂载 id 与打开的描述符</string>
+    <string name="n_mount_fdinfo_mnt">mnt_id 不在 mountinfo 中的已打开描述符，指向一个从视图中被隐藏的挂载。</string>
+    <string name="t_proc_readproc_gid">zygote 的 GID 3009 (AID_READPROC)</string>
+    <string name="n_proc_readproc_gid">缺失 AID_READPROC 附加 GID 是某些应用隐藏模块留下的痕迹。</string>
+    <string name="t_proc_fd_graph">描述符普查</string>
+    <string name="t_mem_anon_exec">匿名可执行映射</string>
+    <string name="n_mem_anon_exec">没有后备文件的可执行页是典型的注入/Zygisk 残留；数量应在各视角间一致。</string>
+    <string name="t_kernel_selfbuild">自编译 / 打补丁内核</string>
+    <string name="n_kernel_selfbuild">原厂内核不带 -dirty、git 或 SUSFS 构建标记；标记应在各视角间一致。</string>
+    <string name="t_tee_soter">Soter 服务与属性</string>
+    <string name="n_tee_soter">将腾讯 Soter 服务程序与其服务属性状态进行交叉核对。</string>
+    <string name="t_proc_cgroup_format">cgroup 路径格式</string>
+    <string name="n_proc_cgroup_format">克隆 / 双开容器会使统一 cgroup 路径偏离规范的 uid_/pid_ 形式。</string>
+</resources>
