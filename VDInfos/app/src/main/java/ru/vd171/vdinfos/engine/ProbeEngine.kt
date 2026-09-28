@@ -52,10 +52,17 @@ class ProbeEngine(private val appContext: Context) {
             for (task in tasks) {
                 launch {
                     gate.withPermit {
-                        val values = withTimeoutOrNull(TASK_TIMEOUT_MS) { task.run(appContext) }
+                        var values = withTimeoutOrNull(TASK_TIMEOUT_MS) { task.run(appContext) }
                             ?: listOf(LensValue(Lens.SHELL, "timeout", null,
                                 appContext.getString(ru.vd171.vdinfos.R.string.err_probe_timeout)))
                         var verdict = ProbeResult.verdictOf(values)
+                        if (verdict == Verdict.MISMATCH) {
+                            val confirm = withTimeoutOrNull(TASK_TIMEOUT_MS) { task.run(appContext) }
+                            if (confirm != null && ProbeResult.verdictOf(confirm) != Verdict.MISMATCH) {
+                                values = confirm
+                                verdict = ProbeResult.verdictOf(confirm)
+                            }
+                        }
                         if (verdict == Verdict.SINGLE && task.spec.category == Category.INTEGRITY) {
                             verdict = Verdict.INFO
                         }

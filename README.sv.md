@@ -12,7 +12,9 @@
 
 <img src="images/vdinfos-01.png" height="420"/> <img src="images/vdinfos-02.png" height="420"/>
 
-Android är ett oerhört kraftfullt och mångsidigt operativsystem; vad ingen berättar är att alla dina personliga uppgifter och känsliga uppgifter är tillgängliga för varje app du installerar, och att skydda dig mot dessa integritetsintrång är en skyldighet. VD Infos visar dig ett exempel på vad som kan fångas från din enhet, och gör det som en *metod-debugger*: för varje uppgift läser den värdet via **varje metod som kan läsa det** - `Build.*`, `SystemProperties`, `getprop`, den nativa `__system_property_get`, systemhanterare, content providers, filer, syscalls och attestering av hårdvarunyckel (TEE) - och radar upp dem så att du kan jämföra. När en metod avviker från de andra skriver något däremellan om den ytan: ett hooking-ramverk, en spoofer, en resolver-shim. **INGEN INFORMATION LAGRAS, SKICKAS ELLER ÖVERFÖRS TILL NÅGON FIL ELLER SERVER** - allt körs på enheten, identitetsbärande värden är maskerade tills du avslöjar dem, och en rapport lämnar enheten endast när du uttryckligen delar eller sparar den; vill du, blockera internetåtkomst med en brandvägg eller stäng bara av den.
+Android är ett oerhört kraftfullt och mångsidigt operativsystem; vad ingen berättar är att alla dina personliga uppgifter och känsliga uppgifter är tillgängliga för varje app du installerar, och att skydda dig mot dessa integritetsintrång är en skyldighet. VD Infos visar dig ett exempel på vad som kan fångas från din enhet, och gör det som en *metod-debugger*: för varje uppgift läser den värdet via **varje metod som kan läsa det** - `Build.*`, `SystemProperties`, `getprop`, den nativa `__system_property_get`, systemhanterare, content providers, filer, syscalls och attestering av hårdvarunyckel (TEE) - och radar upp dem så att du kan jämföra. När en metod avviker från de andra skriver något däremellan om den ytan: ett hooking-ramverk, en spoofer, en resolver-shim. **INGEN INFORMATION LAGRAS, SKICKAS ELLER ÖVERFÖRS TILL NÅGON FIL¹ ELLER SERVER** - allt körs på enheten, identitetsbärande värden är maskerade tills du avslöjar dem, och en rapport lämnar enheten endast när du uttryckligen delar eller sparar den; vill du, blockera internetåtkomst med en brandvägg eller stäng bara av den.
+
+> **¹ Undantag:** varje skanning sparar hela rapporten i appens privata lagring (`files/last_snapshot.json`). Bara appen själv eller root kan läsa den, nästa skanning skriver över den och den lämnar aldrig enheten. Den finns för att AI-agenter ska kunna läsa hela resultatet; se **För AI-agenter: hela rapporten som JSON**.
 
 ## Vad den granskar
 
@@ -40,6 +42,18 @@ Varje release publicerar två APK-filer: **SDK_35** riktar sig mot den strikta m
 * https://t.me/RootDetected
 * https://t.me/BlankAssistance
 
+## För AI-agenter: hela rapporten som JSON
+
+Gjord för AI-agenter och LLM-verktyg som arbetar på enheten via ett skal (kodassistenter, analysskript). I stället för att läsa skärmbilder läser agenten hela resultatet med ett kommando:
+
+```sh
+su -c cat /data/data/ru.vd171.vdinfos/files/last_snapshot.json
+```
+
+* **Innehåll:** varje sond med sitt utlåtande och värdet från alla linser, i samma JSON som exportknappen. Skärmen visar bara den första avläsningen för ett hopfällt objekt; filen har alla.
+* **När den uppdateras:** i slutet av varje skanning, så kör en skanning först; filen innehåller alltid den senaste.
+* **Krav:** root, eftersom filen ligger i appens privata lagring.
+
 ## Språk
 
 21 gränssnittsspråk: engelska, portugisiska, spanska, italienska, tyska, franska, ryska, indonesiska, turkiska, polska, nederländska, svenska, tjeckiska, vietnamesiska, kinesiska, japanska, koreanska, persiska, hindi, arabiska och thailändska. Appen erbjuder ett engångsval av språk vid första starten (med alternativet "Systemstandard") och följer annars systemspråket.
@@ -56,7 +70,7 @@ ui/             Jetpack Compose, Material 3, dynamisk färg, live-förlopp
 cpp/            native_probes.cpp - den nativa linsen, beroendefri
 ```
 
-* **Parallellism**: 922 sonder fördelas över standard-dispatchern med ett begränsat antal tillstånd; resultaten strömmar in i UI:t allteftersom de landar.
+* **Parallellism**: 991 sonder fördelas över standard-dispatchern med ett begränsat antal tillstånd; resultaten strömmar in i UI:t allteftersom de landar.
 * **Inget i bakgrunden**: inga tjänster och inga schemalagda skanningar; appen körs bara medan den är öppen och stänger sig själv när den lämnas inaktiv.
 * **Nativt lager**: en liten `.so`, bunden vid namn via `RegisterNatives`, avsiktligt pytteliten eftersom det är den del som måste vara svår att lura.
 
@@ -67,6 +81,7 @@ De flesta bidrag kräver ingen Kotlin: listorna ligger som ren text under `VDInf
 * `*_apps.txt` - ett paketnamn per rad
 * `props.txt` - katalogen över systemegenskaper, `KATEGORI<tab>nyckel`
 * `spoof_keys.txt` - spoof-matrisen för settings, `nyckel:TYP`
+* `known_certs.txt` - katalogen över signeringscertifikat, `SHA-256<tab>ägare` (hel hash, från en riktig APK med `apksigner verify --print-certs`)
 * övriga `.txt`-filer - även en post per rad (namnfragment för kärnmoduler, namn i `/data/local/tmp`)
 
 Ett `#` inleder en kommentar; tomma rader ignoreras. Vissa filer har flera fält per rad åtskilda med mellanslag eller tabb, eller valfria markörer (`S` och `@field` i `props.txt`); behåll formen på raderna som redan finns i filen. Kodbidrag är också välkomna. Genom att bidra godtar du att ditt arbete sprids under projektets AGPL-3.0-or-later.

@@ -148,6 +148,10 @@ BUILD	ro.build.cpu_abi
 BUILD	ro.build.cpu_abi2
 BUILD	ro.build.date
 BUILD	ro.build.date.utc @build_time_utc*
+BUILD	ril.rfcal_date
+BUILD	ril.manufacturedate
+BUILD	persist.sys.exif.model @model
+BUILD	ro.product.nickname @device
 BUILD	ro.build.description
 BUILD	ro.build.device
 BUILD	ro.build.display.id @displayid*
@@ -514,3 +518,17 @@ NETWORK	net.dns3
 NETWORK	net.dns4
 NETWORK	ro.boot.btmacaddr S
 HARDWARE	ro.hardware.vulkan
+TELEPHONY	gsm.version.ril-impl
+TELEPHONY	ro.baseband.arch
+TELEPHONY	vendor.gsm.sim.operator.default-name
+HARDWARE	persist.graphics.egl
+HARDWARE	ro.hardware.chipname
+BUILD	persist.sys.ccm.date
+BUILD	persist.sys.drs.date
+BUILD	persist.sys.kap.date
+BUILD	persist.sys.knoxvpn.date
+BUILD	ro.build.version.release_or_preview_display
+BOOT	ro.boot.device
+SYSTEM	sys.kernel.firstboot
+SYSTEM	sys.system_server.start_elapsed
+SYSTEM	sys.system_server.start_uptime

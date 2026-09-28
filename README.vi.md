@@ -12,7 +12,9 @@
 
 <img src="images/vdinfos-01.png" height="420"/> <img src="images/vdinfos-02.png" height="420"/>
 
-Android là một hệ điều hành cực kỳ mạnh mẽ và linh hoạt; điều không ai nói cho bạn biết là mọi chi tiết cá nhân và thông tin bí mật của bạn đều sẵn có cho mọi ứng dụng bạn cài đặt, và tự bảo vệ trước những sự xâm phạm quyền riêng tư này là một nghĩa vụ. VD Infos cho bạn thấy một ví dụ về những gì có thể bị thu thập từ thiết bị của bạn, và làm điều đó như một *trình gỡ lỗi phương thức*: với mỗi thông tin, nó đọc giá trị qua **mọi phương thức có thể đọc được nó** - `Build.*`, `SystemProperties`, `getprop`, `__system_property_get` native, các manager hệ thống, content provider, tệp, syscall và attestation khóa phần cứng (TEE) - rồi xếp cạnh nhau để bạn so sánh. Khi một phương thức khác với các phương thức còn lại, thứ gì đó ở giữa đang viết lại bề mặt đó: một framework hook, một spoofer, một shim resolver. **KHÔNG THÔNG TIN NÀO ĐƯỢC LƯU, GỬI HAY TRUYỀN ĐẾN BẤT KỲ TỆP HAY MÁY CHỦ NÀO** - mọi thứ chạy trên thiết bị, các giá trị mang danh tính bị che cho đến khi bạn hiển thị chúng, và báo cáo chỉ rời khỏi thiết bị khi bạn chia sẻ hoặc lưu một cách rõ ràng; nếu muốn, hãy chặn truy cập internet bằng tường lửa hoặc chỉ cần tắt nó đi.
+Android là một hệ điều hành cực kỳ mạnh mẽ và linh hoạt; điều không ai nói cho bạn biết là mọi chi tiết cá nhân và thông tin bí mật của bạn đều sẵn có cho mọi ứng dụng bạn cài đặt, và tự bảo vệ trước những sự xâm phạm quyền riêng tư này là một nghĩa vụ. VD Infos cho bạn thấy một ví dụ về những gì có thể bị thu thập từ thiết bị của bạn, và làm điều đó như một *trình gỡ lỗi phương thức*: với mỗi thông tin, nó đọc giá trị qua **mọi phương thức có thể đọc được nó** - `Build.*`, `SystemProperties`, `getprop`, `__system_property_get` native, các manager hệ thống, content provider, tệp, syscall và attestation khóa phần cứng (TEE) - rồi xếp cạnh nhau để bạn so sánh. Khi một phương thức khác với các phương thức còn lại, thứ gì đó ở giữa đang viết lại bề mặt đó: một framework hook, một spoofer, một shim resolver. **KHÔNG THÔNG TIN NÀO ĐƯỢC LƯU, GỬI HAY TRUYỀN ĐẾN BẤT KỲ TỆP¹ HAY MÁY CHỦ NÀO** - mọi thứ chạy trên thiết bị, các giá trị mang danh tính bị che cho đến khi bạn hiển thị chúng, và báo cáo chỉ rời khỏi thiết bị khi bạn chia sẻ hoặc lưu một cách rõ ràng; nếu muốn, hãy chặn truy cập internet bằng tường lửa hoặc chỉ cần tắt nó đi.
+
+> **¹ Ngoại lệ:** mỗi lần quét lưu báo cáo đầy đủ trong bộ nhớ riêng của ứng dụng (`files/last_snapshot.json`). Chỉ chính ứng dụng hoặc root đọc được, lần quét sau sẽ ghi đè và tệp không bao giờ rời khỏi thiết bị. Tệp tồn tại để tác tử AI đọc được kết quả đầy đủ; xem **Dành cho tác tử AI: báo cáo đầy đủ dạng JSON**.
 
 ## Nó kiểm tra gì
 
@@ -40,6 +42,18 @@ Mỗi bản phát hành công bố hai APK: **SDK_35** nhắm tới sandbox hi�
 * https://t.me/RootDetected
 * https://t.me/BlankAssistance
 
+## Dành cho tác tử AI: báo cáo đầy đủ dạng JSON
+
+Dành cho các tác tử AI và công cụ LLM làm việc trên thiết bị qua shell (trợ lý lập trình, script phân tích). Thay vì đọc ảnh chụp màn hình, tác tử đọc toàn bộ kết quả bằng một lệnh:
+
+```sh
+su -c cat /data/data/ru.vd171.vdinfos/files/last_snapshot.json
+```
+
+* **Nội dung:** mọi đầu dò kèm phán quyết và giá trị của mọi lăng kính, cùng định dạng JSON với nút xuất. Màn hình chỉ hiện lần đọc đầu tiên của một mục đang thu gọn; tệp có tất cả.
+* **Khi nào cập nhật:** cuối mỗi lần quét, vì vậy hãy quét trước; tệp luôn chứa lần quét mới nhất.
+* **Yêu cầu:** root, vì tệp nằm trong bộ nhớ riêng của ứng dụng.
+
 ## Ngôn ngữ
 
 21 ngôn ngữ giao diện: Anh, Bồ Đào Nha, Tây Ban Nha, Ý, Đức, Pháp, Nga, Indonesia, Thổ Nhĩ Kỳ, Ba Lan, Hà Lan, Thụy Điển, Séc, Việt, Trung, Nhật, Hàn, Ba Tư, Hindi, Ả Rập và Thái. Ứng dụng đưa ra lựa chọn ngôn ngữ một lần khi khởi chạy lần đầu (với tùy chọn "Mặc định hệ thống") và ngoài ra tuân theo ngôn ngữ hệ thống.
@@ -56,7 +70,7 @@ ui/             Jetpack Compose, Material 3, màu động, tiến trình trực 
 cpp/            native_probes.cpp - ống kính native, không phụ thuộc
 ```
 
-* **Song song**: 922 thăm dò tỏa ra trên dispatcher mặc định với số giấy phép giới hạn; kết quả chảy vào UI ngay khi đến.
+* **Song song**: 991 thăm dò tỏa ra trên dispatcher mặc định với số giấy phép giới hạn; kết quả chảy vào UI ngay khi đến.
 * **Không có gì ở nền**: không dịch vụ và không quét theo lịch; ứng dụng chỉ chạy khi đang mở và tự đóng khi bị bỏ không.
 * **Lớp native**: một `.so` nhỏ, liên kết theo tên qua `RegisterNatives`, được giữ cố ý tí hon vì đây là phần phải khó bị đánh lừa.
 
@@ -67,6 +81,7 @@ Hầu hết đóng góp không cần Kotlin: các danh sách là văn bản thu�
 * `*_apps.txt` - mỗi dòng một tên gói
 * `props.txt` - danh mục thuộc tính hệ thống, `DANH_MỤC<tab>khóa`
 * `spoof_keys.txt` - ma trận spoof settings, `khóa:KIỂU`
+* `known_certs.txt` - danh mục chứng chỉ ký, `SHA-256<tab>chủ sở hữu` (hash đầy đủ, lấy từ APK thật bằng `apksigner verify --print-certs`)
 * các tệp `.txt` khác - cũng một mục mỗi dòng (mảnh tên mô-đun nhân, tên trong `/data/local/tmp`)
 
 Dấu `#` bắt đầu một chú thích; dòng trống bị bỏ qua. Một số tệp chứa vài trường phân tách bằng dấu cách hoặc tab trên mỗi dòng, hoặc các dấu tùy chọn (`S` và `@field` trong `props.txt`); hãy giữ đúng dạng của các dòng đã có trong tệp. Đóng góp mã nguồn cũng được hoan nghênh. Khi đóng góp, bạn đồng ý rằng công việc của mình được phát hành theo AGPL-3.0-or-later của dự án này.

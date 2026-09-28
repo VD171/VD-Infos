@@ -50,6 +50,7 @@
     <string name="verdict_info">thông tin</string>
     <string name="reading_context_only">ngữ cảnh</string>
     <string name="reading_empty">(trống)</string>
+    <string name="reveal_original">Giá trị gốc</string>
     <string name="verdict_empty">trống</string>
     <string name="verdict_error">lỗi</string>
 
@@ -195,6 +196,15 @@
     <string name="t_installed_packages_list">Gói đã cài đặt (danh sách)</string>
     <string name="t_kernel_release">Kernel (release)</string>
     <string name="t_kernel_version">Kernel (phiên bản)</string>
+    <string name="t_kernel_version_string">Kernel (chuỗi phiên bản)</string>
+    <string name="t_kernel_version_claim">Tuyên bố phiên bản kernel (ro.kernel.version so với uname)</string>
+    <string name="note_kernel_version_claim">Thuộc tính ro.kernel.version phải phản ánh kernel đang chạy. Nếu nó tuyên bố một major.minor mà release uname thật không có, thì một resolver đã đặt thuộc tính trong khi kernel bên dưới là cái khác.</string>
+    <string name="t_kernel_build_date">Ngày build kernel so với ROM</string>
+    <string name="note_kernel_build_date">Một kernel GKI dựng sẵn cũ hơn hoặc khớp với ROM mà nó đi kèm. Một kernel được build sau khi ROM lắp ráp một thời gian dài đã được dựng lại hoặc flash về sau, dấu hiệu thường thấy của kernel biên dịch thủ công.</string>
+    <string name="t_kernel_config">Cấu hình kernel (/proc/config.gz)</string>
+    <string name="note_kernel_config">Cấu hình kernel, nơi đọc được, nêu các bản vá đã biên dịch vào: KSU, SUSFS, local version tùy chỉnh, ký module không bắt buộc. Sandbox ứng dụng thường từ chối tệp này; nó đọc được trên Android cũ, ROM tùy chỉnh và shell root.</string>
+    <string name="t_kernel_module_scan">Module và ký hiệu kernel</string>
+    <string name="note_kernel_module_scan">Quét /sys/module và tên ký hiệu trong /proc/kallsyms tìm ksu, susfs và magisk mà một kernel đã vá hoặc nạp module để lộ. Cả hai bề mặt thường bị hạn chế; chúng đọc được ở nơi domain cho phép.</string>
     <string name="t_kernel_cmdline">cmdline kernel</string>
     <string name="t_kernel_log">Nhật ký kernel</string>
     <string name="t_kernel_stat">stat kernel</string>
@@ -222,6 +232,10 @@
     <string name="t_suspicious_apps">Ứng dụng đáng ngờ</string>
     <string name="t_running_app_processes">Tiến trình ứng dụng đang chạy</string>
     <string name="t_running_services">Dịch vụ đang chạy</string>
+    <string name="t_xposed_scan_all">Siêu dữ liệu Xposed: quét tất cả ứng dụng</string>
+    <string name="t_debuggable_scan_all">Quét các ứng dụng người dùng có thể gỡ lỗi</string>
+    <string name="t_uid_groups">Nhóm chia sẻ UID</string>
+    <string name="t_updated_system">Ứng dụng hệ thống đã cập nhật (FLAG_UPDATED_SYSTEM_APP)</string>
     <string name="t_sdk_int">SDK int</string>
     <string name="t_selinux_mls_enabled">SELinux MLS đã bật</string>
     <string name="t_selinux_context_self">Ngữ cảnh SELinux (chính mình)</string>
@@ -409,6 +423,7 @@
     <string name="t_isrc_gap_system_shell_installed">Khác biệt: ứng dụng hệ thống cài qua shell</string>
     <string name="t_isrc_gap_update_owner_drift">Khác biệt: updateOwner ≠ installer</string>
     <string name="t_isrc_gap_self_declared_installer">Khác biệt: ứng dụng tự làm installer của chính nó</string>
+    <string name="t_isrc_landscape">Toàn cảnh nguồn cài đặt (tất cả ứng dụng theo trình cài)</string>
     <string name="t_installed_packages_diff">Gói đã cài đặt: khác biệt (JVM x pm)</string>
     <string name="t_installed_applications_diff">Ứng dụng đã cài đặt: khác biệt (JVM x pm)</string>
     <string name="t_selinux_status">Trang status SELinux (policyload/seq)</string>
@@ -431,4 +446,41 @@
     <string name="n_tee_soter">Đối chiếu chương trình dịch vụ Soter của Tencent với trạng thái thuộc tính dịch vụ của nó.</string>
     <string name="t_proc_cgroup_format">Định dạng đường dẫn cgroup</string>
     <string name="n_proc_cgroup_format">Một container nhân bản / dual-app khiến đường dẫn cgroup hợp nhất lệch khỏi dạng chuẩn uid_/pid_.</string>
+    <string name="t_gpu_vendor">Nhà sản xuất GPU</string>
+    <string name="t_gpu_renderer">Trình kết xuất GPU</string>
+    <string name="t_gpu_version">Phiên bản GPU</string>
+    <string name="t_gpu_glsl">Phiên bản GLSL GPU</string>
+    <string name="t_tel_typeAllocationCode">Mã phân bổ loại (TAC)</string>
+    <string name="t_tel_manufacturerCode">Mã nhà sản xuất</string>
+    <string name="t_tel_simCarrierId">ID nhà mạng SIM</string>
+    <string name="t_tel_simCarrierIdName">Tên nhà mạng SIM</string>
+    <string name="t_tel_simSpecificCarrierId">ID nhà mạng SIM cụ thể</string>
+    <string name="t_tel_visualVoicemailPackageName">Gói thư thoại trực quan</string>
+    <string name="t_keychain_blacklist">Danh sách đen chứng chỉ Keychain</string>
+    <string name="t_buildprop_vs_runtime">build.prop vs runtime</string>
+    <string name="note_boot_count">boot_count (framework) chỉ tăng; Phenotype_boot_count (Dịch vụ Play) là ảnh chụp của nó và có thể trễ. Chỉ phân kỳ khi ảnh chụp vượt boot_count (một lần đặt lại).</string>
+    <string name="note_isrc_initiator_sig">Chứng chỉ mà hệ thống ghi lại cho trình cài đặt khi ứng dụng này được cài khác với chứng chỉ trình cài đặt báo hiện tại. Nguyên nhân là trình cài đặt bị thay thế hoặc chữ ký bị giả mạo; các ROM ký lại hệ thống và báo chứng chỉ gốc của nhà sản xuất (vd. Xiaomi.eu) hiển thị điều này trên mọi thiết bị.</string>
+    <string name="t_concealment">Ẩn ứng dụng</string>
+    <string name="note_concealment">Một gói bị ẩn khỏi danh sách ứng dụng nhưng vẫn truy cập được qua cửa khác của PackageManager (thông tin gói, createPackageContext, APK đã mở, launch intent) thì bị ẩn ở cửa này mà không ở cửa kia - dấu hiệu của trình ẩn ứng dụng chưa hoàn chỉnh.</string>
+    <string name="t_prop_variants">Biến thể theo phân vùng: %1$s</string>
+    <string name="t_prop_enum">Liệt kê property vs getprop</string>
+    <string name="note_prop_variants">Cùng một hậu tố xuất hiện theo phân vùng (system, vendor, product, odm, dlkm...). Giá trị lẽ ra phải khớp ở mọi nơi nhưng lại khác, hoặc tách nhau trong cùng một dòng, để lộ một spoof cục bộ - fingerprint bị đổi ở vài phân vùng mà không ở những phân vùng khác.</string>
+    <string name="note_prop_enum">Liệt kê vùng property bằng native (__system_property_foreach) rồi so với getprop từ tiến trình khác sẽ lộ ra một property bị giấu khỏi shell hoặc được tiêm vào một đường mà không vào đường kia.</string>
+    <string name="t_dlphdr">Mô-đun của loader (dl_iterate_phdr)</string>
+    <string name="t_frida_port">Quét cổng Frida</string>
+    <string name="note_dlphdr">dl_iterate_phdr liệt kê các mô-đun đã nạp qua trình liên kết, không qua /proc/self/maps, nên một hook xóa mục của nó khỏi maps vẫn được liệt kê ở đây. Một needle khớp hoặc một mô-đun ngoài allowlist hệ thống là chỗ rò rỉ.</string>
+    <string name="t_ime_verdict">Phán quyết toàn vẹn bàn phím</string>
+    <string name="t_store_authenticity">Tính xác thực chữ ký của store/GMS</string>
+    <string name="t_devgate">Tính nhất quán của cài đặt khóa theo Dev</string>
+    <string name="note_ime_verdict">Một RASP ngân hàng (PayZapp/Zeta) từ chối mọi bàn phím được bật mà là phi hệ thống và cài từ ngoài allowlist store. Một IME phi hệ thống được bật với trình cài ngoài store bị gắn cờ.</string>
+    <string name="note_store_authenticity">Play Store, GMS và GSF phải mang chứng chỉ ký của Google. Một gói store hoặc GMS có mặt nhưng được ký bằng khóa khác là hàng giả, microG hoặc store đóng gói lại.</string>
+    <string name="note_devgate">adb và các cài đặt khóa theo Dev khác chỉ đổi khi Tùy chọn nhà phát triển bật. Một cài đặt khóa khác mặc định khi development_settings_enabled=0 chỉ có thể được đặt bởi root hoặc `settings put`.</string>
+    <string name="t_maps_exec">Vùng exec bị tiêm (deleted/memfd)</string>
+    <string name="t_anon_minor">Superblock anon-bdev ẩn</string>
+    <string name="note_maps_exec">Một vùng thực thi từ tệp (deleted)/memfd/ashmem mà hoặc RWX (vi phạm W^X) hoặc bắt đầu bằng magic ELF là một .so bị tiêm thật, đã tách khỏi hệ thống tệp; trampoline JIT của ART không phải cả hai và được tính là lành tính. Một mô-đun ngoài allowlist hệ thống cũng được tính.</string>
+    <string name="note_anon_minor">Các hệ thống tệp không có thiết bị khối lấy minor từ một pool anon toàn cục, dày từ dưới lên. Một minor có mặt qua stat() nhưng vắng trong mountinfo của tiến trình này là một superblock đang sống ẩn trong một namespace riêng (tmpfs của một daemon). Một dải dài các minor thiếu là churn theo ứng dụng và bị bỏ qua; một lỗ ngắn là dấu hiệu.</string>
+    <string name="t_sb_tee_signer">Bên ký StrongBox × TEE</string>
+    <string name="note_sb_tee_signer">Một thiết bị chính hãng có gốc attestation riêng cho phần cứng StrongBox và TEE, nên chứng chỉ ký của chúng khác nhau. Một keybox duy nhất (TrickyStore) giả cả hai cấp sẽ ký cả hai bằng cùng một chứng chỉ - bên ký chung là dấu hiệu.</string>
+    <string name="t_local_tmp_list">Liệt kê /data/local/tmp</string>
+    <string name="note_local_tmp_list">Liệt kê /data/local/tmp bằng getdents64 (không tra theo tên) làm lộ mọi tàn dư mà một ứng dụng thực sự chạm tới, gồm cả thứ mô-đun thả ra. Trên thiết bị khóa, thư mục thuộc shell và ứng dụng không liệt kê được, nên EACCES là câu trả lời sạch; một mục hiện ra nghĩa là tàn dư ứng dụng chạm tới được.</string>
 </resources>

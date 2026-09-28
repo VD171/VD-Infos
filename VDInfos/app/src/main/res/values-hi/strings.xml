@@ -51,6 +51,7 @@
     <string name="verdict_info">जानकारी</string>
     <string name="reading_context_only">संदर्भ</string>
     <string name="reading_empty">(खाली)</string>
+    <string name="reveal_original">मूल मान</string>
     <string name="verdict_empty">खाली</string>
     <string name="verdict_error">त्रुटि</string>
 
@@ -196,6 +197,15 @@
     <string name="t_installed_packages_list">इंस्टॉल किए गए पैकेज (सूची)</string>
     <string name="t_kernel_release">कर्नेल (release)</string>
     <string name="t_kernel_version">कर्नेल (संस्करण)</string>
+    <string name="t_kernel_version_string">कर्नेल (वर्शन स्ट्रिंग)</string>
+    <string name="t_kernel_version_claim">कर्नेल वर्शन का दावा (ro.kernel.version बनाम uname)</string>
+    <string name="note_kernel_version_claim">ro.kernel.version प्रॉपर्टी का उद्देश्य चल रहे कर्नेल को दर्शाना है। यदि यह ऐसा major.minor बताती है जो असली uname release में नहीं है, तो किसी resolver ने प्रॉपर्टी सेट की जबकि नीचे का कर्नेल दूसरा है।</string>
+    <string name="t_kernel_build_date">कर्नेल बिल्ड तिथि बनाम ROM</string>
+    <string name="note_kernel_build_date">पूर्व-निर्मित GKI कर्नेल उस ROM से पुराना होता है जिसमें वह आता है, या उससे मेल खाता है। ROM असेंबल होने के काफ़ी बाद बना कर्नेल बाद में फिर से बनाया या फ्लैश किया गया, जो हाथ से संकलित कर्नेल का सामान्य संकेत है।</string>
+    <string name="t_kernel_config">कर्नेल कॉन्फ़िग (/proc/config.gz)</string>
+    <string name="note_kernel_config">कर्नेल कॉन्फ़िग, जहाँ पठनीय हो, संकलित पैच बताता है: KSU, SUSFS, कस्टम लोकल वर्शन, बिना बाध्य मॉड्यूल हस्ताक्षर। ऐप सैंडबॉक्स प्रायः इस फ़ाइल को अस्वीकार करता है; यह पुराने Android, कस्टम ROM और रूट शेल पर पढ़ी जाती है।</string>
+    <string name="t_kernel_module_scan">कर्नेल मॉड्यूल और सिंबल</string>
+    <string name="note_kernel_module_scan">/sys/module और /proc/kallsyms के सिंबल नामों में ksu, susfs और magisk खोजता है, जिन्हें पैच किया गया या मॉड्यूल-लोडेड कर्नेल उजागर करता है। दोनों सतहें प्रायः प्रतिबंधित हैं; जहाँ डोमेन अनुमति दे वहाँ पढ़ी जाती हैं।</string>
     <string name="t_kernel_cmdline">कर्नेल cmdline</string>
     <string name="t_kernel_log">कर्नेल लॉग</string>
     <string name="t_kernel_stat">कर्नेल stat</string>
@@ -223,6 +233,10 @@
     <string name="t_suspicious_apps">संदिग्ध ऐप्स</string>
     <string name="t_running_app_processes">चल रही ऐप प्रक्रियाएँ</string>
     <string name="t_running_services">चल रही सेवाएँ</string>
+    <string name="t_xposed_scan_all">Xposed मेटाडेटा: सभी ऐप्स स्कैन</string>
+    <string name="t_debuggable_scan_all">डीबग करने योग्य उपयोगकर्ता ऐप्स स्कैन</string>
+    <string name="t_uid_groups">UID साझाकरण समूह</string>
+    <string name="t_updated_system">अपडेट किए गए सिस्टम ऐप्स (FLAG_UPDATED_SYSTEM_APP)</string>
     <string name="t_sdk_int">SDK int</string>
     <string name="t_selinux_mls_enabled">SELinux MLS सक्षम</string>
     <string name="t_selinux_context_self">SELinux संदर्भ (स्वयं)</string>
@@ -410,6 +424,7 @@
     <string name="t_isrc_gap_system_shell_installed">विसंगति: सिस्टम ऐप shell से इंस्टॉल</string>
     <string name="t_isrc_gap_update_owner_drift">विसंगति: updateOwner ≠ installer</string>
     <string name="t_isrc_gap_self_declared_installer">विसंगति: ऐप खुद अपना installer है</string>
+    <string name="t_isrc_landscape">इंस्टॉल-स्रोत परिदृश्य (इंस्टॉलर के अनुसार सभी ऐप्स)</string>
     <string name="t_installed_packages_diff">इंस्टॉल किए गए पैकेज: भिन्न (JVM x pm)</string>
     <string name="t_installed_applications_diff">इंस्टॉल किए गए अनुप्रयोग: भिन्न (JVM x pm)</string>
     <string name="t_selinux_status">SELinux status पेज (policyload/seq)</string>
@@ -432,4 +447,41 @@
     <string name="n_tee_soter">Tencent के Soter सेवा प्रोग्राम को उसकी सेवा-प्रॉपर्टी की स्थिति से मिलाकर जाँचता है।</string>
     <string name="t_proc_cgroup_format">cgroup पथ प्रारूप</string>
     <string name="n_proc_cgroup_format">क्लोन / dual-app कंटेनर एकीकृत cgroup पथ को विहित uid_/pid_ रूप से विचलित कर देता है।</string>
+    <string name="t_gpu_vendor">GPU निर्माता</string>
+    <string name="t_gpu_renderer">GPU रेंडरर</string>
+    <string name="t_gpu_version">GPU संस्करण</string>
+    <string name="t_gpu_glsl">GPU GLSL संस्करण</string>
+    <string name="t_tel_typeAllocationCode">टाइप आवंटन कोड (TAC)</string>
+    <string name="t_tel_manufacturerCode">निर्माता कोड</string>
+    <string name="t_tel_simCarrierId">SIM ऑपरेटर ID</string>
+    <string name="t_tel_simCarrierIdName">SIM ऑपरेटर नाम</string>
+    <string name="t_tel_simSpecificCarrierId">विशिष्ट SIM ऑपरेटर ID</string>
+    <string name="t_tel_visualVoicemailPackageName">विज़ुअल वॉइसमेल पैकेज</string>
+    <string name="t_keychain_blacklist">Keychain प्रमाणपत्र ब्लैकलिस्ट</string>
+    <string name="t_buildprop_vs_runtime">build.prop vs runtime</string>
+    <string name="note_boot_count">boot_count (फ्रेमवर्क) केवल बढ़ता है; Phenotype_boot_count (Play services) इसका स्नैपशॉट है और पीछे रह सकता है. भिन्न केवल तब जब स्नैपशॉट boot_count से आगे हो (रीसेट).</string>
+    <string name="note_isrc_initiator_sig">इस ऐप के इंस्टॉल होने पर सिस्टम ने इंस्टॉलर के लिए जो प्रमाणपत्र दर्ज किया, वह इंस्टॉलर अभी जो बताता है उससे अलग है. इसका कारण बदला गया इंस्टॉलर या नकली हस्ताक्षर है; जो ROM सिस्टम को दोबारा साइन करके निर्माता का मूल प्रमाणपत्र बताते हैं (जैसे Xiaomi.eu), वे इसे हर डिवाइस पर दिखाते हैं.</string>
+    <string name="t_concealment">ऐप छिपाना</string>
+    <string name="note_concealment">ऐप सूची से छिपा लेकिन PackageManager के किसी दूसरे दरवाज़े (पैकेज जानकारी, createPackageContext, खुला APK, launch intent) से अब भी पहुँच योग्य पैकेज एक दरवाज़े से छिपा है पर दूसरे से नहीं - अधूरे ऐप छिपाने वाले की पहचान.</string>
+    <string name="t_prop_variants">पार्टीशन के वैरिएंट: %1$s</string>
+    <string name="t_prop_enum">प्रॉपर्टी गणना बनाम getprop</string>
+    <string name="note_prop_variants">वही सफ़िक्स हर पार्टीशन में आता है (system, vendor, product, odm, dlkm...). जो मान हर जगह मिलने चाहिए पर अलग हैं, या एक ही वंश में बँट जाते हैं, वे आंशिक स्पूफ़ उजागर करते हैं - कुछ पार्टीशनों पर बदला गया फ़िंगरप्रिंट, बाकी पर नहीं.</string>
+    <string name="note_prop_enum">प्रॉपर्टी एरिया को नेटिव रूप से गिनना (__system_property_foreach) और उसे दूसरे प्रोसेस के getprop से मिलाना, शेल से छिपाई गई या एक ही पथ में डाली गई प्रॉपर्टी उजागर करता है.</string>
+    <string name="t_dlphdr">लोडर मॉड्यूल (dl_iterate_phdr)</string>
+    <string name="t_frida_port">Frida पोर्ट स्कैन</string>
+    <string name="note_dlphdr">dl_iterate_phdr लोड किए गए मॉड्यूल को लिंकर से गिनता है, /proc/self/maps से नहीं, इसलिए जो हुक maps से अपनी एंट्री हटा देता है वह भी यहाँ दिखता है. कोई needle मिलान या सिस्टम allowlist से बाहर का मॉड्यूल ही रिसाव है.</string>
+    <string name="t_ime_verdict">कीबोर्ड इंटीग्रिटी फैसला</string>
+    <string name="t_store_authenticity">स्टोर/GMS हस्ताक्षर की प्रामाणिकता</string>
+    <string name="t_devgate">डेव-गेटेड सेटिंग्स की संगति</string>
+    <string name="note_ime_verdict">एक बैंकिंग RASP (PayZapp/Zeta) किसी भी सक्षम कीबोर्ड को अस्वीकार करता है जो non-system हो और स्टोर allowlist के बाहर से इंस्टॉल हुआ हो. स्टोर-बाहर इंस्टॉलर वाला सक्षम non-system IME चिह्नित होता है.</string>
+    <string name="note_store_authenticity">Play Store, GMS और GSF को Google का साइनिंग प्रमाणपत्र रखना होगा. मौजूद पर किसी और कुंजी से हस्ताक्षरित स्टोर या GMS पैकेज नकली, microG या रीपैक किया स्टोर है.</string>
+    <string name="note_devgate">adb और अन्य डेव-गेटेड सेटिंग्स केवल डेवलपर विकल्प चालू रहने पर बदलती हैं. development_settings_enabled=0 पर non-default रह गई गेटेड सेटिंग केवल root या `settings put` से ही सेट हो सकती थी.</string>
+    <string name="t_maps_exec">इंजेक्ट किए exec मैप (deleted/memfd)</string>
+    <string name="t_anon_minor">छिपा anon-bdev सुपरब्लॉक</string>
+    <string name="note_maps_exec">किसी (deleted)/memfd/ashmem फ़ाइल पर आधारित निष्पादन-योग्य मैपिंग जो या तो RWX हो (W^X उल्लंघन) या ELF मैजिक से शुरू हो, वह वास्तविक इंजेक्ट किया .so है, फ़ाइल-सिस्टम से अलग; ART का JIT ट्रैम्पोलिन इनमें से कोई नहीं और सौम्य गिना जाता है. सिस्टम allowlist के बाहर का मॉड्यूल भी गिना जाता है.</string>
+    <string name="note_anon_minor">बिना ब्लॉक डिवाइस वाले फ़ाइल-सिस्टम अपना minor एक वैश्विक anon पूल से लेते हैं, नीचे से घना. stat() से मौजूद पर इस प्रोसेस के mountinfo में अनुपस्थित minor एक जीवित सुपरब्लॉक है जो निजी namespace में छिपा है (किसी daemon का tmpfs). गायब minor की लंबी शृंखला प्रति-ऐप churn है और अनदेखी की जाती है; छोटा छेद ही संकेत है.</string>
+    <string name="t_sb_tee_signer">StrongBox × TEE साइनर</string>
+    <string name="note_sb_tee_signer">असली डिवाइस में StrongBox और TEE हार्डवेयर के लिए अलग attestation रूट होते हैं, इसलिए उनके साइनिंग प्रमाणपत्र भिन्न होते हैं. दोनों स्तरों की नकल करता एकल keybox (TrickyStore) दोनों को एक ही प्रमाणपत्र से हस्ताक्षरित करता है - साझा साइनर ही संकेत है.</string>
+    <string name="t_local_tmp_list">/data/local/tmp सूची</string>
+    <string name="note_local_tmp_list">getdents64 से /data/local/tmp की सूची (नाम खोज नहीं) किसी भी अवशेष को उजागर करती है जिस तक ऐप वास्तव में पहुँच सकता है, मॉड्यूल द्वारा छोड़े गए सहित. लॉक डिवाइस पर यह डायरेक्टरी shell की होती है और ऐप द्वारा सूचीबद्ध नहीं की जा सकती, इसलिए EACCES साफ़ उत्तर है; दिखती प्रविष्टि का अर्थ है ऐप-पहुँच योग्य अवशेष.</string>
 </resources>

@@ -18,20 +18,25 @@
 #  E-mail         : vd.priv8@pm.me
 # ======================================================================
 
-com.devadvance.rootcloak
-com.devadvance.rootcloakplus
-com.zachspong.temprootremovejb
-com.formyhm.hideroot
-com.saurik.substrate
-com.android.vending.billing.InAppBillingService.COIN
-eu.faircode.xlua
-eu.faircode.xlua.pro
-biz.bokhorst.xprivacy
-com.oasisfeng.island
-com.tsng.hidemyapplist
-org.frknkrc44.hma_oss
-com.tsng.pzyhrx.hma
-cn.geektang.privacyspace
-me.gm.cleaner
+com.rifsxd.ksunext            # KernelSU Next manager
+com.sukisu.ultra              # SukiSU Ultra manager
+me.weishu.kernelsu            # KernelSU manager
+com.topjohnwu.magisk          # Magisk
+io.github.vvb2060.magisk      # Magisk (vvb2060 fork)
+io.github.vvb2060.magisk.alpha # Magisk Alpha
+me.bmax.apatch               # APatch
+io.github.a13e300.ksuwebui    # KSU WebUI
+com.dergoogler.mmrl           # MMRL
+org.lsposed.manager           # LSPosed manager
+io.github.lsposed.manager     # LSPosed manager (alt id)
+de.robv.android.xposed.installer # Xposed Installer
+org.frknkrc44.hma_oss         # HMA-OSS
+icu.nullptr.hidemyapplist     # Hide My Applist
+com.tsng.hidemyapplist        # Hide My Applist (alt id)
+moe.shizuku.privileged.api    # Shizuku
+com.termux                    # Termux
+com.wmods.wppenhacer          # WaEnhancer
+com.machiav3lli.backup        # Neo Backup
+com.xayah.databackup.foss     # DataBackup
 com.google.android.hmal # HMA (disguised package)
 com.tsng.dyhhvf # HMA (randomized package)

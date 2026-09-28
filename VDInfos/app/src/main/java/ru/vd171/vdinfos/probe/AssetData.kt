@@ -41,10 +41,40 @@ object AssetData {
 
     fun packages(ctx: Context, name: String): List<String> = lines(ctx, "data/$name.txt")
 
+    fun certLabel(ctx: Context, sha256: String?): String? {
+        val h = sha256?.lowercase() ?: return null
+        return lines(ctx, "data/known_certs.txt").firstNotNullOfOrNull { line ->
+            val parts = line.split(Regex("\\s+"), limit = 2)
+            if (parts.size == 2 && parts[0].length >= 16 && h.startsWith(parts[0].lowercase())) parts[1] else null
+        }
+    }
+
+    fun certTag(ctx: Context, sha256: String): String =
+        sha256.take(16) + (certLabel(ctx, sha256)?.let { " [$it]" } ?: "")
+
     fun spoofKeys(ctx: Context): List<Pair<String, String>> = lines(ctx, "data/spoof_keys.txt").map {
         val name = it.substringBefore(':').trim()
         val type = it.substringAfter(':', "STR").trim().uppercase().ifEmpty { "STR" }
         name to type
+    }
+
+    fun devGated(ctx: Context): List<Pair<String, String>> = lines(ctx, "data/dev_gated_settings.txt").map {
+        val p = it.split(Regex("\\s+"))
+        p[0] to (p.getOrNull(1) ?: "0")
+    }
+
+    data class Partition(val name: String, val lineage: String, val propPaths: List<String>)
+
+    fun partitions(ctx: Context): List<Partition> = lines(ctx, "data/partitions.txt").mapNotNull {
+        val p = it.split(Regex("\\s+")).filter { s -> s.isNotEmpty() }
+        if (p.size < 2) null else Partition(p[0], p[1], p.drop(2))
+    }
+
+    data class PropFamily(val base: String, val field: String, val lineageScoped: Boolean)
+
+    fun propFamilies(ctx: Context): List<PropFamily> = lines(ctx, "data/prop_families.txt").mapNotNull {
+        val p = it.split(Regex("\\s+")).filter { s -> s.isNotEmpty() }
+        if (p.size < 3) null else PropFamily(p[0], p[1], p[2].equals("lineage", ignoreCase = true))
     }
 
     data class PropEntry(val category: Category, val key: String, val sensitive: Boolean)

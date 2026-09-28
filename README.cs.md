@@ -12,7 +12,9 @@
 
 <img src="images/vdinfos-01.png" height="420"/> <img src="images/vdinfos-02.png" height="420"/>
 
-Android je nesmírně výkonný a všestranný operační systém; co vám nikdo neřekne, je, že všechny vaše osobní údaje a důvěrné informace jsou dostupné každé aplikaci, kterou nainstalujete, a chránit se proti takovému narušování soukromí je povinnost. VD Infos vám ukazuje příklad toho, co lze z vašeho zařízení zachytit, a dělá to jako *debugger metod*: pro každou informaci čte hodnotu **každou metodou, která ji dokáže přečíst** - `Build.*`, `SystemProperties`, `getprop`, nativní `__system_property_get`, systémové managery, content providery, soubory, syscally a hardwarový attestation klíče (TEE) - a seřadí je vedle sebe, abyste mohli porovnat. Když se jedna metoda liší od ostatních, něco mezi tím tu plochu přepisuje: hookovací framework, spoofer, resolver shim. **ŽÁDNÉ INFORMACE SE NEUKLÁDAJÍ, NEODESÍLAJÍ ANI NEPŘENÁŠEJÍ DO ŽÁDNÉHO SOUBORU ČI SERVERU** - vše běží na zařízení, hodnoty nesoucí identitu jsou maskovány, dokud je neodhalíte, a report opustí zařízení jen tehdy, když jej výslovně sdílíte nebo uložíte; chcete-li, zablokujte přístup k internetu firewallem nebo jej prostě vypněte.
+Android je nesmírně výkonný a všestranný operační systém; co vám nikdo neřekne, je, že všechny vaše osobní údaje a důvěrné informace jsou dostupné každé aplikaci, kterou nainstalujete, a chránit se proti takovému narušování soukromí je povinnost. VD Infos vám ukazuje příklad toho, co lze z vašeho zařízení zachytit, a dělá to jako *debugger metod*: pro každou informaci čte hodnotu **každou metodou, která ji dokáže přečíst** - `Build.*`, `SystemProperties`, `getprop`, nativní `__system_property_get`, systémové managery, content providery, soubory, syscally a hardwarový attestation klíče (TEE) - a seřadí je vedle sebe, abyste mohli porovnat. Když se jedna metoda liší od ostatních, něco mezi tím tu plochu přepisuje: hookovací framework, spoofer, resolver shim. **ŽÁDNÉ INFORMACE SE NEUKLÁDAJÍ, NEODESÍLAJÍ ANI NEPŘENÁŠEJÍ DO ŽÁDNÉHO SOUBORU¹ ČI SERVERU** - vše běží na zařízení, hodnoty nesoucí identitu jsou maskovány, dokud je neodhalíte, a report opustí zařízení jen tehdy, když jej výslovně sdílíte nebo uložíte; chcete-li, zablokujte přístup k internetu firewallem nebo jej prostě vypněte.
+
+> **¹ Výjimka:** každé skenování uloží úplnou zprávu do soukromého úložiště aplikace (`files/last_snapshot.json`). Číst ji může jen samotná aplikace nebo root, další skenování ji přepíše a zařízení nikdy neopustí. Existuje proto, aby AI agenti mohli přečíst úplný výsledek; viz **Pro AI agenty: úplná zpráva v JSON**.
 
 ## Co zkoumá
 
@@ -40,6 +42,18 @@ Každé vydání publikuje dva APK: **SDK_35** cílí na přísný moderní sand
 * https://t.me/RootDetected
 * https://t.me/BlankAssistance
 
+## Pro AI agenty: úplná zpráva v JSON
+
+Určeno pro AI agenty a nástroje LLM, které na zařízení pracují přes shell (programovací asistenti, analytické skripty). Místo čtení snímků obrazovky přečte agent celý výsledek jedním příkazem:
+
+```sh
+su -c cat /data/data/ru.vd171.vdinfos/files/last_snapshot.json
+```
+
+* **Co obsahuje:** každou sondu s verdiktem a hodnotou všech čoček, ve stejném JSON jako tlačítko exportu. Obrazovka u sbalené položky ukazuje jen první čtení; soubor obsahuje všechna.
+* **Kdy se aktualizuje:** na konci každého skenování, takže nejdřív spusťte skenování; soubor vždy obsahuje to nejnovější.
+* **Požadavek:** root, protože soubor leží v soukromém úložišti aplikace.
+
 ## Jazyky
 
 21 jazyků rozhraní: angličtina, portugalština, španělština, italština, němčina, francouzština, ruština, indonéština, turečtina, polština, nizozemština, švédština, čeština, vietnamština, čínština, japonština, korejština, perština, hindština, arabština a thajština. Aplikace při prvním spuštění nabídne jednorázový výběr jazyka (s možností "Výchozí systému") a jinak se řídí jazykem systému.
@@ -56,7 +70,7 @@ ui/             Jetpack Compose, Material 3, dynamická barva, živý průběh
 cpp/            native_probes.cpp - nativní čočka, bez závislostí
 ```
 
-* **Paralelismus**: 922 sond se rozvětví na výchozím dispatcheru s omezeným počtem povolení; výsledky proudí do UI, jakmile dorazí.
+* **Paralelismus**: 991 sond se rozvětví na výchozím dispatcheru s omezeným počtem povolení; výsledky proudí do UI, jakmile dorazí.
 * **Nic na pozadí**: žádné služby ani plánované skeny; aplikace běží jen když je otevřená a sama se zavře, když zůstane nečinná.
 * **Nativní vrstva**: jedna malá `.so`, vázaná podle jména přes `RegisterNatives`, záměrně nepatrná, protože je to část, kterou musí být těžké oklamat.
 
@@ -67,6 +81,7 @@ Většina příspěvků nevyžaduje Kotlin: seznamy jsou prostý text v `VDInfos
 * `*_apps.txt` - jedno jméno balíčku na řádek
 * `props.txt` - katalog systémových vlastností, `KATEGORIE<tab>klíč`
 * `spoof_keys.txt` - matice spoof nastavení, `klíč:TYP`
+* `known_certs.txt` - katalog podpisových certifikátů, `SHA-256<tab>vlastník` (celý hash, ze skutečného APK přes `apksigner verify --print-certs`)
 * ostatní soubory `.txt` - také jeden záznam na řádek (fragmenty názvů modulů jádra, názvy v `/data/local/tmp`)
 
 `#` začíná komentář; prázdné řádky se ignorují. Některé soubory obsahují na řádku několik polí oddělených mezerou nebo tabulátorem, případně volitelné značky (`S` a `@field` v `props.txt`); zachovejte podobu řádků, které už v souboru jsou. Příspěvky v kódu jsou také vítány. Přispěním souhlasíte, že vaše práce bude šířena pod AGPL-3.0-or-later tohoto projektu.

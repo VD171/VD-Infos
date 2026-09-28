@@ -12,7 +12,9 @@
 
 <img src="images/vdinfos-01.png" height="420"/> <img src="images/vdinfos-02.png" height="420"/>
 
-Android adalah sistem operasi yang sangat kuat dan serbaguna; yang tidak diberitahukan siapa pun adalah bahwa semua detail pribadi dan informasi rahasia Anda tersedia bagi setiap aplikasi yang Anda pasang, dan melindungi diri dari invasi privasi semacam itu adalah kewajiban. VD Infos menunjukkan contoh apa yang bisa diambil dari perangkat Anda, dan melakukannya sebagai *debugger metode*: untuk setiap informasi ia membaca nilainya lewat **setiap metode yang mampu membacanya** - `Build.*`, `SystemProperties`, `getprop`, `__system_property_get` yang native, manager sistem, content provider, berkas, syscall, dan attestation kunci perangkat keras (TEE) - lalu menjajarkannya agar Anda bisa membandingkan. Ketika satu metode berbeda dari yang lain, ada sesuatu di antaranya yang menulis ulang permukaan itu: framework hook, spoofer, shim resolver. **TIDAK ADA INFORMASI YANG DISIMPAN, DIKIRIM, ATAU DITRANSMISIKAN KE BERKAS ATAU SERVER MANA PUN** - semuanya berjalan di perangkat, nilai yang membawa identitas disamarkan sampai Anda mengungkapnya, dan laporan hanya meninggalkan perangkat saat Anda membagikan atau menyimpannya secara eksplisit; jika mau, blokir akses internet dengan firewall atau cukup matikan internet.
+Android adalah sistem operasi yang sangat kuat dan serbaguna; yang tidak diberitahukan siapa pun adalah bahwa semua detail pribadi dan informasi rahasia Anda tersedia bagi setiap aplikasi yang Anda pasang, dan melindungi diri dari invasi privasi semacam itu adalah kewajiban. VD Infos menunjukkan contoh apa yang bisa diambil dari perangkat Anda, dan melakukannya sebagai *debugger metode*: untuk setiap informasi ia membaca nilainya lewat **setiap metode yang mampu membacanya** - `Build.*`, `SystemProperties`, `getprop`, `__system_property_get` yang native, manager sistem, content provider, berkas, syscall, dan attestation kunci perangkat keras (TEE) - lalu menjajarkannya agar Anda bisa membandingkan. Ketika satu metode berbeda dari yang lain, ada sesuatu di antaranya yang menulis ulang permukaan itu: framework hook, spoofer, shim resolver. **TIDAK ADA INFORMASI YANG DISIMPAN, DIKIRIM, ATAU DITRANSMISIKAN KE BERKAS¹ ATAU SERVER MANA PUN** - semuanya berjalan di perangkat, nilai yang membawa identitas disamarkan sampai Anda mengungkapnya, dan laporan hanya meninggalkan perangkat saat Anda membagikan atau menyimpannya secara eksplisit; jika mau, blokir akses internet dengan firewall atau cukup matikan internet.
+
+> **¹ Pengecualian:** setiap pemindaian menyimpan laporan lengkapnya di penyimpanan privat aplikasi (`files/last_snapshot.json`). Hanya aplikasi itu sendiri atau root yang bisa membacanya, pemindaian berikutnya menimpanya, dan berkas ini tidak pernah keluar dari perangkat. Berkas ini ada agar agen AI bisa membaca hasil lengkap; lihat **Untuk agen AI: laporan lengkap dalam JSON**.
 
 ## Yang diperiksa
 
@@ -40,6 +42,18 @@ Setiap rilis menerbitkan dua APK: **SDK_35** menyasar sandbox modern yang ketat 
 * https://t.me/RootDetected
 * https://t.me/BlankAssistance
 
+## Untuk agen AI: laporan lengkap dalam JSON
+
+Dibuat untuk agen AI dan alat LLM yang bekerja di perangkat melalui shell (asisten pemrograman, skrip analisis). Alih-alih membaca tangkapan layar, agen membaca seluruh hasil dengan satu perintah:
+
+```sh
+su -c cat /data/data/ru.vd171.vdinfos/files/last_snapshot.json
+```
+
+* **Isinya:** setiap probe beserta putusannya dan nilai semua lensa, dalam JSON yang sama dengan tombol ekspor. Layar hanya menampilkan pembacaan pertama item yang diciutkan; berkas ini memuat semuanya.
+* **Kapan diperbarui:** di akhir setiap pemindaian, jadi jalankan pemindaian dulu; berkas selalu berisi yang terbaru.
+* **Syarat:** root, karena berkas berada di penyimpanan privat aplikasi.
+
 ## Bahasa
 
 21 bahasa antarmuka: Inggris, Portugis, Spanyol, Italia, Jerman, Prancis, Rusia, Indonesia, Turki, Polandia, Belanda, Swedia, Ceko, Vietnam, Tionghoa, Jepang, Korea, Persia, Hindi, Arab, dan Thai. Aplikasi menawarkan pilihan bahasa sekali saja pada peluncuran pertama (dengan opsi "Default sistem") dan selain itu mengikuti bahasa sistem.
@@ -56,7 +70,7 @@ ui/             Jetpack Compose, Material 3, warna dinamis, progres langsung
 cpp/            native_probes.cpp - lensa native, tanpa dependensi
 ```
 
-* **Paralelisme**: 922 probe menyebar di dispatcher default dengan jumlah izin terbatas; hasil mengalir ke UI begitu tiba.
+* **Paralelisme**: 991 probe menyebar di dispatcher default dengan jumlah izin terbatas; hasil mengalir ke UI begitu tiba.
 * **Tidak ada di latar belakang**: tanpa layanan dan tanpa pemindaian terjadwal; aplikasi berjalan hanya saat terbuka dan menutup sendiri ketika dibiarkan menganggur.
 * **Lapisan native**: satu `.so` kecil, diikat berdasarkan nama lewat `RegisterNatives`, sengaja dibuat mungil karena inilah bagian yang harus sulit ditipu.
 
@@ -67,6 +81,7 @@ Sebagian besar kontribusi tidak butuh Kotlin: daftarnya berupa teks biasa di `VD
 * `*_apps.txt` - satu nama paket per baris
 * `props.txt` - katalog properti sistem, `KATEGORI<tab>kunci`
 * `spoof_keys.txt` - matriks spoof settings, `kunci:TIPE`
+* `known_certs.txt` - katalog sertifikat penandatanganan, `SHA-256<tab>pemilik` (hash lengkap, diambil dari APK asli dengan `apksigner verify --print-certs`)
 * berkas `.txt` lainnya - juga satu entri per baris (potongan nama modul kernel, nama di `/data/local/tmp`)
 
 Tanda `#` memulai komentar; baris kosong diabaikan. Beberapa berkas memuat beberapa bidang yang dipisah spasi atau tab per baris, atau penanda opsional (`S` dan `@field` di `props.txt`); pertahankan bentuk baris yang sudah ada di berkas. Kontribusi kode juga diterima. Dengan berkontribusi Anda setuju karya Anda dirilis di bawah AGPL-3.0-or-later proyek ini.

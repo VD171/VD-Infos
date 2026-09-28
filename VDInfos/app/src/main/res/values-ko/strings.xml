@@ -50,6 +50,7 @@
     <string name="verdict_info">정보</string>
     <string name="reading_context_only">컨텍스트</string>
     <string name="reading_empty">(비어 있음)</string>
+    <string name="reveal_original">원래 값</string>
     <string name="verdict_empty">비어 있음</string>
     <string name="verdict_error">오류</string>
 
@@ -195,6 +196,15 @@
     <string name="t_installed_packages_list">설치된 패키지(목록)</string>
     <string name="t_kernel_release">커널 (release)</string>
     <string name="t_kernel_version">커널(버전)</string>
+    <string name="t_kernel_version_string">커널 (버전 문자열)</string>
+    <string name="t_kernel_version_claim">커널 버전 주장 (ro.kernel.version 대 uname)</string>
+    <string name="note_kernel_version_claim">ro.kernel.version 속성은 실행 중인 커널을 반영해야 합니다. 실제 uname release에 없는 major.minor를 주장한다면, 리졸버가 속성을 설정했고 그 아래 커널은 다른 것입니다.</string>
+    <string name="t_kernel_build_date">커널 빌드 날짜 대 ROM</string>
+    <string name="note_kernel_build_date">미리 빌드된 GKI 커널은 함께 배포되는 ROM보다 오래되었거나 일치합니다. ROM 조립보다 한참 뒤에 빌드된 커널은 나중에 다시 빌드했거나 플래시한 것으로, 수동 컴파일 커널의 흔한 신호입니다.</string>
+    <string name="t_kernel_config">커널 설정 (/proc/config.gz)</string>
+    <string name="note_kernel_config">커널 설정은 읽을 수 있는 경우 컴파일된 패치를 알려 줍니다: KSU, SUSFS, 사용자 지정 local version, 강제되지 않은 모듈 서명. 앱 샌드박스는 이 파일을 자주 거부합니다. 오래된 Android, 커스텀 ROM, 루트 셸에서 읽힙니다.</string>
+    <string name="t_kernel_module_scan">커널 모듈과 심볼</string>
+    <string name="note_kernel_module_scan">/sys/module와 /proc/kallsyms 심볼 이름에서 ksu, susfs, magisk를 스캔합니다. 패치되었거나 모듈이 로드된 커널이 노출합니다. 두 표면 모두 자주 제한되며, 도메인이 허용하는 곳에서 읽힙니다.</string>
     <string name="t_kernel_cmdline">커널 cmdline</string>
     <string name="t_kernel_log">커널 로그</string>
     <string name="t_kernel_stat">커널 stat</string>
@@ -222,6 +232,10 @@
     <string name="t_suspicious_apps">의심스러운 앱</string>
     <string name="t_running_app_processes">실행 중인 앱 프로세스</string>
     <string name="t_running_services">실행 중인 서비스</string>
+    <string name="t_xposed_scan_all">Xposed 메타데이터: 전체 앱 스캔</string>
+    <string name="t_debuggable_scan_all">디버그 가능한 사용자 앱 스캔</string>
+    <string name="t_uid_groups">UID 공유 그룹</string>
+    <string name="t_updated_system">업데이트된 시스템 앱 (FLAG_UPDATED_SYSTEM_APP)</string>
     <string name="t_sdk_int">SDK int</string>
     <string name="t_selinux_mls_enabled">SELinux MLS 사용 설정됨</string>
     <string name="t_selinux_context_self">SELinux 컨텍스트(자신)</string>
@@ -409,6 +423,7 @@
     <string name="t_isrc_gap_system_shell_installed">불일치: 시스템 앱이 shell로 설치됨</string>
     <string name="t_isrc_gap_update_owner_drift">불일치: updateOwner ≠ installer</string>
     <string name="t_isrc_gap_self_declared_installer">불일치: 앱이 자신의 installer</string>
+    <string name="t_isrc_landscape">설치 소스 전경 (설치자별 전체 앱)</string>
     <string name="t_installed_packages_diff">설치된 패키지: 불일치 (JVM x pm)</string>
     <string name="t_installed_applications_diff">설치된 애플리케이션: 불일치 (JVM x pm)</string>
     <string name="t_selinux_status">SELinux status 페이지 (policyload/seq)</string>
@@ -431,4 +446,41 @@
     <string name="n_tee_soter">Tencent의 Soter 서비스 프로그램을 그 서비스 속성 상태와 교차 확인한다.</string>
     <string name="t_proc_cgroup_format">cgroup 경로 형식</string>
     <string name="n_proc_cgroup_format">복제 / 듀얼 앱 컨테이너는 통합 cgroup 경로를 정규 uid_/pid_ 형식에서 벗어나게 한다.</string>
+    <string name="t_gpu_vendor">GPU 제조사</string>
+    <string name="t_gpu_renderer">GPU 렌더러</string>
+    <string name="t_gpu_version">GPU 버전</string>
+    <string name="t_gpu_glsl">GPU GLSL 버전</string>
+    <string name="t_tel_typeAllocationCode">형식 할당 코드 (TAC)</string>
+    <string name="t_tel_manufacturerCode">제조사 코드</string>
+    <string name="t_tel_simCarrierId">SIM 사업자 ID</string>
+    <string name="t_tel_simCarrierIdName">SIM 사업자 이름</string>
+    <string name="t_tel_simSpecificCarrierId">특정 SIM 사업자 ID</string>
+    <string name="t_tel_visualVoicemailPackageName">비주얼 보이스메일 패키지</string>
+    <string name="t_keychain_blacklist">Keychain 인증서 차단 목록</string>
+    <string name="t_buildprop_vs_runtime">build.prop vs runtime</string>
+    <string name="note_boot_count">boot_count(프레임워크)는 증가만 함. Phenotype_boot_count(Play 서비스)는 그 스냅샷이며 뒤처질 수 있음. 스냅샷이 boot_count를 앞설 때만 불일치(초기화).</string>
+    <string name="note_isrc_initiator_sig">이 앱이 설치될 때 시스템이 설치 프로그램에 대해 기록한 인증서가 설치 프로그램이 지금 보고하는 인증서와 다릅니다. 교체된 설치 프로그램이나 위조된 서명이 원인이며, 시스템을 다시 서명하고 제조사 원본 인증서를 보고하는 ROM(예: Xiaomi.eu)은 모든 기기에서 이를 보여줍니다.</string>
+    <string name="t_concealment">앱 은폐</string>
+    <string name="note_concealment">앱 목록에서 숨겨졌지만 PackageManager의 다른 문(패키지 정보, createPackageContext, 열린 APK, launch intent)으로 여전히 접근되는 패키지는 한 문에서는 숨겨지고 다른 문에서는 아닙니다 - 불완전한 앱 은폐 도구의 흔적입니다.</string>
+    <string name="t_prop_variants">파티션별 변형: %1$s</string>
+    <string name="t_prop_enum">속성 열거 vs getprop</string>
+    <string name="note_prop_variants">같은 접미사가 파티션마다 나타납니다(system, vendor, product, odm, dlkm...). 어디서나 일치해야 하는데 다르거나 한 계통 안에서 갈라지는 값은 부분 스푸핑을 드러냅니다 - 일부 파티션만 바뀐 지문입니다.</string>
+    <string name="note_prop_enum">속성 영역을 네이티브로 열거(__system_property_foreach)하여 다른 프로세스의 getprop와 대조하면 셸에서 숨겨졌거나 한 경로에만 주입된 속성이 드러납니다.</string>
+    <string name="t_dlphdr">로더 모듈 (dl_iterate_phdr)</string>
+    <string name="t_frida_port">Frida 포트 스캔</string>
+    <string name="note_dlphdr">dl_iterate_phdr는 로드된 모듈을 /proc/self/maps가 아니라 링커를 통해 열거하므로, maps에서 자기 항목을 지운 후크도 여기에는 나열됩니다. needle 일치나 시스템 허용 목록 밖의 모듈이 누출입니다.</string>
+    <string name="t_ime_verdict">키보드 무결성 판정</string>
+    <string name="t_store_authenticity">스토어/GMS 서명 진위</string>
+    <string name="t_devgate">개발자 제한 설정의 일관성</string>
+    <string name="note_ime_verdict">금융 RASP(PayZapp/Zeta)는 비시스템이면서 스토어 허용 목록 밖에서 설치된 활성 키보드를 모두 거부합니다. 스토어 외 설치자의 비시스템 활성 IME는 표시됩니다.</string>
+    <string name="note_store_authenticity">Play 스토어, GMS, GSF는 Google의 서명 인증서를 지녀야 합니다. 존재하지만 다른 키로 서명된 스토어나 GMS 패키지는 가짜, microG 또는 재패키징된 스토어입니다.</string>
+    <string name="note_devgate">adb 등 개발자 제한 설정은 개발자 옵션이 켜져 있을 때만 바뀝니다. development_settings_enabled=0 인데 기본값이 아닌 제한 설정은 root나 `settings put`으로만 설정될 수 있었습니다.</string>
+    <string name="t_maps_exec">주입된 실행 매핑 (deleted/memfd)</string>
+    <string name="t_anon_minor">숨겨진 anon-bdev 슈퍼블록</string>
+    <string name="note_maps_exec">(deleted)/memfd/ashmem 파일에 기반한 실행 매핑이 RWX(W^X 위반)이거나 ELF 매직으로 시작하면 파일시스템에서 분리된 실제 주입 .so입니다. ART의 JIT 트램폴린은 둘 다 아니며 양성으로 셉니다. 시스템 허용 목록 밖 모듈도 셉니다.</string>
+    <string name="note_anon_minor">블록 장치가 없는 파일시스템은 아래부터 촘촘한 전역 anon 풀에서 minor를 가져옵니다. stat()로는 있지만 이 프로세스의 mountinfo에는 없는 minor는 사설 네임스페이스에 숨은 살아있는 슈퍼블록(데몬의 tmpfs)입니다. 빠진 minor가 길게 이어지면 앱별 churn이라 무시하고, 짧은 구멍이 단서입니다.</string>
+    <string name="t_sb_tee_signer">StrongBox × TEE 서명자</string>
+    <string name="note_sb_tee_signer">정품 기기는 StrongBox와 TEE 하드웨어에 대해 별도의 attestation 루트를 가지므로 서명 인증서가 다릅니다. 두 수준을 위조하는 단일 키박스(TrickyStore)는 둘 다 같은 인증서로 서명합니다 - 공유 서명자가 단서입니다.</string>
+    <string name="t_local_tmp_list">/data/local/tmp 목록</string>
+    <string name="note_local_tmp_list">getdents64로 /data/local/tmp를 나열하면(이름 조회가 아님) 모듈이 남긴 것을 포함해 앱이 실제로 접근 가능한 모든 잔여물이 드러납니다. 잠긴 기기에서는 이 디렉터리가 shell 소유라 앱이 나열할 수 없어 EACCES가 정상 답이며, 보이는 항목은 앱이 접근 가능한 잔여물을 뜻합니다.</string>
 </resources>

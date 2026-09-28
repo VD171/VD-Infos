@@ -39,6 +39,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material.icons.outlined.Lightbulb
+import androidx.compose.material.icons.outlined.Visibility
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.OutlinedIconButton
 import androidx.compose.material3.TextButton
@@ -91,7 +92,7 @@ private fun LensRow(v: LensValue, sensitive: Boolean, reveal: Boolean) {
     Column(Modifier.padding(top = 6.dp)) {
         Row(verticalAlignment = Alignment.CenterVertically) {
             Text(
-                text = v.lens.short,
+                text = v.tag ?: v.lens.short,
                 style = MaterialTheme.typography.labelSmall,
                 color = MaterialTheme.colorScheme.primary,
                 modifier = Modifier
@@ -126,14 +127,38 @@ private fun LensRow(v: LensValue, sensitive: Boolean, reveal: Boolean) {
             sensitive && !reveal -> mask(v.value)
             else -> v.value
         }
-        Text(
-            text = shown,
-            style = MaterialTheme.typography.bodySmall,
-            fontFamily = FontFamily.Monospace,
-            color = if (v.error != null) MaterialTheme.colorScheme.error
-            else MaterialTheme.colorScheme.onSurface,
-            modifier = Modifier.padding(start = 4.dp, top = 1.dp),
-        )
+        var showReveal by remember { mutableStateOf(false) }
+        Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.Top) {
+            Text(
+                text = shown,
+                style = MaterialTheme.typography.bodySmall,
+                fontFamily = FontFamily.Monospace,
+                color = if (v.error != null) MaterialTheme.colorScheme.error
+                else MaterialTheme.colorScheme.onSurface,
+                modifier = Modifier.padding(start = 4.dp, top = 1.dp).weight(1f, fill = false),
+            )
+            if (v.reveal != null) {
+                Icon(
+                    Icons.Outlined.Visibility,
+                    contentDescription = stringResource(R.string.reveal_original),
+                    tint = MaterialTheme.colorScheme.primary,
+                    modifier = Modifier.padding(start = 6.dp, top = 1.dp).size(16.dp)
+                        .clickable { showReveal = true },
+                )
+            }
+        }
+        if (showReveal && v.reveal != null) {
+            AlertDialog(
+                onDismissRequest = { showReveal = false },
+                confirmButton = {
+                    TextButton(onClick = { showReveal = false }) { Text(stringResource(android.R.string.ok)) }
+                },
+                title = { Text(stringResource(R.string.reveal_original)) },
+                text = {
+                    Text(v.reveal, fontFamily = FontFamily.Monospace, style = MaterialTheme.typography.bodySmall)
+                },
+            )
+        }
         v.detail?.takeIf { it.isNotBlank() }?.let { d ->
             Text(
                 text = d,

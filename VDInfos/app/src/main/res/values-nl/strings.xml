@@ -51,6 +51,7 @@
     <string name="verdict_info">info</string>
     <string name="reading_context_only">context</string>
     <string name="reading_empty">(leeg)</string>
+    <string name="reveal_original">Oorspronkelijke waarde</string>
     <string name="verdict_empty">leeg</string>
     <string name="verdict_error">fout</string>
 
@@ -196,6 +197,15 @@
     <string name="t_installed_packages_list">Geïnstalleerde pakketten (lijst)</string>
     <string name="t_kernel_release">Kernel (release)</string>
     <string name="t_kernel_version">Kernel (versie)</string>
+    <string name="t_kernel_version_string">Kernel (versietekst)</string>
+    <string name="t_kernel_version_claim">Geclaimde kernelversie (ro.kernel.version vs uname)</string>
+    <string name="note_kernel_version_claim">De eigenschap ro.kernel.version hoort de draaiende kernel te weerspiegelen. Claimt ze een major.minor die de echte uname-release niet heeft, dan heeft een resolver de eigenschap gezet terwijl de kernel eronder een andere is.</string>
+    <string name="t_kernel_build_date">Kernel-builddatum vs ROM</string>
+    <string name="note_kernel_build_date">Een vooraf gebouwde GKI-kernel is ouder dan of gelijk aan de ROM waarin hij wordt geleverd. Een kernel die ruim na het samenstellen van de ROM is gebouwd, is later herbouwd of geflasht, het gebruikelijke teken van een handgecompileerde kernel.</string>
+    <string name="t_kernel_config">Kernelconfig (/proc/config.gz)</string>
+    <string name="note_kernel_config">De kernelconfig noemt, waar leesbaar, de ingecompileerde patches: KSU, SUSFS, een eigen local version, niet-afgedwongen modulesignering. De app-sandbox weigert dit bestand vaak; het leest op ouder Android, custom ROM\'s en root-shells.</string>
+    <string name="t_kernel_module_scan">Kernelmodules en -symbolen</string>
+    <string name="note_kernel_module_scan">Doorzoekt /sys/module en de symboolnamen van /proc/kallsyms op ksu, susfs en magisk, die een gepatchte of module-geladen kernel blootlegt. Beide oppervlakken zijn vaak beperkt; ze lezen waar het domein het toestaat.</string>
     <string name="t_kernel_cmdline">kernel cmdline</string>
     <string name="t_kernel_log">Kernellogboek</string>
     <string name="t_kernel_stat">kernel stat</string>
@@ -223,6 +233,10 @@
     <string name="t_suspicious_apps">Verdachte apps</string>
     <string name="t_running_app_processes">Actieve app-processen</string>
     <string name="t_running_services">Actieve services</string>
+    <string name="t_xposed_scan_all">Xposed-metadata: scan van alle apps</string>
+    <string name="t_debuggable_scan_all">Scan van debuggbare gebruikersapps</string>
+    <string name="t_uid_groups">UID-delingsgroepen</string>
+    <string name="t_updated_system">Bijgewerkte systeem-apps (FLAG_UPDATED_SYSTEM_APP)</string>
     <string name="t_sdk_int">SDK int</string>
     <string name="t_selinux_mls_enabled">SELinux MLS ingeschakeld</string>
     <string name="t_selinux_context_self">SELinux-context (zelf)</string>
@@ -410,6 +424,7 @@
     <string name="t_isrc_gap_system_shell_installed">Discrepantie: systeem-app via shell geïnstalleerd</string>
     <string name="t_isrc_gap_update_owner_drift">Discrepantie: updateOwner ≠ installer</string>
     <string name="t_isrc_gap_self_declared_installer">Discrepantie: app is zijn eigen installer</string>
+    <string name="t_isrc_landscape">Installatiebronlandschap (alle apps per installer)</string>
     <string name="t_installed_packages_diff">Geïnstalleerde pakketten: afwijkend (JVM x pm)</string>
     <string name="t_installed_applications_diff">Geïnstalleerde applicaties: afwijkend (JVM x pm)</string>
     <string name="t_selinux_status">SELinux-statuspagina (policyload/seq)</string>
@@ -432,4 +447,41 @@
     <string name="n_tee_soter">Vergelijkt het Soter-serviceprogramma van Tencent met de status van zijn service-property.</string>
     <string name="t_proc_cgroup_format">cgroup-padformaat</string>
     <string name="n_proc_cgroup_format">Een gekloonde / dual-app-container laat het uniforme cgroup-pad afwijken van de canonieke uid_/pid_-vorm.</string>
+    <string name="t_gpu_vendor">GPU-fabrikant</string>
+    <string name="t_gpu_renderer">GPU-renderer</string>
+    <string name="t_gpu_version">GPU-versie</string>
+    <string name="t_gpu_glsl">GPU-GLSL-versie</string>
+    <string name="t_tel_typeAllocationCode">Typetoewijzingscode (TAC)</string>
+    <string name="t_tel_manufacturerCode">Fabrikantcode</string>
+    <string name="t_tel_simCarrierId">SIM-operator-ID</string>
+    <string name="t_tel_simCarrierIdName">SIM-operatornaam</string>
+    <string name="t_tel_simSpecificCarrierId">Specifieke SIM-operator-ID</string>
+    <string name="t_tel_visualVoicemailPackageName">Visuele voicemail-pakket</string>
+    <string name="t_keychain_blacklist">Keychain-certificaat-zwarte lijst</string>
+    <string name="t_buildprop_vs_runtime">build.prop vs runtime</string>
+    <string name="note_boot_count">boot_count (framework) groeit alleen; Phenotype_boot_count (Play-services) is de momentopname ervan en kan achterlopen. Alleen afwijkend als de momentopname vóór boot_count ligt (een reset).</string>
+    <string name="note_isrc_initiator_sig">Het certificaat dat het systeem voor de installer vastlegde toen deze app werd geïnstalleerd, verschilt van het certificaat dat de installer nu meldt. Een vervangen installer of een vervalste handtekening veroorzaakt dit; ROM\'s die het systeem opnieuw ondertekenen en het originele certificaat van de fabrikant melden (bijv. Xiaomi.eu) tonen het op elk apparaat.</string>
+    <string name="t_concealment">App-verhulling</string>
+    <string name="note_concealment">Een pakket dat verborgen is voor de app-lijst maar nog bereikbaar via een andere PackageManager-deur (pakketinfo, createPackageContext, de geopende APK, de launch intent) is bij de ene deur verhuld en bij de andere niet - het kenmerk van een gedeeltelijke app-verberger.</string>
+    <string name="t_prop_variants">Partitievarianten: %1$s</string>
+    <string name="t_prop_enum">Property-enumeratie vs getprop</string>
+    <string name="note_prop_variants">Hetzelfde achtervoegsel komt per partitie voor (system, vendor, product, odm, dlkm...). Waarden die overal gelijk zouden moeten zijn maar verschillen, of die binnen één lijn uiteenlopen, onthullen een gedeeltelijke spoof - een fingerprint gewijzigd op sommige partities en niet op andere.</string>
+    <string name="note_prop_enum">Het property-gebied native opsommen (__system_property_foreach) en vergelijken met getprop uit een ander proces onthult een property die voor de shell verborgen is of in één pad geïnjecteerd maar niet in het andere.</string>
+    <string name="t_dlphdr">Loader-modules (dl_iterate_phdr)</string>
+    <string name="t_frida_port">Frida-poortscan</string>
+    <string name="note_dlphdr">dl_iterate_phdr somt de geladen modules op via de linker, niet via /proc/self/maps, dus een hook die zijn vermelding uit maps wist, staat hier toch. Een needle of een module buiten de systeem-allowlist is het lek.</string>
+    <string name="t_ime_verdict">Toetsenbord-integriteitsoordeel</string>
+    <string name="t_store_authenticity">Echtheid van store-/GMS-handtekening</string>
+    <string name="t_devgate">Coherentie van Dev-vergrendelde instellingen</string>
+    <string name="note_ime_verdict">Een banking-RASP (PayZapp/Zeta) weigert elk ingeschakeld toetsenbord dat niet-systeem is en buiten een store-allowlist is geïnstalleerd. Een ingeschakelde niet-systeem-IME met een niet-store-installer wordt gemarkeerd.</string>
+    <string name="note_store_authenticity">Play Store, GMS en GSF moeten Google\'s ondertekeningscertificaat dragen. Een store- of GMS-pakket dat aanwezig is maar met een andere sleutel is ondertekend, is een nep, microG of herverpakte store.</string>
+    <string name="note_devgate">adb en andere Dev-vergrendelde instellingen wijzigen alleen met Ontwikkelaarsopties aan. Een vergrendelde instelling die niet-standaard is bij development_settings_enabled=0 kan alleen via root of `settings put` zijn gezet.</string>
+    <string name="t_maps_exec">Geïnjecteerde exec-maps (deleted/memfd)</string>
+    <string name="t_anon_minor">Verborgen anon-bdev-superblok</string>
+    <string name="note_maps_exec">Een uitvoerbare mapping van een (deleted)/memfd/ashmem-bestand dat RWX is (schendt W^X) of begint met de ELF-magic is een echte geïnjecteerde .so, losgekoppeld van het bestandssysteem; de ART-JIT-trampoline is geen van beide en telt als goedaardig. Een module buiten de systeem-allowlist telt ook.</string>
+    <string name="note_anon_minor">Bestandssystemen zonder block device halen hun minor uit een globale anon-pool, dicht van onderaf. Een minor die via stat() aanwezig is maar afwezig in de mountinfo van dit proces is een levend superblok verborgen in een private namespace (de tmpfs van een daemon). Een lange reeks ontbrekende minors is app-churn en wordt genegeerd; een kort gat is de aanwijzing.</string>
+    <string name="t_sb_tee_signer">StrongBox- vs. TEE-ondertekenaar</string>
+    <string name="note_sb_tee_signer">Een echt apparaat heeft aparte attestation-roots voor StrongBox- en TEE-hardware, dus hun ondertekeningscertificaten verschillen. Een enkele keybox (TrickyStore) die beide niveaus vervalst, ondertekent beide met hetzelfde certificaat - een gedeelde ondertekenaar is de aanwijzing.</string>
+    <string name="t_local_tmp_list">Lijst van /data/local/tmp</string>
+    <string name="note_local_tmp_list">Het opsommen van /data/local/tmp met getdents64 (geen naamzoekopdracht) onthult elk residu dat een app echt kan bereiken, inclusief wat de module neerzet. Op een vergrendeld apparaat is de map van de shell en niet door een app op te sommen, dus EACCES is het schone antwoord; een zichtbare vermelding betekent app-bereikbaar residu.</string>
 </resources>

@@ -18,20 +18,7 @@
 #  E-mail         : vd.priv8@pm.me
 # ======================================================================
 
-com.devadvance.rootcloak
-com.devadvance.rootcloakplus
-com.zachspong.temprootremovejb
-com.formyhm.hideroot
-com.saurik.substrate
-com.android.vending.billing.InAppBillingService.COIN
-eu.faircode.xlua
-eu.faircode.xlua.pro
-biz.bokhorst.xprivacy
-com.oasisfeng.island
-com.tsng.hidemyapplist
-org.frknkrc44.hma_oss
-com.tsng.pzyhrx.hma
-cn.geektang.privacyspace
-me.gm.cleaner
-com.google.android.hmal # HMA (disguised package)
-com.tsng.dyhhvf # HMA (randomized package)
+adb_enabled                  0
+adb_wifi_enabled             0
+enable_adb_incremental       0
+adb_allowed_connection_time  604800000

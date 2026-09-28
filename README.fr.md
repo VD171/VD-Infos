@@ -12,7 +12,9 @@
 
 <img src="images/vdinfos-01.png" height="420"/> <img src="images/vdinfos-02.png" height="420"/>
 
-Android est un système d'exploitation extrêmement puissant et polyvalent ; ce que personne ne te dit, c'est que tous tes détails personnels et tes informations confidentielles sont accessibles à chaque application que tu installes, et te protéger contre ces atteintes à la vie privée est une obligation. VD Infos te montre un exemple de ce qui peut être capturé sur ton appareil, et le fait comme un *débogueur de méthodes* : pour chaque information il lit la valeur par **toutes les méthodes capables de la lire** - `Build.*`, `SystemProperties`, `getprop`, le natif `__system_property_get`, les managers système, les content providers, les fichiers, les syscalls et l'attestation de clé matérielle (TEE) - et les aligne pour que tu compares. Quand une méthode diverge des autres, quelque chose au milieu réécrit cette surface : un framework de hooking, un spoofer, un shim de résolution. **AUCUNE INFORMATION N'EST STOCKÉE, ENVOYÉE NI TRANSMISE À UN QUELCONQUE FICHIER OU SERVEUR** - tout s'exécute sur l'appareil, les valeurs porteuses d'identité sont masquées jusqu'à ce que tu les révèles, et un rapport ne quitte l'appareil que lorsque tu le partages ou l'enregistres explicitement ; si tu veux, bloque l'accès à internet avec un pare-feu ou coupe-le tout simplement.
+Android est un système d'exploitation extrêmement puissant et polyvalent ; ce que personne ne te dit, c'est que tous tes détails personnels et tes informations confidentielles sont accessibles à chaque application que tu installes, et te protéger contre ces atteintes à la vie privée est une obligation. VD Infos te montre un exemple de ce qui peut être capturé sur ton appareil, et le fait comme un *débogueur de méthodes* : pour chaque information il lit la valeur par **toutes les méthodes capables de la lire** - `Build.*`, `SystemProperties`, `getprop`, le natif `__system_property_get`, les managers système, les content providers, les fichiers, les syscalls et l'attestation de clé matérielle (TEE) - et les aligne pour que tu compares. Quand une méthode diverge des autres, quelque chose au milieu réécrit cette surface : un framework de hooking, un spoofer, un shim de résolution. **AUCUNE INFORMATION N'EST STOCKÉE, ENVOYÉE NI TRANSMISE À UN QUELCONQUE FICHIER¹ OU SERVEUR** - tout s'exécute sur l'appareil, les valeurs porteuses d'identité sont masquées jusqu'à ce que tu les révèles, et un rapport ne quitte l'appareil que lorsque tu le partages ou l'enregistres explicitement ; si tu veux, bloque l'accès à internet avec un pare-feu ou coupe-le tout simplement.
+
+> **¹ Exception:** chaque analyse conserve son rapport complet dans le stockage privé de l'app (`files/last_snapshot.json`). Seuls l'app elle-même ou root peuvent le lire, l'analyse suivante l'écrase et il ne quitte jamais l'appareil. Il existe pour que les agents IA puissent lire le résultat complet ; voir **Pour les agents IA : le rapport complet en JSON**.
 
 ## Ce qu'il inspecte
 
@@ -40,6 +42,18 @@ Chaque release publie deux APK : **SDK_35** vise le bac à sable moderne et stri
 * https://t.me/RootDetected
 * https://t.me/BlankAssistance
 
+## Pour les agents IA : le rapport complet en JSON
+
+Conçu pour les agents IA et les outils LLM qui travaillent sur l'appareil via un shell (assistants de programmation, scripts d'analyse). Au lieu de lire des captures d'écran, l'agent lit tout le résultat en une commande :
+
+```sh
+su -c cat /data/data/ru.vd171.vdinfos/files/last_snapshot.json
+```
+
+* **Contenu :** chaque sonde avec son verdict et la valeur de toutes les lentilles, dans le même JSON que le bouton d'export. L'écran n'affiche que la première lecture d'un élément replié ; le fichier les contient toutes.
+* **Mise à jour :** à la fin de chaque analyse, lancez donc une analyse d'abord ; le fichier contient toujours la plus récente.
+* **Prérequis :** root, car le fichier se trouve dans le stockage privé de l'app.
+
 ## Langues
 
 21 langues d'interface : anglais, portugais, espagnol, italien, allemand, français, russe, indonésien, turc, polonais, néerlandais, suédois, tchèque, vietnamien, chinois, japonais, coréen, persan, hindi, arabe et thaï. L'app propose un choix de langue unique au premier lancement (avec une option "Par défaut du système") et suit sinon la langue du système.
@@ -56,7 +70,7 @@ ui/             Jetpack Compose, Material 3, couleur dynamique, progression en d
 cpp/            native_probes.cpp - la lentille native, sans dépendances
 ```
 
-* **Parallélisme** : 922 sondes se déploient sur le dispatcher par défaut avec un nombre de permis borné ; les résultats affluent dans l'UI au fur et à mesure.
+* **Parallélisme** : 991 sondes se déploient sur le dispatcher par défaut avec un nombre de permis borné ; les résultats affluent dans l'UI au fur et à mesure.
 * **Rien en arrière-plan** : aucun service ni analyse planifiée ; l'app ne s'exécute que lorsqu'elle est ouverte et se ferme d'elle-même lorsqu'elle reste inactive.
 * **Couche native** : un petit `.so`, lié par nom via `RegisterNatives`, gardé délibérément minuscule car c'est la partie qui doit être difficile à tromper.
 
@@ -67,6 +81,7 @@ La plupart des contributions ne demandent pas de Kotlin : les listes sont du tex
 * `*_apps.txt` - un nom de paquet par ligne
 * `props.txt` - le catalogue des propriétés système, `CATÉGORIE<tab>clé`
 * `spoof_keys.txt` - la matrice de spoof des settings, `clé:TYPE`
+* `known_certs.txt` - le catalogue des certificats de signature, `SHA-256<tab>propriétaire` (hash complet, tiré d'un vrai APK avec `apksigner verify --print-certs`)
 * autres fichiers `.txt` - une entrée par ligne également (fragments de nom de modules du noyau, noms dans `/data/local/tmp`)
 
 Un `#` commence un commentaire ; les lignes vides sont ignorées. Certains fichiers contiennent plusieurs champs séparés par une espace ou une tabulation par ligne, ou des marqueurs optionnels (`S` et `@field` dans `props.txt`) ; conservez la forme des lignes déjà présentes dans le fichier. Les contributions de code sont aussi bienvenues. En contribuant, vous acceptez que votre travail soit diffusé sous l'AGPL-3.0-or-later de ce projet.

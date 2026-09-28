@@ -51,6 +51,7 @@
     <string name="verdict_info">info</string>
     <string name="reading_context_only">contexte</string>
     <string name="reading_empty">(vide)</string>
+    <string name="reveal_original">Valeur d\'origine</string>
     <string name="verdict_empty">vide</string>
     <string name="verdict_error">erreur</string>
 
@@ -187,6 +188,15 @@
     <string name="t_installed_packages_list">Paquets installés (liste)</string>
     <string name="t_kernel_release">Kernel (release)</string>
     <string name="t_kernel_version">Kernel (version)</string>
+    <string name="t_kernel_version_string">Noyau (chaîne de version)</string>
+    <string name="t_kernel_version_claim">Version revendiquée du noyau (ro.kernel.version vs uname)</string>
+    <string name="note_kernel_version_claim">La propriété ro.kernel.version est censée refléter le noyau en cours. Si elle revendique un major.minor que la version uname réelle n\'a pas, un resolver a fixé la propriété alors que le noyau en dessous est un autre.</string>
+    <string name="t_kernel_build_date">Date de build du noyau vs ROM</string>
+    <string name="note_kernel_build_date">Un noyau GKI préconstruit est plus ancien que la ROM dans laquelle il est livré, ou correspond à celle-ci. Un noyau construit bien après l\'assemblage de la ROM a été reconstruit ou flashé plus tard, le signe habituel d\'un noyau compilé à la main.</string>
+    <string name="t_kernel_config">Config du noyau (/proc/config.gz)</string>
+    <string name="note_kernel_config">La config du noyau, là où elle est lisible, nomme les correctifs compilés : KSU, SUSFS, une local version personnalisée, une signature de modules non imposée. Le bac à sable de l\'app refuse souvent ce fichier ; il se lit sur Android ancien, les ROM personnalisées et les shells root.</string>
+    <string name="t_kernel_module_scan">Modules et symboles du noyau</string>
+    <string name="note_kernel_module_scan">Parcourt /sys/module et les noms de symboles de /proc/kallsyms pour ksu, susfs et magisk, qu\'un noyau patché ou chargé de modules expose. Les deux surfaces sont souvent restreintes ; elles se lisent là où le domaine l\'autorise.</string>
     <string name="t_kernel_cmdline">cmdline du kernel</string>
     <string name="t_kernel_log">Journal du kernel</string>
     <string name="t_kernel_stat">stat du kernel</string>
@@ -214,6 +224,10 @@
     <string name="t_suspicious_apps">Applications suspectes</string>
     <string name="t_running_app_processes">Processus d\'applications en cours</string>
     <string name="t_running_services">Services en cours</string>
+    <string name="t_xposed_scan_all">Métadonnées Xposed : analyse de toutes les apps</string>
+    <string name="t_debuggable_scan_all">Analyse des apps utilisateur déboguables</string>
+    <string name="t_uid_groups">Groupes de partage UID</string>
+    <string name="t_updated_system">Applications système mises à jour (FLAG_UPDATED_SYSTEM_APP)</string>
     <string name="t_sdk_int">SDK int</string>
     <string name="t_selinux_mls_enabled">SELinux MLS activé</string>
     <string name="t_selinux_context_self">Contexte SELinux (propre)</string>
@@ -409,6 +423,7 @@
     <string name="t_isrc_gap_system_shell_installed">Écart : app système installée via shell</string>
     <string name="t_isrc_gap_update_owner_drift">Écart : updateOwner ≠ installer</string>
     <string name="t_isrc_gap_self_declared_installer">Écart : l\'app est son propre installer</string>
+    <string name="t_isrc_landscape">Panorama source d\'installation (toutes les apps par installateur)</string>
     <string name="t_installed_packages_diff">Paquets installés : divergents (JVM x pm)</string>
     <string name="t_installed_applications_diff">Applications installées : divergents (JVM x pm)</string>
     <string name="t_selinux_status">Page status SELinux (policyload/seq)</string>
@@ -431,4 +446,41 @@
     <string name="n_tee_soter">Recoupe le programme de service Soter de Tencent avec l\'état de sa propriété de service.</string>
     <string name="t_proc_cgroup_format">Format du chemin cgroup</string>
     <string name="n_proc_cgroup_format">Un conteneur cloné / dual-app fait diverger le chemin cgroup unifié de la forme canonique uid_/pid_.</string>
+    <string name="t_gpu_vendor">Fabricant du GPU</string>
+    <string name="t_gpu_renderer">Moteur de rendu du GPU</string>
+    <string name="t_gpu_version">Version du GPU</string>
+    <string name="t_gpu_glsl">Version GLSL du GPU</string>
+    <string name="t_tel_typeAllocationCode">Code d\'allocation de type (TAC)</string>
+    <string name="t_tel_manufacturerCode">Code du fabricant</string>
+    <string name="t_tel_simCarrierId">ID de l\'opérateur SIM</string>
+    <string name="t_tel_simCarrierIdName">Nom de l\'opérateur SIM</string>
+    <string name="t_tel_simSpecificCarrierId">ID de l\'opérateur SIM spécifique</string>
+    <string name="t_tel_visualVoicemailPackageName">Paquet de messagerie vocale visuelle</string>
+    <string name="t_keychain_blacklist">Liste noire de certificats du Keychain</string>
+    <string name="t_buildprop_vs_runtime">build.prop vs runtime</string>
+    <string name="note_boot_count">boot_count (framework) ne fait qu\'augmenter ; Phenotype_boot_count (Play services) en est l\'instantané et peut être en retard. Divergent seulement si l\'instantané dépasse boot_count (une réinitialisation).</string>
+    <string name="note_isrc_initiator_sig">Le certificat que le système a enregistré pour l\'installateur lors de l\'installation de cette app diffère de celui que l\'installateur déclare maintenant. Un installateur remplacé ou une signature usurpée en est la cause ; les ROM qui re-signent le système et déclarent le certificat d\'origine du fabricant (ex. Xiaomi.eu) l\'affichent sur tous les appareils.</string>
+    <string name="t_concealment">Dissimulation d\'apps</string>
+    <string name="note_concealment">Un paquet caché de la liste des apps mais encore accessible par une autre porte du PackageManager (infos du paquet, createPackageContext, son APK ouvert, le launch intent) est dissimulé d\'une porte mais pas d\'une autre - la marque d\'un masqueur d\'apps partiel.</string>
+    <string name="t_prop_variants">Variantes par partition : %1$s</string>
+    <string name="t_prop_enum">Énumération des propriétés vs getprop</string>
+    <string name="note_prop_variants">Le même suffixe apparaît par partition (system, vendor, product, odm, dlkm...). Des valeurs qui devraient concorder partout mais diffèrent, ou qui divergent au sein d\'une même lignée, révèlent un spoof partiel - une empreinte modifiée sur certaines partitions et pas d\'autres.</string>
+    <string name="note_prop_enum">Énumérer la zone de propriétés en natif (__system_property_foreach) et la comparer au getprop d\'un autre processus révèle une propriété cachée du shell ou injectée sur un chemin mais pas l\'autre.</string>
+    <string name="t_dlphdr">Modules du loader (dl_iterate_phdr)</string>
+    <string name="t_frida_port">Scan de port Frida</string>
+    <string name="note_dlphdr">dl_iterate_phdr énumère les modules chargés via le linker, pas via /proc/self/maps, donc un hook qui efface son entrée du maps apparaît quand même ici. Un needle ou un module hors de l\'allowlist système est la fuite.</string>
+    <string name="t_ime_verdict">Verdict d\'intégrité du clavier</string>
+    <string name="t_store_authenticity">Authenticité de la signature du store/GMS</string>
+    <string name="t_devgate">Cohérence des réglages verrouillés par Dev</string>
+    <string name="note_ime_verdict">Un RASP bancaire (PayZapp/Zeta) rejette tout clavier activé non-système et installé hors d\'une allowlist de stores. Un IME activé non-système avec un installateur hors store est signalé.</string>
+    <string name="note_store_authenticity">Le Play Store, GMS et GSF doivent porter le certificat de signature de Google. Un paquet de store ou GMS présent mais signé par une autre clé est un faux, microG ou un store repackagé.</string>
+    <string name="note_devgate">adb et d\'autres réglages verrouillés par Dev ne changent qu\'avec les Options développeur activées. Un réglage verrouillé non-défaut avec development_settings_enabled=0 n\'a pu être posé que par root ou `settings put`.</string>
+    <string name="t_maps_exec">Mappages exec injectés (deleted/memfd)</string>
+    <string name="t_anon_minor">Superbloc anon-bdev caché</string>
+    <string name="note_maps_exec">Un mappage exécutable adossé à un fichier (deleted)/memfd/ashmem qui est soit RWX (viole W^X) soit commence par le magic ELF est un vrai .so injecté, détaché du système de fichiers ; le trampoline JIT de l\'ART n\'est ni l\'un ni l\'autre et compte comme bénin. Un module hors de l\'allowlist système compte aussi.</string>
+    <string name="note_anon_minor">Les systèmes de fichiers sans périphérique bloc tirent leur minor d\'un pool anon global, dense par le bas. Un minor présent via stat() mais absent du mountinfo de ce processus est un superbloc vivant caché dans un namespace privé (le tmpfs d\'un daemon). Une longue série de minors manquants est du churn par appli et ignorée ; un trou court est l\'indice.</string>
+    <string name="t_sb_tee_signer">Signataire StrongBox × TEE</string>
+    <string name="note_sb_tee_signer">Un appareil authentique a des racines d\'attestation distinctes pour le matériel StrongBox et TEE, donc leurs certificats de signature diffèrent. Un unique keybox (TrickyStore) falsifiant les deux niveaux signe les deux avec le même certificat - un signataire partagé est l\'indice.</string>
+    <string name="t_local_tmp_list">Listage de /data/local/tmp</string>
+    <string name="note_local_tmp_list">Lister /data/local/tmp avec getdents64 (pas par nom) fait apparaître tout résidu qu\'une appli peut réellement atteindre, y compris ce que le module dépose. Sur un appareil verrouillé le répertoire appartient au shell et n\'est pas listable par une appli, donc EACCES est la réponse propre ; une entrée visible signifie un résidu atteignable par l\'appli.</string>
 </resources>

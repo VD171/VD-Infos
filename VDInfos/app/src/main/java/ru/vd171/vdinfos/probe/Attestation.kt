@@ -43,12 +43,21 @@ object Attestation {
 
     private const val EXT_OID = "1.3.6.1.4.1.11129.2.1.17"
     private const val ALIAS = "vdinfos_attest"
-    private val CHALLENGE = "vdinfos".toByteArray()
+    private const val ALIAS_PLAIN = "vdinfos_attest_plain"
+    private const val ALIAS_SB = "vdinfos_attest_sb"
+    private const val ALIAS_ALT = "vdinfos_attest_alt"
+    private const val ALIAS_RSA = "vdinfos_attest_rsa2"
+    private val PRIMARY = listOf(false to true, false to false, true to false)
+    private val CHALLENGE = ByteArray(16).also { java.security.SecureRandom().nextBytes(it) }
+    private val CHALLENGE_ALT = ByteArray(16).also { java.security.SecureRandom().nextBytes(it) }
+    val CHALLENGE_HEX = hex(CHALLENGE)
+    val CHALLENGE_ALT_HEX = hex(CHALLENGE_ALT)
 
     data class Record(
         val securityLevel: String,
         val attestationVersion: Int,
         val keymasterVersion: Int,
+        val challengeHex: String?,
         val verifiedBootState: String?,
         val deviceLocked: String?,
         val verifiedBootKeyHex: String?,
@@ -64,6 +73,8 @@ object Attestation {
         val model: String?,
         val serial: String?,
         val signerValidityDays: Long?,
+        val signerSerial: String?,
+        val signerSubject: String?,
         val provisioning: String?,
         val provisioningByStructure: String?,
         val rootName: String?,
@@ -71,37 +82,66 @@ object Attestation {
         val attestationAppId: String?,
     )
 
-    val record: Record? by lazy { runCatching { build() }.getOrNull() }
-    val error: String? by lazy { runCatching { build(); null }.exceptionOrNull()?.toString() }
+    val record: Record? by lazy { runCatching { build(ALIAS, PRIMARY) }.getOrNull() }
+    val error: String? by lazy { runCatching { build(ALIAS, PRIMARY); null }.exceptionOrNull()?.toString() }
+    val recordPlain: Record? by lazy { runCatching { build(ALIAS_PLAIN, listOf(false to false)) }.getOrNull() }
+    val recordStrongBox: Record? by lazy { runCatching { build(ALIAS_SB, listOf(true to false)) }.getOrNull() }
+    val recordAltChallenge: Record? by lazy { runCatching { build(ALIAS_ALT, listOf(false to false), CHALLENGE_ALT) }.getOrNull() }
+    val recordRsa: Record? by lazy { runCatching { buildRsa(ALIAS_RSA, CHALLENGE) }.getOrNull() }
 
-    private fun build(): Record {
-        var chain = gen(strongbox = false, deviceProps = true)
-            ?: gen(strongbox = false, deviceProps = false)
-            ?: gen(strongbox = true, deviceProps = false)
-            ?: throw IllegalStateException("attestation unavailable")
+    private fun build(alias: String, attempts: List<Pair<Boolean, Boolean>>, challenge: ByteArray = CHALLENGE): Record {
+        var chain: Array<java.security.cert.Certificate>? = null
+        for ((strongbox, deviceProps) in attempts) {
+            chain = gen(strongbox, deviceProps, alias, challenge)
+            if (chain != null) break
+        }
+        chain ?: throw IllegalStateException("attestation unavailable")
         try {
             return parse(chain[0] as X509Certificate, chain)
         } finally {
-            deleteKey()
+            deleteKey(alias)
         }
     }
 
-    private fun gen(strongbox: Boolean, deviceProps: Boolean): Array<java.security.cert.Certificate>? =
+    private fun gen(strongbox: Boolean, deviceProps: Boolean, alias: String, challenge: ByteArray = CHALLENGE): Array<java.security.cert.Certificate>? =
         runCatching {
-            deleteKey()
+            deleteKey(alias)
             val b = KeyGenParameterSpec.Builder(
-                ALIAS, KeyProperties.PURPOSE_SIGN or KeyProperties.PURPOSE_VERIFY
+                alias, KeyProperties.PURPOSE_SIGN or KeyProperties.PURPOSE_VERIFY
             )
                 .setAlgorithmParameterSpec(ECGenParameterSpec("secp256r1"))
                 .setDigests(KeyProperties.DIGEST_SHA256)
-                .setAttestationChallenge(CHALLENGE)
+                .setAttestationChallenge(challenge)
             if (strongbox) b.setIsStrongBoxBacked(true)
             if (deviceProps && Build.VERSION.SDK_INT >= 31) b.setDevicePropertiesAttestationIncluded(true)
             val kpg = KeyPairGenerator.getInstance(KeyProperties.KEY_ALGORITHM_EC, "AndroidKeyStore")
             kpg.initialize(b.build())
             kpg.generateKeyPair()
             val ks = KeyStore.getInstance("AndroidKeyStore").apply { load(null) }
-            ks.getCertificateChain(ALIAS)?.takeIf { it.isNotEmpty() }
+            ks.getCertificateChain(alias)?.takeIf { it.isNotEmpty() }
+        }.getOrNull()
+
+    private fun buildRsa(alias: String, challenge: ByteArray): Record {
+        val chain = genRsa(alias, challenge) ?: throw IllegalStateException("rsa attestation unavailable")
+        try {
+            return parse(chain[0] as X509Certificate, chain)
+        } finally {
+            deleteKey(alias)
+        }
+    }
+
+    private fun genRsa(alias: String, challenge: ByteArray): Array<java.security.cert.Certificate>? =
+        runCatching {
+            deleteKey(alias)
+            val b = KeyGenParameterSpec.Builder(alias, KeyProperties.PURPOSE_SIGN or KeyProperties.PURPOSE_VERIFY)
+                .setDigests(KeyProperties.DIGEST_SHA256)
+                .setSignaturePaddings(KeyProperties.SIGNATURE_PADDING_RSA_PKCS1)
+                .setAttestationChallenge(challenge)
+            val kpg = KeyPairGenerator.getInstance(KeyProperties.KEY_ALGORITHM_RSA, "AndroidKeyStore")
+            kpg.initialize(b.build())
+            kpg.generateKeyPair()
+            val ks = KeyStore.getInstance("AndroidKeyStore").apply { load(null) }
+            ks.getCertificateChain(alias)?.takeIf { it.isNotEmpty() }
         }.getOrNull()
 
     private const val PROV_OID = "1.3.6.1.4.1.11129.2.1.30"
@@ -141,6 +181,7 @@ object Attestation {
         val attVersion = intOf(kd.getObjectAt(0))
         val attSec = intOf(kd.getObjectAt(1))
         val kmVersion = intOf(kd.getObjectAt(2))
+        val challengeHex = runCatching { hex((kd.getObjectAt(4) as ASN1OctetString).octets) }.getOrNull()
 
         var rot: ASN1Sequence? = null
         var osPatch: String? = null; var osVer: String? = null
@@ -180,10 +221,13 @@ object Attestation {
         }
 
         var signerDays: Long? = null; var provisioning: String? = null
+        var signerSerial: String? = null; var signerSubject: String? = null
         if (chain.size >= 2) {
             val signer = chain[1] as X509Certificate
             signerDays = (signer.notAfter.time - signer.notBefore.time) / 86400000L
             provisioning = if (signerDays > 730) "batch_keybox" else "rkp"
+            signerSerial = signer.serialNumber?.toString(16)
+            signerSubject = rdn(signer.subjectX500Principal.getName(javax.security.auth.x500.X500Principal.RFC1779), "CN")
         }
         val x509 = chain.map { it as X509Certificate }
         val provisioningByStructure = if (x509.size >= 2) {
@@ -204,11 +248,13 @@ object Attestation {
 
         return Record(
             securityLevel = secLevel(attSec), attestationVersion = attVersion, keymasterVersion = kmVersion,
+            challengeHex = challengeHex,
             verifiedBootState = vbState, deviceLocked = locked,
             verifiedBootKeyHex = vbKey, verifiedBootHashHex = vbHash,
             osVersion = osVer, osPatchLevel = osPatch, vendorPatchLevel = vendorPatch, bootPatchLevel = bootPatch,
             brand = brand, device = device, product = product, manufacturer = manufacturer, model = model,
-            serial = serial, signerValidityDays = signerDays, provisioning = provisioning,
+            serial = serial, signerValidityDays = signerDays,
+            signerSerial = signerSerial, signerSubject = signerSubject, provisioning = provisioning,
             provisioningByStructure = provisioningByStructure, rootName = rootName, provisioningInfo = provisioningInfo,
             attestationAppId = attAppId,
         )
@@ -251,9 +297,9 @@ object Attestation {
         }
     }.getOrNull()
 
-    private fun deleteKey() = runCatching {
+    private fun deleteKey(alias: String = ALIAS) = runCatching {
         val ks = KeyStore.getInstance("AndroidKeyStore").apply { load(null) }
-        if (ks.containsAlias(ALIAS)) ks.deleteEntry(ALIAS)
+        if (ks.containsAlias(alias)) ks.deleteEntry(alias)
     }
 
     private fun intOf(e: ASN1Encodable?): Int = when (e) {

@@ -53,6 +53,7 @@
     <string name="verdict_info">инфо</string>
     <string name="reading_context_only">контекст</string>
     <string name="reading_empty">(пусто)</string>
+    <string name="reveal_original">Исходное значение</string>
     <string name="verdict_empty">пусто</string>
     <string name="verdict_error">ошибка</string>
 
@@ -189,6 +190,15 @@
     <string name="t_installed_packages_list">Установленные пакеты (список)</string>
     <string name="t_kernel_release">Kernel (release)</string>
     <string name="t_kernel_version">Kernel (версия)</string>
+    <string name="t_kernel_version_string">Ядро (строка версии)</string>
+    <string name="t_kernel_version_claim">Заявленная версия ядра (ro.kernel.version против uname)</string>
+    <string name="note_kernel_version_claim">Свойство ro.kernel.version должно отражать работающее ядро. Если оно заявляет major.minor, которого нет у настоящего release из uname, значит resolver задал свойство, тогда как ядро под ним другое.</string>
+    <string name="t_kernel_build_date">Дата сборки ядра против ROM</string>
+    <string name="note_kernel_build_date">Предсобранное ядро GKI старше ROM, в которой поставляется, или совпадает с ней. Ядро, собранное намного позже сборки ROM, было пересобрано или прошито позже, обычный признак вручную скомпилированного ядра.</string>
+    <string name="t_kernel_config">Конфиг ядра (/proc/config.gz)</string>
+    <string name="note_kernel_config">Конфиг ядра, где читаем, называет вкомпилированные патчи: KSU, SUSFS, свой local version, непринудительная подпись модулей. Песочница приложения часто отказывает в этом файле; он читается на старом Android, кастомных ROM и root-шеллах.</string>
+    <string name="t_kernel_module_scan">Модули и символы ядра</string>
+    <string name="note_kernel_module_scan">Сканирует /sys/module и имена символов /proc/kallsyms на ksu, susfs и magisk, которые раскрывает пропатченное или загруженное модулями ядро. Обе поверхности часто ограничены; читаются там, где позволяет домен.</string>
     <string name="t_kernel_cmdline">cmdline ядра</string>
     <string name="t_kernel_log">Лог ядра</string>
     <string name="t_kernel_stat">stat ядра</string>
@@ -216,6 +226,10 @@
     <string name="t_suspicious_apps">Подозрительные приложения</string>
     <string name="t_running_app_processes">Запущенные процессы приложений</string>
     <string name="t_running_services">Запущенные службы</string>
+    <string name="t_xposed_scan_all">Xposed метаданные: сканирование всех приложений</string>
+    <string name="t_debuggable_scan_all">Сканирование отлаживаемых пользовательских приложений</string>
+    <string name="t_uid_groups">Группы совместного использования UID</string>
+    <string name="t_updated_system">Обновлённые системные приложения (FLAG_UPDATED_SYSTEM_APP)</string>
     <string name="t_sdk_int">SDK int</string>
     <string name="t_selinux_mls_enabled">SELinux MLS включён</string>
     <string name="t_selinux_context_self">Контекст SELinux (свой)</string>
@@ -411,6 +425,7 @@
     <string name="t_isrc_gap_system_shell_installed">Расхождение: системное приложение установлено через shell</string>
     <string name="t_isrc_gap_update_owner_drift">Расхождение: updateOwner ≠ installer</string>
     <string name="t_isrc_gap_self_declared_installer">Расхождение: приложение - свой installer</string>
+    <string name="t_isrc_landscape">Ландшафт источников установки (все приложения по установщику)</string>
     <string name="t_installed_packages_diff">Установленные пакеты: расхождения (JVM x pm)</string>
     <string name="t_installed_applications_diff">Установленные приложения: расхождения (JVM x pm)</string>
     <string name="t_selinux_status">Страница status SELinux (policyload/seq)</string>
@@ -433,4 +448,41 @@
     <string name="n_tee_soter">Сверяет служебную программу Soter от Tencent с состоянием её служебного свойства.</string>
     <string name="t_proc_cgroup_format">Формат пути cgroup</string>
     <string name="n_proc_cgroup_format">Клонированный / dual-app контейнер заставляет единый путь cgroup отклоняться от канонической формы uid_/pid_.</string>
+    <string name="t_gpu_vendor">Производитель GPU</string>
+    <string name="t_gpu_renderer">Рендерер GPU</string>
+    <string name="t_gpu_version">Версия GPU</string>
+    <string name="t_gpu_glsl">Версия GLSL GPU</string>
+    <string name="t_tel_typeAllocationCode">Код распределения типа (TAC)</string>
+    <string name="t_tel_manufacturerCode">Код производителя</string>
+    <string name="t_tel_simCarrierId">ID оператора SIM</string>
+    <string name="t_tel_simCarrierIdName">Имя оператора SIM</string>
+    <string name="t_tel_simSpecificCarrierId">ID конкретного оператора SIM</string>
+    <string name="t_tel_visualVoicemailPackageName">Пакет визуальной голосовой почты</string>
+    <string name="t_keychain_blacklist">Чёрный список сертификатов Keychain</string>
+    <string name="t_buildprop_vs_runtime">build.prop vs runtime</string>
+    <string name="note_boot_count">boot_count (фреймворк) только растёт; Phenotype_boot_count (Play services) - его снимок и может отставать. Расхождение только если снимок опережает boot_count (сброс).</string>
+    <string name="note_isrc_initiator_sig">Сертификат, который система записала для установщика при установке этого приложения, отличается от того, что установщик сообщает сейчас. Причина - заменённый установщик или подделанная подпись; прошивки, которые переподписывают систему и сообщают оригинальный сертификат производителя (например, Xiaomi.eu), показывают это на любом устройстве.</string>
+    <string name="t_concealment">Сокрытие приложений</string>
+    <string name="note_concealment">Пакет, скрытый из списка приложений, но всё ещё доступный через другую дверь PackageManager (сведения о пакете, createPackageContext, открытый APK, launch intent), скрыт от одной двери, но не от другой - признак неполного скрывателя приложений.</string>
+    <string name="t_prop_variants">Варианты по разделам: %1$s</string>
+    <string name="t_prop_enum">Перечень свойств vs getprop</string>
+    <string name="note_prop_variants">Один и тот же суффикс встречается по разделам (system, vendor, product, odm, dlkm...). Значения, которые должны совпадать везде, но различаются, или расходятся внутри одной линии, выдают частичный спуф - отпечаток изменён на части разделов, а не на всех.</string>
+    <string name="note_prop_enum">Перечисление области свойств нативно (__system_property_foreach) и сравнение с getprop из другого процесса выявляет свойство, скрытое от оболочки или внедрённое в один путь, но не в другой.</string>
+    <string name="t_dlphdr">Модули загрузчика (dl_iterate_phdr)</string>
+    <string name="t_frida_port">Скан порта Frida</string>
+    <string name="note_dlphdr">dl_iterate_phdr перечисляет загруженные модули через линковщик, а не через /proc/self/maps, поэтому хук, стерший свою запись из maps, всё равно виден здесь. Совпадение по needle или модуль вне системного списка разрешённых - это утечка.</string>
+    <string name="t_ime_verdict">Вердикт целостности клавиатуры</string>
+    <string name="t_store_authenticity">Подлинность подписи магазина/GMS</string>
+    <string name="t_devgate">Согласованность настроек, привязанных к Dev</string>
+    <string name="note_ime_verdict">Банковский RASP (PayZapp/Zeta) отклоняет любую включённую клавиатуру, которая не системная и установлена вне списка разрешённых магазинов. Включённый несистемный IME с не-магазинным установщиком помечается.</string>
+    <string name="note_store_authenticity">Play Store, GMS и GSF должны нести сертификат подписи Google. Пакет магазина или GMS, присутствующий, но подписанный другим ключом, - это подделка, microG или перепакованный магазин.</string>
+    <string name="note_devgate">adb и другие настройки, привязанные к Dev, меняются только при включённых параметрах разработчика. Привязанная настройка, не имеющая значения по умолчанию при development_settings_enabled=0, могла быть задана только через root или `settings put`.</string>
+    <string name="t_maps_exec">Внедрённые exec-области (deleted/memfd)</string>
+    <string name="t_anon_minor">Скрытый суперблок anon-bdev</string>
+    <string name="note_maps_exec">Исполняемое отображение файла (deleted)/memfd/ashmem, которое либо RWX (нарушает W^X), либо начинается с ELF-магии, - это реальная внедрённая .so, отвязанная от файловой системы; трамплин JIT ART не является ни тем, ни другим и считается безобидным. Модуль вне системного списка разрешённых тоже считается.</string>
+    <string name="note_anon_minor">Файловые системы без блочного устройства берут minor из глобального анонимного пула, плотного снизу. Minor, присутствующий через stat(), но отсутствующий в mountinfo этого процесса, - это живой суперблок, скрытый в приватном пространстве имён (tmpfs демона). Длинная серия отсутствующих minor - это churn приложений и игнорируется; короткая дыра - это признак.</string>
+    <string name="t_sb_tee_signer">Подписант StrongBox × TEE</string>
+    <string name="note_sb_tee_signer">У настоящего устройства отдельные корни attestation для оборудования StrongBox и TEE, поэтому их сертификаты подписи различаются. Единственный keybox (TrickyStore), подделывающий оба уровня, подписывает оба одним сертификатом - общий подписант это признак.</string>
+    <string name="t_local_tmp_list">Список /data/local/tmp</string>
+    <string name="note_local_tmp_list">Перечисление /data/local/tmp через getdents64 (не поиск по имени) выявляет любой остаток, до которого приложение реально дотягивается, включая то, что оставляет модуль. На заблокированном устройстве каталог принадлежит shell и не перечислим приложением, поэтому EACCES - чистый ответ; видимая запись означает достижимый приложением остаток.</string>
 </resources>

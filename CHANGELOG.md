@@ -6,6 +6,54 @@ The 2.x line is a ground-up rewrite; the last public 1.x release was
 [v1.11-beta6](https://github.com/VD171/VD-Infos/releases/tag/v1.11-beta6)
 (2024-12-02). Everything between it and 2.00 is the rewrite described below.
 
+## [2.21] - 2026-09-28
+
+- **The StrongBox/TEE signer detail shows a short fingerprint by default, with the original one tap away.** `attest:sb_tee_signer` still compares the two signer serials and reports SHARED vs distinct, and the reference line now shows a 16-hex SHA-256 fingerprint of each serial instead of the serial itself (equal serials still show equal fingerprints, so a single keybox faking both is still visible). An eye next to the value opens the original on demand, and the raw serial is kept out of the exported JSON.
+
+- **Kernel identity is now cross-checked across the syscall, the sysctls and the property.** `kernel:version_claim` reads the `ro.kernel.version` property and compares its major.minor with the real `uname(2)` release; a resolver that sets the property to one GKI line while the kernel underneath is another (the exact case of a partial spoof where `set_uname` is a no-op without SUSFS) now shows as a divergence. `kernel:release` gained `/proc/sys/kernel/osrelease` and the release field of `/proc/version` as independent lenses next to `uname(2)` and `os.version`, and a new `kernel:version_string` cross-checks the `#N SMP ...` line across `uname(2)`, `uname -v`, `/proc/sys/kernel/version` and `/proc/version` - a hook that rewrites the syscall but not the sysctl diverges. `kernel:selfbuild` now also surfaces build provenance from `/proc/version` (builder user@host, compiler, GKI PGO/BOLT signature, Android build id), the tell of a hand-compiled kernel. Three more kernel surfaces join the sweep: `kernel:build_date` flags a kernel built well after the ROM was assembled (a prebuilt GKI is older than its ROM; a newer one was rebuilt or flashed later - the usual hand-compiled sign), read from the `uname` build timestamp against `ro.build.date.utc`; `kernel:config` names the patches compiled into `/proc/config.gz` (KSU, SUSFS, a custom local version, unenforced module signing) where the file is readable; and `kernel:modules` scans `/sys/module` and the `/proc/kallsyms` symbol names for ksu/susfs/magisk that a patched or module-loaded kernel exposes. The file-backed lenses idle cleanly where the app sandbox denies them and read where it does not.
+
+- **Five new probes extend the "self" checks to all installed apps.** `pkg:xposed_scan` reads the `AndroidManifest.xml` meta-data of every installed package (via `GET_META_DATA`) and reports any that carry the Xposed module keys (`xposedmodule`, `xposedminversion`, etc.); this finds custom or unlisted Xposed modules that are not in the known-packages allowlist. `pkg:debuggable_scan` lists user-installed apps whose `ApplicationInfo` carries `FLAG_DEBUGGABLE` or `FLAG_TEST_ONLY`; production apps must never ship with these flags, and their presence allows a debugger to attach and dump process memory. `pkg:uid_groups` groups all installed applications by their Linux UID and highlights any group where a user-installed app shares a UID with a system app - that sharing grants kernel-level privileges and is a privilege-escalation signal. `pkg:updated_system` lists every app whose `ApplicationInfo.flags` has `FLAG_UPDATED_SYSTEM_APP` set; an unexpected package here means a sideloaded install replaced a system-partition app. `isrc:landscape` uses the existing install-source scan and groups all visible apps by their recorded installer, giving a full picture of who installed what on the device - irregular installer families (e.g. apps "installed" by a package that is no longer present) stand out at a glance.
+
+- **The key attestation is read three ways now, and cross-checked.** Besides the default device-properties attestation, the app also requests a plain TEE attestation and, where available, a StrongBox one, and lines up the RootOfTrust and patch fields (verified boot hash/key/state, device-locked, OS/vendor/boot patch, OS version) across all three. A genuine device returns the same RootOfTrust for every request mode, so a fabricated attestation (a keybox or a TEE simulator) that answers the device-properties path and the plain path differently shows up as a divergence - the same verified-boot-hash reading one value in VD Infos and another in a plain attestation reader is exactly this. On each attestation field the record is read five ways - device-properties, plain, a second-challenge and an RSA attestation all vote, StrongBox is shown for reference - so a fabricator inconsistent by request mode, challenge or algorithm diverges. A separate probe checks the attestation echoes the fresh random challenge it was asked for (`attest:challenge_echo`) - a replayed static keybox carries the wrong challenge and fails it. The attested device **serial** now joins the device-ID cross-check (attested vs `Build.getSerial()` and the serial props).
+
+- **Cleaner lens tags for the attestation and native variants.** The 92-byte native property read and the attestation request variants show their own chip - `JNI 92B`, `TEE Plain`, `TEE StrongBox`, `TEE RSA`, `TEE Alt` - instead of a suffix buried in the method name.
+
+- **The live GPU identity is back, read two ways and compared.** `gpu:vendor/renderer/version/glsl` bring up an offscreen EGL PBuffer context (no window, no Activity) and read `glGetString` through both an EGL14/GLES20 JVM lens and a native EGL lens, plus the `ActivityManager` GLES version for reference - so a Java-side `glGetString` hook that leaves the native driver alone diverges. This is the one surface the 1.x Java build showed that the rewrite had dropped; the emulator-telling renderer string (SwiftShader and friends) is visible again.
+
+- **More telephony identity fields.** Type Allocation Code (cross-checked against the first eight IMEI digits), manufacturer code, SIM carrier id / name / specific carrier id, and the visual-voicemail package now join the telephony surface.
+
+- **Two coverage probes carried over from the 1.x build.** `integrity:keychain_blacklist` reads the mtime and size of `/data/misc/keychain/pubkey_blacklist.txt` three ways (a user/Magisk cert install rewrites it, and a lens seeing it while another does not is the signal), and `integrity:buildprop_vs_runtime` parses the on-disk `build.prop` of every partition and flags a key whose runtime value was `resetprop`'d away from the file.
+
+- **New property keys in the catalog.** `ril.rfcal_date`, `ril.manufacturedate`, `ro.product.nickname` (mirrored under Device) and `persist.sys.exif.model` (mirrored under Model).
+
+- **The boot-count cross-check is directional now, and stops false-flagging the benign GMS lag.** `boot_count` (framework) is monotonic; `Phenotype_boot_count` (Play services) is a snapshot of it that trails by however many boots the GMS boot-commit was skipped, so a small `boot_count > Phenotype_boot_count` gap is normal (it was showing red on devices where a hooking layer kept GMS from committing). The framework counter still votes (a lens split there is still a hook) and the GMS snapshot is context, but the divergence now fires only in the one honest-device-impossible direction: the snapshot ahead of `boot_count`, which means `boot_count` was reset. Zeroing `boot_count` to fake a fresh device is still caught; trailing is not.
+
+- **Every partition variant of a repeated property is now cross-checked, by lineage.** The same suffix repeats per partition (`ro.product.<part>.model`, `ro.<part>.build.fingerprint`, ...); `prop:variants:*` reads every variant the device actually exposes (partitions listed in the editable `assets/data/partitions.txt`, fields and their scope in `prop_families.txt`) and compares them: an identity field (brand, manufacturer, device, tags, type) must match across *all* partitions, a lineage field (fingerprint, model, build id, dates, versions...) must match *within* each lineage (system / vendor / product / bootimage), so a genuine GRF device whose system and vendor run different Android versions still reads clean while a fingerprint changed on some partitions but not others splits a lineage and turns red. It shows the full partition-to-value matrix. `prop:enum_vs_getprop` enumerates the property area natively (`__system_property_foreach`) and diffs it against `getprop` from another process, catching a property hidden from the shell or injected into one path only. Discovery is dynamic, so a new or unknown partition is covered without a code change.
+
+- **`integrity:buildprop_vs_runtime` reads the real per-partition paths now.** It was checking `/system_ext/build.prop` and `/product/build.prop`, which do not exist on many devices (the real ones are under `.../etc/`); the paths come from `partitions.txt` and cover every partition, `system_dlkm`/`vendor_dlkm` included.
+
+- **Coverage swept literal-by-literal against the 1.x Java build.** Fourteen property keys it read that the rewrite had dropped are back in the catalog (`gsm.version.ril-impl`, `ro.baseband.arch`, `ro.hardware.chipname`, `persist.graphics.egl`, the OEM manufacture-date props, `sys.kernel.firstboot`, ...), and its disguised-hider packages (`com.google.android.hmal`, `com.tsng.dyhhvf`, Android Faker) joined the detection lists.
+
+- **New: three app-perspective verdicts.** `integrity:ime_verdict` flags an enabled keyboard that is non-system and installed from outside the store allowlist (the rule banking RASP SDKs enforce). `integrity:store_authenticity` checks that Play Store, GMS and GSF, when present, carry Google's signing certificate (via `known_certs.txt`) - a store package signed by another key is a fake/microG/repack. `integrity:devgate` flags a developer-gated setting (adb and friends, list in `dev_gated_settings.txt`) left non-default while `development_settings_enabled=0`, which only root or `settings put` could have done. Each key carries its AOSP default next to it (`adb_allowed_connection_time` defaults to `604800000`, not `0`).
+
+- **New: `/data/local/tmp` is listed, not just probed by name.** `integrity:local_tmp_list` does a `getdents64` of the directory and surfaces any entry an app can actually reach, module drops included, instead of only checking known artifact names. A locked device keeps it shell-owned and unlistable (EACCES, the clean answer); a visible entry means residue is app-reachable.
+
+- **Divergences are now confirmed by a second read.** A real hook is deterministic, so a genuine divergence reproduces; read-noise (a racy provider/binder lens) flickers. When a probe comes out `MISMATCH`, the engine re-measures it once and, only if the divergence does not reproduce, reports the settled read instead. It never downgrades a divergence that survives the re-read, so a real detection is never hidden; it only removes flicker. The re-read runs solely for the handful of divergent probes, and cached probes (attestation, GPU) return the same values so they are unaffected.
+
+- **Fixed: the `content://settings` `call(GET_<store>)` phantom that faked identifier divergences.** On some devices (ColorOS/OnePlus seen) `ContentResolver.call("GET_global", key)` intermittently returns a phantom `"0"` for a key that lives in another namespace, so the `provider call GET_<store>` lens flickered between the real value, `"0"` and `"0,<value>"` across back-to-back scans - turning `id:android_id`, `id:ads`, `id:ads_keys`, the settings-sweep `spoof:*` and a few `set:*` probes red on one scan and green on the next with nothing changed. The call reader now drops a lone `"0"` when a real value exists in another store, which is deterministic and keeps a genuine `"0"` setting (adb_enabled and friends) intact. A divergence that does not survive a second read was read-noise, not a hook.
+
+- **New: StrongBox vs TEE signer cross-check.** A genuine device attests StrongBox and TEE keys under separate hardware roots, so their signing certificates differ; `attest:sb_tee_signer` generates a key at each level and flags a shared signer, which is a single keybox (TrickyStore) faking both. This is offline; the keybox-revocation check is a network call and is left out to keep VD Infos free of any network use.
+
+- **New: real-injection classifier for executable maps, and the hidden-superblock scan.** `integrity:maps_exec` walks `/proc/self/maps` and, for an executable `(deleted)`/`memfd`/`ashmem` mapping, calls it injection only when it is RWX (W^X violation) or begins with the ELF magic - so a real unlinked `.so` is caught while the ART JIT trampoline is counted as benign, a discriminator that a name allowlist keeps missing. `integrity:anon_minor` finds a filesystem superblock hidden in a private namespace by anon-bdev minor numbers present via `stat()` but absent from this process's mountinfo, with the long-run per-app churn ignored so only a short hole flags.
+
+- **New: loader-module scan that survives maps-scrubbing.** `integrity:dlphdr` enumerates loaded modules through `dl_iterate_phdr` (the linker), not `/proc/self/maps`, so a hook that scrubs its own entry from maps (Shamiko and friends) is still listed; a needle hit or a module outside the system allowlist turns it red. Names the linker hands back are read through a fault-safe copy, page by page up to the terminating NUL, so a scrubbed name string cannot SIGSEGV the scan and a readable name that ends right before an unmapped page is not mistaken for a scrubbed one. `integrity:frida_port` connects to `127.0.0.1:27042/27043` (the classic Frida server/gadget) and flags an open port. VDInfos was previously blind to loader-level injection and to the Frida port.
+
+- **New: catches an app-hider that only prunes the package list.** `integrity:concealment` takes a community-editable target list (`assets/data/conceal_targets.txt`: the root/Xposed managers, Shizuku, Termux, the backup and hiding apps) and, for each one absent from `getInstalledPackages`, tries the doors a partial hider forgets - `getPackageInfo`, `getApplicationInfo`, `createPackageContext` and the APK opened through that context as a `ZipFile`, the launch intent, and a `MAIN` intent resolved against the package (the classic Hide My Applist hooks `getInstalledPackages` but not intent resolution). A target hidden from the listing yet still reachable through any of them is the leak (it is what a third-party detector flags as "HMA-style concealment"); the probe prints the per-target `L/P/A/C/Z/I/R` door matrix and turns red only when a hidden target stays reachable. A device whose hider closes every door (all zeros) reads clean.
+
+- **Signing certificates now say whose they are.** A new community-editable catalog, `assets/data/known_certs.txt` (`SHA-256<tab>owner`, full hashes taken from real APKs), labels a known certificate wherever the app prints one: the installer-certificate cross-check, the all-apps initiator-signature gap, the installed-apps signing digests and this app's own signature. It ships with the Google, Motorola, Xiaomi (`CN=MIUI`), Telegram, Indus Appstore and VD171 keys.
+
+- **The installer-certificate check names the installer and explains itself.** Both lenses of `isrc:self_initiator_sig` now print the initiating package next to the hash (`com.miui.packageinstaller: c9009d01… [Xiaomi, CN=MIUI]`), so a report shows who installed the app without a follow-up question, and a note lists the causes. The verdict is unchanged. It was reported on two Xiaomi.eu HyperOS 3 phones with the same pair of hashes: `getPackageInfo()` reports Xiaomi's official certificate for `com.miui.packageinstaller`, while the install record holds a different one (`f87bd41b…`, not yet catalogued). That ROM re-signs the system with its own key, and the identical pair on two devices points at the ROM, not at the users' setups. The two APIs really do disagree, so the divergence stays.
+
 ## [2.20] - 2026-09-23
 
 - **VD Infos is now open source.** The full app - Kotlin/Compose, the native lens, the Gradle build -
@@ -336,21 +384,20 @@ The 2.x line is a ground-up rewrite; the last public 1.x release was
   that a single-method reader was blind to.
 
 - **Spoofed keys, the ad-id family and spoofed properties come from a central hub,
-  not the binary.** The root layer writes the current spoof matrix, the advertising-id
-  key family and the list of spoofed system properties into the app's own `filesDir`
-  (`vd_hub_matrix_keys.txt`, `vd_hub_ads_keys.txt`, `vd_hub_spoofed_props.txt`), which
-  an untrusted app can read where `/data/adb` cannot. When a hub file is present it
-  replaces the built-in default, so changing what is spoofed or validated is an edit
-  to the shared source of truth (`VD.json`) rather than a rebuild of the app; the
-  built-in lists stay as a fallback when the hub is absent.
+  not the binary.** An optional root layer can drop the current spoof matrix, the advertising-id
+  key family and the list of spoofed system properties into the app's own `filesDir`,
+  which an untrusted app can read where `/data/adb` cannot. When such a file is present
+  it replaces the built-in default, so changing what is spoofed or validated is a config
+  edit rather than a rebuild of the app; the built-in lists stay as a fallback when it
+  is absent.
 - **INT settings are also read through `getInt`, not only `getString`.** A method-level
   spoofer can hook `Settings.*.getInt` without touching `getString` (XPL-EX-style privacy
   modules hook the two separately); the consistency probes read an INT-typed key through
   `getInt` across the three stores now, next to the `getString` sweep, so a hook on one
   door and not the other stands out. Types come from the same central matrix, so which
   keys are INT is data, not code.
-- **The validators now cover exactly what the root layer spoofs.** 38 system
-  properties the module rewrites had no cross-method validator and were added to the
+- **The validators now cover exactly what a root layer typically spoofs.** 38 system
+  properties had no cross-method validator and were added to the
   catalogue; the advertising-id family (`ad_aaid` and its siblings) is read through
   all five property and settings routes rather than one; and six more HMA-spoofed
   settings keys joined the consistency matrix, keeping it in step with the detector's
@@ -358,7 +405,7 @@ The 2.x line is a ground-up rewrite; the last public 1.x release was
 
 - **Spoof consistency went UNIVERSAL: every setting, not just our matrix.** The app is meant
   to be public, so the spoof-consistency check can no longer live off a curated list of the keys
-  *we* know our own root layer spoofs. The new `spoof:sweep` probe enumerates each settings store
+  *we* already know a root layer spoofs. The new `spoof:sweep` probe enumerates each settings store
   once (`global`/`secure`/`system`) and, for EVERY key the provider exposes, compares the value the
   cached API (`Settings.*.getString`, what apps read and what hooks target) returns against the raw
   provider `query` value - any key whose two doors disagree is a spoof that covers one and not the
@@ -372,14 +419,14 @@ The 2.x line is a ground-up rewrite; the last public 1.x release was
   focused, full-8-path detail for the highest-value keys; the sweep is the universal net.
 
 - **The device's own firmware props are the ruler: bootimage partition added.** The
-  stock `build.prop`/`prop.default` of this device's boot partitions
-  (`vienna-kernel-build/device/props`) is the ground truth a spoof diverges from. The
+  stock `build.prop`/`prop.default` of a device's boot partitions is the ground truth a
+  spoof diverges from. The
   `init_boot`/`boot` ramdisk carries its OWN build identity, which stays at the
-  codename-shared values on stock (`ro.bootimage.build.id=...M...`,
-  `ro.product.bootimage.model=motorola edge 50 neo`, `ro.product.bootimage.name=vienna_g_sys`).
+  codename-shared values on stock (`ro.bootimage.build.id=...`,
+  `ro.product.bootimage.model=<device model>`, `ro.product.bootimage.name=<codename>_sys`).
   A fingerprint/model spoofer that rewrites `ro.build.*`/`ro.product.*` but forgets this
-  partition leaves a divergence - the same class as the b7524745 gap, across partitions.
-  18 firmware props that had no probe were added to the catalogue (measured on vienna: the app
+  partition leaves a divergence - the same class of gap, across partitions.
+  18 firmware props that had no probe were added to the catalogue (measured on a Motorola Android 16: the app
   reads `ro.hardware.soc.manufacturer`, `ro.build.ab_update`, `ro.treble.enabled` and
   `ro.boot.dynamic_partitions`, while the `ro.bootimage.build.*`/`ro.product.bootimage.*` family and
   `ro.mot.build.guid` come back null - their prop context is SELinux-restricted from untrusted_app,

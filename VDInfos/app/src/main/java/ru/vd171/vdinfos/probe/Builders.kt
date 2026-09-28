@@ -34,14 +34,19 @@ class Method(
     val lens: Lens, val source: String, val compare: Boolean = true,
     val cmd: String? = null,
     val refusalIsValue: Boolean = false,
+    val tag: String? = null,
+    val reveal: ((Context) -> String?)? = null,
     val read: (Context) -> String?,
 )
 
 fun jm(source: String, compare: Boolean = true, read: (Context) -> String?) =
     Method(Lens.JAVA, source, compare, read = read)
 
-fun nm(source: String, compare: Boolean = true, read: () -> String?) =
-    Method(Lens.NATIVE, source, compare) { read() }
+fun jmReveal(source: String, reveal: (Context) -> String?, read: (Context) -> String?) =
+    Method(Lens.JAVA, source, compare = false, reveal = reveal, read = read)
+
+fun nm(source: String, compare: Boolean = true, tag: String? = null, read: () -> String?) =
+    Method(Lens.NATIVE, source, compare, tag = tag) { read() }
 
 fun sm(cmd: String, source: String = "sh: $cmd", compare: Boolean = true) =
     Method(Lens.SHELL, source, compare, cmd, refusalIsValue = false) { Exec.run(cmd) }
@@ -67,7 +72,7 @@ fun probe(
         } else listOf(m)
     }
     return ProbeTask(ProbeSpec(id, title, cat, full.map { it.lens }.toSet(), note, sensitive, solution)) { ctx ->
-        full.map { m -> measure(m.lens, m.source, m.compare) { m.read(ctx) } }
+        full.map { m -> measure(m.lens, m.source, m.compare, m.tag, reveal = m.reveal?.invoke(ctx)) { m.read(ctx) } }
     }
 }
 
@@ -82,7 +87,7 @@ fun propItem(key: String, cat: Category, sensitive: Boolean = false) = probe(
     methods = listOf(
         jm("SystemProperties.get") { SystemProps.get(key) },
         nm("__system_property_read_callback") { NativeBridge.sysprop(key) },
-        nm("__system_property_get (92-byte API)") { NativeBridge.syspropClassic(key) },
+        nm("__system_property_get", tag = "JNI 92B") { NativeBridge.syspropClassic(key) },
         sm("getprop $key", "getprop"),
         nsm("getprop $key", "popen: getprop"),
     ),
@@ -98,7 +103,7 @@ fun propTrio(
     return listOf(
         jm("SystemProperties $key", compare) { f(SystemProps.get(key)) },
         nm("read_callback $key", compare) { f(NativeBridge.sysprop(key)) },
-        nm("property_get $key (92B)", compare) { f(NativeBridge.syspropClassic(key)) },
+        nm("property_get $key", compare, tag = "JNI 92B") { f(NativeBridge.syspropClassic(key)) },
         Method(Lens.SHELL, "getprop $key", compare, cmd) { f(Exec.run(cmd)) },
         Method(Lens.SHELL_NATIVE, "popen: getprop $key", compare, cmd) {
             f(Exec.normalise(NativeBridge.exec(cmd)))
@@ -155,14 +160,15 @@ fun settingViaBulk(c: Context, key: String): String? {
 }
 
 fun settingViaCall(c: Context, key: String): String? {
+    val vals = ArrayList<String>()
     for (store in listOf("global", "secure", "system")) {
         val v = runCatching {
             c.contentResolver.call(android.net.Uri.parse("content://settings"), "GET_$store", key, null)
                 ?.getString("value")
         }.getOrNull()
-        if (!v.isNullOrEmpty()) return v
+        if (!v.isNullOrEmpty()) vals.add(v)
     }
-    return null
+    return vals.firstOrNull { it != "0" } ?: vals.firstOrNull()
 }
 
 fun settingBlock(key: String, compare: Boolean = true) = listOf(
@@ -179,5 +185,5 @@ fun settingBlock(key: String, compare: Boolean = true) = listOf(
         "| grep -v '^null$' | head -1", "settings get 3-stores $key", compare = false),
 )
 
-fun am(source: String, compare: Boolean = true, read: () -> String?) =
-    Method(Lens.ATTEST, source, compare) { read() }
+fun am(source: String, compare: Boolean = true, tag: String? = null, read: () -> String?) =
+    Method(Lens.ATTEST, source, compare, tag = tag) { read() }

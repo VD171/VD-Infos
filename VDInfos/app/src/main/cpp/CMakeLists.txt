@@ -24,7 +24,9 @@ project("vdinfos")
 add_library(vdinfos SHARED native_probes.cpp)
 
 find_library(log-lib log)
+find_library(egl-lib EGL)
+find_library(glesv2-lib GLESv2)
 
-target_link_libraries(vdinfos ${log-lib})
+target_link_libraries(vdinfos ${log-lib} ${egl-lib} ${glesv2-lib})
 
 target_compile_options(vdinfos PRIVATE -Wall -Wextra -fvisibility=hidden)

@@ -55,6 +55,7 @@
     <string name="verdict_info">معلومة</string>
     <string name="reading_context_only">سياق</string>
     <string name="reading_empty">(فارغ)</string>
+    <string name="reveal_original">القيمة الأصلية</string>
     <string name="verdict_empty">فارغ</string>
     <string name="verdict_error">خطأ</string>
 
@@ -200,6 +201,15 @@
     <string name="t_installed_packages_list">الحزم المثبّتة (قائمة)</string>
     <string name="t_kernel_release">النواة (release)</string>
     <string name="t_kernel_version">النواة (الإصدار)</string>
+    <string name="t_kernel_version_string">النواة (سلسلة الإصدار)</string>
+    <string name="t_kernel_version_claim">ادعاء إصدار النواة (ro.kernel.version مقابل uname)</string>
+    <string name="note_kernel_version_claim">من المفترض أن تعكس خاصية ro.kernel.version النواة العاملة. إذا ادّعت major.minor لا يطابقه إصدار uname الحقيقي، فإن محوّلًا ضبط الخاصية بينما النواة تحتها نواة أخرى.</string>
+    <string name="t_kernel_build_date">تاريخ بناء النواة مقابل ROM</string>
+    <string name="note_kernel_build_date">نواة GKI مسبقة البناء أقدم من الـ ROM الذي تُشحن فيه أو تطابقه. النواة التي بُنيت بعد تجميع الـ ROM بوقت طويل أُعيد بناؤها أو تفليشها لاحقًا، وهي العلامة المعتادة على نواة مُجمَّعة يدويًا.</string>
+    <string name="t_kernel_config">إعداد النواة (‎/proc/config.gz)</string>
+    <string name="note_kernel_config">إعداد النواة، حيث يمكن قراءته، يذكر التصحيحات المضمّنة: KSU وSUSFS ونسخة محلية مخصصة وتوقيع وحدات غير مُلزَم. غالبًا ما يمنع صندوق التطبيق هذا الملف؛ ويُقرأ على أندرويد الأقدم وROM المخصصة وأصداف الروت.</string>
+    <string name="t_kernel_module_scan">وحدات النواة ورموزها</string>
+    <string name="note_kernel_module_scan">يمسح ‎/sys/module وأسماء رموز ‎/proc/kallsyms بحثًا عن ksu وsusfs وmagisk التي تكشفها نواة مُرقّعة أو مُحمّلة بوحدات. كلا السطحين مقيّدان غالبًا؛ ويُقرآن حيث يسمح النطاق.</string>
     <string name="t_kernel_cmdline">cmdline النواة</string>
     <string name="t_kernel_log">سجل النواة</string>
     <string name="t_kernel_stat">stat النواة</string>
@@ -227,6 +237,10 @@
     <string name="t_suspicious_apps">تطبيقات مشبوهة</string>
     <string name="t_running_app_processes">عمليات التطبيقات قيد التشغيل</string>
     <string name="t_running_services">الخدمات قيد التشغيل</string>
+    <string name="t_xposed_scan_all">مسح البيانات الوصفية Xposed: جميع التطبيقات</string>
+    <string name="t_debuggable_scan_all">مسح التطبيقات القابلة للتصحيح</string>
+    <string name="t_uid_groups">مجموعات مشاركة UID</string>
+    <string name="t_updated_system">تطبيقات النظام المحدثة (FLAG_UPDATED_SYSTEM_APP)</string>
     <string name="t_sdk_int">SDK int</string>
     <string name="t_selinux_mls_enabled">SELinux MLS مُفعّل</string>
     <string name="t_selinux_context_self">سياق SELinux (الذات)</string>
@@ -414,6 +428,7 @@
     <string name="t_isrc_gap_system_shell_installed">فجوة: تطبيق نظام مثبَّت عبر shell</string>
     <string name="t_isrc_gap_update_owner_drift">فجوة: updateOwner ≠ installer</string>
     <string name="t_isrc_gap_self_declared_installer">فجوة: التطبيق هو installer الخاص به</string>
+    <string name="t_isrc_landscape">مشهد مصدر التثبيت (جميع التطبيقات حسب المثبّت)</string>
     <string name="t_installed_packages_diff">الحزم المثبّتة: متباينة (JVM x pm)</string>
     <string name="t_installed_applications_diff">التطبيقات المثبّتة: متباينة (JVM x pm)</string>
     <string name="t_selinux_status">صفحة status الخاصة بـ SELinux (policyload/seq)</string>
@@ -436,4 +451,41 @@
     <string name="n_tee_soter">تقارن برنامج خدمة Soter من Tencent بحالة خاصية خدمته.</string>
     <string name="t_proc_cgroup_format">تنسيق مسار cgroup</string>
     <string name="n_proc_cgroup_format">الحاوية المستنسخة / ثنائية التطبيق تجعل مسار cgroup الموحّد ينحرف عن الصيغة القياسية uid_/pid_.</string>
+    <string name="t_gpu_vendor">مُصنّع GPU</string>
+    <string name="t_gpu_renderer">مُصيّر GPU</string>
+    <string name="t_gpu_version">إصدار GPU</string>
+    <string name="t_gpu_glsl">إصدار GLSL لـ GPU</string>
+    <string name="t_tel_typeAllocationCode">رمز تخصيص النوع (TAC)</string>
+    <string name="t_tel_manufacturerCode">رمز الشركة المصنّعة</string>
+    <string name="t_tel_simCarrierId">معرّف مشغّل SIM</string>
+    <string name="t_tel_simCarrierIdName">اسم مشغّل SIM</string>
+    <string name="t_tel_simSpecificCarrierId">معرّف مشغّل SIM المحدّد</string>
+    <string name="t_tel_visualVoicemailPackageName">حزمة البريد الصوتي المرئي</string>
+    <string name="t_keychain_blacklist">القائمة السوداء لشهادات Keychain</string>
+    <string name="t_buildprop_vs_runtime">build.prop vs runtime</string>
+    <string name="note_boot_count">boot_count (الإطار) يزداد فقط؛ Phenotype_boot_count (خدمات Play) هو لقطته وقد يتأخّر. يتباين فقط إذا تجاوزت اللقطة boot_count (إعادة تعيين).</string>
+    <string name="note_isrc_initiator_sig">الشهادة التي سجّلها النظام للمثبّت عند تثبيت هذا التطبيق تختلف عن التي يبلّغ عنها المثبّت الآن. يسبب ذلك مثبّت مستبدَل أو توقيع مزيّف؛ والرومات التي تعيد توقيع النظام وتبلّغ عن الشهادة الأصلية للمصنّع (مثل Xiaomi.eu) تُظهر ذلك على كل جهاز.</string>
+    <string name="t_concealment">إخفاء التطبيقات</string>
+    <string name="note_concealment">الحزمة المخفية من قائمة التطبيقات لكن ما زال يمكن الوصول إليها عبر باب آخر في PackageManager (معلومات الحزمة، createPackageContext، ملف APK المفتوح، launch intent) مخفية من باب دون آخر - علامة أداة إخفاء تطبيقات ناقصة.</string>
+    <string name="t_prop_variants">متغيّرات حسب القسم: %1$s</string>
+    <string name="t_prop_enum">تعداد الخصائص مقابل getprop</string>
+    <string name="note_prop_variants">تظهر اللاحقة نفسها لكل قسم (system, vendor, product, odm, dlkm...). القيم التي يجب أن تتطابق في كل مكان لكنها تختلف، أو التي تنقسم داخل السلالة نفسها، تكشف تزييفًا جزئيًا - بصمة غُيّرت في بعض الأقسام دون غيرها.</string>
+    <string name="note_prop_enum">تعداد منطقة الخصائص أصلاً (__system_property_foreach) ومقارنته مع getprop من عملية أخرى يكشف خاصية مخفية عن الصدفة أو محقونة في مسار دون آخر.</string>
+    <string name="t_dlphdr">وحدات المُحمِّل (dl_iterate_phdr)</string>
+    <string name="t_frida_port">فحص منفذ Frida</string>
+    <string name="note_dlphdr">يعدّد dl_iterate_phdr الوحدات المحمّلة عبر الرابط، لا عبر /proc/self/maps، لذا فإن هوكًا يمحو إدخاله من maps يظل مدرجًا هنا. تطابق needle أو وحدة خارج قائمة النظام المسموح بها هو التسريب.</string>
+    <string name="t_ime_verdict">حكم سلامة لوحة المفاتيح</string>
+    <string name="t_store_authenticity">موثوقية توقيع المتجر/GMS</string>
+    <string name="t_devgate">اتساق الإعدادات المقيّدة بوضع المطور</string>
+    <string name="note_ime_verdict">يرفض RASP مصرفي (PayZapp/Zeta) أي لوحة مفاتيح مُفعّلة غير نظامية ومثبّتة خارج قائمة المتاجر المسموح بها. يُعلَّم أي IME غير نظامي مُفعّل بمثبّت من خارج المتجر.</string>
+    <string name="note_store_authenticity">يجب أن تحمل Play Store وGMS وGSF شهادة توقيع Google. وجود حزمة متجر أو GMS موقّعة بمفتاح مختلف يعني متجرًا مزيّفًا أو microG أو متجرًا مُعاد تحزيمه.</string>
+    <string name="note_devgate">لا تتغيّر adb والإعدادات الأخرى المقيّدة بوضع المطور إلا وخيارات المطور مفعّلة. إعداد مقيّد غير افتراضي مع development_settings_enabled=0 لا يمكن أن يكون قد ضُبط إلا عبر الجذر أو `settings put`.</string>
+    <string name="t_maps_exec">خرائط exec محقونة (deleted/memfd)</string>
+    <string name="t_anon_minor">كتلة فائقة anon-bdev مخفية</string>
+    <string name="note_maps_exec">التعيين القابل للتنفيذ المدعوم بملف (deleted)/memfd/ashmem الذي يكون RWX (ينتهك W^X) أو يبدأ بسحر ELF هو ملف .so محقون حقيقي منفصل عن نظام الملفات؛ ترامبولين JIT الخاص بـ ART ليس أيًّا منهما ويُحتسب حميدًا. الوحدة خارج قائمة النظام المسموح بها تُحتسب أيضًا.</string>
+    <string name="note_anon_minor">أنظمة الملفات بلا جهاز كتلي تأخذ الـ minor من تجمّع anon عالمي، كثيف من الأسفل. minor موجود عبر stat() لكنه غائب من mountinfo لهذه العملية هو كتلة فائقة حية مخبّأة في مساحة أسماء خاصة (tmpfs لخفي). سلسلة طويلة من minor مفقودة هي churn لكل تطبيق وتُتجاهل؛ الثقب القصير هو الدليل.</string>
+    <string name="t_sb_tee_signer">موقّع StrongBox × TEE</string>
+    <string name="note_sb_tee_signer">للجهاز الأصلي جذور attestation منفصلة لعتاد StrongBox وTEE، لذا تختلف شهادات التوقيع. keybox واحد (TrickyStore) يزيّف المستويين يوقّع كليهما بالشهادة نفسها - الموقّع المشترك هو الدليل.</string>
+    <string name="t_local_tmp_list">سرد /data/local/tmp</string>
+    <string name="note_local_tmp_list">سرد /data/local/tmp عبر getdents64 (لا بحث بالاسم) يُظهر أي بقايا يمكن للتطبيق الوصول إليها فعلاً، بما فيها ما يسقطه الوحدة. على جهاز مقفل يملك الدليل الـ shell ولا يمكن للتطبيق سرده، فيكون EACCES هو الجواب النظيف؛ ووجود إدخال ظاهر يعني بقايا يصل إليها التطبيق.</string>
 </resources>

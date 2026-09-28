@@ -97,8 +97,9 @@ object SystemExtraProbes {
             @Suppress("PackageManagerGetSignatures", "DEPRECATION")
             val pi = c.packageManager.getPackageInfo(c.packageName, android.content.pm.PackageManager.GET_SIGNATURES)
             val sig = pi.signatures?.firstOrNull()?.toByteArray() ?: return@jprobe null
-            java.security.MessageDigest.getInstance("SHA-256").digest(sig)
-                .joinToString(":") { b -> "%02X".format(b) }
+            val d = java.security.MessageDigest.getInstance("SHA-256").digest(sig)
+            d.joinToString(":") { b -> "%02X".format(b) } +
+                (AssetData.certLabel(c, d.joinToString("") { b -> "%02x".format(b) })?.let { " [$it]" } ?: "")
         })
 
         add(jprobe("hw:sensor_count", ctx.getString(R.string.t_sensor_count), Category.SENSORS,

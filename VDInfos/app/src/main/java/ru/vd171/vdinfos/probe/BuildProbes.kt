@@ -36,7 +36,7 @@ object BuildProbes {
                 add(jm("Build.$id") { v() })
                 if (prop != null) {
                     add(nm("read_callback $prop", compare) { NativeBridge.sysprop(prop) })
-                    add(nm("property_get $prop (92B)", compare) { NativeBridge.syspropClassic(prop) })
+                    add(nm("property_get $prop", compare, tag = "JNI 92B") { NativeBridge.syspropClassic(prop) })
                     add(sm("getprop $prop", "getprop $prop", compare))
                 }
             }, solution = solution))

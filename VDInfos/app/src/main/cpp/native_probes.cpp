@@ -41,12 +41,18 @@
 #include <sys/syscall.h>
 #include <sys/stat.h>
 #include <dlfcn.h>
+#include <link.h>
+#include <set>
+#include <sys/sysmacros.h>
+#include <arpa/inet.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <poll.h>
 #include <linux/netlink.h>
 #include <linux/sock_diag.h>
 #include <linux/inet_diag.h>
+#include <EGL/egl.h>
+#include <GLES2/gl2.h>
 
 namespace {
 
@@ -619,6 +625,298 @@ jstring nSockDiag(JNIEnv* env, jobject) {
     return toJstring(env, "leak-empty");
 }
 
+jstring nStatMeta(JNIEnv* env, jobject, jstring jpath) {
+    const char* path = env->GetStringUTFChars(jpath, nullptr);
+    struct stat st {};
+    int r = stat(path, &st);
+    env->ReleaseStringUTFChars(jpath, path);
+    if (r != 0) return nullptr;
+    return toJstring(env, std::to_string(static_cast<long long>(st.st_mtime)) + "\t" +
+                              std::to_string(static_cast<long long>(st.st_size)));
+}
+
+jstring nGpuInfo(JNIEnv* env, jobject) {
+    EGLDisplay dpy = eglGetDisplay(EGL_DEFAULT_DISPLAY);
+    if (dpy == EGL_NO_DISPLAY) return nullptr;
+    if (!eglInitialize(dpy, nullptr, nullptr)) return nullptr;
+    const EGLint cfgAttr[] = {
+        EGL_SURFACE_TYPE, EGL_PBUFFER_BIT,
+        EGL_RENDERABLE_TYPE, EGL_OPENGL_ES2_BIT,
+        EGL_RED_SIZE, 8, EGL_GREEN_SIZE, 8, EGL_BLUE_SIZE, 8,
+        EGL_NONE,
+    };
+    EGLConfig cfg;
+    EGLint num = 0;
+    if (!eglChooseConfig(dpy, cfgAttr, &cfg, 1, &num) || num < 1) { eglTerminate(dpy); return nullptr; }
+    const EGLint pbAttr[] = { EGL_WIDTH, 1, EGL_HEIGHT, 1, EGL_NONE };
+    EGLSurface surf = eglCreatePbufferSurface(dpy, cfg, pbAttr);
+    if (surf == EGL_NO_SURFACE) { eglTerminate(dpy); return nullptr; }
+    const EGLint ctxAttr[] = { EGL_CONTEXT_CLIENT_VERSION, 2, EGL_NONE };
+    EGLContext ctx = eglCreateContext(dpy, cfg, EGL_NO_CONTEXT, ctxAttr);
+    if (ctx == EGL_NO_CONTEXT) { eglDestroySurface(dpy, surf); eglTerminate(dpy); return nullptr; }
+    if (!eglMakeCurrent(dpy, surf, surf, ctx)) {
+        eglDestroyContext(dpy, ctx); eglDestroySurface(dpy, surf); eglTerminate(dpy); return nullptr;
+    }
+    auto g = [](GLenum n) -> std::string {
+        const GLubyte* s = glGetString(n);
+        return s ? reinterpret_cast<const char*>(s) : std::string();
+    };
+    std::string out = g(GL_VENDOR) + "\t" + g(GL_RENDERER) + "\t" +
+                      g(GL_VERSION) + "\t" + g(GL_SHADING_LANGUAGE_VERSION);
+    eglMakeCurrent(dpy, EGL_NO_SURFACE, EGL_NO_SURFACE, EGL_NO_CONTEXT);
+    eglDestroyContext(dpy, ctx);
+    eglDestroySurface(dpy, surf);
+    eglTerminate(dpy);
+    return toJstring(env, out);
+}
+
+static void propListCb(void* cookie, const char* name, const char* value, uint32_t) {
+    auto* out = static_cast<std::string*>(cookie);
+    out->append(name ? name : "");
+    out->push_back('\t');
+    out->append(value ? value : "");
+    out->push_back('\n');
+}
+
+static void propListEach(const prop_info* pi, void* cookie) {
+    __system_property_read_callback(pi, propListCb, cookie);
+}
+
+jbyteArray nPropList(JNIEnv* env, jobject) {
+    std::string out;
+    __system_property_foreach(propListEach, &out);
+    jbyteArray arr = env->NewByteArray(static_cast<jsize>(out.size()));
+    if (arr == nullptr) return nullptr;
+    env->SetByteArrayRegion(arr, 0, static_cast<jsize>(out.size()), reinterpret_cast<const jbyte*>(out.data()));
+    return arr;
+}
+
+static bool pathAllowed(const char* p) {
+    if (!p || !*p) return true;
+    if (p[0] == '[') return true;
+    if (std::strcmp(p, "linux-vdso.so.1") == 0) return true;
+    static const char* ok[] = {"/system/", "/apex/", "/vendor/", "/product/", "/system_ext/",
+                               "/data/app/", "/data/misc/apexdata/", "/data/dalvik-cache/", nullptr};
+    for (int i = 0; ok[i]; i++) if (std::strncmp(p, ok[i], std::strlen(ok[i])) == 0) return true;
+    if (std::strstr(p, "linker64") || std::strcmp(p, "libc.so") == 0 || std::strcmp(p, "libdl.so") == 0) return true;
+    return false;
+}
+
+static const char* kDlNeedles[] = {"magisk", "zygisk", "lsposed", "riru", "frida",
+                                   "substrate", "edxposed", "/data/adb", "memfd", "(deleted)", nullptr};
+
+static size_t safeReadableLen(const char* p, size_t max) {
+    if (p == nullptr || max == 0) return 0;
+    int fds[2];
+    if (pipe(fds) != 0) return 0;
+    fcntl(fds[1], F_SETFL, O_NONBLOCK);
+    const size_t pg = (size_t) sysconf(_SC_PAGESIZE);
+    if (max > 4096) max = 4096;
+    size_t total = 0;
+    while (total < max) {
+        const uintptr_t at = reinterpret_cast<uintptr_t>(p + total);
+        size_t chunk = pg - (at % pg);
+        if (chunk > max - total) chunk = max - total;
+        ssize_t n = write(fds[1], p + total, chunk);
+        if (n <= 0) break;
+        const bool nul = memchr(p + total, 0, (size_t) n) != nullptr;
+        total += (size_t) n;
+        if (nul || (size_t) n < chunk) break;
+    }
+    close(fds[0]);
+    close(fds[1]);
+    return total;
+}
+
+struct DlAcc { int nhits = 0; int noutside = 0; std::string hits; std::string outside; };
+
+static int dlCb(struct dl_phdr_info* info, size_t, void* data) {
+    DlAcc* a = static_cast<DlAcc*>(data);
+    const char* raw = info->dlpi_name;
+    size_t len = safeReadableLen(raw, 4096);
+    if (raw != nullptr && len == 0) {
+        a->noutside++;
+        if (a->outside.size() < 400) { if (!a->outside.empty()) a->outside += "|"; a->outside += "<unreadable-name>"; }
+        return 0;
+    }
+    std::string name = (raw && len) ? std::string(raw, len) : std::string();
+    size_t z = name.find('\0');
+    if (z != std::string::npos) name.resize(z);
+    for (int i = 0; kDlNeedles[i]; i++) {
+        if (name.find(kDlNeedles[i]) != std::string::npos) {
+            if (!a->hits.empty()) a->hits += "|";
+            a->hits += name; a->nhits++; break;
+        }
+    }
+    if (!pathAllowed(name.c_str())) {
+        a->noutside++;
+        if (a->outside.size() < 400) { if (!a->outside.empty()) a->outside += "|"; a->outside += name; }
+    }
+    return 0;
+}
+
+jstring nDlPhdr(JNIEnv* env, jobject) {
+    DlAcc a;
+    dl_iterate_phdr(dlCb, &a);
+    std::string out = std::to_string(a.nhits) + "\t" + (a.hits.empty() ? "-" : a.hits) + "\t" +
+                      std::to_string(a.noutside) + "\t" + (a.outside.empty() ? "-" : a.outside);
+    return toJstring(env, out);
+}
+
+static bool portOpen(const char* ip, int port) {
+    int fd = socket(AF_INET, SOCK_STREAM, 0);
+    if (fd < 0) return false;
+    fcntl(fd, F_SETFL, O_NONBLOCK);
+    struct sockaddr_in sa {};
+    sa.sin_family = AF_INET;
+    sa.sin_port = htons((uint16_t) port);
+    sa.sin_addr.s_addr = inet_addr(ip);
+    bool open = false;
+    int r = connect(fd, reinterpret_cast<struct sockaddr*>(&sa), sizeof(sa));
+    if (r == 0) open = true;
+    else {
+        struct pollfd pfd { fd, POLLOUT, 0 };
+        if (poll(&pfd, 1, 250) > 0 && (pfd.revents & POLLOUT)) {
+            int err = 0; socklen_t l = sizeof(err);
+            getsockopt(fd, SOL_SOCKET, SO_ERROR, &err, &l);
+            open = (err == 0);
+        }
+    }
+    close(fd);
+    return open;
+}
+
+jstring nFridaPorts(JNIEnv* env, jobject) {
+    std::string out;
+    int ports[] = {27042, 27043};
+    for (int i = 0; i < 2; i++) {
+        if (i) out += "\t";
+        out += std::to_string(ports[i]) + ":" + (portOpen("127.0.0.1", ports[i]) ? "open" : "closed");
+    }
+    return toJstring(env, out);
+}
+
+jstring nMapsDeletedExec(JNIEnv* env, jobject) {
+    std::string maps = readFileRaw("/proc/self/maps", 8u << 20);
+    int mdel = 0, mout = 0, mbenign = 0;
+    std::string delhits, outhits;
+    size_t pos = 0;
+    while (pos < maps.size()) {
+        size_t nl = maps.find('\n', pos);
+        std::string line = maps.substr(pos, (nl == std::string::npos ? maps.size() : nl) - pos);
+        pos = (nl == std::string::npos) ? maps.size() : nl + 1;
+        size_t sp = line.find(' ');
+        if (sp == std::string::npos || sp + 4 > line.size()) continue;
+        if (line[sp + 3] != 'x') continue;
+        bool wx = (line[sp + 2] == 'w');
+        size_t slash = line.find('/');
+        std::string pth = (slash != std::string::npos) ? line.substr(slash) : std::string();
+        bool deleted = pth.find("(deleted)") != std::string::npos || pth.find("memfd:") != std::string::npos
+                       || pth.find("/dev/ashmem") != std::string::npos;
+        if (deleted) {
+            bool isElf = false;
+            if (line[sp + 1] == 'r') {
+                unsigned long long start = std::strtoull(line.c_str(), nullptr, 16);
+                if (start) {
+                    const unsigned char* m = reinterpret_cast<const unsigned char*>(start);
+                    if (m[0] == 0x7f && m[1] == 'E' && m[2] == 'L' && m[3] == 'F') isElf = true;
+                }
+            }
+            if (wx || isElf) {
+                mdel++;
+                if (delhits.size() < 300) { if (!delhits.empty()) delhits += "|"; delhits += (isElf ? "ELF:" : "RWX:"); delhits += pth.empty() ? "<anon>" : pth; }
+            } else {
+                mbenign++;
+            }
+        } else if (!pth.empty() && pth[0] == '/' && !pathAllowed(pth.c_str())) {
+            mout++;
+            if (outhits.size() < 300) { if (!outhits.empty()) outhits += "|"; outhits += pth; }
+        }
+    }
+    std::string out = std::to_string(mdel) + "\t" + (delhits.empty() ? "-" : delhits) + "\t" +
+                      std::to_string(mout) + "\t" + (outhits.empty() ? "-" : outhits) + "\t" +
+                      std::to_string(mbenign);
+    return toJstring(env, out);
+}
+
+static bool statAnonMinor(const char* path, int& out) {
+    struct stat st {};
+    if (stat(path, &st) != 0) return false;
+    if (major(st.st_dev) != 0) return false;
+    out = static_cast<int>(minor(st.st_dev));
+    return true;
+}
+
+jstring nAnonHoles(JNIEnv* env, jobject) {
+    int flr = -1;
+    const char* floors[] = {"/tmp", "/dev/cpuset", "/sys/fs/cgroup", nullptr};
+    for (int i = 0; floors[i]; i++) { int m; if (statAnonMinor(floors[i], m) && m > flr) flr = m; }
+    std::string pkg = readFileRaw("/proc/self/cmdline", 512);
+    size_t nul = pkg.find('\0'); if (nul != std::string::npos) pkg.resize(nul);
+    size_t colon = pkg.find(':'); if (colon != std::string::npos) pkg.resize(colon);
+    std::vector<std::string> ceils = {"/storage/emulated/0/Android/data/.nomedia",
+                                      "/storage/emulated/0/Android/obb/.nomedia"};
+    if (!pkg.empty()) ceils.push_back("/storage/emulated/0/Android/data/" + pkg);
+    ceils.push_back("/storage/emulated/0"); ceils.push_back("/storage/emulated");
+    int ceil = -1;
+    for (auto& cp : ceils) { int m; if (statAnonMinor(cp.c_str(), m)) { ceil = m; break; } }
+    if (flr < 0 || ceil <= flr) return toJstring(env, "0\tNENHUM(ok)\t0\t0\t0");
+    std::set<int> present;
+    std::string mi = readFileRaw("/proc/self/mountinfo", 1u << 20);
+    size_t pos = 0;
+    while (pos < mi.size()) {
+        size_t eol = mi.find('\n', pos);
+        std::string line = mi.substr(pos, (eol == std::string::npos ? mi.size() : eol) - pos);
+        pos = (eol == std::string::npos) ? mi.size() : eol + 1;
+        int id, parent, mj, mn; char root[4096] = {}, tgt[4096] = {};
+        if (sscanf(line.c_str(), "%d %d %d:%d %4095s %4095s", &id, &parent, &mj, &mn, root, tgt) < 6) continue;
+        if (mj != 0) continue;
+        std::string t = tgt, rt = root;
+        bool appPriv = t.rfind("/data/data", 0) == 0 || t.rfind("/data/user", 0) == 0 ||
+                       t.rfind("/data/misc/profiles", 0) == 0 ||
+                       (pkg.find('.') != std::string::npos && rt.find(pkg) != std::string::npos);
+        if (!appPriv) present.insert(mn);
+    }
+    std::string holes; int nholes = 0, churnRuns = 0, churnMin = 0;
+    int m = flr + 1;
+    while (m < ceil) {
+        if (present.find(m) != present.end()) { m++; continue; }
+        int run = m; while (run < ceil && present.find(run) == present.end()) run++;
+        int len = run - m;
+        if (len > 10) { churnRuns++; churnMin += len; }
+        else for (int k = m; k < run; k++) { if (!holes.empty()) holes += ","; holes += std::to_string(k); nholes++; }
+        m = run;
+    }
+    std::string out = std::to_string(nholes) + "\t" + (holes.empty() ? "NENHUM(ok)" : holes) + "\t" +
+                      std::to_string(churnRuns) + "\t" + std::to_string(churnMin) + "\t" +
+                      std::to_string(ceil - flr - 1);
+    return toJstring(env, out);
+}
+
+jstring nDirList(JNIEnv* env, jobject, jstring jdir) {
+    const char* dir = env->GetStringUTFChars(jdir, nullptr);
+    int fd = open(dir, O_RDONLY | O_DIRECTORY | O_CLOEXEC);
+    env->ReleaseStringUTFChars(jdir, dir);
+    if (fd < 0) return toJstring(env, errno == EACCES ? "EACCES"
+                                    : (errno == ENOENT ? "ENOENT" : ("errno=" + std::to_string(errno))));
+    struct linux_dirent64 { uint64_t d_ino; int64_t d_off; unsigned short d_reclen; unsigned char d_type; char d_name[]; };
+    char buf[8192];
+    std::string out;
+    int n = 0;
+    for (;;) {
+        long r = syscall(SYS_getdents64, fd, buf, sizeof(buf));
+        if (r <= 0) break;
+        for (long off = 0; off < r;) {
+            auto* d = reinterpret_cast<linux_dirent64*>(buf + off);
+            std::string nm = d->d_name;
+            if (nm != "." && nm != ".." && n++ < 50) { if (!out.empty()) out += "|"; out += nm; }
+            off += d->d_reclen;
+        }
+    }
+    close(fd);
+    return toJstring(env, out.empty() ? "empty" : out);
+}
+
 const JNINativeMethod kMethods[] = {
     {"nSysProp",  "(Ljava/lang/String;)Ljava/lang/String;",  reinterpret_cast<void*>(nSysProp)},
     {"nUname",    "()Ljava/lang/String;",                     reinterpret_cast<void*>(nUname)},
@@ -640,6 +938,14 @@ const JNINativeMethod kMethods[] = {
     {"nStatOwner",   "(Ljava/lang/String;)Ljava/lang/String;", reinterpret_cast<void*>(nStatOwner)},
     {"nDirZeroWidth","(Ljava/lang/String;[I)Ljava/lang/String;", reinterpret_cast<void*>(nDirZeroWidth)},
     {"nSockDiag",   "()Ljava/lang/String;",                   reinterpret_cast<void*>(nSockDiag)},
+    {"nStatMeta",   "(Ljava/lang/String;)Ljava/lang/String;", reinterpret_cast<void*>(nStatMeta)},
+    {"nGpuInfo",    "()Ljava/lang/String;",                   reinterpret_cast<void*>(nGpuInfo)},
+    {"nDlPhdr",     "()Ljava/lang/String;",                   reinterpret_cast<void*>(nDlPhdr)},
+    {"nFridaPorts", "()Ljava/lang/String;",                   reinterpret_cast<void*>(nFridaPorts)},
+    {"nMapsDeletedExec", "()Ljava/lang/String;",              reinterpret_cast<void*>(nMapsDeletedExec)},
+    {"nAnonHoles",  "()Ljava/lang/String;",                   reinterpret_cast<void*>(nAnonHoles)},
+    {"nDirList",    "(Ljava/lang/String;)Ljava/lang/String;", reinterpret_cast<void*>(nDirList)},
+    {"nPropList",   "()[B",                                   reinterpret_cast<void*>(nPropList)},
 };
 
 }

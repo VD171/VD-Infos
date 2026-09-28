@@ -50,6 +50,7 @@
     <string name="verdict_info">情報</string>
     <string name="reading_context_only">コンテキスト</string>
     <string name="reading_empty">（空）</string>
+    <string name="reveal_original">元の値</string>
     <string name="verdict_empty">空</string>
     <string name="verdict_error">エラー</string>
 
@@ -195,6 +196,15 @@
     <string name="t_installed_packages_list">インストール済みパッケージ（一覧）</string>
     <string name="t_kernel_release">カーネル (release)</string>
     <string name="t_kernel_version">カーネル（バージョン）</string>
+    <string name="t_kernel_version_string">カーネル（バージョン文字列）</string>
+    <string name="t_kernel_version_claim">カーネルのバージョン主張（ro.kernel.version 対 uname）</string>
+    <string name="note_kernel_version_claim">ro.kernel.version プロパティは実行中のカーネルを反映するはずです。実際の uname release にない major.minor を主張するなら、リゾルバがプロパティを設定した一方で、その下のカーネルは別物です。</string>
+    <string name="t_kernel_build_date">カーネルのビルド日 対 ROM</string>
+    <string name="note_kernel_build_date">プリビルドの GKI カーネルは、同梱される ROM より古いか一致します。ROM の組み立てよりかなり後にビルドされたカーネルは、後から再ビルドまたはフラッシュされたもので、手動コンパイルのカーネルによくある兆候です。</string>
+    <string name="t_kernel_config">カーネル設定（/proc/config.gz）</string>
+    <string name="note_kernel_config">カーネル設定は、読める場合、組み込まれたパッチを示します：KSU、SUSFS、独自の local version、強制されないモジュール署名。アプリのサンドボックスはこのファイルをしばしば拒否します。古い Android、カスタム ROM、root シェルでは読めます。</string>
+    <string name="t_kernel_module_scan">カーネルのモジュールとシンボル</string>
+    <string name="note_kernel_module_scan">/sys/module と /proc/kallsyms のシンボル名から ksu、susfs、magisk を走査します。これらはパッチ済みまたはモジュール読み込み済みのカーネルが露出します。どちらの面もしばしば制限されており、ドメインが許す場所で読めます。</string>
     <string name="t_kernel_cmdline">カーネル cmdline</string>
     <string name="t_kernel_log">カーネルログ</string>
     <string name="t_kernel_stat">カーネル stat</string>
@@ -222,6 +232,10 @@
     <string name="t_suspicious_apps">疑わしいアプリ</string>
     <string name="t_running_app_processes">実行中のアプリプロセス</string>
     <string name="t_running_services">実行中のサービス</string>
+    <string name="t_xposed_scan_all">Xposedメタデータ：全アプリスキャン</string>
+    <string name="t_debuggable_scan_all">デバッグ可能なユーザーアプリのスキャン</string>
+    <string name="t_uid_groups">UID共有グループ</string>
+    <string name="t_updated_system">更新されたシステムアプリ (FLAG_UPDATED_SYSTEM_APP)</string>
     <string name="t_sdk_int">SDK int</string>
     <string name="t_selinux_mls_enabled">SELinux MLS 有効</string>
     <string name="t_selinux_context_self">SELinux コンテキスト（自身）</string>
@@ -409,6 +423,7 @@
     <string name="t_isrc_gap_system_shell_installed">不整合: システムアプリが shell 経由でインストール</string>
     <string name="t_isrc_gap_update_owner_drift">不整合: updateOwner ≠ installer</string>
     <string name="t_isrc_gap_self_declared_installer">不整合: アプリが自身の installer</string>
+    <string name="t_isrc_landscape">インストールソース全体像（インストーラー別全アプリ）</string>
     <string name="t_installed_packages_diff">インストール済みパッケージ: 相違 (JVM x pm)</string>
     <string name="t_installed_applications_diff">インストール済みアプリケーション: 相違 (JVM x pm)</string>
     <string name="t_selinux_status">SELinux status ページ (policyload/seq)</string>
@@ -431,4 +446,41 @@
     <string name="n_tee_soter">Tencent の Soter サービスプログラムを、そのサービスプロパティの状態と照合する。</string>
     <string name="t_proc_cgroup_format">cgroup パス形式</string>
     <string name="n_proc_cgroup_format">クローン / デュアルアプリのコンテナは統一 cgroup パスを正規の uid_/pid_ 形式から逸脱させる。</string>
+    <string name="t_gpu_vendor">GPU メーカー</string>
+    <string name="t_gpu_renderer">GPU レンダラー</string>
+    <string name="t_gpu_version">GPU バージョン</string>
+    <string name="t_gpu_glsl">GPU GLSL バージョン</string>
+    <string name="t_tel_typeAllocationCode">型式割当コード (TAC)</string>
+    <string name="t_tel_manufacturerCode">メーカーコード</string>
+    <string name="t_tel_simCarrierId">SIM 事業者 ID</string>
+    <string name="t_tel_simCarrierIdName">SIM 事業者名</string>
+    <string name="t_tel_simSpecificCarrierId">固有 SIM 事業者 ID</string>
+    <string name="t_tel_visualVoicemailPackageName">ビジュアルボイスメール パッケージ</string>
+    <string name="t_keychain_blacklist">Keychain 証明書ブラックリスト</string>
+    <string name="t_buildprop_vs_runtime">build.prop vs runtime</string>
+    <string name="note_boot_count">boot_count（フレームワーク）は増えるだけ。Phenotype_boot_count（Play開発者サービス）はそのスナップショットで遅れることがある。スナップショットがboot_countを超えた場合のみ相違（リセット）。</string>
+    <string name="note_isrc_initiator_sig">このアプリのインストール時にシステムがインストーラーについて記録した証明書が、インストーラーが現在報告する証明書と異なります。インストーラーの置き換えや署名の偽装が原因です。システムを再署名しメーカー本来の証明書を報告するROM（例: Xiaomi.eu）では、すべての端末でこれが表示されます。</string>
+    <string name="t_concealment">アプリ隠蔽</string>
+    <string name="note_concealment">アプリ一覧から隠されているのに PackageManager の別の入口（パッケージ情報、createPackageContext、開いた APK、launch intent）からまだ到達できるパッケージは、一方の入口では隠され他方では隠されていません - 不完全なアプリ隠しの痕跡です。</string>
+    <string name="t_prop_variants">パーティション別のバリアント: %1$s</string>
+    <string name="t_prop_enum">プロパティ列挙 vs getprop</string>
+    <string name="note_prop_variants">同じ接尾辞がパーティションごとに現れます（system, vendor, product, odm, dlkm...）。どこでも一致すべきなのに異なる値、または同じ系統内で割れる値は、部分的な偽装を露呈します - 一部のパーティションだけ変更された指紋です。</string>
+    <string name="note_prop_enum">プロパティ領域をネイティブに列挙し（__system_property_foreach）、別プロセスの getprop と突き合わせると、シェルから隠されたか片方の経路にだけ注入されたプロパティが露呈します。</string>
+    <string name="t_dlphdr">ローダーのモジュール (dl_iterate_phdr)</string>
+    <string name="t_frida_port">Frida ポートスキャン</string>
+    <string name="note_dlphdr">dl_iterate_phdr は読み込まれたモジュールを /proc/self/maps ではなくリンカー経由で列挙するため、maps から自分の項目を消すフックもここには載ります。needle 一致やシステム許可リスト外のモジュールが漏れです。</string>
+    <string name="t_ime_verdict">キーボードの整合性判定</string>
+    <string name="t_store_authenticity">ストア/GMS 署名の真正性</string>
+    <string name="t_devgate">開発者向け制限設定の整合性</string>
+    <string name="note_ime_verdict">銀行の RASP（PayZapp/Zeta）は、非システムでストア許可リスト外からインストールされた有効なキーボードをすべて拒否します。ストア外インストーラーの非システム有効 IME はフラグされます。</string>
+    <string name="note_store_authenticity">Play ストア、GMS、GSF は Google の署名証明書を持つ必要があります。存在するのに別の鍵で署名されたストアや GMS パッケージは、偽物・microG・再パッケージ版です。</string>
+    <string name="note_devgate">adb などの開発者向け制限設定は、開発者オプションがオンのときだけ変更できます。development_settings_enabled=0 のまま既定値でない制限設定は、root か `settings put` でしか設定できません。</string>
+    <string name="t_maps_exec">注入された実行マップ (deleted/memfd)</string>
+    <string name="t_anon_minor">隠れた anon-bdev スーパーブロック</string>
+    <string name="note_maps_exec">(deleted)/memfd/ashmem のファイルに基づく実行可能マッピングで、RWX（W^X 違反）または ELF マジックで始まるものは、ファイルシステムから切り離された本物の注入 .so です。ART の JIT トランポリンはどちらでもなく良性として数えます。システム許可リスト外のモジュールも数えます。</string>
+    <string name="note_anon_minor">ブロックデバイスを持たないファイルシステムは、下から詰まったグローバルな anon プールから minor を取ります。stat() では存在するのにこのプロセスの mountinfo にない minor は、プライベート名前空間に隠された生きたスーパーブロック（デーモンの tmpfs）です。欠けた minor が長く続くのはアプリごとの churn で無視し、短い穴が手掛かりです。</string>
+    <string name="t_sb_tee_signer">StrongBox × TEE 署名者</string>
+    <string name="note_sb_tee_signer">本物の端末は StrongBox と TEE のハードウェアに別々の attestation ルートを持つため、署名証明書は異なります。両レベルを偽装する単一のキーボックス（TrickyStore）は両方を同じ証明書で署名します。署名者の共有が手掛かりです。</string>
+    <string name="t_local_tmp_list">/data/local/tmp の一覧</string>
+    <string name="note_local_tmp_list">getdents64 で /data/local/tmp を一覧すると（名前検索ではなく）、モジュールが置いたものを含め、アプリが実際に到達できる残留物が現れます。ロック端末ではこのディレクトリは shell 所有でアプリからは一覧できないため、EACCES が正常な答えです。表示される項目はアプリが到達できる残留物を意味します。</string>
 </resources>

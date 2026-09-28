@@ -18,20 +18,12 @@
 #  E-mail         : vd.priv8@pm.me
 # ======================================================================
 
-com.devadvance.rootcloak
-com.devadvance.rootcloakplus
-com.zachspong.temprootremovejb
-com.formyhm.hideroot
-com.saurik.substrate
-com.android.vending.billing.InAppBillingService.COIN
-eu.faircode.xlua
-eu.faircode.xlua.pro
-biz.bokhorst.xprivacy
-com.oasisfeng.island
-com.tsng.hidemyapplist
-org.frknkrc44.hma_oss
-com.tsng.pzyhrx.hma
-cn.geektang.privacyspace
-me.gm.cleaner
-com.google.android.hmal # HMA (disguised package)
-com.tsng.dyhhvf # HMA (randomized package)
+system        system    /system/build.prop
+system_ext    system    /system_ext/etc/build.prop /system/system_ext/etc/build.prop /system_ext/build.prop
+system_dlkm   system    /system_dlkm/etc/build.prop /system/system_dlkm/etc/build.prop
+product       product   /product/etc/build.prop /system/product/etc/build.prop /product/build.prop /system/product/build.prop
+vendor        vendor    /vendor/build.prop
+odm           vendor    /odm/etc/build.prop /vendor/odm/etc/build.prop /odm/build.prop /vendor/odm/build.prop
+vendor_dlkm   vendor    /vendor_dlkm/etc/build.prop /vendor/vendor_dlkm/etc/build.prop
+odm_dlkm      vendor    /odm_dlkm/etc/build.prop /vendor/odm_dlkm/etc/build.prop
+bootimage     bootimage

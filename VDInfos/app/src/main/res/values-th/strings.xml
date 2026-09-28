@@ -50,6 +50,7 @@
     <string name="verdict_info">ข้อมูล</string>
     <string name="reading_context_only">บริบท</string>
     <string name="reading_empty">(ว่าง)</string>
+    <string name="reveal_original">ค่าดั้งเดิม</string>
     <string name="verdict_empty">ว่าง</string>
     <string name="verdict_error">ข้อผิดพลาด</string>
 
@@ -195,6 +196,15 @@
     <string name="t_installed_packages_list">แพ็กเกจที่ติดตั้ง (รายการ)</string>
     <string name="t_kernel_release">เคอร์เนล (release)</string>
     <string name="t_kernel_version">เคอร์เนล (เวอร์ชัน)</string>
+    <string name="t_kernel_version_string">เคอร์เนล (สตริงเวอร์ชัน)</string>
+    <string name="t_kernel_version_claim">การอ้างเวอร์ชันเคอร์เนล (ro.kernel.version เทียบกับ uname)</string>
+    <string name="note_kernel_version_claim">พร็อพเพอร์ตี ro.kernel.version ควรสะท้อนเคอร์เนลที่กำลังทำงาน หากอ้าง major.minor ที่ release จริงจาก uname ไม่มี แสดงว่ามี resolver ตั้งค่าพร็อพเพอร์ตีไว้ ขณะที่เคอร์เนลข้างใต้เป็นอีกตัว</string>
+    <string name="t_kernel_build_date">วันที่บิลด์เคอร์เนล เทียบกับ ROM</string>
+    <string name="note_kernel_build_date">เคอร์เนล GKI ที่บิลด์ไว้ล่วงหน้าจะเก่ากว่าหรือตรงกับ ROM ที่มันมาด้วย เคอร์เนลที่บิลด์หลังจากประกอบ ROM ไปนานถูกบิลด์ใหม่หรือแฟลชภายหลัง ซึ่งเป็นสัญญาณปกติของเคอร์เนลที่คอมไพล์เอง</string>
+    <string name="t_kernel_config">คอนฟิกเคอร์เนล (/proc/config.gz)</string>
+    <string name="note_kernel_config">คอนฟิกเคอร์เนล เมื่ออ่านได้ จะบอกแพตช์ที่คอมไพล์เข้าไป: KSU, SUSFS, local version ที่กำหนดเอง, การเซ็นโมดูลที่ไม่บังคับ แซนด์บ็อกซ์ของแอปมักปฏิเสธไฟล์นี้ อ่านได้บน Android เก่า, ROM คัสตอม และเชลล์รูท</string>
+    <string name="t_kernel_module_scan">โมดูลและสัญลักษณ์เคอร์เนล</string>
+    <string name="note_kernel_module_scan">สแกน /sys/module และชื่อสัญลักษณ์ใน /proc/kallsyms หา ksu, susfs และ magisk ที่เคอร์เนลซึ่งถูกแพตช์หรือโหลดโมดูลเปิดเผย ทั้งสองพื้นผิวมักถูกจำกัด อ่านได้ที่โดเมนอนุญาต</string>
     <string name="t_kernel_cmdline">cmdline เคอร์เนล</string>
     <string name="t_kernel_log">บันทึกเคอร์เนล</string>
     <string name="t_kernel_stat">stat เคอร์เนล</string>
@@ -222,6 +232,10 @@
     <string name="t_suspicious_apps">แอปที่น่าสงสัย</string>
     <string name="t_running_app_processes">โปรเซสแอปที่กำลังทำงาน</string>
     <string name="t_running_services">บริการที่กำลังทำงาน</string>
+    <string name="t_xposed_scan_all">เมตาดาตา Xposed: สแกนแอปทั้งหมด</string>
+    <string name="t_debuggable_scan_all">สแกนแอปผู้ใช้ที่ดีบักได้</string>
+    <string name="t_uid_groups">กลุ่มการแชร์ UID</string>
+    <string name="t_updated_system">แอประบบที่อัปเดต (FLAG_UPDATED_SYSTEM_APP)</string>
     <string name="t_sdk_int">SDK int</string>
     <string name="t_selinux_mls_enabled">เปิด SELinux MLS แล้ว</string>
     <string name="t_selinux_context_self">บริบท SELinux (ตนเอง)</string>
@@ -409,6 +423,7 @@
     <string name="t_isrc_gap_system_shell_installed">ความไม่สอดคล้อง: แอประบบติดตั้งผ่าน shell</string>
     <string name="t_isrc_gap_update_owner_drift">ความไม่สอดคล้อง: updateOwner ≠ installer</string>
     <string name="t_isrc_gap_self_declared_installer">ความไม่สอดคล้อง: แอปเป็น installer ของตัวเอง</string>
+    <string name="t_isrc_landscape">ภาพรวมแหล่งติดตั้ง (แอปทั้งหมดตามตัวติดตั้ง)</string>
     <string name="t_installed_packages_diff">แพ็กเกจที่ติดตั้ง: ต่างกัน (JVM x pm)</string>
     <string name="t_installed_applications_diff">แอปพลิเคชันที่ติดตั้ง: ต่างกัน (JVM x pm)</string>
     <string name="t_selinux_status">หน้า status ของ SELinux (policyload/seq)</string>
@@ -431,4 +446,41 @@
     <string name="n_tee_soter">ตรวจสอบไขว้โปรแกรมบริการ Soter ของ Tencent กับสถานะพร็อพเพอร์ตี้บริการของมัน</string>
     <string name="t_proc_cgroup_format">รูปแบบเส้นทาง cgroup</string>
     <string name="n_proc_cgroup_format">คอนเทนเนอร์โคลน / dual-app ทำให้เส้นทาง cgroup แบบรวมเบี่ยงจากรูปแบบมาตรฐาน uid_/pid_</string>
+    <string name="t_gpu_vendor">ผู้ผลิต GPU</string>
+    <string name="t_gpu_renderer">ตัวเรนเดอร์ GPU</string>
+    <string name="t_gpu_version">เวอร์ชัน GPU</string>
+    <string name="t_gpu_glsl">เวอร์ชัน GLSL ของ GPU</string>
+    <string name="t_tel_typeAllocationCode">รหัสจัดสรรประเภท (TAC)</string>
+    <string name="t_tel_manufacturerCode">รหัสผู้ผลิต</string>
+    <string name="t_tel_simCarrierId">ID ผู้ให้บริการ SIM</string>
+    <string name="t_tel_simCarrierIdName">ชื่อผู้ให้บริการ SIM</string>
+    <string name="t_tel_simSpecificCarrierId">ID ผู้ให้บริการ SIM เฉพาะ</string>
+    <string name="t_tel_visualVoicemailPackageName">แพ็กเกจข้อความเสียงแบบเห็นภาพ</string>
+    <string name="t_keychain_blacklist">บัญชีดำใบรับรอง Keychain</string>
+    <string name="t_buildprop_vs_runtime">build.prop vs runtime</string>
+    <string name="note_boot_count">boot_count (เฟรมเวิร์ก) เพิ่มขึ้นเท่านั้น; Phenotype_boot_count (บริการ Play) เป็นสแนปช็อตของมันและอาจล่าช้า จะต่างกันเฉพาะเมื่อสแนปช็อตนำหน้า boot_count (การรีเซ็ต)</string>
+    <string name="note_isrc_initiator_sig">ใบรับรองที่ระบบบันทึกไว้สำหรับตัวติดตั้งตอนติดตั้งแอปนี้ต่างจากที่ตัวติดตั้งรายงานตอนนี้ สาเหตุคือตัวติดตั้งถูกแทนที่หรือลายเซ็นถูกปลอม ROM ที่เซ็นระบบใหม่และรายงานใบรับรองดั้งเดิมของผู้ผลิต (เช่น Xiaomi.eu) จะแสดงสิ่งนี้ในทุกเครื่อง</string>
+    <string name="t_concealment">การซ่อนแอป</string>
+    <string name="note_concealment">แพ็กเกจที่ถูกซ่อนจากรายการแอปแต่ยังเข้าถึงได้ผ่านประตูอื่นของ PackageManager (ข้อมูลแพ็กเกจ, createPackageContext, APK ที่เปิด, launch intent) ถูกซ่อนที่ประตูหนึ่งแต่ไม่ถูกซ่อนที่อีกประตู - เป็นร่องรอยของตัวซ่อนแอปที่ไม่สมบูรณ์</string>
+    <string name="t_prop_variants">ตัวแปรตามพาร์ทิชัน: %1$s</string>
+    <string name="t_prop_enum">การแจกแจงพร็อพเพอร์ตี้ vs getprop</string>
+    <string name="note_prop_variants">ส่วนต่อท้ายเดียวกันปรากฏตามพาร์ทิชัน (system, vendor, product, odm, dlkm...) ค่าที่ควรตรงกันทุกที่แต่ต่างกัน หรือแตกภายในสายเดียวกัน เผยการปลอมบางส่วน - ลายนิ้วมือที่ถูกเปลี่ยนบางพาร์ทิชันแต่ไม่ทั้งหมด</string>
+    <string name="note_prop_enum">การแจกแจงพื้นที่พร็อพเพอร์ตี้แบบเนทีฟ (__system_property_foreach) แล้วเทียบกับ getprop จากอีกโปรเซส เผยพร็อพเพอร์ตี้ที่ถูกซ่อนจากเชลล์หรือถูกฉีดในเส้นทางหนึ่งแต่ไม่อีกเส้นทาง</string>
+    <string name="t_dlphdr">โมดูลของโหลดเดอร์ (dl_iterate_phdr)</string>
+    <string name="t_frida_port">สแกนพอร์ต Frida</string>
+    <string name="note_dlphdr">dl_iterate_phdr แจกแจงโมดูลที่โหลดผ่านลิงเกอร์ ไม่ใช่ผ่าน /proc/self/maps ดังนั้นฮุกที่ลบรายการของตนออกจาก maps ก็ยังปรากฏที่นี่ การพบ needle หรือโมดูลนอกอนุญาตของระบบคือการรั่วไหล</string>
+    <string name="t_ime_verdict">คำตัดสินความสมบูรณ์ของคีย์บอร์ด</string>
+    <string name="t_store_authenticity">ความแท้ของลายเซ็นสโตร์/GMS</string>
+    <string name="t_devgate">ความสอดคล้องของการตั้งค่าที่ล็อกด้วยโหมดนักพัฒนา</string>
+    <string name="note_ime_verdict">RASP ของธนาคาร (PayZapp/Zeta) ปฏิเสธคีย์บอร์ดที่เปิดใช้งานทุกตัวที่ไม่ใช่ระบบและติดตั้งจากนอกอนุญาตของสโตร์ IME ที่เปิดใช้งานแบบไม่ใช่ระบบพร้อมตัวติดตั้งนอกสโตร์จะถูกตั้งค่าสถานะ</string>
+    <string name="note_store_authenticity">Play Store, GMS และ GSF ต้องมีใบรับรองการเซ็นของ Google แพ็กเกจสโตร์หรือ GMS ที่มีอยู่แต่เซ็นด้วยคีย์อื่นคือของปลอม microG หรือสโตร์ที่แพ็กใหม่</string>
+    <string name="note_devgate">adb และการตั้งค่าที่ล็อกด้วยโหมดนักพัฒนาอื่นๆ เปลี่ยนได้เฉพาะเมื่อเปิดตัวเลือกนักพัฒนา การตั้งค่าที่ล็อกซึ่งไม่ใช่ค่าเริ่มต้นขณะ development_settings_enabled=0 ตั้งได้เฉพาะโดย root หรือ `settings put`</string>
+    <string name="t_maps_exec">แมป exec ที่ถูกฉีด (deleted/memfd)</string>
+    <string name="t_anon_minor">ซูเปอร์บล็อก anon-bdev ที่ซ่อน</string>
+    <string name="note_maps_exec">การแมปที่รันได้ซึ่งอิงไฟล์ (deleted)/memfd/ashmem ที่เป็น RWX (ละเมิด W^X) หรือขึ้นต้นด้วย ELF magic คือ .so ที่ถูกฉีดจริงและถูกตัดจากระบบไฟล์ ส่วนแทรมโพลีน JIT ของ ART ไม่ใช่ทั้งสองและนับเป็นปกติ โมดูลนอกอนุญาตของระบบก็นับด้วย</string>
+    <string name="note_anon_minor">ระบบไฟล์ที่ไม่มี block device ดึง minor จากพูล anon ส่วนกลางที่หนาแน่นจากล่าง minor ที่มีอยู่ผ่าน stat() แต่ขาดใน mountinfo ของโปรเซสนี้คือซูเปอร์บล็อกที่ยังทำงานซึ่งซ่อนในเนมสเปซส่วนตัว (tmpfs ของ daemon) ช่วง minor ที่ขาดยาวๆ คือ churn ต่อแอปและถูกละเว้น ช่องสั้นๆ คือสัญญาณ</string>
+    <string name="t_sb_tee_signer">ผู้เซ็น StrongBox × TEE</string>
+    <string name="note_sb_tee_signer">อุปกรณ์แท้มีรากการยืนยันแยกกันสำหรับฮาร์ดแวร์ StrongBox และ TEE ใบรับรองการเซ็นจึงต่างกัน keybox เดียว (TrickyStore) ที่ปลอมทั้งสองระดับจะเซ็นทั้งคู่ด้วยใบรับรองเดียวกัน - ผู้เซ็นร่วมคือสัญญาณ</string>
+    <string name="t_local_tmp_list">รายการ /data/local/tmp</string>
+    <string name="note_local_tmp_list">การลิสต์ /data/local/tmp ด้วย getdents64 (ไม่ใช่การค้นตามชื่อ) เผยตกค้างใดๆ ที่แอปเข้าถึงได้จริง รวมถึงสิ่งที่โมดูลทิ้งไว้ บนอุปกรณ์ที่ล็อก ไดเรกทอรีนี้เป็นของ shell และแอปลิสต์ไม่ได้ EACCES จึงเป็นคำตอบที่สะอาด รายการที่เห็นได้หมายถึงตกค้างที่แอปเข้าถึงได้</string>
 </resources>

@@ -107,8 +107,9 @@ object InstallSourceProbes {
         add(probe("isrc:self_initiator_sig", ctx.getString(R.string.t_isrc_self_initiator_sig), Category.PACKAGES, listOf(
             jm("getInitiatingPackageSigningInfo() SHA-256") { c ->
                 if (Build.VERSION.SDK_INT < 30) return@jm null
-                signingCertSet(c.packageManager.getInstallSourceInfo(self).initiatingPackageSigningInfo)
-                    .minOrNull()?.take(16) ?: Sentinels.NONE
+                val si = c.packageManager.getInstallSourceInfo(self)
+                val h = signingCertSet(si.initiatingPackageSigningInfo).minOrNull() ?: return@jm Sentinels.NONE
+                "${si.initiatingPackageName ?: "-"}: ${AssetData.certTag(c, h)}"
             },
             jm("initiating package lineage, as installed") { c ->
                 if (Build.VERSION.SDK_INT < 30) return@jm null
@@ -120,9 +121,10 @@ object InstallSourceProbes {
                 val inst = runCatching { certSetOf(c.packageManager.getPackageInfo(init, flag)) }
                     .getOrDefault(emptySet())
                 if (rec.isEmpty() || inst.isEmpty()) return@jm Sentinels.NONE
-                (if (rec.any { it in inst }) rec.minOrNull() else inst.minOrNull())?.take(16) ?: Sentinels.NONE
+                val h = (if (rec.any { it in inst }) rec.minOrNull() else inst.minOrNull()) ?: return@jm Sentinels.NONE
+                "$init: ${AssetData.certTag(c, h)}"
             },
-        )))
+        ), note = ctx.getString(R.string.note_isrc_initiator_sig)))
 
         addAll(gapProbes(ctx))
     }
@@ -150,54 +152,68 @@ object InstallSourceProbes {
         val stores = AssetData.packages(ctx, "install_source_stores").toSet()
         val sideloaders = AssetData.packages(ctx, "install_source_sideloaders").toSet()
 
-        return listOf(
-            gap("jvm_store_pm_denies", ctx.getString(R.string.t_isrc_gap_jvm_store_pm_denies),
+        return buildList {
+            add(gap("jvm_store_pm_denies", ctx.getString(R.string.t_isrc_gap_jvm_store_pm_denies),
                 detail = { r -> "jvm=${r.inst ?: "null"} pm=${r.pmInst ?: "null"}" }) { r ->
                 r.pmInst != null && isStore(r.inst, stores) && !isStore(r.pmInst, stores)
-            },
-            gap("jvm_pm_installer_other", ctx.getString(R.string.t_isrc_gap_jvm_pm_other),
+            })
+            add(gap("jvm_pm_installer_other", ctx.getString(R.string.t_isrc_gap_jvm_pm_other),
                 detail = { r -> "jvm=${r.inst ?: "null"} pm=${r.pmInst ?: "null"}" }) { r ->
                 r.pmInst != null && normPm(r.inst) != normPm(r.pmInst) &&
                     !(isStore(r.inst, stores) && !isStore(r.pmInst, stores))
-            },
-            gap("installer_ne_initiating", ctx.getString(R.string.t_isrc_gap_installer_ne_initiating)) { r ->
+            })
+            add(gap("installer_ne_initiating", ctx.getString(R.string.t_isrc_gap_installer_ne_initiating)) { r ->
                 r.inst != null && r.init != null && r.inst != r.init
-            },
-            gap("store_installer_sideload_initiator", ctx.getString(R.string.t_isrc_gap_store_installer_sideload)) { r ->
+            })
+            add(gap("store_installer_sideload_initiator", ctx.getString(R.string.t_isrc_gap_store_installer_sideload)) { r ->
                 r.inst in stores && r.init in sideloaders
-            },
-            gap("installer_set_no_initiator", ctx.getString(R.string.t_isrc_gap_installer_set_no_initiator)) { r ->
+            })
+            add(gap("installer_set_no_initiator", ctx.getString(R.string.t_isrc_gap_installer_set_no_initiator)) { r ->
                 r.inst != null && r.init == null
-            },
-            gap("initiator_store_no_installer", ctx.getString(R.string.t_isrc_gap_initiator_store_no_installer)) { r ->
+            })
+            add(gap("initiator_store_no_installer", ctx.getString(R.string.t_isrc_gap_initiator_store_no_installer)) { r ->
                 r.init in stores && r.inst == null
-            },
-            gap("initiator_sig_mismatch", ctx.getString(R.string.t_isrc_gap_initiator_sig_mismatch)) { r ->
+            })
+            add(gap("initiator_sig_mismatch", ctx.getString(R.string.t_isrc_gap_initiator_sig_mismatch),
+                detail = { r ->
+                    "${r.init}: recorded=${r.initSig?.let { AssetData.certTag(ctx, it) }} " +
+                        "installed=${r.installedInitSig?.let { AssetData.certTag(ctx, it) }}"
+                }) { r ->
                 r.init != null && r.init !in sideloaders &&
                     r.initSig != null && r.installedInitSig != null && !r.sigShared
-            },
-            gap("initiator_orphan", ctx.getString(R.string.t_isrc_gap_initiator_orphan)) { r ->
+            })
+            add(gap("initiator_orphan", ctx.getString(R.string.t_isrc_gap_initiator_orphan)) { r ->
                 r.init != null && r.init !in sideloaders && !isInstalled(ctx, r.init)
-            },
-            gap("installer_orphan", ctx.getString(R.string.t_isrc_gap_installer_orphan)) { r ->
+            })
+            add(gap("installer_orphan", ctx.getString(R.string.t_isrc_gap_installer_orphan)) { r ->
                 r.inst != null && r.inst !in sideloaders && !isInstalled(ctx, r.inst)
-            },
-            gap("originating_ne_initiating", ctx.getString(R.string.t_isrc_gap_originating_ne_initiating)) { r ->
+            })
+            add(gap("originating_ne_initiating", ctx.getString(R.string.t_isrc_gap_originating_ne_initiating)) { r ->
                 r.orig != null && r.orig != r.init
-            },
-            gap("ghost_user_install", ctx.getString(R.string.t_isrc_gap_ghost_user_install)) { r ->
+            })
+            add(gap("ghost_user_install", ctx.getString(R.string.t_isrc_gap_ghost_user_install)) { r ->
                 !r.sys && r.inst == null && r.init == null
-            },
-            gap("system_shell_installed", ctx.getString(R.string.t_isrc_gap_system_shell_installed)) { r ->
+            })
+            add(gap("system_shell_installed", ctx.getString(R.string.t_isrc_gap_system_shell_installed)) { r ->
                 r.sys && r.init == SHELL
-            },
-            gap("update_owner_drift", ctx.getString(R.string.t_isrc_gap_update_owner_drift)) { r ->
+            })
+            add(gap("update_owner_drift", ctx.getString(R.string.t_isrc_gap_update_owner_drift)) { r ->
                 r.updateOwner != null && r.inst != null && r.updateOwner != r.inst
-            },
-            gap("self_declared_installer", ctx.getString(R.string.t_isrc_gap_self_declared_installer)) { r ->
+            })
+            add(gap("self_declared_installer", ctx.getString(R.string.t_isrc_gap_self_declared_installer)) { r ->
                 r.inst == r.pkg && !isStore(r.pkg, stores)
-            },
-        )
+            })
+            add(jprobe("isrc:landscape", ctx.getString(R.string.t_isrc_landscape), Category.PACKAGES,
+                source = "install-source scan: apps grouped by installer family") {
+                val rows = cache.value
+                val byInst = rows.groupBy { it.inst ?: "(none)" }
+                byInst.entries.sortedByDescending { it.value.size }
+                    .joinToString("\n") { (inst, ais) ->
+                        val pkgs = ais.take(5).map { it.pkg }.sorted()
+                        "$inst(${ais.size}): ${pkgs.joinToString(",")}${if (ais.size > 5) "..." else ""}"
+                    }.ifEmpty { Sentinels.NONE }
+            })
+        }
     }
 
     private fun isInstalled(ctx: Context, pkg: String): Boolean = runCatching {

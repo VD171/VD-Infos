@@ -42,6 +42,10 @@ object DevIdProbes {
 
     private fun tm(c: Context) = c.getSystemService(Context.TELEPHONY_SERVICE) as? TelephonyManager
 
+    private fun countVal(c: Context, key: String): Long? =
+        (Settings.Global.getString(c.contentResolver, key) ?: settingViaProvider(c, key))
+            ?.trim()?.toLongOrNull()
+
     private fun msaReflect(method: String, c: Context): String? = runCatching {
         val cls = Class.forName("com.android.id.impl.IdProviderImpl")
         val impl = cls.getDeclaredConstructor().newInstance()
@@ -137,7 +141,20 @@ object DevIdProbes {
         add(setting("wifi_mac", ctx.getString(R.string.t_wi_fi_mac_settings), "wifi_mac", Category.NETWORK, sensitive = true))
         add(setting("device_name", ctx.getString(R.string.t_device_name), "device_name", Category.SYSTEM))
         add(probe("set:boot_count", ctx.getString(R.string.t_boot_count), Category.BOOT,
-            settingBlock("boot_count") + settingBlock("Phenotype_boot_count")))
+            settingBlock("boot_count") +
+                settingBlock("Phenotype_boot_count", compare = false) +
+                listOf(
+                    jm("Phenotype_boot_count <= boot_count (framework monotonic)") { c ->
+                        val b = countVal(c, "boot_count")
+                        val p = countVal(c, "Phenotype_boot_count")
+                        when {
+                            b == null -> null
+                            p == null || p <= b -> b.toString()
+                            else -> "Phenotype_boot_count=$p > boot_count=$b"
+                        }
+                    },
+                ),
+            note = ctx.getString(R.string.note_boot_count)))
         add(setting("adb_enabled", ctx.getString(R.string.t_adb_enabled), "adb_enabled", Category.INTEGRITY, solution = ctx.getString(R.string.sol_spoof)))
         add(setting("dev_settings", ctx.getString(R.string.t_developer_settings_enabled), "development_settings_enabled", Category.INTEGRITY, solution = ctx.getString(R.string.sol_spoof)))
         add(setting("data_roaming", ctx.getString(R.string.t_data_roaming), "data_roaming", Category.TELEPHONY))

@@ -140,6 +140,55 @@ object IntegrityProbes {
             nsm("grep -iE '$mapsGrep' /proc/self/maps 2>/dev/null | head || echo ${Sentinels.ABSENT}", "popen: grep maps"),
         )))
 
+        add(probe("integrity:dlphdr", ctx.getString(R.string.t_dlphdr), Category.INTEGRITY, listOf(
+            jm("no injected/outside module (expected)") { "0/0" },
+            jm("dl_iterate_phdr hits/outside") {
+                NativeBridge.dlPhdr()?.let { "${it.hitCount}/${it.outsideCount}" } ?: Sentinels.NONE
+            },
+            jm("modules", compare = false) {
+                NativeBridge.dlPhdr()?.let { "hits=${it.hits}\noutside=${it.outside}" } ?: Sentinels.NONE
+            },
+        ), note = ctx.getString(R.string.note_dlphdr)))
+
+        add(probe("integrity:local_tmp_list", ctx.getString(R.string.t_local_tmp_list), Category.INTEGRITY, listOf(
+            jm("no app-visible entry in /data/local/tmp (expected)") { "clean" },
+            jm("getdents64 /data/local/tmp") {
+                when (val r = NativeBridge.dirList("/data/local/tmp") ?: Sentinels.NONE) {
+                    "EACCES", "ENOENT", "empty" -> "clean"
+                    else -> "VISIBLE: $r"
+                }
+            },
+        ), note = ctx.getString(R.string.note_local_tmp_list)))
+
+        add(probe("integrity:maps_exec", ctx.getString(R.string.t_maps_exec), Category.INTEGRITY, listOf(
+            jm("no injected exec map (expected)") { "0/0" },
+            jm("deleted-exec ELF/RWX and outside-allowlist count") {
+                NativeBridge.mapsDeletedExec()?.let { "${it.delCount}/${it.outCount}" } ?: Sentinels.NONE
+            },
+            jm("detail", compare = false) {
+                NativeBridge.mapsDeletedExec()?.let { "del=${it.delHits}\noutside=${it.outHits}\nbenign(ART)=${it.benign}" } ?: Sentinels.NONE
+            },
+        ), note = ctx.getString(R.string.note_maps_exec)))
+
+        add(probe("integrity:anon_minor", ctx.getString(R.string.t_anon_minor), Category.INTEGRITY, listOf(
+            jm("no hidden anon-bdev superblock (expected)") { "0" },
+            jm("anon-minor holes (short runs only)") {
+                NativeBridge.anonHoles()?.holeCount?.toString() ?: Sentinels.NONE
+            },
+            jm("detail", compare = false) {
+                NativeBridge.anonHoles()?.let { "holes=${it.holes}\nchurn=runs${it.churnRuns}/minors${it.churnMinors}\nwindow=${it.window}" } ?: Sentinels.NONE
+            },
+        ), note = ctx.getString(R.string.note_anon_minor)))
+
+        add(probe("integrity:frida_port", ctx.getString(R.string.t_frida_port), Category.INTEGRITY, listOf(
+            jm("frida ports closed (expected)") { "closed" },
+            jm("connect 127.0.0.1:27042/27043") {
+                val ports = NativeBridge.fridaPorts() ?: return@jm Sentinels.NONE
+                ports.filter { it.second }.takeIf { it.isNotEmpty() }
+                    ?.joinToString(",") { it.first.toString() }?.plus(" open") ?: "closed"
+            },
+        )))
+
         add(pkgItem("root_apps", ctx.getString(R.string.t_root_manager_apps), AssetData.packages(ctx, "root_manager_apps"), ctx.getString(R.string.sol_root_detector)))
         add(pkgItem("xposed_apps", ctx.getString(R.string.t_xposed_manager_apps), AssetData.packages(ctx, "xposed_manager_apps"), ctx.getString(R.string.sol_root_detector)))
         add(jprobe("integrity:manager_doors", ctx.getString(R.string.t_manager_doors), Category.INTEGRITY,

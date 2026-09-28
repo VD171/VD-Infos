@@ -38,6 +38,8 @@ object ProbeRegistry {
             addAll(IdentifierProbes.tasks(context))
             addAll(TelephonyProbes.tasks(context))
             addAll(NetworkProbes.tasks(context))
+            addAll(GpuProbes.tasks(context))
+            addAll(PropVariantProbes.tasks(context))
             addAll(SystemExtraProbes.tasks(context))
             addAll(DevIdProbes.tasks(context))
             addAll(BulkProbes.tasks(context))

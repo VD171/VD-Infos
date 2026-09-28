@@ -50,11 +50,11 @@ fun refusalToken(t: Throwable): String? {
     }
 }
 
-inline fun measure(lens: Lens, source: String, compare: Boolean = true, block: () -> String?): LensValue {
+inline fun measure(lens: Lens, source: String, compare: Boolean = true, tag: String? = null, reveal: String? = null, block: () -> String?): LensValue {
     val t0 = System.nanoTime()
     return try {
         val v = block()
-        LensValue(lens, source, v?.takeIf { it.isNotEmpty() }, null, (System.nanoTime() - t0) / 1000, compare)
+        LensValue(lens, source, v?.takeIf { it.isNotEmpty() }, null, (System.nanoTime() - t0) / 1000, compare, tag = tag, reveal = reveal)
     } catch (t: Throwable) {
         val token = refusalToken(t)
         val msg = t.message ?: t.javaClass.simpleName
@@ -62,7 +62,7 @@ inline fun measure(lens: Lens, source: String, compare: Boolean = true, block: (
             lens = lens, source = source, value = token,
             error = if (token != null) null else msg,
             elapsedMicros = (System.nanoTime() - t0) / 1000, compare = compare,
-            detail = if (token != null) msg else null,
+            detail = if (token != null) msg else null, tag = tag,
         )
     }
 }

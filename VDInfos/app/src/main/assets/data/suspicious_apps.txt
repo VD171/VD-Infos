@@ -68,3 +68,4 @@ com.fuck.android.rimet
 nep.timeline.re_telegram
 cn.kwaiching.hook
 com.padi.hook.hookqq
+com.androidx.androidfakerpro # Android Faker Pro

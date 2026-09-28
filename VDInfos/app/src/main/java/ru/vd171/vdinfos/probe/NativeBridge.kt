@@ -50,6 +50,14 @@ object NativeBridge {
     private external fun nStatOwner(path: String): String?
     private external fun nDirZeroWidth(dir: String, ranges: IntArray): String?
     private external fun nSockDiag(): String?
+    private external fun nStatMeta(path: String): String?
+    private external fun nGpuInfo(): String?
+    private external fun nPropList(): ByteArray?
+    private external fun nDlPhdr(): String?
+    private external fun nFridaPorts(): String?
+    private external fun nMapsDeletedExec(): String?
+    private external fun nAnonHoles(): String?
+    private external fun nDirList(dir: String): String?
 
     private inline fun <T> guard(block: () -> T?): T? =
         if (!available) null else runCatching(block).getOrNull()
@@ -110,6 +118,55 @@ object NativeBridge {
     fun dirZeroWidth(dir: String, ranges: IntArray): String? = guard { nDirZeroWidth(dir, ranges) }
 
     fun sockDiag(): String? = guard { nSockDiag()?.takeIf { it.isNotEmpty() } }
+
+    fun statMeta(path: String): Pair<Long, Long>? = guard {
+        nStatMeta(path)?.split('\t')?.takeIf { it.size == 2 }?.let { it[0].toLong() to it[1].toLong() }
+    }
+
+    private val gpuCache: List<String>? by lazy {
+        guard { nGpuInfo()?.split('\t')?.takeIf { it.size == 4 } }
+    }
+    fun gpuInfo(): List<String>? = gpuCache
+
+    data class DlPhdr(val hitCount: Int, val hits: String, val outsideCount: Int, val outside: String)
+
+    fun dlPhdr(): DlPhdr? = guard {
+        nDlPhdr()?.split('\t')?.takeIf { it.size == 4 }?.let {
+            DlPhdr(it[0].toIntOrNull() ?: 0, it[1], it[2].toIntOrNull() ?: 0, it[3])
+        }
+    }
+
+    data class MapsExec(val delCount: Int, val delHits: String, val outCount: Int, val outHits: String, val benign: Int)
+
+    fun mapsDeletedExec(): MapsExec? = guard {
+        nMapsDeletedExec()?.split('\t')?.takeIf { it.size == 5 }?.let {
+            MapsExec(it[0].toIntOrNull() ?: 0, it[1], it[2].toIntOrNull() ?: 0, it[3], it[4].toIntOrNull() ?: 0)
+        }
+    }
+
+    data class AnonHoles(val holeCount: Int, val holes: String, val churnRuns: Int, val churnMinors: Int, val window: Int)
+
+    fun anonHoles(): AnonHoles? = guard {
+        nAnonHoles()?.split('\t')?.takeIf { it.size == 5 }?.let {
+            AnonHoles(it[0].toIntOrNull() ?: 0, it[1], it[2].toIntOrNull() ?: 0, it[3].toIntOrNull() ?: 0, it[4].toIntOrNull() ?: 0)
+        }
+    }
+
+    fun dirList(dir: String): String? = guard { nDirList(dir) }
+
+    fun fridaPorts(): List<Pair<Int, Boolean>>? = guard {
+        nFridaPorts()?.split('\t')?.mapNotNull { seg ->
+            val p = seg.split(':')
+            if (p.size == 2) (p[0].toIntOrNull() ?: return@mapNotNull null) to (p[1] == "open") else null
+        }
+    }
+
+    fun propList(): Map<String, String>? = guard {
+        nPropList()?.toString(Charsets.UTF_8)?.lineSequence()?.mapNotNull { l ->
+            val i = l.indexOf('\t')
+            if (i <= 0) null else l.substring(0, i) to l.substring(i + 1)
+        }?.toMap()
+    }
 
     data class Uname(
         val sysname: String,

@@ -12,7 +12,9 @@
 
 <img src="images/vdinfos-01.png" height="420"/> <img src="images/vdinfos-02.png" height="420"/>
 
-Android son derece güçlü ve çok yönlü bir işletim sistemidir; kimsenin söylemediği şey ise tüm kişisel ayrıntılarınızın ve gizli bilgilerinizin kurduğunuz her uygulamaya açık olduğu ve bu tür gizlilik ihlallerine karşı kendinizi korumanın bir zorunluluk olduğudur. VD Infos, cihazınızdan nelerin yakalanabileceğine dair bir örnek gösterir ve bunu bir *yöntem hata ayıklayıcısı* olarak yapar: her bilgi için değeri **onu okuyabilen her yöntemle** okur - `Build.*`, `SystemProperties`, `getprop`, native `__system_property_get`, sistem yöneticileri, content provider'lar, dosyalar, syscall'lar ve donanım anahtarı attestation (TEE) - ve karşılaştırabilmeniz için yan yana dizer. Bir yöntem diğerleriyle uyuşmadığında, aradaki bir şey o yüzeyi yeniden yazıyordur: bir hook çerçevesi, bir spoofer, bir resolver shim'i. **HİÇBİR BİLGİ SAKLANMAZ, GÖNDERİLMEZ VEYA HERHANGİ BİR DOSYAYA YA DA SUNUCUYA İLETİLMEZ** - her şey cihazda çalışır, kimlik taşıyan değerler siz açığa çıkarana kadar maskelenir ve bir rapor cihazdan yalnızca siz açıkça paylaştığınızda veya kaydettiğinizde çıkar; isterseniz internet erişimini bir güvenlik duvarıyla engelleyin ya da doğrudan kapatın.
+Android son derece güçlü ve çok yönlü bir işletim sistemidir; kimsenin söylemediği şey ise tüm kişisel ayrıntılarınızın ve gizli bilgilerinizin kurduğunuz her uygulamaya açık olduğu ve bu tür gizlilik ihlallerine karşı kendinizi korumanın bir zorunluluk olduğudur. VD Infos, cihazınızdan nelerin yakalanabileceğine dair bir örnek gösterir ve bunu bir *yöntem hata ayıklayıcısı* olarak yapar: her bilgi için değeri **onu okuyabilen her yöntemle** okur - `Build.*`, `SystemProperties`, `getprop`, native `__system_property_get`, sistem yöneticileri, content provider'lar, dosyalar, syscall'lar ve donanım anahtarı attestation (TEE) - ve karşılaştırabilmeniz için yan yana dizer. Bir yöntem diğerleriyle uyuşmadığında, aradaki bir şey o yüzeyi yeniden yazıyordur: bir hook çerçevesi, bir spoofer, bir resolver shim'i. **HİÇBİR BİLGİ SAKLANMAZ, GÖNDERİLMEZ VEYA HERHANGİ BİR DOSYAYA¹ YA DA SUNUCUYA İLETİLMEZ** - her şey cihazda çalışır, kimlik taşıyan değerler siz açığa çıkarana kadar maskelenir ve bir rapor cihazdan yalnızca siz açıkça paylaştığınızda veya kaydettiğinizde çıkar; isterseniz internet erişimini bir güvenlik duvarıyla engelleyin ya da doğrudan kapatın.
+
+> **¹ İstisna:** her tarama tam raporunu uygulamanın özel depolamasında saklar (`files/last_snapshot.json`). Onu yalnızca uygulamanın kendisi veya root okuyabilir, bir sonraki tarama üzerine yazar ve cihazdan asla çıkmaz. Yapay zekâ ajanlarının tam sonucu okuyabilmesi için vardır; bkz. **Yapay zekâ ajanları için: JSON olarak tam rapor**.
 
 ## Neyi inceler
 
@@ -40,6 +42,18 @@ Her sürüm iki APK yayınlar: **SDK_35** katı modern sandbox'ı hedefler ve ku
 * https://t.me/RootDetected
 * https://t.me/BlankAssistance
 
+## Yapay zekâ ajanları için: JSON olarak tam rapor
+
+Cihazda bir kabuk üzerinden çalışan yapay zekâ ajanları ve LLM araçları için yapıldı (kodlama asistanları, analiz betikleri). Ajan ekran görüntüsü okumak yerine tüm sonucu tek komutla okur:
+
+```sh
+su -c cat /data/data/ru.vd171.vdinfos/files/last_snapshot.json
+```
+
+* **İçeriği:** her sonda kendi kararı ve tüm lenslerin değeriyle, dışa aktarma düğmesiyle aynı JSON'da. Ekran, daraltılmış bir öğenin yalnızca ilk okumasını gösterir; dosyada hepsi vardır.
+* **Ne zaman güncellenir:** her taramanın sonunda; bu yüzden önce bir tarama çalıştırın, dosya her zaman en yenisini tutar.
+* **Gereksinim:** root, çünkü dosya uygulamanın özel depolamasındadır.
+
 ## Diller
 
 21 arayüz dili: İngilizce, Portekizce, İspanyolca, İtalyanca, Almanca, Fransızca, Rusça, Endonezce, Türkçe, Lehçe, Felemenkçe, İsveççe, Çekçe, Vietnamca, Çince, Japonca, Korece, Farsça, Hintçe, Arapça ve Tayca. Uygulama, ilk açılışta tek seferlik bir dil seçimi sunar ("Sistem varsayılanı" seçeneğiyle) ve aksi halde sistem dilini izler.
@@ -56,7 +70,7 @@ ui/             Jetpack Compose, Material 3, dinamik renk, canlı ilerleme
 cpp/            native_probes.cpp - native lens, bağımlılıksız
 ```
 
-* **Paralellik**: 922 sonda, sınırlı izin sayısıyla varsayılan dispatcher üzerinde dağılır; sonuçlar geldikçe UI'ye akar.
+* **Paralellik**: 991 sonda, sınırlı izin sayısıyla varsayılan dispatcher üzerinde dağılır; sonuçlar geldikçe UI'ye akar.
 * **Arka planda hiçbir şey yok**: hizmet yok, zamanlanmış tarama yok; uygulama yalnızca açıkken çalışır ve boşta bırakılınca kendini kapatır.
 * **Native katman**: `RegisterNatives` ile ada göre bağlanan küçük bir `.so`, kandırılması zor olması gereken parça olduğu için bilerek minik tutulur.
 
@@ -67,6 +81,7 @@ Katkıların çoğu Kotlin gerektirmez: listeler `VDInfos/app/src/main/assets/da
 * `*_apps.txt` - satır başına bir paket adı
 * `props.txt` - sistem özellikleri kataloğu, `KATEGORİ<tab>anahtar`
 * `spoof_keys.txt` - settings spoof matrisi, `anahtar:TİP`
+* `known_certs.txt` - imza sertifikası kataloğu, `SHA-256<tab>sahip` (tam hash, gerçek bir APK'dan `apksigner verify --print-certs` ile alınır)
 * diğer `.txt` dosyaları - yine satır başına bir girdi (çekirdek modülü ad parçaları, `/data/local/tmp` adları)
 
 Bir `#` yorum başlatır; boş satırlar yok sayılır. Bazı dosyalar satır başına boşluk veya sekme ile ayrılmış birkaç alan ya da isteğe bağlı işaretler (`props.txt` içinde `S` ve `@field`) içerir; dosyada zaten bulunan satırların biçimini koru. Kod katkıları da memnuniyetle karşılanır. Katkıda bulunarak çalışmanızın bu projenin AGPL-3.0-or-later lisansıyla dağıtılmasını kabul edersiniz.

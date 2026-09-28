@@ -22,10 +22,12 @@ reads the value through **every method that can read it** - `Build.*`,
 content providers, files, syscalls, and hardware key attestation (TEE) - and lines
 them up so you can compare. When one method disagrees with the others, something in
 between is rewriting that surface: a hooking framework, a spoofer, a resolver shim.
-**NO INFORMATION IS STORED, SENT OR TRANSMITTED TO ANY FILE OR SERVER** - everything
+**NO INFORMATION IS STORED, SENT OR TRANSMITTED TO ANY FILE¹ OR SERVER** - everything
 runs on-device, identity-bearing values are masked until you reveal them, and a
 report only leaves the device when you explicitly share or save it; if you want,
 block internet access with a firewall or just turn it off.
+
+> **¹ Exception:** each scan keeps its full report in the app's private storage (`files/last_snapshot.json`). Only the app itself or root can read it, the next scan overwrites it, and it never leaves the device. It exists so AI agents can read the complete result; see **For AI agents: the full report as JSON**.
 
 ## What it inspects
 
@@ -75,6 +77,18 @@ Each release publishes two APKs: **SDK_35** targets the strict modern sandbox an
 * https://t.me/RootDetected
 * https://t.me/BlankAssistance
 
+## For AI agents: the full report as JSON
+
+Made for AI agents and LLM tools that work on the device through a shell (coding assistants, analysis scripts). Instead of reading screenshots, the agent reads the whole result with one command:
+
+```sh
+su -c cat /data/data/ru.vd171.vdinfos/files/last_snapshot.json
+```
+
+* **What it contains:** every probe with its verdict and the value from every lens, in the same JSON as the export button. The screen shows only the first reading of a collapsed item; the file has all of them.
+* **When it updates:** at the end of every scan, so run a scan first; the file always holds the latest one.
+* **Requirement:** root, because the file lives in the app's private storage.
+
 ## Languages
 
 21 UI languages: English, Portuguese, Spanish, Italian, German, French, Russian,
@@ -94,7 +108,7 @@ ui/             Jetpack Compose, Material 3, dynamic colour, live progress
 cpp/            native_probes.cpp - the native lens, dependency-free
 ```
 
-* **Parallelism**: 922 probes fan out across the default dispatcher with a bounded
+* **Parallelism**: 991 probes fan out across the default dispatcher with a bounded
   permit count; results stream into the UI as they land.
 * **Nothing in the background**: no services and no scheduled scans; the app runs only
   while it is open and closes itself when left idle.
@@ -108,6 +122,7 @@ Most contributions need no Kotlin: the lists live as plain text under `VDInfos/a
 * `*_apps.txt` - one package name per line
 * `props.txt` - the system-property catalog, `CATEGORY<tab>key`
 * `spoof_keys.txt` - the settings-spoof matrix, `key:TYPE`
+* `known_certs.txt` - the signing-certificate catalog, `SHA-256<tab>owner` (full hash, taken from a real APK with `apksigner verify --print-certs`)
 * other `.txt` files - one entry per line too (kernel-module name fragments, `/data/local/tmp` file names)
 
 A `#` starts a comment; blank lines are ignored. Some files pack a few space- or tab-separated fields per line, or optional markers (`S` and `@field` in `props.txt`); keep the shape of the lines already in the file. Code contributions are welcome too. By contributing you agree your work ships under this project's AGPL-3.0-or-later.

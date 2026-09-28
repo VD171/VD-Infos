@@ -51,6 +51,7 @@
     <string name="verdict_info">اطلاعات</string>
     <string name="reading_context_only">زمینه</string>
     <string name="reading_empty">(خالی)</string>
+    <string name="reveal_original">مقدار اصلی</string>
     <string name="verdict_empty">خالی</string>
     <string name="verdict_error">خطا</string>
 
@@ -196,6 +197,15 @@
     <string name="t_installed_packages_list">بسته‌های نصب‌شده (فهرست)</string>
     <string name="t_kernel_release">کرنل (release)</string>
     <string name="t_kernel_version">کرنل (نسخه)</string>
+    <string name="t_kernel_version_string">هسته (رشتهٔ نسخه)</string>
+    <string name="t_kernel_version_claim">ادعای نسخهٔ هسته (ro.kernel.version در برابر uname)</string>
+    <string name="note_kernel_version_claim">ویژگی ro.kernel.version باید بازتاب هستهٔ در حال اجرا باشد. اگر major.minor ای ادعا کند که نسخهٔ واقعی uname آن را ندارد، یک resolver ویژگی را تنظیم کرده در حالی که هستهٔ زیرین چیز دیگری است.</string>
+    <string name="t_kernel_build_date">تاریخ ساخت هسته در برابر ROM</string>
+    <string name="note_kernel_build_date">هستهٔ GKI از پیش ساخته‌شده از ROM ای که در آن عرضه می‌شود قدیمی‌تر است یا با آن مطابق است. هسته‌ای که مدتی پس از مونتاژ ROM ساخته شده، بعداً بازسازی یا فلش شده است، نشانهٔ معمول هستهٔ دستی‌کامپایل‌شده.</string>
+    <string name="t_kernel_config">پیکربندی هسته (‎/proc/config.gz)</string>
+    <string name="note_kernel_config">پیکربندی هسته، جایی که خواندنی باشد، وصله‌های کامپایل‌شده را نام می‌برد: KSU، SUSFS، نسخهٔ محلی سفارشی، امضای ماژول اجبارنشده. سندباکس برنامه اغلب این فایل را رد می‌کند؛ روی اندروید قدیمی، ROM سفارشی و شل روت خوانده می‌شود.</string>
+    <string name="t_kernel_module_scan">ماژول‌ها و نمادهای هسته</string>
+    <string name="note_kernel_module_scan">‎/sys/module و نام نمادهای ‎/proc/kallsyms را برای ksu، susfs و magisk می‌کاود که هستهٔ وصله‌شده یا ماژول‌بارگذاری‌شده آشکار می‌کند. هر دو سطح اغلب محدودند؛ جایی که دامنه اجازه دهد خوانده می‌شوند.</string>
     <string name="t_kernel_cmdline">cmdline کرنل</string>
     <string name="t_kernel_log">گزارش کرنل</string>
     <string name="t_kernel_stat">stat کرنل</string>
@@ -223,6 +233,10 @@
     <string name="t_suspicious_apps">برنامه‌های مشکوک</string>
     <string name="t_running_app_processes">فرآیندهای برنامه در حال اجرا</string>
     <string name="t_running_services">سرویس‌های در حال اجرا</string>
+    <string name="t_xposed_scan_all">اسکن متادیتای Xposed: همه برنامه‌ها</string>
+    <string name="t_debuggable_scan_all">اسکن برنامه‌های کاربری قابل اشکال‌زدایی</string>
+    <string name="t_uid_groups">گروه‌های اشتراک UID</string>
+    <string name="t_updated_system">برنامه‌های سیستمی به‌روز شده (FLAG_UPDATED_SYSTEM_APP)</string>
     <string name="t_sdk_int">SDK int</string>
     <string name="t_selinux_mls_enabled">SELinux MLS فعال</string>
     <string name="t_selinux_context_self">زمینه SELinux (خود)</string>
@@ -410,6 +424,7 @@
     <string name="t_isrc_gap_system_shell_installed">ناهمخوانی: برنامهٔ سیستمی نصب‌شده از طریق shell</string>
     <string name="t_isrc_gap_update_owner_drift">ناهمخوانی: updateOwner ≠ installer</string>
     <string name="t_isrc_gap_self_declared_installer">ناهمخوانی: برنامه installer خودش است</string>
+    <string name="t_isrc_landscape">تصویر منبع نصب (همه برنامه‌ها بر اساس نصب‌کننده)</string>
     <string name="t_installed_packages_diff">بسته‌های نصب‌شده: متفاوت (JVM x pm)</string>
     <string name="t_installed_applications_diff">برنامه‌های نصب‌شده: متفاوت (JVM x pm)</string>
     <string name="t_selinux_status">صفحهٔ status سلینوکس (policyload/seq)</string>
@@ -432,4 +447,41 @@
     <string name="n_tee_soter">برنامهٔ سرویس Soter از Tencent را با وضعیت ویژگی سرویس آن مقابله می‌کند.</string>
     <string name="t_proc_cgroup_format">قالب مسیر cgroup</string>
     <string name="n_proc_cgroup_format">کانتینر همتاسازی‌شده / دو-برنامه‌ای مسیر یکپارچهٔ cgroup را از شکل متعارف uid_/pid_ منحرف می‌کند.</string>
+    <string name="t_gpu_vendor">سازنده GPU</string>
+    <string name="t_gpu_renderer">رندرگر GPU</string>
+    <string name="t_gpu_version">نسخه GPU</string>
+    <string name="t_gpu_glsl">نسخه GLSL GPU</string>
+    <string name="t_tel_typeAllocationCode">کد تخصیص نوع (TAC)</string>
+    <string name="t_tel_manufacturerCode">کد سازنده</string>
+    <string name="t_tel_simCarrierId">شناسه اپراتور SIM</string>
+    <string name="t_tel_simCarrierIdName">نام اپراتور SIM</string>
+    <string name="t_tel_simSpecificCarrierId">شناسه اپراتور خاص SIM</string>
+    <string name="t_tel_visualVoicemailPackageName">بسته پست صوتی تصویری</string>
+    <string name="t_keychain_blacklist">فهرست سیاه گواهی‌های Keychain</string>
+    <string name="t_buildprop_vs_runtime">build.prop vs runtime</string>
+    <string name="note_boot_count">boot_count (فریم‌ورک) فقط زیاد می‌شود؛ Phenotype_boot_count (سرویس‌های Play) عکس فوری آن است و ممکن است عقب بماند. فقط وقتی واگرا است که عکس فوری از boot_count جلوتر باشد (ریست).</string>
+    <string name="note_isrc_initiator_sig">گواهی‌ای که سیستم هنگام نصب این برنامه برای نصب‌کننده ثبت کرد با گواهی‌ای که نصب‌کننده اکنون گزارش می‌دهد فرق دارد. علت آن نصب‌کننده جایگزین‌شده یا امضای جعلی است؛ رام‌هایی که سیستم را دوباره امضا می‌کنند و گواهی اصلی سازنده را گزارش می‌دهند (مثلاً Xiaomi.eu) این را روی هر دستگاهی نشان می‌دهند.</string>
+    <string name="t_concealment">پنهان‌سازی برنامه‌ها</string>
+    <string name="note_concealment">بسته‌ای که از فهرست برنامه‌ها پنهان شده اما هنوز از در دیگری از PackageManager (اطلاعات بسته، createPackageContext، APK باز‌شده، launch intent) قابل دسترسی است، از یک در پنهان است و از در دیگر نه - نشانه یک پنهان‌کننده برنامه ناقص.</string>
+    <string name="t_prop_variants">گونه‌ها بر پایه پارتیشن: %1$s</string>
+    <string name="t_prop_enum">شمارش خصیصه‌ها در برابر getprop</string>
+    <string name="note_prop_variants">همان پسوند برای هر پارتیشن ظاهر می‌شود (system, vendor, product, odm, dlkm...). مقادیری که باید همه‌جا یکسان باشند اما فرق دارند، یا در یک دودمان از هم جدا می‌شوند، یک جعل جزئی را آشکار می‌کنند - اثری که در برخی پارتیشن‌ها تغییر کرده و در بقیه نه.</string>
+    <string name="note_prop_enum">شمارش ناحیه خصیصه‌ها به‌صورت بومی (__system_property_foreach) و مقایسه با getprop از یک فرایند دیگر، خصیصه‌ای را که از پوسته پنهان شده یا تنها در یک مسیر تزریق شده آشکار می‌کند.</string>
+    <string name="t_dlphdr">ماژول‌های لودر (dl_iterate_phdr)</string>
+    <string name="t_frida_port">اسکن پورت Frida</string>
+    <string name="note_dlphdr">dl_iterate_phdr ماژول‌های بارگذاری‌شده را از طریق لینکر شمارش می‌کند، نه از طریق /proc/self/maps، پس هوکی که ورودی‌اش را از maps پاک کند باز هم اینجا فهرست می‌شود. تطابق needle یا ماژولی خارج از فهرست مجاز سیستم همان نشت است.</string>
+    <string name="t_ime_verdict">حکم یکپارچگی صفحه‌کلید</string>
+    <string name="t_store_authenticity">اصالت امضای فروشگاه/GMS</string>
+    <string name="t_devgate">همخوانی تنظیمات وابسته به حالت توسعه‌دهنده</string>
+    <string name="note_ime_verdict">یک RASP بانکی (PayZapp/Zeta) هر صفحه‌کلید فعالِ غیرسیستمی که خارج از فهرست مجاز فروشگاه‌ها نصب شده را رد می‌کند. یک IME فعال غیرسیستمی با نصب‌کننده خارج فروشگاه علامت‌گذاری می‌شود.</string>
+    <string name="note_store_authenticity">Play Store، GMS و GSF باید گواهی امضای Google را داشته باشند. بسته فروشگاه یا GMS موجود اما امضاشده با کلید دیگر، جعلی، microG یا فروشگاه بسته‌بندی‌مجدد است.</string>
+    <string name="note_devgate">adb و دیگر تنظیمات وابسته به حالت توسعه‌دهنده فقط با روشن‌بودن گزینه‌های توسعه‌دهنده تغییر می‌کنند. تنظیم وابسته‌ای که با development_settings_enabled=0 غیرپیش‌فرض مانده، تنها با روت یا `settings put` قابل تنظیم بوده است.</string>
+    <string name="t_maps_exec">نگاشت‌های exec تزریق‌شده (deleted/memfd)</string>
+    <string name="t_anon_minor">سوپربلاک anon-bdev پنهان</string>
+    <string name="note_maps_exec">نگاشت اجرایی متکی بر فایل (deleted)/memfd/ashmem که یا RWX است (نقض W^X) یا با امضای ELF آغاز می‌شود، یک .so تزریق‌شده واقعی جدا از سیستم فایل است؛ ترامپولین JIT در ART هیچ‌کدام نیست و بی‌خطر شمرده می‌شود. ماژول خارج از فهرست مجاز سیستم هم شمرده می‌شود.</string>
+    <string name="note_anon_minor">سیستم‌های فایل بدون دستگاه بلوکی minor خود را از یک استخر anon سراسری، متراکم از پایین، می‌گیرند. minorی که با stat() هست اما در mountinfo این فرایند نیست، یک سوپربلاک زنده پنهان در فضای‌نام خصوصی است (tmpfs یک دیمن). یک دنباله بلند از minorهای گم‌شده churn هر برنامه است و نادیده گرفته می‌شود؛ حفره کوتاه همان نشانه است.</string>
+    <string name="t_sb_tee_signer">امضاکننده StrongBox × TEE</string>
+    <string name="note_sb_tee_signer">یک دستگاه اصل ریشه‌های attestation جدا برای سخت‌افزار StrongBox و TEE دارد، پس گواهی‌های امضایشان فرق دارد. یک keybox واحد (TrickyStore) که هر دو سطح را جعل می‌کند، هر دو را با یک گواهی امضا می‌کند - امضاکننده مشترک همان نشانه است.</string>
+    <string name="t_local_tmp_list">فهرست /data/local/tmp</string>
+    <string name="note_local_tmp_list">فهرست‌کردن /data/local/tmp با getdents64 (نه جست‌وجوی نام) هر باقی‌مانده‌ای را که یک برنامه واقعاً به آن می‌رسد آشکار می‌کند، از جمله آنچه ماژول می‌ریزد. در دستگاه قفل، این پوشه مال shell است و برنامه نمی‌تواند آن را فهرست کند، پس EACCES پاسخ تمیز است؛ یک ورودی دیده‌شده یعنی باقی‌مانده در دسترس برنامه.</string>
 </resources>

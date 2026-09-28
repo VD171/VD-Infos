@@ -23,10 +23,12 @@ sistema, content providers, arquivos, syscalls e attestation de chave por hardwa
 (TEE) - e alinha tudo pra você comparar. Quando um método discorda dos outros, é
 porque algo no meio está reescrevendo aquela superfície: um framework de hook, um
 spoofer, um shim de resolver. **NENHUMA INFORMAÇÃO É ARMAZENADA, ENVIADA OU
-TRANSMITIDA A QUALQUER ARQUIVO OU SERVIDOR** - tudo roda no aparelho, os valores de
+TRANSMITIDA A QUALQUER ARQUIVO¹ OU SERVIDOR** - tudo roda no aparelho, os valores de
 identidade ficam mascarados até você revelar, e um relatório só sai do aparelho
 quando você compartilha ou salva explicitamente; se quiser, bloqueie o acesso à
 internet com um firewall ou simplesmente desligue a internet.
+
+> **¹ Exceção:** cada varredura guarda o relatório completo no armazenamento privado do app (`files/last_snapshot.json`). Só o próprio app ou o root conseguem lê-lo, a varredura seguinte o sobrescreve e ele nunca sai do aparelho. Ele existe para que agentes de IA leiam o resultado completo; veja **Para agentes de IA: o relatório completo em JSON**.
 
 ## O que inspeciona
 
@@ -75,6 +77,18 @@ Cada release publica dois APKs: **SDK_35** mira o sandbox moderno e estrito, e �
 * https://t.me/RootDetected
 * https://t.me/BlankAssistance
 
+## Para agentes de IA: o relatório completo em JSON
+
+Feito para agentes de IA e ferramentas de LLM que trabalham no aparelho por um shell (assistentes de programação, scripts de análise). Em vez de ler prints da tela, o agente lê o resultado inteiro com um comando:
+
+```sh
+su -c cat /data/data/ru.vd171.vdinfos/files/last_snapshot.json
+```
+
+* **O que contém:** cada sonda com o veredito e o valor de todas as lentes, no mesmo JSON do botão de exportar. A tela mostra só a primeira leitura de um item recolhido; o arquivo tem todas.
+* **Quando atualiza:** ao fim de cada varredura, então rode uma varredura antes; o arquivo sempre traz a mais recente.
+* **Requisito:** root, porque o arquivo fica no armazenamento privado do app.
+
 ## Línguas
 
 21 idiomas de interface: Inglês, Português, Espanhol, Italiano, Alemão, Francês, Russo,
@@ -94,7 +108,7 @@ ui/             Jetpack Compose, Material 3, cor dinâmica, progresso ao vivo
 cpp/            native_probes.cpp - a lente nativa, sem dependências
 ```
 
-* **Paralelismo**: 922 sondas em fan-out no dispatcher default com concorrência
+* **Paralelismo**: 991 sondas em fan-out no dispatcher default com concorrência
   limitada; os resultados entram no UI conforme chegam.
 * **Nada em background**: sem serviços nem varreduras agendadas; o app roda só
   enquanto está aberto e se fecha sozinho quando fica ocioso.
@@ -108,6 +122,7 @@ A maioria das contribuições não exige Kotlin: as listas são texto puro em `V
 * `*_apps.txt` - um nome de pacote por linha
 * `props.txt` - o catálogo de propriedades do sistema, `CATEGORIA<tab>chave`
 * `spoof_keys.txt` - a matriz de spoof de settings, `chave:TIPO`
+* `known_certs.txt` - o catálogo de certificados de assinatura, `SHA-256<tab>dono` (hash completo, tirado de um APK real com `apksigner verify --print-certs`)
 * outros arquivos `.txt` - também uma entrada por linha (fragmentos de nome de módulo de kernel, nomes em `/data/local/tmp`)
 
 Um `#` inicia um comentário; linhas vazias são ignoradas. Alguns arquivos trazem alguns campos separados por espaço ou tab por linha, ou marcadores opcionais (`S` e `@field` no `props.txt`); mantenha o formato das linhas que já estão no arquivo. Contribuições de código também são bem-vindas. Ao contribuir, você concorda que seu trabalho segue a AGPL-3.0-or-later deste projeto.

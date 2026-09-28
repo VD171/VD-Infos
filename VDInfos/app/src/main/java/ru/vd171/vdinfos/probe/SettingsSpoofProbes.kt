@@ -81,8 +81,9 @@ object SettingsSpoofProbes {
     }.getOrNull()
 
     private fun sweep(c: Context, key: String, read: (Context, String, String) -> String?): String? {
-        val values = STORES.mapNotNull { s -> read(c, s, key)?.takeIf { it.isNotEmpty() } }.distinct().sorted()
-        return if (values.isEmpty()) null else values.joinToString(",")
+        val values = STORES.mapNotNull { s -> read(c, s, key)?.takeIf { it.isNotEmpty() } }.distinct()
+        val filtered = if (values.any { it != "0" }) values.filter { it != "0" } else values
+        return if (filtered.isEmpty()) null else filtered.sorted().joinToString(",")
     }
 
     private fun bulkMap(c: Context, store: String): Map<String, String>? = runCatching {

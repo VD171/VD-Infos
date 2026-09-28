@@ -12,7 +12,9 @@
 
 <img src="images/vdinfos-01.png" height="420"/> <img src="images/vdinfos-02.png" height="420"/>
 
-Android is een enorm krachtig en veelzijdig besturingssysteem; wat niemand je vertelt, is dat al je persoonlijke gegevens en vertrouwelijke informatie beschikbaar zijn voor elke app die je installeert, en jezelf beschermen tegen deze inbreuken op je privacy is een verplichting. VD Infos toont je een voorbeeld van wat er van je toestel kan worden vastgelegd, en doet dat als een *methode-debugger*: voor elk stukje informatie leest het de waarde via **elke methode die het kan lezen** - `Build.*`, `SystemProperties`, `getprop`, de native `__system_property_get`, systeemmanagers, content providers, bestanden, syscalls en hardware-sleutel-attestation (TEE) - en zet ze naast elkaar zodat je kunt vergelijken. Wanneer één methode van de andere afwijkt, herschrijft iets ertussenin dat oppervlak: een hooking-framework, een spoofer, een resolver-shim. **ER WORDT GEEN INFORMATIE OPGESLAGEN, VERZONDEN OF DOORGEGEVEN AAN ENIG BESTAND OF SERVER** - alles draait op het toestel, identiteitsdragende waarden zijn gemaskeerd tot je ze onthult, en een rapport verlaat het toestel alleen wanneer je het uitdrukkelijk deelt of opslaat; wil je, blokkeer dan internettoegang met een firewall of zet het gewoon uit.
+Android is een enorm krachtig en veelzijdig besturingssysteem; wat niemand je vertelt, is dat al je persoonlijke gegevens en vertrouwelijke informatie beschikbaar zijn voor elke app die je installeert, en jezelf beschermen tegen deze inbreuken op je privacy is een verplichting. VD Infos toont je een voorbeeld van wat er van je toestel kan worden vastgelegd, en doet dat als een *methode-debugger*: voor elk stukje informatie leest het de waarde via **elke methode die het kan lezen** - `Build.*`, `SystemProperties`, `getprop`, de native `__system_property_get`, systeemmanagers, content providers, bestanden, syscalls en hardware-sleutel-attestation (TEE) - en zet ze naast elkaar zodat je kunt vergelijken. Wanneer één methode van de andere afwijkt, herschrijft iets ertussenin dat oppervlak: een hooking-framework, een spoofer, een resolver-shim. **ER WORDT GEEN INFORMATIE OPGESLAGEN, VERZONDEN OF DOORGEGEVEN AAN ENIG BESTAND¹ OF SERVER** - alles draait op het toestel, identiteitsdragende waarden zijn gemaskeerd tot je ze onthult, en een rapport verlaat het toestel alleen wanneer je het uitdrukkelijk deelt of opslaat; wil je, blokkeer dan internettoegang met een firewall of zet het gewoon uit.
+
+> **¹ Uitzondering:** elke scan bewaart zijn volledige rapport in de privéopslag van de app (`files/last_snapshot.json`). Alleen de app zelf of root kan het lezen, de volgende scan overschrijft het en het verlaat het apparaat nooit. Het bestaat zodat AI-agents het volledige resultaat kunnen lezen; zie **Voor AI-agents: het volledige rapport als JSON**.
 
 ## Wat het inspecteert
 
@@ -40,6 +42,18 @@ Elke release publiceert twee APK's: **SDK_35** richt zich op de strikte moderne 
 * https://t.me/RootDetected
 * https://t.me/BlankAssistance
 
+## Voor AI-agents: het volledige rapport als JSON
+
+Gemaakt voor AI-agents en LLM-tools die via een shell op het apparaat werken (programmeerassistenten, analysescripts). In plaats van screenshots te lezen, leest de agent het hele resultaat met één opdracht:
+
+```sh
+su -c cat /data/data/ru.vd171.vdinfos/files/last_snapshot.json
+```
+
+* **Inhoud:** elke sonde met haar oordeel en de waarde van alle lenzen, in dezelfde JSON als de exportknop. Het scherm toont bij een ingeklapt item alleen de eerste meting; het bestand bevat ze allemaal.
+* **Wanneer het bijwerkt:** aan het einde van elke scan, dus voer eerst een scan uit; het bestand bevat altijd de nieuwste.
+* **Vereiste:** root, omdat het bestand in de privéopslag van de app staat.
+
 ## Talen
 
 21 UI-talen: Engels, Portugees, Spaans, Italiaans, Duits, Frans, Russisch, Indonesisch, Turks, Pools, Nederlands, Zweeds, Tsjechisch, Vietnamees, Chinees, Japans, Koreaans, Perzisch, Hindi, Arabisch en Thais. De app biedt bij de eerste start een eenmalige taalkeuze (met een optie "Systeemstandaard") en volgt anders de systeemtaal.
@@ -56,7 +70,7 @@ ui/             Jetpack Compose, Material 3, dynamische kleur, live voortgang
 cpp/            native_probes.cpp - de native lens, zonder afhankelijkheden
 ```
 
-* **Parallellisme**: 922 probes waaieren uit over de standaard-dispatcher met een begrensd aantal permits; resultaten stromen de UI in zodra ze binnenkomen.
+* **Parallellisme**: 991 probes waaieren uit over de standaard-dispatcher met een begrensd aantal permits; resultaten stromen de UI in zodra ze binnenkomen.
 * **Niets op de achtergrond**: geen services en geen geplande scans; de app draait alleen zolang hij open is en sluit zichzelf wanneer hij inactief blijft.
 * **Native laag**: één kleine `.so`, op naam gebonden via `RegisterNatives`, bewust piepklein gehouden omdat dit het deel is dat moeilijk te misleiden moet zijn.
 
@@ -67,6 +81,7 @@ De meeste bijdragen hebben geen Kotlin nodig: de lijsten staan als platte tekst 
 * `*_apps.txt` - één pakketnaam per regel
 * `props.txt` - de catalogus van systeemeigenschappen, `CATEGORIE<tab>sleutel`
 * `spoof_keys.txt` - de settings-spoofmatrix, `sleutel:TYPE`
+* `known_certs.txt` - de catalogus van ondertekeningscertificaten, `SHA-256<tab>eigenaar` (volledige hash, uit een echte APK met `apksigner verify --print-certs`)
 * overige `.txt`-bestanden - eveneens één item per regel (fragmenten van kernelmodulenamen, namen in `/data/local/tmp`)
 
 Een `#` begint een opmerking; lege regels worden genegeerd. Sommige bestanden bevatten enkele door spatie of tab gescheiden velden per regel, of optionele markeringen (`S` en `@field` in `props.txt`); behoud de vorm van de regels die al in het bestand staan. Codebijdragen zijn ook welkom. Door bij te dragen ga je ermee akkoord dat je werk onder de AGPL-3.0-or-later van dit project valt.

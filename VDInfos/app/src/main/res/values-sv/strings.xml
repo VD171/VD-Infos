@@ -51,6 +51,7 @@
     <string name="verdict_info">info</string>
     <string name="reading_context_only">kontext</string>
     <string name="reading_empty">(tom)</string>
+    <string name="reveal_original">Ursprungligt värde</string>
     <string name="verdict_empty">tom</string>
     <string name="verdict_error">fel</string>
 
@@ -196,6 +197,15 @@
     <string name="t_installed_packages_list">Installerade paket (lista)</string>
     <string name="t_kernel_release">Kärna (release)</string>
     <string name="t_kernel_version">Kärna (version)</string>
+    <string name="t_kernel_version_string">Kärna (versionssträng)</string>
+    <string name="t_kernel_version_claim">Kärnans versionspåstående (ro.kernel.version vs uname)</string>
+    <string name="note_kernel_version_claim">Egenskapen ro.kernel.version ska spegla den körande kärnan. Om den påstår ett major.minor som den riktiga uname-releasen inte har, har en resolver satt egenskapen medan kärnan under är en annan.</string>
+    <string name="t_kernel_build_date">Kärnans byggdatum vs ROM</string>
+    <string name="note_kernel_build_date">En förbyggd GKI-kärna är äldre än eller matchar den ROM den levereras i. En kärna byggd långt efter att ROM:en sattes samman har byggts om eller flashats senare, det vanliga tecknet på en handkompilerad kärna.</string>
+    <string name="t_kernel_config">Kärnkonfiguration (/proc/config.gz)</string>
+    <string name="note_kernel_config">Kärnkonfigurationen namnger, där den är läsbar, de inkompilerade patcharna: KSU, SUSFS, en egen local version, ej framtvingad modulsignering. Appens sandlåda nekar ofta denna fil; den läses på äldre Android, custom-ROM och root-shells.</string>
+    <string name="t_kernel_module_scan">Kärnmoduler och symboler</string>
+    <string name="note_kernel_module_scan">Söker igenom /sys/module och symbolnamnen i /proc/kallsyms efter ksu, susfs och magisk, som en patchad eller modulladdad kärna exponerar. Båda ytorna är ofta begränsade; de läses där domänen tillåter.</string>
     <string name="t_kernel_cmdline">kärna cmdline</string>
     <string name="t_kernel_log">Kärnlogg</string>
     <string name="t_kernel_stat">kärna stat</string>
@@ -223,6 +233,10 @@
     <string name="t_suspicious_apps">Misstänkta appar</string>
     <string name="t_running_app_processes">Aktiva appprocesser</string>
     <string name="t_running_services">Aktiva tjänster</string>
+    <string name="t_xposed_scan_all">Xposed-metadata: skanning av alla appar</string>
+    <string name="t_debuggable_scan_all">Skanning av felsökningsbara användarappar</string>
+    <string name="t_uid_groups">UID-delningsgrupper</string>
+    <string name="t_updated_system">Uppdaterade systemappar (FLAG_UPDATED_SYSTEM_APP)</string>
     <string name="t_sdk_int">SDK int</string>
     <string name="t_selinux_mls_enabled">SELinux MLS aktiverat</string>
     <string name="t_selinux_context_self">SELinux-kontext (egen)</string>
@@ -410,6 +424,7 @@
     <string name="t_isrc_gap_system_shell_installed">Avvikelse: systemapp installerad via shell</string>
     <string name="t_isrc_gap_update_owner_drift">Avvikelse: updateOwner ≠ installer</string>
     <string name="t_isrc_gap_self_declared_installer">Avvikelse: appen är sin egen installer</string>
+    <string name="t_isrc_landscape">Installationskällslandskap (alla appar per installatör)</string>
     <string name="t_installed_packages_diff">Installerade paket: avvikande (JVM x pm)</string>
     <string name="t_installed_applications_diff">Installerade applikationer: avvikande (JVM x pm)</string>
     <string name="t_selinux_status">SELinux statussida (policyload/seq)</string>
@@ -432,4 +447,41 @@
     <string name="n_tee_soter">Stämmer av Tencents Soter-tjänstprogram mot dess tjänsteegenskaps tillstånd.</string>
     <string name="t_proc_cgroup_format">cgroup-sökvägsformat</string>
     <string name="n_proc_cgroup_format">En klonad / dual-app-container får den enhetliga cgroup-sökvägen att avvika från den kanoniska uid_/pid_-formen.</string>
+    <string name="t_gpu_vendor">GPU-tillverkare</string>
+    <string name="t_gpu_renderer">GPU-renderare</string>
+    <string name="t_gpu_version">GPU-version</string>
+    <string name="t_gpu_glsl">GPU GLSL-version</string>
+    <string name="t_tel_typeAllocationCode">Typtilldelningskod (TAC)</string>
+    <string name="t_tel_manufacturerCode">Tillverkarkod</string>
+    <string name="t_tel_simCarrierId">SIM-operatörs-ID</string>
+    <string name="t_tel_simCarrierIdName">SIM-operatörsnamn</string>
+    <string name="t_tel_simSpecificCarrierId">Specifikt SIM-operatörs-ID</string>
+    <string name="t_tel_visualVoicemailPackageName">Paket för visuell röstbrevlåda</string>
+    <string name="t_keychain_blacklist">Keychain-certifikatsvartlista</string>
+    <string name="t_buildprop_vs_runtime">build.prop vs runtime</string>
+    <string name="note_boot_count">boot_count (ramverk) växer bara; Phenotype_boot_count (Play-tjänster) är dess ögonblicksbild och kan släpa efter. Avvikande endast om ögonblicksbilden ligger före boot_count (en återställning).</string>
+    <string name="note_isrc_initiator_sig">Certifikatet som systemet registrerade för installeraren när den här appen installerades skiljer sig från det installeraren rapporterar nu. En utbytt installerare eller en förfalskad signatur orsakar det; ROM:ar som signerar om systemet och rapporterar tillverkarens originalcertifikat (t.ex. Xiaomi.eu) visar det på alla enheter.</string>
+    <string name="t_concealment">Appdöljning</string>
+    <string name="note_concealment">Ett paket som döljs från applistan men ändå nås genom en annan PackageManager-dörr (paketinfo, createPackageContext, dess öppnade APK, launch intent) är dolt vid en dörr men inte en annan - kännetecknet för en ofullständig appdöljare.</string>
+    <string name="t_prop_variants">Partitionsvarianter: %1$s</string>
+    <string name="t_prop_enum">Egenskapsuppräkning vs getprop</string>
+    <string name="note_prop_variants">Samma suffix finns per partition (system, vendor, product, odm, dlkm...). Värden som borde stämma överallt men skiljer sig, eller som delar sig inom en linje, avslöjar en delvis spoof - ett fingeravtryck ändrat på vissa partitioner men inte andra.</string>
+    <string name="note_prop_enum">Att räkna upp egenskapsområdet nativt (__system_property_foreach) och jämföra med getprop från en annan process avslöjar en egenskap som är dold för skalet eller injicerad i en väg men inte den andra.</string>
+    <string name="t_dlphdr">Loader-moduler (dl_iterate_phdr)</string>
+    <string name="t_frida_port">Frida-portskanning</string>
+    <string name="note_dlphdr">dl_iterate_phdr räknar upp de laddade modulerna via länkaren, inte via /proc/self/maps, så en hook som rensar sin post från maps listas ändå här. En needle-träff eller en modul utanför systemets allowlist är läckan.</string>
+    <string name="t_ime_verdict">Tangentbordets integritetsutlåtande</string>
+    <string name="t_store_authenticity">Äkthet för butik-/GMS-signatur</string>
+    <string name="t_devgate">Koherens för Dev-låsta inställningar</string>
+    <string name="note_ime_verdict">En bank-RASP (PayZapp/Zeta) avvisar varje aktiverat tangentbord som är icke-system och installerat utanför en butik-allowlist. Ett aktiverat icke-system-IME med icke-butiksinstallerare flaggas.</string>
+    <string name="note_store_authenticity">Play Store, GMS och GSF måste bära Googles signeringscertifikat. Ett butiks- eller GMS-paket som finns men är signerat med en annan nyckel är en förfalskning, microG eller en ompaketerad butik.</string>
+    <string name="note_devgate">adb och andra Dev-låsta inställningar ändras bara med Utvecklaralternativ på. En låst inställning som inte är standard vid development_settings_enabled=0 kan bara ha satts via root eller `settings put`.</string>
+    <string name="t_maps_exec">Injicerade exec-mappningar (deleted/memfd)</string>
+    <string name="t_anon_minor">Dolt anon-bdev-superblock</string>
+    <string name="note_maps_exec">En körbar mappning som backas av en (deleted)/memfd/ashmem-fil som antingen är RWX (bryter W^X) eller börjar med ELF-magin är en riktig injicerad .so, frikopplad från filsystemet; ART:s JIT-trampolin är ingetdera och räknas som godartad. En modul utanför systemets allowlist räknas också.</string>
+    <string name="note_anon_minor">Filsystem utan blockenhet hämtar sin minor från en global anon-pool, tät underifrån. En minor som finns via stat() men saknas i den här processens mountinfo är ett levande superblock dolt i en privat namespace (en daemons tmpfs). En lång rad saknade minorer är app-churn och ignoreras; ett kort hål är tecknet.</string>
+    <string name="t_sb_tee_signer">StrongBox- vs. TEE-signerare</string>
+    <string name="note_sb_tee_signer">En äkta enhet har separata attestation-rötter för StrongBox- och TEE-hårdvara, så deras signeringscertifikat skiljer sig. En enda keybox (TrickyStore) som förfalskar båda nivåerna signerar båda med samma certifikat - en delad signerare är tecknet.</string>
+    <string name="t_local_tmp_list">Listning av /data/local/tmp</string>
+    <string name="note_local_tmp_list">Att lista /data/local/tmp med getdents64 (inte en namnuppslagning) visar varje rest en app faktiskt når, inklusive det modulen släpper. På en låst enhet ägs katalogen av shell och kan inte listas av en app, så EACCES är det rena svaret; en synlig post betyder app-nåbar rest.</string>
 </resources>

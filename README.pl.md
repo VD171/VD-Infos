@@ -12,7 +12,9 @@
 
 <img src="images/vdinfos-01.png" height="420"/> <img src="images/vdinfos-02.png" height="420"/>
 
-Android to niezwykle potężny i wszechstronny system operacyjny; nikt ci nie mówi, że wszystkie twoje dane osobowe i poufne informacje są dostępne dla każdej instalowanej aplikacji, a ochrona przed takim naruszaniem prywatności to obowiązek. VD Infos pokazuje przykład tego, co można przechwycić z twojego urządzenia, i robi to jako *debuger metod*: dla każdej informacji odczytuje wartość przez **każdą metodę zdolną ją odczytać** - `Build.*`, `SystemProperties`, `getprop`, natywne `__system_property_get`, menedżery systemowe, content providery, pliki, syscalle i sprzętowy attestation klucza (TEE) - i zestawia je, abyś mógł porównać. Gdy jedna metoda różni się od pozostałych, coś pomiędzy przepisuje tę powierzchnię: framework hakujący, spoofer, shim resolvera. **ŻADNE INFORMACJE NIE SĄ PRZECHOWYWANE, WYSYŁANE ANI PRZESYŁANE DO ŻADNEGO PLIKU CZY SERWERA** - wszystko działa na urządzeniu, wartości niosące tożsamość są maskowane, dopóki ich nie odsłonisz, a raport opuszcza urządzenie tylko wtedy, gdy sam go udostępnisz lub zapiszesz; jeśli chcesz, zablokuj dostęp do internetu firewallem albo po prostu go wyłącz.
+Android to niezwykle potężny i wszechstronny system operacyjny; nikt ci nie mówi, że wszystkie twoje dane osobowe i poufne informacje są dostępne dla każdej instalowanej aplikacji, a ochrona przed takim naruszaniem prywatności to obowiązek. VD Infos pokazuje przykład tego, co można przechwycić z twojego urządzenia, i robi to jako *debuger metod*: dla każdej informacji odczytuje wartość przez **każdą metodę zdolną ją odczytać** - `Build.*`, `SystemProperties`, `getprop`, natywne `__system_property_get`, menedżery systemowe, content providery, pliki, syscalle i sprzętowy attestation klucza (TEE) - i zestawia je, abyś mógł porównać. Gdy jedna metoda różni się od pozostałych, coś pomiędzy przepisuje tę powierzchnię: framework hakujący, spoofer, shim resolvera. **ŻADNE INFORMACJE NIE SĄ PRZECHOWYWANE, WYSYŁANE ANI PRZESYŁANE DO ŻADNEGO PLIKU¹ CZY SERWERA** - wszystko działa na urządzeniu, wartości niosące tożsamość są maskowane, dopóki ich nie odsłonisz, a raport opuszcza urządzenie tylko wtedy, gdy sam go udostępnisz lub zapiszesz; jeśli chcesz, zablokuj dostęp do internetu firewallem albo po prostu go wyłącz.
+
+> **¹ Wyjątek:** każde skanowanie zapisuje pełny raport w prywatnej pamięci aplikacji (`files/last_snapshot.json`). Odczytać go może tylko sama aplikacja lub root, następne skanowanie go nadpisuje i nigdy nie opuszcza urządzenia. Istnieje po to, by agenci AI mogli odczytać pełny wynik; zob. **Dla agentów AI: pełny raport w JSON**.
 
 ## Co sprawdza
 
@@ -40,6 +42,18 @@ Każde wydanie publikuje dwa pliki APK: **SDK_35** celuje w surowy nowoczesny sa
 * https://t.me/RootDetected
 * https://t.me/BlankAssistance
 
+## Dla agentów AI: pełny raport w JSON
+
+Stworzone dla agentów AI i narzędzi LLM, które pracują na urządzeniu przez powłokę (asystenci programowania, skrypty analityczne). Zamiast czytać zrzuty ekranu, agent odczytuje cały wynik jednym poleceniem:
+
+```sh
+su -c cat /data/data/ru.vd171.vdinfos/files/last_snapshot.json
+```
+
+* **Co zawiera:** każdą sondę z werdyktem i wartością wszystkich soczewek, w tym samym JSON co przycisk eksportu. Ekran pokazuje tylko pierwszy odczyt zwiniętego elementu; plik ma wszystkie.
+* **Kiedy się aktualizuje:** na końcu każdego skanowania, więc najpierw uruchom skanowanie; plik zawsze zawiera najnowsze.
+* **Wymaganie:** root, bo plik leży w prywatnej pamięci aplikacji.
+
 ## Języki
 
 21 języków interfejsu: angielski, portugalski, hiszpański, włoski, niemiecki, francuski, rosyjski, indonezyjski, turecki, polski, niderlandzki, szwedzki, czeski, wietnamski, chiński, japoński, koreański, perski, hindi, arabski i tajski. Aplikacja oferuje jednorazowy wybór języka przy pierwszym uruchomieniu (z opcją "Domyślny systemu"), a poza tym podąża za językiem systemu.
@@ -56,7 +70,7 @@ ui/             Jetpack Compose, Material 3, dynamiczny kolor, postęp na żywo
 cpp/            native_probes.cpp - natywna soczewka, bez zależności
 ```
 
-* **Równoległość**: 922 sond rozkłada się na domyślnym dispatcherze z ograniczoną liczbą pozwoleń; wyniki napływają do UI w miarę ich pojawiania się.
+* **Równoległość**: 991 sond rozkłada się na domyślnym dispatcherze z ograniczoną liczbą pozwoleń; wyniki napływają do UI w miarę ich pojawiania się.
 * **Nic w tle**: brak usług i zaplanowanych skanów; aplikacja działa tylko gdy jest otwarta i sama się zamyka, gdy pozostaje bezczynna.
 * **Warstwa natywna**: mała `.so`, wiązana po nazwie przez `RegisterNatives`, celowo malutka, bo to część, którą musi być trudno oszukać.
 
@@ -67,6 +81,7 @@ Większość wkładów nie wymaga Kotlina: listy to zwykły tekst w `VDInfos/app
 * `*_apps.txt` - jedna nazwa pakietu na linię
 * `props.txt` - katalog właściwości systemowych, `KATEGORIA<tab>klucz`
 * `spoof_keys.txt` - macierz spoof ustawień, `klucz:TYP`
+* `known_certs.txt` - katalog certyfikatów podpisu, `SHA-256<tab>właściciel` (pełny hash, z prawdziwego APK przez `apksigner verify --print-certs`)
 * pozostałe pliki `.txt` - również jeden wpis na wiersz (fragmenty nazw modułów jądra, nazwy w `/data/local/tmp`)
 
 `#` rozpoczyna komentarz; puste linie są ignorowane. Niektóre pliki zawierają kilka pól oddzielonych spacją lub tabulatorem w wierszu albo opcjonalne znaczniki (`S` i `@field` w `props.txt`); zachowaj kształt wierszy już obecnych w pliku. Wkłady w kod również są mile widziane. Współtworząc, zgadzasz się, że Twoja praca jest udostępniana na AGPL-3.0-or-later tego projektu.

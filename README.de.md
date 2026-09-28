@@ -12,7 +12,9 @@
 
 <img src="images/vdinfos-01.png" height="420"/> <img src="images/vdinfos-02.png" height="420"/>
 
-Android ist ein enorm leistungsfähiges und vielseitiges Betriebssystem; was dir niemand sagt: All deine persönlichen Daten und vertraulichen Informationen stehen jeder App zur Verfügung, die du installierst, und dich gegen diese Eingriffe in die Privatsphäre zu schützen ist eine Pflicht. VD Infos zeigt dir ein Beispiel dessen, was von deinem Gerät erfasst werden kann, und tut das als *Methoden-Debugger*: Für jede Information liest es den Wert über **jede Methode, die ihn lesen kann** - `Build.*`, `SystemProperties`, `getprop`, das native `__system_property_get`, System-Manager, Content Provider, Dateien, Syscalls und Hardware-Key-Attestation (TEE) - und stellt sie zum Vergleich nebeneinander. Wenn eine Methode den anderen widerspricht, schreibt etwas dazwischen diese Oberfläche um: ein Hooking-Framework, ein Spoofer, ein Resolver-Shim. **ES WERDEN KEINE INFORMATIONEN GESPEICHERT, GESENDET ODER AN IRGENDEINE DATEI ODER IRGENDEINEN SERVER ÜBERTRAGEN** - alles läuft auf dem Gerät, identitätstragende Werte sind maskiert, bis du sie aufdeckst, und ein Bericht verlässt das Gerät nur, wenn du ihn ausdrücklich teilst oder speicherst; wenn du willst, blockiere den Internetzugang mit einer Firewall oder schalte ihn einfach ab.
+Android ist ein enorm leistungsfähiges und vielseitiges Betriebssystem; was dir niemand sagt: All deine persönlichen Daten und vertraulichen Informationen stehen jeder App zur Verfügung, die du installierst, und dich gegen diese Eingriffe in die Privatsphäre zu schützen ist eine Pflicht. VD Infos zeigt dir ein Beispiel dessen, was von deinem Gerät erfasst werden kann, und tut das als *Methoden-Debugger*: Für jede Information liest es den Wert über **jede Methode, die ihn lesen kann** - `Build.*`, `SystemProperties`, `getprop`, das native `__system_property_get`, System-Manager, Content Provider, Dateien, Syscalls und Hardware-Key-Attestation (TEE) - und stellt sie zum Vergleich nebeneinander. Wenn eine Methode den anderen widerspricht, schreibt etwas dazwischen diese Oberfläche um: ein Hooking-Framework, ein Spoofer, ein Resolver-Shim. **ES WERDEN KEINE INFORMATIONEN GESPEICHERT, GESENDET ODER AN IRGENDEINE DATEI¹ ODER IRGENDEINEN SERVER ÜBERTRAGEN** - alles läuft auf dem Gerät, identitätstragende Werte sind maskiert, bis du sie aufdeckst, und ein Bericht verlässt das Gerät nur, wenn du ihn ausdrücklich teilst oder speicherst; wenn du willst, blockiere den Internetzugang mit einer Firewall oder schalte ihn einfach ab.
+
+> **¹ Ausnahme:** jeder Scan legt seinen vollständigen Bericht im privaten Speicher der App ab (`files/last_snapshot.json`). Nur die App selbst oder root können ihn lesen, der nächste Scan überschreibt ihn und er verlässt das Gerät nie. Er existiert, damit KI-Agenten das vollständige Ergebnis lesen können; siehe **Für KI-Agenten: der vollständige Bericht als JSON**.
 
 ## Was es prüft
 
@@ -40,6 +42,18 @@ Jedes Release veröffentlicht zwei APKs: **SDK_35** zielt auf die strikte modern
 * https://t.me/RootDetected
 * https://t.me/BlankAssistance
 
+## Für KI-Agenten: der vollständige Bericht als JSON
+
+Gedacht für KI-Agenten und LLM-Werkzeuge, die über eine Shell auf dem Gerät arbeiten (Programmierassistenten, Analyseskripte). Statt Screenshots zu lesen, liest der Agent das gesamte Ergebnis mit einem Befehl:
+
+```sh
+su -c cat /data/data/ru.vd171.vdinfos/files/last_snapshot.json
+```
+
+* **Inhalt:** jede Sonde mit ihrem Urteil und dem Wert aller Linsen, im selben JSON wie der Export-Button. Der Bildschirm zeigt bei einem eingeklappten Eintrag nur den ersten Messwert; die Datei enthält alle.
+* **Aktualisierung:** am Ende jedes Scans, also zuerst einen Scan starten; die Datei enthält immer den neuesten.
+* **Voraussetzung:** root, weil die Datei im privaten Speicher der App liegt.
+
 ## Sprachen
 
 21 UI-Sprachen: Englisch, Portugiesisch, Spanisch, Italienisch, Deutsch, Französisch, Russisch, Indonesisch, Türkisch, Polnisch, Niederländisch, Schwedisch, Tschechisch, Vietnamesisch, Chinesisch, Japanisch, Koreanisch, Persisch, Hindi, Arabisch und Thailändisch. Die App bietet beim ersten Start eine einmalige Sprachauswahl (mit der Option "Systemstandard") und folgt ansonsten der Systemsprache.
@@ -56,7 +70,7 @@ ui/             Jetpack Compose, Material 3, dynamische Farbe, Live-Fortschritt
 cpp/            native_probes.cpp - die native Linse, ohne Abhängigkeiten
 ```
 
-* **Parallelität**: 922 Sonden fächern über den Standard-Dispatcher mit begrenzter Permit-Anzahl auf; die Ergebnisse strömen in die UI, sobald sie eintreffen.
+* **Parallelität**: 991 Sonden fächern über den Standard-Dispatcher mit begrenzter Permit-Anzahl auf; die Ergebnisse strömen in die UI, sobald sie eintreffen.
 * **Nichts im Hintergrund**: keine Dienste und keine geplanten Scans; die App läuft nur, solange sie geöffnet ist, und schließt sich selbst, wenn sie untätig bleibt.
 * **Native Schicht**: eine kleine `.so`, per Name über `RegisterNatives` gebunden, bewusst winzig gehalten, weil sie der Teil ist, der schwer zu täuschen sein muss.
 
@@ -67,6 +81,7 @@ Die meisten Beiträge brauchen kein Kotlin: die Listen liegen als reiner Text un
 * `*_apps.txt` - ein Paketname pro Zeile
 * `props.txt` - der Katalog der Systemeigenschaften, `KATEGORIE<tab>Schlüssel`
 * `spoof_keys.txt` - die Settings-Spoof-Matrix, `Schlüssel:TYP`
+* `known_certs.txt` - der Katalog der Signaturzertifikate, `SHA-256<tab>Inhaber` (voller Hash, aus einer echten APK mit `apksigner verify --print-certs`)
 * weitere `.txt`-Dateien - ebenfalls ein Eintrag pro Zeile (Kernelmodul-Namensfragmente, Namen in `/data/local/tmp`)
 
 Ein `#` beginnt einen Kommentar; leere Zeilen werden ignoriert. Einige Dateien enthalten mehrere durch Leerzeichen oder Tab getrennte Felder pro Zeile oder optionale Marker (`S` und `@field` in `props.txt`); behalte die Form der bereits vorhandenen Zeilen bei. Code-Beiträge sind ebenfalls willkommen. Mit deinem Beitrag stimmst du zu, dass er unter der AGPL-3.0-or-later dieses Projekts erscheint.

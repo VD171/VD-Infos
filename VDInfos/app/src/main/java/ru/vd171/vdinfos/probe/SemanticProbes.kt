@@ -33,7 +33,10 @@ import ru.vd171.vdinfos.core.model.Sentinels
 import ru.vd171.vdinfos.engine.ProbeTask
 import java.io.File
 import java.net.InetAddress
+import java.text.SimpleDateFormat
+import java.util.Locale
 import java.util.TimeZone
+import java.util.zip.GZIPInputStream
 
 object SemanticProbes {
 
@@ -47,11 +50,60 @@ object SemanticProbes {
             val cmp = idx == 0
             add(jm("SystemProperties $k", compare = cmp) { SystemProps.get(k) })
             add(nm("read_callback $k", compare = cmp) { NativeBridge.sysprop(k) })
-            add(nm("property_get $k (92B)", compare = cmp) { NativeBridge.syspropClassic(k) })
+            add(nm("property_get $k", compare = cmp, tag = "JNI 92B") { NativeBridge.syspropClassic(k) })
             add(sm("getprop $k", "getprop $k", compare = cmp))
         }
         attestField?.let { f -> add(am("KeyStore attestation record", compare = attestCompare) { f() }) }
     }, sensitive, solution = solution)
+
+    private fun readSysctlKernel(name: String): String? =
+        runCatching { File("/proc/sys/kernel/$name").readText().trim() }.getOrNull()?.ifEmpty { null }
+
+    private fun relOf(procVersion: String?): String? {
+        val m = procVersion?.let { Regex("""Linux version (\S+)""").find(it) } ?: return null
+        return m.groupValues[1]
+    }
+
+    private fun verOf(procVersion: String?): String? {
+        val m = procVersion?.let { Regex("""#\d+.*""").find(it.trim()) } ?: return null
+        return m.value.trim()
+    }
+
+    private fun kernelMajorMinor(s: String): String? {
+        val m = Regex("""^(\d+)\.(\d+)""").find(s.trim()) ?: return null
+        return "${m.groupValues[1]}.${m.groupValues[2]}"
+    }
+
+    private val kernelDateRegex = Regex("""[A-Z][a-z]{2} [A-Z][a-z]{2}\s+\d+ \d{2}:\d{2}:\d{2} \S+ \d{4}""")
+
+    private fun kernelBuildDateStr(unameVersion: String?): String? =
+        unameVersion?.let { kernelDateRegex.find(it)?.value }
+
+    private fun kernelBuildEpoch(unameVersion: String?): Long? {
+        val date = kernelBuildDateStr(unameVersion) ?: return null
+        return runCatching {
+            SimpleDateFormat("EEE MMM d HH:mm:ss zzz yyyy", Locale.US).parse(date)?.time?.div(1000)
+        }.getOrNull()
+    }
+
+    private fun configMarkers(cfg: String): String {
+        val hits = buildList {
+            if (Regex("""(?m)^CONFIG_KSU=y""").containsMatchIn(cfg)) add("KSU")
+            if (cfg.contains("SUSFS", ignoreCase = true)) add("SUSFS")
+            Regex("""(?m)^CONFIG_LOCALVERSION="([^"]+)"""").find(cfg)?.let { add("localversion=${it.groupValues[1]}") }
+            if (Regex("""(?m)^CONFIG_MODULE_SIG=y""").containsMatchIn(cfg) &&
+                !Regex("""(?m)^CONFIG_MODULE_SIG_FORCE=y""").containsMatchIn(cfg)) add("module-sig-unenforced")
+            if (Regex("""(?m)^CONFIG_KALLSYMS_ALL=y""").containsMatchIn(cfg)) add("kallsyms-all")
+        }
+        return if (hits.isEmpty()) "clean" else hits.joinToString(",")
+    }
+
+    private fun moduleHits(): String {
+        val d = File("/sys/module").listFiles() ?: return Sentinels.EACCES
+        val hits = d.map { it.name }
+            .filter { Regex("ksu|susfs|magisk|kernelsu|zygisk", RegexOption.IGNORE_CASE).containsMatchIn(it) }
+        return if (hits.isEmpty()) "clean" else hits.sorted().joinToString(",")
+    }
 
     fun tasks(ctx: Context): List<ProbeTask> = buildList {
         val fieldProps = AssetData.buildFieldProps(ctx)
@@ -106,20 +158,75 @@ object SemanticProbes {
             jm("Build.getSerial()") {
                 @Suppress("HardwareIds") Build.getSerial().takeIf { it != Build.UNKNOWN } ?: Sentinels.NOT_PERMITTED
             },
+            am("attestation serial") { Attestation.record?.serial },
         ) + propTrio("ril.serialnumber") + propTrio("ro.serialno") + propTrio("ro.boot.serialno") + listOf(
             sm("cat /proc/cmdline 2>/dev/null | tr '\\0' '\\n' | sed -n 's/^androidboot.serialno=//p'", "cmdline androidboot.serialno"),
         ), sensitive = true))
 
         add(probe("kernel:release", ctx.getString(R.string.t_kernel_release), Category.BOOT, listOf(
-            jm("System.getProperty(os.version)") { System.getProperty("os.version") },
+            jm("System.getProperty(os.version)") { System.getProperty("os.version")?.ifEmpty { null } },
             nm("uname(2).release") { NativeBridge.uname()?.release },
             sm("uname -r", "uname -r"),
+            jm("read /proc/sys/kernel/osrelease") { readSysctlKernel("osrelease") },
+            nm("native read /proc/sys/kernel/osrelease") { NativeBridge.readFile("/proc/sys/kernel/osrelease", 256)?.trim()?.ifEmpty { null } },
+            jm("release field of /proc/version") { relOf(runCatching { File("/proc/version").readText() }.getOrNull()) },
         )))
         add(probe("kernel:version", ctx.getString(R.string.t_kernel_version), Category.BOOT, listOf(
             jm("read /proc/version") { File("/proc/version").readText().trim() },
             nm("open/read /proc/version") { NativeBridge.readFileOrReason("/proc/version", 512)?.trim() },
             smr("cat /proc/version", "cat /proc/version"),
         )))
+        add(probe("kernel:version_string", ctx.getString(R.string.t_kernel_version_string), Category.BOOT, listOf(
+            nm("uname(2).version") { NativeBridge.uname()?.version },
+            sm("uname -v", "uname -v"),
+            jm("read /proc/sys/kernel/version") { readSysctlKernel("version") },
+            nm("native read /proc/sys/kernel/version") { NativeBridge.readFile("/proc/sys/kernel/version", 256)?.trim()?.ifEmpty { null } },
+            jm("version field of /proc/version") { verOf(runCatching { File("/proc/version").readText() }.getOrNull()) },
+        )))
+        add(probe("kernel:version_claim", ctx.getString(R.string.t_kernel_version_claim), Category.INTEGRITY, listOf(
+            jm("ro.kernel.version prop consistent with real uname release (expected)") { "consistent" },
+            jm("ro.kernel.version (prop) vs uname(2).release, major.minor") {
+                val prop = SystemProps.get("ro.kernel.version")?.ifEmpty { null } ?: return@jm "consistent"
+                val rel = NativeBridge.uname()?.release?.ifEmpty { null } ?: return@jm "consistent"
+                val pm = kernelMajorMinor(prop); val rm = kernelMajorMinor(rel)
+                if (pm == null || rm == null || pm == rm) "consistent" else "MISMATCH prop=$pm uname=$rm"
+            },
+            jm("values", compare = false) {
+                "ro.kernel.version=${SystemProps.get("ro.kernel.version")?.ifEmpty { null } ?: Sentinels.ABSENT}" +
+                    " uname.release=${NativeBridge.uname()?.release ?: Sentinels.NONE}"
+            },
+        ), note = ctx.getString(R.string.note_kernel_version_claim)))
+        add(probe("kernel:build_date", ctx.getString(R.string.t_kernel_build_date), Category.BOOT, listOf(
+            jm("kernel build not newer than the ROM (expected)") { "ok" },
+            jm("kernel build (uname) vs ro.build.date.utc") {
+                val kv = kernelBuildEpoch(NativeBridge.uname()?.version) ?: return@jm "ok"
+                val rom = SystemProps.get("ro.build.date.utc")?.trim()?.toLongOrNull() ?: return@jm "ok"
+                val days = ((kv - rom) / 86400.0).toInt()
+                if (days > 30) "kernel NEWER than ROM by ${days}d (rebuilt/flashed after ROM)" else "ok"
+            },
+            jm("dates", compare = false) {
+                "kernel=${kernelBuildDateStr(NativeBridge.uname()?.version) ?: Sentinels.NONE}" +
+                    " rom.utc=${SystemProps.get("ro.build.date.utc")}" +
+                    " vendor.utc=${SystemProps.get("ro.vendor.build.date.utc")}"
+            },
+        ), note = ctx.getString(R.string.note_kernel_build_date)))
+        add(probe("kernel:config", ctx.getString(R.string.t_kernel_config), Category.INTEGRITY, listOf(
+            jm("markers /proc/config.gz (KSU/SUSFS/localversion)") {
+                val raw = runCatching {
+                    GZIPInputStream(File("/proc/config.gz").inputStream()).bufferedReader().use { it.readText() }
+                }.getOrNull() ?: return@jm Sentinels.EACCES
+                configMarkers(raw)
+            },
+            smr("zcat /proc/config.gz 2>/dev/null | grep -iE 'CONFIG_KSU|SUSFS|CONFIG_LOCALVERSION=' | head " +
+                "|| echo ${Sentinels.EACCES}", "zcat config.gz | grep", compare = false),
+        ), note = ctx.getString(R.string.note_kernel_config)))
+        add(probe("kernel:modules", ctx.getString(R.string.t_kernel_module_scan), Category.INTEGRITY, listOf(
+            jm("scan /sys/module for ksu/susfs/magisk") { moduleHits() },
+            smr("ls /sys/module 2>/dev/null | grep -iE 'ksu|susfs|magisk|zygisk' || echo clean",
+                "ls /sys/module | grep", compare = false),
+            smr("grep -iE ' (ksu|susfs|magisk)[a-z_]*\$' /proc/kallsyms 2>/dev/null | head " +
+                "|| echo ${Sentinels.EACCES}", "kallsyms symbol names", compare = false),
+        ), note = ctx.getString(R.string.note_kernel_module_scan)))
         add(probe("cpu:abi", ctx.getString(R.string.t_primary_abi), Category.HARDWARE, listOf(
             jm("Build.SUPPORTED_ABIS[0]") { Build.SUPPORTED_ABIS.firstOrNull() },
         ) + propTrio("ro.product.cpu.abi") + listOf(

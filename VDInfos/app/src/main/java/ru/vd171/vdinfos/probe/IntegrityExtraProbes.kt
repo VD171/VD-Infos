@@ -23,8 +23,12 @@
 package ru.vd171.vdinfos.probe
 
 import android.content.Context
+import android.content.pm.ApplicationInfo
+import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Process
+import android.provider.Settings
+import android.view.inputmethod.InputMethodManager
 import ru.vd171.vdinfos.R
 import ru.vd171.vdinfos.core.model.Category
 import ru.vd171.vdinfos.core.model.Sentinels
@@ -32,6 +36,43 @@ import ru.vd171.vdinfos.engine.ProbeTask
 import java.io.File
 
 object IntegrityExtraProbes {
+
+    private class ConcealDoors(
+        val pkg: String, val listed: Boolean, val pi: Boolean,
+        val ai: Boolean, val ctx: Boolean, val apk: Boolean,
+        val launch: Boolean, val resolve: Boolean,
+    ) {
+        val hiddenButReachable get() = !listed && (pi || ai || ctx || apk || launch || resolve)
+        val matrix get() = "$pkg L${b(listed)}P${b(pi)}A${b(ai)}C${b(ctx)}Z${b(apk)}I${b(launch)}R${b(resolve)}" +
+            if (hiddenButReachable) "  LEAK" else ""
+        private fun b(v: Boolean) = if (v) 1 else 0
+    }
+
+    private fun concealScan(ctx: Context): List<ConcealDoors> {
+        val pm = ctx.packageManager
+        val listed = runCatching { pm.getInstalledPackages(0).map { it.packageName }.toHashSet() }
+            .getOrDefault(hashSetOf())
+        return AssetData.packages(ctx, "conceal_targets").mapNotNull { pkg ->
+            val isListed = pkg in listed
+            val pi = runCatching { pm.getPackageInfo(pkg, 0); true }.getOrDefault(false)
+            val ai = runCatching { pm.getApplicationInfo(pkg, 0); true }.getOrDefault(false)
+            var ctxDoor = false
+            var src: String? = null
+            runCatching {
+                val pc = ctx.createPackageContext(pkg, 0)
+                ctxDoor = true
+                src = pc.applicationInfo?.sourceDir
+            }
+            val apk = src?.let { runCatching { java.util.zip.ZipFile(it).close(); true }.getOrDefault(false) } ?: false
+            val launch = runCatching { pm.getLaunchIntentForPackage(pkg) != null }.getOrDefault(false)
+            val resolve = runCatching {
+                pm.queryIntentActivities(android.content.Intent(android.content.Intent.ACTION_MAIN).setPackage(pkg), 0).isNotEmpty()
+            }.getOrDefault(false)
+            val d = ConcealDoors(pkg, isListed, pi, ai, ctxDoor, apk, launch, resolve)
+            if (isListed || pi || ai || ctxDoor || apk || launch || resolve) d else null
+        }
+    }
+
 
     private fun flagMods(text: String?, needles: List<String>): String? {
         if (text == null) return null
@@ -209,6 +250,109 @@ object IntegrityExtraProbes {
                 "debuggable=$dbg versionName=$vn${if (dbg || tainted) " => TAINTED" else " => OK"}"
             },
             nm("ro.debuggable (global)", compare = false) { NativeBridge.sysprop("ro.debuggable") },
+        )))
+
+        add(probe("integrity:ime_verdict", ctx.getString(R.string.t_ime_verdict), Category.SECURITY, listOf(
+            jm("enabled IMEs are system or from a store (expected)") { "SAFE" },
+            jm("non-system enabled IME with non-store installer") { c ->
+                val imm = c.getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
+                    ?: return@jm Sentinels.NONE
+                val stores = AssetData.packages(c, "install_source_stores").toHashSet()
+                val bad = imm.enabledInputMethodList.mapNotNull { imi ->
+                    val pkg = imi.packageName
+                    val sys = runCatching {
+                        (imi.serviceInfo.applicationInfo.flags and ApplicationInfo.FLAG_SYSTEM) != 0
+                    }.getOrDefault(true)
+                    if (sys) return@mapNotNull null
+                    val inst = runCatching { c.packageManager.getInstallSourceInfo(pkg).installingPackageName }.getOrNull()
+                    if (inst != null && inst in stores) null else "$pkg(installer=${inst ?: "null"})"
+                }
+                if (bad.isEmpty()) "SAFE" else "UNSAFE: ${bad.joinToString("; ")}"
+            },
+        ), note = ctx.getString(R.string.note_ime_verdict)))
+
+        add(probe("integrity:store_authenticity", ctx.getString(R.string.t_store_authenticity), Category.PACKAGES, listOf(
+            jm("Google stores are Google-signed (expected)") { "ok" },
+            jm("store/GMS package present but not Google-signed") { c ->
+                val pm = c.packageManager
+                val flag = if (Build.VERSION.SDK_INT >= 28) PackageManager.GET_SIGNING_CERTIFICATES
+                else @Suppress("DEPRECATION") PackageManager.GET_SIGNATURES
+                val bad = listOf("com.android.vending", "com.google.android.gms", "com.google.android.gsf", "com.android.vending.billing").mapNotNull { pkg ->
+                    val sig = runCatching {
+                        val pi = pm.getPackageInfo(pkg, flag)
+                        val s = if (Build.VERSION.SDK_INT >= 28) pi.signingInfo?.apkContentsSigners?.firstOrNull()
+                        else @Suppress("DEPRECATION") pi.signatures?.firstOrNull()
+                        s?.let { java.security.MessageDigest.getInstance("SHA-256").digest(it.toByteArray()).joinToString("") { b -> "%02x".format(b) } }
+                    }.getOrNull() ?: return@mapNotNull null
+                    if (AssetData.certLabel(c, sig)?.contains("Google", true) == true) null
+                    else "$pkg(${AssetData.certTag(c, sig)})"
+                }
+                if (bad.isEmpty()) "ok" else "FAKE: ${bad.joinToString("; ")}"
+            },
+        ), note = ctx.getString(R.string.note_store_authenticity)))
+
+        add(probe("integrity:devgate", ctx.getString(R.string.t_devgate), Category.INTEGRITY, listOf(
+            jm("no dev-gated setting on while dev-options off (expected)") { "ok" },
+            jm("dev-gated setting non-default while development_settings_enabled=0") { c ->
+                @Suppress("DEPRECATION")
+                val devOn = (Settings.Global.getString(c.contentResolver, "development_settings_enabled") ?: "0") != "0"
+                if (devOn) return@jm "dev-options ON"
+                val bad = AssetData.devGated(c).mapNotNull { (k, def) ->
+                    @Suppress("DEPRECATION")
+                    val v = Settings.Global.getString(c.contentResolver, k)
+                        ?: Settings.Secure.getString(c.contentResolver, k)
+                    if (!v.isNullOrEmpty() && v != def) "$k=$v" else null
+                }
+                if (bad.isEmpty()) "ok" else "INCONSISTENT: ${bad.joinToString(",")}"
+            },
+        ), note = ctx.getString(R.string.note_devgate)))
+
+        add(probe("integrity:concealment", ctx.getString(R.string.t_concealment), Category.INTEGRITY, listOf(
+            jm("no target hidden-but-reachable (expected)") { "0" },
+            jm("hidden-but-reachable count") { c -> concealScan(c).count { it.hiddenButReachable }.toString() },
+            jm("door matrix (list/getPackageInfo/getApplicationInfo/createPackageContext/openApk/launchIntent/queryIntentActivities)", compare = false) { c ->
+                concealScan(c).takeIf { it.isNotEmpty() }?.joinToString("\n") { it.matrix } ?: Sentinels.NONE
+            },
+        ), note = ctx.getString(R.string.note_concealment)))
+
+        val keychain = "/data/misc/keychain/pubkey_blacklist.txt"
+        fun meta(mtime: Long, size: Long) = "mtime=$mtime size=$size"
+        add(probe("integrity:keychain_blacklist", ctx.getString(R.string.t_keychain_blacklist), Category.INTEGRITY, listOf(
+            jm("File.lastModified/length $keychain") {
+                val f = File(keychain)
+                if (!f.exists()) Sentinels.ABSENT else meta(f.lastModified() / 1000, f.length())
+            },
+            nm("stat $keychain") { NativeBridge.statMeta(keychain)?.let { meta(it.first, it.second) } ?: Sentinels.ABSENT },
+            sm("stat -c 'mtime=%Y size=%s' $keychain 2>/dev/null || echo ${Sentinels.ABSENT}", "stat $keychain"),
+        )))
+
+        add(probe("integrity:buildprop_vs_runtime", ctx.getString(R.string.t_buildprop_vs_runtime), Category.INTEGRITY, listOf(
+            jm("build.prop files vs runtime getprop") { c ->
+                val files = AssetData.partitions(c).flatMap { it.propPaths }
+                val keys = listOf(
+                    "ro.product.model", "ro.product.device", "ro.build.fingerprint",
+                    "ro.build.version.security_patch",
+                )
+                val fileVals = HashMap<String, MutableSet<String>>()
+                for (path in files) {
+                    val txt = NativeBridge.readFile(path) ?: continue
+                    for (line in txt.lineSequence()) {
+                        val t = line.trim()
+                        if (t.startsWith("#")) continue
+                        val i = t.indexOf('=')
+                        if (i <= 0) continue
+                        val k = t.substring(0, i).trim()
+                        if (k in keys) fileVals.getOrPut(k) { HashSet() }.add(t.substring(i + 1).trim())
+                    }
+                }
+                if (fileVals.isEmpty()) return@jm Sentinels.ABSENT
+                keys.mapNotNull { k ->
+                    val fv = fileVals[k] ?: return@mapNotNull null
+                    val rt = SystemProps.get(k)
+                    val ok = rt != null && fv.contains(rt)
+                    "$k: file=${fv.joinToString("|")} runtime=${rt ?: "-"} ${if (ok) "OK" else "DIVERGE"}"
+                }.joinToString("\n").ifEmpty { Sentinels.ABSENT }
+            },
         )))
     }
 }

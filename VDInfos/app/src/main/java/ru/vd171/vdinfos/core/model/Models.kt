@@ -25,6 +25,7 @@ package ru.vd171.vdinfos.core.model
 import androidx.annotation.StringRes
 import ru.vd171.vdinfos.R
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.Transient
 
 enum class Category(@StringRes val labelRes: Int) {
     IDENTITY(R.string.cat_identity),
@@ -66,6 +67,8 @@ data class LensValue(
     val elapsedMicros: Long = 0L,
     val compare: Boolean = true,
     val detail: String? = null,
+    val tag: String? = null,
+    @Transient val reveal: String? = null,
 ) {
     val ok: Boolean get() = error == null
     val present: Boolean get() = ok && !value.isNullOrEmpty()

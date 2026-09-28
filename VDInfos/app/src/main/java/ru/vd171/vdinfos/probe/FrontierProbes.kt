@@ -70,6 +70,19 @@ object FrontierProbes {
         return if (hits.isEmpty()) "clean" else hits.joinToString(",")
     }
 
+    private fun kernelProvenance(procVersion: String?): String? {
+        if (procVersion == null) return null
+        val userHost = Regex("""\(([^)]*@[^)]*)\)""").find(procVersion)?.groupValues?.get(1) ?: "?"
+        val clang = Regex("""clang version [\d.]+""").find(procVersion)?.value
+            ?: Regex("""gcc version [\d.]+""").find(procVersion)?.value ?: "?"
+        val low = procVersion.lowercase()
+        val gkiSig = low.contains("android.googlesource") ||
+            (low.contains("+pgo") && low.contains("+bolt") && low.contains("+lto"))
+        val ab = Regex("""-ab\d+""").find(procVersion)?.value
+        return "builder=$userHost | compiler=$clang | gki-signature=${if (gkiSig) "yes" else "no"}" +
+            " | android-build-id=${ab ?: "absent"}"
+    }
+
     fun tasks(ctx: Context): List<ProbeTask> = buildList {
 
         add(probe("net:sock_diag", ctx.getString(R.string.t_net_sock_diag), Category.NETWORK, listOf(
@@ -120,6 +133,9 @@ object FrontierProbes {
             jm("markers /proc/version") { kernelMarkers(runCatching { File("/proc/version").readText() }.getOrNull()) },
             nm("markers uname release+version") {
                 NativeBridge.uname()?.let { kernelMarkers(it.release + " " + it.version) }
+            },
+            jm("build provenance /proc/version", compare = false) {
+                kernelProvenance(runCatching { File("/proc/version").readText() }.getOrNull())
             },
             smr("uname -a", "uname -a (raw)", compare = false),
         ), note = ctx.getString(R.string.n_kernel_selfbuild)))

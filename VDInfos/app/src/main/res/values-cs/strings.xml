@@ -53,6 +53,7 @@
     <string name="verdict_info">info</string>
     <string name="reading_context_only">kontext</string>
     <string name="reading_empty">(prázdné)</string>
+    <string name="reveal_original">Původní hodnota</string>
     <string name="verdict_empty">prázdné</string>
     <string name="verdict_error">chyba</string>
 
@@ -198,6 +199,15 @@
     <string name="t_installed_packages_list">Nainstalované balíčky (seznam)</string>
     <string name="t_kernel_release">Jádro (release)</string>
     <string name="t_kernel_version">Jádro (verze)</string>
+    <string name="t_kernel_version_string">Jádro (řetězec verze)</string>
+    <string name="t_kernel_version_claim">Tvrzení o verzi jádra (ro.kernel.version vs uname)</string>
+    <string name="note_kernel_version_claim">Vlastnost ro.kernel.version má odrážet běžící jádro. Pokud tvrdí major.minor, který skutečná verze uname nemá, nastavil vlastnost resolver, zatímco jádro pod ním je jiné.</string>
+    <string name="t_kernel_build_date">Datum sestavení jádra vs ROM</string>
+    <string name="note_kernel_build_date">Předsestavené GKI jádro je starší než ROM, ve kterém je dodáno, nebo mu odpovídá. Jádro sestavené dlouho po sestavení ROM bylo přebudováno nebo naflashováno později, což je obvyklá známka ručně kompilovaného jádra.</string>
+    <string name="t_kernel_config">Konfigurace jádra (/proc/config.gz)</string>
+    <string name="note_kernel_config">Konfigurace jádra, kde je čitelná, jmenuje zakompilované záplaty: KSU, SUSFS, vlastní local version, nevynucené podepisování modulů. Sandbox aplikace tento soubor často zakáže; čte se na starším Androidu, custom ROM a root shellech.</string>
+    <string name="t_kernel_module_scan">Moduly a symboly jádra</string>
+    <string name="note_kernel_module_scan">Prohledá /sys/module a názvy symbolů /proc/kallsyms na ksu, susfs a magisk, které záplatované nebo moduly nahrané jádro odhalí. Obě plochy jsou často omezené; čtou se tam, kde to doména dovolí.</string>
     <string name="t_kernel_cmdline">cmdline jádra</string>
     <string name="t_kernel_log">Protokol jádra</string>
     <string name="t_kernel_stat">stat jádra</string>
@@ -225,6 +235,10 @@
     <string name="t_suspicious_apps">Podezřelé aplikace</string>
     <string name="t_running_app_processes">Běžící procesy aplikací</string>
     <string name="t_running_services">Běžící služby</string>
+    <string name="t_xposed_scan_all">Xposed meta-data: skenování všech aplikací</string>
+    <string name="t_debuggable_scan_all">Skenování laditelných uživatelských aplikací</string>
+    <string name="t_uid_groups">Skupiny sdílení UID</string>
+    <string name="t_updated_system">Aktualizované systémové aplikace (FLAG_UPDATED_SYSTEM_APP)</string>
     <string name="t_sdk_int">SDK int</string>
     <string name="t_selinux_mls_enabled">SELinux MLS povoleno</string>
     <string name="t_selinux_context_self">Kontext SELinux (vlastní)</string>
@@ -412,6 +426,7 @@
     <string name="t_isrc_gap_system_shell_installed">Nesoulad: systémová aplikace nainstalována přes shell</string>
     <string name="t_isrc_gap_update_owner_drift">Nesoulad: updateOwner ≠ installer</string>
     <string name="t_isrc_gap_self_declared_installer">Nesoulad: aplikace je vlastní installer</string>
+    <string name="t_isrc_landscape">Přehled zdrojů instalace (všechny aplikace dle instalátoru)</string>
     <string name="t_installed_packages_diff">Nainstalované balíčky: odlišné (JVM x pm)</string>
     <string name="t_installed_applications_diff">Nainstalované aplikace: odlišné (JVM x pm)</string>
     <string name="t_selinux_status">Stránka status SELinux (policyload/seq)</string>
@@ -434,4 +449,41 @@
     <string name="n_tee_soter">Porovnává servisní program Soter od Tencentu se stavem jeho servisní vlastnosti.</string>
     <string name="t_proc_cgroup_format">Formát cesty cgroup</string>
     <string name="n_proc_cgroup_format">Klonovaný / dual-app kontejner způsobí, že se jednotná cesta cgroup odchýlí od kanonického tvaru uid_/pid_.</string>
+    <string name="t_gpu_vendor">Výrobce GPU</string>
+    <string name="t_gpu_renderer">Renderer GPU</string>
+    <string name="t_gpu_version">Verze GPU</string>
+    <string name="t_gpu_glsl">Verze GLSL GPU</string>
+    <string name="t_tel_typeAllocationCode">Kód přidělení typu (TAC)</string>
+    <string name="t_tel_manufacturerCode">Kód výrobce</string>
+    <string name="t_tel_simCarrierId">ID operátora SIM</string>
+    <string name="t_tel_simCarrierIdName">Název operátora SIM</string>
+    <string name="t_tel_simSpecificCarrierId">ID konkrétního operátora SIM</string>
+    <string name="t_tel_visualVoicemailPackageName">Balíček vizuální hlasové schránky</string>
+    <string name="t_keychain_blacklist">Černá listina certifikátů Keychain</string>
+    <string name="t_buildprop_vs_runtime">build.prop vs runtime</string>
+    <string name="note_boot_count">boot_count (framework) jen roste; Phenotype_boot_count (Služby Play) je jeho snímek a může zaostávat. Odlišné jen když je snímek před boot_count (reset).</string>
+    <string name="note_isrc_initiator_sig">Certifikát, který systém zaznamenal pro instalátor při instalaci této aplikace, se liší od toho, který instalátor hlásí nyní. Způsobuje to nahrazený instalátor nebo podvržený podpis; ROM, které systém znovu podepisují a hlásí původní certifikát výrobce (např. Xiaomi.eu), to ukazují na každém zařízení.</string>
+    <string name="t_concealment">Skrývání aplikací</string>
+    <string name="note_concealment">Balíček skrytý ze seznamu aplikací, ale stále dosažitelný jinými dveřmi PackageManageru (informace o balíčku, createPackageContext, otevřený APK, launch intent), je skrytý u jedněch dveří, ale ne u druhých - značka neúplného skrývače aplikací.</string>
+    <string name="t_prop_variants">Varianty podle oddílů: %1$s</string>
+    <string name="t_prop_enum">Výčet vlastností vs getprop</string>
+    <string name="note_prop_variants">Stejná přípona se objevuje u každého oddílu (system, vendor, product, odm, dlkm...). Hodnoty, které by se měly všude shodovat, ale liší se, nebo se rozejdou v rámci jedné linie, odhalují částečný spoof - fingerprint změněný na některých oddílech a na jiných ne.</string>
+    <string name="note_prop_enum">Nativní výčet oblasti vlastností (__system_property_foreach) a jeho porovnání s getprop z jiného procesu odhalí vlastnost skrytou před shellem nebo vloženou do jedné cesty, ale ne do druhé.</string>
+    <string name="t_dlphdr">Moduly loaderu (dl_iterate_phdr)</string>
+    <string name="t_frida_port">Sken portu Frida</string>
+    <string name="note_dlphdr">dl_iterate_phdr vyjmenovává načtené moduly přes linker, ne přes /proc/self/maps, takže hook, který smaže svůj záznam z maps, je tu stejně uveden. Zásah needle nebo modul mimo systémový allowlist je únik.</string>
+    <string name="t_ime_verdict">Verdikt integrity klávesnice</string>
+    <string name="t_store_authenticity">Pravost podpisu obchodu/GMS</string>
+    <string name="t_devgate">Koherence nastavení vázaných na Dev</string>
+    <string name="note_ime_verdict">Bankovní RASP (PayZapp/Zeta) odmítá každou zapnutou klávesnici, která je nesystémová a nainstalovaná mimo allowlist obchodů. Zapnutý nesystémový IME s instalátorem mimo obchod je označen.</string>
+    <string name="note_store_authenticity">Play Store, GMS a GSF musí nést podpisový certifikát Googlu. Balíček obchodu nebo GMS přítomný, ale podepsaný jiným klíčem, je podvrh, microG nebo přebalený obchod.</string>
+    <string name="note_devgate">adb a další nastavení vázaná na Dev se mění jen se zapnutými Možnostmi pro vývojáře. Vázané nastavení, které není výchozí při development_settings_enabled=0, mohlo být nastaveno jen rootem nebo `settings put`.</string>
+    <string name="t_maps_exec">Injektované exec mapy (deleted/memfd)</string>
+    <string name="t_anon_minor">Skrytý superblok anon-bdev</string>
+    <string name="note_maps_exec">Spustitelné mapování souboru (deleted)/memfd/ashmem, které je buď RWX (porušuje W^X), nebo začíná ELF magií, je skutečné injektované .so odpojené od souborového systému; JIT trampolína ART není ani jedno a počítá se jako neškodná. Modul mimo systémový allowlist se také počítá.</string>
+    <string name="note_anon_minor">Souborové systémy bez blokového zařízení berou svůj minor z globálního anon poolu, hustého odspodu. Minor přítomný přes stat(), ale chybějící v mountinfo tohoto procesu, je živý superblok skrytý v privátním namespace (tmpfs démona). Dlouhá série chybějících minorů je churn aplikací a ignoruje se; krátká díra je signál.</string>
+    <string name="t_sb_tee_signer">Podepisovatel StrongBox × TEE</string>
+    <string name="note_sb_tee_signer">Skutečné zařízení má oddělené kořeny attestation pro hardware StrongBox a TEE, takže jejich podpisové certifikáty se liší. Jediný keybox (TrickyStore) předstírající obě úrovně podepisuje obě stejným certifikátem - sdílený podepisovatel je signál.</string>
+    <string name="t_local_tmp_list">Výpis /data/local/tmp</string>
+    <string name="note_local_tmp_list">Výpis /data/local/tmp přes getdents64 (ne podle jména) odhalí jakýkoli zbytek, na který aplikace skutečně dosáhne, včetně toho, co modul upustí. Na zamčeném zařízení adresář patří shellu a aplikace jej nemůže vypsat, takže EACCES je čistá odpověď; viditelná položka znamená zbytek dosažitelný aplikací.</string>
 </resources>

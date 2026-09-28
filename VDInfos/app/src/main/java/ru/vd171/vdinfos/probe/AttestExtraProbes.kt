@@ -40,6 +40,12 @@ object AttestExtraProbes {
 
     private const val ALIAS = "vdinfos_keyinfo"
 
+    private fun serialFp(serial: String?): String? {
+        if (serial.isNullOrEmpty()) return null
+        return MessageDigest.getInstance("SHA-256")
+            .digest(serial.toByteArray()).joinToString("") { "%02x".format(it) }.take(16)
+    }
+
     private fun ownSigSha256(c: Context): String? = runCatching {
         val md = MessageDigest.getInstance("SHA-256")
         if (Build.VERSION.SDK_INT >= 28) {
@@ -75,6 +81,32 @@ object AttestExtraProbes {
     }
 
     fun tasks(ctx: Context): List<ProbeTask> = buildList {
+
+        add(probe("attest:sb_tee_signer", ctx.getString(R.string.t_sb_tee_signer), Category.INTEGRITY, listOf(
+            jm("StrongBox and TEE have distinct signers (expected)") { "distinct" },
+            jm("StrongBox signer vs TEE signer") {
+                val sb = Attestation.recordStrongBox?.signerSerial ?: return@jm ru.vd171.vdinfos.core.model.Sentinels.NONE
+                val tee = Attestation.record?.signerSerial ?: return@jm ru.vd171.vdinfos.core.model.Sentinels.NONE
+                if (sb == tee) "SHARED" else "distinct"
+            },
+            jmReveal(
+                "signers (serial fingerprint)",
+                reveal = {
+                    val sb = Attestation.recordStrongBox
+                    val tee = Attestation.record
+                    val none = ru.vd171.vdinfos.core.model.Sentinels.NONE
+                    "strongbox=${sb?.signerSubject}/${sb?.signerSerial ?: none}\n" +
+                        "tee=${tee?.signerSubject}/${tee?.signerSerial ?: none}"
+                },
+                read = {
+                    val sb = Attestation.recordStrongBox
+                    val tee = Attestation.record
+                    val none = ru.vd171.vdinfos.core.model.Sentinels.NONE
+                    "strongbox=${sb?.signerSubject}/${serialFp(sb?.signerSerial) ?: none}\n" +
+                        "tee=${tee?.signerSubject}/${serialFp(tee?.signerSerial) ?: none}"
+                },
+            ),
+        ), note = ctx.getString(R.string.note_sb_tee_signer)))
 
         add(probe("attest:key_secure_hw", ctx.getString(R.string.t_key_inside_secure_hw), Category.INTEGRITY, listOf(
             @Suppress("DEPRECATION")

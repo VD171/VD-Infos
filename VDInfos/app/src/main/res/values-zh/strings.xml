@@ -50,6 +50,7 @@
     <string name="verdict_info">信息</string>
     <string name="reading_context_only">上下文</string>
     <string name="reading_empty">（空）</string>
+    <string name="reveal_original">原始值</string>
     <string name="verdict_empty">空</string>
     <string name="verdict_error">错误</string>
 
@@ -195,6 +196,15 @@
     <string name="t_installed_packages_list">已安装软件包（列表）</string>
     <string name="t_kernel_release">内核 (release)</string>
     <string name="t_kernel_version">内核（版本）</string>
+    <string name="t_kernel_version_string">内核（版本字符串）</string>
+    <string name="t_kernel_version_claim">内核版本声明（ro.kernel.version 对比 uname）</string>
+    <string name="note_kernel_version_claim">ro.kernel.version 属性本应反映正在运行的内核。若它声明的 major.minor 与真实 uname release 不符，则是某个解析器设置了该属性，而下面的内核另有其物。</string>
+    <string name="t_kernel_build_date">内核编译日期 对比 ROM</string>
+    <string name="note_kernel_build_date">预构建的 GKI 内核比其所在的 ROM 更旧或与之相符。在 ROM 组装很久之后编译的内核是后来重新编译或刷入的，这是手动编译内核的常见迹象。</string>
+    <string name="t_kernel_config">内核配置（/proc/config.gz）</string>
+    <string name="note_kernel_config">内核配置在可读时会列出编译进去的补丁：KSU、SUSFS、自定义 local version、未强制的模块签名。应用沙盒常拒绝此文件；在旧版 Android、自定义 ROM 和 root shell 上可读。</string>
+    <string name="t_kernel_module_scan">内核模块与符号</string>
+    <string name="note_kernel_module_scan">扫描 /sys/module 和 /proc/kallsyms 的符号名，查找 ksu、susfs 和 magisk，被打补丁或加载模块的内核会暴露它们。两个面通常受限；在域允许处可读。</string>
     <string name="t_kernel_cmdline">内核 cmdline</string>
     <string name="t_kernel_log">内核日志</string>
     <string name="t_kernel_stat">内核 stat</string>
@@ -222,6 +232,10 @@
     <string name="t_suspicious_apps">可疑应用</string>
     <string name="t_running_app_processes">运行中的应用进程</string>
     <string name="t_running_services">运行中的服务</string>
+    <string name="t_xposed_scan_all">Xposed元数据：全部应用扫描</string>
+    <string name="t_debuggable_scan_all">可调试的用户应用扫描</string>
+    <string name="t_uid_groups">UID共享组</string>
+    <string name="t_updated_system">已更新的系统应用 (FLAG_UPDATED_SYSTEM_APP)</string>
     <string name="t_sdk_int">SDK int</string>
     <string name="t_selinux_mls_enabled">SELinux MLS 已启用</string>
     <string name="t_selinux_context_self">SELinux 上下文（自身）</string>
@@ -409,6 +423,7 @@
     <string name="t_isrc_gap_system_shell_installed">差异: 系统应用经 shell 安装</string>
     <string name="t_isrc_gap_update_owner_drift">差异: updateOwner ≠ installer</string>
     <string name="t_isrc_gap_self_declared_installer">差异: 应用是自己的 installer</string>
+    <string name="t_isrc_landscape">安装来源全貌（按安装程序的所有应用）</string>
     <string name="t_installed_packages_diff">已安装软件包: 差异 (JVM x pm)</string>
     <string name="t_installed_applications_diff">已安装应用程序: 差异 (JVM x pm)</string>
     <string name="t_selinux_status">SELinux status 页 (policyload/seq)</string>
@@ -431,4 +446,41 @@
     <string name="n_tee_soter">将腾讯 Soter 服务程序与其服务属性状态进行交叉核对。</string>
     <string name="t_proc_cgroup_format">cgroup 路径格式</string>
     <string name="n_proc_cgroup_format">克隆 / 双开容器会使统一 cgroup 路径偏离规范的 uid_/pid_ 形式。</string>
+    <string name="t_gpu_vendor">GPU 制造商</string>
+    <string name="t_gpu_renderer">GPU 渲染器</string>
+    <string name="t_gpu_version">GPU 版本</string>
+    <string name="t_gpu_glsl">GPU GLSL 版本</string>
+    <string name="t_tel_typeAllocationCode">型号分配码 (TAC)</string>
+    <string name="t_tel_manufacturerCode">制造商代码</string>
+    <string name="t_tel_simCarrierId">SIM 运营商 ID</string>
+    <string name="t_tel_simCarrierIdName">SIM 运营商名称</string>
+    <string name="t_tel_simSpecificCarrierId">特定 SIM 运营商 ID</string>
+    <string name="t_tel_visualVoicemailPackageName">可视语音信箱软件包</string>
+    <string name="t_keychain_blacklist">Keychain 证书黑名单</string>
+    <string name="t_buildprop_vs_runtime">build.prop vs runtime</string>
+    <string name="note_boot_count">boot_count（框架）只增不减；Phenotype_boot_count（Play 服务）是其快照，可能滞后。仅当快照超过 boot_count 时才判为分歧（被重置）。</string>
+    <string name="note_isrc_initiator_sig">安装此应用时系统为安装程序记录的证书，与安装程序现在报告的证书不同。原因是安装程序被替换或签名被伪造；重新签名系统并报告厂商原始证书的 ROM（例如 Xiaomi.eu）在每台设备上都会出现此情况。</string>
+    <string name="t_concealment">应用隐藏</string>
+    <string name="note_concealment">从应用列表隐藏但仍可通过 PackageManager 的另一扇门（包信息、createPackageContext、打开的 APK、launch intent）访问的软件包，在一扇门被隐藏而另一扇门没有 - 这是不完整应用隐藏工具的标志。</string>
+    <string name="t_prop_variants">分区变体：%1$s</string>
+    <string name="t_prop_enum">属性枚举 vs getprop</string>
+    <string name="note_prop_variants">同一后缀会按分区出现（system、vendor、product、odm、dlkm...）。本应处处一致却不同、或在同一血统内分裂的值，会暴露部分伪造 - 指纹只改了部分分区而非全部。</string>
+    <string name="note_prop_enum">用原生方式枚举属性区（__system_property_foreach）并与另一进程的 getprop 对比，可暴露对 shell 隐藏、或只注入到一条路径的属性。</string>
+    <string name="t_dlphdr">加载器模块 (dl_iterate_phdr)</string>
+    <string name="t_frida_port">Frida 端口扫描</string>
+    <string name="note_dlphdr">dl_iterate_phdr 通过链接器而非 /proc/self/maps 枚举已加载模块，因此从 maps 抹掉自身条目的 hook 仍会列在这里。命中 needle 或位于系统允许列表之外的模块即是泄漏。</string>
+    <string name="t_ime_verdict">键盘完整性判定</string>
+    <string name="t_store_authenticity">商店/GMS 签名真实性</string>
+    <string name="t_devgate">开发者门控设置的一致性</string>
+    <string name="note_ime_verdict">银行 RASP（PayZapp/Zeta）会拒绝任何非系统且从商店允许列表之外安装的已启用键盘。安装来源非商店的非系统已启用输入法会被标记。</string>
+    <string name="note_store_authenticity">Play 商店、GMS 和 GSF 必须带有 Google 的签名证书。存在但由其他密钥签名的商店或 GMS 包即为伪造、microG 或重打包商店。</string>
+    <string name="note_devgate">adb 等开发者门控设置只有在开发者选项开启时才能更改。development_settings_enabled=0 时仍为非默认值的门控设置，只可能由 root 或 `settings put` 设置。</string>
+    <string name="t_maps_exec">注入的可执行映射 (deleted/memfd)</string>
+    <string name="t_anon_minor">隐藏的 anon-bdev 超级块</string>
+    <string name="note_maps_exec">以 (deleted)/memfd/ashmem 文件为后端的可执行映射，若为 RWX（违反 W^X）或以 ELF 魔数开头，即为真正注入且已从文件系统脱钩的 .so；ART 的 JIT 蹦床两者皆非，计为良性。系统允许列表之外的模块也计入。</string>
+    <string name="note_anon_minor">没有块设备的文件系统从全局匿名池取得次设备号，自底部密集分布。经 stat() 存在但在本进程 mountinfo 中缺失的次设备号，是隐藏于私有命名空间的活动超级块（守护进程的 tmpfs）。缺失次设备号的长连续段是按应用的 churn，予以忽略；短空洞才是线索。</string>
+    <string name="t_sb_tee_signer">StrongBox × TEE 签名者</string>
+    <string name="note_sb_tee_signer">真机的 StrongBox 与 TEE 硬件有各自独立的认证根，因此其签名证书不同。伪造两个级别的单一 keybox（TrickyStore）会用同一证书签名两者 - 共用签名者即是线索。</string>
+    <string name="t_local_tmp_list">/data/local/tmp 列表</string>
+    <string name="note_local_tmp_list">用 getdents64 列出 /data/local/tmp（而非按名查找）会显现应用真正能触及的任何残留，包括模块留下的。锁定设备上该目录归 shell 所有、应用无法列出，因此 EACCES 是干净答案；出现条目意味着残留可被应用触及。</string>
 </resources>

@@ -51,6 +51,7 @@
     <string name="verdict_info">bilgi</string>
     <string name="reading_context_only">bağlam</string>
     <string name="reading_empty">(boş)</string>
+    <string name="reveal_original">Özgün değer</string>
     <string name="verdict_empty">boş</string>
     <string name="verdict_error">hata</string>
 
@@ -196,6 +197,15 @@
     <string name="t_installed_packages_list">Yüklü paketler (liste)</string>
     <string name="t_kernel_release">Çekirdek (sürüm)</string>
     <string name="t_kernel_version">Çekirdek (versiyon)</string>
+    <string name="t_kernel_version_string">Çekirdek (sürüm dizesi)</string>
+    <string name="t_kernel_version_claim">Çekirdek sürüm iddiası (ro.kernel.version - uname)</string>
+    <string name="note_kernel_version_claim">ro.kernel.version özelliği çalışan çekirdeği yansıtmalıdır. Gerçek uname release\'inde olmayan bir major.minor iddia ediyorsa, bir resolver özelliği ayarlamış ve altındaki çekirdek başkadır.</string>
+    <string name="t_kernel_build_date">Çekirdek derleme tarihi - ROM</string>
+    <string name="note_kernel_build_date">Önceden derlenmiş bir GKI çekirdeği, dağıtıldığı ROM\'dan eskidir veya onunla eşleşir. ROM birleştirildikten çok sonra derlenen bir çekirdek sonradan yeniden derlenmiş ya da flaşlanmıştır; elle derlenmiş çekirdeğin alışılmış işareti.</string>
+    <string name="t_kernel_config">Çekirdek yapılandırması (/proc/config.gz)</string>
+    <string name="note_kernel_config">Çekirdek yapılandırması, okunabildiği yerde, derlenen yamaları adlandırır: KSU, SUSFS, özel bir local version, zorunlu olmayan modül imzalama. Uygulama kum havuzu bu dosyayı sık sık reddeder; eski Android, özel ROM ve root kabuklarında okunur.</string>
+    <string name="t_kernel_module_scan">Çekirdek modülleri ve sembolleri</string>
+    <string name="note_kernel_module_scan">/sys/module ve /proc/kallsyms sembol adlarını ksu, susfs ve magisk için tarar; bunları yamalı veya modül yüklü bir çekirdek açığa çıkarır. İki yüzey de sık sık kısıtlıdır; alan izin verdiği yerde okunur.</string>
     <string name="t_kernel_cmdline">Çekirdek cmdline</string>
     <string name="t_kernel_log">Çekirdek günlüğü</string>
     <string name="t_kernel_stat">Çekirdek stat</string>
@@ -223,6 +233,10 @@
     <string name="t_suspicious_apps">Şüpheli uygulamalar</string>
     <string name="t_running_app_processes">Çalışan uygulama süreçleri</string>
     <string name="t_running_services">Çalışan hizmetler</string>
+    <string name="t_xposed_scan_all">Xposed meta verisi: tüm uygulamalar taraması</string>
+    <string name="t_debuggable_scan_all">Hata ayıklanabilir kullanıcı uygulamaları taraması</string>
+    <string name="t_uid_groups">UID paylaşım grupları</string>
+    <string name="t_updated_system">Güncellenmiş sistem uygulamaları (FLAG_UPDATED_SYSTEM_APP)</string>
     <string name="t_sdk_int">SDK int</string>
     <string name="t_selinux_mls_enabled">SELinux MLS etkin</string>
     <string name="t_selinux_context_self">SELinux bağlamı (kendi)</string>
@@ -410,6 +424,7 @@
     <string name="t_isrc_gap_system_shell_installed">Tutarsızlık: sistem uygulaması shell ile kuruldu</string>
     <string name="t_isrc_gap_update_owner_drift">Tutarsızlık: updateOwner ≠ installer</string>
     <string name="t_isrc_gap_self_declared_installer">Tutarsızlık: uygulama kendi installer’ı</string>
+    <string name="t_isrc_landscape">Kurulum kaynağı manzarası (tüm uygulamalar kurucuya göre)</string>
     <string name="t_installed_packages_diff">Yüklü paketler: farklı (JVM x pm)</string>
     <string name="t_installed_applications_diff">Yüklü uygulamalar: farklı (JVM x pm)</string>
     <string name="t_selinux_status">SELinux status sayfası (policyload/seq)</string>
@@ -432,4 +447,41 @@
     <string name="n_tee_soter">Tencent\'in Soter hizmet programını, hizmet özelliğinin durumuyla karşılaştırır.</string>
     <string name="t_proc_cgroup_format">cgroup yol biçimi</string>
     <string name="n_proc_cgroup_format">Klonlanmış / dual-app bir kapsayıcı, birleşik cgroup yolunun kanonik uid_/pid_ biçiminden sapmasına yol açar.</string>
+    <string name="t_gpu_vendor">GPU üreticisi</string>
+    <string name="t_gpu_renderer">GPU oluşturucusu</string>
+    <string name="t_gpu_version">GPU sürümü</string>
+    <string name="t_gpu_glsl">GPU GLSL sürümü</string>
+    <string name="t_tel_typeAllocationCode">Tip tahsis kodu (TAC)</string>
+    <string name="t_tel_manufacturerCode">Üretici kodu</string>
+    <string name="t_tel_simCarrierId">SIM operatör ID</string>
+    <string name="t_tel_simCarrierIdName">SIM operatör adı</string>
+    <string name="t_tel_simSpecificCarrierId">Özel SIM operatör ID</string>
+    <string name="t_tel_visualVoicemailPackageName">Görsel sesli mesaj paketi</string>
+    <string name="t_keychain_blacklist">Keychain sertifika kara listesi</string>
+    <string name="t_buildprop_vs_runtime">build.prop vs runtime</string>
+    <string name="note_boot_count">boot_count (çerçeve) yalnızca artar; Phenotype_boot_count (Play hizmetleri) onun anlık görüntüsüdür ve geride kalabilir. Yalnızca anlık görüntü boot_count\'un önündeyse ayrışır (bir sıfırlama).</string>
+    <string name="note_isrc_initiator_sig">Sistemin bu uygulama yüklenirken yükleyici için kaydettiği sertifika, yükleyicinin şimdi bildirdiğinden farklı. Buna değiştirilmiş bir yükleyici ya da sahte bir imza yol açar; sistemi yeniden imzalayıp üreticinin orijinal sertifikasını bildiren ROM\'lar (ör. Xiaomi.eu) bunu her cihazda gösterir.</string>
+    <string name="t_concealment">Uygulama gizleme</string>
+    <string name="note_concealment">Uygulama listesinden gizlenmiş ama başka bir PackageManager kapısından (paket bilgisi, createPackageContext, açılan APK\'sı, launch intent) hâlâ erişilebilen bir paket, bir kapıda gizli diğerinde değildir - kısmi bir uygulama gizleyicinin izi.</string>
+    <string name="t_prop_variants">Bölüm varyantları: %1$s</string>
+    <string name="t_prop_enum">Özellik listeleme vs getprop</string>
+    <string name="note_prop_variants">Aynı sonek her bölümde görünür (system, vendor, product, odm, dlkm...). Her yerde eşleşmesi gereken ama farklılaşan ya da bir soy içinde ayrışan değerler kısmi bir sahteciliği açığa çıkarır - bazı bölümlerde değişmiş, bazılarında değişmemiş bir parmak izi.</string>
+    <string name="note_prop_enum">Özellik alanını yerel olarak listelemek (__system_property_foreach) ve başka bir işlemden gelen getprop ile karşılaştırmak, kabuktan gizlenmiş ya da bir yola enjekte edilmiş ama diğerine edilmemiş bir özelliği açığa çıkarır.</string>
+    <string name="t_dlphdr">Loader modülleri (dl_iterate_phdr)</string>
+    <string name="t_frida_port">Frida port taraması</string>
+    <string name="note_dlphdr">dl_iterate_phdr yüklü modülleri /proc/self/maps üzerinden değil linker üzerinden sayar, dolayısıyla girdisini maps\'ten silen bir hook burada yine listelenir. Bir needle eşleşmesi ya da sistem allowlist\'i dışındaki bir modül sızıntıdır.</string>
+    <string name="t_ime_verdict">Klavye bütünlük kararı</string>
+    <string name="t_store_authenticity">Mağaza/GMS imza gerçekliği</string>
+    <string name="t_devgate">Dev\'e bağlı ayarların tutarlılığı</string>
+    <string name="note_ime_verdict">Bir bankacılık RASP\'ı (PayZapp/Zeta) sistem-dışı olan ve mağaza allowlist\'i dışından kurulmuş her etkin klavyeyi reddeder. Sistem-dışı, mağaza-dışı yükleyicili etkin bir IME işaretlenir.</string>
+    <string name="note_store_authenticity">Play Store, GMS ve GSF Google\'ın imza sertifikasını taşımalıdır. Var olan ama başka bir anahtarla imzalanmış bir mağaza ya da GMS paketi sahte, microG veya yeniden paketlenmiş bir mağazadır.</string>
+    <string name="note_devgate">adb ve diğer Dev\'e bağlı ayarlar yalnızca Geliştirici seçenekleri açıkken değişir. development_settings_enabled=0 iken varsayılan olmayan bir bağlı ayar yalnızca root ya da `settings put` ile ayarlanmış olabilir.</string>
+    <string name="t_maps_exec">Enjekte exec map\'leri (deleted/memfd)</string>
+    <string name="t_anon_minor">Gizli anon-bdev süperbloğu</string>
+    <string name="note_maps_exec">RWX olan (W^X ihlali) ya da ELF sihriyle başlayan bir (deleted)/memfd/ashmem dosyasına dayalı yürütülebilir bir map, dosya sisteminden koparılmış gerçek bir enjekte .so\'dur; ART JIT trambolini bunların hiçbiri değildir ve iyi huylu sayılır. Sistem allowlist\'i dışındaki bir modül de sayılır.</string>
+    <string name="note_anon_minor">Block device\'ı olmayan dosya sistemleri minor\'ünü alttan yoğun global bir anon havuzundan alır. stat() ile mevcut ama bu sürecin mountinfo\'sunda olmayan bir minor, özel bir namespace\'te gizli canlı bir süperbloktur (bir daemon\'ın tmpfs\'i). Eksik minor\'lerin uzun bir dizisi uygulama churn\'üdür ve yok sayılır; kısa bir boşluk ipucudur.</string>
+    <string name="t_sb_tee_signer">StrongBox × TEE imzalayıcı</string>
+    <string name="note_sb_tee_signer">Gerçek bir cihazda StrongBox ve TEE donanımı için ayrı attestation kökleri vardır, dolayısıyla imza sertifikaları farklıdır. Her iki seviyeyi taklit eden tek bir keybox (TrickyStore) ikisini de aynı sertifikayla imzalar - ortak bir imzalayıcı ipucudur.</string>
+    <string name="t_local_tmp_list">/data/local/tmp listesi</string>
+    <string name="note_local_tmp_list">/data/local/tmp\'yi getdents64 ile listelemek (ada bakmadan) bir uygulamanın gerçekten ulaşabileceği her kalıntıyı, modülün bıraktıkları dahil, ortaya çıkarır. Kilitli bir cihazda dizin shell\'e aittir ve bir uygulama tarafından listelenemez, dolayısıyla EACCES temiz yanıttır; görünür bir girdi, uygulamanın ulaşabileceği kalıntı demektir.</string>
 </resources>

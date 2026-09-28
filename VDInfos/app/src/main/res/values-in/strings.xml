@@ -50,6 +50,7 @@
     <string name="verdict_info">info</string>
     <string name="reading_context_only">konteks</string>
     <string name="reading_empty">(kosong)</string>
+    <string name="reveal_original">Nilai asli</string>
     <string name="verdict_empty">kosong</string>
     <string name="verdict_error">galat</string>
 
@@ -195,6 +196,15 @@
     <string name="t_installed_packages_list">Paket terpasang (daftar)</string>
     <string name="t_kernel_release">Kernel (release)</string>
     <string name="t_kernel_version">Kernel (versi)</string>
+    <string name="t_kernel_version_string">Kernel (string versi)</string>
+    <string name="t_kernel_version_claim">Klaim versi kernel (ro.kernel.version vs uname)</string>
+    <string name="note_kernel_version_claim">Properti ro.kernel.version seharusnya mencerminkan kernel yang berjalan. Jika ia mengklaim major.minor yang tidak dimiliki oleh release uname asli, sebuah resolver menyetel properti sementara kernel di bawahnya berbeda.</string>
+    <string name="t_kernel_build_date">Tanggal build kernel vs ROM</string>
+    <string name="note_kernel_build_date">Kernel GKI prabangun lebih lama daripada ROM tempatnya dikirim atau cocok dengannya. Kernel yang dibangun jauh setelah ROM dirakit berarti dibangun ulang atau di-flash belakangan, tanda umum kernel yang dikompilasi manual.</string>
+    <string name="t_kernel_config">Konfig kernel (/proc/config.gz)</string>
+    <string name="note_kernel_config">Konfig kernel, di mana bisa dibaca, menyebut patch yang dikompilasi: KSU, SUSFS, local version kustom, penandatanganan modul tak dipaksakan. Sandbox aplikasi sering menolak berkas ini; terbaca di Android lama, ROM kustom, dan shell root.</string>
+    <string name="t_kernel_module_scan">Modul dan simbol kernel</string>
+    <string name="note_kernel_module_scan">Memindai /sys/module dan nama simbol /proc/kallsyms untuk ksu, susfs, dan magisk, yang diekspos oleh kernel yang dipatch atau dimuati modul. Kedua permukaan sering dibatasi; terbaca di mana domain mengizinkan.</string>
     <string name="t_kernel_cmdline">cmdline kernel</string>
     <string name="t_kernel_log">Log kernel</string>
     <string name="t_kernel_stat">stat kernel</string>
@@ -222,6 +232,10 @@
     <string name="t_suspicious_apps">Aplikasi mencurigakan</string>
     <string name="t_running_app_processes">Proses aplikasi berjalan</string>
     <string name="t_running_services">Layanan berjalan</string>
+    <string name="t_xposed_scan_all">Meta-data Xposed: pemindaian semua aplikasi</string>
+    <string name="t_debuggable_scan_all">Pemindaian aplikasi pengguna yang dapat di-debug</string>
+    <string name="t_uid_groups">Grup berbagi UID</string>
+    <string name="t_updated_system">Aplikasi sistem yang diperbarui (FLAG_UPDATED_SYSTEM_APP)</string>
     <string name="t_sdk_int">SDK int</string>
     <string name="t_selinux_mls_enabled">SELinux MLS aktif</string>
     <string name="t_selinux_context_self">Konteks SELinux (sendiri)</string>
@@ -409,6 +423,7 @@
     <string name="t_isrc_gap_system_shell_installed">Celah: aplikasi sistem dipasang via shell</string>
     <string name="t_isrc_gap_update_owner_drift">Celah: updateOwner ≠ installer</string>
     <string name="t_isrc_gap_self_declared_installer">Celah: aplikasi adalah installer-nya sendiri</string>
+    <string name="t_isrc_landscape">Lanskap sumber instalasi (semua aplikasi berdasarkan installer)</string>
     <string name="t_installed_packages_diff">Paket terpasang: berbeda (JVM x pm)</string>
     <string name="t_installed_applications_diff">Aplikasi terpasang: berbeda (JVM x pm)</string>
     <string name="t_selinux_status">Halaman status SELinux (policyload/seq)</string>
@@ -431,4 +446,41 @@
     <string name="n_tee_soter">Memeriksa silang program layanan Soter dari Tencent dengan status properti layanannya.</string>
     <string name="t_proc_cgroup_format">Format jalur cgroup</string>
     <string name="n_proc_cgroup_format">Kontainer klon / dual-app membuat jalur cgroup terpadu menyimpang dari bentuk kanonik uid_/pid_.</string>
+    <string name="t_gpu_vendor">Pabrikan GPU</string>
+    <string name="t_gpu_renderer">Perender GPU</string>
+    <string name="t_gpu_version">Versi GPU</string>
+    <string name="t_gpu_glsl">Versi GLSL GPU</string>
+    <string name="t_tel_typeAllocationCode">Kode alokasi tipe (TAC)</string>
+    <string name="t_tel_manufacturerCode">Kode pabrikan</string>
+    <string name="t_tel_simCarrierId">ID operator SIM</string>
+    <string name="t_tel_simCarrierIdName">Nama operator SIM</string>
+    <string name="t_tel_simSpecificCarrierId">ID operator SIM spesifik</string>
+    <string name="t_tel_visualVoicemailPackageName">Paket pesan suara visual</string>
+    <string name="t_keychain_blacklist">Daftar hitam sertifikat Keychain</string>
+    <string name="t_buildprop_vs_runtime">build.prop vs runtime</string>
+    <string name="note_boot_count">boot_count (framework) hanya bertambah; Phenotype_boot_count (layanan Play) adalah snapshot-nya dan bisa tertinggal. Divergen hanya jika snapshot melampaui boot_count (reset).</string>
+    <string name="note_isrc_initiator_sig">Sertifikat yang dicatat sistem untuk penginstal saat aplikasi ini dipasang berbeda dari yang dilaporkan penginstal sekarang. Penyebabnya penginstal yang diganti atau tanda tangan yang dipalsukan; ROM yang menandatangani ulang sistem dan melaporkan sertifikat asli vendor (mis. Xiaomi.eu) menampilkannya di setiap perangkat.</string>
+    <string name="t_concealment">Penyembunyian aplikasi</string>
+    <string name="note_concealment">Paket yang disembunyikan dari daftar aplikasi tetapi masih dapat dijangkau lewat pintu PackageManager lain (info paket, createPackageContext, APK yang dibuka, launch intent) tersembunyi di satu pintu tetapi tidak di pintu lain - tanda penyembunyi aplikasi yang parsial.</string>
+    <string name="t_prop_variants">Varian per partisi: %1$s</string>
+    <string name="t_prop_enum">Enumerasi properti vs getprop</string>
+    <string name="note_prop_variants">Sufiks yang sama muncul per partisi (system, vendor, product, odm, dlkm...). Nilai yang seharusnya cocok di semua tempat tetapi berbeda, atau terbelah dalam satu garis keturunan, membongkar spoof parsial - fingerprint yang diubah di sebagian partisi tetapi tidak di partisi lain.</string>
+    <string name="note_prop_enum">Menghitung area properti secara native (__system_property_foreach) dan membandingkannya dengan getprop dari proses lain membongkar properti yang disembunyikan dari shell atau disuntikkan pada satu jalur tetapi tidak jalur lain.</string>
+    <string name="t_dlphdr">Modul loader (dl_iterate_phdr)</string>
+    <string name="t_frida_port">Pindai port Frida</string>
+    <string name="note_dlphdr">dl_iterate_phdr mendaftar modul yang dimuat lewat linker, bukan lewat /proc/self/maps, jadi hook yang menghapus entrinya dari maps tetap tercantum di sini. Kecocokan needle atau modul di luar allowlist sistem adalah kebocorannya.</string>
+    <string name="t_ime_verdict">Vonis integritas keyboard</string>
+    <string name="t_store_authenticity">Keaslian tanda tangan store/GMS</string>
+    <string name="t_devgate">Koherensi setelan terkunci-Dev</string>
+    <string name="note_ime_verdict">Sebuah RASP perbankan (PayZapp/Zeta) menolak setiap keyboard aktif yang non-sistem dan dipasang dari luar allowlist store. IME non-sistem yang aktif dengan penginstal non-store ditandai.</string>
+    <string name="note_store_authenticity">Play Store, GMS, dan GSF harus membawa sertifikat penandatanganan Google. Paket store atau GMS yang ada tetapi ditandatangani dengan kunci lain adalah palsu, microG, atau store yang dikemas ulang.</string>
+    <string name="note_devgate">adb dan setelan terkunci-Dev lain hanya berubah saat Opsi pengembang aktif. Setelan terkunci yang non-default saat development_settings_enabled=0 hanya bisa disetel oleh root atau `settings put`.</string>
+    <string name="t_maps_exec">Peta exec tersuntik (deleted/memfd)</string>
+    <string name="t_anon_minor">Superblock anon-bdev tersembunyi</string>
+    <string name="note_maps_exec">Sebuah pemetaan yang dapat dieksekusi dari file (deleted)/memfd/ashmem yang RWX (melanggar W^X) atau diawali magic ELF adalah .so yang benar-benar disuntikkan, terlepas dari sistem berkas; trampolin JIT ART bukan keduanya dan dihitung jinak. Modul di luar allowlist sistem juga dihitung.</string>
+    <string name="note_anon_minor">Sistem berkas tanpa block device mengambil minor-nya dari pool anon global, padat dari bawah. Sebuah minor yang ada via stat() tetapi tak ada di mountinfo proses ini adalah superblock hidup yang tersembunyi di namespace privat (tmpfs sebuah daemon). Deretan panjang minor yang hilang adalah churn per aplikasi dan diabaikan; lubang pendek adalah petunjuknya.</string>
+    <string name="t_sb_tee_signer">Penanda tangan StrongBox × TEE</string>
+    <string name="note_sb_tee_signer">Perangkat asli memiliki root attestation terpisah untuk perangkat keras StrongBox dan TEE, jadi sertifikat penandatanganannya berbeda. Satu keybox (TrickyStore) yang memalsukan kedua tingkat menandatangani keduanya dengan sertifikat yang sama - penanda tangan bersama adalah petunjuknya.</string>
+    <string name="t_local_tmp_list">Daftar /data/local/tmp</string>
+    <string name="note_local_tmp_list">Mendaftar /data/local/tmp dengan getdents64 (bukan pencarian nama) memunculkan sisa apa pun yang benar-benar bisa dijangkau aplikasi, termasuk yang dijatuhkan modul. Di perangkat terkunci direktori milik shell dan tak bisa didaftar aplikasi, jadi EACCES adalah jawaban bersih; entri yang terlihat berarti sisa yang bisa dijangkau aplikasi.</string>
 </resources>

@@ -45,7 +45,7 @@ object TelephonyProbes {
         add(jm("TelephonyManager.$id") { c -> tm(c)?.let(get) })
         if (prop != null) {
             add(nm("read_callback $prop (slot 0)", compare) { slot0(NativeBridge.sysprop(prop)) })
-            add(nm("property_get $prop (92B, slot 0)", compare) { slot0(NativeBridge.syspropClassic(prop)) })
+            add(nm("property_get $prop (slot 0)", compare, tag = "JNI 92B") { slot0(NativeBridge.syspropClassic(prop)) })
             add(sm("getprop $prop | cut -d, -f1", "getprop $prop (slot 0)", compare))
         }
     }, sensitive = sensitive)
@@ -76,5 +76,19 @@ object TelephonyProbes {
         add(t(ctx, "isSmsCapable", R.string.t_tel_isSmsCapable) { it.isSmsCapable.toString() })
         add(t(ctx, "subscriberId", R.string.t_tel_subscriberId, sensitive = true) { @Suppress("DEPRECATION") it.subscriberId })
         add(t(ctx, "deviceSoftwareVersion", R.string.t_tel_deviceSoftwareVersion, prop = "gsm.version.baseband", compare = false) { it.deviceSoftwareVersion })
+        add(probe("tel:typeAllocationCode", ctx.getString(R.string.t_tel_typeAllocationCode), Category.TELEPHONY, listOf(
+            jm("TelephonyManager.typeAllocationCode") { c -> if (Build.VERSION.SDK_INT >= 29) tm(c)?.typeAllocationCode else null },
+            jm("IMEI[0:8] (TAC prefix)") { c ->
+                val imei = runCatching {
+                    if (Build.VERSION.SDK_INT >= 26) tm(c)?.imei else @Suppress("DEPRECATION") tm(c)?.deviceId
+                }.getOrNull()
+                imei?.filter { it.isDigit() }?.takeIf { it.length >= 8 }?.substring(0, 8)
+            },
+        )))
+        add(t(ctx, "manufacturerCode", R.string.t_tel_manufacturerCode) { if (Build.VERSION.SDK_INT >= 29) it.manufacturerCode else null })
+        add(t(ctx, "simCarrierId", R.string.t_tel_simCarrierId) { if (Build.VERSION.SDK_INT >= 28) it.simCarrierId.toString() else null })
+        add(t(ctx, "simCarrierIdName", R.string.t_tel_simCarrierIdName) { if (Build.VERSION.SDK_INT >= 28) it.simCarrierIdName?.toString() else null })
+        add(t(ctx, "simSpecificCarrierId", R.string.t_tel_simSpecificCarrierId) { if (Build.VERSION.SDK_INT >= 29) it.simSpecificCarrierId.toString() else null })
+        add(t(ctx, "visualVoicemailPackageName", R.string.t_tel_visualVoicemailPackageName) { if (Build.VERSION.SDK_INT >= 26) it.visualVoicemailPackageName else null })
     }
 }
