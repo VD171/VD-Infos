@@ -176,34 +176,47 @@ fun ProbeCard(result: ProbeResult, reveal: Boolean, modifier: Modifier = Modifie
     var showSolution by remember { mutableStateOf(false) }
     val divergent = result.verdict == Verdict.MISMATCH
     val solution = result.spec.solution
-    if (showSolution && solution != null) {
+    val note = result.spec.note
+    val hasInfo = solution != null || note != null
+    if (showSolution && hasInfo) {
         val ctx = LocalContext.current
         AlertDialog(
             onDismissRequest = { showSolution = false },
             confirmButton = { TextButton(onClick = { showSolution = false }) { Text(stringResource(R.string.action_close)) } },
             icon = { Icon(Icons.Outlined.Lightbulb, null) },
-            title = { Text(stringResource(R.string.sol_title)) },
+            title = { Text(stringResource(R.string.card_details)) },
             text = {
                 Column {
-                    Text(solution, style = MaterialTheme.typography.bodyMedium)
-                    if (solution.contains("HMA-OSS")) {
+                    if (note != null) {
+                        Text(note, style = MaterialTheme.typography.bodyMedium)
+                    }
+                    if (solution != null) {
+                        if (note != null) Spacer(Modifier.size(12.dp))
                         Text(
-                            HMA_OSS_URL.removePrefix("https://"),
-                            style = MaterialTheme.typography.bodyMedium,
+                            stringResource(R.string.sol_title),
+                            style = MaterialTheme.typography.labelLarge,
                             color = MaterialTheme.colorScheme.primary,
-                            modifier = Modifier
-                                .padding(top = 10.dp)
-                                .clickable {
-                                    runCatching {
-                                        ctx.startActivity(
-                                            android.content.Intent(
-                                                android.content.Intent.ACTION_VIEW,
-                                                android.net.Uri.parse(HMA_OSS_URL),
-                                            )
-                                        )
-                                    }
-                                },
                         )
+                        Text(solution, style = MaterialTheme.typography.bodyMedium, modifier = Modifier.padding(top = 2.dp))
+                        if (solution.contains("HMA-OSS")) {
+                            Text(
+                                HMA_OSS_URL.removePrefix("https://"),
+                                style = MaterialTheme.typography.bodyMedium,
+                                color = MaterialTheme.colorScheme.primary,
+                                modifier = Modifier
+                                    .padding(top = 10.dp)
+                                    .clickable {
+                                        runCatching {
+                                            ctx.startActivity(
+                                                android.content.Intent(
+                                                    android.content.Intent.ACTION_VIEW,
+                                                    android.net.Uri.parse(HMA_OSS_URL),
+                                                )
+                                            )
+                                        }
+                                    },
+                            )
+                        }
                     }
                 }
             },
@@ -233,7 +246,7 @@ fun ProbeCard(result: ProbeResult, reveal: Boolean, modifier: Modifier = Modifie
                     Text(result.spec.title, style = MaterialTheme.typography.titleMedium)
                 }
                 Row(verticalAlignment = Alignment.CenterVertically) {
-                    if (solution != null) {
+                    if (hasInfo) {
                         OutlinedIconButton(
                             onClick = { showSolution = true },
                             modifier = Modifier.size(38.dp).padding(end = 6.dp),
@@ -265,14 +278,6 @@ fun ProbeCard(result: ProbeResult, reveal: Boolean, modifier: Modifier = Modifie
             AnimatedVisibility(expanded) {
                 Column {
                     result.values.forEach { LensRow(it, result.spec.sensitive, reveal) }
-                    result.spec.note?.let {
-                        Text(
-                            it,
-                            style = MaterialTheme.typography.labelSmall,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant,
-                            modifier = Modifier.padding(top = 6.dp),
-                        )
-                    }
                 }
             }
         }

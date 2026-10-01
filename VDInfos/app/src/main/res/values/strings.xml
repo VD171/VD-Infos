@@ -105,6 +105,7 @@
 
     <!-- Solutions (per-probe "how to fix", assigned manually) -->
     <string name="sol_title">How to fix</string>
+    <string name="card_details">Details</string>
     <string name="sol_boot">This is what hardware attestation (TEE) reports about the boot state. A keybox bypass (TrickyStore, TEE Simulator, OhMyKeyMint) only rewrites attestation for the apps you tell it to cover. Add this app\'s package to that tool\'s target list (e.g. target.txt) so its attestation reports a locked device with a green verified-boot state.</string>
     <string name="sol_root_detector">These installed apps look for root, emulators or a failing Play Integrity. Add the packages found here to your hiding framework (HMA-OSS) as targets, so the root apps and modules are cloaked from these detectors.</string>
     <string name="sol_spoof">This setting reads differently across the paths an app can use to read it (the spoof does not cover them all). Add the setting to the HMA-OSS spoof presets so every read path returns the same value.</string>
@@ -402,13 +403,16 @@
     <string name="t_su_libc_inline_hook">su: raw syscall vs libc vs Java</string>
     <string name="t_native_lib_origin">Native library origin (dladdr)</string>
     <string name="t_uid_coherence">UID/GID coherence</string>
+    <string name="t_settings_read_gate">Restricted setting read gate</string>
     <string name="t_root_backup_tools">Root backup tools present</string>
     <string name="t_local_tmp_contents">/data/local/tmp contents</string>
     <string name="t_documents_providers">DocumentsProviders registered</string>
     <string name="t_zero_width_names">Zero-width / invisible names</string>
     <string name="t_resolv_conf">resolv.conf / DNS config</string>
     <string name="t_key_inside_secure_hw">Key inside secure hardware (KeyInfo)</string>
-    <string name="t_keybox_ec_vs_rsa">Keybox coverage: EC vs RSA attestation</string>
+    <string name="t_rot_ec_vs_rsa">Attestation root of trust: EC vs RSA request</string>
+    <string name="t_leaf_sig_alg">Attestation leaf: key vs signature algorithm</string>
+    <string name="t_batch_key_ec_vs_rsa">Attestation key: EC chain vs RSA chain</string>
     <string name="t_attestation_app_id">Attestation application id (package + signature)</string>
     <string name="t_play_store_version">Play Store / GMS version</string>
     <string name="t_own_debuggable">This app: debuggable / debug build</string>
@@ -487,7 +491,9 @@
     <string name="note_maps_exec">An executable mapping backed by a (deleted)/memfd/ashmem file that is either RWX (W^X violation) or begins with the ELF magic is a real injected .so unlinked from the filesystem; the ART JIT trampoline is neither and is counted as benign. A module outside the system allowlist also counts.</string>
     <string name="note_anon_minor">Filesystems without a block device draw their device minor from a global anon pool, dense from the bottom. A minor present via stat() but absent from this process\'s mountinfo is a live superblock hidden in a private namespace (a daemon\'s tmpfs). A long run of missing minors is per-app churn and ignored; a short hole is the tell.</string>
     <string name="t_sb_tee_signer">StrongBox vs TEE signer</string>
-    <string name="note_sb_tee_signer">A genuine device has separate attestation roots for StrongBox and TEE hardware, so their signing certificates differ. A single keybox (TrickyStore) faking both levels signs both with the same certificate - a shared signer is the tell.</string>
+    <string name="t_strongbox_level">StrongBox-backed attestation level</string>
     <string name="t_local_tmp_list">/data/local/tmp listing</string>
     <string name="note_local_tmp_list">Listing /data/local/tmp with getdents64 (not a name lookup) surfaces any residue an app can actually reach, module drops included. On a locked device the directory is shell-owned and not listable by an app, so EACCES is the clean answer; a visible entry means residue is app-reachable.</string>
+    <string name="t_nettype_consistency">Network type vs real interface</string>
+    <string name="t_flagsecure_honored">FLAG_SECURE honored (screenshot block)</string>
 </resources>

@@ -55,6 +55,7 @@ object Attestation {
 
     data class Record(
         val securityLevel: String,
+        val keymasterSecurityLevel: String,
         val attestationVersion: Int,
         val keymasterVersion: Int,
         val challengeHex: String?,
@@ -75,6 +76,10 @@ object Attestation {
         val signerValidityDays: Long?,
         val signerSerial: String?,
         val signerSubject: String?,
+        val signerSubjectSerialNo: String?,
+        val signerSpkiHex: String?,
+        val leafKeyAlg: String?,
+        val leafSigAlg: String?,
         val provisioning: String?,
         val provisioningByStructure: String?,
         val rootName: String?,
@@ -181,6 +186,7 @@ object Attestation {
         val attVersion = intOf(kd.getObjectAt(0))
         val attSec = intOf(kd.getObjectAt(1))
         val kmVersion = intOf(kd.getObjectAt(2))
+        val kmSec = intOf(kd.getObjectAt(3))
         val challengeHex = runCatching { hex((kd.getObjectAt(4) as ASN1OctetString).octets) }.getOrNull()
 
         var rot: ASN1Sequence? = null
@@ -221,13 +227,22 @@ object Attestation {
         }
 
         var signerDays: Long? = null; var provisioning: String? = null
-        var signerSerial: String? = null; var signerSubject: String? = null
+        var signerSerial: String? = null; var signerSubject: String? = null; var signerSpki: String? = null
+        var signerSubjSn: String? = null
         if (chain.size >= 2) {
             val signer = chain[1] as X509Certificate
             signerDays = (signer.notAfter.time - signer.notBefore.time) / 86400000L
             provisioning = if (signerDays > 730) "batch_keybox" else "rkp"
             signerSerial = signer.serialNumber?.toString(16)
             signerSubject = rdn(signer.subjectX500Principal.getName(javax.security.auth.x500.X500Principal.RFC1779), "CN")
+            signerSpki = signer.publicKey?.encoded?.let {
+                hex(java.security.MessageDigest.getInstance("SHA-256").digest(it)).take(16)
+            }
+            signerSubjSn = runCatching {
+                val x500 = org.bouncycastle.asn1.x500.X500Name.getInstance(signer.subjectX500Principal.encoded)
+                x500.getRDNs(org.bouncycastle.asn1.x500.style.BCStyle.SERIALNUMBER).firstOrNull()
+                    ?.first?.value?.let { org.bouncycastle.asn1.x500.style.IETFUtils.valueToString(it) }
+            }.getOrNull()
         }
         val x509 = chain.map { it as X509Certificate }
         val provisioningByStructure = if (x509.size >= 2) {
@@ -247,14 +262,18 @@ object Attestation {
         }
 
         return Record(
-            securityLevel = secLevel(attSec), attestationVersion = attVersion, keymasterVersion = kmVersion,
+            securityLevel = secLevel(attSec), keymasterSecurityLevel = secLevel(kmSec),
+            attestationVersion = attVersion, keymasterVersion = kmVersion,
             challengeHex = challengeHex,
             verifiedBootState = vbState, deviceLocked = locked,
             verifiedBootKeyHex = vbKey, verifiedBootHashHex = vbHash,
             osVersion = osVer, osPatchLevel = osPatch, vendorPatchLevel = vendorPatch, bootPatchLevel = bootPatch,
             brand = brand, device = device, product = product, manufacturer = manufacturer, model = model,
             serial = serial, signerValidityDays = signerDays,
-            signerSerial = signerSerial, signerSubject = signerSubject, provisioning = provisioning,
+            signerSerial = signerSerial, signerSubject = signerSubject,
+            signerSubjectSerialNo = signerSubjSn, signerSpkiHex = signerSpki,
+            leafKeyAlg = leaf.publicKey?.algorithm, leafSigAlg = leaf.sigAlgName,
+            provisioning = provisioning,
             provisioningByStructure = provisioningByStructure, rootName = rootName, provisioningInfo = provisioningInfo,
             attestationAppId = attAppId,
         )

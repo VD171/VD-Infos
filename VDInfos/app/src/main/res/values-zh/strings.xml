@@ -98,6 +98,7 @@
 
     <!-- 解决方案 -->
     <string name="sol_title">如何修复</string>
+    <string name="card_details">详情</string>
     <string name="sol_boot">这是硬件认证 (TEE) 报告的启动状态。keybox 绕过工具（TrickyStore、TEE Simulator、OhMyKeyMint）只会为您指定的应用重写认证。将此应用的包名添加到这些工具的目标列表（如 target.txt），使其认证报告为已锁定设备且 verified boot 为绿色。</string>
     <string name="sol_root_detector">这些已安装的应用会查找 root、模拟器或失败的 Play Integrity。将此处找到的包名作为目标添加到您的隐藏框架（HMA-OSS），使您的应用和 root 模块对这些检测器隐藏。</string>
     <string name="sol_spoof">此设置在应用可能使用的各个路径中读取结果不同（spoof 未覆盖全部）。将该设置添加到 HMA-OSS 的 spoof 预设，使每条读取路径都返回相同的值。</string>
@@ -111,7 +112,9 @@
     <string name="t_kernel_modules">已加载的内核模块（KernelSU/SuSFS）</string>
     <string name="t_kernel_syscall_fingerprint">按 syscall 指纹判断的内核版本</string>
     <string name="t_key_inside_secure_hw">密钥位于安全硬件中（KeyInfo）</string>
-    <string name="t_keybox_ec_vs_rsa">keybox 覆盖范围：EC 与 RSA 证明</string>
+    <string name="t_rot_ec_vs_rsa">证明信任根：EC 与 RSA 请求</string>
+    <string name="t_leaf_sig_alg">证明叶证书：密钥与签名算法</string>
+    <string name="t_batch_key_ec_vs_rsa">证明密钥：EC 链与 RSA 链</string>
     <string name="t_local_tmp_contents">/data/local/tmp 的内容</string>
     <string name="t_native_lib_origin">本地库来源（dladdr）</string>
     <string name="t_own_debuggable">本应用：debuggable / 调试构建</string>
@@ -480,7 +483,8 @@
     <string name="note_maps_exec">以 (deleted)/memfd/ashmem 文件为后端的可执行映射，若为 RWX（违反 W^X）或以 ELF 魔数开头，即为真正注入且已从文件系统脱钩的 .so；ART 的 JIT 蹦床两者皆非，计为良性。系统允许列表之外的模块也计入。</string>
     <string name="note_anon_minor">没有块设备的文件系统从全局匿名池取得次设备号，自底部密集分布。经 stat() 存在但在本进程 mountinfo 中缺失的次设备号，是隐藏于私有命名空间的活动超级块（守护进程的 tmpfs）。缺失次设备号的长连续段是按应用的 churn，予以忽略；短空洞才是线索。</string>
     <string name="t_sb_tee_signer">StrongBox × TEE 签名者</string>
-    <string name="note_sb_tee_signer">真机的 StrongBox 与 TEE 硬件有各自独立的认证根，因此其签名证书不同。伪造两个级别的单一 keybox（TrickyStore）会用同一证书签名两者 - 共用签名者即是线索。</string>
     <string name="t_local_tmp_list">/data/local/tmp 列表</string>
     <string name="note_local_tmp_list">用 getdents64 列出 /data/local/tmp（而非按名查找）会显现应用真正能触及的任何残留，包括模块留下的。锁定设备上该目录归 shell 所有、应用无法列出，因此 EACCES 是干净答案；出现条目意味着残留可被应用触及。</string>
+    <string name="t_nettype_consistency">网络类型 vs 真实接口</string>
+    <string name="t_flagsecure_honored">FLAG_SECURE 生效（禁止截屏）</string>
 </resources>

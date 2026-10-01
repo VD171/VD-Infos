@@ -101,6 +101,7 @@
 
     <!-- Rozwiązanie -->
     <string name="sol_title">Jak naprawić</string>
+    <string name="card_details">Szczegóły</string>
     <string name="sol_boot">To zgłasza sprzętowe attestation (TEE) o stanie rozruchu. Narzędzia obchodzące keybox (TrickyStore, TEE Simulator, OhMyKeyMint) przepisują attestation tylko dla aplikacji, które wskażesz. Dodaj pakiet tej aplikacji do listy celów tych narzędzi (np. target.txt), aby jej attestation zgłaszało zablokowane urządzenie z zielonym verified boot.</string>
     <string name="sol_root_detector">Te zainstalowane aplikacje szukają roota, emulatora lub nieudanego Play Integrity. Dodaj znalezione tutaj pakiety do swojego frameworka ukrywania (HMA-OSS) jako cele, aby twoje aplikacje i moduły roota były ukryte przed tymi detektorami.</string>
     <string name="sol_spoof">To ustawienie jest odczytywane różnie w ścieżkach, których może użyć aplikacja (spoof nie zamyka wszystkich). Dodaj ustawienie do presetów spoof HMA-OSS, aby każda ścieżka odczytu zwracała tę samą wartość.</string>
@@ -114,7 +115,9 @@
     <string name="t_kernel_modules">Załadowane moduły jądra (KernelSU/SuSFS)</string>
     <string name="t_kernel_syscall_fingerprint">Wersja jądra z odcisku syscalli</string>
     <string name="t_key_inside_secure_hw">Klucz w bezpiecznym sprzęcie (KeyInfo)</string>
-    <string name="t_keybox_ec_vs_rsa">Zasięg keyboksa: atestacja EC vs RSA</string>
+    <string name="t_rot_ec_vs_rsa">Korzeń zaufania atestacji: żądanie EC vs RSA</string>
+    <string name="t_leaf_sig_alg">Certyfikat liścia atestacji: klucz vs algorytm podpisu</string>
+    <string name="t_batch_key_ec_vs_rsa">Klucz atestacji: łańcuch EC vs łańcuch RSA</string>
     <string name="t_local_tmp_contents">Zawartość /data/local/tmp</string>
     <string name="t_native_lib_origin">Pochodzenie biblioteki natywnej (dladdr)</string>
     <string name="t_own_debuggable">Ta aplikacja: debuggable / kompilacja debug</string>
@@ -483,7 +486,8 @@
     <string name="note_maps_exec">Wykonywalne mapowanie pliku (deleted)/memfd/ashmem, które jest RWX (narusza W^X) albo zaczyna się od magicznej liczby ELF, to prawdziwe wstrzyknięte .so odłączone od systemu plików; trampolina JIT ART nie jest żadnym z nich i liczy się jako łagodna. Moduł spoza systemowej allowlisty też się liczy.</string>
     <string name="note_anon_minor">Systemy plików bez urządzenia blokowego biorą swój minor z globalnej puli anon, gęstej od dołu. Minor obecny przez stat(), ale nieobecny w mountinfo tego procesu, to żywy superblok ukryty w prywatnej przestrzeni nazw (tmpfs demona). Długi ciąg brakujących minorów to churn aplikacji i jest ignorowany; krótka dziura to sygnał.</string>
     <string name="t_sb_tee_signer">Podpisujący StrongBox × TEE</string>
-    <string name="note_sb_tee_signer">Prawdziwe urządzenie ma osobne korzenie attestation dla sprzętu StrongBox i TEE, więc ich certyfikaty podpisu się różnią. Pojedynczy keybox (TrickyStore) fałszujący oba poziomy podpisuje oba tym samym certyfikatem - wspólny podpisujący to sygnał.</string>
     <string name="t_local_tmp_list">Lista /data/local/tmp</string>
     <string name="note_local_tmp_list">Wypisanie /data/local/tmp przez getdents64 (nie po nazwie) ujawnia każdą pozostałość, do której aplikacja faktycznie sięga, wraz z tym, co zrzuca moduł. Na zablokowanym urządzeniu katalog należy do shella i nie jest listowalny przez aplikację, więc EACCES to czysta odpowiedź; widoczny wpis oznacza pozostałość osiągalną przez aplikację.</string>
+    <string name="t_nettype_consistency">Typ sieci vs rzeczywisty interfejs</string>
+    <string name="t_flagsecure_honored">FLAG_SECURE przestrzegany (blokada zrzutu)</string>
 </resources>

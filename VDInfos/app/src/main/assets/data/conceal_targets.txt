@@ -40,3 +40,91 @@ com.machiav3lli.backup        # Neo Backup
 com.xayah.databackup.foss     # DataBackup
 com.google.android.hmal # HMA (disguised package)
 com.tsng.dyhhvf # HMA (randomized package)
+
+# --- root / su managers ---
+eu.chainfire.supersu          # SuperSU
+eu.chainfire.supersu.pro      # SuperSU (pro key)
+com.kingoapp.battery          # Kingo (root)
+su.sniff.cepter               # cSploit (network)
+
+# --- root hiding / spoofing / detection-evasion ---
+com.devadvance.rootcloak2     # RootCloak
+com.cofface.ivader            # iVader (root hider)
+com.potenzadomenico.hiddenroot # Hidden Root
+es.chiteroman.bootloaderspoofer # Bootloader Spoofer
+zone.bytesreverser.xposeddeviceidmasker     # Device ID Masker
+zone.bytesreverser.xposeddeviceidmaskerlite # Device ID Masker (lite)
+zone.bytesreverser.xposeddeviceidmaskerpro  # Device ID Masker (pro)
+com.androidx.androidfakerpro  # Android Faker (pro)
+com.devicefaker.plus          # Device Faker
+com.unique.mobilefaker        # Mobile Faker
+com.unique.mobilefaker.plus   # Mobile Faker (plus)
+com.device.emulator.pro       # Device Emulator
+com.lexa.fakegps              # Fake GPS
+com.bocharov.xposed.fsbi      # Fake Signature (Xposed)
+org.t2k269.perapphacking      # Per-app hacking
+top.canyie.settingsfirewall   # Settings Firewall
+
+# --- Xposed framework and modules ---
+biz.bokhorst.xprivacy         # XPrivacy
+biz.bokhorst.xprivacy.license # XPrivacy (license)
+eu.faircode.xlua              # XPrivacyLua
+eu.faircode.xlua.pro          # XPrivacyLua (pro)
+de.live.gdev.xprivacyappinfo  # XPrivacy AppInfo
+org.meowcat.edxposed.manager  # EdXposed manager
+kmod.xposed                   # LSPosed (kmod id)
+io.github.chsbuffer.revancedxposed # ReVanced Xposed
+com.shubhangrathore.xposed.disablefullscreenkeyboard # Xposed module
+Hook.JiuWu.Xp                 # JiuWu Xposed
+
+# --- root backup / recovery ---
+com.keramidas.TitaniumBackup  # Titanium Backup
+com.keramidas.TitaniumBackupPro # Titanium Backup (pro key)
+com.keramidas.TitaniumBackupAddon # Titanium Backup (addon)
+com.h3r3t1c.onnandbup         # Online Nandroid Backup
+com.h3r3t1c.onnandbup.pro     # Online Nandroid Backup (pro)
+com.h3r3t1c.bkrestore.pro     # Backup/Restore (pro)
+com.jmz.soft.twrpmanager      # TWRP Manager
+me.twrp.twrpapp               # Official TWRP App
+com.idea.backup.smscontactspro # SMS/Contacts Backup (pro)
+
+# --- root utilities ---
+stericson.busybox.donate      # BusyBox (Stericson)
+com.buak.Link2SD              # Link2SD
+com.buak.link2sdplus          # Link2SD Plus
+eu.thedarken.sdm              # SD Maid
+eu.thedarken.sdm.unlocker     # SD Maid (unlocker)
+com.oasisfeng.greenify        # Greenify
+com.oasisfeng.greenify.pro    # Greenify (pro)
+com.jrummy.root.browserfree   # Root Browser
+com.jrummyapps.rootbrowser.classic # Root Browser (classic)
+com.jrummy.liberty.toolboxpro # ROM Toolbox (pro)
+com.jrummy.apps.build.prop.editor # Build.prop Editor (JRummy)
+com.joeykrim.buildpropeditor  # BuildProp Editor
+com.coderstory.toolkit        # Toolkit (system tweaks)
+com.droidmate.permaster       # Permission Master
+com.rs.autokiller             # AutoKiller
+com.rs.autokiller.pro         # AutoKiller (pro)
+com.rs.autorun                # Autorun Manager
+com.rs.autorun.pro            # Autorun Manager (pro)
+com.ryosoftware.initd         # init.d toolbox
+de.defim.apk.bootmanager      # Boot Manager
+de.defim.apk.bootmanager.donator # Boot Manager (donator)
+com.gmail.heagoo.autorun.pro  # Autorun Manager (heagoo)
+
+# --- app / permission managers ---
+cn.wq.myandroidtools          # MyAndroidTools
+io.github.muntashirakon.AppManager # App Manager
+rikka.appops                  # AppOps (Rikka)
+com.jumobile.manager.systemapp.pro # System App Remover (pro)
+com.imoblife.permissioncheck_plugn_in # Permission check plugin
+
+# --- other root / piracy tooling ---
+com.dergoogler.mmrl.wx        # MMRL WebUI
+com.android.vending.billing.InAppBillingService.BINN # Lucky Patcher (billing shim)
+com.android.vending.billing.InAppBillingService.COIN # Lucky Patcher (billing shim)
+com.android.vending.licensing.ILicensingService # Lucky Patcher (licensing shim)
+app.greyshirts.sslcapture     # Packet Capture (TLS MITM)
+org.nick.cryptfs.passwdmanager # cryptfs password manager
+bnz.wmdonmiwi                 # hider (randomized id)
+com.KmBe.cDEhhdmS17e          # hider (randomized id)

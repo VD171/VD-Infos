@@ -103,7 +103,9 @@
     <string name="t_kernel_modules">Moduli del kernel caricati (KernelSU/SuSFS)</string>
     <string name="t_kernel_syscall_fingerprint">Versione del kernel dall\'impronta delle syscall</string>
     <string name="t_key_inside_secure_hw">Chiave dentro hardware sicuro (KeyInfo)</string>
-    <string name="t_keybox_ec_vs_rsa">Copertura della keybox: attestazione EC vs RSA</string>
+    <string name="t_rot_ec_vs_rsa">Radice di fiducia dell\'attestazione: richiesta EC vs RSA</string>
+    <string name="t_leaf_sig_alg">Foglia dell\'attestazione: chiave vs algoritmo di firma</string>
+    <string name="t_batch_key_ec_vs_rsa">Chiave di attestazione: catena EC vs catena RSA</string>
     <string name="t_local_tmp_contents">Contenuto di /data/local/tmp</string>
     <string name="t_native_lib_origin">Origine della libreria nativa (dladdr)</string>
     <string name="t_own_debuggable">Questa app: debuggable / build di debug</string>
@@ -397,6 +399,7 @@
 
     <!-- Solutions -->
     <string name="sol_title">Come risolvere</string>
+    <string name="card_details">Dettagli</string>
     <string name="sol_boot">Questo è ciò che l\'attestation hardware (TEE) riporta sullo stato del boot. Un bypass tramite keybox (TrickyStore, TEE Simulator, OhMyKeyMint) riscrive l\'attestation solo per le app che gli indichi di coprire. Aggiungi il pacchetto di questa app all\'elenco dei target di quello strumento (es. target.txt) affinché la sua attestation riporti un dispositivo bloccato con verified boot verde.</string>
     <string name="sol_root_detector">Queste app installate cercano root, emulatori o un Play Integrity fallito. Aggiungi i pacchetti trovati qui al tuo framework di occultamento (HMA-OSS) come target, così le app e i moduli di root vengono nascosti a questi rilevatori.</string>
     <string name="sol_spoof">Questo setting viene letto in modo diverso a seconda della via che un\'app usa per leggerlo (lo spoof non le copre tutte). Aggiungi il setting ai preset di spoof di HMA-OSS affinché ogni via di lettura restituisca lo stesso valore.</string>
@@ -480,7 +483,8 @@
     <string name="note_maps_exec">Una mappatura eseguibile di un file (deleted)/memfd/ashmem che sia RWX (viola W^X) o inizi con il magic ELF è un vero .so iniettato, scollegato dal filesystem; il trampolino JIT di ART non è né l\'uno né l\'altro e conta come benigno. Anche un modulo fuori dall\'allowlist di sistema conta.</string>
     <string name="note_anon_minor">I filesystem senza block device prendono il minor da un pool anon globale, denso dal basso. Un minor presente via stat() ma assente dal mountinfo di questo processo è un superblocco vivo nascosto in un namespace privato (il tmpfs di un daemon). Una lunga serie di minor mancanti è churn per app e viene ignorata; un buco corto è la spia.</string>
     <string name="t_sb_tee_signer">Firmatario StrongBox × TEE</string>
-    <string name="note_sb_tee_signer">Un dispositivo genuino ha radici di attestazione separate per l\'hardware StrongBox e TEE, quindi i loro certificati di firma differiscono. Un unico keybox (TrickyStore) che falsifica entrambi i livelli firma entrambi con lo stesso certificato - un firmatario condiviso è la spia.</string>
     <string name="t_local_tmp_list">Elenco di /data/local/tmp</string>
     <string name="note_local_tmp_list">Elencare /data/local/tmp con getdents64 (non per nome) fa emergere qualsiasi residuo che un\'app può davvero raggiungere, incluso ciò che il modulo rilascia. Su un dispositivo bloccato la directory è dello shell e non elencabile da un\'app, quindi EACCES è la risposta pulita; una voce visibile significa residuo raggiungibile dall\'app.</string>
+    <string name="t_nettype_consistency">Tipo di rete vs interfaccia reale</string>
+    <string name="t_flagsecure_honored">FLAG_SECURE rispettato (blocco screenshot)</string>
 </resources>

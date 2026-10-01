@@ -99,6 +99,7 @@
 
     <!-- Çözüm -->
     <string name="sol_title">Nasıl düzeltilir</string>
+    <string name="card_details">Ayrıntılar</string>
     <string name="sol_boot">Bu, donanım attestation\'ının (TEE) boot durumu hakkında bildirdiği şeydir. Keybox atlatma araçları (TrickyStore, TEE Simulator, OhMyKeyMint) attestation\'ı yalnızca belirttiğiniz uygulamalar için yeniden yazar. Bu uygulamanın paketini bu araçların hedef listesine (ör. target.txt) ekleyin; böylece attestation kilitli cihaz ve yeşil verified boot bildirir.</string>
     <string name="sol_root_detector">Bu yüklü uygulamalar root, emülatör veya başarısız Play Integrity arar. Burada bulunan paketleri gizleme çerçevenize (HMA-OSS) hedef olarak ekleyin; böylece uygulamalarınız ve root modülleriniz bu dedektörlerden gizlenir.</string>
     <string name="sol_spoof">Bu ayar, bir uygulamanın kullanabileceği yollar arasında farklı okunuyor (spoof hepsini kapatmıyor). Ayarı HMA-OSS spoof ön ayarlarına ekleyin; böylece her okuma yolu aynı değeri döndürür.</string>
@@ -112,7 +113,9 @@
     <string name="t_kernel_modules">Yüklü çekirdek modülleri (KernelSU/SuSFS)</string>
     <string name="t_kernel_syscall_fingerprint">Syscall parmak iziyle çekirdek sürümü</string>
     <string name="t_key_inside_secure_hw">Anahtar güvenli donanımda (KeyInfo)</string>
-    <string name="t_keybox_ec_vs_rsa">Keybox kapsamı: EC\'ye karşı RSA doğrulaması</string>
+    <string name="t_rot_ec_vs_rsa">Doğrulama güven kökü: EC\'ye karşı RSA isteği</string>
+    <string name="t_leaf_sig_alg">Doğrulama yaprak sertifikası: anahtar karşısında imza algoritması</string>
+    <string name="t_batch_key_ec_vs_rsa">Doğrulama anahtarı: EC zinciri karşısında RSA zinciri</string>
     <string name="t_local_tmp_contents">/data/local/tmp içeriği</string>
     <string name="t_native_lib_origin">Yerel kitaplığın kaynağı (dladdr)</string>
     <string name="t_own_debuggable">Bu uygulama: debuggable / hata ayıklama derlemesi</string>
@@ -481,7 +484,8 @@
     <string name="note_maps_exec">RWX olan (W^X ihlali) ya da ELF sihriyle başlayan bir (deleted)/memfd/ashmem dosyasına dayalı yürütülebilir bir map, dosya sisteminden koparılmış gerçek bir enjekte .so\'dur; ART JIT trambolini bunların hiçbiri değildir ve iyi huylu sayılır. Sistem allowlist\'i dışındaki bir modül de sayılır.</string>
     <string name="note_anon_minor">Block device\'ı olmayan dosya sistemleri minor\'ünü alttan yoğun global bir anon havuzundan alır. stat() ile mevcut ama bu sürecin mountinfo\'sunda olmayan bir minor, özel bir namespace\'te gizli canlı bir süperbloktur (bir daemon\'ın tmpfs\'i). Eksik minor\'lerin uzun bir dizisi uygulama churn\'üdür ve yok sayılır; kısa bir boşluk ipucudur.</string>
     <string name="t_sb_tee_signer">StrongBox × TEE imzalayıcı</string>
-    <string name="note_sb_tee_signer">Gerçek bir cihazda StrongBox ve TEE donanımı için ayrı attestation kökleri vardır, dolayısıyla imza sertifikaları farklıdır. Her iki seviyeyi taklit eden tek bir keybox (TrickyStore) ikisini de aynı sertifikayla imzalar - ortak bir imzalayıcı ipucudur.</string>
     <string name="t_local_tmp_list">/data/local/tmp listesi</string>
     <string name="note_local_tmp_list">/data/local/tmp\'yi getdents64 ile listelemek (ada bakmadan) bir uygulamanın gerçekten ulaşabileceği her kalıntıyı, modülün bıraktıkları dahil, ortaya çıkarır. Kilitli bir cihazda dizin shell\'e aittir ve bir uygulama tarafından listelenemez, dolayısıyla EACCES temiz yanıttır; görünür bir girdi, uygulamanın ulaşabileceği kalıntı demektir.</string>
+    <string name="t_nettype_consistency">Ağ türü ile gerçek arayüz</string>
+    <string name="t_flagsecure_honored">FLAG_SECURE uygulanıyor (ekran görüntüsü engeli)</string>
 </resources>

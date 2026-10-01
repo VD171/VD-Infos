@@ -74,6 +74,10 @@ object IntegrityExtraProbes {
     }
 
 
+    private fun readGateApplies(ctx: Context): Boolean =
+        Build.VERSION.SDK_INT >= Build.VERSION_CODES.S &&
+            ctx.applicationInfo.targetSdkVersion >= Build.VERSION_CODES.S
+
     private fun flagMods(text: String?, needles: List<String>): String? {
         if (text == null) return null
         val hits = text.lineSequence().mapNotNull { line ->
@@ -177,6 +181,24 @@ object IntegrityExtraProbes {
             nm("getuid() vs stat(dataDir) owner") {
                 val owner = NativeBridge.statOwner(ctx.dataDir.path)?.first
                 NativeBridge.ids()?.uid?.let { uidVerdict(it, owner) }
+            },
+        )))
+
+        add(probe("integrity:settings_read_gate", ctx.getString(R.string.t_settings_read_gate), Category.INTEGRITY, listOf(
+            jm("expected: a restricted setting key stays gated for a normal app") { c ->
+                if (!readGateApplies(c)) return@jm null
+                "gated"
+            },
+            jm("Settings.Secure.getString(bluetooth_name)") { c ->
+                if (!readGateApplies(c)) return@jm null
+                try {
+                    val v = Settings.Secure.getString(c.contentResolver, "bluetooth_name")
+                    if (v.isNullOrEmpty()) "gated" else "LEAKED_VALUE"
+                } catch (e: SecurityException) {
+                    "gated"
+                } catch (e: Throwable) {
+                    "gated"
+                }
             },
         )))
 
@@ -354,5 +376,62 @@ object IntegrityExtraProbes {
                 }.joinToString("\n").ifEmpty { Sentinels.ABSENT }
             },
         )))
+
+        add(probe("integrity:flagsecure_honored", ctx.getString(R.string.t_flagsecure_honored), Category.INTEGRITY, listOf(
+            jm("expected: our own FLAG_SECURE request is honored") {
+                val r = FlagSecureState.result ?: return@jm null
+                if (!r.startsWith("honored") && !r.startsWith("STRIPPED")) return@jm null
+                "honored"
+            },
+            jm("FLAG_SECURE set on own window, read back") {
+                val r = FlagSecureState.result ?: return@jm null
+                if (!r.startsWith("honored") && !r.startsWith("STRIPPED")) return@jm null
+                r
+            },
+        )))
+
+        add(probe("net:nettype_consistency", ctx.getString(R.string.t_nettype_consistency), Category.NETWORK, listOf(
+            jm("getType/hasTransport (hookable)") { c -> claimedNetType(c) },
+            jm("active iface -> type (LinkProperties, independent)") { c -> ifaceNetType(c) },
+            nm("native /sys/class/net wlan operstate", compare = false) { sysfsWlan() },
+            sm("cat /proc/net/wireless 2>/dev/null | awk 'NR>2{print \$1}' | tr -d ':' | paste -sd, - || echo ${Sentinels.ABSENT}",
+                "proc/net/wireless ifaces", compare = false),
+        )))
+    }
+
+    private fun cmgr(c: Context) =
+        c.getSystemService(Context.CONNECTIVITY_SERVICE) as android.net.ConnectivityManager
+
+    private fun claimedNetType(c: Context): String? {
+        val cm = cmgr(c)
+        val n = cm.activeNetwork ?: return Sentinels.ABSENT
+        val caps = cm.getNetworkCapabilities(n) ?: return Sentinels.ABSENT
+        return when {
+            caps.hasTransport(android.net.NetworkCapabilities.TRANSPORT_WIFI) -> "wifi"
+            caps.hasTransport(android.net.NetworkCapabilities.TRANSPORT_CELLULAR) -> "mobile"
+            caps.hasTransport(android.net.NetworkCapabilities.TRANSPORT_ETHERNET) -> "ethernet"
+            else -> "other"
+        }
+    }
+
+    private fun ifaceNetType(c: Context): String? {
+        val cm = cmgr(c)
+        val n = cm.activeNetwork ?: return Sentinels.ABSENT
+        val ifn = cm.getLinkProperties(n)?.interfaceName ?: return Sentinels.ABSENT
+        return when {
+            ifn.startsWith("wlan") -> "wifi"
+            ifn.startsWith("rmnet") || ifn.startsWith("ccmni") || ifn.startsWith("ccinet") || ifn.startsWith("pdp") -> "mobile"
+            ifn.startsWith("eth") -> "ethernet"
+            else -> "other($ifn)"
+        }
+    }
+
+    private fun sysfsWlan(): String? {
+        val names = NativeBridge.dirList("/sys/class/net")?.lineSequence()
+            ?.map { it.trim() }?.filter { it.startsWith("wlan") }?.toList() ?: return null
+        if (names.isEmpty()) return "no-wlan"
+        return names.joinToString(",") { w ->
+            "$w=${NativeBridge.readFile("/sys/class/net/$w/operstate")?.trim() ?: "?"}"
+        }
     }
 }

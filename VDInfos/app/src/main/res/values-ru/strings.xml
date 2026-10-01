@@ -105,7 +105,9 @@
     <string name="t_kernel_modules">Загруженные модули ядра (KernelSU/SuSFS)</string>
     <string name="t_kernel_syscall_fingerprint">Версия ядра по отпечатку системных вызовов</string>
     <string name="t_key_inside_secure_hw">Ключ внутри защищённого оборудования (KeyInfo)</string>
-    <string name="t_keybox_ec_vs_rsa">Покрытие keybox: аттестация EC против RSA</string>
+    <string name="t_rot_ec_vs_rsa">Корень доверия аттестации: запрос EC против RSA</string>
+    <string name="t_leaf_sig_alg">Листовой сертификат аттестации: ключ против алгоритма подписи</string>
+    <string name="t_batch_key_ec_vs_rsa">Ключ аттестации: цепочка EC против цепочки RSA</string>
     <string name="t_local_tmp_contents">Содержимое /data/local/tmp</string>
     <string name="t_native_lib_origin">Происхождение нативной библиотеки (dladdr)</string>
     <string name="t_own_debuggable">Это приложение: debuggable / отладочная сборка</string>
@@ -399,6 +401,7 @@
 
     <!-- Solutions -->
     <string name="sol_title">Как исправить</string>
+    <string name="card_details">Подробности</string>
     <string name="sol_boot">Так аппаратная аттестация (TEE) сообщает о состоянии загрузки. Обход через keybox (TrickyStore, TEE Simulator, OhMyKeyMint) переписывает аттестацию только для тех приложений, которые вы укажете. Добавьте пакет этого приложения в список целей этого инструмента (напр. target.txt), чтобы его аттестация сообщала о заблокированном устройстве с зелёным verified boot.</string>
     <string name="sol_root_detector">Эти установленные приложения ищут root, эмуляторы или проваленный Play Integrity. Добавьте найденные здесь пакеты в ваш фреймворк скрытия (HMA-OSS) как цели, чтобы root-приложения и модули были скрыты от этих детекторов.</string>
     <string name="sol_spoof">Эта настройка читается по-разному в зависимости от пути, которым приложение её читает (spoof покрывает не все). Добавьте настройку в spoof-пресеты HMA-OSS, чтобы все пути чтения возвращали одно значение.</string>
@@ -482,7 +485,8 @@
     <string name="note_maps_exec">Исполняемое отображение файла (deleted)/memfd/ashmem, которое либо RWX (нарушает W^X), либо начинается с ELF-магии, - это реальная внедрённая .so, отвязанная от файловой системы; трамплин JIT ART не является ни тем, ни другим и считается безобидным. Модуль вне системного списка разрешённых тоже считается.</string>
     <string name="note_anon_minor">Файловые системы без блочного устройства берут minor из глобального анонимного пула, плотного снизу. Minor, присутствующий через stat(), но отсутствующий в mountinfo этого процесса, - это живой суперблок, скрытый в приватном пространстве имён (tmpfs демона). Длинная серия отсутствующих minor - это churn приложений и игнорируется; короткая дыра - это признак.</string>
     <string name="t_sb_tee_signer">Подписант StrongBox × TEE</string>
-    <string name="note_sb_tee_signer">У настоящего устройства отдельные корни attestation для оборудования StrongBox и TEE, поэтому их сертификаты подписи различаются. Единственный keybox (TrickyStore), подделывающий оба уровня, подписывает оба одним сертификатом - общий подписант это признак.</string>
     <string name="t_local_tmp_list">Список /data/local/tmp</string>
     <string name="note_local_tmp_list">Перечисление /data/local/tmp через getdents64 (не поиск по имени) выявляет любой остаток, до которого приложение реально дотягивается, включая то, что оставляет модуль. На заблокированном устройстве каталог принадлежит shell и не перечислим приложением, поэтому EACCES - чистый ответ; видимая запись означает достижимый приложением остаток.</string>
+    <string name="t_nettype_consistency">Тип сети против реального интерфейса</string>
+    <string name="t_flagsecure_honored">FLAG_SECURE соблюдён (блок скриншота)</string>
 </resources>

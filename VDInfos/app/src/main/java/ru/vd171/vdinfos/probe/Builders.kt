@@ -187,3 +187,6 @@ fun settingBlock(key: String, compare: Boolean = true) = listOf(
 
 fun am(source: String, compare: Boolean = true, tag: String? = null, read: () -> String?) =
     Method(Lens.ATTEST, source, compare, tag = tag) { read() }
+
+fun amReveal(source: String, reveal: () -> String?, read: () -> String?) =
+    Method(Lens.ATTEST, source, compare = false, reveal = { reveal() }, read = { read() })

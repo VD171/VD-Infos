@@ -98,6 +98,7 @@
 
     <!-- 해결 방법 -->
     <string name="sol_title">해결 방법</string>
+    <string name="card_details">세부 정보</string>
     <string name="sol_boot">이것은 하드웨어 attestation(TEE)이 부팅 상태에 대해 보고하는 내용입니다. keybox 우회 도구(TrickyStore, TEE Simulator, OhMyKeyMint)는 지정한 앱에 대해서만 attestation을 다시 씁니다. 이 앱의 패키지를 해당 도구의 대상 목록(예: target.txt)에 추가하면 attestation이 잠긴 기기와 녹색 verified boot를 보고하게 됩니다.</string>
     <string name="sol_root_detector">이 설치된 앱들은 root, 에뮬레이터 또는 실패한 Play Integrity를 찾습니다. 여기서 발견된 패키지를 은폐 프레임워크(HMA-OSS)에 대상으로 추가하면 앱과 root 모듈이 이 감지기로부터 숨겨집니다.</string>
     <string name="sol_spoof">이 설정은 앱이 사용할 수 있는 경로마다 다르게 읽힙니다(spoof가 모두를 다루지 않음). 설정을 HMA-OSS의 spoof 프리셋에 추가하면 모든 읽기 경로가 같은 값을 반환합니다.</string>
@@ -111,7 +112,9 @@
     <string name="t_kernel_modules">로드된 커널 모듈(KernelSU/SuSFS)</string>
     <string name="t_kernel_syscall_fingerprint">syscall 지문으로 본 커널 버전</string>
     <string name="t_key_inside_secure_hw">보안 하드웨어 내부의 키(KeyInfo)</string>
-    <string name="t_keybox_ec_vs_rsa">keybox 적용 범위: EC 대 RSA 증명</string>
+    <string name="t_rot_ec_vs_rsa">증명 신뢰 루트: EC 대 RSA 요청</string>
+    <string name="t_leaf_sig_alg">증명 리프 인증서: 키 대 서명 알고리즘</string>
+    <string name="t_batch_key_ec_vs_rsa">증명 키: EC 체인 대 RSA 체인</string>
     <string name="t_local_tmp_contents">/data/local/tmp 내용</string>
     <string name="t_native_lib_origin">네이티브 라이브러리 출처(dladdr)</string>
     <string name="t_own_debuggable">이 앱: debuggable / 디버그 빌드</string>
@@ -480,7 +483,8 @@
     <string name="note_maps_exec">(deleted)/memfd/ashmem 파일에 기반한 실행 매핑이 RWX(W^X 위반)이거나 ELF 매직으로 시작하면 파일시스템에서 분리된 실제 주입 .so입니다. ART의 JIT 트램폴린은 둘 다 아니며 양성으로 셉니다. 시스템 허용 목록 밖 모듈도 셉니다.</string>
     <string name="note_anon_minor">블록 장치가 없는 파일시스템은 아래부터 촘촘한 전역 anon 풀에서 minor를 가져옵니다. stat()로는 있지만 이 프로세스의 mountinfo에는 없는 minor는 사설 네임스페이스에 숨은 살아있는 슈퍼블록(데몬의 tmpfs)입니다. 빠진 minor가 길게 이어지면 앱별 churn이라 무시하고, 짧은 구멍이 단서입니다.</string>
     <string name="t_sb_tee_signer">StrongBox × TEE 서명자</string>
-    <string name="note_sb_tee_signer">정품 기기는 StrongBox와 TEE 하드웨어에 대해 별도의 attestation 루트를 가지므로 서명 인증서가 다릅니다. 두 수준을 위조하는 단일 키박스(TrickyStore)는 둘 다 같은 인증서로 서명합니다 - 공유 서명자가 단서입니다.</string>
     <string name="t_local_tmp_list">/data/local/tmp 목록</string>
     <string name="note_local_tmp_list">getdents64로 /data/local/tmp를 나열하면(이름 조회가 아님) 모듈이 남긴 것을 포함해 앱이 실제로 접근 가능한 모든 잔여물이 드러납니다. 잠긴 기기에서는 이 디렉터리가 shell 소유라 앱이 나열할 수 없어 EACCES가 정상 답이며, 보이는 항목은 앱이 접근 가능한 잔여물을 뜻합니다.</string>
+    <string name="t_nettype_consistency">네트워크 유형 vs 실제 인터페이스</string>
+    <string name="t_flagsecure_honored">FLAG_SECURE 준수 (스크린샷 차단)</string>
 </resources>

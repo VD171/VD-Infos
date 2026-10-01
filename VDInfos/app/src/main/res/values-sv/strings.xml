@@ -99,6 +99,7 @@
 
     <!-- Lösning -->
     <string name="sol_title">Så här åtgärdar du</string>
+    <string name="card_details">Detaljer</string>
     <string name="sol_boot">Detta är vad hårdvaru-attestation (TEE) rapporterar om bootstatus. Verktyg som kringgår keybox (TrickyStore, TEE Simulator, OhMyKeyMint) skriver om attestation endast för appar du anger. Lägg till den här appens paket i verktygens mållista (t.ex. target.txt) så att dess attestation rapporterar en låst enhet med grön verified boot.</string>
     <string name="sol_root_detector">Dessa installerade appar letar efter root, emulator eller misslyckad Play Integrity. Lägg till paketen som hittats här som mål i ditt döljramverk (HMA-OSS) så att dina appar och rootmoduler döljs för dessa detektorer.</string>
     <string name="sol_spoof">Den här inställningen läses olika via de vägar en app kan använda (spoof täcker inte alla). Lägg till inställningen i HMA-OSS spoof-förinställningar så att varje läsväg returnerar samma värde.</string>
@@ -112,7 +113,9 @@
     <string name="t_kernel_modules">Laddade kärnmoduler (KernelSU/SuSFS)</string>
     <string name="t_kernel_syscall_fingerprint">Kärnversion via syscall-fingeravtryck</string>
     <string name="t_key_inside_secure_hw">Nyckel i säker hårdvara (KeyInfo)</string>
-    <string name="t_keybox_ec_vs_rsa">Keybox-täckning: EC- mot RSA-attestering</string>
+    <string name="t_rot_ec_vs_rsa">Attesteringens förtroenderot: EC- mot RSA-begäran</string>
+    <string name="t_leaf_sig_alg">Attesteringens lövcertifikat: nyckel mot signaturalgoritm</string>
+    <string name="t_batch_key_ec_vs_rsa">Attesteringsnyckel: EC-kedja mot RSA-kedja</string>
     <string name="t_local_tmp_contents">Innehåll i /data/local/tmp</string>
     <string name="t_native_lib_origin">Det nativa bibliotekets ursprung (dladdr)</string>
     <string name="t_own_debuggable">Den här appen: debuggable / debug-bygge</string>
@@ -481,7 +484,8 @@
     <string name="note_maps_exec">En körbar mappning som backas av en (deleted)/memfd/ashmem-fil som antingen är RWX (bryter W^X) eller börjar med ELF-magin är en riktig injicerad .so, frikopplad från filsystemet; ART:s JIT-trampolin är ingetdera och räknas som godartad. En modul utanför systemets allowlist räknas också.</string>
     <string name="note_anon_minor">Filsystem utan blockenhet hämtar sin minor från en global anon-pool, tät underifrån. En minor som finns via stat() men saknas i den här processens mountinfo är ett levande superblock dolt i en privat namespace (en daemons tmpfs). En lång rad saknade minorer är app-churn och ignoreras; ett kort hål är tecknet.</string>
     <string name="t_sb_tee_signer">StrongBox- vs. TEE-signerare</string>
-    <string name="note_sb_tee_signer">En äkta enhet har separata attestation-rötter för StrongBox- och TEE-hårdvara, så deras signeringscertifikat skiljer sig. En enda keybox (TrickyStore) som förfalskar båda nivåerna signerar båda med samma certifikat - en delad signerare är tecknet.</string>
     <string name="t_local_tmp_list">Listning av /data/local/tmp</string>
     <string name="note_local_tmp_list">Att lista /data/local/tmp med getdents64 (inte en namnuppslagning) visar varje rest en app faktiskt når, inklusive det modulen släpper. På en låst enhet ägs katalogen av shell och kan inte listas av en app, så EACCES är det rena svaret; en synlig post betyder app-nåbar rest.</string>
+    <string name="t_nettype_consistency">Nätverkstyp vs verkligt gränssnitt</string>
+    <string name="t_flagsecure_honored">FLAG_SECURE respekteras (skärmdumpsblock)</string>
 </resources>

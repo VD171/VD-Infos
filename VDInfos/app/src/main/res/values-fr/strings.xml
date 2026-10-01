@@ -103,7 +103,9 @@
     <string name="t_kernel_modules">Modules du noyau chargés (KernelSU/SuSFS)</string>
     <string name="t_kernel_syscall_fingerprint">Version du noyau par empreinte des syscalls</string>
     <string name="t_key_inside_secure_hw">Clé dans le matériel sécurisé (KeyInfo)</string>
-    <string name="t_keybox_ec_vs_rsa">Couverture de la keybox : attestation EC vs RSA</string>
+    <string name="t_rot_ec_vs_rsa">Racine de confiance de l\'attestation : requête EC vs RSA</string>
+    <string name="t_leaf_sig_alg">Feuille de l\'attestation : clé vs algorithme de signature</string>
+    <string name="t_batch_key_ec_vs_rsa">Clé d\'attestation : chaîne EC vs chaîne RSA</string>
     <string name="t_local_tmp_contents">Contenu de /data/local/tmp</string>
     <string name="t_native_lib_origin">Origine de la bibliothèque native (dladdr)</string>
     <string name="t_own_debuggable">Cette app : debuggable / build de débogage</string>
@@ -397,6 +399,7 @@
 
     <!-- Solutions -->
     <string name="sol_title">Comment corriger</string>
+    <string name="card_details">Détails</string>
     <string name="sol_boot">Voici ce que l\'attestation matérielle (TEE) indique sur l\'état du boot. Un contournement par keybox (TrickyStore, TEE Simulator, OhMyKeyMint) ne réécrit l\'attestation que pour les applications que vous lui indiquez. Ajoutez le paquet de cette application à la liste des cibles de cet outil (p. ex. target.txt) pour que son attestation indique un appareil verrouillé avec un verified boot vert.</string>
     <string name="sol_root_detector">Ces applications installées cherchent le root, des émulateurs ou un Play Integrity en échec. Ajoutez les paquets trouvés ici à votre framework de dissimulation (HMA-OSS) comme cibles, afin que les applications et modules de root soient masqués de ces détecteurs.</string>
     <string name="sol_spoof">Ce paramètre se lit différemment selon la voie qu\'une application utilise pour le lire (le spoof ne les couvre pas toutes). Ajoutez le paramètre aux presets de spoof de HMA-OSS pour que chaque voie de lecture renvoie la même valeur.</string>
@@ -480,7 +483,8 @@
     <string name="note_maps_exec">Un mappage exécutable adossé à un fichier (deleted)/memfd/ashmem qui est soit RWX (viole W^X) soit commence par le magic ELF est un vrai .so injecté, détaché du système de fichiers ; le trampoline JIT de l\'ART n\'est ni l\'un ni l\'autre et compte comme bénin. Un module hors de l\'allowlist système compte aussi.</string>
     <string name="note_anon_minor">Les systèmes de fichiers sans périphérique bloc tirent leur minor d\'un pool anon global, dense par le bas. Un minor présent via stat() mais absent du mountinfo de ce processus est un superbloc vivant caché dans un namespace privé (le tmpfs d\'un daemon). Une longue série de minors manquants est du churn par appli et ignorée ; un trou court est l\'indice.</string>
     <string name="t_sb_tee_signer">Signataire StrongBox × TEE</string>
-    <string name="note_sb_tee_signer">Un appareil authentique a des racines d\'attestation distinctes pour le matériel StrongBox et TEE, donc leurs certificats de signature diffèrent. Un unique keybox (TrickyStore) falsifiant les deux niveaux signe les deux avec le même certificat - un signataire partagé est l\'indice.</string>
     <string name="t_local_tmp_list">Listage de /data/local/tmp</string>
     <string name="note_local_tmp_list">Lister /data/local/tmp avec getdents64 (pas par nom) fait apparaître tout résidu qu\'une appli peut réellement atteindre, y compris ce que le module dépose. Sur un appareil verrouillé le répertoire appartient au shell et n\'est pas listable par une appli, donc EACCES est la réponse propre ; une entrée visible signifie un résidu atteignable par l\'appli.</string>
+    <string name="t_nettype_consistency">Type de réseau vs interface réelle</string>
+    <string name="t_flagsecure_honored">FLAG_SECURE respecté (blocage capture)</string>
 </resources>

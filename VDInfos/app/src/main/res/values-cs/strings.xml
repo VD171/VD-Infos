@@ -101,6 +101,7 @@
 
     <!-- Řešení -->
     <string name="sol_title">Jak opravit</string>
+    <string name="card_details">Podrobnosti</string>
     <string name="sol_boot">Toto hlásí hardwarové attestation (TEE) o stavu bootu. Nástroje obcházející keybox (TrickyStore, TEE Simulator, OhMyKeyMint) přepisují attestation pouze pro aplikace, které zadáte. Přidejte balíček této aplikace do seznamu cílů těchto nástrojů (např. target.txt), aby jeho attestation hlásilo uzamčené zařízení se zeleným verified boot.</string>
     <string name="sol_root_detector">Tyto nainstalované aplikace hledají root, emulátor nebo neúspěšný Play Integrity. Přidejte zde nalezené balíčky jako cíle do svého skrývacího frameworku (HMA-OSS), aby vaše aplikace a root moduly byly před těmito detektory skryté.</string>
     <string name="sol_spoof">Toto nastavení se čte odlišně napříč cestami, které aplikace může použít (spoof nepokrývá všechny). Přidejte nastavení do spoof presetů HMA-OSS, aby každá cesta čtení vracela stejnou hodnotu.</string>
@@ -114,7 +115,9 @@
     <string name="t_kernel_modules">Načtené moduly jádra (KernelSU/SuSFS)</string>
     <string name="t_kernel_syscall_fingerprint">Verze jádra podle otisku syscallů</string>
     <string name="t_key_inside_secure_hw">Klíč v zabezpečeném hardwaru (KeyInfo)</string>
-    <string name="t_keybox_ec_vs_rsa">Pokrytí keyboxu: atestace EC vs RSA</string>
+    <string name="t_rot_ec_vs_rsa">Kořen důvěry atestace: požadavek EC vs RSA</string>
+    <string name="t_leaf_sig_alg">Listový certifikát atestace: klíč vs algoritmus podpisu</string>
+    <string name="t_batch_key_ec_vs_rsa">Klíč atestace: řetězec EC vs řetězec RSA</string>
     <string name="t_local_tmp_contents">Obsah /data/local/tmp</string>
     <string name="t_native_lib_origin">Původ nativní knihovny (dladdr)</string>
     <string name="t_own_debuggable">Tato aplikace: debuggable / ladicí build</string>
@@ -483,7 +486,8 @@
     <string name="note_maps_exec">Spustitelné mapování souboru (deleted)/memfd/ashmem, které je buď RWX (porušuje W^X), nebo začíná ELF magií, je skutečné injektované .so odpojené od souborového systému; JIT trampolína ART není ani jedno a počítá se jako neškodná. Modul mimo systémový allowlist se také počítá.</string>
     <string name="note_anon_minor">Souborové systémy bez blokového zařízení berou svůj minor z globálního anon poolu, hustého odspodu. Minor přítomný přes stat(), ale chybějící v mountinfo tohoto procesu, je živý superblok skrytý v privátním namespace (tmpfs démona). Dlouhá série chybějících minorů je churn aplikací a ignoruje se; krátká díra je signál.</string>
     <string name="t_sb_tee_signer">Podepisovatel StrongBox × TEE</string>
-    <string name="note_sb_tee_signer">Skutečné zařízení má oddělené kořeny attestation pro hardware StrongBox a TEE, takže jejich podpisové certifikáty se liší. Jediný keybox (TrickyStore) předstírající obě úrovně podepisuje obě stejným certifikátem - sdílený podepisovatel je signál.</string>
     <string name="t_local_tmp_list">Výpis /data/local/tmp</string>
     <string name="note_local_tmp_list">Výpis /data/local/tmp přes getdents64 (ne podle jména) odhalí jakýkoli zbytek, na který aplikace skutečně dosáhne, včetně toho, co modul upustí. Na zamčeném zařízení adresář patří shellu a aplikace jej nemůže vypsat, takže EACCES je čistá odpověď; viditelná položka znamená zbytek dosažitelný aplikací.</string>
+    <string name="t_nettype_consistency">Typ sítě vs. skutečné rozhraní</string>
+    <string name="t_flagsecure_honored">FLAG_SECURE dodržen (blok snímku)</string>
 </resources>

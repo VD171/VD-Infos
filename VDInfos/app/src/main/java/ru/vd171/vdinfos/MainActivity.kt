@@ -60,6 +60,7 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        ru.vd171.vdinfos.probe.FlagSecureState.measure(window)
         enableEdgeToEdge()
         setContent {
             VdInfosTheme {

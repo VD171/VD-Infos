@@ -64,8 +64,8 @@ object SystemExtraProbes {
 
         val meuUser = android.os.Process.myUid() / 100000
         val contaPacotes = "p=\$(/system/bin/pm list packages --user $meuUser 2>&1); " +
-            "case \"\$p\" in *package:*) printf '%s\\n' \"\$p\" | grep -c '^package:';; " +
-            "*) printf '%s\\n' \"\$p\" | head -1;; esac"
+            "n=\$(printf '%s\\n' \"\$p\" | grep -c '^package:'); " +
+            "if [ \"\$n\" -gt 0 ]; then echo \"\$n\"; else printf '%s\\n' \"\$p\" | head -1; fi"
         val fontePacotes = "pm list packages --user $meuUser | count"
         add(probe("pkg:installed_count", ctx.getString(R.string.t_installed_packages), Category.PACKAGES, listOf(
             jm("PackageManager.getInstalledPackages().size") { c ->
@@ -79,7 +79,9 @@ object SystemExtraProbes {
             },
             smr(contaPacotes, fontePacotes),
         )))
-        val nomesPm = "/system/bin/pm list packages --user $meuUser 2>/dev/null | sed 's/^package://'"
+        val nomesPm = "p=\$(/system/bin/pm list packages --user $meuUser 2>&1); " +
+            "if printf '%s\\n' \"\$p\" | grep -q '^package:'; then printf '%s\\n' \"\$p\" | sed -n 's/^package://p'; " +
+            "else echo __PM_UNAVAILABLE__; fi"
         add(jprobe("pkg:installed_diff", ctx.getString(R.string.t_installed_packages_diff), Category.PACKAGES,
             source = "getInstalledPackages() ⊖ pm list packages") { c ->
             diffLenses(c.packageManager.getInstalledPackages(0).map { it.packageName }, nomesPm)
@@ -147,12 +149,15 @@ object SystemExtraProbes {
 
 
         add(probe("hw:cpu_cores", ctx.getString(R.string.t_cpu_cores), Category.HARDWARE, listOf(
-            jm("Runtime.availableProcessors()") { Runtime.getRuntime().availableProcessors().toString() },
-            jm("Os.sysconf(_SC_NPROCESSORS_ONLN)") {
-                android.system.Os.sysconf(android.system.OsConstants._SC_NPROCESSORS_ONLN).toString()
+            jm("Os.sysconf(_SC_NPROCESSORS_CONF)") {
+                android.system.Os.sysconf(android.system.OsConstants._SC_NPROCESSORS_CONF).toString()
             },
             sm("awk -F- '{ print $2 + 1 }' /sys/devices/system/cpu/present", "/sys/devices/system/cpu/present"),
-            sm("nproc", "nproc (affinity of this process)", compare = false),
+            jm("Runtime.availableProcessors()", compare = false) { Runtime.getRuntime().availableProcessors().toString() },
+            jm("Os.sysconf(_SC_NPROCESSORS_ONLN)", compare = false) {
+                android.system.Os.sysconf(android.system.OsConstants._SC_NPROCESSORS_ONLN).toString()
+            },
+            sm("nproc", "nproc (online/affinity of this process)", compare = false),
         )))
         add(probe("hw:cpuinfo", ctx.getString(R.string.t_cpuinfo), Category.HARDWARE, listOf(
             jm("read /proc/cpuinfo") {
@@ -231,6 +236,7 @@ object SystemExtraProbes {
         val jvmSet = jvm.toSortedSet()
         val out = Exec.run(pmCmd, timeoutMs = 8000, cap = 400000)
             ?: return Sentinels.RESTRICTED
+        if (out.isBlank() || out.contains("__PM_UNAVAILABLE__")) return Sentinels.RESTRICTED
         val pmSet = out.lineSequence().map { it.trim() }.filter { it.isNotEmpty() }.toSortedSet()
         val onlyJvm = (jvmSet - pmSet)
         val onlyPm = (pmSet - jvmSet)

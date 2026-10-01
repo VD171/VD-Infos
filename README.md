@@ -108,7 +108,7 @@ ui/             Jetpack Compose, Material 3, dynamic colour, live progress
 cpp/            native_probes.cpp - the native lens, dependency-free
 ```
 
-* **Parallelism**: 991 probes fan out across the default dispatcher with a bounded
+* **Parallelism**: 996 probes fan out across the default dispatcher with a bounded
   permit count; results stream into the UI as they land.
 * **Nothing in the background**: no services and no scheduled scans; the app runs only
   while it is open and closes itself when left idle.

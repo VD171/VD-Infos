@@ -39,6 +39,8 @@ import java.security.MessageDigest
 object AttestExtraProbes {
 
     private const val ALIAS = "vdinfos_keyinfo"
+    private const val FEATURE_STRONGBOX = "android.hardware.strongbox_keystore"
+    private const val OK = "ok"
 
     private fun serialFp(serial: String?): String? {
         if (serial.isNullOrEmpty()) return null
@@ -80,13 +82,76 @@ object AttestExtraProbes {
         0 -> "software"; 1 -> "tee"; 2 -> "strongbox"; -1 -> "unrestricted"; else -> "?$v"
     }
 
+    private fun fmtAttest(r: Attestation.Record?): String {
+        if (r == null) return "absent (no chain / attestation failed)"
+        return "sec=${r.securityLevel} boot=${r.verifiedBootState ?: "-"} locked=${r.deviceLocked ?: "-"} " +
+            "rot=${r.verifiedBootKeyHex?.take(12) ?: "-"} patch=${r.osPatchLevel ?: "-"} root=${r.rootName ?: "-"}"
+    }
+
+    private fun rotTuple(r: Attestation.Record?): String? {
+        r ?: return null
+        return "boot=${r.verifiedBootState ?: "-"} locked=${r.deviceLocked ?: "-"} " +
+            "rot=${r.verifiedBootKeyHex?.take(12) ?: "-"} root=${r.rootName ?: "-"}"
+    }
+
+    private fun rsaLeaf(): Attestation.Record? =
+        Attestation.recordRsa?.takeIf { it.leafKeyAlg?.contains("RSA", true) == true }
+    private fun rsaLeafExpected(): String? = rsaLeaf()?.let { "RSA" }
+    private fun rsaLeafSigFamily(): String? {
+        if (Attestation.recordRsa == null) return "ABSENT (keybox has no RSA key)"
+        val sig = rsaLeaf()?.leafSigAlg ?: return null
+        return when {
+            sig.contains("RSA", true) -> "RSA"
+            sig.contains("EC", true) -> "EC (RSA leaf signed by the EC keybox)"
+            else -> sig
+        }
+    }
+    private fun rsaLeafDetail(): String {
+        val rsa = Attestation.recordRsa
+        val ec = Attestation.recordPlain ?: Attestation.record
+        return "RSA leaf: key=${rsa?.leafKeyAlg ?: "-"} sig=${rsa?.leafSigAlg ?: "-"}\n" +
+            "EC leaf:  key=${ec?.leafKeyAlg ?: "-"} sig=${ec?.leafSigAlg ?: "-"}"
+    }
+
+    private fun batchKeyEc(): Attestation.Record? = Attestation.recordPlain ?: Attestation.record
+    private fun batchKeyExpected(): String? = batchKeyActual()?.let { OK }
+    private fun batchKeyActual(): String? {
+        val ec = batchKeyEc() ?: return null
+        val rsa = Attestation.recordRsa ?: return null
+        ec.signerSpkiHex ?: ec.signerSerial ?: return null
+        rsa.signerSpkiHex ?: rsa.signerSerial ?: return null
+        val tells = buildList {
+            val sharedSerial = ec.signerSerial != null && ec.signerSerial == rsa.signerSerial
+            val sharedKey = ec.signerSpkiHex != null && ec.signerSpkiHex == rsa.signerSpkiHex
+            if (sharedSerial || sharedKey)
+                add("SHARED signer (one attestation key signs EC and RSA = keybox EC-only)")
+            if (ec.signerSubjectSerialNo != null && rsa.signerSubjectSerialNo != null &&
+                ec.signerSubjectSerialNo != rsa.signerSubjectSerialNo)
+                add("divergent identity (subject serialNumber EC!=RSA = chains from different devices)")
+        }
+        return if (tells.isEmpty()) OK else tells.joinToString("; ")
+    }
+    private fun batchKeyDetail(fp: Boolean): String {
+        val ec = batchKeyEc(); val rsa = Attestation.recordRsa
+        fun s(x: String?) = (if (fp) serialFp(x) else x) ?: "-"
+        return "EC chain:  serial=${s(ec?.signerSerial)} key=${ec?.signerSpkiHex ?: "-"} id=${s(ec?.signerSubjectSerialNo)}\n" +
+            "RSA chain: serial=${s(rsa?.signerSerial)} key=${rsa?.signerSpkiHex ?: "-"} id=${s(rsa?.signerSubjectSerialNo)}"
+    }
+
     fun tasks(ctx: Context): List<ProbeTask> = buildList {
 
         add(probe("attest:sb_tee_signer", ctx.getString(R.string.t_sb_tee_signer), Category.INTEGRITY, listOf(
-            jm("StrongBox and TEE have distinct signers (expected)") { "distinct" },
-            jm("StrongBox signer vs TEE signer") {
-                val sb = Attestation.recordStrongBox?.signerSerial ?: return@jm ru.vd171.vdinfos.core.model.Sentinels.NONE
-                val tee = Attestation.record?.signerSerial ?: return@jm ru.vd171.vdinfos.core.model.Sentinels.NONE
+            jm("StrongBox keystore feature", compare = false) { c ->
+                if (c.packageManager.hasSystemFeature(FEATURE_STRONGBOX)) "present" else "absent"
+            },
+            jm("StrongBox and TEE have distinct signers (expected)") { c ->
+                if (!c.packageManager.hasSystemFeature(FEATURE_STRONGBOX)) return@jm null
+                "distinct"
+            },
+            jm("StrongBox signer vs TEE signer") { c ->
+                if (!c.packageManager.hasSystemFeature(FEATURE_STRONGBOX)) return@jm null
+                val tee = Attestation.record?.signerSerial ?: return@jm null
+                val sb = Attestation.recordStrongBox?.signerSerial ?: return@jm "STRONGBOX_MISSING"
                 if (sb == tee) "SHARED" else "distinct"
             },
             jmReveal(
@@ -106,7 +171,25 @@ object AttestExtraProbes {
                         "tee=${tee?.signerSubject}/${serialFp(tee?.signerSerial) ?: none}"
                 },
             ),
-        ), note = ctx.getString(R.string.note_sb_tee_signer)))
+        )))
+
+        add(probe("attest:strongbox_level", ctx.getString(R.string.t_strongbox_level), Category.INTEGRITY, listOf(
+            jm("StrongBox keystore feature", compare = false) { c ->
+                if (c.packageManager.hasSystemFeature(FEATURE_STRONGBOX)) "present" else "absent"
+            },
+            jm("expected: a StrongBox-backed key attests at StrongBox level") { c ->
+                if (!c.packageManager.hasSystemFeature(FEATURE_STRONGBOX)) return@jm null
+                "strongbox"
+            },
+            jm("StrongBox-backed attestationSecurityLevel") { c ->
+                if (!c.packageManager.hasSystemFeature(FEATURE_STRONGBOX)) return@jm null
+                Attestation.recordStrongBox?.securityLevel ?: return@jm "STRONGBOX_MISSING"
+            },
+            jm("StrongBox-backed keymasterSecurityLevel") { c ->
+                if (!c.packageManager.hasSystemFeature(FEATURE_STRONGBOX)) return@jm null
+                Attestation.recordStrongBox?.keymasterSecurityLevel ?: return@jm "STRONGBOX_MISSING"
+            },
+        )))
 
         add(probe("attest:key_secure_hw", ctx.getString(R.string.t_key_inside_secure_hw), Category.INTEGRITY, listOf(
             @Suppress("DEPRECATION")
@@ -117,19 +200,25 @@ object AttestExtraProbes {
             am("attestation record securityLevel", compare = false) { Attestation.record?.securityLevel },
         ), solution = ctx.getString(R.string.sol_boot)))
 
-        add(probe("attest:keybox_ec_vs_rsa", ctx.getString(R.string.t_keybox_ec_vs_rsa), Category.INTEGRITY, listOf(
-            am("EC attested securityLevel", compare = false) { Attestation.record?.securityLevel },
-            am("RSA attested securityLevel", compare = false) { Attestation.rsaAttestSecurityLevel() },
-            am("verdict: keybox covers both?", compare = false) {
-                val ec = Attestation.record?.securityLevel
-                val rsa = Attestation.rsaAttestSecurityLevel()
-                val hw = setOf("tee", "strongbox")
-                when {
-                    ec == null -> "no-ec-attestation"
-                    ec in hw && (rsa == null || rsa !in hw) -> "SUSPECT: EC=$ec RSA=${rsa ?: "none"} (keybox EC-only?)"
-                    else -> "consistent (EC=$ec RSA=${rsa ?: "none"})"
-                }
-            },
+        add(probe("attest:rot_ec_vs_rsa", ctx.getString(R.string.t_rot_ec_vs_rsa), Category.INTEGRITY, listOf(
+            am("EC chain (sec/boot/locked/rot/root)", compare = false) { fmtAttest(Attestation.record) },
+            am("RSA chain (sec/boot/locked/rot/root)", compare = false) { fmtAttest(Attestation.recordRsa) },
+            am("root of trust via EC request") { rotTuple(Attestation.record) },
+            am("root of trust via RSA request") { rotTuple(Attestation.recordRsa) },
+        ), solution = ctx.getString(R.string.sol_boot)))
+
+        add(probe("attest:leaf_sig_alg", ctx.getString(R.string.t_leaf_sig_alg), Category.INTEGRITY, listOf(
+            am("expected: an RSA key's leaf is signed by an RSA key") { rsaLeafExpected() },
+            am("RSA attestation leaf signature family") { rsaLeafSigFamily() },
+            am("leaf key vs signature algorithm", compare = false) { rsaLeafDetail() },
+        ), solution = ctx.getString(R.string.sol_boot)))
+
+        add(probe("attest:batch_key_ec_vs_rsa", ctx.getString(R.string.t_batch_key_ec_vs_rsa), Category.INTEGRITY, listOf(
+            am("expected: distinct key, same device identity") { batchKeyExpected() },
+            am("EC chain signer vs RSA chain signer") { batchKeyActual() },
+            amReveal("batch cert: EC vs RSA (serial / key / id)",
+                reveal = { batchKeyDetail(fp = false) },
+                read = { batchKeyDetail(fp = true) }),
         ), solution = ctx.getString(R.string.sol_boot)))
 
         add(probe("attest:app_id", ctx.getString(R.string.t_attestation_app_id), Category.INTEGRITY, listOf(

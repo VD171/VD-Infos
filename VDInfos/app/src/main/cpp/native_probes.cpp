@@ -39,6 +39,7 @@
 #include <csignal>
 #include <sys/wait.h>
 #include <sys/syscall.h>
+#include <sys/resource.h>
 #include <sys/stat.h>
 #include <dlfcn.h>
 #include <link.h>

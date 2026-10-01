@@ -103,6 +103,7 @@
 
     <!-- Soluções (o "como resolver" por sonda, atribuído manualmente) -->
     <string name="sol_title">Como resolver</string>
+    <string name="card_details">Detalhes</string>
     <string name="sol_boot">Isto é o que a atestação por hardware (TEE) informa sobre o estado do boot. Um bypass por keybox (TrickyStore, TEE Simulator, OhMyKeyMint) só reescreve a atestação para os apps que você mandar cobrir. Adicione o pacote deste app à lista alvo dessa ferramenta (ex.: target.txt) para que a atestação informe um aparelho bloqueado com verified boot verde.</string>
     <string name="sol_root_detector">Estes apps instalados procuram root, emulador ou Play Integrity reprovado. Adicione os pacotes encontrados aqui ao seu framework de ocultação (HMA-OSS) como alvos, para que os apps e módulos de root fiquem invisíveis para esses detectores.</string>
     <string name="sol_spoof">Esta setting é lida de formas diferentes pelos caminhos que um app pode usar (o spoof não cobre todos). Adicione a setting aos presets de spoof do HMA-OSS para que todos os caminhos de leitura retornem o mesmo valor.</string>
@@ -399,13 +400,16 @@
     <string name="t_su_libc_inline_hook">su: syscall cru vs libc vs Java</string>
     <string name="t_native_lib_origin">Origem da biblioteca nativa (dladdr)</string>
     <string name="t_uid_coherence">Coerência de UID/GID</string>
+    <string name="t_settings_read_gate">Barreira de leitura de setting restrita</string>
     <string name="t_root_backup_tools">Ferramentas de backup com root presentes</string>
     <string name="t_local_tmp_contents">Conteúdo de /data/local/tmp</string>
     <string name="t_documents_providers">DocumentsProviders registrados</string>
     <string name="t_zero_width_names">Nomes com caractere de largura-zero</string>
     <string name="t_resolv_conf">resolv.conf / configuração de DNS</string>
     <string name="t_key_inside_secure_hw">Chave em hardware seguro (KeyInfo)</string>
-    <string name="t_keybox_ec_vs_rsa">Cobertura da keybox: atestação EC vs RSA</string>
+    <string name="t_rot_ec_vs_rsa">Raiz de confiança da atestação: requisição EC vs RSA</string>
+    <string name="t_leaf_sig_alg">Folha da atestação: chave vs algoritmo de assinatura</string>
+    <string name="t_batch_key_ec_vs_rsa">Chave de atestação: cadeia EC vs cadeia RSA</string>
     <string name="t_attestation_app_id">Id de aplicação da atestação (pacote + assinatura)</string>
     <string name="t_play_store_version">Versão da Play Store / GMS</string>
     <string name="t_own_debuggable">Este app: debuggable / build de debug</string>
@@ -484,7 +488,9 @@
     <string name="note_maps_exec">Um mapeamento executável de um arquivo (deleted)/memfd/ashmem que seja RWX (viola W^X) ou comece com o magic ELF é um .so injetado real, desvinculado do sistema de arquivos; o trampolim JIT do ART não é nenhum dos dois e conta como benigno. Um módulo fora da allowlist do sistema também conta.</string>
     <string name="note_anon_minor">Sistemas de arquivos sem block device tiram o minor de um pool anon global, denso por baixo. Um minor presente via stat() mas ausente do mountinfo deste processo é um superbloco vivo escondido num namespace privado (tmpfs de um daemon). Um trecho longo de minors faltando é churn por-app e é ignorado; um buraco curto é o tell.</string>
     <string name="t_sb_tee_signer">Signer StrongBox × TEE</string>
-    <string name="note_sb_tee_signer">Um aparelho genuíno tem raízes de attestation separadas para o hardware StrongBox e TEE, então os certificados de assinatura diferem. Um único keybox (TrickyStore) fingindo os dois níveis assina ambos com o mesmo certificado - signer compartilhado é o tell.</string>
+    <string name="t_strongbox_level">Nível de atestação StrongBox-backed</string>
     <string name="t_local_tmp_list">Listagem de /data/local/tmp</string>
     <string name="note_local_tmp_list">Listar /data/local/tmp com getdents64 (não por nome) revela qualquer resíduo que um app realmente alcança, incluindo o que o módulo dropa. Em aparelho travado o diretório é do shell e não listável por app, então EACCES é a resposta limpa; uma entrada visível significa resíduo alcançável pelo app.</string>
+    <string name="t_nettype_consistency">Tipo de rede vs interface real</string>
+    <string name="t_flagsecure_honored">FLAG_SECURE respeitado (bloqueio de screenshot)</string>
 </resources>

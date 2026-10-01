@@ -99,6 +99,7 @@
 
     <!-- Oplossing -->
     <string name="sol_title">Hoe op te lossen</string>
+    <string name="card_details">Details</string>
     <string name="sol_boot">Dit is wat hardware-attestation (TEE) rapporteert over de bootstatus. Keybox-bypasstools (TrickyStore, TEE Simulator, OhMyKeyMint) herschrijven attestation alleen voor apps die u opgeeft. Voeg het pakket van deze app toe aan de doellijst van die tools (bijv. target.txt), zodat de attestation een vergrendeld apparaat met groene verified boot rapporteert.</string>
     <string name="sol_root_detector">Deze geïnstalleerde apps zoeken naar root, emulator of een mislukte Play Integrity. Voeg de hier gevonden pakketten toe als doelen aan uw verbergframework (HMA-OSS), zodat uw apps en rootmodules verborgen blijven voor deze detectors.</string>
     <string name="sol_spoof">Deze instelling wordt anders gelezen via de paden die een app kan gebruiken (spoof dekt niet alles). Voeg de instelling toe aan de spoof-presets van HMA-OSS, zodat elk leespad dezelfde waarde teruggeeft.</string>
@@ -112,7 +113,9 @@
     <string name="t_kernel_modules">Geladen kernelmodules (KernelSU/SuSFS)</string>
     <string name="t_kernel_syscall_fingerprint">Kernelversie via syscall-vingerafdruk</string>
     <string name="t_key_inside_secure_hw">Sleutel in beveiligde hardware (KeyInfo)</string>
-    <string name="t_keybox_ec_vs_rsa">Keybox-dekking: EC- versus RSA-attestatie</string>
+    <string name="t_rot_ec_vs_rsa">Vertrouwensanker van attestatie: EC- versus RSA-verzoek</string>
+    <string name="t_leaf_sig_alg">Bladcertificaat van attestatie: sleutel versus handtekeningalgoritme</string>
+    <string name="t_batch_key_ec_vs_rsa">Attestatiesleutel: EC-keten versus RSA-keten</string>
     <string name="t_local_tmp_contents">Inhoud van /data/local/tmp</string>
     <string name="t_native_lib_origin">Herkomst van de native bibliotheek (dladdr)</string>
     <string name="t_own_debuggable">Deze app: debuggable / debug-build</string>
@@ -481,7 +484,8 @@
     <string name="note_maps_exec">Een uitvoerbare mapping van een (deleted)/memfd/ashmem-bestand dat RWX is (schendt W^X) of begint met de ELF-magic is een echte geïnjecteerde .so, losgekoppeld van het bestandssysteem; de ART-JIT-trampoline is geen van beide en telt als goedaardig. Een module buiten de systeem-allowlist telt ook.</string>
     <string name="note_anon_minor">Bestandssystemen zonder block device halen hun minor uit een globale anon-pool, dicht van onderaf. Een minor die via stat() aanwezig is maar afwezig in de mountinfo van dit proces is een levend superblok verborgen in een private namespace (de tmpfs van een daemon). Een lange reeks ontbrekende minors is app-churn en wordt genegeerd; een kort gat is de aanwijzing.</string>
     <string name="t_sb_tee_signer">StrongBox- vs. TEE-ondertekenaar</string>
-    <string name="note_sb_tee_signer">Een echt apparaat heeft aparte attestation-roots voor StrongBox- en TEE-hardware, dus hun ondertekeningscertificaten verschillen. Een enkele keybox (TrickyStore) die beide niveaus vervalst, ondertekent beide met hetzelfde certificaat - een gedeelde ondertekenaar is de aanwijzing.</string>
     <string name="t_local_tmp_list">Lijst van /data/local/tmp</string>
     <string name="note_local_tmp_list">Het opsommen van /data/local/tmp met getdents64 (geen naamzoekopdracht) onthult elk residu dat een app echt kan bereiken, inclusief wat de module neerzet. Op een vergrendeld apparaat is de map van de shell en niet door een app op te sommen, dus EACCES is het schone antwoord; een zichtbare vermelding betekent app-bereikbaar residu.</string>
+    <string name="t_nettype_consistency">Netwerktype vs echte interface</string>
+    <string name="t_flagsecure_honored">FLAG_SECURE nageleefd (schermafbeelding-blok)</string>
 </resources>

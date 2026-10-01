@@ -98,6 +98,7 @@
 
     <!-- วิธีแก้ไข -->
     <string name="sol_title">วิธีแก้ไข</string>
+    <string name="card_details">รายละเอียด</string>
     <string name="sol_boot">นี่คือสิ่งที่ attestation ของฮาร์ดแวร์ (TEE) รายงานเกี่ยวกับสถานะบูต เครื่องมือข้าม keybox (TrickyStore, TEE Simulator, OhMyKeyMint) จะเขียน attestation ใหม่เฉพาะแอปที่คุณระบุเท่านั้น เพิ่มแพ็กเกจของแอปนี้ลงในรายการเป้าหมายของเครื่องมือเหล่านั้น (เช่น target.txt) เพื่อให้ attestation รายงานว่าอุปกรณ์ถูกล็อกและ verified boot เป็นสีเขียว</string>
     <string name="sol_root_detector">แอปที่ติดตั้งเหล่านี้มองหา root, อีมูเลเตอร์ หรือ Play Integrity ที่ล้มเหลว เพิ่มแพ็กเกจที่พบที่นี่เป็นเป้าหมายในเฟรมเวิร์กการซ่อนของคุณ (HMA-OSS) เพื่อให้แอปและโมดูล root ของคุณถูกซ่อนจากตัวตรวจจับเหล่านี้</string>
     <string name="sol_spoof">การตั้งค่านี้อ่านได้แตกต่างกันในเส้นทางที่แอปอาจใช้ (spoof ไม่ครอบคลุมทั้งหมด) เพิ่มการตั้งค่าลงในพรีเซ็ต spoof ของ HMA-OSS เพื่อให้ทุกเส้นทางการอ่านคืนค่าเดียวกัน</string>
@@ -111,7 +112,9 @@
     <string name="t_kernel_modules">โมดูลเคอร์เนลที่โหลดอยู่ (KernelSU/SuSFS)</string>
     <string name="t_kernel_syscall_fingerprint">เวอร์ชันเคอร์เนลจากลายนิ้วมือ syscall</string>
     <string name="t_key_inside_secure_hw">คีย์อยู่ในฮาร์ดแวร์นิรภัย (KeyInfo)</string>
-    <string name="t_keybox_ec_vs_rsa">ความครอบคลุมของ keybox: การรับรอง EC เทียบกับ RSA</string>
+    <string name="t_rot_ec_vs_rsa">รากความเชื่อถือของการรับรอง: คำขอ EC เทียบกับ RSA</string>
+    <string name="t_leaf_sig_alg">ใบรับรองปลายของการรับรอง: คีย์เทียบกับอัลกอริทึมลายเซ็น</string>
+    <string name="t_batch_key_ec_vs_rsa">คีย์การรับรอง: เชน EC เทียบกับเชน RSA</string>
     <string name="t_local_tmp_contents">เนื้อหาใน /data/local/tmp</string>
     <string name="t_native_lib_origin">ที่มาของไลบรารีเนทีฟ (dladdr)</string>
     <string name="t_own_debuggable">แอปนี้: debuggable / บิลด์ดีบัก</string>
@@ -480,7 +483,8 @@
     <string name="note_maps_exec">การแมปที่รันได้ซึ่งอิงไฟล์ (deleted)/memfd/ashmem ที่เป็น RWX (ละเมิด W^X) หรือขึ้นต้นด้วย ELF magic คือ .so ที่ถูกฉีดจริงและถูกตัดจากระบบไฟล์ ส่วนแทรมโพลีน JIT ของ ART ไม่ใช่ทั้งสองและนับเป็นปกติ โมดูลนอกอนุญาตของระบบก็นับด้วย</string>
     <string name="note_anon_minor">ระบบไฟล์ที่ไม่มี block device ดึง minor จากพูล anon ส่วนกลางที่หนาแน่นจากล่าง minor ที่มีอยู่ผ่าน stat() แต่ขาดใน mountinfo ของโปรเซสนี้คือซูเปอร์บล็อกที่ยังทำงานซึ่งซ่อนในเนมสเปซส่วนตัว (tmpfs ของ daemon) ช่วง minor ที่ขาดยาวๆ คือ churn ต่อแอปและถูกละเว้น ช่องสั้นๆ คือสัญญาณ</string>
     <string name="t_sb_tee_signer">ผู้เซ็น StrongBox × TEE</string>
-    <string name="note_sb_tee_signer">อุปกรณ์แท้มีรากการยืนยันแยกกันสำหรับฮาร์ดแวร์ StrongBox และ TEE ใบรับรองการเซ็นจึงต่างกัน keybox เดียว (TrickyStore) ที่ปลอมทั้งสองระดับจะเซ็นทั้งคู่ด้วยใบรับรองเดียวกัน - ผู้เซ็นร่วมคือสัญญาณ</string>
     <string name="t_local_tmp_list">รายการ /data/local/tmp</string>
     <string name="note_local_tmp_list">การลิสต์ /data/local/tmp ด้วย getdents64 (ไม่ใช่การค้นตามชื่อ) เผยตกค้างใดๆ ที่แอปเข้าถึงได้จริง รวมถึงสิ่งที่โมดูลทิ้งไว้ บนอุปกรณ์ที่ล็อก ไดเรกทอรีนี้เป็นของ shell และแอปลิสต์ไม่ได้ EACCES จึงเป็นคำตอบที่สะอาด รายการที่เห็นได้หมายถึงตกค้างที่แอปเข้าถึงได้</string>
+    <string name="t_nettype_consistency">ประเภทเครือข่าย เทียบกับอินเทอร์เฟซจริง</string>
+    <string name="t_flagsecure_honored">เคารพ FLAG_SECURE (บล็อกภาพหน้าจอ)</string>
 </resources>

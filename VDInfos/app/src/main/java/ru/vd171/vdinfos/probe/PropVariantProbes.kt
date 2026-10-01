@@ -40,12 +40,35 @@ object PropVariantProbes {
     private fun patternOf(base: String, field: String): String =
         if (base == "product") "ro.product.*.$field" else "ro.*.build.$field"
 
+    private val gsiMarkers = listOf("generic_system", "mainline_")
+
+    private fun isGsiIdentity(value: String): Boolean {
+        val s = value.trim().lowercase()
+        return s.startsWith("generic") || gsiMarkers.any { s.contains(it) }
+    }
+
+    private fun identityGroups(ctx: Context): Map<String, String> {
+        val map = HashMap<String, String>()
+        for (line in AssetData.packages(ctx, "prop_identity_groups")) {
+            val tokens = line.split(',').map { it.trim().lowercase() }.filter { it.isNotEmpty() }
+            val canon = tokens.firstOrNull() ?: continue
+            tokens.forEach { map[it] = canon }
+        }
+        return map
+    }
+
+    private fun canonIdentity(value: String, groups: Map<String, String>): String {
+        val s = value.trim().lowercase()
+        return groups[s] ?: s
+    }
+
     fun tasks(ctx: Context): List<ProbeTask> = buildList {
         val parts = AssetData.partitions(ctx)
         val lineage = HashMap<String, String>()
         parts.forEach { lineage[it.name] = it.lineage }
         lineage["(base)"] = "base"
         val slots = listOf("(base)") + parts.map { it.name }
+        val groups = identityGroups(ctx)
 
         for (fam in AssetData.propFamilies(ctx)) {
             val present = slots.mapNotNull { slot ->
@@ -61,13 +84,14 @@ object PropVariantProbes {
                     listOf(
                         jm("consistent within scope (expected)") { "ok" },
                         jm(if (fam.lineageScoped) "each lineage internally consistent" else "all partitions equal") {
+                            val real = present.filterNot { isGsiIdentity(it.second) }
                             val bad = if (fam.lineageScoped) {
-                                present.groupBy { lineage[it.first] ?: it.first }
-                                    .filterValues { g -> g.map { it.second }.distinct().size > 1 }
+                                real.groupBy { lineage[it.first] ?: it.first }
+                                    .filterValues { g -> g.map { canonIdentity(it.second, groups) }.distinct().size > 1 }
                                     .map { (lin, g) -> "$lin{${g.joinToString(",") { it.first }}}" }
                             } else {
-                                if (present.map { it.second }.distinct().size > 1)
-                                    listOf(present.joinToString(",") { it.first }) else emptyList()
+                                if (real.map { canonIdentity(it.second, groups) }.distinct().size > 1)
+                                    listOf(real.joinToString(",") { it.first }) else emptyList()
                             }
                             if (bad.isEmpty()) "ok" else "SPLIT ${bad.joinToString(" ")}"
                         },

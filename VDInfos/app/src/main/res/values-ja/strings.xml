@@ -98,6 +98,7 @@
 
     <!-- 解決方法 -->
     <string name="sol_title">解決方法</string>
+    <string name="card_details">詳細</string>
     <string name="sol_boot">これはハードウェア attestation (TEE) が報告するブート状態です。keybox バイパスツール（TrickyStore、TEE Simulator、OhMyKeyMint）は、指定したアプリに対してのみ attestation を書き換えます。このアプリのパッケージをこれらのツールのターゲットリスト（例: target.txt）に追加すると、その attestation がロック済み端末と緑の verified boot を報告するようになります。</string>
     <string name="sol_root_detector">これらのインストール済みアプリは、root、エミュレーター、または失敗した Play Integrity を探します。ここで見つかったパッケージを隠蔽フレームワーク（HMA-OSS）のターゲットとして追加すると、アプリと root モジュールがこれらの検出器から隠されます。</string>
     <string name="sol_spoof">この設定は、アプリが使用しうる各経路で異なる値として読み取られます（spoof がすべてを網羅していません）。設定を HMA-OSS の spoof プリセットに追加すると、すべての読み取り経路が同じ値を返すようになります。</string>
@@ -111,7 +112,9 @@
     <string name="t_kernel_modules">読み込まれたカーネルモジュール（KernelSU/SuSFS）</string>
     <string name="t_kernel_syscall_fingerprint">syscall 指紋によるカーネルバージョン</string>
     <string name="t_key_inside_secure_hw">セキュアハードウェア内の鍵（KeyInfo）</string>
-    <string name="t_keybox_ec_vs_rsa">keybox の対応範囲: EC と RSA のアテステーション</string>
+    <string name="t_rot_ec_vs_rsa">アテステーションの信頼の起点: EC と RSA のリクエスト</string>
+    <string name="t_leaf_sig_alg">アテステーションのリーフ証明書: 鍵と署名アルゴリズム</string>
+    <string name="t_batch_key_ec_vs_rsa">アテステーション鍵: EC チェーンと RSA チェーン</string>
     <string name="t_local_tmp_contents">/data/local/tmp の中身</string>
     <string name="t_native_lib_origin">ネイティブライブラリの出所（dladdr）</string>
     <string name="t_own_debuggable">このアプリ: debuggable / デバッグビルド</string>
@@ -480,7 +483,8 @@
     <string name="note_maps_exec">(deleted)/memfd/ashmem のファイルに基づく実行可能マッピングで、RWX（W^X 違反）または ELF マジックで始まるものは、ファイルシステムから切り離された本物の注入 .so です。ART の JIT トランポリンはどちらでもなく良性として数えます。システム許可リスト外のモジュールも数えます。</string>
     <string name="note_anon_minor">ブロックデバイスを持たないファイルシステムは、下から詰まったグローバルな anon プールから minor を取ります。stat() では存在するのにこのプロセスの mountinfo にない minor は、プライベート名前空間に隠された生きたスーパーブロック（デーモンの tmpfs）です。欠けた minor が長く続くのはアプリごとの churn で無視し、短い穴が手掛かりです。</string>
     <string name="t_sb_tee_signer">StrongBox × TEE 署名者</string>
-    <string name="note_sb_tee_signer">本物の端末は StrongBox と TEE のハードウェアに別々の attestation ルートを持つため、署名証明書は異なります。両レベルを偽装する単一のキーボックス（TrickyStore）は両方を同じ証明書で署名します。署名者の共有が手掛かりです。</string>
     <string name="t_local_tmp_list">/data/local/tmp の一覧</string>
     <string name="note_local_tmp_list">getdents64 で /data/local/tmp を一覧すると（名前検索ではなく）、モジュールが置いたものを含め、アプリが実際に到達できる残留物が現れます。ロック端末ではこのディレクトリは shell 所有でアプリからは一覧できないため、EACCES が正常な答えです。表示される項目はアプリが到達できる残留物を意味します。</string>
+    <string name="t_nettype_consistency">ネットワーク種別 vs 実インターフェース</string>
+    <string name="t_flagsecure_honored">FLAG_SECURE の尊重（スクショ防止）</string>
 </resources>

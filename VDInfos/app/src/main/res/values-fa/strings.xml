@@ -99,6 +99,7 @@
 
     <!-- راه‌حل -->
     <string name="sol_title">چگونه رفع کنیم</string>
+    <string name="card_details">جزئیات</string>
     <string name="sol_boot">این چیزی است که attestation سخت‌افزاری (TEE) درباره وضعیت بوت گزارش می‌دهد. ابزارهای دور زدن keybox (TrickyStore، TEE Simulator، OhMyKeyMint) فقط برای برنامه‌هایی که مشخص می‌کنید attestation را بازنویسی می‌کنند. بسته این برنامه را به فهرست هدف این ابزارها (مثلاً target.txt) اضافه کنید تا attestation آن دستگاه قفل‌شده با verified boot سبز را گزارش دهد.</string>
     <string name="sol_root_detector">این برنامه‌های نصب‌شده به دنبال root، شبیه‌ساز یا Play Integrity ناموفق می‌گردند. بسته‌های یافت‌شده در اینجا را به عنوان هدف به چارچوب پنهان‌سازی خود (HMA-OSS) اضافه کنید تا برنامه‌ها و ماژول‌های root شما از این آشکارسازها پنهان بمانند.</string>
     <string name="sol_spoof">این تنظیم در مسیرهایی که یک برنامه ممکن است استفاده کند متفاوت خوانده می‌شود (spoof همه را پوشش نمی‌دهد). این تنظیم را به پیش‌تنظیم‌های spoof در HMA-OSS اضافه کنید تا هر مسیر خواندن همان مقدار را برگرداند.</string>
@@ -112,7 +113,9 @@
     <string name="t_kernel_modules">ماژول‌های بارگذاری‌شده هسته (KernelSU/SuSFS)</string>
     <string name="t_kernel_syscall_fingerprint">نسخه هسته بر پایه اثرانگشت syscall</string>
     <string name="t_key_inside_secure_hw">کلید درون سخت‌افزار امن (KeyInfo)</string>
-    <string name="t_keybox_ec_vs_rsa">پوشش keybox: گواهی EC در برابر RSA</string>
+    <string name="t_rot_ec_vs_rsa">ریشه اعتماد گواهی: درخواست EC در برابر RSA</string>
+    <string name="t_leaf_sig_alg">گواهی برگ: کلید در برابر الگوریتم امضا</string>
+    <string name="t_batch_key_ec_vs_rsa">کلید گواهی: زنجیره EC در برابر زنجیره RSA</string>
     <string name="t_local_tmp_contents">محتوای /data/local/tmp</string>
     <string name="t_native_lib_origin">خاستگاه کتابخانه بومی (dladdr)</string>
     <string name="t_own_debuggable">این برنامه: debuggable / ساخت اشکال‌زدایی</string>
@@ -481,7 +484,8 @@
     <string name="note_maps_exec">نگاشت اجرایی متکی بر فایل (deleted)/memfd/ashmem که یا RWX است (نقض W^X) یا با امضای ELF آغاز می‌شود، یک .so تزریق‌شده واقعی جدا از سیستم فایل است؛ ترامپولین JIT در ART هیچ‌کدام نیست و بی‌خطر شمرده می‌شود. ماژول خارج از فهرست مجاز سیستم هم شمرده می‌شود.</string>
     <string name="note_anon_minor">سیستم‌های فایل بدون دستگاه بلوکی minor خود را از یک استخر anon سراسری، متراکم از پایین، می‌گیرند. minorی که با stat() هست اما در mountinfo این فرایند نیست، یک سوپربلاک زنده پنهان در فضای‌نام خصوصی است (tmpfs یک دیمن). یک دنباله بلند از minorهای گم‌شده churn هر برنامه است و نادیده گرفته می‌شود؛ حفره کوتاه همان نشانه است.</string>
     <string name="t_sb_tee_signer">امضاکننده StrongBox × TEE</string>
-    <string name="note_sb_tee_signer">یک دستگاه اصل ریشه‌های attestation جدا برای سخت‌افزار StrongBox و TEE دارد، پس گواهی‌های امضایشان فرق دارد. یک keybox واحد (TrickyStore) که هر دو سطح را جعل می‌کند، هر دو را با یک گواهی امضا می‌کند - امضاکننده مشترک همان نشانه است.</string>
     <string name="t_local_tmp_list">فهرست /data/local/tmp</string>
     <string name="note_local_tmp_list">فهرست‌کردن /data/local/tmp با getdents64 (نه جست‌وجوی نام) هر باقی‌مانده‌ای را که یک برنامه واقعاً به آن می‌رسد آشکار می‌کند، از جمله آنچه ماژول می‌ریزد. در دستگاه قفل، این پوشه مال shell است و برنامه نمی‌تواند آن را فهرست کند، پس EACCES پاسخ تمیز است؛ یک ورودی دیده‌شده یعنی باقی‌مانده در دسترس برنامه.</string>
+    <string name="t_nettype_consistency">نوع شبکه در برابر رابط واقعی</string>
+    <string name="t_flagsecure_honored">رعایت FLAG_SECURE (مسدودسازی اسکرین‌شات)</string>
 </resources>

@@ -98,6 +98,7 @@
 
     <!-- Solusi -->
     <string name="sol_title">Cara mengatasi</string>
+    <string name="card_details">Detail</string>
     <string name="sol_boot">Ini yang dilaporkan attestation perangkat keras (TEE) tentang status boot. Bypass keybox (TrickyStore, TEE Simulator, OhMyKeyMint) hanya menulis ulang attestation untuk aplikasi yang Anda tentukan. Tambahkan paket aplikasi ini ke daftar target alat tersebut (mis. target.txt) agar attestation-nya melaporkan perangkat terkunci dengan verified boot hijau.</string>
     <string name="sol_root_detector">Aplikasi terpasang ini mencari root, emulator, atau Play Integrity yang gagal. Tambahkan paket yang ditemukan di sini ke framework penyembunyian Anda (HMA-OSS) sebagai target, agar aplikasi dan modul root disembunyikan dari detektor ini.</string>
     <string name="sol_spoof">Setelan ini terbaca berbeda antar jalur yang bisa dipakai aplikasi (spoof tidak menutup semuanya). Tambahkan setelan ke preset spoof HMA-OSS agar setiap jalur baca mengembalikan nilai yang sama.</string>
@@ -111,7 +112,9 @@
     <string name="t_kernel_modules">Modul kernel yang dimuat (KernelSU/SuSFS)</string>
     <string name="t_kernel_syscall_fingerprint">Versi kernel dari sidik syscall</string>
     <string name="t_key_inside_secure_hw">Kunci di dalam perangkat keras aman (KeyInfo)</string>
-    <string name="t_keybox_ec_vs_rsa">Cakupan keybox: atestasi EC vs RSA</string>
+    <string name="t_rot_ec_vs_rsa">Akar kepercayaan atestasi: permintaan EC vs RSA</string>
+    <string name="t_leaf_sig_alg">Sertifikat daun atestasi: kunci vs algoritme tanda tangan</string>
+    <string name="t_batch_key_ec_vs_rsa">Kunci atestasi: rantai EC vs rantai RSA</string>
     <string name="t_local_tmp_contents">Isi /data/local/tmp</string>
     <string name="t_native_lib_origin">Asal pustaka native (dladdr)</string>
     <string name="t_own_debuggable">Aplikasi ini: debuggable / build debug</string>
@@ -480,7 +483,8 @@
     <string name="note_maps_exec">Sebuah pemetaan yang dapat dieksekusi dari file (deleted)/memfd/ashmem yang RWX (melanggar W^X) atau diawali magic ELF adalah .so yang benar-benar disuntikkan, terlepas dari sistem berkas; trampolin JIT ART bukan keduanya dan dihitung jinak. Modul di luar allowlist sistem juga dihitung.</string>
     <string name="note_anon_minor">Sistem berkas tanpa block device mengambil minor-nya dari pool anon global, padat dari bawah. Sebuah minor yang ada via stat() tetapi tak ada di mountinfo proses ini adalah superblock hidup yang tersembunyi di namespace privat (tmpfs sebuah daemon). Deretan panjang minor yang hilang adalah churn per aplikasi dan diabaikan; lubang pendek adalah petunjuknya.</string>
     <string name="t_sb_tee_signer">Penanda tangan StrongBox × TEE</string>
-    <string name="note_sb_tee_signer">Perangkat asli memiliki root attestation terpisah untuk perangkat keras StrongBox dan TEE, jadi sertifikat penandatanganannya berbeda. Satu keybox (TrickyStore) yang memalsukan kedua tingkat menandatangani keduanya dengan sertifikat yang sama - penanda tangan bersama adalah petunjuknya.</string>
     <string name="t_local_tmp_list">Daftar /data/local/tmp</string>
     <string name="note_local_tmp_list">Mendaftar /data/local/tmp dengan getdents64 (bukan pencarian nama) memunculkan sisa apa pun yang benar-benar bisa dijangkau aplikasi, termasuk yang dijatuhkan modul. Di perangkat terkunci direktori milik shell dan tak bisa didaftar aplikasi, jadi EACCES adalah jawaban bersih; entri yang terlihat berarti sisa yang bisa dijangkau aplikasi.</string>
+    <string name="t_nettype_consistency">Tipe jaringan vs antarmuka asli</string>
+    <string name="t_flagsecure_honored">FLAG_SECURE dihormati (blokir tangkapan layar)</string>
 </resources>

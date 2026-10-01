@@ -98,6 +98,7 @@
 
     <!-- Giải pháp -->
     <string name="sol_title">Cách khắc phục</string>
+    <string name="card_details">Chi tiết</string>
     <string name="sol_boot">Đây là những gì attestation phần cứng (TEE) báo cáo về trạng thái boot. Các công cụ vượt qua keybox (TrickyStore, TEE Simulator, OhMyKeyMint) chỉ viết lại attestation cho các ứng dụng bạn chỉ định. Thêm gói của ứng dụng này vào danh sách mục tiêu của các công cụ đó (ví dụ target.txt) để attestation của nó báo cáo thiết bị đã khóa với verified boot màu xanh.</string>
     <string name="sol_root_detector">Các ứng dụng đã cài đặt này tìm kiếm root, giả lập hoặc Play Integrity thất bại. Thêm các gói tìm thấy ở đây làm mục tiêu vào framework ẩn của bạn (HMA-OSS) để ứng dụng và mô-đun root của bạn được ẩn khỏi các trình phát hiện này.</string>
     <string name="sol_spoof">Cài đặt này được đọc khác nhau qua các đường dẫn mà một ứng dụng có thể dùng (spoof không bao phủ tất cả). Thêm cài đặt vào preset spoof của HMA-OSS để mọi đường dẫn đọc trả về cùng một giá trị.</string>
@@ -111,7 +112,9 @@
     <string name="t_kernel_modules">Mô-đun nhân đã nạp (KernelSU/SuSFS)</string>
     <string name="t_kernel_syscall_fingerprint">Phiên bản nhân theo dấu vân syscall</string>
     <string name="t_key_inside_secure_hw">Khóa nằm trong phần cứng bảo mật (KeyInfo)</string>
-    <string name="t_keybox_ec_vs_rsa">Phạm vi keybox: chứng thực EC so với RSA</string>
+    <string name="t_rot_ec_vs_rsa">Gốc tin cậy của chứng thực: yêu cầu EC so với RSA</string>
+    <string name="t_leaf_sig_alg">Chứng chỉ lá của chứng thực: khóa so với thuật toán chữ ký</string>
+    <string name="t_batch_key_ec_vs_rsa">Khóa chứng thực: chuỗi EC so với chuỗi RSA</string>
     <string name="t_local_tmp_contents">Nội dung /data/local/tmp</string>
     <string name="t_native_lib_origin">Nguồn gốc thư viện native (dladdr)</string>
     <string name="t_own_debuggable">Ứng dụng này: debuggable / bản dựng debug</string>
@@ -480,7 +483,8 @@
     <string name="note_maps_exec">Một vùng thực thi từ tệp (deleted)/memfd/ashmem mà hoặc RWX (vi phạm W^X) hoặc bắt đầu bằng magic ELF là một .so bị tiêm thật, đã tách khỏi hệ thống tệp; trampoline JIT của ART không phải cả hai và được tính là lành tính. Một mô-đun ngoài allowlist hệ thống cũng được tính.</string>
     <string name="note_anon_minor">Các hệ thống tệp không có thiết bị khối lấy minor từ một pool anon toàn cục, dày từ dưới lên. Một minor có mặt qua stat() nhưng vắng trong mountinfo của tiến trình này là một superblock đang sống ẩn trong một namespace riêng (tmpfs của một daemon). Một dải dài các minor thiếu là churn theo ứng dụng và bị bỏ qua; một lỗ ngắn là dấu hiệu.</string>
     <string name="t_sb_tee_signer">Bên ký StrongBox × TEE</string>
-    <string name="note_sb_tee_signer">Một thiết bị chính hãng có gốc attestation riêng cho phần cứng StrongBox và TEE, nên chứng chỉ ký của chúng khác nhau. Một keybox duy nhất (TrickyStore) giả cả hai cấp sẽ ký cả hai bằng cùng một chứng chỉ - bên ký chung là dấu hiệu.</string>
     <string name="t_local_tmp_list">Liệt kê /data/local/tmp</string>
     <string name="note_local_tmp_list">Liệt kê /data/local/tmp bằng getdents64 (không tra theo tên) làm lộ mọi tàn dư mà một ứng dụng thực sự chạm tới, gồm cả thứ mô-đun thả ra. Trên thiết bị khóa, thư mục thuộc shell và ứng dụng không liệt kê được, nên EACCES là câu trả lời sạch; một mục hiện ra nghĩa là tàn dư ứng dụng chạm tới được.</string>
+    <string name="t_nettype_consistency">Loại mạng so với giao diện thực</string>
+    <string name="t_flagsecure_honored">FLAG_SECURE được tôn trọng (chặn ảnh chụp)</string>
 </resources>

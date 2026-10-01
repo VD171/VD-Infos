@@ -99,6 +99,7 @@
 
     <!-- समाधान -->
     <string name="sol_title">कैसे ठीक करें</string>
+    <string name="card_details">विवरण</string>
     <string name="sol_boot">यह वही है जो हार्डवेयर attestation (TEE) बूट स्थिति के बारे में रिपोर्ट करता है। keybox बायपास उपकरण (TrickyStore, TEE Simulator, OhMyKeyMint) केवल उन ऐप्स के लिए attestation को फिर से लिखते हैं जिन्हें आप निर्दिष्ट करते हैं। इस ऐप का पैकेज उन उपकरणों की लक्ष्य सूची (जैसे target.txt) में जोड़ें ताकि इसका attestation एक लॉक डिवाइस और हरे verified boot की रिपोर्ट दे।</string>
     <string name="sol_root_detector">ये इंस्टॉल किए गए ऐप्स root, एमुलेटर या विफल Play Integrity की तलाश करते हैं। यहाँ पाए गए पैकेजों को अपने छिपाव फ्रेमवर्क (HMA-OSS) में लक्ष्य के रूप में जोड़ें ताकि आपके ऐप्स और root मॉड्यूल इन डिटेक्टरों से छिपे रहें।</string>
     <string name="sol_spoof">यह सेटिंग उन रास्तों में अलग-अलग पढ़ी जाती है जिन्हें कोई ऐप उपयोग कर सकता है (spoof सभी को कवर नहीं करता)। सेटिंग को HMA-OSS के spoof प्रीसेट में जोड़ें ताकि हर पढ़ने का रास्ता समान मान लौटाए।</string>
@@ -112,7 +113,9 @@
     <string name="t_kernel_modules">लोड किए गए कर्नेल मॉड्यूल (KernelSU/SuSFS)</string>
     <string name="t_kernel_syscall_fingerprint">syscall फ़िंगरप्रिंट से कर्नेल संस्करण</string>
     <string name="t_key_inside_secure_hw">सुरक्षित हार्डवेयर में कुंजी (KeyInfo)</string>
-    <string name="t_keybox_ec_vs_rsa">keybox कवरेज: EC बनाम RSA अटेस्टेशन</string>
+    <string name="t_rot_ec_vs_rsa">अटेस्टेशन रूट ऑफ ट्रस्ट: EC बनाम RSA अनुरोध</string>
+    <string name="t_leaf_sig_alg">अटेस्टेशन लीफ: कुंजी बनाम हस्ताक्षर एल्गोरिदम</string>
+    <string name="t_batch_key_ec_vs_rsa">अटेस्टेशन कुंजी: EC श्रृंखला बनाम RSA श्रृंखला</string>
     <string name="t_local_tmp_contents">/data/local/tmp की सामग्री</string>
     <string name="t_native_lib_origin">नेटिव लाइब्रेरी का स्रोत (dladdr)</string>
     <string name="t_own_debuggable">यह ऐप: debuggable / डिबग बिल्ड</string>
@@ -481,7 +484,8 @@
     <string name="note_maps_exec">किसी (deleted)/memfd/ashmem फ़ाइल पर आधारित निष्पादन-योग्य मैपिंग जो या तो RWX हो (W^X उल्लंघन) या ELF मैजिक से शुरू हो, वह वास्तविक इंजेक्ट किया .so है, फ़ाइल-सिस्टम से अलग; ART का JIT ट्रैम्पोलिन इनमें से कोई नहीं और सौम्य गिना जाता है. सिस्टम allowlist के बाहर का मॉड्यूल भी गिना जाता है.</string>
     <string name="note_anon_minor">बिना ब्लॉक डिवाइस वाले फ़ाइल-सिस्टम अपना minor एक वैश्विक anon पूल से लेते हैं, नीचे से घना. stat() से मौजूद पर इस प्रोसेस के mountinfo में अनुपस्थित minor एक जीवित सुपरब्लॉक है जो निजी namespace में छिपा है (किसी daemon का tmpfs). गायब minor की लंबी शृंखला प्रति-ऐप churn है और अनदेखी की जाती है; छोटा छेद ही संकेत है.</string>
     <string name="t_sb_tee_signer">StrongBox × TEE साइनर</string>
-    <string name="note_sb_tee_signer">असली डिवाइस में StrongBox और TEE हार्डवेयर के लिए अलग attestation रूट होते हैं, इसलिए उनके साइनिंग प्रमाणपत्र भिन्न होते हैं. दोनों स्तरों की नकल करता एकल keybox (TrickyStore) दोनों को एक ही प्रमाणपत्र से हस्ताक्षरित करता है - साझा साइनर ही संकेत है.</string>
     <string name="t_local_tmp_list">/data/local/tmp सूची</string>
     <string name="note_local_tmp_list">getdents64 से /data/local/tmp की सूची (नाम खोज नहीं) किसी भी अवशेष को उजागर करती है जिस तक ऐप वास्तव में पहुँच सकता है, मॉड्यूल द्वारा छोड़े गए सहित. लॉक डिवाइस पर यह डायरेक्टरी shell की होती है और ऐप द्वारा सूचीबद्ध नहीं की जा सकती, इसलिए EACCES साफ़ उत्तर है; दिखती प्रविष्टि का अर्थ है ऐप-पहुँच योग्य अवशेष.</string>
+    <string name="t_nettype_consistency">नेटवर्क प्रकार बनाम वास्तविक इंटरफ़ेस</string>
+    <string name="t_flagsecure_honored">FLAG_SECURE का पालन (स्क्रीनशॉट ब्लॉक)</string>
 </resources>

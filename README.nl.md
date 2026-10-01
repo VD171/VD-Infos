@@ -70,7 +70,7 @@ ui/             Jetpack Compose, Material 3, dynamische kleur, live voortgang
 cpp/            native_probes.cpp - de native lens, zonder afhankelijkheden
 ```
 
-* **Parallellisme**: 991 probes waaieren uit over de standaard-dispatcher met een begrensd aantal permits; resultaten stromen de UI in zodra ze binnenkomen.
+* **Parallellisme**: 996 probes waaieren uit over de standaard-dispatcher met een begrensd aantal permits; resultaten stromen de UI in zodra ze binnenkomen.
 * **Niets op de achtergrond**: geen services en geen geplande scans; de app draait alleen zolang hij open is en sluit zichzelf wanneer hij inactief blijft.
 * **Native laag**: één kleine `.so`, op naam gebonden via `RegisterNatives`, bewust piepklein gehouden omdat dit het deel is dat moeilijk te misleiden moet zijn.
 

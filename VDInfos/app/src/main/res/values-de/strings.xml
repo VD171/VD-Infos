@@ -103,7 +103,9 @@
     <string name="t_kernel_modules">Geladene Kernelmodule (KernelSU/SuSFS)</string>
     <string name="t_kernel_syscall_fingerprint">Kernelversion per Syscall-Fingerabdruck</string>
     <string name="t_key_inside_secure_hw">Schlüssel in sicherer Hardware (KeyInfo)</string>
-    <string name="t_keybox_ec_vs_rsa">Keybox-Abdeckung: EC- vs. RSA-Attestierung</string>
+    <string name="t_rot_ec_vs_rsa">Attestierungs-Vertrauensanker: EC- vs. RSA-Anfrage</string>
+    <string name="t_leaf_sig_alg">Attestierungs-Blattzertifikat: Schlüssel vs. Signaturalgorithmus</string>
+    <string name="t_batch_key_ec_vs_rsa">Attestierungsschlüssel: EC-Kette vs. RSA-Kette</string>
     <string name="t_local_tmp_contents">Inhalt von /data/local/tmp</string>
     <string name="t_native_lib_origin">Herkunft der nativen Bibliothek (dladdr)</string>
     <string name="t_own_debuggable">Diese App: debuggable / Debug-Build</string>
@@ -397,6 +399,7 @@
 
     <!-- Solutions -->
     <string name="sol_title">So beheben</string>
+    <string name="card_details">Details</string>
     <string name="sol_boot">Das meldet die Hardware-Attestation (TEE) über den Boot-Zustand. Ein Keybox-Bypass (TrickyStore, TEE Simulator, OhMyKeyMint) schreibt die Attestation nur für die Apps um, die du ihm nennst. Füge das Paket dieser App zur Ziel-Liste (z. B. target.txt) dieses Tools hinzu, damit seine Attestation ein gesperrtes Gerät mit grünem Verified-Boot meldet.</string>
     <string name="sol_root_detector">Diese installierten Apps suchen nach Root, Emulatoren oder einer fehlgeschlagenen Play Integrity. Füge die hier gefundenen Pakete deinem Versteck-Framework (HMA-OSS) als Ziele hinzu, damit die Root-Apps und -Module vor diesen Detektoren verborgen werden.</string>
     <string name="sol_spoof">Dieser Wert wird je nach Weg, über den eine App ihn liest, unterschiedlich gelesen (der Spoof deckt nicht alle ab). Füge die Einstellung den HMA-OSS-Spoof-Presets hinzu, damit jeder Leseweg denselben Wert zurückgibt.</string>
@@ -480,7 +483,8 @@
     <string name="note_maps_exec">Ein ausführbares Mapping einer (deleted)/memfd/ashmem-Datei, das entweder RWX ist (W^X-Verletzung) oder mit dem ELF-Magic beginnt, ist eine echte injizierte .so, vom Dateisystem gelöst; das ART-JIT-Trampolin ist keines von beidem und zählt als gutartig. Ein Modul außerhalb der System-Allowlist zählt ebenfalls.</string>
     <string name="note_anon_minor">Dateisysteme ohne Block-Device beziehen ihren Minor aus einem globalen Anon-Pool, dicht von unten. Ein Minor, der per stat() vorhanden, aber im mountinfo dieses Prozesses abwesend ist, ist ein lebendes Superblock, in einem privaten Namespace versteckt (das tmpfs eines Daemons). Eine lange Folge fehlender Minors ist App-Churn und wird ignoriert; eine kurze Lücke ist der Hinweis.</string>
     <string name="t_sb_tee_signer">StrongBox- vs. TEE-Signierer</string>
-    <string name="note_sb_tee_signer">Ein echtes Gerät hat getrennte Attestierungs-Roots für StrongBox- und TEE-Hardware, ihre Signaturzertifikate unterscheiden sich also. Eine einzige Keybox (TrickyStore), die beide Stufen fälscht, signiert beide mit demselben Zertifikat - ein gemeinsamer Signierer ist der Hinweis.</string>
     <string name="t_local_tmp_list">Auflistung von /data/local/tmp</string>
     <string name="note_local_tmp_list">Das Auflisten von /data/local/tmp mit getdents64 (keine Namenssuche) bringt jeden Rückstand zum Vorschein, den eine App tatsächlich erreichen kann, inklusive dessen, was das Modul ablegt. Auf einem gesperrten Gerät gehört das Verzeichnis der Shell und ist für eine App nicht auflistbar, also ist EACCES die saubere Antwort; ein sichtbarer Eintrag bedeutet App-erreichbaren Rückstand.</string>
+    <string name="t_nettype_consistency">Netzwerktyp vs. echte Schnittstelle</string>
+    <string name="t_flagsecure_honored">FLAG_SECURE beachtet (Screenshot-Sperre)</string>
 </resources>

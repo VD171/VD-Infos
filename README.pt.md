@@ -108,7 +108,7 @@ ui/             Jetpack Compose, Material 3, cor dinâmica, progresso ao vivo
 cpp/            native_probes.cpp - a lente nativa, sem dependências
 ```
 
-* **Paralelismo**: 991 sondas em fan-out no dispatcher default com concorrência
+* **Paralelismo**: 996 sondas em fan-out no dispatcher default com concorrência
   limitada; os resultados entram no UI conforme chegam.
 * **Nada em background**: sem serviços nem varreduras agendadas; o app roda só
   enquanto está aberto e se fecha sozinho quando fica ocioso.

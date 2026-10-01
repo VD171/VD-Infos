@@ -103,6 +103,7 @@
 
     <!-- الحل -->
     <string name="sol_title">كيفية الإصلاح</string>
+    <string name="card_details">التفاصيل</string>
     <string name="sol_boot">هذا ما تُبلّغ عنه attestation العتادية (TEE) بشأن حالة الإقلاع. أدوات تجاوز keybox (TrickyStore وTEE Simulator وOhMyKeyMint) تعيد كتابة attestation فقط للتطبيقات التي تحدّدها. أضف حزمة هذا التطبيق إلى قائمة أهداف تلك الأدوات (مثل target.txt) حتى تُبلّغ attestation الخاصة به عن جهاز مقفل مع verified boot أخضر.</string>
     <string name="sol_root_detector">هذه التطبيقات المثبّتة تبحث عن root أو محاكٍ أو Play Integrity فاشل. أضف الحزم المكتشفة هنا كأهداف إلى إطار الإخفاء لديك (HMA-OSS) حتى تُخفى تطبيقاتك ووحدات root عن هذه الكواشف.</string>
     <string name="sol_spoof">تُقرأ هذه الإعدادات بشكل مختلف عبر المسارات التي قد يستخدمها التطبيق (spoof لا يغطيها كلها). أضف الإعداد إلى إعدادات spoof المسبقة في HMA-OSS حتى يُرجع كل مسار قراءة القيمة نفسها.</string>
@@ -116,7 +117,9 @@
     <string name="t_kernel_modules">وحدات النواة المُحمّلة (KernelSU/SuSFS)</string>
     <string name="t_kernel_syscall_fingerprint">إصدار النواة عبر بصمة استدعاءات النظام</string>
     <string name="t_key_inside_secure_hw">المفتاح داخل عتاد آمن (KeyInfo)</string>
-    <string name="t_keybox_ec_vs_rsa">تغطية keybox: تصديق EC مقابل RSA</string>
+    <string name="t_rot_ec_vs_rsa">جذر الثقة في التصديق: طلب EC مقابل RSA</string>
+    <string name="t_leaf_sig_alg">ورقة التصديق: المفتاح مقابل خوارزمية التوقيع</string>
+    <string name="t_batch_key_ec_vs_rsa">مفتاح التصديق: سلسلة EC مقابل سلسلة RSA</string>
     <string name="t_local_tmp_contents">محتويات /data/local/tmp</string>
     <string name="t_native_lib_origin">مصدر المكتبة الأصلية (dladdr)</string>
     <string name="t_own_debuggable">هذا التطبيق: debuggable / بناء تصحيح</string>
@@ -485,7 +488,8 @@
     <string name="note_maps_exec">التعيين القابل للتنفيذ المدعوم بملف (deleted)/memfd/ashmem الذي يكون RWX (ينتهك W^X) أو يبدأ بسحر ELF هو ملف .so محقون حقيقي منفصل عن نظام الملفات؛ ترامبولين JIT الخاص بـ ART ليس أيًّا منهما ويُحتسب حميدًا. الوحدة خارج قائمة النظام المسموح بها تُحتسب أيضًا.</string>
     <string name="note_anon_minor">أنظمة الملفات بلا جهاز كتلي تأخذ الـ minor من تجمّع anon عالمي، كثيف من الأسفل. minor موجود عبر stat() لكنه غائب من mountinfo لهذه العملية هو كتلة فائقة حية مخبّأة في مساحة أسماء خاصة (tmpfs لخفي). سلسلة طويلة من minor مفقودة هي churn لكل تطبيق وتُتجاهل؛ الثقب القصير هو الدليل.</string>
     <string name="t_sb_tee_signer">موقّع StrongBox × TEE</string>
-    <string name="note_sb_tee_signer">للجهاز الأصلي جذور attestation منفصلة لعتاد StrongBox وTEE، لذا تختلف شهادات التوقيع. keybox واحد (TrickyStore) يزيّف المستويين يوقّع كليهما بالشهادة نفسها - الموقّع المشترك هو الدليل.</string>
     <string name="t_local_tmp_list">سرد /data/local/tmp</string>
     <string name="note_local_tmp_list">سرد /data/local/tmp عبر getdents64 (لا بحث بالاسم) يُظهر أي بقايا يمكن للتطبيق الوصول إليها فعلاً، بما فيها ما يسقطه الوحدة. على جهاز مقفل يملك الدليل الـ shell ولا يمكن للتطبيق سرده، فيكون EACCES هو الجواب النظيف؛ ووجود إدخال ظاهر يعني بقايا يصل إليها التطبيق.</string>
+    <string name="t_nettype_consistency">نوع الشبكة مقابل الواجهة الحقيقية</string>
+    <string name="t_flagsecure_honored">احترام FLAG_SECURE (حظر لقطة الشاشة)</string>
 </resources>
