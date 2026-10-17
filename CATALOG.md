@@ -24,6 +24,8 @@ Back to the README: [English](README.md) | [Português](README.pt.md).
 |---|---|---|
 | **Blank's Integrity Guide** | A guide to how to hide root and pass Strong Integrity. | https://t.me/BlankAssistance/7/2437<br>https://t.me/BlankAssistance<br>https://t.me/BlankAssistance_Integrity<br>https://t.me/BlankAssistance_Guides<br>https://t.me/BlankAssistanceGuides_Backup |
 | **Android Root Detected by @VD_Priv8** | Solutions for Android Rooted Devices and things about actual apps detecting root. Also a big collection of Telegram Channels & Groups and GitHub & other Repos Links. | https://t.me/RootDetected |
+| **VD Infos** | An app by @VD_Priv8 to inspect your device integrity and attestation signals - Play Integrity, Play Protect certification, keystore attestation, Wallet and RCS readiness and more - to test how well your root hiding holds up. | https://github.com/VD171/VD-Infos |
+| **VD Google** | An app by @VD_Priv8 that reads Google Play Services internals via root - RCS, Google Wallet and device attestations - to see what Google reads from your device. | https://github.com/VD171/VD-Google |
 | **HUBERTHUB** | Everything root related + sometimes Xiaomi. | https://t.me/HubertHub |
 | **Zer0 Zone** | Root & Xposed, Tech Updates & Facts, Tools. | https://t.me/z3ro_zone |
 | **DroidHub.pro** | Some stuff about android. | https://t.me/droidhub_pro |
@@ -47,7 +49,7 @@ Back to the README: [English](README.md) | [Português](README.pt.md).
 | **XPL-EX (XPrivacyLua Extended)** | A fork of XPrivacyLua. | https://xdaforums.com/t/xpl-ex-xprivacylua-ex-android-privacy-manager-hooking-manager-extended.4652573/<br>https://github.com/0bbedCode/XPL-EX<br>https://t.me/XPL_EX<br>https://t.me/XPL_EX_CHAT |
 | **XPL-EX Pro (XPrivacyLua Extended Pro)** | A fork of XPrivacyLuaPro. | https://github.com/0bbedCode/XPL-EX/releases |
 | **WeiJu2** | The first scriptable xposed module, provides a new way to change the application behavior. Powered by Lua and made with ♥ | https://xdaforums.com/t/app-xposed-7-0-weiju2-scriptable-xposed-module.4482585/<br>https://github.com/ikws4/WeiJu2<br>https://github.com/ikws4/WeiJu2-Scripts |
-| **ReZygisk** | A fork of Zygisk Next, which is a standalone implementation of Zygisk, providing Zygisk API support for KernelSU, Magisk (besides built-in) and APatch (work in progress). | https://github.com/PerformanC/ReZygisk<br>https://github.com/nampud/ReZygisk<br>https://t.me/rezygisk<br>https://t.me/rezygiskchat<br>https://t.me/rezygisk_ci<br>https://t.me/performancorg |
+| **ReZygisk** | A fork of Zygisk Next, which is a standalone implementation of Zygisk, providing Zygisk API support for KernelSU, Magisk (besides built-in) and APatch (work in progress). | https://github.com/PerformanC/ReZygisk<br>https://github.com/nampud/ReZygisk<br>https://t.me/rezygisk<br>https://t.me/rezygiskchat<br>https://t.me/rezygisk_ci<br>https://t.me/performancorg<br>https://t.me/performancorg_channel |
 | **Tricky Store** | A trick of keystore. | https://github.com/5ec1cff/TrickyStore<br>https://xdaforums.com/t/tricky-store-the-next-generation-pif.4683446/<br>https://t.me/real5ec1cff<br>https://t.me/nullptr_dev |
 | **PlayIntegrityFork** | A fork of PlayIntegrityFix, to be more futureproof and develop more methodically. | https://github.com/osm0sis/PlayIntegrityFork |
 | **AutoPIF Next - PlayIntegrity Fix Next Fork** | Automatically download working pif.json online from the repository and bypass Google Play Integrity Check. | https://xdaforums.com/t/module-autopif-next-play-integrity-fix-fork-safetynet-fix.4652252/<br>https://github.com/x1337cn/AutoPIF-Next |
@@ -72,6 +74,7 @@ Back to the README: [English](README.md) | [Português](README.pt.md).
 | **E-Government Liberator (formerly Digitales Amt Liberator)** | E-Government Liberator removes any calls in supported Austrian e-government apps to root and bootloader checks and therefore provides a tailored solution to running the app on rooted devices. | https://github.com/Crazyphil/digitales-amt-liberator |
 | **App Errors Tracking** | Added more features to app's errors dialog, fixed custom rom deleted dialog, the best experience to Android developer. | https://github.com/KitsunePie/AppErrorsTracking<br>https://t.me/AppErrorsTracking_CI |
 | **Wa Enhancer** | An Xposed Module to customize and enable privacy on WhatsApp. | https://t.me/waenhancer<br>https://t.me/waenhancher<br>https://github.com/Dev4Mod/WaEnhancer |
+| **Wa Revamp** | An Xposed Module to customize and enable privacy on WhatsApp. | https://github.com/ItsMadruga/WaRevamp<br>https://github.com/Xposed-Modules-Repo/its.madruga.warevamp<br>https://github.com/Xposed-Modules-Repo/its.madruga.wpp<br>https://t.me/warevampmodule<br>https://t.me/WaRevampGroup<br>https://t.me/warevampdownloads |
 | **Insta Eclipse** | An Instagram enhancer module with features like Developer Options, Ghost Mode, Ad-Free browsing, and Distraction-Free Mode. | https://t.me/InstaEclipse<br>https://t.me/instaEclipse_discussion<br>https://t.me/+UCGw09fMMQExNGZk<br>https://github.com/Xposed-Modules-Repo/ps.reso.instaeclipse<br>https://github.com/ReSo7200/InstaEclipse |
 | **MagiskAdBlockingModule** | Magisk Module to block ads on Android. | https://github.com/pantsufan/Magisk-Ad-Blocking-Module |
 | **AdClose** | An Xposed module to prevent in-app advertising SDK initialization. Block the app's online ad requests. Allow screenshots and screen recordings to be taken freely in the app. Remove in-app VPN and system proxy detection. Used to disable sensor-based advertising jumps such as Shake. Removes general Root, Magisk and Xposed framework detection within the app. | https://github.com/Xposed-Modules-Repo/com.close.hook.ads<br>https://github.com/zjyzip/AdClose<br>https://t.me/AdClose<br>https://t.me/AdClose_Chat |
@@ -118,19 +121,22 @@ Back to the README: [English](README.md) | [Português](README.pt.md).
 | **KPatch-Next** | Standalone KPM (Kernel Patch Module) support for Magisk and KernelSU. | https://github.com/KernelSU-Next/KPatch-Next<br>https://github.com/KernelSU-Next/KPatch-Next-Module<br>https://t.me/ksunext |
 | **Root My Pixel / Root My Galaxy / GhostLock** | Rooting supported Pixel, Galaxy and OnePlus firmwares through CVE-2026-43499, with the bootloader still locked. | https://github.com/alex193a/Root-My-Pixel<br>https://github.com/BuSung-dev/Root-My-Galaxy<br>https://github.com/JoinChang/ghostlock-oneplus |
 | **SUSFS4KSU** | The SUSFS kernel patches plus the add-on module that hides mounts, paths and kstat from detectors. | https://gitlab.com/simonpunk/susfs4ksu<br>https://github.com/sidex15/susfs4ksu-module<br>https://github.com/sidex15/susfs4ksu-binaries |
+| **SUSFS4KSU LKM** | SUSFS as a loadable kernel module (.ko) - the SUSFS hiding loaded at runtime, without recompiling the kernel. | https://github.com/inforcqb/susfs4ksu-lkm<br>https://github.com/matsuzaka-yuki/susfs-lkm-module<br>https://github.com/ymuuuu/susfs4ksu-lkm-x64 |
 | **mountify** | Globally mounted modules via OverlayFS. | https://github.com/backslashxx/mountify |
 | **KernelSU MetaModules** | Swappable mount backends for KernelSU: Magic Mount, OverlayFS and hybrid mount. | https://github.com/KernelSU-Modules-Repo/meta-mm<br>https://github.com/KernelSU-Modules-Repo/meta-overlayfs<br>https://github.com/Hybrid-Mount/meta-hybrid_mount<br>https://t.me/hybridmountchat |
 | **NoMount** | A VFS path-redirection framework for Android kernels - module files are redirected instead of mounted. | https://github.com/maxsteeel/nomount<br>https://github.com/maxsteeel/Mirage |
+| **TargetedHide** | A module to hide root, mounts and related traces from a targeted list of apps. | https://github.com/VisionR1/TargetedHide |
+| **Lineage Hide** | A module to hide custom-ROM (LineageOS and others) traces from apps. | https://github.com/null07089/Lineage_Hide |
 | **BRENE** | A SuSFS/KernelSU module for SuSFS-patched kernels. | https://github.com/rrr333nnn333/BRENE<br>https://t.me/rrr333nnn333channel |
 | **NoHello** | A Zygisk module to hide root. | https://github.com/MhmRdd/NoHello<br>https://t.me/mhm72dd<br>https://t.me/welikeandroid |
-| **Zygisk Next** | Standalone implementation of Zygisk, providing the Zygisk API to Magisk, KernelSU and APatch. | https://github.com/Dr-TSNG/ZygiskNext<br>https://t.me/real5ec1cff |
+| **Zygisk Next** | Standalone implementation of Zygisk, providing the Zygisk API to Magisk, KernelSU and APatch. | https://github.com/Dr-TSNG/ZygiskNext<br>https://t.me/real5ec1cff<br>https://github.com/LSPosed/ZygiskNext |
 | **NeoZygisk** | Zygote injection with ptrace - a maintained standalone Zygisk implementation. | https://github.com/JingMatrix/NeoZygisk |
 | **OnyxZygisk** | Zygote injection via ptrace: the Zygisk API for APatch/KernelSU/Magisk, with FN (Functional Node) modules and a WebUI. | https://github.com/OnyxZygisk/OnyxZygisk |
 | **Treat Wheel** | A Zygisk module that cleans up the traces Zygisk itself leaves behind. | https://github.com/PerformanC/Treat-Wheel-Zygisk<br>https://t.me/zygote64_32<br>https://t.me/zygote32<br>https://t.me/performancorg |
 | **Zygisk-Loader** | A dynamic Zygisk module for hot-swapping native libraries into Android applications without rebooting. | https://github.com/HanSoBored/Zygisk-Loader |
 | **ZygoteLoader** | A plugin for creating Java-only Zygisk modules. | https://github.com/vova7878/ZygoteLoader<br>https://github.com/Kr328/ZygoteLoader |
-| **AuditPatch** | Replaces the sensitive context in the SELinux audit log, for setups without SuSFS or Zygisk Next. | https://github.com/aviraxp/ZN-AuditPatch<br>https://github.com/brunoanc/AuditPatch<br>https://github.com/silvzr/AuditPatch |
-| **HMA-OSS** | A Zygisk module to hide your app list, settings, package installers and more. The open source successor to Hide My Applist. | https://github.com/frknkrc44/HMA-OSS<br>https://github.com/lshwjgpt25/HMAPlusPlus<br>https://xdaforums.com/t/hide-my-applist-a-brief-guide.4519731/ |
+| **AuditPatch** | Replaces the sensitive context in the SELinux audit log, for setups without SuSFS or Zygisk Next. | https://github.com/aviraxp/ZN-AuditPatch<br>https://github.com/brunoanc/AuditPatch<br>https://github.com/silvzr/AuditPatch<br>https://github.com/VD171/AuditPatch |
+| **HMA-OSS** | A Zygisk module to hide your app list, settings, package installers and more. The open source successor to Hide My Applist. | https://github.com/frknkrc44/HMA-OSS<br>https://github.com/lshwjgpt25/HMAPlusPlus<br>https://xdaforums.com/t/hide-my-applist-a-brief-guide.4519731/<br>https://t.me/buggychat |
 | **System App Nuker** | A KernelSU module to debloat system apps, with a WebUI. | https://github.com/chisewaguri/systemapp_nuker<br>https://t.me/systemapp_nuker<br>https://t.me/appnukerchat |
 | **Tricky Store OSS** | Open source alternative to the proprietary Tricky Store module. | https://github.com/beakthoven/TrickyStoreOSS<br>https://github.com/lshwjgpt25/TrickyStoreOSSPlusPlus<br>https://t.me/TrickyStoreOSS |
 | **CleveresTricky** | A maintained fork of Tricky Store: advanced spoofing module for Android. | https://github.com/tryigit/CleveresTricky |
@@ -148,9 +154,10 @@ Back to the README: [English](README.md) | [Português](README.pt.md).
 | **PlayVersionSpoofer** | An Xposed module that prevents the Google Play Store from automatically updating itself. | https://github.com/byemaxx/PlayVersionSpoofer |
 | **Update Locker** | An Xposed module that stops your apps from being updated. | https://github.com/Xposed-Modules-Repo/ru.mike.updatelocker |
 | **LSPosed** | The Xposed framework implementation for Android 8.1+, running on Riru or Zygisk. | https://github.com/LSPosed/LSPosed<br>https://xdaforums.com/t/lsposed-xposed-framework-8-1-13-0-simple-magisk-module.4228973/<br>https://t.me/LSPosed<br>https://t.me/LSPosedDiscussion<br>https://t.me/LSPosedArchives<br>https://t.me/lsposed_log |
-| **Vector** | Modern Xposed framework, the successor of the LSPosed line. | https://github.com/JingMatrix/Vector<br>https://github.com/Dev4Mod/Vector |
+| **Vector** | Modern Xposed framework, the successor of the LSPosed line. | https://github.com/JingMatrix/Vector<br>https://github.com/Dev4Mod/Vector<br>https://github.com/JingMatrix/LSPosed |
 | **LSPatch by JingMatrix** | Maintained fork of LSPatch: embeds Vector into an app by patching its APK - no root, no Zygisk. | https://github.com/JingMatrix/LSPatch |
 | **LSPosed_mod** | A fork of LSPosed with extra features, plus a command-line interface for it. | https://github.com/mywalkb/LSPosed_mod<br>https://github.com/AnatolyJacobs/LSPosed_CLI |
+| **LSP-IrenaX** | A fork of LSPosed. | https://github.com/silvzr/LSP-IrenaX |
 | **AxManager** | An Android application designed to provide deeper control over apps and the system. | https://github.com/fahrez182/AxManager<br>https://t.me/axeron_manager<br>https://t.me/axeron_manager_group |
 | **Mantle** | A layer between you and apps, controlling what identity they get to see. | https://github.com/get-mantle/Mantle<br>https://github.com/Xposed-Modules-Repo/com.mantle<br>https://t.me/getmantle |
 | **libxposed** | The modern Xposed API that LSPosed and Vector modules are written against. | https://github.com/libxposed/api<br>https://github.com/libxposed/service<br>https://github.com/libxposed/example<br>https://github.com/libxposed/helper |
@@ -209,6 +216,7 @@ Back to the README: [English](README.md) | [Português](README.pt.md).
 | **Bytecode Viewer** | A Java 8+ jar and Android APK reverse engineering suite (decompiler, editor, debugger and more). | https://github.com/Konloch/bytecode-viewer |
 | **GDA** | A fast, powerful native Android decompiler for APK, DEX, ODEX and more - no Java VM needed. | https://github.com/charles2gan/GDA-android-reversing-Tool |
 | **dalvikus** | Android reverse-engineering tool and smali editor. | https://github.com/loerting/dalvikus |
+| **smali / baksmali** | The assembler and disassembler for the dex format used by Dalvik and ART. | https://github.com/JesusFreke/smali |
 | **objection** | Runtime mobile exploration toolkit powered by Frida. | https://github.com/sensepost/objection |
 | **ZygiskFrida** | Injects the frida gadget through Zygisk, to bypass anti-tamper checks. | https://github.com/lico-n/ZygiskFrida |
 | **undetected-frida** | Symptomatic patches that make frida-server less detectable. | https://github.com/zer0def/undetected-frida |
@@ -216,6 +224,7 @@ Back to the README: [English](README.md) | [Português](README.pt.md).
 | **android-unpinner** | Remove certificate pinning from APKs. | https://github.com/mitmproxy/android-unpinner |
 | **scrcpy** | Display and control your Android device from the computer, over USB or network, without root. | https://github.com/Genymobile/scrcpy |
 | **aya** | Android ADB desktop app. | https://github.com/liriliri/aya |
+| **LogFox** | An app to read, capture and share Android logs - logcat, crashes and more. | https://github.com/F0x1d/LogFox |
 | **adb-enhanced** | Swiss-army knife CLI for Android testing and development, on top of adb. | https://github.com/ashishb/adb-enhanced |
 | **restoid** | Root-based Android app backup tool powered by restic. | https://github.com/hddq/restoid |
 | **WhatsApp crypt tools** | Manage WhatsApp .crypt12, .crypt14 and .crypt15 backup files, and read the resulting database. | https://github.com/ElDavoo/wa-crypt-tools<br>https://github.com/andreas-mausch/whatsapp-viewer |
@@ -287,7 +296,6 @@ No longer maintained, kept for reference. The **(Deprecated)** tag stays on each
 | **(Deprecated) Hide My AppList** | An Xposed module to hide apps or reject app list requests. | https://github.com/Dr-TSNG/Hide-My-Applist<br>https://t.me/HideMyApplist |
 | **(Deprecated) HMAL** | A fork of Hide My AppList. | https://github.com/pumPCin/HMAL |
 | **(Deprecated) BootloaderSpoofer** | Spoof locked bootloader on local attestations. | https://github.com/chiteroman/BootloaderSpoofer<br>https://xdaforums.com/t/spoof-locked-bootloader-bypass-tee-check.4586251/ |
-| **(Deprecated) Wa Revamp** | An Xposed Module to customize and enable privacy on WhatsApp. | https://github.com/ItsMadruga/WaRevamp<br>https://t.me/warevampmodule<br>https://t.me/WaRevampGroup |
 | **(Deprecated) Flag Secure Patcher** | Magisk module to patch services jars on device using dexlib2 to stop apps from preventing taking screenshots and block screenshot listeners that was introduced in A14. | https://github.com/j-hc/FlagSecurePatcher |
 | **(Deprecated) XPrivacyLua** | Successor of XPrivacy. Revoking Android permissions from apps often let apps crash or malfunction. XPrivacyLua solves this by feeding apps fake data instead of real data. | https://xdaforums.com/t/discussion-lsposed-unofficial-xprivacylua-android-privacy-manager.4533999/<br>https://xdaforums.com/t/closed-app-xposed-6-0-xprivacylua-android-privacy-manager-unsupported.3730663/<br>https://github.com/Xposed-Modules-Repo/eu.faircode.xlua |
 | **(Deprecated) XPrivacyLuaPro** | Pro companion app for XPrivacyLua. | https://xdaforums.com/t/closed-app-xposed-6-0-xprivacylua-pro-companion-app.3743040/<br>https://bitbucket.org/M66B/xlua-companion/downloads/ |
