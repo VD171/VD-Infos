@@ -211,6 +211,7 @@ Back to the README: [English](README.md) | [Português](README.pt.md).
 | **EasySSHFS** | SSHFS for Android - mount a remote filesystem over SSH. | https://github.com/bobrofon/easysshfs |
 | **Termux Root Mods** | A module that enhances the Termux experience on rooted devices. | https://github.com/rompelhd/TermuxRootMods<br>https://t.me/Termux_For_Android |
 | **jadx** | Dex to Java decompiler. | https://github.com/skylot/jadx |
+| **molt-dex** | An Android reverse-engineering and modding skill built around resolving obfuscated code by shape, not name - apktool, adb, scrcpy, DexKit and the Xposed API. | https://github.com/ReSo7200/molt-dex |
 | **Apktool** | A tool for reverse engineering Android apk files, with a GUI front-end. | https://github.com/iBotPeaches/Apktool<br>https://github.com/AndnixSH/APKToolGUI |
 | **APK Studio / APKLab** | Desktop IDEs for reverse-engineering Android application packages - Qt6 standalone and VS Code extension. | https://github.com/vaibhavpandeyvpz/apkstudio<br>https://github.com/APKLab/APKLab |
 | **Bytecode Viewer** | A Java 8+ jar and Android APK reverse engineering suite (decompiler, editor, debugger and more). | https://github.com/Konloch/bytecode-viewer |
