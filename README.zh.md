@@ -101,6 +101,7 @@ Root 隐藏与检测的参考（指南、模块、框架、检测器）收录于
 * https://vd171.ru
 * https://vd.priv8.ru
 * **Telegram:** @VD_Priv8 https://t.me/VD_Priv8
+* **Telegram:** @Priv8_VD https://t.me/Priv8_VD
 * **Discord:** @VD.Priv8 https://discord.com/users/1296831918989639721
 * **电子邮件:** vd.priv8@pm.me
 * **XDA-Developers:** @VD171 https://xdaforums.com/m/vd171.4699873/
@@ -109,6 +110,14 @@ Root 隐藏与检测的参考（指南、模块、框架、检测器）收录于
 ## 许可证
 
 **GNU AGPL-3.0-or-later** - 见 [LICENSE](LICENSE)。Copyleft，含网络条款：任何运行修改版（即使作为服务）的人都必须提供其源代码。为一款研究/反检测工具刻意选择，以保持 fork 开放。
+
+<!-- vd-see-also -->
+
+## 另请参阅
+
+- **[COPG-VD](https://github.com/VD171/COPG-VD)** - COPG-VD 是一个设备伪装器
+- **[VD Google](https://github.com/VD171/VD-Google)** - 你的 Google 服务，在本机读取
+- **[VD Backup](https://github.com/VD171/VD-Backup)** - 备份和恢复您的应用和数据
 
 ---
 

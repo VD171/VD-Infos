@@ -101,6 +101,7 @@ root 은닉 및 탐지 참고자료(가이드, 모듈, 프레임워크, 탐지�
 * https://vd171.ru
 * https://vd.priv8.ru
 * **Telegram:** @VD_Priv8 https://t.me/VD_Priv8
+* **Telegram:** @Priv8_VD https://t.me/Priv8_VD
 * **Discord:** @VD.Priv8 https://discord.com/users/1296831918989639721
 * **이메일:** vd.priv8@pm.me
 * **XDA-Developers:** @VD171 https://xdaforums.com/m/vd171.4699873/
@@ -109,6 +110,14 @@ root 은닉 및 탐지 참고자료(가이드, 모듈, 프레임워크, 탐지�
 ## 라이선스
 
 **GNU AGPL-3.0-or-later** - [LICENSE](LICENSE) 참조. 네트워크 조항을 포함한 카피레프트: 수정본을 (서비스로라도) 실행하는 누구든 그 소스를 제공해야 합니다. fork를 열린 상태로 유지하기 위해 연구/반탐지 도구용으로 의도적으로 선택했습니다.
+
+<!-- vd-see-also -->
+
+## 관련 앱
+
+- **[COPG-VD](https://github.com/VD171/COPG-VD)** - COPG-VD는 기기 스푸퍼입니다
+- **[VD Google](https://github.com/VD171/VD-Google)** - 내 Google 서비스를 기기에서 바로 읽기
+- **[VD Backup](https://github.com/VD171/VD-Backup)** - 앱과 데이터를 백업하고 복원
 
 ---
 

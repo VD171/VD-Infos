@@ -101,6 +101,7 @@ cpp/            native_probes.cpp - เลนส์เนทีฟ ไม่ม�
 * https://vd171.ru
 * https://vd.priv8.ru
 * **Telegram:** @VD_Priv8 https://t.me/VD_Priv8
+* **Telegram:** @Priv8_VD https://t.me/Priv8_VD
 * **Discord:** @VD.Priv8 https://discord.com/users/1296831918989639721
 * **อีเมล:** vd.priv8@pm.me
 * **XDA-Developers:** @VD171 https://xdaforums.com/m/vd171.4699873/
@@ -109,6 +110,14 @@ cpp/            native_probes.cpp - เลนส์เนทีฟ ไม่ม�
 ## สัญญาอนุญาต
 
 **GNU AGPL-3.0-or-later** - ดู [LICENSE](LICENSE) เป็น copyleft รวมถึงข้อกำหนดเครือข่าย: ผู้ใดรันเวอร์ชันที่แก้ไข (แม้ในรูปแบบบริการ) ต้องเสนอซอร์สของมัน เลือกโดยเจตนาสำหรับเครื่องมือวิจัย/ต่อต้านการตรวจจับ เพื่อให้ fork เปิดอยู่เสมอ
+
+<!-- vd-see-also -->
+
+## ดูเพิ่มเติม
+
+- **[COPG-VD](https://github.com/VD171/COPG-VD)** - COPG-VD เป็นเครื่องมือปลอมแปลงอุปกรณ์
+- **[VD Google](https://github.com/VD171/VD-Google)** - บริการ Google ของคุณ อ่านบนเครื่อง ไม่ใช้อินเทอร์เน็ตเลย
+- **[VD Backup](https://github.com/VD171/VD-Backup)** - สำรองและกู้คืนแอปและข้อมูลของคุณ
 
 ---
 

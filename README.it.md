@@ -101,6 +101,7 @@ I suoi link, i canali e come sostenerlo: [HMA-OSS.md](HMA-OSS.md).
 * https://vd171.ru
 * https://vd.priv8.ru
 * **Telegram:** @VD_Priv8 https://t.me/VD_Priv8
+* **Telegram:** @Priv8_VD https://t.me/Priv8_VD
 * **Discord:** @VD.Priv8 https://discord.com/users/1296831918989639721
 * **E-mail:** vd.priv8@pm.me
 * **XDA-Developers:** @VD171 https://xdaforums.com/m/vd171.4699873/
@@ -109,6 +110,14 @@ I suoi link, i canali e come sostenerlo: [HMA-OSS.md](HMA-OSS.md).
 ## Licenza
 
 **GNU AGPL-3.0-or-later** - vedi [LICENSE](LICENSE). Copyleft, inclusa la clausola di rete: chiunque esegua una versione modificata (anche come servizio) deve offrirne il codice sorgente. Scelta deliberatamente per uno strumento di ricerca/anti-rilevamento, per mantenere i fork aperti.
+
+<!-- vd-see-also -->
+
+## Vedi anche
+
+- **[COPG-VD](https://github.com/VD171/COPG-VD)** - COPG-VD è uno spoofer di dispositivo
+- **[VD Google](https://github.com/VD171/VD-Google)** - I tuoi servizi Google, letti sul dispositivo
+- **[VD Backup](https://github.com/VD171/VD-Backup)** - Esegui il backup e ripristina le tue app e i tuoi dati
 
 ---
 

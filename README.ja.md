@@ -101,6 +101,7 @@ root の隠蔽と検出に関する参照（ガイド、モジュール、フレ
 * https://vd171.ru
 * https://vd.priv8.ru
 * **Telegram:** @VD_Priv8 https://t.me/VD_Priv8
+* **Telegram:** @Priv8_VD https://t.me/Priv8_VD
 * **Discord:** @VD.Priv8 https://discord.com/users/1296831918989639721
 * **メール:** vd.priv8@pm.me
 * **XDA-Developers:** @VD171 https://xdaforums.com/m/vd171.4699873/
@@ -109,6 +110,14 @@ root の隠蔽と検出に関する参照（ガイド、モジュール、フレ
 ## ライセンス
 
 **GNU AGPL-3.0-or-later** - [LICENSE](LICENSE) を参照。ネットワーク条項を含むコピーレフト: 改変版を（サービスとしてであっても）実行する者は、そのソースを提供しなければなりません。fork を開いたまま保つため、研究/反検出ツール向けに意図的に選択しました。
+
+<!-- vd-see-also -->
+
+## 関連アプリ
+
+- **[COPG-VD](https://github.com/VD171/COPG-VD)** - COPG-VD はデバイススプーファーです
+- **[VD Google](https://github.com/VD171/VD-Google)** - あなたの Google サービスを端末上で読み取る
+- **[VD Backup](https://github.com/VD171/VD-Backup)** - アプリとデータのバックアップと復元
 
 ---
 

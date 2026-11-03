@@ -101,6 +101,7 @@ cpp/            native_probes.cpp - العدسة الأصلية، دون تبع�
 * https://vd171.ru
 * https://vd.priv8.ru
 * **Telegram:** @VD_Priv8 https://t.me/VD_Priv8
+* **Telegram:** @Priv8_VD https://t.me/Priv8_VD
 * **Discord:** @VD.Priv8 https://discord.com/users/1296831918989639721
 * **البريد الإلكتروني:** vd.priv8@pm.me
 * **XDA-Developers:** @VD171 https://xdaforums.com/m/vd171.4699873/
@@ -109,6 +110,14 @@ cpp/            native_probes.cpp - العدسة الأصلية، دون تبع�
 ## الترخيص
 
 **GNU AGPL-3.0-or-later** - انظر [LICENSE](LICENSE). حقوق متروكة (Copyleft)، بما في ذلك بند الشبكة: أي شخص يشغّل نسخة معدّلة (حتى كخدمة) يجب أن يوفّر مصدرها. اختير عمدًا لأداة بحثية/مضادة للكشف، للإبقاء على الـ forks مفتوحة.
+
+<!-- vd-see-also -->
+
+## انظر أيضًا
+
+- **[COPG-VD](https://github.com/VD171/COPG-VD)** - COPG-VD هو spoofer للجهاز
+- **[VD Google](https://github.com/VD171/VD-Google)** - خدمات Google الخاصة بك، تُقرأ على جهازك
+- **[VD Backup](https://github.com/VD171/VD-Backup)** - انسخ تطبيقاتك وبياناتك احتياطيًا واستعدها
 
 ---
 

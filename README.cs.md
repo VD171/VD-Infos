@@ -101,6 +101,7 @@ Jeho odkazy, kanály a jak jej podpořit: [HMA-OSS.md](HMA-OSS.md).
 * https://vd171.ru
 * https://vd.priv8.ru
 * **Telegram:** @VD_Priv8 https://t.me/VD_Priv8
+* **Telegram:** @Priv8_VD https://t.me/Priv8_VD
 * **Discord:** @VD.Priv8 https://discord.com/users/1296831918989639721
 * **E-mail:** vd.priv8@pm.me
 * **XDA-Developers:** @VD171 https://xdaforums.com/m/vd171.4699873/
@@ -109,6 +110,14 @@ Jeho odkazy, kanály a jak jej podpořit: [HMA-OSS.md](HMA-OSS.md).
 ## Licence
 
 **GNU AGPL-3.0-or-later** - viz [LICENSE](LICENSE). Copyleft včetně síťové klauzule: kdokoli spustí upravenou verzi (i jako službu), musí nabídnout její zdrojový kód. Zvoleno záměrně pro výzkumný/anti-detekční nástroj, aby forky zůstaly otevřené.
+
+<!-- vd-see-also -->
+
+## Viz také
+
+- **[COPG-VD](https://github.com/VD171/COPG-VD)** - COPG-VD je spoofer zařízení
+- **[VD Google](https://github.com/VD171/VD-Google)** - Vaše služby Google, čtené v zařízení
+- **[VD Backup](https://github.com/VD171/VD-Backup)** - Zálohujte a obnovujte své aplikace a data
 
 ---
 

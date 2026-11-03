@@ -101,6 +101,7 @@ Bağlantıları, kanalları ve nasıl destek olabileceğiniz: [HMA-OSS.md](HMA-O
 * https://vd171.ru
 * https://vd.priv8.ru
 * **Telegram:** @VD_Priv8 https://t.me/VD_Priv8
+* **Telegram:** @Priv8_VD https://t.me/Priv8_VD
 * **Discord:** @VD.Priv8 https://discord.com/users/1296831918989639721
 * **E-posta:** vd.priv8@pm.me
 * **XDA-Developers:** @VD171 https://xdaforums.com/m/vd171.4699873/
@@ -109,6 +110,14 @@ Bağlantıları, kanalları ve nasıl destek olabileceğiniz: [HMA-OSS.md](HMA-O
 ## Lisans
 
 **GNU AGPL-3.0-or-later** - bkz. [LICENSE](LICENSE). Copyleft, ağ maddesi dahil: değiştirilmiş bir sürümü çalıştıran herkes (hizmet olarak bile) kaynağını sunmak zorundadır. Fork'ları açık tutmak için bir araştırma/anti-tespit aracına bilerek seçilmiştir.
+
+<!-- vd-see-also -->
+
+## Ayrıca bakınız
+
+- **[COPG-VD](https://github.com/VD171/COPG-VD)** - COPG-VD bir cihaz sahteleyicidir
+- **[VD Google](https://github.com/VD171/VD-Google)** - Google hizmetleriniz, cihazınızda okunur
+- **[VD Backup](https://github.com/VD171/VD-Backup)** - Uygulamalarını ve verilerini yedekle ve geri yükle
 
 ---
 

@@ -101,6 +101,7 @@ Các liên kết, kênh và cách ủng hộ: [HMA-OSS.md](HMA-OSS.md).
 * https://vd171.ru
 * https://vd.priv8.ru
 * **Telegram:** @VD_Priv8 https://t.me/VD_Priv8
+* **Telegram:** @Priv8_VD https://t.me/Priv8_VD
 * **Discord:** @VD.Priv8 https://discord.com/users/1296831918989639721
 * **E-mail:** vd.priv8@pm.me
 * **XDA-Developers:** @VD171 https://xdaforums.com/m/vd171.4699873/
@@ -109,6 +110,14 @@ Các liên kết, kênh và cách ủng hộ: [HMA-OSS.md](HMA-OSS.md).
 ## Giấy phép
 
 **GNU AGPL-3.0-or-later** - xem [LICENSE](LICENSE). Copyleft, bao gồm điều khoản mạng: bất kỳ ai chạy một phiên bản đã sửa đổi (kể cả dưới dạng dịch vụ) phải cung cấp mã nguồn của nó. Được chọn có chủ đích cho một công cụ nghiên cứu/chống phát hiện, để giữ cho các fork luôn mở.
+
+<!-- vd-see-also -->
+
+## Xem thêm
+
+- **[COPG-VD](https://github.com/VD171/COPG-VD)** - COPG-VD là một trình giả mạo thiết bị
+- **[VD Google](https://github.com/VD171/VD-Google)** - Dịch vụ Google của bạn, đọc trên máy
+- **[VD Backup](https://github.com/VD171/VD-Backup)** - Sao lưu và khôi phục ứng dụng và dữ liệu của bạn
 
 ---
 

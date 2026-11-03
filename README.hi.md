@@ -101,6 +101,7 @@ root छिपाने और पहचानने के संदर्भ (
 * https://vd171.ru
 * https://vd.priv8.ru
 * **Telegram:** @VD_Priv8 https://t.me/VD_Priv8
+* **Telegram:** @Priv8_VD https://t.me/Priv8_VD
 * **Discord:** @VD.Priv8 https://discord.com/users/1296831918989639721
 * **ईमेल:** vd.priv8@pm.me
 * **XDA-Developers:** @VD171 https://xdaforums.com/m/vd171.4699873/
@@ -109,6 +110,14 @@ root छिपाने और पहचानने के संदर्भ (
 ## लाइसेंस
 
 **GNU AGPL-3.0-or-later** - देखें [LICENSE](LICENSE)। कॉपीलेफ़्ट, नेटवर्क क्लॉज़ सहित: जो कोई संशोधित संस्करण चलाता है (सेवा के रूप में भी) उसे उसका स्रोत देना होगा। forks को खुला रखने के लिए एक शोध/एंटी-डिटेक्शन उपकरण हेतु जानबूझकर चुना गया।
+
+<!-- vd-see-also -->
+
+## यह भी देखें
+
+- **[COPG-VD](https://github.com/VD171/COPG-VD)** - COPG-VD एक डिवाइस स्पूफर है
+- **[VD Google](https://github.com/VD171/VD-Google)** - आपकी Google सेवाएँ, आपके डिवाइस पर पढ़ी गईं। कभी इंटरनेट नहीं।
+- **[VD Backup](https://github.com/VD171/VD-Backup)** - अपने ऐप्स और डेटा का बैकअप लें और पुनर्स्थापित करें
 
 ---
 

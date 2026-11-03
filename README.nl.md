@@ -101,6 +101,7 @@ Zijn links, kanalen en hoe je het steunt: [HMA-OSS.md](HMA-OSS.md).
 * https://vd171.ru
 * https://vd.priv8.ru
 * **Telegram:** @VD_Priv8 https://t.me/VD_Priv8
+* **Telegram:** @Priv8_VD https://t.me/Priv8_VD
 * **Discord:** @VD.Priv8 https://discord.com/users/1296831918989639721
 * **E-mail:** vd.priv8@pm.me
 * **XDA-Developers:** @VD171 https://xdaforums.com/m/vd171.4699873/
@@ -109,6 +110,14 @@ Zijn links, kanalen en hoe je het steunt: [HMA-OSS.md](HMA-OSS.md).
 ## Licentie
 
 **GNU AGPL-3.0-or-later** - zie [LICENSE](LICENSE). Copyleft, inclusief de netwerkclausule: iedereen die een gewijzigde versie draait (zelfs als dienst) moet de broncode ervan aanbieden. Bewust gekozen voor een onderzoeks-/anti-detectietool, om forks open te houden.
+
+<!-- vd-see-also -->
+
+## Zie ook
+
+- **[COPG-VD](https://github.com/VD171/COPG-VD)** - COPG-VD is een apparaatspoofer
+- **[VD Google](https://github.com/VD171/VD-Google)** - Je Google-diensten, gelezen op je toestel
+- **[VD Backup](https://github.com/VD171/VD-Backup)** - Maak back-ups van je apps en gegevens en zet ze terug
 
 ---
 

@@ -147,6 +147,7 @@ Seus links, canais e como apoiá-lo: [HMA-OSS.md](HMA-OSS.md).
 * https://vd171.ru
 * https://vd.priv8.ru
 * **Telegram:** @VD_Priv8 https://t.me/VD_Priv8
+* **Telegram:** @Priv8_VD https://t.me/Priv8_VD
 * **Discord:** @VD.Priv8 https://discord.com/users/1296831918989639721
 * **E-mail:** vd.priv8@pm.me
 * **XDA-Developers:** @VD171 https://xdaforums.com/m/vd171.4699873/
@@ -158,6 +159,14 @@ Seus links, canais e como apoiá-lo: [HMA-OSS.md](HMA-OSS.md).
 de rede: quem rodar uma versão modificada (mesmo como serviço) tem que oferecer a
 fonte. Escolhida de propósito pra uma ferramenta de pesquisa/anti-detecção, pra
 manter forks abertos.
+
+<!-- vd-see-also -->
+
+## Veja também
+
+- **[COPG-VD](https://github.com/VD171/COPG-VD)** - COPG-VD é um spoofer de dispositivo
+- **[VD Google](https://github.com/VD171/VD-Google)** - Seus serviços Google, lidos no seu aparelho
+- **[VD Backup](https://github.com/VD171/VD-Backup)** - Faça backup e restaure seus apps e dados
 
 ---
 

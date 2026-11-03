@@ -101,6 +101,7 @@ cpp/            native_probes.cpp - لنز بومی، بدون وابستگی
 * https://vd171.ru
 * https://vd.priv8.ru
 * **Telegram:** @VD_Priv8 https://t.me/VD_Priv8
+* **Telegram:** @Priv8_VD https://t.me/Priv8_VD
 * **Discord:** @VD.Priv8 https://discord.com/users/1296831918989639721
 * **ایمیل:** vd.priv8@pm.me
 * **XDA-Developers:** @VD171 https://xdaforums.com/m/vd171.4699873/
@@ -109,6 +110,14 @@ cpp/            native_probes.cpp - لنز بومی، بدون وابستگی
 ## مجوز
 
 **GNU AGPL-3.0-or-later** - نگاه کنید به [LICENSE](LICENSE). کپی‌لفت، شامل بند شبکه: هرکس نسخه‌ای اصلاح‌شده را اجرا کند (حتی به‌عنوان سرویس) باید منبع آن را ارائه دهد. عمداً برای ابزاری پژوهشی/ضدتشخیص انتخاب شده تا fork‌ها باز بمانند.
+
+<!-- vd-see-also -->
+
+## همچنین ببینید
+
+- **[COPG-VD](https://github.com/VD171/COPG-VD)** - COPG-VD یک جعل‌کننده دستگاه است
+- **[VD Google](https://github.com/VD171/VD-Google)** - سرویس‌های Google شما، خوانده‌شده روی دستگاه
+- **[VD Backup](https://github.com/VD171/VD-Backup)** - از برنامه‌ها و داده‌های خود نسخه پشتیبان بگیرید و بازیابی کنید
 
 ---
 

@@ -101,6 +101,7 @@ cpp/            native_probes.cpp - нативная линза, без зави
 * https://vd171.ru
 * https://vd.priv8.ru
 * **Telegram:** @VD_Priv8 https://t.me/VD_Priv8
+* **Telegram:** @Priv8_VD https://t.me/Priv8_VD
 * **Discord:** @VD.Priv8 https://discord.com/users/1296831918989639721
 * **E-mail:** vd.priv8@pm.me
 * **XDA-Developers:** @VD171 https://xdaforums.com/m/vd171.4699873/
@@ -109,6 +110,14 @@ cpp/            native_probes.cpp - нативная линза, без зави
 ## Лицензия
 
 **GNU AGPL-3.0-or-later** - см. [LICENSE](LICENSE). Копилефт, включая сетевую оговорку: любой, кто запускает изменённую версию (даже как сервис), обязан предоставить её исходный код. Выбрана намеренно для исследовательского/анти-детекционного инструмента, чтобы форки оставались открытыми.
+
+<!-- vd-see-also -->
+
+## Смотрите также
+
+- **[COPG-VD](https://github.com/VD171/COPG-VD)** - COPG-VD - это спуфер устройства
+- **[VD Google](https://github.com/VD171/VD-Google)** - Ваши сервисы Google, прочитанные на устройстве
+- **[VD Backup](https://github.com/VD171/VD-Backup)** - Резервное копирование и восстановление приложений и данных
 
 ---
 
