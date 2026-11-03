@@ -12,6 +12,7 @@
 #  Source         : https://github.com/VD171/VD-Infos
 #  GitHub         : @VD171 https://github.com/VD171
 #  Telegram       : @VD_Priv8 https://t.me/VD_Priv8
+#  Telegram       : @Priv8_VD https://t.me/Priv8_VD
 # ======================================================================
 #
 # Equivalence groups for the partition-variants identity check. Tokens on one
