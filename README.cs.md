@@ -119,6 +119,15 @@ Zvláštní poděkování patří **[frknkrc44](https://github.com/frknkrc44)**,
 
 Jeho odkazy, kanály a jak jej podpořit: [HMA-OSS.md](HMA-OSS.md).
 
+## Dokumentace
+
+- **[Katalog](CATALOG.md)**: reference ke skrývání rootu a detekci - průvodci, moduly, frameworky a detektory.
+- **[Seznam změn](CHANGELOG.md)**: co se změnilo v každém vydání.
+- **[HMA-OSS](HMA-OSS.md)**: modul pro skrývání aplikací, na kterém stojí opravy této aplikace - jeho odkazy, kanály a jak jej podpořit.
+- **[Přispívání](README.md#contributing)**: jak přidat cíle detekce (většinou prosté textové seznamy, bez potřeby Kotlinu).
+
+<!-- /vd-docs -->
+
 ## Viz také
 
 Sourozenecké projekty téhož autora:

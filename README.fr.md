@@ -119,6 +119,15 @@ Un merci tout particulier à **[frknkrc44](https://github.com/frknkrc44)**, dév
 
 Ses liens, ses canaux et comment le soutenir : [HMA-OSS.md](HMA-OSS.md).
 
+## Documentation
+
+- **[Catalogue](CATALOG.md)** : références sur le masquage du root et la détection - guides, modules, frameworks et détecteurs.
+- **[Journal des modifications](CHANGELOG.md)** : ce qui a changé dans chaque version.
+- **[HMA-OSS](HMA-OSS.md)** : le module de masquage d'applications sur lequel reposent les correctifs de l'app - ses liens, ses canaux et comment le soutenir.
+- **[Contribuer](README.md#contributing)** : comment ajouter des cibles de détection (surtout des listes en texte brut, sans Kotlin).
+
+<!-- /vd-docs -->
+
 ## Voir aussi
 
 Projets frères du même auteur :

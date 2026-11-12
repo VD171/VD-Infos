@@ -119,6 +119,15 @@ Besonderer Dank an **[frknkrc44](https://github.com/frknkrc44)**, Entwickler von
 
 Seine Links, Kanäle und wie man es unterstützt: [HMA-OSS.md](HMA-OSS.md).
 
+## Dokumentation
+
+- **[Katalog](CATALOG.md)**: Referenzen zum Verstecken von Root und zur Erkennung - Anleitungen, Module, Frameworks und Detektoren.
+- **[Änderungsprotokoll](CHANGELOG.md)**: was sich in jeder Version geändert hat.
+- **[HMA-OSS](HMA-OSS.md)**: das App-Versteck-Modul, auf dem die Fixes dieser App aufbauen - seine Links, Kanäle und wie man es unterstützt.
+- **[Mitwirken](README.md#contributing)**: wie man Erkennungsziele hinzufügt (meist einfache Textlisten, kein Kotlin nötig).
+
+<!-- /vd-docs -->
+
 ## Siehe auch
 
 Schwesterprojekte desselben Autors:

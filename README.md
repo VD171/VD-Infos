@@ -162,6 +162,15 @@ links back to its source.
 
 Its links, channels and how to support it: [HMA-OSS.md](HMA-OSS.md).
 
+## Documentation
+
+- **[Catalog](CATALOG.md)**: root-hiding and detection references - guides, modules, frameworks and detectors.
+- **[Changelog](CHANGELOG.md)**: what changed in each release.
+- **[HMA-OSS](HMA-OSS.md)**: the hide-apps module the app's fixes build on - its links, channels and how to support it.
+- **[Contributing](README.md#contributing)**: how to add detection targets (mostly plain-text lists, no Kotlin needed).
+
+<!-- /vd-docs -->
+
 ## See also
 
 Sibling projects by the same author:

@@ -119,6 +119,15 @@ Root gizleme ve tespit referansları (kılavuzlar, modüller, çerçeveler, dede
 
 Bağlantıları, kanalları ve nasıl destek olabileceğiniz: [HMA-OSS.md](HMA-OSS.md).
 
+## Belgeler
+
+- **[Katalog](CATALOG.md)**: root gizleme ve tespit referansları - kılavuzlar, modüller, çerçeveler ve tespit ediciler.
+- **[Değişiklik günlüğü](CHANGELOG.md)**: her sürümde nelerin değiştiği.
+- **[HMA-OSS](HMA-OSS.md)**: uygulamanın düzeltmelerinin dayandığı uygulama gizleme modülü - bağlantıları, kanalları ve ona nasıl destek olunacağı.
+- **[Katkıda bulunma](README.md#contributing)**: tespit hedeflerinin nasıl ekleneceği (çoğunlukla düz metin listeleri, Kotlin gerekmez).
+
+<!-- /vd-docs -->
+
 ## Ayrıca bakınız
 
 Aynı yazarın kardeş projeleri:

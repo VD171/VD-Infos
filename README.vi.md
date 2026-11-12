@@ -119,6 +119,15 @@ Cảm ơn đặc biệt tới **[frknkrc44](https://github.com/frknkrc44)**, nh�
 
 Các liên kết, kênh và cách ủng hộ: [HMA-OSS.md](HMA-OSS.md).
 
+## Tài liệu
+
+- **[Danh mục](CATALOG.md)**: các tài liệu tham khảo về ẩn root và phát hiện - hướng dẫn, mô-đun, framework và trình phát hiện.
+- **[Nhật ký thay đổi](CHANGELOG.md)**: những thay đổi trong mỗi bản phát hành.
+- **[HMA-OSS](HMA-OSS.md)**: mô-đun ẩn ứng dụng mà các bản sửa lỗi của ứng dụng dựa trên - các liên kết, kênh và cách ủng hộ nó.
+- **[Đóng góp](README.md#contributing)**: cách thêm mục tiêu phát hiện (chủ yếu là danh sách văn bản thuần, không cần Kotlin).
+
+<!-- /vd-docs -->
+
 ## Xem thêm
 
 Các dự án anh em của cùng tác giả:

@@ -162,6 +162,15 @@ dentro do app leva de volta à sua fonte.
 
 Seus links, canais e como apoiá-lo: [HMA-OSS.md](HMA-OSS.md).
 
+## Documentação
+
+- **[Catálogo](CATALOG.md)**: referências de ocultação de root e detecção - guias, módulos, frameworks e detectores.
+- **[Changelog](CHANGELOG.md)**: o que mudou em cada versão.
+- **[HMA-OSS](HMA-OSS.md)**: o módulo de ocultar apps em que se baseiam as correções do app - seus links, canais e como apoiá-lo.
+- **[Contribuir](README.md#contributing)**: como adicionar alvos de detecção (em geral listas de texto puro, sem precisar de Kotlin).
+
+<!-- /vd-docs -->
+
 ## Veja também
 
 Projetos irmãos do mesmo autor:

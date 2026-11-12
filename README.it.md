@@ -119,6 +119,15 @@ Un ringraziamento speciale a **[frknkrc44](https://github.com/frknkrc44)**, svil
 
 I suoi link, i canali e come sostenerlo: [HMA-OSS.md](HMA-OSS.md).
 
+## Documentazione
+
+- **[Catalogo](CATALOG.md)**: riferimenti su occultamento del root e rilevamento - guide, moduli, framework e rilevatori.
+- **[Changelog](CHANGELOG.md)**: cosa è cambiato in ogni versione.
+- **[HMA-OSS](HMA-OSS.md)**: il modulo per nascondere le app su cui si basano le correzioni dell'app - i suoi link, i canali e come sostenerlo.
+- **[Contribuire](README.md#contributing)**: come aggiungere obiettivi di rilevamento (per lo più elenchi di testo semplice, senza Kotlin).
+
+<!-- /vd-docs -->
+
 ## Vedi anche
 
 Progetti fratelli dello stesso autore:

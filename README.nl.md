@@ -119,6 +119,15 @@ Speciale dank aan **[frknkrc44](https://github.com/frknkrc44)**, ontwikkelaar va
 
 Zijn links, kanalen en hoe je het steunt: [HMA-OSS.md](HMA-OSS.md).
 
+## Documentatie
+
+- **[Catalogus](CATALOG.md)**: referenties voor het verbergen van root en detectie - handleidingen, modules, frameworks en detectoren.
+- **[Changelog](CHANGELOG.md)**: wat er in elke release is veranderd.
+- **[HMA-OSS](HMA-OSS.md)**: de module voor het verbergen van apps waarop de fixes van de app voortbouwen - de links, kanalen en hoe je het steunt.
+- **[Bijdragen](README.md#contributing)**: hoe je detectiedoelen toevoegt (meestal platte-tekstlijsten, geen Kotlin nodig).
+
+<!-- /vd-docs -->
+
 ## Zie ook
 
 Zusterprojecten van dezelfde auteur:

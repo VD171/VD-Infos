@@ -119,6 +119,15 @@ Ett särskilt tack till **[frknkrc44](https://github.com/frknkrc44)**, utvecklar
 
 Dess länkar, kanaler och hur du stöder det: [HMA-OSS.md](HMA-OSS.md).
 
+## Dokumentation
+
+- **[Katalog](CATALOG.md)**: referenser för att dölja root och för detektering - guider, moduler, ramverk och detektorer.
+- **[Ändringslogg](CHANGELOG.md)**: vad som ändrats i varje version.
+- **[HMA-OSS](HMA-OSS.md)**: appdöljningsmodulen som appens fixar bygger på - dess länkar, kanaler och hur du stöder den.
+- **[Bidra](README.md#contributing)**: hur du lägger till detekteringsmål (mest vanliga textlistor, ingen Kotlin behövs).
+
+<!-- /vd-docs -->
+
 ## Se även
 
 Systerprojekt av samma upphovsperson:

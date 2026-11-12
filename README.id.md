@@ -119,6 +119,15 @@ Terima kasih khusus kepada **[frknkrc44](https://github.com/frknkrc44)**, pengem
 
 Tautan, kanal, dan cara mendukungnya: [HMA-OSS.md](HMA-OSS.md).
 
+## Dokumentasi
+
+- **[Katalog](CATALOG.md)**: referensi penyembunyian root dan deteksi - panduan, modul, framework, dan detektor.
+- **[Changelog](CHANGELOG.md)**: apa yang berubah di setiap rilis.
+- **[HMA-OSS](HMA-OSS.md)**: modul penyembunyi aplikasi yang menjadi dasar perbaikan aplikasi ini - tautan, kanal, dan cara mendukungnya.
+- **[Berkontribusi](README.md#contributing)**: cara menambahkan target deteksi (sebagian besar daftar teks biasa, tanpa perlu Kotlin).
+
+<!-- /vd-docs -->
+
 ## Lihat juga
 
 Proyek saudara dari penulis yang sama:

@@ -119,6 +119,15 @@ Szczególne podziękowania dla **[frknkrc44](https://github.com/frknkrc44)**, tw
 
 Jego linki, kanały i jak go wesprzeć: [HMA-OSS.md](HMA-OSS.md).
 
+## Dokumentacja
+
+- **[Katalog](CATALOG.md)**: odniesienia dotyczące ukrywania roota i wykrywania - przewodniki, moduły, frameworki i detektory.
+- **[Lista zmian](CHANGELOG.md)**: co zmieniło się w każdym wydaniu.
+- **[HMA-OSS](HMA-OSS.md)**: moduł ukrywania aplikacji, na którym opierają się poprawki tej aplikacji - jego linki, kanały i jak go wesprzeć.
+- **[Współtworzenie](README.md#contributing)**: jak dodawać cele wykrywania (najczęściej zwykłe listy tekstowe, bez potrzeby Kotlina).
+
+<!-- /vd-docs -->
+
 ## Zobacz także
 
 Projekty siostrzane tego samego autora:
