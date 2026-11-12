@@ -488,4 +488,5 @@
     <string name="note_local_tmp_list">Elencare /data/local/tmp con getdents64 (non per nome) fa emergere qualsiasi residuo che un\'app può davvero raggiungere, incluso ciò che il modulo rilascia. Su un dispositivo bloccato la directory è dello shell e non elencabile da un\'app, quindi EACCES è la risposta pulita; una voce visibile significa residuo raggiungibile dall\'app.</string>
     <string name="t_nettype_consistency">Tipo di rete vs interfaccia reale</string>
     <string name="t_flagsecure_honored">FLAG_SECURE rispettato (blocco screenshot)</string>
+    <string name="about_trademarks">VD Infos è uno strumento indipendente e non ufficiale di ricerca e diagnostica. Non è affiliato, approvato né sponsorizzato da alcuno dei fornitori di cui legge, rileva o nomina software, servizi o marchi (inclusi Google LLC e l\'Android Open Source Project). \"Android\", \"Google\", \"Google Play\", \"Play Integrity\", \"Widevine\" e tutti gli altri nomi di prodotti, loghi e marchi registrati sono di proprietà dei rispettivi titolari. VD Infos legge soltanto ciò che è già presente sul tuo dispositivo e non invia nulla da nessuna parte.</string>
 </resources>

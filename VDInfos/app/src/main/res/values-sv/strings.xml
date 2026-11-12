@@ -489,4 +489,5 @@
     <string name="note_local_tmp_list">Att lista /data/local/tmp med getdents64 (inte en namnuppslagning) visar varje rest en app faktiskt når, inklusive det modulen släpper. På en låst enhet ägs katalogen av shell och kan inte listas av en app, så EACCES är det rena svaret; en synlig post betyder app-nåbar rest.</string>
     <string name="t_nettype_consistency">Nätverkstyp vs verkligt gränssnitt</string>
     <string name="t_flagsecure_honored">FLAG_SECURE respekteras (skärmdumpsblock)</string>
+    <string name="about_trademarks">VD Infos är ett oberoende, inofficiellt forsknings- och diagnostikverktyg. Det är inte anslutet till, godkänt av eller sponsrat av någon av de leverantörer vars programvara, tjänster eller märken det läser, upptäcker eller namnger (inklusive Google LLC och Android Open Source Project). \"Android\", \"Google\", \"Google Play\", \"Play Integrity\", \"Widevine\" och alla andra produktnamn, logotyper och varumärken tillhör sina respektive ägare. VD Infos läser endast det som redan finns på din enhet och skickar ingenting någonstans.</string>
 </resources>

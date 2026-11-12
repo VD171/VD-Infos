@@ -1,16 +1,43 @@
-[English](README.md) | [Português](README.pt.md) | [Español](README.es.md) | [Italiano](README.it.md) | [Deutsch](README.de.md) | [Français](README.fr.md) | [Русский](README.ru.md) | [Bahasa Indonesia](README.id.md) | [Türkçe](README.tr.md) | [Polski](README.pl.md) | [Nederlands](README.nl.md) | [Svenska](README.sv.md) | [Čeština](README.cs.md) | **Tiếng Việt** | [中文](README.zh.md) | [日本語](README.ja.md) | [한국어](README.ko.md) | [فارسی](README.fa.md) | [हिन्दी](README.hi.md) | [العربية](README.ar.md) | [ไทย](README.th.md)
+<!--
+  VD INFOS - device method debugger: read every device info by every method, then compare.
+  Copyright (C) 2026  VD171 - SPDX-License-Identifier: AGPL-3.0-or-later
+-->
 
 # VD Infos
 
-*Trình gỡ lỗi phương thức*
+<p align="center">
+  <img src="images/logo-wordmark.png" alt="VD Infos" width="320">
+</p>
 
-[![License: AGPL-3.0-or-later](https://img.shields.io/badge/license-AGPL--3.0--or--later-blue.svg)](LICENSE)
-[![Release](https://img.shields.io/github/v/release/VD171/VD-Infos)](https://github.com/VD171/VD-Infos/releases)
-[![Downloads](https://img.shields.io/github/downloads/VD171/VD-Infos/total)](https://github.com/VD171/VD-Infos/releases)
-[![Android 8.0+](https://img.shields.io/badge/Android-8.0%2B-3DDC84.svg)](https://github.com/VD171/VD-Infos/releases)
-[![Languages](https://img.shields.io/badge/languages-21-orange.svg)](README.md)
+<p align="center">
+  <a href="https://github.com/VD171/VD-Infos/releases/latest"><img src="https://img.shields.io/github/v/release/VD171/VD-Infos?label=release&color=0D9488" alt="Release"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-AGPL--3.0--or--later-1a7f37" alt="License"></a>
+  <a href="https://github.com/VD171/VD-Infos/releases"><img src="https://img.shields.io/github/downloads/VD171/VD-Infos/total?label=downloads&color=8250df" alt="Downloads"></a>
+  <a href="https://github.com/VD171/VD-Infos/stargazers"><img src="https://img.shields.io/github/stars/VD171/VD-Infos?color=d29922" alt="Stars"></a>
+</p>
 
-<img src="images/vdinfos-01.png" height="420"/> <img src="images/vdinfos-02.png" height="420"/>
+<p align="center">
+  <b>Trình gỡ lỗi phương thức thiết bị.</b><br>
+  Đọc mọi giá trị thiết bị qua mọi phương thức có thể đọc được nó, rồi xếp chúng cạnh nhau để bạn so sánh.
+</p>
+
+<p align="center">
+  <a href="https://github.com/VD171/VD-Infos/releases">Releases</a> ·
+  <a href="CATALOG.md">Catalog</a> ·
+  <a href="#contributing">Contributing</a> ·
+  <a href="#for-ai-agents-the-full-report-as-json">AI agents</a> ·
+  <a href="CHANGELOG.md">Changelog</a> ·
+  <a href="https://xdaforums.com/t/VD-Infos.4097379/">XDA thread</a>
+</p>
+
+> **Languages:** [English](README.md) · [العربية](README.ar.md) · [Čeština](README.cs.md) · [Deutsch](README.de.md) · [Español](README.es.md) · [فارسی](README.fa.md) · [Français](README.fr.md) · [हिन्दी](README.hi.md) · [Bahasa Indonesia](README.id.md) · [Italiano](README.it.md) · [日本語](README.ja.md) · [한국어](README.ko.md) · [Nederlands](README.nl.md) · [Polski](README.pl.md) · [Português](README.pt.md) · [Русский](README.ru.md) · [Svenska](README.sv.md) · [ไทย](README.th.md) · [Türkçe](README.tr.md) · [Українська](README.uk.md) · [Tiếng Việt](README.vi.md) · [中文](README.zh.md)
+
+<p align="center">
+  <img src="images/vdinfos-01.png" height="420"/>
+  <img src="images/vdinfos-02.png" height="420"/>
+</p>
+
+---
 
 Android là một hệ điều hành cực kỳ mạnh mẽ và linh hoạt; điều không ai nói cho bạn biết là mọi chi tiết cá nhân và thông tin bí mật của bạn đều sẵn có cho mọi ứng dụng bạn cài đặt, và tự bảo vệ trước những sự xâm phạm quyền riêng tư này là một nghĩa vụ. VD Infos cho bạn thấy một ví dụ về những gì có thể bị thu thập từ thiết bị của bạn, và làm điều đó như một *trình gỡ lỗi phương thức*: với mỗi thông tin, nó đọc giá trị qua **mọi phương thức có thể đọc được nó** - `Build.*`, `SystemProperties`, `getprop`, `__system_property_get` native, các manager hệ thống, content provider, tệp, syscall và attestation khóa phần cứng (TEE) - rồi xếp cạnh nhau để bạn so sánh. Khi một phương thức khác với các phương thức còn lại, thứ gì đó ở giữa đang viết lại bề mặt đó: một framework hook, một spoofer, một shim resolver. **KHÔNG THÔNG TIN NÀO ĐƯỢC LƯU, GỬI HAY TRUYỀN ĐẾN BẤT KỲ TỆP¹ HAY MÁY CHỦ NÀO** - mọi thứ chạy trên thiết bị, các giá trị mang danh tính bị che cho đến khi bạn hiển thị chúng, và báo cáo chỉ rời khỏi thiết bị khi bạn chia sẻ hoặc lưu một cách rõ ràng; nếu muốn, hãy chặn truy cập internet bằng tường lửa hoặc chỉ cần tắt nó đi.
 
@@ -54,10 +81,6 @@ su -c cat /data/data/ru.vd171.vdinfos/files/last_snapshot.json
 * **Khi nào cập nhật:** cuối mỗi lần quét, vì vậy hãy quét trước; tệp luôn chứa lần quét mới nhất.
 * **Yêu cầu:** root, vì tệp nằm trong bộ nhớ riêng của ứng dụng.
 
-## Ngôn ngữ
-
-21 ngôn ngữ giao diện: Anh, Bồ Đào Nha, Tây Ban Nha, Ý, Đức, Pháp, Nga, Indonesia, Thổ Nhĩ Kỳ, Ba Lan, Hà Lan, Thụy Điển, Séc, Việt, Trung, Nhật, Hàn, Ba Tư, Hindi, Ả Rập và Thái. Ứng dụng đưa ra lựa chọn ngôn ngữ một lần khi khởi chạy lần đầu (với tùy chọn "Mặc định hệ thống") và ngoài ra tuân theo ngôn ngữ hệ thống.
-
 ## Kiến trúc
 
 ```
@@ -70,7 +93,7 @@ ui/             Jetpack Compose, Material 3, màu động, tiến trình trực 
 cpp/            native_probes.cpp - ống kính native, không phụ thuộc
 ```
 
-* **Song song**: 991 thăm dò tỏa ra trên dispatcher mặc định với số giấy phép giới hạn; kết quả chảy vào UI ngay khi đến.
+* **Song song**: 996 thăm dò tỏa ra trên dispatcher mặc định với số giấy phép giới hạn; kết quả chảy vào UI ngay khi đến.
 * **Không có gì ở nền**: không dịch vụ và không quét theo lịch; ứng dụng chỉ chạy khi đang mở và tự đóng khi bị bỏ không.
 * **Lớp native**: một `.so` nhỏ, liên kết theo tên qua `RegisterNatives`, được giữ cố ý tí hon vì đây là phần phải khó bị đánh lừa.
 
@@ -96,29 +119,36 @@ Cảm ơn đặc biệt tới **[frknkrc44](https://github.com/frknkrc44)**, nh�
 
 Các liên kết, kênh và cách ủng hộ: [HMA-OSS.md](HMA-OSS.md).
 
+## Xem thêm
+
+Các dự án anh em của cùng tác giả:
+
+- **[VDGoogle](https://github.com/VD171/VD-Google)**: các dịch vụ Google của bạn (RCS, Wallet, attestation Play Integrity), đọc ngay trên thiết bị của bạn mà không cần internet.
+- **[VDBackup](https://github.com/VD171/VD-Backup)**: sao lưu và khôi phục toàn bộ ứng dụng và dữ liệu với quyền root, điều khiển hoàn toàn từ một WebUI.
+- **[COPG-VD](https://github.com/VD171/COPG-VD)**: một trình giả mạo thiết bị biến một fingerprint mới tinh thành một hồ sơ mạch lạc, nhất quán.
+
+Pixel `build.prop`: **[@VictorGabriel7Dev/build.prop](https://github.com/VictorGabriel7Dev/build.prop)** (fork of @T3SL4).
+
 ## Liên hệ
 
 * https://vd171.ru
 * https://vd.priv8.ru
 * **Telegram:** @VD_Priv8 https://t.me/VD_Priv8
-* **Telegram:** @Priv8_VD https://t.me/Priv8_VD
+* **Channel:** @Priv8_VD https://t.me/Priv8_VD
 * **Discord:** @VD.Priv8 https://discord.com/users/1296831918989639721
 * **E-mail:** vd.priv8@pm.me
 * **XDA-Developers:** @VD171 https://xdaforums.com/m/vd171.4699873/
+* **XDA thread:** https://xdaforums.com/t/VD-Infos.4097379/
 * **GitHub:** @VD171 https://github.com/VD171
 
 ## Giấy phép
 
 **GNU AGPL-3.0-or-later** - xem [LICENSE](LICENSE). Copyleft, bao gồm điều khoản mạng: bất kỳ ai chạy một phiên bản đã sửa đổi (kể cả dưới dạng dịch vụ) phải cung cấp mã nguồn của nó. Được chọn có chủ đích cho một công cụ nghiên cứu/chống phát hiện, để giữ cho các fork luôn mở.
 
-<!-- vd-see-also -->
+## Thương hiệu
 
-## Xem thêm
+VD Infos là một công cụ nghiên cứu và chẩn đoán độc lập, không chính thức. Nó không liên kết, không được chứng thực hay tài trợ bởi bất kỳ nhà cung cấp nào có phần mềm, dịch vụ hoặc nhãn hiệu mà nó đọc, phát hiện hay nêu tên (bao gồm Google LLC và Android Open Source Project). "Android", "Google", "Google Play", "Play Integrity", "Widevine" và mọi tên sản phẩm, logo và nhãn hiệu khác là tài sản của các chủ sở hữu tương ứng. VD Infos chỉ đọc những gì đã có sẵn trên thiết bị của bạn và không gửi bất cứ thứ gì đi đâu cả.
 
-- **[COPG-VD](https://github.com/VD171/COPG-VD)** - COPG-VD là một trình giả mạo thiết bị
-- **[VD Google](https://github.com/VD171/VD-Google)** - Dịch vụ Google của bạn, đọc trên máy
-- **[VD Backup](https://github.com/VD171/VD-Backup)** - Sao lưu và khôi phục ứng dụng và dữ liệu của bạn
-
----
+## Tags
 
 `android` `privacy` `security` `root-detection` `hook-detection` `spoof-detection` `anti-detection` `tamper-detection` `device-fingerprint` `magisk` `kernelsu` `lsposed` `play-integrity` `attestation` `tee` `keystore` `scanner` `diagnostics` `reverse-engineering` `kotlin`

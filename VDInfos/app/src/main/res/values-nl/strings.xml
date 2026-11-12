@@ -489,4 +489,5 @@
     <string name="note_local_tmp_list">Het opsommen van /data/local/tmp met getdents64 (geen naamzoekopdracht) onthult elk residu dat een app echt kan bereiken, inclusief wat de module neerzet. Op een vergrendeld apparaat is de map van de shell en niet door een app op te sommen, dus EACCES is het schone antwoord; een zichtbare vermelding betekent app-bereikbaar residu.</string>
     <string name="t_nettype_consistency">Netwerktype vs echte interface</string>
     <string name="t_flagsecure_honored">FLAG_SECURE nageleefd (schermafbeelding-blok)</string>
+    <string name="about_trademarks">VD Infos is een onafhankelijk, niet-officieel onderzoeks- en diagnosehulpmiddel. Het is niet verbonden met, goedgekeurd door of gesponsord door een van de leveranciers wiens software, diensten of merken het leest, detecteert of benoemt (waaronder Google LLC en het Android Open Source Project). \"Android\", \"Google\", \"Google Play\", \"Play Integrity\", \"Widevine\" en alle andere productnamen, logo\'s en handelsmerken zijn eigendom van hun respectievelijke eigenaren. VD Infos leest alleen wat al op je apparaat staat en stuurt niets naar waar dan ook.</string>
 </resources>

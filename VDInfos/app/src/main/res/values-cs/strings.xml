@@ -491,4 +491,5 @@
     <string name="note_local_tmp_list">Výpis /data/local/tmp přes getdents64 (ne podle jména) odhalí jakýkoli zbytek, na který aplikace skutečně dosáhne, včetně toho, co modul upustí. Na zamčeném zařízení adresář patří shellu a aplikace jej nemůže vypsat, takže EACCES je čistá odpověď; viditelná položka znamená zbytek dosažitelný aplikací.</string>
     <string name="t_nettype_consistency">Typ sítě vs. skutečné rozhraní</string>
     <string name="t_flagsecure_honored">FLAG_SECURE dodržen (blok snímku)</string>
+    <string name="about_trademarks">VD Infos je nezávislý, neoficiální výzkumný a diagnostický nástroj. Není spojen s žádným z dodavatelů, jejichž software, služby nebo značky čte, detekuje či pojmenovává, ani jimi není podporován nebo sponzorován (včetně Google LLC a Android Open Source Project). \"Android\", \"Google\", \"Google Play\", \"Play Integrity\", \"Widevine\" a všechny ostatní názvy produktů, loga a ochranné známky jsou majetkem svých příslušných vlastníků. VD Infos čte pouze to, co se již nachází ve vašem zařízení, a nikam nic neodesílá.</string>
 </resources>

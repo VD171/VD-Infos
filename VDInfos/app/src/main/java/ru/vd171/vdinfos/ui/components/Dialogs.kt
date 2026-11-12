@@ -248,6 +248,15 @@ fun AboutDialog(onDismiss: () -> Unit) {
                         color = MaterialTheme.colorScheme.onSecondaryContainer,
                     )
                 }
+
+                Text(
+                    stringResource(R.string.about_trademarks),
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(top = 12.dp, start = 4.dp, end = 4.dp),
+                )
             }
         },
     )

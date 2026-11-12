@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ======================================================================
+   VD INFOS  ::  method debugger
+   Read every device info by every method, then compare.
+
+   Copyright (C) 2026  VD171
+   SPDX-License-Identifier: AGPL-3.0-or-later
+
+   Free software under the GNU AGPL v3 or later. NETWORK COPYLEFT: run a
+   modified version, even as a service, and you MUST offer its source.
+
+   Site           : https://vd171.ru
+   Site           : https://vd.priv8.ru
+   Source         : https://github.com/VD171/VD-Infos
+   GitHub         : @VD171 https://github.com/VD171
+   XDA-Developers : @VD171 https://xdaforums.com/m/vd171.4699873/
+   XDA thread     : https://xdaforums.com/t/VD-Infos.4097379/
+   Telegram       : @VD_Priv8 https://t.me/VD_Priv8
+   Channel        : @Priv8_VD https://t.me/Priv8_VD
+   Discord        : @VD.Priv8 https://discord.com/users/1296831918989639721
+   E-mail         : vd.priv8@pm.me
+  ======================================================================
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 180" width="640" height="180" role="img" aria-label="VD Infos">
+  <rect x="10" y="15" width="150" height="150" rx="36" fill="#0D9488"/>
+  <!-- magnifier (method debugger lens) -->
+  <circle cx="78" cy="78" r="36" fill="none" stroke="#ffffff" stroke-width="12"/>
+  <line x1="104" y1="104" x2="132" y2="132" stroke="#ffffff" stroke-width="14" stroke-linecap="round"/>
+  <text x="188" y="120" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" font-size="88" letter-spacing="-1" fill="#0D9488">VD Infos</text>
+</svg>

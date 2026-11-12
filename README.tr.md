@@ -1,16 +1,43 @@
-[English](README.md) | [Português](README.pt.md) | [Español](README.es.md) | [Italiano](README.it.md) | [Deutsch](README.de.md) | [Français](README.fr.md) | [Русский](README.ru.md) | [Bahasa Indonesia](README.id.md) | **Türkçe** | [Polski](README.pl.md) | [Nederlands](README.nl.md) | [Svenska](README.sv.md) | [Čeština](README.cs.md) | [Tiếng Việt](README.vi.md) | [中文](README.zh.md) | [日本語](README.ja.md) | [한국어](README.ko.md) | [فارسی](README.fa.md) | [हिन्दी](README.hi.md) | [العربية](README.ar.md) | [ไทย](README.th.md)
+<!--
+  VD INFOS - device method debugger: read every device info by every method, then compare.
+  Copyright (C) 2026  VD171 - SPDX-License-Identifier: AGPL-3.0-or-later
+-->
 
 # VD Infos
 
-*Yöntem hata ayıklayıcı*
+<p align="center">
+  <img src="images/logo-wordmark.png" alt="VD Infos" width="320">
+</p>
 
-[![License: AGPL-3.0-or-later](https://img.shields.io/badge/license-AGPL--3.0--or--later-blue.svg)](LICENSE)
-[![Release](https://img.shields.io/github/v/release/VD171/VD-Infos)](https://github.com/VD171/VD-Infos/releases)
-[![Downloads](https://img.shields.io/github/downloads/VD171/VD-Infos/total)](https://github.com/VD171/VD-Infos/releases)
-[![Android 8.0+](https://img.shields.io/badge/Android-8.0%2B-3DDC84.svg)](https://github.com/VD171/VD-Infos/releases)
-[![Languages](https://img.shields.io/badge/languages-21-orange.svg)](README.md)
+<p align="center">
+  <a href="https://github.com/VD171/VD-Infos/releases/latest"><img src="https://img.shields.io/github/v/release/VD171/VD-Infos?label=release&color=0D9488" alt="Release"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-AGPL--3.0--or--later-1a7f37" alt="License"></a>
+  <a href="https://github.com/VD171/VD-Infos/releases"><img src="https://img.shields.io/github/downloads/VD171/VD-Infos/total?label=downloads&color=8250df" alt="Downloads"></a>
+  <a href="https://github.com/VD171/VD-Infos/stargazers"><img src="https://img.shields.io/github/stars/VD171/VD-Infos?color=d29922" alt="Stars"></a>
+</p>
 
-<img src="images/vdinfos-01.png" height="420"/> <img src="images/vdinfos-02.png" height="420"/>
+<p align="center">
+  <b>Cihaz yöntem hata ayıklayıcısı.</b><br>
+  Her cihaz değerini onu okuyabilen her yöntemle okuyun ve karşılaştırabilmeniz için yan yana dizin.
+</p>
+
+<p align="center">
+  <a href="https://github.com/VD171/VD-Infos/releases">Releases</a> ·
+  <a href="CATALOG.md">Catalog</a> ·
+  <a href="#contributing">Contributing</a> ·
+  <a href="#for-ai-agents-the-full-report-as-json">AI agents</a> ·
+  <a href="CHANGELOG.md">Changelog</a> ·
+  <a href="https://xdaforums.com/t/VD-Infos.4097379/">XDA thread</a>
+</p>
+
+> **Languages:** [English](README.md) · [العربية](README.ar.md) · [Čeština](README.cs.md) · [Deutsch](README.de.md) · [Español](README.es.md) · [فارسی](README.fa.md) · [Français](README.fr.md) · [हिन्दी](README.hi.md) · [Bahasa Indonesia](README.id.md) · [Italiano](README.it.md) · [日本語](README.ja.md) · [한국어](README.ko.md) · [Nederlands](README.nl.md) · [Polski](README.pl.md) · [Português](README.pt.md) · [Русский](README.ru.md) · [Svenska](README.sv.md) · [ไทย](README.th.md) · [Türkçe](README.tr.md) · [Українська](README.uk.md) · [Tiếng Việt](README.vi.md) · [中文](README.zh.md)
+
+<p align="center">
+  <img src="images/vdinfos-01.png" height="420"/>
+  <img src="images/vdinfos-02.png" height="420"/>
+</p>
+
+---
 
 Android son derece güçlü ve çok yönlü bir işletim sistemidir; kimsenin söylemediği şey ise tüm kişisel ayrıntılarınızın ve gizli bilgilerinizin kurduğunuz her uygulamaya açık olduğu ve bu tür gizlilik ihlallerine karşı kendinizi korumanın bir zorunluluk olduğudur. VD Infos, cihazınızdan nelerin yakalanabileceğine dair bir örnek gösterir ve bunu bir *yöntem hata ayıklayıcısı* olarak yapar: her bilgi için değeri **onu okuyabilen her yöntemle** okur - `Build.*`, `SystemProperties`, `getprop`, native `__system_property_get`, sistem yöneticileri, content provider'lar, dosyalar, syscall'lar ve donanım anahtarı attestation (TEE) - ve karşılaştırabilmeniz için yan yana dizer. Bir yöntem diğerleriyle uyuşmadığında, aradaki bir şey o yüzeyi yeniden yazıyordur: bir hook çerçevesi, bir spoofer, bir resolver shim'i. **HİÇBİR BİLGİ SAKLANMAZ, GÖNDERİLMEZ VEYA HERHANGİ BİR DOSYAYA¹ YA DA SUNUCUYA İLETİLMEZ** - her şey cihazda çalışır, kimlik taşıyan değerler siz açığa çıkarana kadar maskelenir ve bir rapor cihazdan yalnızca siz açıkça paylaştığınızda veya kaydettiğinizde çıkar; isterseniz internet erişimini bir güvenlik duvarıyla engelleyin ya da doğrudan kapatın.
 
@@ -54,10 +81,6 @@ su -c cat /data/data/ru.vd171.vdinfos/files/last_snapshot.json
 * **Ne zaman güncellenir:** her taramanın sonunda; bu yüzden önce bir tarama çalıştırın, dosya her zaman en yenisini tutar.
 * **Gereksinim:** root, çünkü dosya uygulamanın özel depolamasındadır.
 
-## Diller
-
-21 arayüz dili: İngilizce, Portekizce, İspanyolca, İtalyanca, Almanca, Fransızca, Rusça, Endonezce, Türkçe, Lehçe, Felemenkçe, İsveççe, Çekçe, Vietnamca, Çince, Japonca, Korece, Farsça, Hintçe, Arapça ve Tayca. Uygulama, ilk açılışta tek seferlik bir dil seçimi sunar ("Sistem varsayılanı" seçeneğiyle) ve aksi halde sistem dilini izler.
-
 ## Mimari
 
 ```
@@ -70,7 +93,7 @@ ui/             Jetpack Compose, Material 3, dinamik renk, canlı ilerleme
 cpp/            native_probes.cpp - native lens, bağımlılıksız
 ```
 
-* **Paralellik**: 991 sonda, sınırlı izin sayısıyla varsayılan dispatcher üzerinde dağılır; sonuçlar geldikçe UI'ye akar.
+* **Paralellik**: 996 sonda, sınırlı izin sayısıyla varsayılan dispatcher üzerinde dağılır; sonuçlar geldikçe UI'ye akar.
 * **Arka planda hiçbir şey yok**: hizmet yok, zamanlanmış tarama yok; uygulama yalnızca açıkken çalışır ve boşta bırakılınca kendini kapatır.
 * **Native katman**: `RegisterNatives` ile ada göre bağlanan küçük bir `.so`, kandırılması zor olması gereken parça olduğu için bilerek minik tutulur.
 
@@ -96,29 +119,36 @@ Root gizleme ve tespit referansları (kılavuzlar, modüller, çerçeveler, dede
 
 Bağlantıları, kanalları ve nasıl destek olabileceğiniz: [HMA-OSS.md](HMA-OSS.md).
 
+## Ayrıca bakınız
+
+Aynı yazarın kardeş projeleri:
+
+- **[VDGoogle](https://github.com/VD171/VD-Google)**: Google hizmetleriniz (RCS, Wallet, Play Integrity attestation'ları), cihazınızda internet olmadan okunur.
+- **[VDBackup](https://github.com/VD171/VD-Backup)**: root olarak tam uygulama ve veri yedekleme ile geri yükleme, tamamen bir WebUI'den yönetilir.
+- **[COPG-VD](https://github.com/VD171/COPG-VD)**: yeni bir fingerprint'i tutarlı, uyumlu bir profile dönüştüren bir cihaz sahteleyici.
+
+Pixel `build.prop`: **[@VictorGabriel7Dev/build.prop](https://github.com/VictorGabriel7Dev/build.prop)** (fork of @T3SL4).
+
 ## İletişim
 
 * https://vd171.ru
 * https://vd.priv8.ru
 * **Telegram:** @VD_Priv8 https://t.me/VD_Priv8
-* **Telegram:** @Priv8_VD https://t.me/Priv8_VD
+* **Channel:** @Priv8_VD https://t.me/Priv8_VD
 * **Discord:** @VD.Priv8 https://discord.com/users/1296831918989639721
-* **E-posta:** vd.priv8@pm.me
+* **E-mail:** vd.priv8@pm.me
 * **XDA-Developers:** @VD171 https://xdaforums.com/m/vd171.4699873/
+* **XDA thread:** https://xdaforums.com/t/VD-Infos.4097379/
 * **GitHub:** @VD171 https://github.com/VD171
 
 ## Lisans
 
 **GNU AGPL-3.0-or-later** - bkz. [LICENSE](LICENSE). Copyleft, ağ maddesi dahil: değiştirilmiş bir sürümü çalıştıran herkes (hizmet olarak bile) kaynağını sunmak zorundadır. Fork'ları açık tutmak için bir araştırma/anti-tespit aracına bilerek seçilmiştir.
 
-<!-- vd-see-also -->
+## Ticari markalar
 
-## Ayrıca bakınız
+VD Infos bağımsız, resmi olmayan bir araştırma ve teşhis aracıdır. Yazılımını, hizmetlerini veya markalarını okuduğu, tespit ettiği ya da adını andığı satıcıların hiçbiriyle (Google LLC ve Android Open Source Project dahil) bağlantılı değildir, onlar tarafından onaylanmamış veya desteklenmemiştir. "Android", "Google", "Google Play", "Play Integrity", "Widevine" ve diğer tüm ürün adları, logolar ve ticari markalar ilgili sahiplerinin mülküdür. VD Infos yalnızca cihazınızda zaten bulunanı okur ve hiçbir yere hiçbir şey göndermez.
 
-- **[COPG-VD](https://github.com/VD171/COPG-VD)** - COPG-VD bir cihaz sahteleyicidir
-- **[VD Google](https://github.com/VD171/VD-Google)** - Google hizmetleriniz, cihazınızda okunur
-- **[VD Backup](https://github.com/VD171/VD-Backup)** - Uygulamalarını ve verilerini yedekle ve geri yükle
-
----
+## Tags
 
 `android` `privacy` `security` `root-detection` `hook-detection` `spoof-detection` `anti-detection` `tamper-detection` `device-fingerprint` `magisk` `kernelsu` `lsposed` `play-integrity` `attestation` `tee` `keystore` `scanner` `diagnostics` `reverse-engineering` `kotlin`

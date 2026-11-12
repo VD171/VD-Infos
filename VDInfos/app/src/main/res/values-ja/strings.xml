@@ -488,4 +488,5 @@
     <string name="note_local_tmp_list">getdents64 で /data/local/tmp を一覧すると（名前検索ではなく）、モジュールが置いたものを含め、アプリが実際に到達できる残留物が現れます。ロック端末ではこのディレクトリは shell 所有でアプリからは一覧できないため、EACCES が正常な答えです。表示される項目はアプリが到達できる残留物を意味します。</string>
     <string name="t_nettype_consistency">ネットワーク種別 vs 実インターフェース</string>
     <string name="t_flagsecure_honored">FLAG_SECURE の尊重（スクショ防止）</string>
+    <string name="about_trademarks">VD Infos は独立した非公式の調査・診断ツールです。読み取り、検出、または名称を示すソフトウェア、サービス、標章を提供するいかなるベンダー（Google LLC および Android Open Source Project を含む）とも提携しておらず、これらによる承認やスポンサーも受けていません。\"Android\"、\"Google\"、\"Google Play\"、\"Play Integrity\"、\"Widevine\" およびその他すべての製品名、ロゴ、商標は、それぞれの所有者に帰属します。VD Infos はお使いのデバイスに既に存在するもののみを読み取り、いかなる場所へも何も送信しません。</string>
 </resources>

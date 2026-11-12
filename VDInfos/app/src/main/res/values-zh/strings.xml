@@ -488,4 +488,5 @@
     <string name="note_local_tmp_list">用 getdents64 列出 /data/local/tmp（而非按名查找）会显现应用真正能触及的任何残留，包括模块留下的。锁定设备上该目录归 shell 所有、应用无法列出，因此 EACCES 是干净答案；出现条目意味着残留可被应用触及。</string>
     <string name="t_nettype_consistency">网络类型 vs 真实接口</string>
     <string name="t_flagsecure_honored">FLAG_SECURE 生效（禁止截屏）</string>
+    <string name="about_trademarks">VD Infos 是一款独立的非官方研究与诊断工具。它与其所读取、检测或提及的软件、服务或标志所属的任何供应商（包括 Google LLC 和 Android Open Source Project）均无隶属关系，亦未获其认可或赞助。\"Android\"、\"Google\"、\"Google Play\"、\"Play Integrity\"、\"Widevine\" 以及所有其他产品名称、徽标和商标均为其各自所有者的财产。VD Infos 仅读取您设备上已有的内容，不会向任何地方发送任何数据。</string>
 </resources>

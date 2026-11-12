@@ -497,4 +497,5 @@
     <string name="note_local_tmp_list">Listing /data/local/tmp with getdents64 (not a name lookup) surfaces any residue an app can actually reach, module drops included. On a locked device the directory is shell-owned and not listable by an app, so EACCES is the clean answer; a visible entry means residue is app-reachable.</string>
     <string name="t_nettype_consistency">Network type vs real interface</string>
     <string name="t_flagsecure_honored">FLAG_SECURE honored (screenshot block)</string>
+    <string name="about_trademarks">VD Infos is an independent, unofficial research and diagnostics tool. It is not affiliated with, endorsed by, or sponsored by any of the vendors whose software, services or marks it reads, detects or names (including Google LLC and the Android Open Source Project). \"Android\", \"Google\", \"Google Play\", \"Play Integrity\", \"Widevine\" and all other product names, logos and trademarks are the property of their respective owners. VD Infos only reads what is already on your device and sends nothing anywhere.</string>
 </resources>

@@ -488,4 +488,5 @@
     <string name="note_local_tmp_list">getdents64로 /data/local/tmp를 나열하면(이름 조회가 아님) 모듈이 남긴 것을 포함해 앱이 실제로 접근 가능한 모든 잔여물이 드러납니다. 잠긴 기기에서는 이 디렉터리가 shell 소유라 앱이 나열할 수 없어 EACCES가 정상 답이며, 보이는 항목은 앱이 접근 가능한 잔여물을 뜻합니다.</string>
     <string name="t_nettype_consistency">네트워크 유형 vs 실제 인터페이스</string>
     <string name="t_flagsecure_honored">FLAG_SECURE 준수 (스크린샷 차단)</string>
+    <string name="about_trademarks">VD Infos는 독립적인 비공식 조사 및 진단 도구입니다. 이 도구가 읽거나 감지하거나 명칭을 언급하는 소프트웨어, 서비스 또는 표장을 보유한 어떠한 공급업체(Google LLC 및 Android Open Source Project 포함)와도 제휴, 보증 또는 후원 관계가 없습니다. \"Android\", \"Google\", \"Google Play\", \"Play Integrity\", \"Widevine\" 및 기타 모든 제품명, 로고, 상표는 각 소유자의 자산입니다. VD Infos는 사용자의 기기에 이미 있는 것만 읽으며 어디에도 아무것도 전송하지 않습니다.</string>
 </resources>

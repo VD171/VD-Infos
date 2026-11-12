@@ -493,4 +493,5 @@
     <string name="note_local_tmp_list">سرد /data/local/tmp عبر getdents64 (لا بحث بالاسم) يُظهر أي بقايا يمكن للتطبيق الوصول إليها فعلاً، بما فيها ما يسقطه الوحدة. على جهاز مقفل يملك الدليل الـ shell ولا يمكن للتطبيق سرده، فيكون EACCES هو الجواب النظيف؛ ووجود إدخال ظاهر يعني بقايا يصل إليها التطبيق.</string>
     <string name="t_nettype_consistency">نوع الشبكة مقابل الواجهة الحقيقية</string>
     <string name="t_flagsecure_honored">احترام FLAG_SECURE (حظر لقطة الشاشة)</string>
+    <string name="about_trademarks">VD Infos أداة بحث وتشخيص مستقلة وغير رسمية. وهي ليست تابعة لأي من المورّدين الذين تقرأ برامجهم أو خدماتهم أو علاماتهم أو تكتشفها أو تسمّيها، ولا معتمدة منهم ولا برعايتهم (بما في ذلك Google LLC و Android Open Source Project). إن \"Android\" و\"Google\" و\"Google Play\" و\"Play Integrity\" و\"Widevine\" وجميع أسماء المنتجات والشعارات والعلامات التجارية الأخرى هي ملك لأصحابها المعنيين. تقرأ VD Infos فقط ما هو موجود بالفعل على جهازك ولا ترسل أي شيء إلى أي مكان.</string>
 </resources>

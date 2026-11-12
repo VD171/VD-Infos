@@ -1,16 +1,43 @@
-[English](README.md) | [Português](README.pt.md) | [Español](README.es.md) | [Italiano](README.it.md) | [Deutsch](README.de.md) | [Français](README.fr.md) | [Русский](README.ru.md) | [Bahasa Indonesia](README.id.md) | [Türkçe](README.tr.md) | [Polski](README.pl.md) | [Nederlands](README.nl.md) | [Svenska](README.sv.md) | [Čeština](README.cs.md) | [Tiếng Việt](README.vi.md) | [中文](README.zh.md) | [日本語](README.ja.md) | [한국어](README.ko.md) | [فارسی](README.fa.md) | [हिन्दी](README.hi.md) | [العربية](README.ar.md) | **ไทย**
+<!--
+  VD INFOS - device method debugger: read every device info by every method, then compare.
+  Copyright (C) 2026  VD171 - SPDX-License-Identifier: AGPL-3.0-or-later
+-->
 
 # VD Infos
 
-*ตัวดีบักเมธอด*
+<p align="center">
+  <img src="images/logo-wordmark.png" alt="VD Infos" width="320">
+</p>
 
-[![License: AGPL-3.0-or-later](https://img.shields.io/badge/license-AGPL--3.0--or--later-blue.svg)](LICENSE)
-[![Release](https://img.shields.io/github/v/release/VD171/VD-Infos)](https://github.com/VD171/VD-Infos/releases)
-[![Downloads](https://img.shields.io/github/downloads/VD171/VD-Infos/total)](https://github.com/VD171/VD-Infos/releases)
-[![Android 8.0+](https://img.shields.io/badge/Android-8.0%2B-3DDC84.svg)](https://github.com/VD171/VD-Infos/releases)
-[![Languages](https://img.shields.io/badge/languages-21-orange.svg)](README.md)
+<p align="center">
+  <a href="https://github.com/VD171/VD-Infos/releases/latest"><img src="https://img.shields.io/github/v/release/VD171/VD-Infos?label=release&color=0D9488" alt="Release"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-AGPL--3.0--or--later-1a7f37" alt="License"></a>
+  <a href="https://github.com/VD171/VD-Infos/releases"><img src="https://img.shields.io/github/downloads/VD171/VD-Infos/total?label=downloads&color=8250df" alt="Downloads"></a>
+  <a href="https://github.com/VD171/VD-Infos/stargazers"><img src="https://img.shields.io/github/stars/VD171/VD-Infos?color=d29922" alt="Stars"></a>
+</p>
 
-<img src="images/vdinfos-01.png" height="420"/> <img src="images/vdinfos-02.png" height="420"/>
+<p align="center">
+  <b>ตัวดีบักเมธอดของอุปกรณ์</b><br>
+  อ่านค่าทุกอย่างของอุปกรณ์ผ่านทุกวิธีที่สามารถอ่านได้ แล้วเรียงไว้ข้างกันเพื่อให้คุณเปรียบเทียบ
+</p>
+
+<p align="center">
+  <a href="https://github.com/VD171/VD-Infos/releases">Releases</a> ·
+  <a href="CATALOG.md">Catalog</a> ·
+  <a href="#contributing">Contributing</a> ·
+  <a href="#for-ai-agents-the-full-report-as-json">AI agents</a> ·
+  <a href="CHANGELOG.md">Changelog</a> ·
+  <a href="https://xdaforums.com/t/VD-Infos.4097379/">XDA thread</a>
+</p>
+
+> **Languages:** [English](README.md) · [العربية](README.ar.md) · [Čeština](README.cs.md) · [Deutsch](README.de.md) · [Español](README.es.md) · [فارسی](README.fa.md) · [Français](README.fr.md) · [हिन्दी](README.hi.md) · [Bahasa Indonesia](README.id.md) · [Italiano](README.it.md) · [日本語](README.ja.md) · [한국어](README.ko.md) · [Nederlands](README.nl.md) · [Polski](README.pl.md) · [Português](README.pt.md) · [Русский](README.ru.md) · [Svenska](README.sv.md) · [ไทย](README.th.md) · [Türkçe](README.tr.md) · [Українська](README.uk.md) · [Tiếng Việt](README.vi.md) · [中文](README.zh.md)
+
+<p align="center">
+  <img src="images/vdinfos-01.png" height="420"/>
+  <img src="images/vdinfos-02.png" height="420"/>
+</p>
+
+---
 
 Android เป็นระบบปฏิบัติการที่ทรงพลังและยืดหยุ่นอย่างยิ่ง สิ่งที่ไม่มีใครบอกคุณคือรายละเอียดส่วนตัวและข้อมูลลับทั้งหมดของคุณเปิดให้ทุกแอปที่คุณติดตั้งเข้าถึงได้ และการปกป้องตัวเองจากการรุกล้ำความเป็นส่วนตัวเช่นนี้เป็นหน้าที่ VD Infos แสดงตัวอย่างสิ่งที่สามารถดึงจากอุปกรณ์ของคุณ และทำในฐานะ *ตัวดีบักเมธอด*: สำหรับข้อมูลแต่ละอย่าง มันอ่านค่าผ่าน **ทุกวิธีที่สามารถอ่านได้** - `Build.*`, `SystemProperties`, `getprop`, `__system_property_get` แบบเนทีฟ, ตัวจัดการระบบ, content provider, ไฟล์, syscall และ attestation ของกุญแจฮาร์ดแวร์ (TEE) - แล้วเรียงไว้ข้างกันให้คุณเปรียบเทียบ เมื่อวิธีหนึ่งไม่ตรงกับวิธีอื่น แสดงว่ามีบางอย่างตรงกลางกำลังเขียนพื้นผิวนั้นใหม่: เฟรมเวิร์ก hook, spoofer, resolver shim **ไม่มีข้อมูลใดถูกจัดเก็บ ส่ง หรือส่งต่อไปยังไฟล์¹หรือเซิร์ฟเวอร์ใด ๆ** - ทุกอย่างทำงานบนอุปกรณ์ ค่าที่บ่งบอกตัวตนจะถูกปิดบังจนกว่าคุณจะเปิดเผย และรายงานจะออกจากอุปกรณ์เฉพาะเมื่อคุณแชร์หรือบันทึกเองอย่างชัดแจ้ง หากต้องการ ให้บล็อกการเข้าถึงอินเทอร์เน็ตด้วยไฟร์วอลล์หรือเพียงปิดอินเทอร์เน็ต
 
@@ -54,10 +81,6 @@ su -c cat /data/data/ru.vd171.vdinfos/files/last_snapshot.json
 * **อัปเดตเมื่อใด:** เมื่อจบการสแกนแต่ละครั้ง จึงควรสแกนก่อน ไฟล์จะเก็บผลล่าสุดเสมอ
 * **ข้อกำหนด:** root เพราะไฟล์อยู่ในพื้นที่เก็บข้อมูลส่วนตัวของแอป
 
-## ภาษา
-
-21 ภาษาของอินเทอร์เฟซ: อังกฤษ, โปรตุเกส, สเปน, อิตาลี, เยอรมัน, ฝรั่งเศส, รัสเซีย, อินโดนีเซีย, ตุรกี, โปแลนด์, ดัตช์, สวีเดน, เช็ก, เวียดนาม, จีน, ญี่ปุ่น, เกาหลี, เปอร์เซีย, ฮินดี, อาหรับ และไทย แอปเสนอการเลือกภาษาเพียงครั้งเดียวเมื่อเปิดครั้งแรก (พร้อมตัวเลือก "ค่าเริ่มต้นของระบบ") และนอกเหนือจากนั้นจะใช้ตามภาษาของระบบ
-
 ## สถาปัตยกรรม
 
 ```
@@ -70,7 +93,7 @@ ui/             Jetpack Compose, Material 3, สีไดนามิก คว�
 cpp/            native_probes.cpp - เลนส์เนทีฟ ไม่มี dependency
 ```
 
-* **การขนาน**: โพรบ 991 ตัวกระจายบน dispatcher เริ่มต้นด้วยจำนวนใบอนุญาตที่จำกัด ผลลัพธ์ไหลเข้าสู่ UI ทันทีที่มาถึง
+* **การขนาน**: โพรบ 996 ตัวกระจายบน dispatcher เริ่มต้นด้วยจำนวนใบอนุญาตที่จำกัด ผลลัพธ์ไหลเข้าสู่ UI ทันทีที่มาถึง
 * **ไม่มีอะไรทำงานเบื้องหลัง**: ไม่มีบริการและไม่มีการสแกนตามกำหนด แอปทำงานเฉพาะตอนเปิดอยู่และปิดตัวเองเมื่อถูกทิ้งไว้เฉยๆ
 * **ชั้นเนทีฟ**: `.so` ขนาดเล็กหนึ่งไฟล์ ผูกตามชื่อผ่าน `RegisterNatives` ตั้งใจให้เล็กจิ๋วเพราะเป็นส่วนที่ต้องหลอกได้ยาก
 
@@ -96,29 +119,36 @@ cpp/            native_probes.cpp - เลนส์เนทีฟ ไม่ม�
 
 ลิงก์ ช่อง และวิธีสนับสนุน: [HMA-OSS.md](HMA-OSS.md)
 
+## ดูเพิ่มเติม
+
+โครงการพี่น้องโดยผู้เขียนคนเดียวกัน:
+
+- **[VDGoogle](https://github.com/VD171/VD-Google)**: บริการ Google ของคุณ (RCS, Wallet, attestation ของ Play Integrity) อ่านบนอุปกรณ์ของคุณโดยไม่ใช้อินเทอร์เน็ต
+- **[VDBackup](https://github.com/VD171/VD-Backup)**: สำรองและกู้คืนแอปและข้อมูลทั้งหมดในฐานะ root ควบคุมทั้งหมดจาก WebUI
+- **[COPG-VD](https://github.com/VD171/COPG-VD)**: เครื่องมือปลอมแปลงอุปกรณ์ที่เปลี่ยน fingerprint ใหม่ให้เป็นโปรไฟล์ที่สอดคล้องและสม่ำเสมอ
+
+Pixel `build.prop`: **[@VictorGabriel7Dev/build.prop](https://github.com/VictorGabriel7Dev/build.prop)** (fork of @T3SL4).
+
 ## ติดต่อ
 
 * https://vd171.ru
 * https://vd.priv8.ru
 * **Telegram:** @VD_Priv8 https://t.me/VD_Priv8
-* **Telegram:** @Priv8_VD https://t.me/Priv8_VD
+* **Channel:** @Priv8_VD https://t.me/Priv8_VD
 * **Discord:** @VD.Priv8 https://discord.com/users/1296831918989639721
-* **อีเมล:** vd.priv8@pm.me
+* **E-mail:** vd.priv8@pm.me
 * **XDA-Developers:** @VD171 https://xdaforums.com/m/vd171.4699873/
+* **XDA thread:** https://xdaforums.com/t/VD-Infos.4097379/
 * **GitHub:** @VD171 https://github.com/VD171
 
 ## สัญญาอนุญาต
 
 **GNU AGPL-3.0-or-later** - ดู [LICENSE](LICENSE) เป็น copyleft รวมถึงข้อกำหนดเครือข่าย: ผู้ใดรันเวอร์ชันที่แก้ไข (แม้ในรูปแบบบริการ) ต้องเสนอซอร์สของมัน เลือกโดยเจตนาสำหรับเครื่องมือวิจัย/ต่อต้านการตรวจจับ เพื่อให้ fork เปิดอยู่เสมอ
 
-<!-- vd-see-also -->
+## เครื่องหมายการค้า
 
-## ดูเพิ่มเติม
+VD Infos เป็นเครื่องมือวิจัยและวินิจฉัยที่เป็นอิสระและไม่เป็นทางการ ไม่มีความเกี่ยวข้อง ไม่ได้รับการรับรอง และไม่ได้รับการสนับสนุนจากผู้จำหน่ายรายใดที่ซอฟต์แวร์ บริการ หรือเครื่องหมายของพวกเขาถูกอ่าน ตรวจจับ หรือระบุชื่อ (รวมถึง Google LLC และ Android Open Source Project) "Android", "Google", "Google Play", "Play Integrity", "Widevine" และชื่อผลิตภัณฑ์ โลโก้ และเครื่องหมายการค้าอื่น ๆ ทั้งหมดเป็นทรัพย์สินของเจ้าของที่เกี่ยวข้อง VD Infos อ่านเฉพาะสิ่งที่มีอยู่แล้วบนอุปกรณ์ของคุณและไม่ส่งอะไรไปที่ใด
 
-- **[COPG-VD](https://github.com/VD171/COPG-VD)** - COPG-VD เป็นเครื่องมือปลอมแปลงอุปกรณ์
-- **[VD Google](https://github.com/VD171/VD-Google)** - บริการ Google ของคุณ อ่านบนเครื่อง ไม่ใช้อินเทอร์เน็ตเลย
-- **[VD Backup](https://github.com/VD171/VD-Backup)** - สำรองและกู้คืนแอปและข้อมูลของคุณ
-
----
+## Tags
 
 `android` `privacy` `security` `root-detection` `hook-detection` `spoof-detection` `anti-detection` `tamper-detection` `device-fingerprint` `magisk` `kernelsu` `lsposed` `play-integrity` `attestation` `tee` `keystore` `scanner` `diagnostics` `reverse-engineering` `kotlin`

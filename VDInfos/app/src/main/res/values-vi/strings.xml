@@ -488,4 +488,5 @@
     <string name="note_local_tmp_list">Liệt kê /data/local/tmp bằng getdents64 (không tra theo tên) làm lộ mọi tàn dư mà một ứng dụng thực sự chạm tới, gồm cả thứ mô-đun thả ra. Trên thiết bị khóa, thư mục thuộc shell và ứng dụng không liệt kê được, nên EACCES là câu trả lời sạch; một mục hiện ra nghĩa là tàn dư ứng dụng chạm tới được.</string>
     <string name="t_nettype_consistency">Loại mạng so với giao diện thực</string>
     <string name="t_flagsecure_honored">FLAG_SECURE được tôn trọng (chặn ảnh chụp)</string>
+    <string name="about_trademarks">VD Infos là một công cụ nghiên cứu và chẩn đoán độc lập, không chính thức. Công cụ này không liên kết với, không được chứng thực bởi, cũng không được tài trợ bởi bất kỳ nhà cung cấp nào mà nó đọc, phát hiện hoặc nêu tên phần mềm, dịch vụ hay nhãn hiệu của họ (bao gồm Google LLC và Android Open Source Project). \"Android\", \"Google\", \"Google Play\", \"Play Integrity\", \"Widevine\" cùng tất cả các tên sản phẩm, biểu trưng và nhãn hiệu khác là tài sản của các chủ sở hữu tương ứng. VD Infos chỉ đọc những gì đã có trên thiết bị của bạn và không gửi bất cứ thứ gì đi đâu cả.</string>
 </resources>

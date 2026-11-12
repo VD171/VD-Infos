@@ -1,16 +1,43 @@
-[English](README.md) | **Português** | [Español](README.es.md) | [Italiano](README.it.md) | [Deutsch](README.de.md) | [Français](README.fr.md) | [Русский](README.ru.md) | [Bahasa Indonesia](README.id.md) | [Türkçe](README.tr.md) | [Polski](README.pl.md) | [Nederlands](README.nl.md) | [Svenska](README.sv.md) | [Čeština](README.cs.md) | [Tiếng Việt](README.vi.md) | [中文](README.zh.md) | [日本語](README.ja.md) | [한국어](README.ko.md) | [فارسی](README.fa.md) | [हिन्दी](README.hi.md) | [العربية](README.ar.md) | [ไทย](README.th.md)
+<!--
+  VD INFOS - device method debugger: read every device info by every method, then compare.
+  Copyright (C) 2026  VD171 - SPDX-License-Identifier: AGPL-3.0-or-later
+-->
 
 # VD Infos
 
-*Debugger de métodos*
+<p align="center">
+  <img src="images/logo-wordmark.png" alt="VD Infos" width="320">
+</p>
 
-[![License: AGPL-3.0-or-later](https://img.shields.io/badge/license-AGPL--3.0--or--later-blue.svg)](LICENSE)
-[![Release](https://img.shields.io/github/v/release/VD171/VD-Infos)](https://github.com/VD171/VD-Infos/releases)
-[![Downloads](https://img.shields.io/github/downloads/VD171/VD-Infos/total)](https://github.com/VD171/VD-Infos/releases)
-[![Android 8.0+](https://img.shields.io/badge/Android-8.0%2B-3DDC84.svg)](https://github.com/VD171/VD-Infos/releases)
-[![Languages](https://img.shields.io/badge/languages-21-orange.svg)](README.md)
+<p align="center">
+  <a href="https://github.com/VD171/VD-Infos/releases/latest"><img src="https://img.shields.io/github/v/release/VD171/VD-Infos?label=release&color=0D9488" alt="Release"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-AGPL--3.0--or--later-1a7f37" alt="License"></a>
+  <a href="https://github.com/VD171/VD-Infos/releases"><img src="https://img.shields.io/github/downloads/VD171/VD-Infos/total?label=downloads&color=8250df" alt="Downloads"></a>
+  <a href="https://github.com/VD171/VD-Infos/stargazers"><img src="https://img.shields.io/github/stars/VD171/VD-Infos?color=d29922" alt="Stars"></a>
+</p>
 
-<img src="images/vdinfos-01.png" height="420"/> <img src="images/vdinfos-02.png" height="420"/>
+<p align="center">
+  <b>Debugger de métodos do aparelho.</b><br>
+  Leia cada valor do aparelho por todos os métodos capazes de lê-lo e alinhe-os lado a lado para comparar.
+</p>
+
+<p align="center">
+  <a href="https://github.com/VD171/VD-Infos/releases">Releases</a> ·
+  <a href="CATALOG.md">Catalog</a> ·
+  <a href="#contributing">Contributing</a> ·
+  <a href="#for-ai-agents-the-full-report-as-json">AI agents</a> ·
+  <a href="CHANGELOG.md">Changelog</a> ·
+  <a href="https://xdaforums.com/t/VD-Infos.4097379/">XDA thread</a>
+</p>
+
+> **Languages:** [English](README.md) · [العربية](README.ar.md) · [Čeština](README.cs.md) · [Deutsch](README.de.md) · [Español](README.es.md) · [فارسی](README.fa.md) · [Français](README.fr.md) · [हिन्दी](README.hi.md) · [Bahasa Indonesia](README.id.md) · [Italiano](README.it.md) · [日本語](README.ja.md) · [한국어](README.ko.md) · [Nederlands](README.nl.md) · [Polski](README.pl.md) · [Português](README.pt.md) · [Русский](README.ru.md) · [Svenska](README.sv.md) · [ไทย](README.th.md) · [Türkçe](README.tr.md) · [Українська](README.uk.md) · [Tiếng Việt](README.vi.md) · [中文](README.zh.md)
+
+<p align="center">
+  <img src="images/vdinfos-01.png" height="420"/>
+  <img src="images/vdinfos-02.png" height="420"/>
+</p>
+
+---
 
 O Android é um sistema operacional poderoso e versátil; o que ninguém te conta é
 que todos os seus detalhes pessoais e informações confidenciais ficam disponíveis
@@ -89,13 +116,6 @@ su -c cat /data/data/ru.vd171.vdinfos/files/last_snapshot.json
 * **Quando atualiza:** ao fim de cada varredura, então rode uma varredura antes; o arquivo sempre traz a mais recente.
 * **Requisito:** root, porque o arquivo fica no armazenamento privado do app.
 
-## Línguas
-
-21 idiomas de interface: Inglês, Português, Espanhol, Italiano, Alemão, Francês, Russo,
-Indonésio, Turco, Polonês, Holandês, Sueco, Tcheco, Vietnamita, Chinês, Japonês, Coreano,
-Persa, Hindi, Árabe e Tailandês. O app oferece uma escolha única de idioma na primeira
-execução (com opção "Padrão do sistema") e, fora isso, segue o idioma do sistema.
-
 ## Arquitetura
 
 ```
@@ -142,15 +162,26 @@ dentro do app leva de volta à sua fonte.
 
 Seus links, canais e como apoiá-lo: [HMA-OSS.md](HMA-OSS.md).
 
+## Veja também
+
+Projetos irmãos do mesmo autor:
+
+- **[VDGoogle](https://github.com/VD171/VD-Google)**: seus serviços Google (RCS, Wallet, atestações do Play Integrity), lidos no seu aparelho sem internet.
+- **[VDBackup](https://github.com/VD171/VD-Backup)**: backup e restauração completos de apps e dados como root, controlados inteiramente por uma WebUI.
+- **[COPG-VD](https://github.com/VD171/COPG-VD)**: um spoofer de dispositivo que transforma um fingerprint novo num perfil coerente e consistente.
+
+Pixel `build.prop`: **[@VictorGabriel7Dev/build.prop](https://github.com/VictorGabriel7Dev/build.prop)** (fork of @T3SL4).
+
 ## Contatos
 
 * https://vd171.ru
 * https://vd.priv8.ru
 * **Telegram:** @VD_Priv8 https://t.me/VD_Priv8
-* **Telegram:** @Priv8_VD https://t.me/Priv8_VD
+* **Channel:** @Priv8_VD https://t.me/Priv8_VD
 * **Discord:** @VD.Priv8 https://discord.com/users/1296831918989639721
 * **E-mail:** vd.priv8@pm.me
 * **XDA-Developers:** @VD171 https://xdaforums.com/m/vd171.4699873/
+* **XDA thread:** https://xdaforums.com/t/VD-Infos.4097379/
 * **GitHub:** @VD171 https://github.com/VD171
 
 ## Licença
@@ -160,14 +191,10 @@ de rede: quem rodar uma versão modificada (mesmo como serviço) tem que oferece
 fonte. Escolhida de propósito pra uma ferramenta de pesquisa/anti-detecção, pra
 manter forks abertos.
 
-<!-- vd-see-also -->
+## Marcas registradas
 
-## Veja também
+O VD Infos é uma ferramenta independente e não oficial de pesquisa e diagnóstico. Não é afiliado, endossado nem patrocinado por nenhum dos fornecedores cujo software, serviços ou marcas ele lê, detecta ou nomeia (incluindo a Google LLC e o Android Open Source Project). "Android", "Google", "Google Play", "Play Integrity", "Widevine" e todos os demais nomes de produtos, logotipos e marcas registradas são propriedade de seus respectivos donos. O VD Infos apenas lê o que já está no seu aparelho e não envia nada a lugar nenhum.
 
-- **[COPG-VD](https://github.com/VD171/COPG-VD)** - COPG-VD é um spoofer de dispositivo
-- **[VD Google](https://github.com/VD171/VD-Google)** - Seus serviços Google, lidos no seu aparelho
-- **[VD Backup](https://github.com/VD171/VD-Backup)** - Faça backup e restaure seus apps e dados
-
----
+## Tags
 
 `android` `privacy` `security` `root-detection` `hook-detection` `spoof-detection` `anti-detection` `tamper-detection` `device-fingerprint` `magisk` `kernelsu` `lsposed` `play-integrity` `attestation` `tee` `keystore` `scanner` `diagnostics` `reverse-engineering` `kotlin`
