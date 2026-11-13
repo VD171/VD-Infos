@@ -1,6 +1,6 @@
 <!--
-  VD INFOS - device method debugger: read every device info by every method, then compare.
-  Copyright (C) 2026  VD171 - SPDX-License-Identifier: AGPL-3.0-or-later
+  VD INFOS: device method debugger: read every device info by every method, then compare.
+  Copyright (C) 2026  VD171. SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
 # VD Infos
@@ -44,13 +44,13 @@ que todos os seus detalhes pessoais e informações confidenciais ficam disponí
 para cada aplicativo que você instala, e se proteger contra esse tipo de invasão de
 privacidade é uma obrigação. O VD Infos te mostra um exemplo do que pode ser
 capturado do seu aparelho, e faz isso como um *debugger de métodos*: para cada
-informação, lê o valor por **todos os métodos capazes de lê-la** - `Build.*`,
+informação, lê o valor por **todos os métodos capazes de lê-la**: `Build.*`,
 `SystemProperties`, `getprop`, o nativo `__system_property_get`, managers do
 sistema, content providers, arquivos, syscalls e attestation de chave por hardware
-(TEE) - e alinha tudo pra você comparar. Quando um método discorda dos outros, é
+(TEE), e alinha tudo pra você comparar. Quando um método discorda dos outros, é
 porque algo no meio está reescrevendo aquela superfície: um framework de hook, um
 spoofer, um shim de resolver. **NENHUMA INFORMAÇÃO É ARMAZENADA, ENVIADA OU
-TRANSMITIDA A QUALQUER ARQUIVO¹ OU SERVIDOR** - tudo roda no aparelho, os valores de
+TRANSMITIDA A QUALQUER ARQUIVO¹ OU SERVIDOR**: tudo roda no aparelho, os valores de
 identidade ficam mascarados até você revelar, e um relatório só sai do aparelho
 quando você compartilha ou salva explicitamente; se quiser, bloqueie o acesso à
 internet com um firewall ou simplesmente desligue a internet.
@@ -65,11 +65,11 @@ shell), comparados lado a lado:
 * **~488 propriedades do sistema** lidas de CINCO formas: `SystemProperties.get`,
   as duas entradas da bionic (`__system_property_read_callback` e a de 92 bytes,
   `__system_property_get`), `getprop` disparado pela JVM e `getprop` disparado do
-  código nativo por `popen` - um comando de shell rodado pelo `ProcessBuilder` e o
+  código nativo por `popen`; um comando de shell rodado pelo `ProcessBuilder` e o
   mesmo comando rodado sem a JVM não são o mesmo ponto de vista, porque o primeiro
   é uma superfície que um framework de ocultação reescreve e o segundo não.
 * **Identidade do device**: modelo, fabricante, marca, device, product, board,
-  hardware, fingerprint, bootloader, build id/tags/type - cada campo `Build.*`
+  hardware, fingerprint, bootloader, build id/tags/type, cada campo `Build.*`
   contra todas as variantes `ro.product.*` (system/vendor/odm), nativo e shell.
 * **Identificadores**: serial (vários getters), Android ID (settings e provider),
   GSF ID, advertising ID, IMEI/primary IMEI/MEID/IMSI/ICCID, user serial.
@@ -120,12 +120,12 @@ su -c cat /data/data/ru.vd171.vdinfos/files/last_snapshot.json
 
 ```
 core/model      domínio imutável: Lens, Category, Verdict, ProbeSpec, ProbeResult
-probe/          NativeBridge (JNI) - SystemProps (reflexão) - PropCatalog (dado)
-                SemanticProbes - IntegrityProbes - ProbeRegistry
-engine/         ProbeEngine - fan-out em coroutines, streaming via Flow
-data/           SnapshotStore (persistência + diff) - Exporter (export JSON/texto)
+probe/          NativeBridge (JNI), SystemProps (reflexão), PropCatalog (dado)
+                SemanticProbes, IntegrityProbes, ProbeRegistry
+engine/         ProbeEngine: fan-out em coroutines, streaming via Flow
+data/           SnapshotStore (persistência + diff), Exporter (export JSON/texto)
 ui/             Jetpack Compose, Material 3, cor dinâmica, progresso ao vivo
-cpp/            native_probes.cpp - a lente nativa, sem dependências
+cpp/            native_probes.cpp: a lente nativa, sem dependências
 ```
 
 * **Paralelismo**: 996 sondas em fan-out no dispatcher default com concorrência
@@ -139,11 +139,11 @@ cpp/            native_probes.cpp - a lente nativa, sem dependências
 
 A maioria das contribuições não exige Kotlin: as listas são texto puro em `VDInfos/app/src/main/assets/data/`. Adicione ou remova uma linha e abra um pull request.
 
-* `*_apps.txt` - um nome de pacote por linha
-* `props.txt` - o catálogo de propriedades do sistema, `CATEGORIA<tab>chave`
-* `spoof_keys.txt` - a matriz de spoof de settings, `chave:TIPO`
-* `known_certs.txt` - o catálogo de certificados de assinatura, `SHA-256<tab>dono` (hash completo, tirado de um APK real com `apksigner verify --print-certs`)
-* outros arquivos `.txt` - também uma entrada por linha (fragmentos de nome de módulo de kernel, nomes em `/data/local/tmp`)
+* `*_apps.txt`: um nome de pacote por linha
+* `props.txt`: o catálogo de propriedades do sistema, `CATEGORIA<tab>chave`
+* `spoof_keys.txt`: a matriz de spoof de settings, `chave:TIPO`
+* `known_certs.txt`: o catálogo de certificados de assinatura, `SHA-256<tab>dono` (hash completo, tirado de um APK real com `apksigner verify --print-certs`)
+* outros arquivos `.txt`: também uma entrada por linha (fragmentos de nome de módulo de kernel, nomes em `/data/local/tmp`)
 
 Um `#` inicia um comentário; linhas vazias são ignoradas. Alguns arquivos trazem alguns campos separados por espaço ou tab por linha, ou marcadores opcionais (`S` e `@field` no `props.txt`); mantenha o formato das linhas que já estão no arquivo. Contribuições de código também são bem-vindas. Ao contribuir, você concorda que seu trabalho segue a AGPL-3.0-or-later deste projeto.
 
@@ -157,16 +157,16 @@ detectores) ficam num catálogo dedicado: [CATALOG.pt.md](CATALOG.pt.md).
 Agradecimento especial ao **[frknkrc44](https://github.com/frknkrc44)**, desenvolvedor
 do **[HMA-OSS](https://github.com/frknkrc44/HMA-OSS)**, pelo carinho dedicado a ele.
 O HMA-OSS é onde várias das correções que este app sugere
-são aplicadas - esconder apps-alvo e definir presets de spoof - e toda menção a ele
+são aplicadas (esconder apps-alvo e definir presets de spoof), e toda menção a ele
 dentro do app leva de volta à sua fonte.
 
 Seus links, canais e como apoiá-lo: [HMA-OSS.md](HMA-OSS.md).
 
 ## Documentação
 
-- **[Catálogo](CATALOG.md)**: referências de ocultação de root e detecção - guias, módulos, frameworks e detectores.
+- **[Catálogo](CATALOG.md)**: referências de ocultação de root e detecção (guias, módulos, frameworks e detectores).
 - **[Changelog](CHANGELOG.md)**: o que mudou em cada versão.
-- **[HMA-OSS](HMA-OSS.md)**: o módulo de ocultar apps em que se baseiam as correções do app - seus links, canais e como apoiá-lo.
+- **[HMA-OSS](HMA-OSS.md)**: o módulo de ocultar apps em que se baseiam as correções do app (seus links, canais e como apoiá-lo).
 - **[Contribuir](README.md#contributing)**: como adicionar alvos de detecção (em geral listas de texto puro, sem precisar de Kotlin).
 
 <!-- /vd-docs -->
@@ -178,6 +178,7 @@ Projetos irmãos do mesmo autor:
 - **[VDGoogle](https://github.com/VD171/VD-Google)**: seus serviços Google (RCS, Wallet, atestações do Play Integrity), lidos no seu aparelho sem internet.
 - **[VDBackup](https://github.com/VD171/VD-Backup)**: backup e restauração completos de apps e dados como root, controlados inteiramente por uma WebUI.
 - **[COPG-VD](https://github.com/VD171/COPG-VD)**: um spoofer de dispositivo que transforma um fingerprint novo num perfil coerente e consistente.
+- **[VD-dropbear](https://github.com/VD171/VD-dropbear)**: um daemon SSH standalone com root (Dropbear).
 
 Pixel `build.prop`: **[@VictorGabriel7Dev/build.prop](https://github.com/VictorGabriel7Dev/build.prop)** (fork of @T3SL4).
 
@@ -195,7 +196,7 @@ Pixel `build.prop`: **[@VictorGabriel7Dev/build.prop](https://github.com/VictorG
 
 ## Licença
 
-**GNU AGPL-3.0-or-later** - veja [LICENSE](LICENSE). Copyleft, incluindo a cláusula
+**GNU AGPL-3.0-or-later**: veja [LICENSE](LICENSE). Copyleft, incluindo a cláusula
 de rede: quem rodar uma versão modificada (mesmo como serviço) tem que oferecer a
 fonte. Escolhida de propósito pra uma ferramenta de pesquisa/anti-detecção, pra
 manter forks abertos.

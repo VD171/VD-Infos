@@ -1,6 +1,6 @@
 <!--
-  VD INFOS - device method debugger: read every device info by every method, then compare.
-  Copyright (C) 2026  VD171 - SPDX-License-Identifier: AGPL-3.0-or-later
+  VD INFOS: device method debugger: read every device info by every method, then compare.
+  Copyright (C) 2026  VD171. SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
 # VD Infos
@@ -39,7 +39,7 @@
 
 ---
 
-Android は非常に強力で多機能なオペレーティングシステムですが、誰も教えてくれないのは、あなたの個人的な詳細や機密情報のすべてが、インストールするすべてのアプリから取得可能だということ、そしてこの種のプライバシー侵害から身を守ることは義務だということです。VD Infos は、あなたの端末から何が取得され得るかの一例を示し、それを*メソッドデバッガー*として行います。各情報について、値を**読み取れるあらゆる方法**で読み取ります - `Build.*`、`SystemProperties`、`getprop`、ネイティブの `__system_property_get`、システムマネージャー、content provider、ファイル、syscall、ハードウェア鍵の attestation（TEE）- そして比較できるように並べます。ある方法が他と食い違うとき、その間で何かがその表面を書き換えています。hook フレームワーク、spoofer、resolver shim です。**いかなる情報もファイル¹やサーバーに保存・送信・転送されません** - すべては端末上で動作し、身元を帯びる値はあなたが明かすまでマスクされ、レポートはあなたが明示的に共有または保存したときにのみ端末を離れます。必要なら、ファイアウォールでインターネットアクセスを遮断するか、単に切ってください。
+Android は非常に強力で多機能なオペレーティングシステムですが、誰も教えてくれないのは、あなたの個人的な詳細や機密情報のすべてが、インストールするすべてのアプリから取得可能だということ、そしてこの種のプライバシー侵害から身を守ることは義務だということです。VD Infos は、あなたの端末から何が取得され得るかの一例を示し、それを*メソッドデバッガー*として行います。各情報について、値を**読み取れるあらゆる方法**で読み取ります: `Build.*`、`SystemProperties`、`getprop`、ネイティブの `__system_property_get`、システムマネージャー、content provider、ファイル、syscall、ハードウェア鍵の attestation（TEE）。そして比較できるように並べます。ある方法が他と食い違うとき、その間で何かがその表面を書き換えています。hook フレームワーク、spoofer、resolver shim です。**いかなる情報もファイル¹やサーバーに保存・送信・転送されません**: すべては端末上で動作し、身元を帯びる値はあなたが明かすまでマスクされ、レポートはあなたが明示的に共有または保存したときにのみ端末を離れます。必要なら、ファイアウォールでインターネットアクセスを遮断するか、単に切ってください。
 
 > **¹ 例外:** 各スキャンは完全なレポートをアプリのプライベートストレージ（`files/last_snapshot.json`）に保存します。読めるのはアプリ自身か root だけで、次のスキャンで上書きされ、端末の外に出ることはありません。AI エージェントが完全な結果を読めるようにするためのものです。参照： **AI エージェント向け：完全なレポートを JSON で**。
 
@@ -47,8 +47,8 @@ Android は非常に強力で多機能なオペレーティングシステムで
 
 各項目は、それを読み取れるあらゆる方法（Java SDK / ネイティブ / shell）で読み取られ、並べて比較されます:
 
-* **約 488 のシステムプロパティ**を五通りで読み取り: `SystemProperties.get`、bionic の 2 つのエントリポイント（`__system_property_read_callback` と 92 バイトの `__system_property_get`）、JVM が起動する `getprop`、ネイティブコードから `popen` 経由で起動する `getprop` - `ProcessBuilder` が実行する shell コマンドと、JVM を介さず実行する同じコマンドは同じ視点ではありません。前者は root 隠蔽フレームワークが書き換える表面であり、後者はそうではないからです。
-* **端末の識別情報**: モデル、メーカー、ブランド、device、product、board、hardware、fingerprint、bootloader、build id/tags/type - 各 `Build.*` フィールドをそのすべての `ro.product.*`（system/vendor/odm）バリアント、ネイティブ、shell と照合。
+* **約 488 のシステムプロパティ**を五通りで読み取り: `SystemProperties.get`、bionic の 2 つのエントリポイント（`__system_property_read_callback` と 92 バイトの `__system_property_get`）、JVM が起動する `getprop`、ネイティブコードから `popen` 経由で起動する `getprop`。`ProcessBuilder` が実行する shell コマンドと、JVM を介さず実行する同じコマンドは同じ視点ではありません。前者は root 隠蔽フレームワークが書き換える表面であり、後者はそうではないからです。
+* **端末の識別情報**: モデル、メーカー、ブランド、device、product、board、hardware、fingerprint、bootloader、build id/tags/type、各 `Build.*` フィールドをそのすべての `ro.product.*`（system/vendor/odm）バリアント、ネイティブ、shell と照合。
 * **識別子**: serial（多数のゲッター）、Android ID（settings と provider）、GSF ID、advertising ID、IMEI/primary IMEI/MEID/IMSI/ICCID、user serial。
 * **テレフォニー**: TelephonyManager の表面（通信事業者、SIM、ネットワーク、ローミング…）、SubscriptionManager（マルチ SIM）、cell info。
 * **ネットワーク**: インターフェースごとの **MAC**（`NetworkInterface` vs `/sys/class/net` vs shell）、Wi-Fi（SSID/BSSID/IP/MAC）、Bluetooth、DNS。
@@ -85,12 +85,12 @@ su -c cat /data/data/ru.vd171.vdinfos/files/last_snapshot.json
 
 ```
 core/model      不変ドメイン: Lens, Category, Verdict, ProbeSpec, ProbeResult
-probe/          NativeBridge (JNI) - SystemProps (リフレクション) - PropCatalog (データ)
-                SemanticProbes - IntegrityProbes - ProbeRegistry
-engine/         ProbeEngine - コルーチンのファンアウト、結果を Flow としてストリーム
-data/           SnapshotStore (永続化 + diff) - Exporter (JSON/テキスト共有)
+probe/          NativeBridge (JNI), SystemProps (リフレクション), PropCatalog (データ)
+                SemanticProbes, IntegrityProbes, ProbeRegistry
+engine/         ProbeEngine: コルーチンのファンアウト、結果を Flow としてストリーム
+data/           SnapshotStore (永続化 + diff), Exporter (JSON/テキスト共有)
 ui/             Jetpack Compose, Material 3, ダイナミックカラー、ライブ進捗
-cpp/            native_probes.cpp - ネイティブレンズ、依存なし
+cpp/            native_probes.cpp: ネイティブレンズ、依存なし
 ```
 
 * **並列性**: 996 のプローブが、上限付きのパーミット数でデフォルトの dispatcher に展開され、結果は届くそばから UI に流れ込みます。
@@ -101,11 +101,11 @@ cpp/            native_probes.cpp - ネイティブレンズ、依存なし
 
 ほとんどの貢献に Kotlin は不要です。リストは `VDInfos/app/src/main/assets/data/` 配下のプレーンテキストです。1 行を追加または削除して pull request を開いてください。
 
-* `*_apps.txt` - 1 行に 1 つのパッケージ名
-* `props.txt` - システムプロパティのカタログ、`カテゴリ<tab>キー`
-* `spoof_keys.txt` - settings の spoof マトリクス、`キー:型`
-* `known_certs.txt` - 署名証明書のカタログ、`SHA-256<tab>所有者`（完全なハッシュ、実際の APK から `apksigner verify --print-certs` で取得）
-* その他の `.txt` ファイル - こちらも 1 行に 1 項目（カーネルモジュール名の断片、`/data/local/tmp` のファイル名）
+* `*_apps.txt`: 1 行に 1 つのパッケージ名
+* `props.txt`: システムプロパティのカタログ、`カテゴリ<tab>キー`
+* `spoof_keys.txt`: settings の spoof マトリクス、`キー:型`
+* `known_certs.txt`: 署名証明書のカタログ、`SHA-256<tab>所有者`（完全なハッシュ、実際の APK から `apksigner verify --print-certs` で取得）
+* その他の `.txt` ファイル: こちらも 1 行に 1 項目（カーネルモジュール名の断片、`/data/local/tmp` のファイル名）
 
 `#` はコメントの開始で、空行は無視されます。 一部のファイルは 1 行にスペースまたはタブで区切られた複数のフィールドや、任意のマーカー（`props.txt` の `S` と `@field`）を含みます。ファイルに既にある行の形式に合わせてください。コードの貢献も歓迎します。貢献することで、その成果が本プロジェクトの AGPL-3.0-or-later で配布されることに同意したものとみなされます。
 
@@ -115,15 +115,15 @@ root の隠蔽と検出に関する参照（ガイド、モジュール、フレ
 
 ## 謝辞
 
-**[HMA-OSS](https://github.com/frknkrc44/HMA-OSS)** の開発者 **[frknkrc44](https://github.com/frknkrc44)** に、その丹念な仕事に対して特別な感謝を。HMA-OSS は、本アプリが提案する修正のいくつかが適用される場所です - 対象アプリの隠蔽と spoof プリセットの設定 - そしてアプリ内でのその言及はすべて、そのソースへリンクします。
+**[HMA-OSS](https://github.com/frknkrc44/HMA-OSS)** の開発者 **[frknkrc44](https://github.com/frknkrc44)** に、その丹念な仕事に対して特別な感謝を。HMA-OSS は、本アプリが提案する修正のいくつかが適用される場所です（対象アプリの隠蔽と spoof プリセットの設定）。そしてアプリ内でのその言及はすべて、そのソースへリンクします。
 
 リンク、チャンネル、支援方法: [HMA-OSS.md](HMA-OSS.md)。
 
 ## ドキュメント
 
-- **[カタログ](CATALOG.md)**: root 隠蔽と検知のリファレンス - ガイド、モジュール、フレームワーク、検知ツール。
+- **[カタログ](CATALOG.md)**: root 隠蔽と検知のリファレンス（ガイド、モジュール、フレームワーク、検知ツール）。
 - **[変更履歴](CHANGELOG.md)**: 各リリースでの変更点。
-- **[HMA-OSS](HMA-OSS.md)**: このアプリの修正が土台とするアプリ隠蔽モジュール - そのリンク、チャンネル、支援方法。
+- **[HMA-OSS](HMA-OSS.md)**: このアプリの修正が土台とするアプリ隠蔽モジュール（そのリンク、チャンネル、支援方法）。
 - **[コントリビュート](README.md#contributing)**: 検知対象の追加方法（ほとんどはプレーンテキストのリストで、Kotlin は不要）。
 
 <!-- /vd-docs -->
@@ -135,6 +135,7 @@ root の隠蔽と検出に関する参照（ガイド、モジュール、フレ
 - **[VDGoogle](https://github.com/VD171/VD-Google)**: あなたの Google サービス（RCS、Wallet、Play Integrity の attestation）を、インターネットなしで端末上で読み取ります。
 - **[VDBackup](https://github.com/VD171/VD-Backup)**: アプリとデータの完全なバックアップと復元を root で行い、すべて WebUI から操作します。
 - **[COPG-VD](https://github.com/VD171/COPG-VD)**: 新しい fingerprint を一貫性のあるまとまった profile に変えるデバイス spoofer。
+- **[VD-dropbear](https://github.com/VD171/VD-dropbear)**: 単独で動作する root 権限の SSH デーモン（Dropbear）。
 
 Pixel `build.prop`: **[@VictorGabriel7Dev/build.prop](https://github.com/VictorGabriel7Dev/build.prop)** (fork of @T3SL4).
 
@@ -152,7 +153,7 @@ Pixel `build.prop`: **[@VictorGabriel7Dev/build.prop](https://github.com/VictorG
 
 ## ライセンス
 
-**GNU AGPL-3.0-or-later** - [LICENSE](LICENSE) を参照。ネットワーク条項を含むコピーレフト: 改変版を（サービスとしてであっても）実行する者は、そのソースを提供しなければなりません。fork を開いたまま保つため、研究/反検出ツール向けに意図的に選択しました。
+**GNU AGPL-3.0-or-later**: [LICENSE](LICENSE) を参照。ネットワーク条項を含むコピーレフト: 改変版を（サービスとしてであっても）実行する者は、そのソースを提供しなければなりません。fork を開いたまま保つため、研究/反検出ツール向けに意図的に選択しました。
 
 ## 商標
 

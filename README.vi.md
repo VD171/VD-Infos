@@ -1,6 +1,6 @@
 <!--
-  VD INFOS - device method debugger: read every device info by every method, then compare.
-  Copyright (C) 2026  VD171 - SPDX-License-Identifier: AGPL-3.0-or-later
+  VD INFOS: device method debugger: read every device info by every method, then compare.
+  Copyright (C) 2026  VD171. SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
 # VD Infos
@@ -39,7 +39,7 @@
 
 ---
 
-Android là một hệ điều hành cực kỳ mạnh mẽ và linh hoạt; điều không ai nói cho bạn biết là mọi chi tiết cá nhân và thông tin bí mật của bạn đều sẵn có cho mọi ứng dụng bạn cài đặt, và tự bảo vệ trước những sự xâm phạm quyền riêng tư này là một nghĩa vụ. VD Infos cho bạn thấy một ví dụ về những gì có thể bị thu thập từ thiết bị của bạn, và làm điều đó như một *trình gỡ lỗi phương thức*: với mỗi thông tin, nó đọc giá trị qua **mọi phương thức có thể đọc được nó** - `Build.*`, `SystemProperties`, `getprop`, `__system_property_get` native, các manager hệ thống, content provider, tệp, syscall và attestation khóa phần cứng (TEE) - rồi xếp cạnh nhau để bạn so sánh. Khi một phương thức khác với các phương thức còn lại, thứ gì đó ở giữa đang viết lại bề mặt đó: một framework hook, một spoofer, một shim resolver. **KHÔNG THÔNG TIN NÀO ĐƯỢC LƯU, GỬI HAY TRUYỀN ĐẾN BẤT KỲ TỆP¹ HAY MÁY CHỦ NÀO** - mọi thứ chạy trên thiết bị, các giá trị mang danh tính bị che cho đến khi bạn hiển thị chúng, và báo cáo chỉ rời khỏi thiết bị khi bạn chia sẻ hoặc lưu một cách rõ ràng; nếu muốn, hãy chặn truy cập internet bằng tường lửa hoặc chỉ cần tắt nó đi.
+Android là một hệ điều hành cực kỳ mạnh mẽ và linh hoạt; điều không ai nói cho bạn biết là mọi chi tiết cá nhân và thông tin bí mật của bạn đều sẵn có cho mọi ứng dụng bạn cài đặt, và tự bảo vệ trước những sự xâm phạm quyền riêng tư này là một nghĩa vụ. VD Infos cho bạn thấy một ví dụ về những gì có thể bị thu thập từ thiết bị của bạn, và làm điều đó như một *trình gỡ lỗi phương thức*: với mỗi thông tin, nó đọc giá trị qua **mọi phương thức có thể đọc được nó**: `Build.*`, `SystemProperties`, `getprop`, `__system_property_get` native, các manager hệ thống, content provider, tệp, syscall và attestation khóa phần cứng (TEE), rồi xếp cạnh nhau để bạn so sánh. Khi một phương thức khác với các phương thức còn lại, thứ gì đó ở giữa đang viết lại bề mặt đó: một framework hook, một spoofer, một shim resolver. **KHÔNG THÔNG TIN NÀO ĐƯỢC LƯU, GỬI HAY TRUYỀN ĐẾN BẤT KỲ TỆP¹ HAY MÁY CHỦ NÀO**: mọi thứ chạy trên thiết bị, các giá trị mang danh tính bị che cho đến khi bạn hiển thị chúng, và báo cáo chỉ rời khỏi thiết bị khi bạn chia sẻ hoặc lưu một cách rõ ràng; nếu muốn, hãy chặn truy cập internet bằng tường lửa hoặc chỉ cần tắt nó đi.
 
 > **¹ Ngoại lệ:** mỗi lần quét lưu báo cáo đầy đủ trong bộ nhớ riêng của ứng dụng (`files/last_snapshot.json`). Chỉ chính ứng dụng hoặc root đọc được, lần quét sau sẽ ghi đè và tệp không bao giờ rời khỏi thiết bị. Tệp tồn tại để tác tử AI đọc được kết quả đầy đủ; xem **Dành cho tác tử AI: báo cáo đầy đủ dạng JSON**.
 
@@ -47,8 +47,8 @@ Android là một hệ điều hành cực kỳ mạnh mẽ và linh hoạt; đi
 
 Mỗi mục được đọc qua mọi phương thức có thể đọc được nó (Java SDK / native / shell), so sánh cạnh nhau:
 
-* **~488 thuộc tính hệ thống** được đọc theo NĂM cách: `SystemProperties.get`, cả hai điểm vào của bionic (`__system_property_read_callback` và `__system_property_get` 92 byte), `getprop` do JVM khởi chạy, và `getprop` khởi chạy từ mã native qua `popen` - một lệnh shell chạy bởi `ProcessBuilder` và cùng lệnh đó chạy không có JVM không phải cùng một góc nhìn, vì cái đầu là một bề mặt mà framework ẩn root viết lại, còn cái sau thì không.
-* **Danh tính thiết bị**: model, nhà sản xuất, thương hiệu, device, product, board, hardware, fingerprint, bootloader, build id/tags/type - mỗi trường `Build.*` đối chiếu với tất cả biến thể `ro.product.*` (system/vendor/odm), native và shell.
+* **~488 thuộc tính hệ thống** được đọc theo NĂM cách: `SystemProperties.get`, cả hai điểm vào của bionic (`__system_property_read_callback` và `__system_property_get` 92 byte), `getprop` do JVM khởi chạy, và `getprop` khởi chạy từ mã native qua `popen`; một lệnh shell chạy bởi `ProcessBuilder` và cùng lệnh đó chạy không có JVM không phải cùng một góc nhìn, vì cái đầu là một bề mặt mà framework ẩn root viết lại, còn cái sau thì không.
+* **Danh tính thiết bị**: model, nhà sản xuất, thương hiệu, device, product, board, hardware, fingerprint, bootloader, build id/tags/type, mỗi trường `Build.*` đối chiếu với tất cả biến thể `ro.product.*` (system/vendor/odm), native và shell.
 * **Định danh**: serial (nhiều getter), Android ID (settings và provider), GSF ID, advertising ID, IMEI/primary IMEI/MEID/IMSI/ICCID, user serial.
 * **Điện thoại**: bề mặt TelephonyManager (nhà mạng, SIM, mạng, roaming...), SubscriptionManager (đa SIM), cell info.
 * **Mạng**: **MAC** theo giao diện (`NetworkInterface` vs `/sys/class/net` vs shell), Wi-Fi (SSID/BSSID/IP/MAC), Bluetooth, DNS.
@@ -85,12 +85,12 @@ su -c cat /data/data/ru.vd171.vdinfos/files/last_snapshot.json
 
 ```
 core/model      miền bất biến: Lens, Category, Verdict, ProbeSpec, ProbeResult
-probe/          NativeBridge (JNI) - SystemProps (phản chiếu) - PropCatalog (dữ liệu)
-                SemanticProbes - IntegrityProbes - ProbeRegistry
-engine/         ProbeEngine - fan-out coroutine, truyền kết quả dưới dạng Flow
-data/           SnapshotStore (lưu bền + diff) - Exporter (chia sẻ JSON/văn bản)
+probe/          NativeBridge (JNI), SystemProps (phản chiếu), PropCatalog (dữ liệu)
+                SemanticProbes, IntegrityProbes, ProbeRegistry
+engine/         ProbeEngine: fan-out coroutine, truyền kết quả dưới dạng Flow
+data/           SnapshotStore (lưu bền + diff), Exporter (chia sẻ JSON/văn bản)
 ui/             Jetpack Compose, Material 3, màu động, tiến trình trực tiếp
-cpp/            native_probes.cpp - ống kính native, không phụ thuộc
+cpp/            native_probes.cpp: ống kính native, không phụ thuộc
 ```
 
 * **Song song**: 996 thăm dò tỏa ra trên dispatcher mặc định với số giấy phép giới hạn; kết quả chảy vào UI ngay khi đến.
@@ -101,11 +101,11 @@ cpp/            native_probes.cpp - ống kính native, không phụ thuộc
 
 Hầu hết đóng góp không cần Kotlin: các danh sách là văn bản thuần trong `VDInfos/app/src/main/assets/data/`. Thêm hoặc bớt một dòng rồi mở pull request.
 
-* `*_apps.txt` - mỗi dòng một tên gói
-* `props.txt` - danh mục thuộc tính hệ thống, `DANH_MỤC<tab>khóa`
-* `spoof_keys.txt` - ma trận spoof settings, `khóa:KIỂU`
-* `known_certs.txt` - danh mục chứng chỉ ký, `SHA-256<tab>chủ sở hữu` (hash đầy đủ, lấy từ APK thật bằng `apksigner verify --print-certs`)
-* các tệp `.txt` khác - cũng một mục mỗi dòng (mảnh tên mô-đun nhân, tên trong `/data/local/tmp`)
+* `*_apps.txt`: mỗi dòng một tên gói
+* `props.txt`: danh mục thuộc tính hệ thống, `DANH_MỤC<tab>khóa`
+* `spoof_keys.txt`: ma trận spoof settings, `khóa:KIỂU`
+* `known_certs.txt`: danh mục chứng chỉ ký, `SHA-256<tab>chủ sở hữu` (hash đầy đủ, lấy từ APK thật bằng `apksigner verify --print-certs`)
+* các tệp `.txt` khác: cũng một mục mỗi dòng (mảnh tên mô-đun nhân, tên trong `/data/local/tmp`)
 
 Dấu `#` bắt đầu một chú thích; dòng trống bị bỏ qua. Một số tệp chứa vài trường phân tách bằng dấu cách hoặc tab trên mỗi dòng, hoặc các dấu tùy chọn (`S` và `@field` trong `props.txt`); hãy giữ đúng dạng của các dòng đã có trong tệp. Đóng góp mã nguồn cũng được hoan nghênh. Khi đóng góp, bạn đồng ý rằng công việc của mình được phát hành theo AGPL-3.0-or-later của dự án này.
 
@@ -115,15 +115,15 @@ Các tham chiếu về ẩn và phát hiện root (hướng dẫn, mô-đun, fra
 
 ## Lời cảm ơn
 
-Cảm ơn đặc biệt tới **[frknkrc44](https://github.com/frknkrc44)**, nhà phát triển **[HMA-OSS](https://github.com/frknkrc44/HMA-OSS)**, vì sự tận tâm dành cho nó. HMA-OSS là nơi áp dụng nhiều bản sửa mà ứng dụng này gợi ý - ẩn ứng dụng mục tiêu và đặt preset spoof - và mọi lần nhắc đến nó trong ứng dụng đều liên kết ngược về nguồn.
+Cảm ơn đặc biệt tới **[frknkrc44](https://github.com/frknkrc44)**, nhà phát triển **[HMA-OSS](https://github.com/frknkrc44/HMA-OSS)**, vì sự tận tâm dành cho nó. HMA-OSS là nơi áp dụng nhiều bản sửa mà ứng dụng này gợi ý (ẩn ứng dụng mục tiêu và đặt preset spoof), và mọi lần nhắc đến nó trong ứng dụng đều liên kết ngược về nguồn.
 
 Các liên kết, kênh và cách ủng hộ: [HMA-OSS.md](HMA-OSS.md).
 
 ## Tài liệu
 
-- **[Danh mục](CATALOG.md)**: các tài liệu tham khảo về ẩn root và phát hiện - hướng dẫn, mô-đun, framework và trình phát hiện.
+- **[Danh mục](CATALOG.md)**: các tài liệu tham khảo về ẩn root và phát hiện (hướng dẫn, mô-đun, framework và trình phát hiện).
 - **[Nhật ký thay đổi](CHANGELOG.md)**: những thay đổi trong mỗi bản phát hành.
-- **[HMA-OSS](HMA-OSS.md)**: mô-đun ẩn ứng dụng mà các bản sửa lỗi của ứng dụng dựa trên - các liên kết, kênh và cách ủng hộ nó.
+- **[HMA-OSS](HMA-OSS.md)**: mô-đun ẩn ứng dụng mà các bản sửa lỗi của ứng dụng dựa trên (các liên kết, kênh và cách ủng hộ nó).
 - **[Đóng góp](README.md#contributing)**: cách thêm mục tiêu phát hiện (chủ yếu là danh sách văn bản thuần, không cần Kotlin).
 
 <!-- /vd-docs -->
@@ -135,6 +135,7 @@ Các dự án anh em của cùng tác giả:
 - **[VDGoogle](https://github.com/VD171/VD-Google)**: các dịch vụ Google của bạn (RCS, Wallet, attestation Play Integrity), đọc ngay trên thiết bị của bạn mà không cần internet.
 - **[VDBackup](https://github.com/VD171/VD-Backup)**: sao lưu và khôi phục toàn bộ ứng dụng và dữ liệu với quyền root, điều khiển hoàn toàn từ một WebUI.
 - **[COPG-VD](https://github.com/VD171/COPG-VD)**: một trình giả mạo thiết bị biến một fingerprint mới tinh thành một hồ sơ mạch lạc, nhất quán.
+- **[VD-dropbear](https://github.com/VD171/VD-dropbear)**: một SSH daemon độc lập chạy với quyền root (Dropbear).
 
 Pixel `build.prop`: **[@VictorGabriel7Dev/build.prop](https://github.com/VictorGabriel7Dev/build.prop)** (fork of @T3SL4).
 
@@ -152,7 +153,7 @@ Pixel `build.prop`: **[@VictorGabriel7Dev/build.prop](https://github.com/VictorG
 
 ## Giấy phép
 
-**GNU AGPL-3.0-or-later** - xem [LICENSE](LICENSE). Copyleft, bao gồm điều khoản mạng: bất kỳ ai chạy một phiên bản đã sửa đổi (kể cả dưới dạng dịch vụ) phải cung cấp mã nguồn của nó. Được chọn có chủ đích cho một công cụ nghiên cứu/chống phát hiện, để giữ cho các fork luôn mở.
+**GNU AGPL-3.0-or-later**: xem [LICENSE](LICENSE). Copyleft, bao gồm điều khoản mạng: bất kỳ ai chạy một phiên bản đã sửa đổi (kể cả dưới dạng dịch vụ) phải cung cấp mã nguồn của nó. Được chọn có chủ đích cho một công cụ nghiên cứu/chống phát hiện, để giữ cho các fork luôn mở.
 
 ## Thương hiệu
 

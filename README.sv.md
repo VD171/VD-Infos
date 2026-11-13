@@ -1,6 +1,6 @@
 <!--
-  VD INFOS - device method debugger: read every device info by every method, then compare.
-  Copyright (C) 2026  VD171 - SPDX-License-Identifier: AGPL-3.0-or-later
+  VD INFOS: device method debugger: read every device info by every method, then compare.
+  Copyright (C) 2026  VD171. SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
 # VD Infos
@@ -39,7 +39,7 @@
 
 ---
 
-Android är ett oerhört kraftfullt och mångsidigt operativsystem; vad ingen berättar är att alla dina personliga uppgifter och känsliga uppgifter är tillgängliga för varje app du installerar, och att skydda dig mot dessa integritetsintrång är en skyldighet. VD Infos visar dig ett exempel på vad som kan fångas från din enhet, och gör det som en *metod-debugger*: för varje uppgift läser den värdet via **varje metod som kan läsa det** - `Build.*`, `SystemProperties`, `getprop`, den nativa `__system_property_get`, systemhanterare, content providers, filer, syscalls och attestering av hårdvarunyckel (TEE) - och radar upp dem så att du kan jämföra. När en metod avviker från de andra skriver något däremellan om den ytan: ett hooking-ramverk, en spoofer, en resolver-shim. **INGEN INFORMATION LAGRAS, SKICKAS ELLER ÖVERFÖRS TILL NÅGON FIL¹ ELLER SERVER** - allt körs på enheten, identitetsbärande värden är maskerade tills du avslöjar dem, och en rapport lämnar enheten endast när du uttryckligen delar eller sparar den; vill du, blockera internetåtkomst med en brandvägg eller stäng bara av den.
+Android är ett oerhört kraftfullt och mångsidigt operativsystem; vad ingen berättar är att alla dina personliga uppgifter och känsliga uppgifter är tillgängliga för varje app du installerar, och att skydda dig mot dessa integritetsintrång är en skyldighet. VD Infos visar dig ett exempel på vad som kan fångas från din enhet, och gör det som en *metod-debugger*: för varje uppgift läser den värdet via **varje metod som kan läsa det**: `Build.*`, `SystemProperties`, `getprop`, den nativa `__system_property_get`, systemhanterare, content providers, filer, syscalls och attestering av hårdvarunyckel (TEE), och radar upp dem så att du kan jämföra. När en metod avviker från de andra skriver något däremellan om den ytan: ett hooking-ramverk, en spoofer, en resolver-shim. **INGEN INFORMATION LAGRAS, SKICKAS ELLER ÖVERFÖRS TILL NÅGON FIL¹ ELLER SERVER**: allt körs på enheten, identitetsbärande värden är maskerade tills du avslöjar dem, och en rapport lämnar enheten endast när du uttryckligen delar eller sparar den; vill du, blockera internetåtkomst med en brandvägg eller stäng bara av den.
 
 > **¹ Undantag:** varje skanning sparar hela rapporten i appens privata lagring (`files/last_snapshot.json`). Bara appen själv eller root kan läsa den, nästa skanning skriver över den och den lämnar aldrig enheten. Den finns för att AI-agenter ska kunna läsa hela resultatet; se **För AI-agenter: hela rapporten som JSON**.
 
@@ -47,8 +47,8 @@ Android är ett oerhört kraftfullt och mångsidigt operativsystem; vad ingen be
 
 Varje post läses via varje metod som kan läsa den (Java-SDK / nativ / shell), jämförda sida vid sida:
 
-* **~488 systemegenskaper** lästa på FEM sätt: `SystemProperties.get`, båda bionics ingångspunkter (`__system_property_read_callback` och den 92-byte stora `__system_property_get`), `getprop` startad av JVM:en och `getprop` startad från nativ kod via `popen` - ett shell-kommando kört av `ProcessBuilder` och samma kommando kört utan JVM är inte samma synvinkel, eftersom det första är en yta som ett root-döljande ramverk skriver om och det andra inte.
-* **Enhetsidentitet**: modell, tillverkare, märke, device, product, board, hardware, fingerprint, bootloader, build id/tags/type - varje `Build.*`-fält mot alla dess `ro.product.*`-varianter (system/vendor/odm), nativt och shell.
+* **~488 systemegenskaper** lästa på FEM sätt: `SystemProperties.get`, båda bionics ingångspunkter (`__system_property_read_callback` och den 92-byte stora `__system_property_get`), `getprop` startad av JVM:en och `getprop` startad från nativ kod via `popen`; ett shell-kommando kört av `ProcessBuilder` och samma kommando kört utan JVM är inte samma synvinkel, eftersom det första är en yta som ett root-döljande ramverk skriver om och det andra inte.
+* **Enhetsidentitet**: modell, tillverkare, märke, device, product, board, hardware, fingerprint, bootloader, build id/tags/type, varje `Build.*`-fält mot alla dess `ro.product.*`-varianter (system/vendor/odm), nativt och shell.
 * **Identifierare**: serial (många getters), Android ID (settings och provider), GSF ID, advertising ID, IMEI/primary IMEI/MEID/IMSI/ICCID, user serial.
 * **Telefoni**: TelephonyManager-ytan (operatör, SIM, nätverk, roaming...), SubscriptionManager (multi-SIM), cell info.
 * **Nätverk**: **MAC** per gränssnitt (`NetworkInterface` vs `/sys/class/net` vs shell), Wi-Fi (SSID/BSSID/IP/MAC), Bluetooth, DNS.
@@ -85,12 +85,12 @@ su -c cat /data/data/ru.vd171.vdinfos/files/last_snapshot.json
 
 ```
 core/model      oföränderlig domän: Lens, Category, Verdict, ProbeSpec, ProbeResult
-probe/          NativeBridge (JNI) - SystemProps (reflektion) - PropCatalog (data)
-                SemanticProbes - IntegrityProbes - ProbeRegistry
-engine/         ProbeEngine - coroutine-fan-out, strömmar resultat som en Flow
-data/           SnapshotStore (beständighet + diff) - Exporter (JSON-/textdelning)
+probe/          NativeBridge (JNI), SystemProps (reflektion), PropCatalog (data)
+                SemanticProbes, IntegrityProbes, ProbeRegistry
+engine/         ProbeEngine: coroutine-fan-out, strömmar resultat som en Flow
+data/           SnapshotStore (beständighet + diff), Exporter (JSON-/textdelning)
 ui/             Jetpack Compose, Material 3, dynamisk färg, live-förlopp
-cpp/            native_probes.cpp - den nativa linsen, beroendefri
+cpp/            native_probes.cpp: den nativa linsen, beroendefri
 ```
 
 * **Parallellism**: 996 sonder fördelas över standard-dispatchern med ett begränsat antal tillstånd; resultaten strömmar in i UI:t allteftersom de landar.
@@ -101,11 +101,11 @@ cpp/            native_probes.cpp - den nativa linsen, beroendefri
 
 De flesta bidrag kräver ingen Kotlin: listorna ligger som ren text under `VDInfos/app/src/main/assets/data/`. Lägg till eller ta bort en rad och öppna en pull request.
 
-* `*_apps.txt` - ett paketnamn per rad
-* `props.txt` - katalogen över systemegenskaper, `KATEGORI<tab>nyckel`
-* `spoof_keys.txt` - spoof-matrisen för settings, `nyckel:TYP`
-* `known_certs.txt` - katalogen över signeringscertifikat, `SHA-256<tab>ägare` (hel hash, från en riktig APK med `apksigner verify --print-certs`)
-* övriga `.txt`-filer - även en post per rad (namnfragment för kärnmoduler, namn i `/data/local/tmp`)
+* `*_apps.txt`: ett paketnamn per rad
+* `props.txt`: katalogen över systemegenskaper, `KATEGORI<tab>nyckel`
+* `spoof_keys.txt`: spoof-matrisen för settings, `nyckel:TYP`
+* `known_certs.txt`: katalogen över signeringscertifikat, `SHA-256<tab>ägare` (hel hash, från en riktig APK med `apksigner verify --print-certs`)
+* övriga `.txt`-filer: även en post per rad (namnfragment för kärnmoduler, namn i `/data/local/tmp`)
 
 Ett `#` inleder en kommentar; tomma rader ignoreras. Vissa filer har flera fält per rad åtskilda med mellanslag eller tabb, eller valfria markörer (`S` och `@field` i `props.txt`); behåll formen på raderna som redan finns i filen. Kodbidrag är också välkomna. Genom att bidra godtar du att ditt arbete sprids under projektets AGPL-3.0-or-later.
 
@@ -115,15 +115,15 @@ Referenser för root-döljande och -detektering (guider, moduler, ramverk, detek
 
 ## Tack
 
-Ett särskilt tack till **[frknkrc44](https://github.com/frknkrc44)**, utvecklaren av **[HMA-OSS](https://github.com/frknkrc44/HMA-OSS)**, för omsorgen som lagts ned. HMA-OSS är där flera av de fixar som den här appen föreslår tillämpas - dölja målappar och sätta spoof-förinställningar - och varje omnämnande av det i appen länkar tillbaka till källan.
+Ett särskilt tack till **[frknkrc44](https://github.com/frknkrc44)**, utvecklaren av **[HMA-OSS](https://github.com/frknkrc44/HMA-OSS)**, för omsorgen som lagts ned. HMA-OSS är där flera av de fixar som den här appen föreslår tillämpas (dölja målappar och sätta spoof-förinställningar), och varje omnämnande av det i appen länkar tillbaka till källan.
 
 Dess länkar, kanaler och hur du stöder det: [HMA-OSS.md](HMA-OSS.md).
 
 ## Dokumentation
 
-- **[Katalog](CATALOG.md)**: referenser för att dölja root och för detektering - guider, moduler, ramverk och detektorer.
+- **[Katalog](CATALOG.md)**: referenser för att dölja root och för detektering (guider, moduler, ramverk och detektorer).
 - **[Ändringslogg](CHANGELOG.md)**: vad som ändrats i varje version.
-- **[HMA-OSS](HMA-OSS.md)**: appdöljningsmodulen som appens fixar bygger på - dess länkar, kanaler och hur du stöder den.
+- **[HMA-OSS](HMA-OSS.md)**: appdöljningsmodulen som appens fixar bygger på (dess länkar, kanaler och hur du stöder den).
 - **[Bidra](README.md#contributing)**: hur du lägger till detekteringsmål (mest vanliga textlistor, ingen Kotlin behövs).
 
 <!-- /vd-docs -->
@@ -135,6 +135,7 @@ Systerprojekt av samma upphovsperson:
 - **[VDGoogle](https://github.com/VD171/VD-Google)**: dina Google-tjänster (RCS, Wallet, Play Integrity-attesteringar), lästa på din enhet utan internet.
 - **[VDBackup](https://github.com/VD171/VD-Backup)**: fullständig säkerhetskopiering och återställning av appar och data som root, helt styrd från ett WebUI.
 - **[COPG-VD](https://github.com/VD171/COPG-VD)**: en enhetsspoofer som förvandlar ett nytt fingerprint till en sammanhängande, konsekvent profil.
+- **[VD-dropbear](https://github.com/VD171/VD-dropbear)**: en fristående rootad SSH-daemon (Dropbear).
 
 Pixel `build.prop`: **[@VictorGabriel7Dev/build.prop](https://github.com/VictorGabriel7Dev/build.prop)** (fork of @T3SL4).
 
@@ -152,7 +153,7 @@ Pixel `build.prop`: **[@VictorGabriel7Dev/build.prop](https://github.com/VictorG
 
 ## Licens
 
-**GNU AGPL-3.0-or-later** - se [LICENSE](LICENSE). Copyleft, inklusive nätverksklausulen: den som kör en modifierad version (även som tjänst) måste erbjuda dess källkod. Vald medvetet för ett forsknings-/anti-detektionsverktyg, för att hålla forkar öppna.
+**GNU AGPL-3.0-or-later**: se [LICENSE](LICENSE). Copyleft, inklusive nätverksklausulen: den som kör en modifierad version (även som tjänst) måste erbjuda dess källkod. Vald medvetet för ett forsknings-/anti-detektionsverktyg, för att hålla forkar öppna.
 
 ## Varumärken
 

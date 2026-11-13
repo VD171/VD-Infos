@@ -1,6 +1,6 @@
 <!--
-  VD INFOS - device method debugger: read every device info by every method, then compare.
-  Copyright (C) 2026  VD171 - SPDX-License-Identifier: AGPL-3.0-or-later
+  VD INFOS: device method debugger: read every device info by every method, then compare.
+  Copyright (C) 2026  VD171. SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
 # VD Infos
@@ -39,7 +39,7 @@
 
 ---
 
-Android je nesmírně výkonný a všestranný operační systém; co vám nikdo neřekne, je, že všechny vaše osobní údaje a důvěrné informace jsou dostupné každé aplikaci, kterou nainstalujete, a chránit se proti takovému narušování soukromí je povinnost. VD Infos vám ukazuje příklad toho, co lze z vašeho zařízení zachytit, a dělá to jako *debugger metod*: pro každou informaci čte hodnotu **každou metodou, která ji dokáže přečíst** - `Build.*`, `SystemProperties`, `getprop`, nativní `__system_property_get`, systémové managery, content providery, soubory, syscally a hardwarový attestation klíče (TEE) - a seřadí je vedle sebe, abyste mohli porovnat. Když se jedna metoda liší od ostatních, něco mezi tím tu plochu přepisuje: hookovací framework, spoofer, resolver shim. **ŽÁDNÉ INFORMACE SE NEUKLÁDAJÍ, NEODESÍLAJÍ ANI NEPŘENÁŠEJÍ DO ŽÁDNÉHO SOUBORU¹ ČI SERVERU** - vše běží na zařízení, hodnoty nesoucí identitu jsou maskovány, dokud je neodhalíte, a report opustí zařízení jen tehdy, když jej výslovně sdílíte nebo uložíte; chcete-li, zablokujte přístup k internetu firewallem nebo jej prostě vypněte.
+Android je nesmírně výkonný a všestranný operační systém; co vám nikdo neřekne, je, že všechny vaše osobní údaje a důvěrné informace jsou dostupné každé aplikaci, kterou nainstalujete, a chránit se proti takovému narušování soukromí je povinnost. VD Infos vám ukazuje příklad toho, co lze z vašeho zařízení zachytit, a dělá to jako *debugger metod*: pro každou informaci čte hodnotu **každou metodou, která ji dokáže přečíst**: `Build.*`, `SystemProperties`, `getprop`, nativní `__system_property_get`, systémové managery, content providery, soubory, syscally a hardwarový attestation klíče (TEE), a seřadí je vedle sebe, abyste mohli porovnat. Když se jedna metoda liší od ostatních, něco mezi tím tu plochu přepisuje: hookovací framework, spoofer, resolver shim. **ŽÁDNÉ INFORMACE SE NEUKLÁDAJÍ, NEODESÍLAJÍ ANI NEPŘENÁŠEJÍ DO ŽÁDNÉHO SOUBORU¹ ČI SERVERU**: vše běží na zařízení, hodnoty nesoucí identitu jsou maskovány, dokud je neodhalíte, a report opustí zařízení jen tehdy, když jej výslovně sdílíte nebo uložíte; chcete-li, zablokujte přístup k internetu firewallem nebo jej prostě vypněte.
 
 > **¹ Výjimka:** každé skenování uloží úplnou zprávu do soukromého úložiště aplikace (`files/last_snapshot.json`). Číst ji může jen samotná aplikace nebo root, další skenování ji přepíše a zařízení nikdy neopustí. Existuje proto, aby AI agenti mohli přečíst úplný výsledek; viz **Pro AI agenty: úplná zpráva v JSON**.
 
@@ -47,8 +47,8 @@ Android je nesmírně výkonný a všestranný operační systém; co vám nikdo
 
 Každá položka se čte každou metodou, která ji dokáže přečíst (Java SDK / nativně / shell), a porovnává vedle sebe:
 
-* **~488 systémových vlastností** čtených PĚTI způsoby: `SystemProperties.get`, oba vstupní body bionicu (`__system_property_read_callback` a 92bajtový `__system_property_get`), `getprop` spuštěný JVM a `getprop` spuštěný z nativního kódu přes `popen` - shellový příkaz spuštěný přes `ProcessBuilder` a tentýž příkaz spuštěný bez JVM nejsou stejný úhel pohledu, protože první je plocha, kterou framework skrývající root přepisuje, a druhý ne.
-* **Identita zařízení**: model, výrobce, značka, device, product, board, hardware, fingerprint, bootloader, build id/tags/type - každé pole `Build.*` proti všem jeho variantám `ro.product.*` (system/vendor/odm), nativně a přes shell.
+* **~488 systémových vlastností** čtených PĚTI způsoby: `SystemProperties.get`, oba vstupní body bionicu (`__system_property_read_callback` a 92bajtový `__system_property_get`), `getprop` spuštěný JVM a `getprop` spuštěný z nativního kódu přes `popen`; shellový příkaz spuštěný přes `ProcessBuilder` a tentýž příkaz spuštěný bez JVM nejsou stejný úhel pohledu, protože první je plocha, kterou framework skrývající root přepisuje, a druhý ne.
+* **Identita zařízení**: model, výrobce, značka, device, product, board, hardware, fingerprint, bootloader, build id/tags/type, každé pole `Build.*` proti všem jeho variantám `ro.product.*` (system/vendor/odm), nativně a přes shell.
 * **Identifikátory**: serial (mnoho getterů), Android ID (settings a provider), GSF ID, advertising ID, IMEI/primary IMEI/MEID/IMSI/ICCID, user serial.
 * **Telefonie**: plocha TelephonyManageru (operátor, SIM, síť, roaming...), SubscriptionManager (multi-SIM), cell info.
 * **Síť**: **MAC** na rozhraní (`NetworkInterface` vs `/sys/class/net` vs shell), Wi-Fi (SSID/BSSID/IP/MAC), Bluetooth, DNS.
@@ -85,12 +85,12 @@ su -c cat /data/data/ru.vd171.vdinfos/files/last_snapshot.json
 
 ```
 core/model      neměnná doména: Lens, Category, Verdict, ProbeSpec, ProbeResult
-probe/          NativeBridge (JNI) - SystemProps (reflexe) - PropCatalog (data)
-                SemanticProbes - IntegrityProbes - ProbeRegistry
-engine/         ProbeEngine - fan-out na korutinách, streamuje výsledky jako Flow
-data/           SnapshotStore (perzistence + diff) - Exporter (sdílení JSON/text)
+probe/          NativeBridge (JNI), SystemProps (reflexe), PropCatalog (data)
+                SemanticProbes, IntegrityProbes, ProbeRegistry
+engine/         ProbeEngine: fan-out na korutinách, streamuje výsledky jako Flow
+data/           SnapshotStore (perzistence + diff), Exporter (sdílení JSON/text)
 ui/             Jetpack Compose, Material 3, dynamická barva, živý průběh
-cpp/            native_probes.cpp - nativní čočka, bez závislostí
+cpp/            native_probes.cpp: nativní čočka, bez závislostí
 ```
 
 * **Paralelismus**: 991 sond se rozvětví na výchozím dispatcheru s omezeným počtem povolení; výsledky proudí do UI, jakmile dorazí.
@@ -101,11 +101,11 @@ cpp/            native_probes.cpp - nativní čočka, bez závislostí
 
 Většina příspěvků nevyžaduje Kotlin: seznamy jsou prostý text v `VDInfos/app/src/main/assets/data/`. Přidejte nebo odeberte jeden řádek a otevřete pull request.
 
-* `*_apps.txt` - jedno jméno balíčku na řádek
-* `props.txt` - katalog systémových vlastností, `KATEGORIE<tab>klíč`
-* `spoof_keys.txt` - matice spoof nastavení, `klíč:TYP`
-* `known_certs.txt` - katalog podpisových certifikátů, `SHA-256<tab>vlastník` (celý hash, ze skutečného APK přes `apksigner verify --print-certs`)
-* ostatní soubory `.txt` - také jeden záznam na řádek (fragmenty názvů modulů jádra, názvy v `/data/local/tmp`)
+* `*_apps.txt`: jedno jméno balíčku na řádek
+* `props.txt`: katalog systémových vlastností, `KATEGORIE<tab>klíč`
+* `spoof_keys.txt`: matice spoof nastavení, `klíč:TYP`
+* `known_certs.txt`: katalog podpisových certifikátů, `SHA-256<tab>vlastník` (celý hash, ze skutečného APK přes `apksigner verify --print-certs`)
+* ostatní soubory `.txt`: také jeden záznam na řádek (fragmenty názvů modulů jádra, názvy v `/data/local/tmp`)
 
 `#` začíná komentář; prázdné řádky se ignorují. Některé soubory obsahují na řádku několik polí oddělených mezerou nebo tabulátorem, případně volitelné značky (`S` a `@field` v `props.txt`); zachovejte podobu řádků, které už v souboru jsou. Příspěvky v kódu jsou také vítány. Přispěním souhlasíte, že vaše práce bude šířena pod AGPL-3.0-or-later tohoto projektu.
 
@@ -115,15 +115,15 @@ Reference ke skrývání a detekci rootu (návody, moduly, frameworky, detektory
 
 ## Poděkování
 
-Zvláštní poděkování patří **[frknkrc44](https://github.com/frknkrc44)**, vývojáři **[HMA-OSS](https://github.com/frknkrc44/HMA-OSS)**, za péči do něj vloženou. HMA-OSS je místo, kde se aplikuje několik oprav, které tato aplikace navrhuje - skrytí cílových aplikací a nastavení presetů spoof - a každá zmínka o něm v aplikaci odkazuje zpět na jeho zdroj.
+Zvláštní poděkování patří **[frknkrc44](https://github.com/frknkrc44)**, vývojáři **[HMA-OSS](https://github.com/frknkrc44/HMA-OSS)**, za péči do něj vloženou. HMA-OSS je místo, kde se aplikuje několik oprav, které tato aplikace navrhuje (skrytí cílových aplikací a nastavení presetů spoof), a každá zmínka o něm v aplikaci odkazuje zpět na jeho zdroj.
 
 Jeho odkazy, kanály a jak jej podpořit: [HMA-OSS.md](HMA-OSS.md).
 
 ## Dokumentace
 
-- **[Katalog](CATALOG.md)**: reference ke skrývání rootu a detekci - průvodci, moduly, frameworky a detektory.
+- **[Katalog](CATALOG.md)**: reference ke skrývání rootu a detekci (průvodci, moduly, frameworky a detektory).
 - **[Seznam změn](CHANGELOG.md)**: co se změnilo v každém vydání.
-- **[HMA-OSS](HMA-OSS.md)**: modul pro skrývání aplikací, na kterém stojí opravy této aplikace - jeho odkazy, kanály a jak jej podpořit.
+- **[HMA-OSS](HMA-OSS.md)**: modul pro skrývání aplikací, na kterém stojí opravy této aplikace (jeho odkazy, kanály a jak jej podpořit).
 - **[Přispívání](README.md#contributing)**: jak přidat cíle detekce (většinou prosté textové seznamy, bez potřeby Kotlinu).
 
 <!-- /vd-docs -->
@@ -135,6 +135,7 @@ Sourozenecké projekty téhož autora:
 - **[VDGoogle](https://github.com/VD171/VD-Google)**: vaše služby Google (RCS, Wallet, atestace Play Integrity), čtené na vašem zařízení bez internetu.
 - **[VDBackup](https://github.com/VD171/VD-Backup)**: úplné zálohování a obnova aplikací a dat jako root, řízené celé z WebUI.
 - **[COPG-VD](https://github.com/VD171/COPG-VD)**: spoofer zařízení, který z čerstvého fingerprintu udělá koherentní, konzistentní profil.
+- **[VD-dropbear](https://github.com/VD171/VD-dropbear)**: samostatný rootovaný SSH démon (Dropbear).
 
 Pixel `build.prop`: **[@VictorGabriel7Dev/build.prop](https://github.com/VictorGabriel7Dev/build.prop)** (fork od @T3SL4).
 
@@ -152,7 +153,7 @@ Pixel `build.prop`: **[@VictorGabriel7Dev/build.prop](https://github.com/VictorG
 
 ## Licence
 
-**GNU AGPL-3.0-or-later** - viz [LICENSE](LICENSE). Copyleft včetně síťové klauzule: kdokoli spustí upravenou verzi (i jako službu), musí nabídnout její zdrojový kód. Zvoleno záměrně pro výzkumný/anti-detekční nástroj, aby forky zůstaly otevřené.
+**GNU AGPL-3.0-or-later**: viz [LICENSE](LICENSE). Copyleft včetně síťové klauzule: kdokoli spustí upravenou verzi (i jako službu), musí nabídnout její zdrojový kód. Zvoleno záměrně pro výzkumný/anti-detekční nástroj, aby forky zůstaly otevřené.
 
 ## Ochranné známky
 

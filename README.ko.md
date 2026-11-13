@@ -1,6 +1,6 @@
 <!--
-  VD INFOS - device method debugger: read every device info by every method, then compare.
-  Copyright (C) 2026  VD171 - SPDX-License-Identifier: AGPL-3.0-or-later
+  VD INFOS: device method debugger: read every device info by every method, then compare.
+  Copyright (C) 2026  VD171. SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
 # VD Infos
@@ -39,7 +39,7 @@
 
 ---
 
-Android는 매우 강력하고 다재다능한 운영체제이지만, 아무도 말해주지 않는 것은 당신의 모든 개인 정보와 기밀 정보가 설치하는 모든 앱에 노출되어 있다는 점이며, 이런 사생활 침해로부터 스스로를 보호하는 것은 의무입니다. VD Infos는 당신의 기기에서 무엇이 수집될 수 있는지 예시를 보여주며, 이를 *메서드 디버거*로 수행합니다. 각 정보에 대해 **그것을 읽을 수 있는 모든 방법**으로 값을 읽습니다 - `Build.*`, `SystemProperties`, `getprop`, 네이티브 `__system_property_get`, 시스템 매니저, content provider, 파일, syscall, 하드웨어 키 attestation(TEE) - 그리고 비교할 수 있도록 나란히 정렬합니다. 한 방법이 다른 방법과 어긋날 때, 그 사이의 무언가가 그 표면을 다시 쓰고 있는 것입니다. hook 프레임워크, spoofer, resolver shim입니다. **어떤 정보도 저장, 전송되거나 어떤 파일¹이나 서버로도 전달되지 않습니다** - 모든 것은 기기에서 실행되고, 신원을 담은 값은 당신이 드러내기 전까지 가려지며, 보고서는 당신이 명시적으로 공유하거나 저장할 때만 기기를 떠납니다. 원한다면 방화벽으로 인터넷 접근을 차단하거나 그냥 꺼두세요.
+Android는 매우 강력하고 다재다능한 운영체제이지만, 아무도 말해주지 않는 것은 당신의 모든 개인 정보와 기밀 정보가 설치하는 모든 앱에 노출되어 있다는 점이며, 이런 사생활 침해로부터 스스로를 보호하는 것은 의무입니다. VD Infos는 당신의 기기에서 무엇이 수집될 수 있는지 예시를 보여주며, 이를 *메서드 디버거*로 수행합니다. 각 정보에 대해 **그것을 읽을 수 있는 모든 방법**으로 값을 읽습니다: `Build.*`, `SystemProperties`, `getprop`, 네이티브 `__system_property_get`, 시스템 매니저, content provider, 파일, syscall, 하드웨어 키 attestation(TEE), 그리고 비교할 수 있도록 나란히 정렬합니다. 한 방법이 다른 방법과 어긋날 때, 그 사이의 무언가가 그 표면을 다시 쓰고 있는 것입니다. hook 프레임워크, spoofer, resolver shim입니다. **어떤 정보도 저장, 전송되거나 어떤 파일¹이나 서버로도 전달되지 않습니다**: 모든 것은 기기에서 실행되고, 신원을 담은 값은 당신이 드러내기 전까지 가려지며, 보고서는 당신이 명시적으로 공유하거나 저장할 때만 기기를 떠납니다. 원한다면 방화벽으로 인터넷 접근을 차단하거나 그냥 꺼두세요.
 
 > **¹ 예외:** 각 스캔은 전체 보고서를 앱의 비공개 저장소(`files/last_snapshot.json`)에 보관합니다. 앱 자신이나 root만 읽을 수 있고, 다음 스캔이 덮어쓰며, 기기를 벗어나지 않습니다. AI 에이전트가 전체 결과를 읽을 수 있도록 존재합니다. 참고: **AI 에이전트용: JSON으로 된 전체 보고서**.
 
@@ -47,8 +47,8 @@ Android는 매우 강력하고 다재다능한 운영체제이지만, 아무도 
 
 각 항목은 그것을 읽을 수 있는 모든 방법(Java SDK / 네이티브 / shell)으로 읽혀 나란히 비교됩니다:
 
-* **약 488개의 시스템 속성**을 다섯 가지 방식으로 읽습니다: `SystemProperties.get`, bionic의 두 진입점(`__system_property_read_callback`과 92바이트 `__system_property_get`), JVM이 실행하는 `getprop`, 그리고 네이티브 코드에서 `popen`으로 실행하는 `getprop` - `ProcessBuilder`가 실행한 shell 명령과 JVM 없이 실행한 같은 명령은 동일한 관점이 아닙니다. 전자는 root 은닉 프레임워크가 다시 쓰는 표면이고 후자는 아니기 때문입니다.
-* **기기 신원**: 모델, 제조사, 브랜드, device, product, board, hardware, fingerprint, bootloader, build id/tags/type - 각 `Build.*` 필드를 그 모든 `ro.product.*`(system/vendor/odm) 변형, 네이티브, shell과 대조.
+* **약 488개의 시스템 속성**을 다섯 가지 방식으로 읽습니다: `SystemProperties.get`, bionic의 두 진입점(`__system_property_read_callback`과 92바이트 `__system_property_get`), JVM이 실행하는 `getprop`, 그리고 네이티브 코드에서 `popen`으로 실행하는 `getprop`. `ProcessBuilder`가 실행한 shell 명령과 JVM 없이 실행한 같은 명령은 동일한 관점이 아닙니다. 전자는 root 은닉 프레임워크가 다시 쓰는 표면이고 후자는 아니기 때문입니다.
+* **기기 신원**: 모델, 제조사, 브랜드, device, product, board, hardware, fingerprint, bootloader, build id/tags/type, 각 `Build.*` 필드를 그 모든 `ro.product.*`(system/vendor/odm) 변형, 네이티브, shell과 대조.
 * **식별자**: serial(여러 게터), Android ID(settings와 provider), GSF ID, advertising ID, IMEI/primary IMEI/MEID/IMSI/ICCID, user serial.
 * **전화**: TelephonyManager 표면(통신사, SIM, 네트워크, 로밍…), SubscriptionManager(멀티 SIM), cell info.
 * **네트워크**: 인터페이스별 **MAC**(`NetworkInterface` vs `/sys/class/net` vs shell), Wi-Fi(SSID/BSSID/IP/MAC), 블루투스, DNS.
@@ -85,12 +85,12 @@ su -c cat /data/data/ru.vd171.vdinfos/files/last_snapshot.json
 
 ```
 core/model      불변 도메인: Lens, Category, Verdict, ProbeSpec, ProbeResult
-probe/          NativeBridge (JNI) - SystemProps (리플렉션) - PropCatalog (데이터)
-                SemanticProbes - IntegrityProbes - ProbeRegistry
-engine/         ProbeEngine - 코루틴 팬아웃, 결과를 Flow로 스트리밍
-data/           SnapshotStore (영속화 + diff) - Exporter (JSON/텍스트 공유)
+probe/          NativeBridge (JNI), SystemProps (리플렉션), PropCatalog (데이터)
+                SemanticProbes, IntegrityProbes, ProbeRegistry
+engine/         ProbeEngine: 코루틴 팬아웃, 결과를 Flow로 스트리밍
+data/           SnapshotStore (영속화 + diff), Exporter (JSON/텍스트 공유)
 ui/             Jetpack Compose, Material 3, 동적 색상, 실시간 진행
-cpp/            native_probes.cpp - 네이티브 렌즈, 의존성 없음
+cpp/            native_probes.cpp: 네이티브 렌즈, 의존성 없음
 ```
 
 * **병렬성**: 996개의 프로브가 제한된 permit 수로 기본 dispatcher에 펼쳐지며, 결과는 도착하는 대로 UI로 흘러듭니다.
@@ -101,11 +101,11 @@ cpp/            native_probes.cpp - 네이티브 렌즈, 의존성 없음
 
 대부분의 기여에는 Kotlin이 필요 없습니다. 목록은 `VDInfos/app/src/main/assets/data/` 아래에 일반 텍스트로 있습니다. 한 줄을 추가하거나 제거하고 pull request를 열면 됩니다.
 
-* `*_apps.txt` - 한 줄에 패키지 이름 하나
-* `props.txt` - 시스템 속성 카탈로그, `카테고리<tab>키`
-* `spoof_keys.txt` - settings spoof 행렬, `키:타입`
-* `known_certs.txt` - 서명 인증서 카탈로그, `SHA-256<tab>소유자` (전체 해시, 실제 APK에서 `apksigner verify --print-certs`로 추출)
-* 기타 `.txt` 파일 - 마찬가지로 한 줄에 하나의 항목(커널 모듈 이름 조각, `/data/local/tmp` 파일 이름)
+* `*_apps.txt`: 한 줄에 패키지 이름 하나
+* `props.txt`: 시스템 속성 카탈로그, `카테고리<tab>키`
+* `spoof_keys.txt`: settings spoof 행렬, `키:타입`
+* `known_certs.txt`: 서명 인증서 카탈로그, `SHA-256<tab>소유자` (전체 해시, 실제 APK에서 `apksigner verify --print-certs`로 추출)
+* 기타 `.txt` 파일: 마찬가지로 한 줄에 하나의 항목(커널 모듈 이름 조각, `/data/local/tmp` 파일 이름)
 
 `#` 는 주석을 시작하며 빈 줄은 무시됩니다. 일부 파일은 한 줄에 공백 또는 탭으로 구분된 여러 필드나 선택적 표시(`props.txt` 의 `S` 와 `@field`)를 담고 있습니다. 파일에 이미 있는 줄의 형식을 유지하세요. 코드 기여도 환영합니다. 기여하면 귀하의 작업이 이 프로젝트의 AGPL-3.0-or-later 로 배포되는 데 동의하는 것입니다.
 
@@ -115,15 +115,15 @@ root 은닉 및 탐지 참고자료(가이드, 모듈, 프레임워크, 탐지�
 
 ## 감사의 말
 
-**[HMA-OSS](https://github.com/frknkrc44/HMA-OSS)** 의 개발자 **[frknkrc44](https://github.com/frknkrc44)** 님이 쏟은 정성에 특별히 감사드립니다. HMA-OSS는 이 앱이 제안하는 여러 수정이 적용되는 곳입니다 - 대상 앱 숨기기와 spoof 프리셋 설정 - 그리고 앱 내의 모든 언급은 그 소스로 다시 링크됩니다.
+**[HMA-OSS](https://github.com/frknkrc44/HMA-OSS)** 의 개발자 **[frknkrc44](https://github.com/frknkrc44)** 님이 쏟은 정성에 특별히 감사드립니다. HMA-OSS는 이 앱이 제안하는 여러 수정이 적용되는 곳입니다 (대상 앱 숨기기와 spoof 프리셋 설정), 그리고 앱 내의 모든 언급은 그 소스로 다시 링크됩니다.
 
 링크, 채널, 후원 방법: [HMA-OSS.md](HMA-OSS.md).
 
 ## 문서
 
-- **[카탈로그](CATALOG.md)**: 루트 숨김과 탐지 관련 참고 자료 - 가이드, 모듈, 프레임워크, 탐지기.
+- **[카탈로그](CATALOG.md)**: 루트 숨김과 탐지 관련 참고 자료 (가이드, 모듈, 프레임워크, 탐지기).
 - **[변경 로그](CHANGELOG.md)**: 각 릴리스에서 바뀐 내용.
-- **[HMA-OSS](HMA-OSS.md)**: 이 앱의 수정이 기반으로 삼는 앱 숨김 모듈 - 그 링크, 채널, 후원 방법.
+- **[HMA-OSS](HMA-OSS.md)**: 이 앱의 수정이 기반으로 삼는 앱 숨김 모듈 (그 링크, 채널, 후원 방법).
 - **[기여하기](README.md#contributing)**: 탐지 대상을 추가하는 방법(대부분 일반 텍스트 목록이며 Kotlin은 필요 없음).
 
 <!-- /vd-docs -->
@@ -135,6 +135,7 @@ root 은닉 및 탐지 참고자료(가이드, 모듈, 프레임워크, 탐지�
 - **[VDGoogle](https://github.com/VD171/VD-Google)**: 당신의 Google 서비스(RCS, Wallet, Play Integrity attestation)를 인터넷 없이 기기에서 읽습니다.
 - **[VDBackup](https://github.com/VD171/VD-Backup)**: 앱과 데이터의 전체 백업과 복원을 root로 수행하며, 전부 WebUI에서 조작합니다.
 - **[COPG-VD](https://github.com/VD171/COPG-VD)**: 새 fingerprint를 일관되고 정합적인 profile로 바꾸는 기기 스푸퍼.
+- **[VD-dropbear](https://github.com/VD171/VD-dropbear)**: 독립적으로 동작하는 root 권한 SSH 데몬 (Dropbear).
 
 Pixel `build.prop`: **[@VictorGabriel7Dev/build.prop](https://github.com/VictorGabriel7Dev/build.prop)** (fork of @T3SL4).
 
@@ -152,7 +153,7 @@ Pixel `build.prop`: **[@VictorGabriel7Dev/build.prop](https://github.com/VictorG
 
 ## 라이선스
 
-**GNU AGPL-3.0-or-later** - [LICENSE](LICENSE) 참조. 네트워크 조항을 포함한 카피레프트: 수정본을 (서비스로라도) 실행하는 누구든 그 소스를 제공해야 합니다. fork를 열린 상태로 유지하기 위해 연구/반탐지 도구용으로 의도적으로 선택했습니다.
+**GNU AGPL-3.0-or-later**: [LICENSE](LICENSE) 참조. 네트워크 조항을 포함한 카피레프트: 수정본을 (서비스로라도) 실행하는 누구든 그 소스를 제공해야 합니다. fork를 열린 상태로 유지하기 위해 연구/반탐지 도구용으로 의도적으로 선택했습니다.
 
 ## 상표
 

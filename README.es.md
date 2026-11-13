@@ -1,6 +1,6 @@
 <!--
-  VD INFOS - device method debugger: read every device info by every method, then compare.
-  Copyright (C) 2026  VD171 - SPDX-License-Identifier: AGPL-3.0-or-later
+  VD INFOS: device method debugger: read every device info by every method, then compare.
+  Copyright (C) 2026  VD171. SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
 # VD Infos
@@ -39,7 +39,7 @@
 
 ---
 
-Android es un sistema operativo súper potente y versátil; lo que nadie te cuenta es que todos tus datos personales e información confidencial quedan al alcance de cada aplicación que instalas, y protegerte contra estas invasiones de privacidad es una obligación. VD Infos te muestra un ejemplo de lo que se puede capturar de tu dispositivo, y lo hace como un *depurador de métodos*: para cada dato lee el valor por **todos los métodos capaces de leerlo** - `Build.*`, `SystemProperties`, `getprop`, el nativo `__system_property_get`, managers del sistema, content providers, archivos, syscalls y attestation de clave por hardware (TEE) - y los alinea para que compares. Cuando un método discrepa de los demás, algo en medio está reescribiendo esa superficie: un framework de hooking, un spoofer, un shim de resolución. **NINGUNA INFORMACIÓN SE ALMACENA, ENVÍA NI TRANSMITE A NINGÚN ARCHIVO¹ O SERVIDOR** - todo se ejecuta en el dispositivo, los valores de identidad quedan enmascarados hasta que los reveles, y un informe solo sale del dispositivo cuando lo compartes o guardas explícitamente; si quieres, bloquea el acceso a internet con un firewall o simplemente apágalo.
+Android es un sistema operativo súper potente y versátil; lo que nadie te cuenta es que todos tus datos personales e información confidencial quedan al alcance de cada aplicación que instalas, y protegerte contra estas invasiones de privacidad es una obligación. VD Infos te muestra un ejemplo de lo que se puede capturar de tu dispositivo, y lo hace como un *depurador de métodos*: para cada dato lee el valor por **todos los métodos capaces de leerlo**: `Build.*`, `SystemProperties`, `getprop`, el nativo `__system_property_get`, managers del sistema, content providers, archivos, syscalls y attestation de clave por hardware (TEE), y los alinea para que compares. Cuando un método discrepa de los demás, algo en medio está reescribiendo esa superficie: un framework de hooking, un spoofer, un shim de resolución. **NINGUNA INFORMACIÓN SE ALMACENA, ENVÍA NI TRANSMITE A NINGÚN ARCHIVO¹ O SERVIDOR**: todo se ejecuta en el dispositivo, los valores de identidad quedan enmascarados hasta que los reveles, y un informe solo sale del dispositivo cuando lo compartes o guardas explícitamente; si quieres, bloquea el acceso a internet con un firewall o simplemente apágalo.
 
 > **¹ Excepción:** cada análisis guarda el informe completo en el almacenamiento privado de la app (`files/last_snapshot.json`). Solo la propia app o root pueden leerlo, el siguiente análisis lo sobrescribe y nunca sale del dispositivo. Existe para que los agentes de IA lean el resultado completo; ver **Para agentes de IA: el informe completo en JSON**.
 
@@ -47,8 +47,8 @@ Android es un sistema operativo súper potente y versátil; lo que nadie te cuen
 
 Cada elemento se lee por todos los métodos capaces de leerlo (SDK Java / nativo / shell), comparados lado a lado:
 
-* **~488 propiedades del sistema** leídas de CINCO formas: `SystemProperties.get`, las dos entradas de bionic (`__system_property_read_callback` y la de 92 bytes `__system_property_get`), `getprop` lanzado por la JVM, y `getprop` lanzado desde código nativo con `popen` - un comando de shell ejecutado por `ProcessBuilder` y el mismo comando ejecutado sin la JVM no son el mismo punto de vista, porque el primero es una superficie que un framework de ocultación reescribe y el segundo no.
-* **Identidad del dispositivo**: modelo, fabricante, marca, device, product, board, hardware, fingerprint, bootloader, build id/tags/type - cada campo `Build.*` contra todas sus variantes `ro.product.*` (system/vendor/odm), nativo y shell.
+* **~488 propiedades del sistema** leídas de CINCO formas: `SystemProperties.get`, las dos entradas de bionic (`__system_property_read_callback` y la de 92 bytes `__system_property_get`), `getprop` lanzado por la JVM, y `getprop` lanzado desde código nativo con `popen`; un comando de shell ejecutado por `ProcessBuilder` y el mismo comando ejecutado sin la JVM no son el mismo punto de vista, porque el primero es una superficie que un framework de ocultación reescribe y el segundo no.
+* **Identidad del dispositivo**: modelo, fabricante, marca, device, product, board, hardware, fingerprint, bootloader, build id/tags/type, cada campo `Build.*` contra todas sus variantes `ro.product.*` (system/vendor/odm), nativo y shell.
 * **Identificadores**: serial (varios getters), Android ID (settings y provider), GSF ID, advertising ID, IMEI/primary IMEI/MEID/IMSI/ICCID, user serial.
 * **Telefonía**: la superficie de TelephonyManager (operadora, SIM, red, roaming...), SubscriptionManager (multi-SIM), cell info.
 * **Red**: **MAC** por interfaz (`NetworkInterface` vs `/sys/class/net` vs shell), Wi-Fi (SSID/BSSID/IP/MAC), Bluetooth, DNS.
@@ -85,12 +85,12 @@ su -c cat /data/data/ru.vd171.vdinfos/files/last_snapshot.json
 
 ```
 core/model      dominio inmutable: Lens, Category, Verdict, ProbeSpec, ProbeResult
-probe/          NativeBridge (JNI) - SystemProps (reflexión) - PropCatalog (datos)
-                SemanticProbes - IntegrityProbes - ProbeRegistry
-engine/         ProbeEngine - fan-out con coroutines, transmite resultados como un Flow
-data/           SnapshotStore (persistencia + diff) - Exporter (compartir JSON/texto)
+probe/          NativeBridge (JNI), SystemProps (reflexión), PropCatalog (datos)
+                SemanticProbes, IntegrityProbes, ProbeRegistry
+engine/         ProbeEngine: fan-out con coroutines, transmite resultados como un Flow
+data/           SnapshotStore (persistencia + diff), Exporter (compartir JSON/texto)
 ui/             Jetpack Compose, Material 3, color dinámico, progreso en vivo
-cpp/            native_probes.cpp - la lente nativa, sin dependencias
+cpp/            native_probes.cpp: la lente nativa, sin dependencias
 ```
 
 * **Paralelismo**: 996 sondas se despliegan en el dispatcher por defecto con un número de permisos acotado; los resultados fluyen a la UI a medida que llegan.
@@ -101,11 +101,11 @@ cpp/            native_probes.cpp - la lente nativa, sin dependencias
 
 La mayoría de las contribuciones no requieren Kotlin: las listas son texto plano en `VDInfos/app/src/main/assets/data/`. Añade o quita una línea y abre un pull request.
 
-* `*_apps.txt` - un nombre de paquete por línea
-* `props.txt` - el catálogo de propiedades del sistema, `CATEGORÍA<tab>clave`
-* `spoof_keys.txt` - la matriz de spoof de settings, `clave:TIPO`
-* `known_certs.txt` - el catálogo de certificados de firma, `SHA-256<tab>dueño` (hash completo, sacado de un APK real con `apksigner verify --print-certs`)
-* otros archivos `.txt` - también una entrada por línea (fragmentos de nombre de módulos del kernel, nombres en `/data/local/tmp`)
+* `*_apps.txt`: un nombre de paquete por línea
+* `props.txt`: el catálogo de propiedades del sistema, `CATEGORÍA<tab>clave`
+* `spoof_keys.txt`: la matriz de spoof de settings, `clave:TIPO`
+* `known_certs.txt`: el catálogo de certificados de firma, `SHA-256<tab>dueño` (hash completo, sacado de un APK real con `apksigner verify --print-certs`)
+* otros archivos `.txt`: también una entrada por línea (fragmentos de nombre de módulos del kernel, nombres en `/data/local/tmp`)
 
 Un `#` inicia un comentario; las líneas vacías se ignoran. Algunos archivos llevan varios campos separados por espacio o tab por línea, o marcadores opcionales (`S` y `@field` en `props.txt`); conserva la forma de las líneas que ya están en el archivo. Las contribuciones de código también son bienvenidas. Al contribuir aceptas que tu trabajo se distribuya bajo la AGPL-3.0-or-later de este proyecto.
 
@@ -115,15 +115,15 @@ Las referencias de ocultación y detección de root (guías, módulos, framework
 
 ## Agradecimientos
 
-Agradecimiento especial a **[frknkrc44](https://github.com/frknkrc44)**, desarrollador de **[HMA-OSS](https://github.com/frknkrc44/HMA-OSS)**, por el cariño dedicado. HMA-OSS es donde se aplican varias de las correcciones que esta app sugiere - ocultar apps objetivo y definir presets de spoof - y cada mención a él dentro de la app enlaza de vuelta a su fuente.
+Agradecimiento especial a **[frknkrc44](https://github.com/frknkrc44)**, desarrollador de **[HMA-OSS](https://github.com/frknkrc44/HMA-OSS)**, por el cariño dedicado. HMA-OSS es donde se aplican varias de las correcciones que esta app sugiere (ocultar apps objetivo y definir presets de spoof), y cada mención a él dentro de la app enlaza de vuelta a su fuente.
 
 Sus enlaces, canales y cómo apoyarlo: [HMA-OSS.md](HMA-OSS.md).
 
 ## Documentación
 
-- **[Catálogo](CATALOG.md)**: referencias de ocultación de root y detección - guías, módulos, frameworks y detectores.
+- **[Catálogo](CATALOG.md)**: referencias de ocultación de root y detección (guías, módulos, frameworks y detectores).
 - **[Registro de cambios](CHANGELOG.md)**: qué cambió en cada versión.
-- **[HMA-OSS](HMA-OSS.md)**: el módulo para ocultar apps sobre el que se construyen las correcciones de la app - sus enlaces, canales y cómo apoyarlo.
+- **[HMA-OSS](HMA-OSS.md)**: el módulo para ocultar apps sobre el que se construyen las correcciones de la app (sus enlaces, canales y cómo apoyarlo).
 - **[Contribuir](README.md#contributing)**: cómo añadir objetivos de detección (en su mayoría listas de texto plano, sin necesidad de Kotlin).
 
 <!-- /vd-docs -->
@@ -135,6 +135,7 @@ Proyectos hermanos del mismo autor:
 - **[VDGoogle](https://github.com/VD171/VD-Google)**: tus servicios de Google (RCS, Wallet, atestaciones de Play Integrity), leídos en tu dispositivo sin internet.
 - **[VDBackup](https://github.com/VD171/VD-Backup)**: copia de seguridad y restauración completa de apps y datos como root, gestionada por completo desde una WebUI.
 - **[COPG-VD](https://github.com/VD171/COPG-VD)**: un spoofer de dispositivo que convierte un fingerprint nuevo en un perfil coherente y consistente.
+- **[VD-dropbear](https://github.com/VD171/VD-dropbear)**: un demonio SSH independiente con root (Dropbear).
 
 Pixel `build.prop`: **[@VictorGabriel7Dev/build.prop](https://github.com/VictorGabriel7Dev/build.prop)** (fork de @T3SL4).
 
@@ -152,7 +153,7 @@ Pixel `build.prop`: **[@VictorGabriel7Dev/build.prop](https://github.com/VictorG
 
 ## Licencia
 
-**GNU AGPL-3.0-or-later** - ver [LICENSE](LICENSE). Copyleft, incluida la cláusula de red: cualquiera que ejecute una versión modificada (incluso como servicio) debe ofrecer su código fuente. Elegida deliberadamente para una herramienta de investigación/anti-detección, para mantener los forks abiertos.
+**GNU AGPL-3.0-or-later**: ver [LICENSE](LICENSE). Copyleft, incluida la cláusula de red: cualquiera que ejecute una versión modificada (incluso como servicio) debe ofrecer su código fuente. Elegida deliberadamente para una herramienta de investigación/anti-detección, para mantener los forks abiertos.
 
 ## Marcas comerciales
 

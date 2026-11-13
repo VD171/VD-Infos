@@ -1,6 +1,6 @@
 <!--
-  VD INFOS - device method debugger: read every device info by every method, then compare.
-  Copyright (C) 2026  VD171 - SPDX-License-Identifier: AGPL-3.0-or-later
+  VD INFOS: device method debugger: read every device info by every method, then compare.
+  Copyright (C) 2026  VD171. SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
 # VD Infos
@@ -39,7 +39,7 @@
 
 ---
 
-Android son derece güçlü ve çok yönlü bir işletim sistemidir; kimsenin söylemediği şey ise tüm kişisel ayrıntılarınızın ve gizli bilgilerinizin kurduğunuz her uygulamaya açık olduğu ve bu tür gizlilik ihlallerine karşı kendinizi korumanın bir zorunluluk olduğudur. VD Infos, cihazınızdan nelerin yakalanabileceğine dair bir örnek gösterir ve bunu bir *yöntem hata ayıklayıcısı* olarak yapar: her bilgi için değeri **onu okuyabilen her yöntemle** okur - `Build.*`, `SystemProperties`, `getprop`, native `__system_property_get`, sistem yöneticileri, content provider'lar, dosyalar, syscall'lar ve donanım anahtarı attestation (TEE) - ve karşılaştırabilmeniz için yan yana dizer. Bir yöntem diğerleriyle uyuşmadığında, aradaki bir şey o yüzeyi yeniden yazıyordur: bir hook çerçevesi, bir spoofer, bir resolver shim'i. **HİÇBİR BİLGİ SAKLANMAZ, GÖNDERİLMEZ VEYA HERHANGİ BİR DOSYAYA¹ YA DA SUNUCUYA İLETİLMEZ** - her şey cihazda çalışır, kimlik taşıyan değerler siz açığa çıkarana kadar maskelenir ve bir rapor cihazdan yalnızca siz açıkça paylaştığınızda veya kaydettiğinizde çıkar; isterseniz internet erişimini bir güvenlik duvarıyla engelleyin ya da doğrudan kapatın.
+Android son derece güçlü ve çok yönlü bir işletim sistemidir; kimsenin söylemediği şey ise tüm kişisel ayrıntılarınızın ve gizli bilgilerinizin kurduğunuz her uygulamaya açık olduğu ve bu tür gizlilik ihlallerine karşı kendinizi korumanın bir zorunluluk olduğudur. VD Infos, cihazınızdan nelerin yakalanabileceğine dair bir örnek gösterir ve bunu bir *yöntem hata ayıklayıcısı* olarak yapar: her bilgi için değeri **onu okuyabilen her yöntemle** okur: `Build.*`, `SystemProperties`, `getprop`, native `__system_property_get`, sistem yöneticileri, content provider'lar, dosyalar, syscall'lar ve donanım anahtarı attestation (TEE), ve karşılaştırabilmeniz için yan yana dizer. Bir yöntem diğerleriyle uyuşmadığında, aradaki bir şey o yüzeyi yeniden yazıyordur: bir hook çerçevesi, bir spoofer, bir resolver shim'i. **HİÇBİR BİLGİ SAKLANMAZ, GÖNDERİLMEZ VEYA HERHANGİ BİR DOSYAYA¹ YA DA SUNUCUYA İLETİLMEZ**: her şey cihazda çalışır, kimlik taşıyan değerler siz açığa çıkarana kadar maskelenir ve bir rapor cihazdan yalnızca siz açıkça paylaştığınızda veya kaydettiğinizde çıkar; isterseniz internet erişimini bir güvenlik duvarıyla engelleyin ya da doğrudan kapatın.
 
 > **¹ İstisna:** her tarama tam raporunu uygulamanın özel depolamasında saklar (`files/last_snapshot.json`). Onu yalnızca uygulamanın kendisi veya root okuyabilir, bir sonraki tarama üzerine yazar ve cihazdan asla çıkmaz. Yapay zekâ ajanlarının tam sonucu okuyabilmesi için vardır; bkz. **Yapay zekâ ajanları için: JSON olarak tam rapor**.
 
@@ -47,8 +47,8 @@ Android son derece güçlü ve çok yönlü bir işletim sistemidir; kimsenin s�
 
 Her öğe onu okuyabilen her yöntemle okunur (Java SDK / native / shell) ve yan yana karşılaştırılır:
 
-* **~488 sistem özelliği** BEŞ şekilde okunur: `SystemProperties.get`, bionic'in iki giriş noktası (`__system_property_read_callback` ve 92 baytlık `__system_property_get`), JVM tarafından başlatılan `getprop` ve native koddan `popen` ile başlatılan `getprop` - `ProcessBuilder` tarafından çalıştırılan bir shell komutu ile aynı komutun JVM olmadan çalıştırılması aynı bakış açısı değildir, çünkü ilki bir root gizleme çerçevesinin yeniden yazdığı bir yüzeydir, ikincisi değildir.
-* **Cihaz kimliği**: model, üretici, marka, device, product, board, hardware, fingerprint, bootloader, build id/tags/type - her `Build.*` alanı tüm `ro.product.*` (system/vendor/odm) varyantlarına, native ve shell'e karşı.
+* **~488 sistem özelliği** BEŞ şekilde okunur: `SystemProperties.get`, bionic'in iki giriş noktası (`__system_property_read_callback` ve 92 baytlık `__system_property_get`), JVM tarafından başlatılan `getprop` ve native koddan `popen` ile başlatılan `getprop`; `ProcessBuilder` tarafından çalıştırılan bir shell komutu ile aynı komutun JVM olmadan çalıştırılması aynı bakış açısı değildir, çünkü ilki bir root gizleme çerçevesinin yeniden yazdığı bir yüzeydir, ikincisi değildir.
+* **Cihaz kimliği**: model, üretici, marka, device, product, board, hardware, fingerprint, bootloader, build id/tags/type, her `Build.*` alanı tüm `ro.product.*` (system/vendor/odm) varyantlarına, native ve shell'e karşı.
 * **Tanımlayıcılar**: serial (birçok getter), Android ID (settings ve provider), GSF ID, advertising ID, IMEI/primary IMEI/MEID/IMSI/ICCID, user serial.
 * **Telefon**: TelephonyManager yüzeyi (operatör, SIM, ağ, roaming...), SubscriptionManager (çoklu SIM), cell info.
 * **Ağ**: arabirim başına **MAC** (`NetworkInterface` vs `/sys/class/net` vs shell), Wi-Fi (SSID/BSSID/IP/MAC), Bluetooth, DNS.
@@ -85,12 +85,12 @@ su -c cat /data/data/ru.vd171.vdinfos/files/last_snapshot.json
 
 ```
 core/model      değişmez alan: Lens, Category, Verdict, ProbeSpec, ProbeResult
-probe/          NativeBridge (JNI) - SystemProps (yansıma) - PropCatalog (veri)
-                SemanticProbes - IntegrityProbes - ProbeRegistry
-engine/         ProbeEngine - coroutine fan-out, sonuçları Flow olarak akıtır
-data/           SnapshotStore (kalıcılık + diff) - Exporter (JSON/metin paylaşımı)
+probe/          NativeBridge (JNI), SystemProps (yansıma), PropCatalog (veri)
+                SemanticProbes, IntegrityProbes, ProbeRegistry
+engine/         ProbeEngine: coroutine fan-out, sonuçları Flow olarak akıtır
+data/           SnapshotStore (kalıcılık + diff), Exporter (JSON/metin paylaşımı)
 ui/             Jetpack Compose, Material 3, dinamik renk, canlı ilerleme
-cpp/            native_probes.cpp - native lens, bağımlılıksız
+cpp/            native_probes.cpp: native lens, bağımlılıksız
 ```
 
 * **Paralellik**: 996 sonda, sınırlı izin sayısıyla varsayılan dispatcher üzerinde dağılır; sonuçlar geldikçe UI'ye akar.
@@ -101,11 +101,11 @@ cpp/            native_probes.cpp - native lens, bağımlılıksız
 
 Katkıların çoğu Kotlin gerektirmez: listeler `VDInfos/app/src/main/assets/data/` altında düz metindir. Bir satır ekleyin veya çıkarın ve bir pull request açın.
 
-* `*_apps.txt` - satır başına bir paket adı
-* `props.txt` - sistem özellikleri kataloğu, `KATEGORİ<tab>anahtar`
-* `spoof_keys.txt` - settings spoof matrisi, `anahtar:TİP`
-* `known_certs.txt` - imza sertifikası kataloğu, `SHA-256<tab>sahip` (tam hash, gerçek bir APK'dan `apksigner verify --print-certs` ile alınır)
-* diğer `.txt` dosyaları - yine satır başına bir girdi (çekirdek modülü ad parçaları, `/data/local/tmp` adları)
+* `*_apps.txt`: satır başına bir paket adı
+* `props.txt`: sistem özellikleri kataloğu, `KATEGORİ<tab>anahtar`
+* `spoof_keys.txt`: settings spoof matrisi, `anahtar:TİP`
+* `known_certs.txt`: imza sertifikası kataloğu, `SHA-256<tab>sahip` (tam hash, gerçek bir APK'dan `apksigner verify --print-certs` ile alınır)
+* diğer `.txt` dosyaları: yine satır başına bir girdi (çekirdek modülü ad parçaları, `/data/local/tmp` adları)
 
 Bir `#` yorum başlatır; boş satırlar yok sayılır. Bazı dosyalar satır başına boşluk veya sekme ile ayrılmış birkaç alan ya da isteğe bağlı işaretler (`props.txt` içinde `S` ve `@field`) içerir; dosyada zaten bulunan satırların biçimini koru. Kod katkıları da memnuniyetle karşılanır. Katkıda bulunarak çalışmanızın bu projenin AGPL-3.0-or-later lisansıyla dağıtılmasını kabul edersiniz.
 
@@ -115,15 +115,15 @@ Root gizleme ve tespit referansları (kılavuzlar, modüller, çerçeveler, dede
 
 ## Teşekkürler
 
-**[HMA-OSS](https://github.com/frknkrc44/HMA-OSS)** geliştiricisi **[frknkrc44](https://github.com/frknkrc44)**'e gösterdiği özen için özel teşekkürler. HMA-OSS, bu uygulamanın önerdiği düzeltmelerin birçoğunun uygulandığı yerdir - hedef uygulamaları gizlemek ve spoof ön ayarlarını belirlemek - ve uygulama içindeki her anışı kaynağına geri bağlanır.
+**[HMA-OSS](https://github.com/frknkrc44/HMA-OSS)** geliştiricisi **[frknkrc44](https://github.com/frknkrc44)**'e gösterdiği özen için özel teşekkürler. HMA-OSS, bu uygulamanın önerdiği düzeltmelerin birçoğunun uygulandığı yerdir (hedef uygulamaları gizlemek ve spoof ön ayarlarını belirlemek), ve uygulama içindeki her anışı kaynağına geri bağlanır.
 
 Bağlantıları, kanalları ve nasıl destek olabileceğiniz: [HMA-OSS.md](HMA-OSS.md).
 
 ## Belgeler
 
-- **[Katalog](CATALOG.md)**: root gizleme ve tespit referansları - kılavuzlar, modüller, çerçeveler ve tespit ediciler.
+- **[Katalog](CATALOG.md)**: root gizleme ve tespit referansları (kılavuzlar, modüller, çerçeveler ve tespit ediciler).
 - **[Değişiklik günlüğü](CHANGELOG.md)**: her sürümde nelerin değiştiği.
-- **[HMA-OSS](HMA-OSS.md)**: uygulamanın düzeltmelerinin dayandığı uygulama gizleme modülü - bağlantıları, kanalları ve ona nasıl destek olunacağı.
+- **[HMA-OSS](HMA-OSS.md)**: uygulamanın düzeltmelerinin dayandığı uygulama gizleme modülü (bağlantıları, kanalları ve ona nasıl destek olunacağı).
 - **[Katkıda bulunma](README.md#contributing)**: tespit hedeflerinin nasıl ekleneceği (çoğunlukla düz metin listeleri, Kotlin gerekmez).
 
 <!-- /vd-docs -->
@@ -135,6 +135,7 @@ Aynı yazarın kardeş projeleri:
 - **[VDGoogle](https://github.com/VD171/VD-Google)**: Google hizmetleriniz (RCS, Wallet, Play Integrity attestation'ları), cihazınızda internet olmadan okunur.
 - **[VDBackup](https://github.com/VD171/VD-Backup)**: root olarak tam uygulama ve veri yedekleme ile geri yükleme, tamamen bir WebUI'den yönetilir.
 - **[COPG-VD](https://github.com/VD171/COPG-VD)**: yeni bir fingerprint'i tutarlı, uyumlu bir profile dönüştüren bir cihaz sahteleyici.
+- **[VD-dropbear](https://github.com/VD171/VD-dropbear)**: bağımsız, root yetkili bir SSH arka plan hizmeti (Dropbear).
 
 Pixel `build.prop`: **[@VictorGabriel7Dev/build.prop](https://github.com/VictorGabriel7Dev/build.prop)** (fork of @T3SL4).
 
@@ -152,7 +153,7 @@ Pixel `build.prop`: **[@VictorGabriel7Dev/build.prop](https://github.com/VictorG
 
 ## Lisans
 
-**GNU AGPL-3.0-or-later** - bkz. [LICENSE](LICENSE). Copyleft, ağ maddesi dahil: değiştirilmiş bir sürümü çalıştıran herkes (hizmet olarak bile) kaynağını sunmak zorundadır. Fork'ları açık tutmak için bir araştırma/anti-tespit aracına bilerek seçilmiştir.
+**GNU AGPL-3.0-or-later**: bkz. [LICENSE](LICENSE). Copyleft, ağ maddesi dahil: değiştirilmiş bir sürümü çalıştıran herkes (hizmet olarak bile) kaynağını sunmak zorundadır. Fork'ları açık tutmak için bir araştırma/anti-tespit aracına bilerek seçilmiştir.
 
 ## Ticari markalar
 

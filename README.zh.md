@@ -1,6 +1,6 @@
 <!--
-  VD INFOS - device method debugger: read every device info by every method, then compare.
-  Copyright (C) 2026  VD171 - SPDX-License-Identifier: AGPL-3.0-or-later
+  VD INFOS: device method debugger: read every device info by every method, then compare.
+  Copyright (C) 2026  VD171. SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
 # VD Infos
@@ -39,7 +39,7 @@
 
 ---
 
-Android 是一个极其强大且灵活的操作系统；没有人告诉你的是，你所有的个人细节和机密信息对你安装的每一个应用都是可获取的，而保护自己免受这类隐私侵犯是一种义务。VD Infos 向你展示可以从你的设备上捕获什么，并以*方法调试器*的方式进行：对每一项信息，它通过**所有能读取它的方法**读取该值 - `Build.*`、`SystemProperties`、`getprop`、原生的 `__system_property_get`、系统 manager、content provider、文件、系统调用，以及硬件密钥认证（TEE）- 并把它们并排列出以便你比较。当一个方法与其他方法不一致时，中间就有东西在改写那个表面：hook 框架、spoofer、resolver shim。**不存储、不发送、不向任何文件¹或服务器传输任何信息** - 一切都在设备上运行，携带身份的值在你揭示之前都被遮蔽，报告只有在你明确分享或保存时才会离开设备；如果你愿意，用防火墙拦截网络访问，或直接关掉网络。
+Android 是一个极其强大且灵活的操作系统；没有人告诉你的是，你所有的个人细节和机密信息对你安装的每一个应用都是可获取的，而保护自己免受这类隐私侵犯是一种义务。VD Infos 向你展示可以从你的设备上捕获什么，并以*方法调试器*的方式进行：对每一项信息，它通过**所有能读取它的方法**读取该值：`Build.*`、`SystemProperties`、`getprop`、原生的 `__system_property_get`、系统 manager、content provider、文件、系统调用，以及硬件密钥认证（TEE），并把它们并排列出以便你比较。当一个方法与其他方法不一致时，中间就有东西在改写那个表面：hook 框架、spoofer、resolver shim。**不存储、不发送、不向任何文件¹或服务器传输任何信息**：一切都在设备上运行，携带身份的值在你揭示之前都被遮蔽，报告只有在你明确分享或保存时才会离开设备；如果你愿意，用防火墙拦截网络访问，或直接关掉网络。
 
 > **¹ 例外:** 每次扫描都会把完整报告保存在应用的私有存储中（`files/last_snapshot.json`）。只有应用本身或 root 能读取，下一次扫描会覆盖它，而且它从不离开设备。它的存在是为了让 AI 智能体读取完整结果；参见 **面向 AI 智能体：JSON 格式的完整报告**。
 
@@ -47,8 +47,8 @@ Android 是一个极其强大且灵活的操作系统；没有人告诉你的是
 
 每一项都通过所有能读取它的方法读取（Java SDK / 原生 / shell），并排比较：
 
-* **约 488 个系统属性**以五种方式读取：`SystemProperties.get`、bionic 的两个入口（`__system_property_read_callback` 和 92 字节的 `__system_property_get`）、由 JVM 启动的 `getprop`，以及从原生代码经 `popen` 启动的 `getprop` - 由 `ProcessBuilder` 运行的 shell 命令与不经 JVM 运行的同一命令并非同一视角，因为前者是隐藏 root 的框架会改写的表面，后者不是。
-* **设备身份**：型号、制造商、品牌、device、product、board、hardware、fingerprint、bootloader、build id/tags/type - 每个 `Build.*` 字段对照它所有的 `ro.product.*`（system/vendor/odm）变体、原生与 shell。
+* **约 488 个系统属性**以五种方式读取：`SystemProperties.get`、bionic 的两个入口（`__system_property_read_callback` 和 92 字节的 `__system_property_get`）、由 JVM 启动的 `getprop`，以及从原生代码经 `popen` 启动的 `getprop`。由 `ProcessBuilder` 运行的 shell 命令与不经 JVM 运行的同一命令并非同一视角，因为前者是隐藏 root 的框架会改写的表面，后者不是。
+* **设备身份**：型号、制造商、品牌、device、product、board、hardware、fingerprint、bootloader、build id/tags/type，每个 `Build.*` 字段对照它所有的 `ro.product.*`（system/vendor/odm）变体、原生与 shell。
 * **标识符**：serial（多个 getter）、Android ID（settings 与 provider）、GSF ID、advertising ID、IMEI/primary IMEI/MEID/IMSI/ICCID、user serial。
 * **电话**：TelephonyManager 表面（运营商、SIM、网络、漫游……）、SubscriptionManager（多 SIM）、cell info。
 * **网络**：每个接口的 **MAC**（`NetworkInterface` vs `/sys/class/net` vs shell）、Wi-Fi（SSID/BSSID/IP/MAC）、蓝牙、DNS。
@@ -85,12 +85,12 @@ su -c cat /data/data/ru.vd171.vdinfos/files/last_snapshot.json
 
 ```
 core/model      不可变领域: Lens, Category, Verdict, ProbeSpec, ProbeResult
-probe/          NativeBridge (JNI) - SystemProps (反射) - PropCatalog (数据)
-                SemanticProbes - IntegrityProbes - ProbeRegistry
-engine/         ProbeEngine - 协程 fan-out，以 Flow 流式返回结果
-data/           SnapshotStore (持久化 + diff) - Exporter (JSON/文本 分享)
+probe/          NativeBridge (JNI), SystemProps (反射), PropCatalog (数据)
+                SemanticProbes, IntegrityProbes, ProbeRegistry
+engine/         ProbeEngine: 协程 fan-out，以 Flow 流式返回结果
+data/           SnapshotStore (持久化 + diff), Exporter (JSON/文本 分享)
 ui/             Jetpack Compose, Material 3, 动态取色、实时进度
-cpp/            native_probes.cpp - 原生透镜，无依赖
+cpp/            native_probes.cpp: 原生透镜，无依赖
 ```
 
 * **并行**：996 个探针在默认 dispatcher 上以有限的许可数散开；结果一到达便流入 UI。
@@ -101,11 +101,11 @@ cpp/            native_probes.cpp - 原生透镜，无依赖
 
 大多数贡献不需要 Kotlin：这些列表以纯文本形式放在 `VDInfos/app/src/main/assets/data/` 下。增删一行并提交 pull request 即可。
 
-* `*_apps.txt` - 每行一个包名
-* `props.txt` - 系统属性目录，`类别<tab>键`
-* `spoof_keys.txt` - settings 的 spoof 矩阵，`键:类型`
-* `known_certs.txt` - 签名证书目录，`SHA-256<tab>所有者`（完整哈希，用 `apksigner verify --print-certs` 从真实 APK 中取得）
-* 其他 `.txt` 文件 - 同样每行一个条目（内核模块名片段、`/data/local/tmp` 中的文件名）
+* `*_apps.txt`: 每行一个包名
+* `props.txt`: 系统属性目录，`类别<tab>键`
+* `spoof_keys.txt`: settings 的 spoof 矩阵，`键:类型`
+* `known_certs.txt`: 签名证书目录，`SHA-256<tab>所有者`（完整哈希，用 `apksigner verify --print-certs` 从真实 APK 中取得）
+* 其他 `.txt` 文件：同样每行一个条目（内核模块名片段、`/data/local/tmp` 中的文件名）
 
 `#` 开始注释；空行会被忽略。 有些文件每行包含以空格或制表符分隔的几个字段，或可选标记（`props.txt` 中的 `S` 和 `@field`）；请保持文件中已有行的格式。也欢迎代码贡献。提交贡献即表示你同意其以本项目的 AGPL-3.0-or-later 发布。
 
@@ -115,15 +115,15 @@ Root 隐藏与检测的参考（指南、模块、框架、检测器）收录于
 
 ## 致谢
 
-特别感谢 **[frknkrc44](https://github.com/frknkrc44)**，**[HMA-OSS](https://github.com/frknkrc44/HMA-OSS)** 的开发者，所倾注的用心。HMA-OSS 正是本应用建议的若干修复的落地之处 - 隐藏目标应用、设置 spoof 预设 - 应用内每一次提及它都会链接回其源。
+特别感谢 **[frknkrc44](https://github.com/frknkrc44)**，**[HMA-OSS](https://github.com/frknkrc44/HMA-OSS)** 的开发者，所倾注的用心。HMA-OSS 正是本应用建议的若干修复的落地之处（隐藏目标应用、设置 spoof 预设）。应用内每一次提及它都会链接回其源。
 
 它的链接、频道以及支持方式：[HMA-OSS.md](HMA-OSS.md)。
 
 ## 文档
 
-- **[目录](CATALOG.md)**：隐藏 root 与检测相关参考 - 指南、模块、框架和检测器。
+- **[目录](CATALOG.md)**：隐藏 root 与检测相关参考（指南、模块、框架和检测器）。
 - **[更新日志](CHANGELOG.md)**：每个版本的变更。
-- **[HMA-OSS](HMA-OSS.md)**：本应用的修复所依托的隐藏应用模块 - 它的链接、频道以及支持方式。
+- **[HMA-OSS](HMA-OSS.md)**：本应用的修复所依托的隐藏应用模块（它的链接、频道以及支持方式）。
 - **[贡献](README.md#contributing)**：如何添加检测目标（大多是纯文本列表，无需 Kotlin）。
 
 <!-- /vd-docs -->
@@ -135,6 +135,7 @@ Root 隐藏与检测的参考（指南、模块、框架、检测器）收录于
 - **[VDGoogle](https://github.com/VD171/VD-Google)**：你的 Google 服务（RCS、Wallet、Play Integrity 认证），在你的设备上读取，无需联网。
 - **[VDBackup](https://github.com/VD171/VD-Backup)**：以 root 身份完整备份与恢复应用及数据，全程由 WebUI 驱动。
 - **[COPG-VD](https://github.com/VD171/COPG-VD)**：一款设备伪装器，将全新的 fingerprint 转化为连贯一致的配置。
+- **[VD-dropbear](https://github.com/VD171/VD-dropbear)**：一个独立的 root 化 SSH 守护进程（Dropbear）。
 
 Pixel `build.prop`: **[@VictorGabriel7Dev/build.prop](https://github.com/VictorGabriel7Dev/build.prop)** (fork of @T3SL4).
 
@@ -152,7 +153,7 @@ Pixel `build.prop`: **[@VictorGabriel7Dev/build.prop](https://github.com/VictorG
 
 ## 许可证
 
-**GNU AGPL-3.0-or-later** - 见 [LICENSE](LICENSE)。Copyleft，含网络条款：任何运行修改版（即使作为服务）的人都必须提供其源代码。为一款研究/反检测工具刻意选择，以保持 fork 开放。
+**GNU AGPL-3.0-or-later**：见 [LICENSE](LICENSE)。Copyleft，含网络条款：任何运行修改版（即使作为服务）的人都必须提供其源代码。为一款研究/反检测工具刻意选择，以保持 fork 开放。
 
 ## 商标
 

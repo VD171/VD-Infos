@@ -1,6 +1,6 @@
 <!--
-  VD INFOS - device method debugger: read every device info by every method, then compare.
-  Copyright (C) 2026  VD171 - SPDX-License-Identifier: AGPL-3.0-or-later
+  VD INFOS: device method debugger: read every device info by every method, then compare.
+  Copyright (C) 2026  VD171. SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
 # VD Infos
@@ -39,7 +39,7 @@
 
 ---
 
-Android adalah sistem operasi yang sangat kuat dan serbaguna; yang tidak diberitahukan siapa pun adalah bahwa semua detail pribadi dan informasi rahasia Anda tersedia bagi setiap aplikasi yang Anda pasang, dan melindungi diri dari invasi privasi semacam itu adalah kewajiban. VD Infos menunjukkan contoh apa yang bisa diambil dari perangkat Anda, dan melakukannya sebagai *debugger metode*: untuk setiap informasi ia membaca nilainya lewat **setiap metode yang mampu membacanya** - `Build.*`, `SystemProperties`, `getprop`, `__system_property_get` yang native, manager sistem, content provider, berkas, syscall, dan attestation kunci perangkat keras (TEE) - lalu menjajarkannya agar Anda bisa membandingkan. Ketika satu metode berbeda dari yang lain, ada sesuatu di antaranya yang menulis ulang permukaan itu: framework hook, spoofer, shim resolver. **TIDAK ADA INFORMASI YANG DISIMPAN, DIKIRIM, ATAU DITRANSMISIKAN KE BERKAS¹ ATAU SERVER MANA PUN** - semuanya berjalan di perangkat, nilai yang membawa identitas disamarkan sampai Anda mengungkapnya, dan laporan hanya meninggalkan perangkat saat Anda membagikan atau menyimpannya secara eksplisit; jika mau, blokir akses internet dengan firewall atau cukup matikan internet.
+Android adalah sistem operasi yang sangat kuat dan serbaguna; yang tidak diberitahukan siapa pun adalah bahwa semua detail pribadi dan informasi rahasia Anda tersedia bagi setiap aplikasi yang Anda pasang, dan melindungi diri dari invasi privasi semacam itu adalah kewajiban. VD Infos menunjukkan contoh apa yang bisa diambil dari perangkat Anda, dan melakukannya sebagai *debugger metode*: untuk setiap informasi ia membaca nilainya lewat **setiap metode yang mampu membacanya**: `Build.*`, `SystemProperties`, `getprop`, `__system_property_get` yang native, manager sistem, content provider, berkas, syscall, dan attestation kunci perangkat keras (TEE), lalu menjajarkannya agar Anda bisa membandingkan. Ketika satu metode berbeda dari yang lain, ada sesuatu di antaranya yang menulis ulang permukaan itu: framework hook, spoofer, shim resolver. **TIDAK ADA INFORMASI YANG DISIMPAN, DIKIRIM, ATAU DITRANSMISIKAN KE BERKAS¹ ATAU SERVER MANA PUN**: semuanya berjalan di perangkat, nilai yang membawa identitas disamarkan sampai Anda mengungkapnya, dan laporan hanya meninggalkan perangkat saat Anda membagikan atau menyimpannya secara eksplisit; jika mau, blokir akses internet dengan firewall atau cukup matikan internet.
 
 > **¹ Pengecualian:** setiap pemindaian menyimpan laporan lengkapnya di penyimpanan privat aplikasi (`files/last_snapshot.json`). Hanya aplikasi itu sendiri atau root yang bisa membacanya, pemindaian berikutnya menimpanya, dan berkas ini tidak pernah keluar dari perangkat. Berkas ini ada agar agen AI bisa membaca hasil lengkap; lihat **Untuk agen AI: laporan lengkap dalam JSON**.
 
@@ -47,8 +47,8 @@ Android adalah sistem operasi yang sangat kuat dan serbaguna; yang tidak diberit
 
 Setiap item dibaca lewat setiap metode yang mampu membacanya (Java SDK / native / shell), dibandingkan berdampingan:
 
-* **~488 properti sistem** dibaca LIMA cara: `SystemProperties.get`, kedua titik masuk bionic (`__system_property_read_callback` dan `__system_property_get` 92-byte), `getprop` yang dijalankan JVM, dan `getprop` yang dijalankan dari kode native lewat `popen` - perintah shell yang dijalankan `ProcessBuilder` dan perintah sama yang dijalankan tanpa JVM bukan sudut pandang yang sama, karena yang pertama adalah permukaan yang ditulis ulang framework penyembunyi root, dan yang kedua tidak.
-* **Identitas perangkat**: model, pabrikan, merek, device, product, board, hardware, fingerprint, bootloader, build id/tags/type - setiap field `Build.*` terhadap semua varian `ro.product.*` (system/vendor/odm), native, dan shell.
+* **~488 properti sistem** dibaca LIMA cara: `SystemProperties.get`, kedua titik masuk bionic (`__system_property_read_callback` dan `__system_property_get` 92-byte), `getprop` yang dijalankan JVM, dan `getprop` yang dijalankan dari kode native lewat `popen`; perintah shell yang dijalankan `ProcessBuilder` dan perintah sama yang dijalankan tanpa JVM bukan sudut pandang yang sama, karena yang pertama adalah permukaan yang ditulis ulang framework penyembunyi root, dan yang kedua tidak.
+* **Identitas perangkat**: model, pabrikan, merek, device, product, board, hardware, fingerprint, bootloader, build id/tags/type, setiap field `Build.*` terhadap semua varian `ro.product.*` (system/vendor/odm), native, dan shell.
 * **Pengenal**: serial (banyak getter), Android ID (settings dan provider), GSF ID, advertising ID, IMEI/primary IMEI/MEID/IMSI/ICCID, user serial.
 * **Telepon**: permukaan TelephonyManager (operator, SIM, jaringan, roaming...), SubscriptionManager (multi-SIM), cell info.
 * **Jaringan**: **MAC** per antarmuka (`NetworkInterface` vs `/sys/class/net` vs shell), Wi-Fi (SSID/BSSID/IP/MAC), Bluetooth, DNS.
@@ -85,12 +85,12 @@ su -c cat /data/data/ru.vd171.vdinfos/files/last_snapshot.json
 
 ```
 core/model      domain immutable: Lens, Category, Verdict, ProbeSpec, ProbeResult
-probe/          NativeBridge (JNI) - SystemProps (refleksi) - PropCatalog (data)
-                SemanticProbes - IntegrityProbes - ProbeRegistry
-engine/         ProbeEngine - fan-out coroutine, mengalirkan hasil sebagai Flow
-data/           SnapshotStore (persist + diff) - Exporter (berbagi JSON/teks)
+probe/          NativeBridge (JNI), SystemProps (refleksi), PropCatalog (data)
+                SemanticProbes, IntegrityProbes, ProbeRegistry
+engine/         ProbeEngine: fan-out coroutine, mengalirkan hasil sebagai Flow
+data/           SnapshotStore (persist + diff), Exporter (berbagi JSON/teks)
 ui/             Jetpack Compose, Material 3, warna dinamis, progres langsung
-cpp/            native_probes.cpp - lensa native, tanpa dependensi
+cpp/            native_probes.cpp: lensa native, tanpa dependensi
 ```
 
 * **Paralelisme**: 991 probe menyebar di dispatcher default dengan jumlah izin terbatas; hasil mengalir ke UI begitu tiba.
@@ -101,11 +101,11 @@ cpp/            native_probes.cpp - lensa native, tanpa dependensi
 
 Sebagian besar kontribusi tidak butuh Kotlin: daftarnya berupa teks biasa di `VDInfos/app/src/main/assets/data/`. Tambah atau hapus satu baris lalu buka pull request.
 
-* `*_apps.txt` - satu nama paket per baris
-* `props.txt` - katalog properti sistem, `KATEGORI<tab>kunci`
-* `spoof_keys.txt` - matriks spoof settings, `kunci:TIPE`
-* `known_certs.txt` - katalog sertifikat penandatanganan, `SHA-256<tab>pemilik` (hash lengkap, diambil dari APK asli dengan `apksigner verify --print-certs`)
-* berkas `.txt` lainnya - juga satu entri per baris (potongan nama modul kernel, nama di `/data/local/tmp`)
+* `*_apps.txt`: satu nama paket per baris
+* `props.txt`: katalog properti sistem, `KATEGORI<tab>kunci`
+* `spoof_keys.txt`: matriks spoof settings, `kunci:TIPE`
+* `known_certs.txt`: katalog sertifikat penandatanganan, `SHA-256<tab>pemilik` (hash lengkap, diambil dari APK asli dengan `apksigner verify --print-certs`)
+* berkas `.txt` lainnya: juga satu entri per baris (potongan nama modul kernel, nama di `/data/local/tmp`)
 
 Tanda `#` memulai komentar; baris kosong diabaikan. Beberapa berkas memuat beberapa bidang yang dipisah spasi atau tab per baris, atau penanda opsional (`S` dan `@field` di `props.txt`); pertahankan bentuk baris yang sudah ada di berkas. Kontribusi kode juga diterima. Dengan berkontribusi Anda setuju karya Anda dirilis di bawah AGPL-3.0-or-later proyek ini.
 
@@ -115,15 +115,15 @@ Referensi penyembunyian dan deteksi root (panduan, modul, framework, detektor) a
 
 ## Ucapan terima kasih
 
-Terima kasih khusus kepada **[frknkrc44](https://github.com/frknkrc44)**, pengembang **[HMA-OSS](https://github.com/frknkrc44/HMA-OSS)**, atas kesungguhan yang dicurahkan. HMA-OSS adalah tempat beberapa perbaikan yang disarankan aplikasi ini diterapkan - menyembunyikan aplikasi target dan menetapkan preset spoof - dan setiap penyebutannya di dalam aplikasi menautkan kembali ke sumbernya.
+Terima kasih khusus kepada **[frknkrc44](https://github.com/frknkrc44)**, pengembang **[HMA-OSS](https://github.com/frknkrc44/HMA-OSS)**, atas kesungguhan yang dicurahkan. HMA-OSS adalah tempat beberapa perbaikan yang disarankan aplikasi ini diterapkan (menyembunyikan aplikasi target dan menetapkan preset spoof), dan setiap penyebutannya di dalam aplikasi menautkan kembali ke sumbernya.
 
 Tautan, kanal, dan cara mendukungnya: [HMA-OSS.md](HMA-OSS.md).
 
 ## Dokumentasi
 
-- **[Katalog](CATALOG.md)**: referensi penyembunyian root dan deteksi - panduan, modul, framework, dan detektor.
+- **[Katalog](CATALOG.md)**: referensi penyembunyian root dan deteksi (panduan, modul, framework, dan detektor).
 - **[Changelog](CHANGELOG.md)**: apa yang berubah di setiap rilis.
-- **[HMA-OSS](HMA-OSS.md)**: modul penyembunyi aplikasi yang menjadi dasar perbaikan aplikasi ini - tautan, kanal, dan cara mendukungnya.
+- **[HMA-OSS](HMA-OSS.md)**: modul penyembunyi aplikasi yang menjadi dasar perbaikan aplikasi ini (tautan, kanal, dan cara mendukungnya).
 - **[Berkontribusi](README.md#contributing)**: cara menambahkan target deteksi (sebagian besar daftar teks biasa, tanpa perlu Kotlin).
 
 <!-- /vd-docs -->
@@ -135,6 +135,7 @@ Proyek saudara dari penulis yang sama:
 - **[VDGoogle](https://github.com/VD171/VD-Google)**: layanan Google Anda (RCS, Wallet, attestation Play Integrity), dibaca di perangkat Anda tanpa internet.
 - **[VDBackup](https://github.com/VD171/VD-Backup)**: pencadangan dan pemulihan penuh aplikasi dan data sebagai root, dikendalikan sepenuhnya dari WebUI.
 - **[COPG-VD](https://github.com/VD171/COPG-VD)**: pengusur (spoofer) perangkat yang mengubah fingerprint baru menjadi profil yang koheren dan konsisten.
+- **[VD-dropbear](https://github.com/VD171/VD-dropbear)**: daemon SSH mandiri dengan akses root (Dropbear).
 
 Pixel `build.prop`: **[@VictorGabriel7Dev/build.prop](https://github.com/VictorGabriel7Dev/build.prop)** (fork of @T3SL4).
 
@@ -152,7 +153,7 @@ Pixel `build.prop`: **[@VictorGabriel7Dev/build.prop](https://github.com/VictorG
 
 ## Lisensi
 
-**GNU AGPL-3.0-or-later** - lihat [LICENSE](LICENSE). Copyleft, termasuk klausul jaringan: siapa pun yang menjalankan versi yang dimodifikasi (bahkan sebagai layanan) wajib menyediakan sumbernya. Dipilih dengan sengaja untuk alat riset/anti-deteksi, agar fork tetap terbuka.
+**GNU AGPL-3.0-or-later**: lihat [LICENSE](LICENSE). Copyleft, termasuk klausul jaringan: siapa pun yang menjalankan versi yang dimodifikasi (bahkan sebagai layanan) wajib menyediakan sumbernya. Dipilih dengan sengaja untuk alat riset/anti-deteksi, agar fork tetap terbuka.
 
 ## Merek dagang
 
