@@ -193,6 +193,7 @@ Voltar ao README: [English](README.md) | [Português](README.pt.md).
 | **v2rayNG** | Um cliente V2Ray para Android, com suporte aos núcleos Xray e v2fly. | https://github.com/2dust/v2rayNG |
 | **VPN Hotspot** | Compartilha a sua conexão de VPN por hotspot ou repetidor (precisa de root). | https://github.com/Mygod/VPNHotspot |
 | **Ksu WebUI Standalone by KOWX712** | Fork mantido da implementação independente da WebUI do KernelSU. | https://github.com/KOWX712/KsuWebUIStandalone<br>https://t.me/kowchannel |
+| **KsuWebUI-SN** | Downstream ativo da WebUI independente do KernelSU; adiciona live-reload, editor embutido e console de dev no celular. | https://github.com/dnascorpionofficial/KsuWebUI-SN |
 | **WebUI X Portable** | A WebUI X do MMRL, empacotada para rodar sozinha. | https://github.com/MMRLApp/WebUI-X-Portable<br>https://t.me/MMRLApp |
 | **Aurora Store** | Um cliente não oficial e FOSS da Google Play, com design elegante. | https://github.com/whyorean/AuroraStore<br>https://gitlab.com/AuroraOSS/AuroraStore<br>https://t.me/AuroraOfficial<br>https://t.me/AuroraSupport<br>https://t.me/AuroraOSS |
 | **Neo Store** | Um cliente do F-Droid com UI moderna e um arsenal de recursos extras. | https://github.com/NeoApplications/Neo-Store<br>https://t.me/neo_applications |
@@ -242,6 +243,22 @@ Voltar ao README: [English](README.md) | [Português](README.pt.md).
 | **FolkPatch** | Root patcheando a partição de boot, sobre um branch estendido do APatch com UI/UX própria; o FolkTool concede o root e o FolkLite é o branch MIUIX. | https://github.com/LyraVoid/FolkPatch<br>https://github.com/LyraVoid/FolkTool<br>https://github.com/LyraVoid/FolkLite<br>https://t.me/FolkPatch<br>https://t.me/FolkPatch_Kernel<br>https://t.me/FolkPatch_Chat<br>https://t.me/FP_CI |
 | **KowSU** | Um fork do KernelSU focado no tema Material do manager. | https://github.com/KOWX712/KernelSU<br>https://t.me/kowsu_build<br>https://t.me/kowchannel |
 | **Xposed Modules Repo** | O repositório que espelha os módulos do Xposed e do LSPosed, e os canais que os anunciam. | https://github.com/Xposed-Modules-Repo<br>https://t.me/Xposed_Repository<br>https://t.me/XposedRepositoryChat |
+| **rclone-fuse3-magisk** | Um módulo Magisk para o rclone com libfuse3. | https://github.com/NewFuture/rclone-fuse3-magisk |
+| **Wild KSU** | Um fork do KernelSU. | https://github.com/WildKernels/Wild_KSU |
+| **mtk-easy-su** | Root temporário sem bootloop para aparelhos MediaTek. | https://github.com/JunioJsv/mtk-easy-su |
+| **Garuda Defender** | Um projeto de RASP para Android que protege APKs contra vulnerabilidades. | https://github.com/kikyps/GarudaDefender |
+| **fgetpriority** | Um helper no kernel que filtra os syscalls getpriority para fechar um vazamento de root. | https://github.com/aerath-stuff/fgetpriority |
+| **adb-hide-susfs** | Um módulo KernelSU que esconde o estado do ADB dos apps via SUSFS. | https://github.com/ymuuuu/adb-hide-susfs |
+| **susfs4ksu-for-lkm** | SUSFS portado para módulo de kernel carregável (LKM), carregado pelo KernelSU. | https://github.com/inforcqb/susfs4ksu-for-lkm |
+| **NoEmulator** | Esconde artefatos de emulador Android dos apps com regras SUSFS no kernel (módulo KernelSU). | https://github.com/ymuuuu/NoEmulator |
+| **HideBusybox** | Esconde a detecção de busybox, em Java e C/C++ nativo. | https://github.com/rezadev05/hidebusybox |
+| **CSOLoader** | Um linker customizado para Android e Linux, sem rastro e independente do system-linker. | https://github.com/ThePedroo/CSOLoader |
+| **DebugAssistant** | Um sistema simples de captura de logcat como módulo Magisk. | https://github.com/ThePedroo/DebugAssistant |
+| **build.prop** | Um acervo navegável e auto-atualizado de fingerprints reais de build.prop de Pixel - as últimas 4 builds de cada canal (stable, beta, canary) por aparelho. | https://github.com/VictorGabriel7Dev/build.prop |
+| **VD Backup** | Um módulo do @VD_Priv8 para backup e restauração completa de apps e dados com root (WebUI KernelSU/APatch/Magisk). Um sucessor aberto ao Swift Backup, Neo Backup e Android-DataBackup. | https://github.com/VD171/VD-Backup |
+| **VD Dropbear** | Um módulo do @VD_Priv8: servidor SSH (Dropbear) rooteado, standalone e totalmente configurável para KernelSU/APatch/Magisk, com WebUI, banner oculto e sftp-server/scp/rsync embutidos. | https://github.com/VD171/VD-dropbear |
+| **VD Modules** | O repositório de módulos MMRL / WebUI-X dos módulos do @VD_Priv8. | https://github.com/VD171/VD-Modules |
+| **mtproto-store** | O Telegram como armazenamento de objetos ilimitado via MTProto, num único CLI estático. | https://github.com/VictorGabriel7Dev/mtproto-store |
 
 ## Detectar o root
 
