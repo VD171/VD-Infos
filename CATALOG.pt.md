@@ -246,7 +246,6 @@ Voltar ao README: [English](README.md) | [Português](README.pt.md).
 | **rclone-fuse3-magisk** | Um módulo Magisk para o rclone com libfuse3. | https://github.com/NewFuture/rclone-fuse3-magisk |
 | **Wild KSU** | Um fork do KernelSU. | https://github.com/WildKernels/Wild_KSU |
 | **mtk-easy-su** | Root temporário sem bootloop para aparelhos MediaTek. | https://github.com/JunioJsv/mtk-easy-su |
-| **Garuda Defender** | Um projeto de RASP para Android que protege APKs contra vulnerabilidades. | https://github.com/kikyps/GarudaDefender |
 | **fgetpriority** | Um helper no kernel que filtra os syscalls getpriority para fechar um vazamento de root. | https://github.com/aerath-stuff/fgetpriority |
 | **adb-hide-susfs** | Um módulo KernelSU que esconde o estado do ADB dos apps via SUSFS. | https://github.com/ymuuuu/adb-hide-susfs |
 | **susfs4ksu-for-lkm** | SUSFS portado para módulo de kernel carregável (LKM), carregado pelo KernelSU. | https://github.com/inforcqb/susfs4ksu-for-lkm |
@@ -259,6 +258,8 @@ Voltar ao README: [English](README.md) | [Português](README.pt.md).
 | **VD Dropbear** | Um módulo do @VD_Priv8: servidor SSH (Dropbear) rooteado, standalone e totalmente configurável para KernelSU/APatch/Magisk, com WebUI, banner oculto e sftp-server/scp/rsync embutidos. | https://github.com/VD171/VD-dropbear |
 | **VD Modules** | O repositório de módulos MMRL / WebUI-X dos módulos do @VD_Priv8. | https://github.com/VD171/VD-Modules |
 | **mtproto-store** | O Telegram como armazenamento de objetos ilimitado via MTProto, num único CLI estático. | https://github.com/VictorGabriel7Dev/mtproto-store |
+| **meta-magic_mount (Rust)** | Um meta módulo de Magic Mount (baseado no MKSU) que esconde os mounts dos módulos. | https://github.com/Tools-cx-app/meta-magic_mount-rs |
+| **vdantiroot-susfs** | Um módulo de configuração e helper do SUSFS para ocultação a nível de kernel, do @VD_Priv8. | https://github.com/VD171/vdantiroot-susfs |
 
 ## Detectar o root
 
@@ -266,6 +267,7 @@ Use detectores nativos, como:
 
 | Detector | Links |
 |---|---|
+| **Garuda Defender** | https://github.com/kikyps/GarudaDefender |
 | **DuckDetector (refactoring)** | https://github.com/eltavine/Duck-Detector-Refactoring<br>https://github.com/rrr333nnn333/Duck-Detector-Refactoring<br>https://t.me/duck_detector |
 | **TamJiGi** | https://t.me/rormzhstjxm |
 | **Holmes** | https://t.me/app_process64 |

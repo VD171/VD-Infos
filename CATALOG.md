@@ -247,7 +247,6 @@ Back to the README: [English](README.md) | [Português](README.pt.md).
 | **rclone-fuse3-magisk** | A Magisk module for rclone with libfuse3. | https://github.com/NewFuture/rclone-fuse3-magisk |
 | **Wild KSU** | A fork of KernelSU. | https://github.com/WildKernels/Wild_KSU |
 | **mtk-easy-su** | Bootless temporary root for MediaTek devices. | https://github.com/JunioJsv/mtk-easy-su |
-| **Garuda Defender** | An Android RASP project that protects APKs from vulnerabilities. | https://github.com/kikyps/GarudaDefender |
 | **fgetpriority** | A kernel-side helper that filters the getpriority syscalls to close a root leak. | https://github.com/aerath-stuff/fgetpriority |
 | **adb-hide-susfs** | A KernelSU module that hides the ADB runtime state from apps over SUSFS. | https://github.com/ymuuuu/adb-hide-susfs |
 | **susfs4ksu-for-lkm** | SUSFS ported to a loadable kernel module (LKM), loaded via KernelSU. | https://github.com/inforcqb/susfs4ksu-for-lkm |
@@ -260,6 +259,8 @@ Back to the README: [English](README.md) | [Português](README.pt.md).
 | **VD Dropbear** | A module by @VD_Priv8: a standalone, fully configurable rooted SSH (Dropbear) server for KernelSU/APatch/Magisk, with WebUI, hidden banner and bundled sftp-server/scp/rsync. | https://github.com/VD171/VD-dropbear |
 | **VD Modules** | The MMRL / WebUI-X module repository for @VD_Priv8's modules. | https://github.com/VD171/VD-Modules |
 | **mtproto-store** | Telegram as unlimited object storage over MTProto, in a single static CLI. | https://github.com/VictorGabriel7Dev/mtproto-store |
+| **meta-magic_mount (Rust)** | A Magic Mount meta module (based on MKSU) that hides module mounts. | https://github.com/Tools-cx-app/meta-magic_mount-rs |
+| **vdantiroot-susfs** | A SUSFS setup and helper module for kernel-level hiding, by @VD_Priv8. | https://github.com/VD171/vdantiroot-susfs |
 
 ## Detect root
 
@@ -267,6 +268,7 @@ Use native detectors, such as:
 
 | Detector | Links |
 |---|---|
+| **Garuda Defender** | https://github.com/kikyps/GarudaDefender |
 | **DuckDetector (refactoring)** | https://github.com/eltavine/Duck-Detector-Refactoring<br>https://github.com/rrr333nnn333/Duck-Detector-Refactoring<br>https://t.me/duck_detector |
 | **TamJiGi** | https://t.me/rormzhstjxm |
 | **Holmes** | https://t.me/app_process64 |
