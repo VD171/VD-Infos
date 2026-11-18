@@ -1,0 +1,117 @@
+# ======================================================================
+#  VD INFOS  ::  method debugger
+#  Read every device info by every method, then compare.
+#
+#  Copyright (C) 2026  VD171
+#  SPDX-License-Identifier: AGPL-3.0-or-later
+#
+#  Free software under the GNU AGPL v3 or later. NETWORK COPYLEFT: run a
+#  modified version, even as a service, and you MUST offer its source.
+#
+#  Site           : https://vd171.ru
+#  Site           : https://vd.priv8.ru
+#  Source         : https://github.com/VD171/VD-Infos
+#  GitHub         : @VD171 https://github.com/VD171
+#  XDA-Developers : @VD171 https://xdaforums.com/m/vd171.4699873/
+#  XDA thread     : https://xdaforums.com/t/VD-Infos.4097379/
+#  Telegram       : @VD_Priv8 https://t.me/VD_Priv8
+#  Channel        : @Priv8_VD https://t.me/Priv8_VD
+#  Discord        : @VD.Priv8 https://discord.com/users/1296831918989639721
+#  E-mail         : vd.priv8@pm.me
+# ======================================================================
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: 'Tag/branch/commit to build'
+        required: false
+        default: ''
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          ref: ${{ github.event.inputs.ref || github.ref }}
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@7a6d8a8234af8eb26422e24e3006232cccaa061b # v4.6.0
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@9fc6c4e9069bf8d3d10b2204b1fb8f6ef7065407 # v3.2.2
+
+      - name: Install NDK + CMake
+        run: sdkmanager "ndk;27.0.12077973" "cmake;3.22.1"
+
+      - name: Inject signing material
+        env:
+          KEYSTORE_B64: ${{ secrets.VDINFOS_KEYSTORE_B64 }}
+          STORE_PASSWORD: ${{ secrets.VDINFOS_STORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.VDINFOS_KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.VDINFOS_KEY_PASSWORD }}
+        run: |
+          if [ -z "$KEYSTORE_B64" ]; then
+            echo "::error::VDINFOS_KEYSTORE_B64 secret is not set - cannot sign the release."
+            exit 1
+          fi
+          JKS="$GITHUB_WORKSPACE/VDInfos/vd-release.jks"
+          printf '%s' "$KEYSTORE_B64" | base64 -d > "$JKS"
+          {
+            echo "storeFile=$JKS"
+            echo "storePassword=$STORE_PASSWORD"
+            echo "keyAlias=$KEY_ALIAS"
+            echo "keyPassword=$KEY_PASSWORD"
+          } > "$GITHUB_WORKSPACE/VDInfos/keystore.properties"
+
+      - name: Build release (both flavors)
+        working-directory: VDInfos
+        run: ./gradlew assembleRelease --no-daemon --stacktrace
+
+      - name: Wipe signing material
+        if: always()
+        run: rm -f "$GITHUB_WORKSPACE/VDInfos/keystore.properties" "$GITHUB_WORKSPACE/VDInfos/vd-release.jks"
+
+      - name: Collect + verify APKs
+        run: |
+          mkdir -p dist
+          cp VDInfos/app/build/outputs/apk/modern/release/*.apk dist/
+          cp VDInfos/app/build/outputs/apk/compat/release/*.apk dist/
+          ls -l dist/
+          APKSIGNER=$(ls "$ANDROID_HOME"/build-tools/*/apksigner | sort -V | tail -1)
+          for a in dist/*.apk; do
+            echo "== $a =="
+            "$APKSIGNER" verify --print-certs "$a" | grep -iE 'certificate DN|Verified using v2|Verified using v3' || true
+          done
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@6f51ac03b9356f520e9adb1b1b7802705f340c2b # v4.5.0
+        with:
+          name: vdinfos-apks
+          path: dist/*.apk
+          if-no-files-found: error
+
+      - name: Draft release (tag only)
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@e7a8f85e1c67a31e6ed99a94b41bd0b71bbee6b8 # v2.0.9
+        with:
+          draft: true
+          files: dist/*.apk
+          fail_on_unmatched_files: true
+          generate_release_notes: false
