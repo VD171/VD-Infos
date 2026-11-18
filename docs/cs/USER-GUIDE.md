@@ -30,8 +30,8 @@ ho přečetli na svém vlastním zařízení.
 Android předává spoustu informací o vašem zařízení každé aplikaci, kterou nainstalujete.
 VD Infos vám ukazuje příklad toho, co dokáže přečíst běžná aplikace, a dělá to jako
 *ladicí nástroj metod*: pro každou informaci čte hodnotu přes **každou metodu, která ji
-umí přečíst** - `Build.*`, `SystemProperties`, `getprop`, nativní
-`__system_property_get`, systémové manažery, poskytovatele obsahu, soubory, syscally a
+umí přečíst** - platformová API, systémové vlastnosti, nativní volání,
+systémové manažery, poskytovatele obsahu, soubory, syscally a
 hardwarovou atestaci klíčů (TEE) - a seřazuje je, abyste mohli porovnat. Je to čočka, ne
 stroj na verdikty: vynáší naměřené údaje na povrch a jejich čtení ponechává na vás.
 
@@ -56,7 +56,7 @@ stroj na verdikty: vynáší naměřené údaje na povrch a jejich čtení ponec
 Každé vydání publikuje **dvě APK**:
 
 - **SDK_35** - cílí na striktní moderní sandbox. Toto je ten, který se má použít.
-- **SDK_27** - cílí na starší úroveň API, s volnější SELinux doménou. Je užitečný pouze
+- **SDK_27** - cílí na starší úroveň API. Je užitečný pouze
   pro srovnání bok po boku; většina lidí ho nepotřebuje.
 
 Obě se instalují na Androidu 8.0 a novějším. Stáhněte si je ze stránky

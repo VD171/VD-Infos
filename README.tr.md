@@ -42,7 +42,7 @@
 
 ---
 
-Android son derece güçlü ve çok yönlü bir işletim sistemidir; kimsenin söylemediği şey ise tüm kişisel ayrıntılarınızın ve gizli bilgilerinizin kurduğunuz her uygulamaya açık olduğu ve bu tür gizlilik ihlallerine karşı kendinizi korumanın bir zorunluluk olduğudur. VD Infos, cihazınızdan nelerin yakalanabileceğine dair bir örnek gösterir ve bunu bir *yöntem hata ayıklayıcısı* olarak yapar: her bilgi için değeri **onu okuyabilen her yöntemle** okur: `Build.*`, `SystemProperties`, `getprop`, native `__system_property_get`, sistem yöneticileri, content provider'lar, dosyalar, syscall'lar ve donanım anahtarı attestation (TEE), ve karşılaştırabilmeniz için yan yana dizer. Bir yöntem diğerleriyle uyuşmadığında, aradaki bir şey o yüzeyi yeniden yazıyordur: bir hook çerçevesi, bir spoofer, bir resolver shim'i. **HİÇBİR BİLGİ SAKLANMAZ, GÖNDERİLMEZ VEYA HERHANGİ BİR DOSYAYA¹ YA DA SUNUCUYA İLETİLMEZ**: her şey cihazda çalışır, kimlik taşıyan değerler siz açığa çıkarana kadar maskelenir ve bir rapor cihazdan yalnızca siz açıkça paylaştığınızda veya kaydettiğinizde çıkar; isterseniz internet erişimini bir güvenlik duvarıyla engelleyin ya da doğrudan kapatın.
+Android son derece güçlü ve çok yönlü bir işletim sistemidir; kimsenin söylemediği şey ise tüm kişisel ayrıntılarınızın ve gizli bilgilerinizin kurduğunuz her uygulamaya açık olduğu ve bu tür gizlilik ihlallerine karşı kendinizi korumanın bir zorunluluk olduğudur. VD Infos, cihazınızdan nelerin yakalanabileceğine dair bir örnek gösterir ve bunu bir *yöntem hata ayıklayıcısı* olarak yapar: her bilgi için değeri **onu okuyabilen her yöntemle** okur: framework API'leri, native arayüzler, shell komutları, sistem yöneticileri, content provider'lar, dosyalar, syscall'lar ve donanım anahtarı attestation (TEE), ve karşılaştırabilmeniz için yan yana dizer. Bir okuma diğerleriyle uyuşmadığında, aradaki bir şey o yüzeyi yeniden yazıyordur: bir hook çerçevesi, bir spoofer, bir resolver shim'i. **HİÇBİR BİLGİ SAKLANMAZ, GÖNDERİLMEZ VEYA HERHANGİ BİR DOSYAYA¹ YA DA SUNUCUYA İLETİLMEZ**: her şey cihazda çalışır, kimlik taşıyan değerler siz açığa çıkarana kadar maskelenir ve bir rapor cihazdan yalnızca siz açıkça paylaştığınızda veya kaydettiğinizde çıkar; isterseniz internet erişimini bir güvenlik duvarıyla engelleyin ya da doğrudan kapatın.
 
 > **¹ İstisna:** her tarama tam raporunu uygulamanın özel depolamasında saklar (`files/last_snapshot.json`). Onu yalnızca uygulamanın kendisi veya root okuyabilir, bir sonraki tarama üzerine yazar ve cihazdan asla çıkmaz. Yapay zekâ ajanlarının tam sonucu okuyabilmesi için vardır; bkz. **Yapay zekâ ajanları için: JSON olarak tam rapor**.
 
@@ -50,7 +50,7 @@ Android son derece güçlü ve çok yönlü bir işletim sistemidir; kimsenin s�
 
 Her öğe onu okuyabilen her yöntemle okunur (Java SDK / native / shell) ve yan yana karşılaştırılır:
 
-* **~488 sistem özelliği** BEŞ şekilde okunur: `SystemProperties.get`, bionic'in iki giriş noktası (`__system_property_read_callback` ve 92 baytlık `__system_property_get`), JVM tarafından başlatılan `getprop` ve native koddan `popen` ile başlatılan `getprop`; `ProcessBuilder` tarafından çalıştırılan bir shell komutu ile aynı komutun JVM olmadan çalıştırılması aynı bakış açısı değildir, çünkü ilki bir root gizleme çerçevesinin yeniden yazdığı bir yüzeydir, ikincisi değildir.
+* **~488 sistem özelliği** birbirinden bağımsız birkaç yolla okunur: Java API'si, native özellik arayüzü ve farklı şekillerde erişilen `getprop` shell komutu, ardından yan yana dizilip karşılaştırılır. Bu yolların tümü aynı katmandan geçmediği için, birinde yeniden yazılıp diğerinde yazılmayan bir değer bir uyuşmazlık olarak ortaya çıkar.
 * **Cihaz kimliği**: model, üretici, marka, device, product, board, hardware, fingerprint, bootloader, build id/tags/type, her `Build.*` alanı tüm `ro.product.*` (system/vendor/odm) varyantlarına, native ve shell'e karşı.
 * **Tanımlayıcılar**: serial (birçok getter), Android ID (settings ve provider), GSF ID, advertising ID, IMEI/primary IMEI/MEID/IMSI/ICCID, user serial.
 * **Telefon**: TelephonyManager yüzeyi (operatör, SIM, ağ, roaming...), SubscriptionManager (çoklu SIM), cell info.
@@ -58,13 +58,13 @@ Her öğe onu okuyabilen her yöntemle okunur (Java SDK / native / shell) ve yan
 * **Çekirdek / süreç / sistem**: `uname`, boot id, uptime, UID/PID, SELinux, saat dilimi, locale, ortam, çalışan hizmetler/süreçler.
 * **Donanım / medya**: CPU, bellek, sensörler, ekran, kameralar, system features, GPU, Widevine DRM ID.
 * **Paketler / hesaplar / WebView**: kurulu paket listesi ve sayısı, uygulama başına imza digest'leri, bu uygulamanın imzası, kendi paketini inceleme, intent çözümleme sayımları, hesaplar, arama günlüğü sayısı, user agent.
-* **Sandbox uygunluğu**: sandbox'ın KAPATMASI gereken yüzeyler (eMMC CID/serial, UFS ve SoC kimliği, `/proc/cmdline`, `/proc/1/*`, `/dev/kmsg`, `/system/build.prop`) ve 22 `dumpsys` hizmeti. Burada ret, cevaptır: `EACCES`/`DENIED` uygun okumadır ve içeriği bunun yerine teslim eden bir cihaz uygun değildir.
+* **Sandbox uygunluğu**: düzgün biçimde sandbox'lanmış bir uygulamanın erişememesi gereken düşük seviyeli kimlik ve çekirdek yüzeyleri ile bir dizi `dumpsys` hizmeti. Bunlar için uygulama, erişimin doğru şekilde reddedilip reddedilmediğini denetler; erişilmemesi gerekirken erişilebilen bir yüzey inceleme için işaretlenir.
 * **Reklam tanımlayıcıları**: Play Services binder'ından GAID, artı tüm anahtar ailesi (AAID, OAID/VAID ve Huawei'nin `pps_*`'leri) üç settings store boyunca taranır.
-* **Root / hook / emülatör dedektörleri**: `su`/Magisk/KernelSU/APatch/Xposed/LSPosed/Riru artefaktları, `/proc/self/maps` içine enjekte edilmiş kütüphaneler, bilinen paketler, tehlikeli ve emülatör özellikleri, verified boot state.
+* **Root / hook / emülatör dedektörleri**: yaygın root yöneticileri, hook çerçeveleri ve emülatörlerin (Magisk, KernelSU, APatch, Xposed/LSPosed, Riru ve benzerleri) bıraktığı artefaktlar ve sinyaller, ayrıca verified boot state.
 
 ## İndirme ve destek
 
-Her sürüm iki APK yayınlar: **SDK_35** katı modern sandbox'ı hedefler ve kullanılması gereken budur; **SDK_27** daha eski bir API seviyesini, daha gevşek bir SELinux alanıyla hedefler, karşılaştırma için yararlıdır. İkisi de Android 8.0 ve üzerine kurulur.
+Her sürüm iki APK yayınlar: **SDK_35** katı modern sandbox'ı hedefler ve kullanılması gereken budur; **SDK_27** daha eski bir API seviyesini hedefler, karşılaştırma için yararlıdır. İkisi de Android 8.0 ve üzerine kurulur.
 
 * Release (APK): https://github.com/VD171/VD-Infos/releases
 * https://github.com/VD171/VD-Infos
@@ -98,7 +98,7 @@ cpp/            native_probes.cpp: native lens, bağımlılıksız
 
 * **Paralellik**: 996 sonda, sınırlı izin sayısıyla varsayılan dispatcher üzerinde dağılır; sonuçlar geldikçe UI'ye akar.
 * **Arka planda hiçbir şey yok**: hizmet yok, zamanlanmış tarama yok; uygulama yalnızca açıkken çalışır ve boşta bırakılınca kendini kapatır.
-* **Native katman**: `RegisterNatives` ile ada göre bağlanan küçük bir `.so`, kandırılması zor olması gereken parça olduğu için bilerek minik tutulur.
+* **Native katman**: `RegisterNatives` ile ada göre bağlanan, bağımlılığı olmayan küçük bir `.so`, bilerek minik ve basit tutulur.
 
 ## Katkıda bulunma
 

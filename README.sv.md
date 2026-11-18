@@ -42,7 +42,7 @@
 
 ---
 
-Android är ett oerhört kraftfullt och mångsidigt operativsystem; vad ingen berättar är att alla dina personliga uppgifter och känsliga uppgifter är tillgängliga för varje app du installerar, och att skydda dig mot dessa integritetsintrång är en skyldighet. VD Infos visar dig ett exempel på vad som kan fångas från din enhet, och gör det som en *metod-debugger*: för varje uppgift läser den värdet via **varje metod som kan läsa det**: `Build.*`, `SystemProperties`, `getprop`, den nativa `__system_property_get`, systemhanterare, content providers, filer, syscalls och attestering av hårdvarunyckel (TEE), och radar upp dem så att du kan jämföra. När en metod avviker från de andra skriver något däremellan om den ytan: ett hooking-ramverk, en spoofer, en resolver-shim. **INGEN INFORMATION LAGRAS, SKICKAS ELLER ÖVERFÖRS TILL NÅGON FIL¹ ELLER SERVER**: allt körs på enheten, identitetsbärande värden är maskerade tills du avslöjar dem, och en rapport lämnar enheten endast när du uttryckligen delar eller sparar den; vill du, blockera internetåtkomst med en brandvägg eller stäng bara av den.
+Android är ett oerhört kraftfullt och mångsidigt operativsystem; vad ingen berättar är att alla dina personliga uppgifter och känsliga uppgifter är tillgängliga för varje app du installerar, och att skydda dig mot dessa integritetsintrång är en skyldighet. VD Infos visar dig ett exempel på vad som kan fångas från din enhet, och gör det som en *metod-debugger*: för varje uppgift läser den värdet via **varje metod som kan läsa det**: ramverks-API:er, nativa gränssnitt, shell-kommandon, systemhanterare, content providers, filer, syscalls och attestering av hårdvarunyckel (TEE), och radar upp dem så att du kan jämföra. När en avläsning avviker från de andra skriver något däremellan om den ytan: ett hooking-ramverk, en spoofer, en resolver-shim. **INGEN INFORMATION LAGRAS, SKICKAS ELLER ÖVERFÖRS TILL NÅGON FIL¹ ELLER SERVER**: allt körs på enheten, identitetsbärande värden är maskerade tills du avslöjar dem, och en rapport lämnar enheten endast när du uttryckligen delar eller sparar den; vill du, blockera internetåtkomst med en brandvägg eller stäng bara av den.
 
 > **¹ Undantag:** varje skanning sparar hela rapporten i appens privata lagring (`files/last_snapshot.json`). Bara appen själv eller root kan läsa den, nästa skanning skriver över den och den lämnar aldrig enheten. Den finns för att AI-agenter ska kunna läsa hela resultatet; se **För AI-agenter: hela rapporten som JSON**.
 
@@ -50,7 +50,7 @@ Android är ett oerhört kraftfullt och mångsidigt operativsystem; vad ingen be
 
 Varje post läses via varje metod som kan läsa den (Java-SDK / nativ / shell), jämförda sida vid sida:
 
-* **~488 systemegenskaper** lästa på FEM sätt: `SystemProperties.get`, båda bionics ingångspunkter (`__system_property_read_callback` och den 92-byte stora `__system_property_get`), `getprop` startad av JVM:en och `getprop` startad från nativ kod via `popen`; ett shell-kommando kört av `ProcessBuilder` och samma kommando kört utan JVM är inte samma synvinkel, eftersom det första är en yta som ett root-döljande ramverk skriver om och det andra inte.
+* **~488 systemegenskaper** lästa via flera oberoende vägar: Java-API:et, det nativa egenskapsgränssnittet och shell-kommandot `getprop` nått på olika sätt, sedan uppradade och jämförda. Eftersom dessa vägar inte alla går genom samma lager visar sig ett värde som skrivits om på en väg men inte en annan som en avvikelse.
 * **Enhetsidentitet**: modell, tillverkare, märke, device, product, board, hardware, fingerprint, bootloader, build id/tags/type, varje `Build.*`-fält mot alla dess `ro.product.*`-varianter (system/vendor/odm), nativt och shell.
 * **Identifierare**: serial (många getters), Android ID (settings och provider), GSF ID, advertising ID, IMEI/primary IMEI/MEID/IMSI/ICCID, user serial.
 * **Telefoni**: TelephonyManager-ytan (operatör, SIM, nätverk, roaming...), SubscriptionManager (multi-SIM), cell info.
@@ -58,13 +58,13 @@ Varje post läses via varje metod som kan läsa den (Java-SDK / nativ / shell), 
 * **Kärna / process / system**: `uname`, boot id, uptime, UID/PID, SELinux, tidszon, locale, miljö, körande tjänster/processer.
 * **Hårdvara / media**: CPU, minne, sensorer, skärm, kameror, system features, GPU, Widevine-DRM-ID.
 * **Paket / konton / WebView**: lista och antal installerade paket, signeringsdigester per app, denna apps signatur, introspektion av det egna paketet, intent-upplösningsuppräkningar, konton, antal samtalsloggposter, user agent.
-* **Sandbox-överensstämmelse**: ytor som sandboxen ska STÄNGA (eMMC CID/serial, UFS- och SoC-identitet, `/proc/cmdline`, `/proc/1/*`, `/dev/kmsg`, `/system/build.prop`) och 22 `dumpsys`-tjänster. Här är vägran svaret: `EACCES`/`DENIED` är den överensstämmande läsningen, och en enhet som istället lämnar ut innehållet är inte överensstämmande.
+* **Sandbox-överensstämmelse**: lågnivåidentitet och kärnytor, plus en uppsättning `dumpsys`-tjänster, som en korrekt sandboxad app inte ska kunna nå. För dessa kontrollerar appen om åtkomst nekas korrekt; en yta som går att nå när den inte borde flaggas för granskning.
 * **Annonsidentifierare**: GAID från Play Services-bindern, plus hela nyckelfamiljen (AAID, OAID/VAID och Huaweis `pps_*`) svept över de tre settings store.
-* **Root- / hook- / emulatordetektorer**: artefakter av `su`/Magisk/KernelSU/APatch/Xposed/LSPosed/Riru, injicerade libbar i `/proc/self/maps`, kända paket, farliga och emulatoregenskaper, verified boot state.
+* **Root- / hook- / emulatordetektorer**: artefakter och signaler som lämnats av vanliga root-hanterare, hooking-ramverk och emulatorer (Magisk, KernelSU, APatch, Xposed/LSPosed, Riru med flera), plus verified boot state.
 
 ## Nedladdning och support
 
-Varje release publicerar två APK-filer: **SDK_35** riktar sig mot den strikta moderna sandlådan och är den att använda; **SDK_27** riktar sig mot en äldre API-nivå, med en lösare SELinux-domän, användbar för jämförelse. Båda installeras på Android 8.0 och senare.
+Varje release publicerar två APK-filer: **SDK_35** riktar sig mot den strikta moderna sandlådan och är den att använda; **SDK_27** riktar sig mot en äldre API-nivå, användbar för jämförelse. Båda installeras på Android 8.0 och senare.
 
 * Release (APK): https://github.com/VD171/VD-Infos/releases
 * https://github.com/VD171/VD-Infos
@@ -98,7 +98,7 @@ cpp/            native_probes.cpp: den nativa linsen, beroendefri
 
 * **Parallellism**: 996 sonder fördelas över standard-dispatchern med ett begränsat antal tillstånd; resultaten strömmar in i UI:t allteftersom de landar.
 * **Inget i bakgrunden**: inga tjänster och inga schemalagda skanningar; appen körs bara medan den är öppen och stänger sig själv när den lämnas inaktiv.
-* **Nativt lager**: en liten `.so`, bunden vid namn via `RegisterNatives`, avsiktligt pytteliten eftersom det är den del som måste vara svår att lura.
+* **Nativt lager**: en liten, beroendefri `.so`, bunden vid namn via `RegisterNatives`, avsiktligt pytteliten och enkel.
 
 ## Bidra
 

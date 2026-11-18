@@ -17,8 +17,7 @@ leitura diante de você, e lê-las é tarefa sua, no seu próprio dispositivo.
   apenas enquanto está aberto.
 - **Legível por máquinas.** O resultado inteiro é um único documento legível por máquina, então uma
   ferramenta obtém o mesmo quadro que uma pessoa. Veja [Agentes de IA](AI-AGENTS.md).
-- **Pequeno onde importa.** A parte que precisa ser difícil de enganar é mantida deliberadamente
-  minúscula.
+- **Pequeno onde importa.** O componente nativo é mantido deliberadamente minúsculo e simples.
 
 ## As lentes
 
@@ -30,12 +29,12 @@ possam ser comparadas:
 | **Java / SDK** | A API da plataforma que um app comum chama. |
 | **Native / JNI** | O mesmo valor lido a partir de código nativo. |
 | **Shell via JVM** | Um comando de shell disparado pela JVM. |
-| **Shell via JNI** | O mesmo comando disparado a partir de código nativo, um ponto de observação diferente. |
+| **Shell via JNI** | O mesmo comando disparado a partir de código nativo. |
 | **TEE / Attestation** | Atestação de chave respaldada por hardware, onde se aplica. |
 
-Alinhar as lentes é a ideia inteira: quando elas discordam, algo entre o app
-e o valor está respondendo de forma diferente a diferentes chamadores. O que isso significa para um
-dado valor, em um dado dispositivo, é você quem deve ler.
+Alinhar as lentes é a ideia inteira: o app mostra onde as leituras concordam
+e onde divergem. O que uma diferença significa para um dado valor, em um dado
+dispositivo, é você quem deve ler.
 
 ## Como uma varredura roda
 
@@ -52,8 +51,8 @@ cpp/            native_probes.cpp: the native lens, dependency-free
   os resultados fluem para a interface conforme são concluídos, com um indicador de progresso ao vivo.
 - **Nada em segundo plano.** Sem serviços e sem varreduras agendadas. O app lê apenas
   enquanto aberto e se fecha quando deixado ocioso.
-- **A camada nativa.** Um pequeno `.so`, vinculado por nome via `RegisterNatives`, mantido
-  deliberadamente minúsculo porque é a parte que precisa ser difícil de enganar.
+- **A camada nativa.** Um pequeno `.so` sem dependências, vinculado por nome via `RegisterNatives`,
+  mantido deliberadamente minúsculo e simples.
 
 ## O relatório
 

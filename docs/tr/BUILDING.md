@@ -24,7 +24,7 @@ birlikte Kotlin ve Jetpack Compose. CI onu derleyebilir ve siz onu yerel olarak 
 Bu, flavor başına bir tane olmak üzere **iki APK** üretir:
 
 - **modern** (`SDK_35`) - katı modern sanal alan, kullanılacak derleme.
-- **compat** (`SDK_27`) - daha gevşek bir SELinux alanıyla daha eski bir hedef, yalnızca yan yana
+- **compat** (`SDK_27`) - daha eski bir API hedefi, yalnızca yan yana
   karşılaştırma için.
 
 Çıktılar şuraya iner:
@@ -49,9 +49,8 @@ derlemelerinizi imzalamak için kendi keystore'unuzu sağlayın.
 
 ## İki flavor
 
-Uygulama kasıtlı olarak iki flavor gönderir. Farklı API düzeylerini hedeflerler ve bu nedenle farklı
-Android sanal alan etki alanlarına düşerler, ki bu da karşılaştırma için kendi başına kullanışlıdır.
-Her ikisi de aynı kaynaktan derlenir; yalnızca hedef ve birkaç korumalı kod yolu farklıdır. Yerel koda
+Uygulama kasıtlı olarak iki flavor gönderir. Farklı API düzeylerini hedeflerler ve aynı kaynaktan
+derlenir; yalnızca hedef ve birkaç korumalı kod yolu farklıdır. Yerel koda
 veya flavor'a özgü bir yola dokunan bir değişiklik, yalnızca üzerinde yineleme yaptığınız flavor'da
 değil, **her iki** flavor'da derlenip kontrol edilmelidir.
 
@@ -59,8 +58,7 @@ değil, **her iki** flavor'da derlenip kontrol edilmelidir.
 
 Yerel mercek, NDK tarafından küçük bir `.so` olarak derlenen, adıyla `RegisterNatives` aracılığıyla
 bağlanan, bağımlılıktan arınmış tek bir C++ çeviri birimidir. Normal Gradle derlemesinin bir parçası
-olarak derlenir; ayrı bir adım yoktur. Kandırılması zor olması gereken kısım olduğu için bilinçli
-olarak minik tutulur.
+olarak derlenir; ayrı bir adım yoktur. Bilinçli olarak minik ve basit tutulur.
 
 ## Şeylerin nerede olduğu
 

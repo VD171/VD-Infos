@@ -17,8 +17,7 @@ lectura delante de ti, y leerlas es tuyo para hacerlo en tu propio dispositivo.
   solo mientras está abierta.
 - **Legible por máquinas.** El resultado completo es un documento legible por máquina, así que una
   herramienta obtiene la misma imagen que una persona. Consulta [Agentes de IA](AI-AGENTS.md).
-- **Pequeño donde importa.** La parte que debe ser difícil de engañar se mantiene deliberadamente
-  diminuta.
+- **Pequeño donde importa.** El componente nativo se mantiene deliberadamente diminuto y simple.
 
 ## Las lentes
 
@@ -30,12 +29,12 @@ puedan compararse:
 | **Java / SDK** | La API de plataforma que llama una aplicación corriente. |
 | **Nativo / JNI** | El mismo valor leído desde código nativo. |
 | **Shell vía JVM** | Un comando de shell generado por la JVM. |
-| **Shell vía JNI** | El mismo comando generado desde código nativo, un punto de vista distinto. |
+| **Shell vía JNI** | El mismo comando generado desde código nativo. |
 | **TEE / Atestación** | Atestación de claves respaldada por hardware, donde aplica. |
 
-Alinear las lentes es toda la idea: cuando no coinciden, algo entre la aplicación
-y el valor responde de forma distinta a distintos llamadores. Lo que eso significa para un
-valor dado, en un dispositivo dado, es tuyo para leerlo.
+Alinear las lentes es toda la idea: la aplicación muestra dónde coinciden las lecturas
+y dónde difieren. Lo que una diferencia significa para un valor dado, en un dispositivo
+dado, es tuyo para leerlo.
 
 ## Cómo se ejecuta un escaneo
 
@@ -52,8 +51,8 @@ cpp/            native_probes.cpp: the native lens, dependency-free
   los resultados se transmiten a la interfaz a medida que se completan, con un indicador de progreso en vivo.
 - **Nada en segundo plano.** Sin servicios y sin escaneos programados. La aplicación lee solo
   mientras está abierta y se cierra sola cuando se deja inactiva.
-- **La capa nativa.** Un pequeño `.so`, vinculado por nombre a través de `RegisterNatives`, mantenido
-  deliberadamente diminuto porque es la parte que debe ser difícil de engañar.
+- **La capa nativa.** Un pequeño `.so` sin dependencias, vinculado por nombre a través de `RegisterNatives`, mantenido
+  deliberadamente diminuto y simple.
 
 ## El informe
 

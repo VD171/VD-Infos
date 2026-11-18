@@ -24,7 +24,7 @@ C++ byggd genom NDK. CI kan bygga det, och du kan återskapa det lokalt.
 Detta producerar **två APK:er**, en per flavor:
 
 - **modern** (`SDK_35`) - den strikta moderna sandlådan, bygget att använda.
-- **compat** (`SDK_27`) - ett äldre mål med en lösare SELinux-domän, endast för jämförelse sida vid
+- **compat** (`SDK_27`) - ett äldre API-mål, endast för jämförelse sida vid
   sida.
 
 Utdata landar i:
@@ -49,8 +49,7 @@ osignerad. Tillhandahåll din egen keystore för att signera dina egna bygg.
 
 ## De två flavorerna
 
-Appen levererar två flavorer med avsikt. De riktar sig mot olika API-nivåer och faller därför in i
-olika Android-sandlådedomäner, vilket i sig är användbart för jämförelse. Båda bygger från samma
+Appen levererar två flavorer med avsikt. De riktar sig mot olika API-nivåer och bygger från samma
 källa; endast målet och några få bevakade kodvägar skiljer sig. En ändring som rör nativ kod eller en
 flavor-specifik väg bör byggas och kontrolleras i **båda** flavorerna, inte bara den du itererar på.
 
@@ -58,8 +57,7 @@ flavor-specifik väg bör byggas och kontrolleras i **båda** flavorerna, inte b
 
 Den nativa linsen är en enda, beroendefri C++-översättningsenhet byggd av NDK som en liten `.so`,
 bunden med namn genom `RegisterNatives`. Den kompileras som en del av det normala Gradle-bygget; det
-finns inget separat steg. Den hålls medvetet pytteliten eftersom det är den del som måste vara svår
-att lura.
+finns inget separat steg. Den hålls medvetet pytteliten och enkel.
 
 ## Var saker bor
 

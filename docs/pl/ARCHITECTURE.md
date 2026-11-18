@@ -17,8 +17,7 @@ odczytu przed tobą, a ich odczytanie masz wykonać sam na własnym urządzeniu.
   tylko wtedy, gdy jest otwarta.
 - **Czytelne dla maszyn.** Cały wynik jest jednym czytelnym dla maszyny dokumentem, więc
   narzędzie dostaje ten sam obraz co człowiek. Zobacz [Agenci AI](AI-AGENTS.md).
-- **Małe tam, gdzie to ważne.** Część, którą musi być trudno oszukać, jest celowo utrzymana
-  maleńka.
+- **Małe tam, gdzie to ważne.** Komponent natywny jest celowo utrzymany maleńki i prosty.
 
 ## Soczewki
 
@@ -30,12 +29,12 @@ mogły być porównane:
 | **Java / SDK** | API platformy, które wywołuje zwykła aplikacja. |
 | **Native / JNI** | Ta sama wartość odczytana z kodu natywnego. |
 | **Shell via JVM** | Polecenie powłoki uruchomione przez JVM. |
-| **Shell via JNI** | To samo polecenie uruchomione z kodu natywnego, inny punkt obserwacji. |
+| **Shell via JNI** | To samo polecenie uruchomione z kodu natywnego. |
 | **TEE / Attestation** | Atestacja klucza wsparta sprzętowo, tam gdzie ma zastosowanie. |
 
-Ustawienie soczewek obok siebie to cała idea: gdy się nie zgadzają, coś między aplikacją
-a wartością odpowiada różnie różnym wywołującym. Co to oznacza dla danej
-wartości, na danym urządzeniu, masz odczytać sam.
+Ustawienie soczewek obok siebie to cała idea: aplikacja pokazuje, gdzie odczyty się zgadzają,
+a gdzie się różnią. Co dana różnica oznacza dla danej wartości, na danym urządzeniu,
+masz odczytać sam.
 
 ## Jak przebiega skanowanie
 
@@ -52,8 +51,8 @@ cpp/            native_probes.cpp: the native lens, dependency-free
   wyniki strumieniują się do interfejsu w miarę ich ukończenia, z aktywnym wskaźnikiem postępu.
 - **Nic w tle.** Bez usług i bez zaplanowanych skanowań. Aplikacja odczytuje tylko
   gdy jest otwarta i zamyka się sama, gdy pozostawiona bezczynnie.
-- **Warstwa natywna.** Jedno małe `.so`, związane po nazwie przez `RegisterNatives`, utrzymane
-  celowo maleńkie, ponieważ jest to część, którą musi być trudno oszukać.
+- **Warstwa natywna.** Jedno małe `.so` bez zależności, związane po nazwie przez `RegisterNatives`,
+  utrzymane celowo maleńkie i proste.
 
 ## Raport
 

@@ -17,8 +17,7 @@ lecture devant vous, et les lire est à vous de le faire sur votre propre appare
   seulement pendant qu'elle est ouverte.
 - **Lisible par les machines.** Le résultat complet est un document lisible par machine, si bien qu'un
   outil obtient la même image qu'une personne. Voir [Agents IA](AI-AGENTS.md).
-- **Petit là où ça compte.** La partie qui doit être difficile à tromper est gardée délibérément
-  minuscule.
+- **Petit là où ça compte.** Le composant natif est gardé délibérément minuscule et simple.
 
 ## Les lentilles
 
@@ -30,12 +29,12 @@ puissent être comparées :
 | **Java / SDK** | L'API de plateforme qu'appelle une application ordinaire. |
 | **Natif / JNI** | La même valeur lue depuis du code natif. |
 | **Shell via JVM** | Une commande shell engendrée par la JVM. |
-| **Shell via JNI** | La même commande engendrée depuis du code natif, un point de vue différent. |
+| **Shell via JNI** | La même commande engendrée depuis du code natif. |
 | **TEE / Attestation** | Attestation de clés adossée au matériel, là où elle s'applique. |
 
-Aligner les lentilles est toute l'idée : quand elles ne concordent pas, quelque chose entre l'application
-et la valeur répond différemment à différents appelants. Ce que cela signifie pour une
-valeur donnée, sur un appareil donné, est à vous de le lire.
+Aligner les lentilles est toute l'idée : l'application montre où les lectures concordent et où
+elles diffèrent. Ce qu'une différence signifie pour une valeur donnée, sur un appareil donné,
+est à vous de le lire.
 
 ## Comment se déroule une analyse
 
@@ -52,8 +51,8 @@ cpp/            native_probes.cpp: the native lens, dependency-free
   les résultats sont diffusés vers l'interface au fur et à mesure qu'ils se terminent, avec un indicateur de progression en direct.
 - **Rien en arrière-plan.** Pas de services et pas d'analyses programmées. L'application lit seulement
   pendant qu'elle est ouverte et se ferme d'elle-même lorsqu'on la laisse inactive.
-- **La couche native.** Un petit `.so`, lié par nom à travers `RegisterNatives`, gardé
-  délibérément minuscule parce que c'est la partie qui doit être difficile à tromper.
+- **La couche native.** Un petit `.so` sans dépendances, lié par nom à travers `RegisterNatives`, gardé
+  délibérément minuscule et simple.
 
 ## Le rapport
 

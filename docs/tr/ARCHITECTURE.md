@@ -15,7 +15,7 @@ koymaktır ve onları okumak, kendi cihazınızda yapmanız içindir.
 - **Cihazda ve sessiz.** Ağ yok, hesap yok, arka plan işi yok. Uygulama yalnızca açıkken çalışır.
 - **Makineler tarafından okunabilir.** Tüm sonuç makine tarafından okunabilir tek bir belgedir,
   böylece bir araç bir kişinin gördüğü resmin aynısını elde eder. Bkz. [Yapay zeka ajanları](AI-AGENTS.md).
-- **Önemli olan yerde küçük.** Kandırılması zor olması gereken kısım bilinçli olarak minik tutulur.
+- **Önemli olan yerde küçük.** Yerel bileşen bilinçli olarak minik ve basit tutulur.
 
 ## Mercekler
 
@@ -27,12 +27,11 @@ okunur:
 | **Java / SDK** | Sıradan bir uygulamanın çağırdığı platform API'si. |
 | **Native / JNI** | Aynı değerin yerel koddan okunması. |
 | **Shell via JVM** | JVM tarafından oluşturulan bir kabuk komutu. |
-| **Shell via JNI** | Aynı komutun yerel koddan oluşturulması, farklı bir bakış açısı. |
+| **Shell via JNI** | Aynı komutun yerel koddan oluşturulması. |
 | **TEE / Attestation** | Uygulandığı yerde, donanım destekli anahtar doğrulaması. |
 
-Mercekleri dizmek bütün fikirdir: hemfikir olmadıklarında, uygulama ile değer arasındaki bir şey farklı
-çağıranlara farklı yanıt veriyordur. Bunun belirli bir değer için, belirli bir cihazda ne anlama
-geldiği, okumanız içindir.
+Mercekleri dizmek bütün fikirdir: uygulama, okumaların nerede hemfikir olduğunu ve nerede ayrıştığını
+gösterir. Bir farkın belirli bir değer için, belirli bir cihazda ne anlama geldiği, okumanız içindir.
 
 ## Bir tarama nasıl çalışır
 
@@ -49,8 +48,8 @@ cpp/            native_probes.cpp: the native lens, dependency-free
   sonuçlar tamamlandıkça, canlı bir ilerleme göstergesiyle arayüze akar.
 - **Arka planda hiçbir şey yok.** Hizmet yok ve zamanlanmış tarama yok. Uygulama yalnızca açıkken okur
   ve boş bırakıldığında kendini kapatır.
-- **Yerel katman.** Adıyla `RegisterNatives` aracılığıyla bağlanan küçük bir `.so`, kandırılması zor
-  olması gereken kısım olduğu için bilinçli olarak minik tutulur.
+- **Yerel katman.** Adıyla `RegisterNatives` aracılığıyla bağlanan, bağımlılığı olmayan küçük bir `.so`,
+  bilinçli olarak minik ve basit tutulur.
 
 ## Rapor
 

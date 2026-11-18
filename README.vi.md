@@ -42,7 +42,7 @@
 
 ---
 
-Android là một hệ điều hành cực kỳ mạnh mẽ và linh hoạt; điều không ai nói cho bạn biết là mọi chi tiết cá nhân và thông tin bí mật của bạn đều sẵn có cho mọi ứng dụng bạn cài đặt, và tự bảo vệ trước những sự xâm phạm quyền riêng tư này là một nghĩa vụ. VD Infos cho bạn thấy một ví dụ về những gì có thể bị thu thập từ thiết bị của bạn, và làm điều đó như một *trình gỡ lỗi phương thức*: với mỗi thông tin, nó đọc giá trị qua **mọi phương thức có thể đọc được nó**: `Build.*`, `SystemProperties`, `getprop`, `__system_property_get` native, các manager hệ thống, content provider, tệp, syscall và attestation khóa phần cứng (TEE), rồi xếp cạnh nhau để bạn so sánh. Khi một phương thức khác với các phương thức còn lại, thứ gì đó ở giữa đang viết lại bề mặt đó: một framework hook, một spoofer, một shim resolver. **KHÔNG THÔNG TIN NÀO ĐƯỢC LƯU, GỬI HAY TRUYỀN ĐẾN BẤT KỲ TỆP¹ HAY MÁY CHỦ NÀO**: mọi thứ chạy trên thiết bị, các giá trị mang danh tính bị che cho đến khi bạn hiển thị chúng, và báo cáo chỉ rời khỏi thiết bị khi bạn chia sẻ hoặc lưu một cách rõ ràng; nếu muốn, hãy chặn truy cập internet bằng tường lửa hoặc chỉ cần tắt nó đi.
+Android là một hệ điều hành cực kỳ mạnh mẽ và linh hoạt; điều không ai nói cho bạn biết là mọi chi tiết cá nhân và thông tin bí mật của bạn đều sẵn có cho mọi ứng dụng bạn cài đặt, và tự bảo vệ trước những sự xâm phạm quyền riêng tư này là một nghĩa vụ. VD Infos cho bạn thấy một ví dụ về những gì có thể bị thu thập từ thiết bị của bạn, và làm điều đó như một *trình gỡ lỗi phương thức*: với mỗi thông tin, nó đọc giá trị qua **mọi phương thức có thể đọc được nó**: API framework, giao diện native, lệnh shell, các manager hệ thống, content provider, tệp, syscall và attestation khóa phần cứng (TEE), rồi xếp cạnh nhau để bạn so sánh. Khi một kết quả đọc khác với các kết quả còn lại, thứ gì đó ở giữa đang viết lại bề mặt đó: một framework hook, một spoofer, một shim resolver. **KHÔNG THÔNG TIN NÀO ĐƯỢC LƯU, GỬI HAY TRUYỀN ĐẾN BẤT KỲ TỆP¹ HAY MÁY CHỦ NÀO**: mọi thứ chạy trên thiết bị, các giá trị mang danh tính bị che cho đến khi bạn hiển thị chúng, và báo cáo chỉ rời khỏi thiết bị khi bạn chia sẻ hoặc lưu một cách rõ ràng; nếu muốn, hãy chặn truy cập internet bằng tường lửa hoặc chỉ cần tắt nó đi.
 
 > **¹ Ngoại lệ:** mỗi lần quét lưu báo cáo đầy đủ trong bộ nhớ riêng của ứng dụng (`files/last_snapshot.json`). Chỉ chính ứng dụng hoặc root đọc được, lần quét sau sẽ ghi đè và tệp không bao giờ rời khỏi thiết bị. Tệp tồn tại để tác tử AI đọc được kết quả đầy đủ; xem **Dành cho tác tử AI: báo cáo đầy đủ dạng JSON**.
 
@@ -50,7 +50,7 @@ Android là một hệ điều hành cực kỳ mạnh mẽ và linh hoạt; đi
 
 Mỗi mục được đọc qua mọi phương thức có thể đọc được nó (Java SDK / native / shell), so sánh cạnh nhau:
 
-* **~488 thuộc tính hệ thống** được đọc theo NĂM cách: `SystemProperties.get`, cả hai điểm vào của bionic (`__system_property_read_callback` và `__system_property_get` 92 byte), `getprop` do JVM khởi chạy, và `getprop` khởi chạy từ mã native qua `popen`; một lệnh shell chạy bởi `ProcessBuilder` và cùng lệnh đó chạy không có JVM không phải cùng một góc nhìn, vì cái đầu là một bề mặt mà framework ẩn root viết lại, còn cái sau thì không.
+* **~488 thuộc tính hệ thống** được đọc qua nhiều đường độc lập: Java API, giao diện thuộc tính native, và lệnh shell `getprop` tiếp cận theo những cách khác nhau, rồi xếp cạnh nhau và so sánh. Vì các đường này không cùng đi qua một lớp, một giá trị bị viết lại trên đường này mà không trên đường kia sẽ lộ ra dưới dạng sự khác biệt.
 * **Danh tính thiết bị**: model, nhà sản xuất, thương hiệu, device, product, board, hardware, fingerprint, bootloader, build id/tags/type, mỗi trường `Build.*` đối chiếu với tất cả biến thể `ro.product.*` (system/vendor/odm), native và shell.
 * **Định danh**: serial (nhiều getter), Android ID (settings và provider), GSF ID, advertising ID, IMEI/primary IMEI/MEID/IMSI/ICCID, user serial.
 * **Điện thoại**: bề mặt TelephonyManager (nhà mạng, SIM, mạng, roaming...), SubscriptionManager (đa SIM), cell info.
@@ -58,13 +58,13 @@ Mỗi mục được đọc qua mọi phương thức có thể đọc được 
 * **Kernel / tiến trình / hệ thống**: `uname`, boot id, uptime, UID/PID, SELinux, múi giờ, locale, môi trường, dịch vụ/tiến trình đang chạy.
 * **Phần cứng / đa phương tiện**: CPU, bộ nhớ, cảm biến, màn hình, camera, system features, GPU, ID DRM Widevine.
 * **Gói / tài khoản / WebView**: danh sách và số lượng gói đã cài, digest chữ ký theo ứng dụng, chữ ký của ứng dụng này, tự soi gói của chính mình, liệt kê phân giải intent, tài khoản, số mục nhật ký cuộc gọi, user agent.
-* **Tuân thủ sandbox**: các bề mặt mà sandbox phải ĐÓNG (CID/serial eMMC, danh tính UFS và SoC, `/proc/cmdline`, `/proc/1/*`, `/dev/kmsg`, `/system/build.prop`) và 22 dịch vụ `dumpsys`. Ở đây, sự từ chối chính là câu trả lời: `EACCES`/`DENIED` là kết quả đọc tuân thủ, và một thiết bị thay vào đó lại trao nội dung là không tuân thủ.
+* **Tuân thủ sandbox**: các bề mặt danh tính cấp thấp và kernel, cùng một tập dịch vụ `dumpsys`, mà một ứng dụng bị cô lập đúng cách lẽ ra không thể chạm tới. Với những bề mặt này, ứng dụng kiểm tra xem truy cập có bị từ chối đúng cách hay không; một bề mặt có thể chạm tới khi lẽ ra không được sẽ bị đánh dấu để xem xét.
 * **Định danh quảng cáo**: GAID từ binder của Play Services, cộng với cả họ khóa (AAID, OAID/VAID và `pps_*` của Huawei) được quét qua ba settings store.
-* **Trình phát hiện root / hook / giả lập**: dấu vết của `su`/Magisk/KernelSU/APatch/Xposed/LSPosed/Riru, thư viện được tiêm trong `/proc/self/maps`, gói đã biết, thuộc tính nguy hiểm và giả lập, verified boot state.
+* **Trình phát hiện root / hook / giả lập**: các dấu vết và tín hiệu để lại bởi những trình quản lý root, framework hook và trình giả lập phổ biến (Magisk, KernelSU, APatch, Xposed/LSPosed, Riru và tương tự), cùng verified boot state.
 
 ## Tải xuống và hỗ trợ
 
-Mỗi bản phát hành công bố hai APK: **SDK_35** nhắm tới sandbox hiện đại nghiêm ngặt và là bản nên dùng; **SDK_27** nhắm tới mức API cũ hơn, với miền SELinux lỏng hơn, hữu ích để so sánh. Cả hai cài được trên Android 8.0 trở lên.
+Mỗi bản phát hành công bố hai APK: **SDK_35** nhắm tới sandbox hiện đại nghiêm ngặt và là bản nên dùng; **SDK_27** nhắm tới mức API cũ hơn, hữu ích để so sánh. Cả hai cài được trên Android 8.0 trở lên.
 
 * Release (APK): https://github.com/VD171/VD-Infos/releases
 * https://github.com/VD171/VD-Infos
@@ -98,7 +98,7 @@ cpp/            native_probes.cpp: ống kính native, không phụ thuộc
 
 * **Song song**: 996 thăm dò tỏa ra trên dispatcher mặc định với số giấy phép giới hạn; kết quả chảy vào UI ngay khi đến.
 * **Không có gì ở nền**: không dịch vụ và không quét theo lịch; ứng dụng chỉ chạy khi đang mở và tự đóng khi bị bỏ không.
-* **Lớp native**: một `.so` nhỏ, liên kết theo tên qua `RegisterNatives`, được giữ cố ý tí hon vì đây là phần phải khó bị đánh lừa.
+* **Lớp native**: một `.so` nhỏ, không phụ thuộc, liên kết theo tên qua `RegisterNatives`, được giữ cố ý tí hon và đơn giản.
 
 ## Đóng góp
 

@@ -25,8 +25,7 @@ können es lokal reproduzieren.
 Dies erzeugt **zwei APKs**, eines pro Flavor:
 
 - **modern** (`SDK_35`) - die strikte moderne Sandbox, der zu verwendende Build.
-- **compat** (`SDK_27`) - ein älteres Ziel mit einer lockereren SELinux-Domäne, nur für
-  den direkten Vergleich.
+- **compat** (`SDK_27`) - ein älteres API-Ziel, nur für den direkten Vergleich.
 
 Die Ausgaben landen in:
 
@@ -52,8 +51,7 @@ Keystore bereit, um Ihre eigenen Builds zu signieren.
 ## Die zwei Flavors
 
 Die App liefert absichtlich zwei Flavors aus. Sie zielen auf unterschiedliche API-Ebenen
-und fallen daher in verschiedene Android-Sandbox-Domänen, was selbst für den Vergleich
-nützlich ist. Beide bauen aus derselben Quelle; nur das Ziel und einige wenige
+und bauen aus derselben Quelle; nur das Ziel und einige wenige
 abgesicherte Codepfade unterscheiden sich. Eine Änderung, die nativen Code oder einen
 flavor-spezifischen Pfad berührt, sollte in **beiden** Flavors gebaut und geprüft werden,
 nicht nur in dem, in dem Sie iterieren.
@@ -63,7 +61,7 @@ nicht nur in dem, in dem Sie iterieren.
 Die native Linse ist eine einzige, abhängigkeitsfreie C++-Übersetzungseinheit, die vom
 NDK als eine kleine `.so` gebaut wird, per Name über `RegisterNatives` gebunden. Sie wird
 als Teil des normalen Gradle-Builds kompiliert; es gibt keinen separaten Schritt. Sie
-wird bewusst winzig gehalten, weil sie der Teil ist, der schwer zu täuschen sein muss.
+wird bewusst winzig und einfach gehalten.
 
 ## Wo die Dinge liegen
 

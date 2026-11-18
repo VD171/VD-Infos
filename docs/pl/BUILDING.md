@@ -25,8 +25,7 @@ lokalnie.
 To produkuje **dwa pliki APK**, po jednym na flavor:
 
 - **modern** (`SDK_35`) - ścisła nowoczesna piaskownica, kompilacja do użycia.
-- **compat** (`SDK_27`) - starszy cel z luźniejszą domeną SELinux, wyłącznie do
-  porównania obok siebie.
+- **compat** (`SDK_27`) - starszy cel API, wyłącznie do porównania obok siebie.
 
 Wyniki lądują w:
 
@@ -50,9 +49,8 @@ APK wychodzi niepodpisane. Dostarcz własny keystore, aby podpisać własne komp
 
 ## Dwa flavory
 
-Aplikacja dostarcza dwa flavory celowo. Celują w różne poziomy API i dlatego
-wpadają w różne domeny piaskownicy Androida, co samo w sobie jest przydatne do porównania. Oba
-budują z tego samego źródła; różni się tylko cel i kilka strzeżonych ścieżek kodu. Zmiana,
+Aplikacja dostarcza dwa flavory celowo. Celują w różne poziomy API i budują z tego
+samego źródła; różni się tylko cel i kilka strzeżonych ścieżek kodu. Zmiana,
 która dotyka kodu natywnego lub ścieżki specyficznej dla flavora, powinna być zbudowana i sprawdzona w
 **obu** flavorach, nie tylko w tym, nad którym iterujesz.
 
@@ -60,8 +58,7 @@ która dotyka kodu natywnego lub ścieżki specyficznej dla flavora, powinna by�
 
 Natywna soczewka to pojedyncza, pozbawiona zależności jednostka translacji C++ budowana przez NDK jako
 jedno małe `.so`, związane po nazwie przez `RegisterNatives`. Jest kompilowana jako część
-normalnej kompilacji Gradle; nie ma oddzielnego kroku. Jest utrzymana celowo maleńka, ponieważ
-jest to część, którą musi być trudno oszukać.
+normalnej kompilacji Gradle; nie ma oddzielnego kroku. Jest utrzymana celowo maleńka i prosta.
 
 ## Gdzie co się mieści
 

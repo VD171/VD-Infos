@@ -42,7 +42,7 @@
 
 ---
 
-Android is een enorm krachtig en veelzijdig besturingssysteem; wat niemand je vertelt, is dat al je persoonlijke gegevens en vertrouwelijke informatie beschikbaar zijn voor elke app die je installeert, en jezelf beschermen tegen deze inbreuken op je privacy is een verplichting. VD Infos toont je een voorbeeld van wat er van je toestel kan worden vastgelegd, en doet dat als een *methode-debugger*: voor elk stukje informatie leest het de waarde via **elke methode die het kan lezen**: `Build.*`, `SystemProperties`, `getprop`, de native `__system_property_get`, systeemmanagers, content providers, bestanden, syscalls en hardware-sleutel-attestation (TEE), en zet ze naast elkaar zodat je kunt vergelijken. Wanneer één methode van de andere afwijkt, herschrijft iets ertussenin dat oppervlak: een hooking-framework, een spoofer, een resolver-shim. **ER WORDT GEEN INFORMATIE OPGESLAGEN, VERZONDEN OF DOORGEGEVEN AAN ENIG BESTAND¹ OF SERVER**: alles draait op het toestel, identiteitsdragende waarden zijn gemaskeerd tot je ze onthult, en een rapport verlaat het toestel alleen wanneer je het uitdrukkelijk deelt of opslaat; wil je, blokkeer dan internettoegang met een firewall of zet het gewoon uit.
+Android is een enorm krachtig en veelzijdig besturingssysteem; wat niemand je vertelt, is dat al je persoonlijke gegevens en vertrouwelijke informatie beschikbaar zijn voor elke app die je installeert, en jezelf beschermen tegen deze inbreuken op je privacy is een verplichting. VD Infos toont je een voorbeeld van wat er van je toestel kan worden vastgelegd, en doet dat als een *methode-debugger*: voor elk stukje informatie leest het de waarde via **elke methode die het kan lezen**: framework-API's, native interfaces, shell-commando's, systeemmanagers, content providers, bestanden, syscalls en hardware-sleutel-attestation (TEE), en zet ze naast elkaar zodat je kunt vergelijken. Wanneer één lezing van de andere afwijkt, herschrijft iets ertussenin dat oppervlak: een hooking-framework, een spoofer, een resolver-shim. **ER WORDT GEEN INFORMATIE OPGESLAGEN, VERZONDEN OF DOORGEGEVEN AAN ENIG BESTAND¹ OF SERVER**: alles draait op het toestel, identiteitsdragende waarden zijn gemaskeerd tot je ze onthult, en een rapport verlaat het toestel alleen wanneer je het uitdrukkelijk deelt of opslaat; wil je, blokkeer dan internettoegang met een firewall of zet het gewoon uit.
 
 > **¹ Uitzondering:** elke scan bewaart zijn volledige rapport in de privéopslag van de app (`files/last_snapshot.json`). Alleen de app zelf of root kan het lezen, de volgende scan overschrijft het en het verlaat het apparaat nooit. Het bestaat zodat AI-agents het volledige resultaat kunnen lezen; zie **Voor AI-agents: het volledige rapport als JSON**.
 
@@ -50,7 +50,7 @@ Android is een enorm krachtig en veelzijdig besturingssysteem; wat niemand je ve
 
 Elk item wordt gelezen via elke methode die het kan lezen (Java-SDK / native / shell), naast elkaar vergeleken:
 
-* **~488 systeemeigenschappen** op VIJF manieren gelezen: `SystemProperties.get`, beide toegangspunten van bionic (`__system_property_read_callback` en de 92-byte `__system_property_get`), `getprop` gestart door de JVM, en `getprop` gestart vanuit native code via `popen`; een shell-commando uitgevoerd door `ProcessBuilder` en hetzelfde commando zonder de JVM zijn niet hetzelfde gezichtspunt, want het eerste is een oppervlak dat een root-verbergframework herschrijft en het tweede niet.
+* **~488 systeemeigenschappen** gelezen via meerdere onafhankelijke paden: de Java-API, de native eigenschappen-interface en het `getprop` shell-commando dat op verschillende manieren wordt bereikt, vervolgens naast elkaar gezet en vergeleken. Omdat deze paden niet allemaal door dezelfde laag lopen, verschijnt een waarde die op het ene pad wel maar op het andere niet is herschreven als een afwijking.
 * **Toestelidentiteit**: model, fabrikant, merk, device, product, board, hardware, fingerprint, bootloader, build id/tags/type, elk `Build.*`-veld tegen al zijn `ro.product.*`-varianten (system/vendor/odm), native en shell.
 * **Identifiers**: serial (veel getters), Android ID (settings en provider), GSF ID, advertising ID, IMEI/primary IMEI/MEID/IMSI/ICCID, user serial.
 * **Telefonie**: het TelephonyManager-oppervlak (operator, SIM, netwerk, roaming...), SubscriptionManager (multi-SIM), cell info.
@@ -58,13 +58,13 @@ Elk item wordt gelezen via elke methode die het kan lezen (Java-SDK / native / s
 * **Kernel / proces / systeem**: `uname`, boot id, uptime, UID/PID, SELinux, tijdzone, locale, omgeving, draaiende services/processen.
 * **Hardware / media**: CPU, geheugen, sensoren, scherm, camera's, system features, GPU, Widevine-DRM-ID.
 * **Pakketten / accounts / WebView**: lijst en aantal geïnstalleerde pakketten, ondertekeningsdigests per app, handtekening van deze app, introspectie van het eigen pakket, intent-resolutie-enumeraties, accounts, aantal oproeplogboek-items, user agent.
-* **Sandbox-conformiteit**: oppervlakken die de sandbox moet SLUITEN (eMMC CID/serial, UFS- en SoC-identiteit, `/proc/cmdline`, `/proc/1/*`, `/dev/kmsg`, `/system/build.prop`) en 22 `dumpsys`-services. Hier is de weigering het antwoord: `EACCES`/`DENIED` is de conforme lezing, en een toestel dat de inhoud in plaats daarvan afgeeft, is niet-conform.
+* **Sandbox-conformiteit**: low-level identiteits- en kerneloppervlakken, plus een set `dumpsys`-services, die een correct gesandboxte app niet zou mogen kunnen bereiken. Hiervoor controleert de app of de toegang correct wordt geweigerd; een oppervlak dat bereikbaar is terwijl dat niet zou moeten, wordt gemarkeerd voor nadere beschouwing.
 * **Advertentie-identifiers**: de GAID via de Play Services-binder, plus de hele sleutelfamilie (AAID, OAID/VAID en Huawei's `pps_*`) doorzocht in de drie settings stores.
-* **Root- / hook- / emulatordetectoren**: artefacten van `su`/Magisk/KernelSU/APatch/Xposed/LSPosed/Riru, geïnjecteerde libs in `/proc/self/maps`, bekende pakketten, gevaarlijke en emulator-eigenschappen, verified boot state.
+* **Root- / hook- / emulatordetectoren**: artefacten en signalen die veelvoorkomende root-managers, hooking-frameworks en emulators achterlaten (Magisk, KernelSU, APatch, Xposed/LSPosed, Riru en dergelijke), plus verified boot state.
 
 ## Downloaden en ondersteuning
 
-Elke release publiceert twee APK's: **SDK_35** richt zich op de strikte moderne sandbox en is degene om te gebruiken; **SDK_27** richt zich op een ouder API-niveau, met een lossere SELinux-domein, handig ter vergelijking. Beide installeren op Android 8.0 en nieuwer.
+Elke release publiceert twee APK's: **SDK_35** richt zich op de strikte moderne sandbox en is degene om te gebruiken; **SDK_27** richt zich op een ouder API-niveau, handig ter vergelijking. Beide installeren op Android 8.0 en nieuwer.
 
 * Release (APK): https://github.com/VD171/VD-Infos/releases
 * https://github.com/VD171/VD-Infos
@@ -98,7 +98,7 @@ cpp/            native_probes.cpp: de native lens, zonder afhankelijkheden
 
 * **Parallellisme**: 996 probes waaieren uit over de standaard-dispatcher met een begrensd aantal permits; resultaten stromen de UI in zodra ze binnenkomen.
 * **Niets op de achtergrond**: geen services en geen geplande scans; de app draait alleen zolang hij open is en sluit zichzelf wanneer hij inactief blijft.
-* **Native laag**: één kleine `.so`, op naam gebonden via `RegisterNatives`, bewust piepklein gehouden omdat dit het deel is dat moeilijk te misleiden moet zijn.
+* **Native laag**: één kleine `.so` zonder afhankelijkheden, op naam gebonden via `RegisterNatives`, bewust piepklein en eenvoudig gehouden.
 
 ## Bijdragen
 

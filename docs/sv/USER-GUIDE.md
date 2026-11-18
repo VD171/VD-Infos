@@ -29,9 +29,9 @@ läsa, på din egen enhet.
 
 Android lämnar en stor del av din enhets information till varje app du installerar. VD Infos
 visar dig ett exempel på vad en vanlig app kan läsa, och den gör det som en *metoddebugger*:
-för varje informationsdel läser den värdet genom **varje metod som kan läsa det** - `Build.*`,
-`SystemProperties`, `getprop`, den nativa `__system_property_get`, systemhanterare, content
-providers, filer, syscalls och hårdvarubaserad nyckelattestering (TEE) - och ställer upp dem
+för varje informationsdel läser den värdet genom **varje metod som kan läsa det** - plattforms-API:er,
+systemegenskaper, nativa anrop, systemhanterare, content providers, filer, syscalls och
+hårdvarubaserad nyckelattestering (TEE) - och ställer upp dem
 så att du kan jämföra. Den är en lins, inte en domsmaskin: den lyfter fram avläsningarna och
 lämnar läsningen av dem till dig.
 
@@ -56,7 +56,7 @@ lämnar läsningen av dem till dig.
 Varje release publicerar **två APK:er**:
 
 - **SDK_35** - riktar sig mot den strikta moderna sandlådan. Det är den du ska använda.
-- **SDK_27** - riktar sig mot en äldre API-nivå, med en lösare SELinux-domän. Den är användbar
+- **SDK_27** - riktar sig mot en äldre API-nivå. Den är användbar
   endast för jämförelse sida vid sida; de flesta behöver den inte.
 
 Båda installeras på Android 8.0 och nyare. Ladda ner dem från

@@ -16,7 +16,7 @@ bạn, và việc đọc chúng là của bạn để làm trên chính thiết 
   chạy khi nó đang mở.
 - **Máy đọc được.** Toàn bộ kết quả là một tài liệu máy đọc được duy nhất, nên một công cụ nhận được
   cùng bức tranh như một người. Xem [Tác nhân AI](AI-AGENTS.md).
-- **Nhỏ ở nơi quan trọng.** Phần phải khó đánh lừa được giữ cố ý bé nhỏ.
+- **Nhỏ ở nơi quan trọng.** Thành phần native được giữ cố ý bé nhỏ và đơn giản.
 
 ## Các thấu kính
 
@@ -28,12 +28,12 @@ thể được so sánh:
 | **Java / SDK** | API nền tảng mà một ứng dụng thông thường gọi. |
 | **Native / JNI** | Cùng giá trị đọc từ mã native. |
 | **Shell via JVM** | Một lệnh shell được JVM sinh ra. |
-| **Shell via JNI** | Cùng lệnh đó được sinh ra từ mã native, một điểm nhìn khác. |
+| **Shell via JNI** | Cùng lệnh đó được sinh ra từ mã native. |
 | **TEE / Attestation** | Chứng thực khóa có phần cứng hậu thuẫn, nơi nó áp dụng được. |
 
-Xếp các thấu kính cạnh nhau chính là toàn bộ ý tưởng: khi chúng bất đồng, có thứ gì đó giữa ứng dụng
-và giá trị đang trả lời khác nhau cho những người gọi khác nhau. Điều đó có ý nghĩa gì với một giá
-trị nhất định, trên một thiết bị nhất định, là của bạn để đọc.
+Xếp các thấu kính cạnh nhau chính là toàn bộ ý tưởng: ứng dụng cho thấy nơi các kết quả đọc trùng
+khớp và nơi chúng khác nhau. Một sự khác biệt có ý nghĩa gì với một giá trị nhất định, trên một thiết
+bị nhất định, là của bạn để đọc.
 
 ## Một lần quét chạy ra sao
 
@@ -50,8 +50,8 @@ cpp/            native_probes.cpp: the native lens, dependency-free
   truyền vào giao diện khi chúng hoàn thành, với một chỉ báo tiến độ trực tiếp.
 - **Không có gì ở nền.** Không dịch vụ và không lần quét theo lịch. Ứng dụng chỉ đọc khi đang mở và
   tự đóng khi bị bỏ nhàn rỗi.
-- **Tầng native.** Một `.so` nhỏ, được buộc theo tên qua `RegisterNatives`, được giữ cố ý bé nhỏ vì
-  nó là phần phải khó đánh lừa.
+- **Tầng native.** Một `.so` nhỏ, không phụ thuộc, được buộc theo tên qua `RegisterNatives`, được giữ
+  cố ý bé nhỏ và đơn giản.
 
 ## Báo cáo
 

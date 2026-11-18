@@ -18,8 +18,8 @@ apparaat.
   draait alleen terwijl hij open is.
 - **Leesbaar door machines.** Het hele resultaat is een machineleesbaar document, zodat
   een tool hetzelfde beeld krijgt als een persoon. Zie [AI-agents](AI-AGENTS.md).
-- **Klein waar het ertoe doet.** Het deel dat moeilijk te misleiden moet zijn, wordt
-  bewust piepklein gehouden.
+- **Klein waar het ertoe doet.** De native component wordt bewust piepklein en
+  eenvoudig gehouden.
 
 ## De lenzen
 
@@ -31,12 +31,12 @@ lenzen gelezen zodat ze vergeleken kunnen worden:
 | **Java / SDK** | De platform-API die een gewone app aanroept. |
 | **Native / JNI** | Dezelfde waarde gelezen vanuit native code. |
 | **Shell via JVM** | Een shell-commando dat door de JVM wordt gestart. |
-| **Shell via JNI** | Hetzelfde commando gestart vanuit native code, een ander gezichtspunt. |
+| **Shell via JNI** | Hetzelfde commando gestart vanuit native code. |
 | **TEE / Attestation** | Hardware-ondersteunde key attestation, waar het van toepassing is. |
 
-De lenzen naast elkaar zetten is het hele idee: wanneer ze het oneens zijn, antwoordt
-iets tussen de app en de waarde verschillend aan verschillende aanroepers. Wat dat voor
-een bepaalde waarde, op een bepaald apparaat, betekent, is aan jou om te lezen.
+De lenzen naast elkaar zetten is het hele idee: de app laat zien waar de metingen
+overeenkomen en waar ze verschillen. Wat een verschil voor een bepaalde waarde, op een
+bepaald apparaat, betekent, is aan jou om te lezen.
 
 ## Hoe een scan verloopt
 
@@ -54,8 +54,8 @@ cpp/            native_probes.cpp: the native lens, dependency-free
   voortgangsindicator.
 - **Niets op de achtergrond.** Geen services en geen geplande scans. De app leest alleen
   terwijl hij open is en sluit zichzelf wanneer het inactief wordt gelaten.
-- **De native laag.** Een kleine `.so`, per naam gebonden via `RegisterNatives`, bewust
-  piepklein gehouden omdat het het deel is dat moeilijk te misleiden moet zijn.
+- **De native laag.** Eén kleine, afhankelijkheidsvrije `.so`, per naam gebonden via
+  `RegisterNatives`, bewust piepklein en eenvoudig gehouden.
 
 ## Het rapport
 

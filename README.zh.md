@@ -42,7 +42,7 @@
 
 ---
 
-Android 是一个极其强大且灵活的操作系统；没有人告诉你的是，你所有的个人细节和机密信息对你安装的每一个应用都是可获取的，而保护自己免受这类隐私侵犯是一种义务。VD Infos 向你展示可以从你的设备上捕获什么，并以*方法调试器*的方式进行：对每一项信息，它通过**所有能读取它的方法**读取该值：`Build.*`、`SystemProperties`、`getprop`、原生的 `__system_property_get`、系统 manager、content provider、文件、系统调用，以及硬件密钥认证（TEE），并把它们并排列出以便你比较。当一个方法与其他方法不一致时，中间就有东西在改写那个表面：hook 框架、spoofer、resolver shim。**不存储、不发送、不向任何文件¹或服务器传输任何信息**：一切都在设备上运行，携带身份的值在你揭示之前都被遮蔽，报告只有在你明确分享或保存时才会离开设备；如果你愿意，用防火墙拦截网络访问，或直接关掉网络。
+Android 是一个极其强大且灵活的操作系统；没有人告诉你的是，你所有的个人细节和机密信息对你安装的每一个应用都是可获取的，而保护自己免受这类隐私侵犯是一种义务。VD Infos 向你展示可以从你的设备上捕获什么，并以*方法调试器*的方式进行：对每一项信息，它通过**所有能读取它的方法**读取该值：框架 API、原生接口、shell 命令、系统 manager、content provider、文件、系统调用，以及硬件密钥认证（TEE），并把它们并排列出以便你比较。当一次读取与其他读取不一致时，中间就有东西在改写那个表面：hook 框架、spoofer、resolver shim。**不存储、不发送、不向任何文件¹或服务器传输任何信息**：一切都在设备上运行，携带身份的值在你揭示之前都被遮蔽，报告只有在你明确分享或保存时才会离开设备；如果你愿意，用防火墙拦截网络访问，或直接关掉网络。
 
 > **¹ 例外:** 每次扫描都会把完整报告保存在应用的私有存储中（`files/last_snapshot.json`）。只有应用本身或 root 能读取，下一次扫描会覆盖它，而且它从不离开设备。它的存在是为了让 AI 智能体读取完整结果；参见 **面向 AI 智能体：JSON 格式的完整报告**。
 
@@ -50,7 +50,7 @@ Android 是一个极其强大且灵活的操作系统；没有人告诉你的是
 
 每一项都通过所有能读取它的方法读取（Java SDK / 原生 / shell），并排比较：
 
-* **约 488 个系统属性**以五种方式读取：`SystemProperties.get`、bionic 的两个入口（`__system_property_read_callback` 和 92 字节的 `__system_property_get`）、由 JVM 启动的 `getprop`，以及从原生代码经 `popen` 启动的 `getprop`。由 `ProcessBuilder` 运行的 shell 命令与不经 JVM 运行的同一命令并非同一视角，因为前者是隐藏 root 的框架会改写的表面，后者不是。
+* **约 488 个系统属性**，通过若干条相互独立的路径读取：Java API、原生属性接口，以及以不同方式触及的 `getprop` shell 命令，然后并排列出并比较。由于这些路径并非都经过同一层，某个值若在一条路径上被改写而在另一条上没有，就会表现为不一致。
 * **设备身份**：型号、制造商、品牌、device、product、board、hardware、fingerprint、bootloader、build id/tags/type，每个 `Build.*` 字段对照它所有的 `ro.product.*`（system/vendor/odm）变体、原生与 shell。
 * **标识符**：serial（多个 getter）、Android ID（settings 与 provider）、GSF ID、advertising ID、IMEI/primary IMEI/MEID/IMSI/ICCID、user serial。
 * **电话**：TelephonyManager 表面（运营商、SIM、网络、漫游……）、SubscriptionManager（多 SIM）、cell info。
@@ -58,13 +58,13 @@ Android 是一个极其强大且灵活的操作系统；没有人告诉你的是
 * **内核 / 进程 / 系统**：`uname`、boot id、uptime、UID/PID、SELinux、时区、locale、环境、运行中的服务/进程。
 * **硬件 / 媒体**：CPU、内存、传感器、显示、摄像头、system features、GPU、Widevine DRM ID。
 * **软件包 / 账户 / WebView**：已安装包列表与数量、各应用签名摘要、本应用签名、对自身包的自省、intent 解析枚举、账户、通话记录数量、user agent。
-* **沙箱合规**：沙箱本应**关闭**的表面（eMMC CID/serial、UFS 与 SoC 身份、`/proc/cmdline`、`/proc/1/*`、`/dev/kmsg`、`/system/build.prop`）以及 22 个 `dumpsys` 服务。这里拒绝就是答案：`EACCES`/`DENIED` 才是合规读数，而把内容交出来的设备则不合规。
+* **沙箱合规**：正确隔离的应用本不应能触及的底层身份与内核表面，以及一组 `dumpsys` 服务。对这些表面，应用会检查访问是否被正确拒绝；本不该可达却可达的表面会被标记以供审查。
 * **广告标识符**：来自 Play Services binder 的 GAID，加上整个密钥家族（AAID、OAID/VAID 以及华为的 `pps_*`），在三个 settings store 中扫描。
-* **Root / hook / 模拟器检测**：`su`/Magisk/KernelSU/APatch/Xposed/LSPosed/Riru 的痕迹、`/proc/self/maps` 中注入的库、已知包、危险属性与模拟器属性、verified boot state。
+* **Root / hook / 模拟器检测**：常见 root 管理器、hook 框架与模拟器（Magisk、KernelSU、APatch、Xposed/LSPosed、Riru 等）留下的痕迹与信号，以及 verified boot state。
 
 ## 下载与支持
 
-每个发行版发布两个 APK：**SDK_35** 面向严格的现代沙箱，是推荐使用的版本；**SDK_27** 面向较旧的 API 级别，SELinux 域更宽松，便于对比。两者都可安装在 Android 8.0 及以上。
+每个发行版发布两个 APK：**SDK_35** 面向严格的现代沙箱，是推荐使用的版本；**SDK_27** 面向较旧的 API 级别，便于对比。两者都可安装在 Android 8.0 及以上。
 
 * Release (APK): https://github.com/VD171/VD-Infos/releases
 * https://github.com/VD171/VD-Infos
@@ -98,7 +98,7 @@ cpp/            native_probes.cpp: 原生透镜，无依赖
 
 * **并行**：996 个探针在默认 dispatcher 上以有限的许可数散开；结果一到达便流入 UI。
 * **后台无任何动作**：没有服务，也没有计划扫描；应用仅在打开时运行，闲置后自行关闭。
-* **原生层**：一个小 `.so`，通过 `RegisterNatives` 按名绑定，刻意保持极小，因为这是必须难以被欺骗的部分。
+* **原生层**：一个无依赖的小 `.so`，通过 `RegisterNatives` 按名绑定，刻意保持极小而简单。
 
 ## 参与贡献
 

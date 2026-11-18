@@ -17,8 +17,8 @@ vás, a jejich čtení je na vás, na vašem vlastním zařízení.
   když je otevřená.
 - **Čitelné stroji.** Celý výsledek je jeden strojově čitelný dokument, takže nástroj
   dostane stejný obraz jako člověk. Viz [AI agenti](AI-AGENTS.md).
-- **Malé tam, kde na tom záleží.** Část, kterou musí být těžké oklamat, je držena záměrně
-  drobná.
+- **Malé tam, kde na tom záleží.** Nativní komponenta je držena záměrně drobná a
+  jednoduchá.
 
 ## Čočky
 
@@ -30,12 +30,11 @@ možné je porovnat:
 | **Java / SDK** | Platformové API, které volá běžná aplikace. |
 | **Nativní / JNI** | Stejná hodnota čtená z nativního kódu. |
 | **Shell přes JVM** | Příkaz shellu spuštěný JVM. |
-| **Shell přes JNI** | Stejný příkaz spuštěný z nativního kódu, jiné výhodné místo. |
+| **Shell přes JNI** | Stejný příkaz spuštěný z nativního kódu. |
 | **TEE / Atestace** | Hardwarově podložená atestace klíčů, kde se uplatňuje. |
 
-Seřazení čoček je celá myšlenka: když se neshodnou, něco mezi aplikací a hodnotou
-odpovídá různým volajícím různě. Co to znamená pro danou hodnotu, na daném zařízení, je na
-vás, abyste si přečetli.
+Seřazení čoček je celá myšlenka: aplikace ukazuje, kde se čtení shodují a kde se liší. Co
+znamená rozdíl pro danou hodnotu, na daném zařízení, je na vás, abyste si přečetli.
 
 ## Jak sken probíhá
 
@@ -53,8 +52,8 @@ cpp/            native_probes.cpp: the native lens, dependency-free
   postupu.
 - **Nic na pozadí.** Žádné služby a žádné naplánované skeny. Aplikace čte jen, když je
   otevřená, a sama se zavře, když je ponechána nečinná.
-- **Nativní vrstva.** Jedna malá `.so`, vázaná podle názvu přes `RegisterNatives`, držená
-  záměrně drobná, protože je to část, kterou musí být těžké oklamat.
+- **Nativní vrstva.** Jedna malá `.so` bez závislostí, vázaná podle názvu přes
+  `RegisterNatives`, držená záměrně drobná a jednoduchá.
 
 ## Zpráva
 

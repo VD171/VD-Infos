@@ -25,8 +25,7 @@ locally.
 This produces **two APKs**, one per flavor:
 
 - **modern** (`SDK_35`) - the strict modern sandbox, the build to use.
-- **compat** (`SDK_27`) - an older target with a looser SELinux domain, for
-  side-by-side comparison only.
+- **compat** (`SDK_27`) - an older API target, for side-by-side comparison only.
 
 The outputs land in:
 
@@ -50,18 +49,17 @@ the APK comes out unsigned. Provide your own keystore to sign your own builds.
 
 ## The two flavors
 
-The app ships two flavors on purpose. They target different API levels and therefore
-fall into different Android sandbox domains, which is itself useful for comparison. Both
-build from the same source; only the target and a few guarded code paths differ. A
-change that touches native code or a flavor-specific path should be built and checked in
-**both** flavors, not just the one you are iterating on.
+The app ships two flavors on purpose. They target different API levels and build from
+the same source; only the target and a few guarded code paths differ. A change that
+touches native code or a flavor-specific path should be built and checked in **both**
+flavors, not just the one you are iterating on.
 
 ## The native lens
 
 The native lens is a single, dependency-free C++ translation unit built by the NDK as
 one small `.so`, bound by name through `RegisterNatives`. It is compiled as part of the
-normal Gradle build; there is no separate step. It is kept deliberately tiny because it
-is the part that must be hard to fool.
+normal Gradle build; there is no separate step. It is kept deliberately tiny and
+simple.
 
 ## Where things live
 

@@ -25,8 +25,7 @@ localmente.
 Isso produz **dois APKs**, um por flavor:
 
 - **modern** (`SDK_35`) - o sandbox moderno estrito, a build a usar.
-- **compat** (`SDK_27`) - um alvo mais antigo com um domínio SELinux mais frouxo, apenas para
-  comparação lado a lado.
+- **compat** (`SDK_27`) - um alvo de API mais antigo, apenas para comparação lado a lado.
 
 As saídas aterrissam em:
 
@@ -50,9 +49,8 @@ o APK sai sem assinatura. Forneça seu próprio keystore para assinar suas próp
 
 ## Os dois flavors
 
-O app entrega dois flavors de propósito. Eles visam níveis de API diferentes e, portanto,
-caem em domínios de sandbox do Android diferentes, o que em si é útil para comparação. Ambos
-constroem a partir do mesmo código-fonte; apenas o alvo e alguns caminhos de código protegidos diferem. Uma mudança
+O app entrega dois flavors de propósito. Eles visam níveis de API diferentes e constroem
+a partir do mesmo código-fonte; apenas o alvo e alguns caminhos de código protegidos diferem. Uma mudança
 que toca código nativo ou um caminho específico de flavor deve ser construída e verificada em
 **ambos** os flavors, não apenas naquele sobre o qual você está iterando.
 
@@ -60,8 +58,7 @@ que toca código nativo ou um caminho específico de flavor deve ser construída
 
 A lente nativa é uma única unidade de tradução C++ sem dependências, construída pelo NDK como
 um pequeno `.so`, vinculada por nome via `RegisterNatives`. Ela é compilada como parte da
-build Gradle normal; não há etapa separada. Ela é mantida deliberadamente minúscula porque
-é a parte que precisa ser difícil de enganar.
+build Gradle normal; não há etapa separada. Ela é mantida deliberadamente minúscula e simples.
 
 ## Onde as coisas ficam
 

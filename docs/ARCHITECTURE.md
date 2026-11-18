@@ -17,8 +17,8 @@ reading in front of you, and reading them is yours to do on your own device.
   only while it is open.
 - **Readable by machines.** The whole result is one machine-readable document, so a
   tool gets the same picture a person does. See [AI agents](AI-AGENTS.md).
-- **Small where it matters.** The part that must be hard to fool is kept deliberately
-  tiny.
+- **Small where it matters.** The native component is kept deliberately tiny and
+  simple.
 
 ## The lenses
 
@@ -30,12 +30,12 @@ can be compared:
 | **Java / SDK** | The platform API an ordinary app calls. |
 | **Native / JNI** | The same value read from native code. |
 | **Shell via JVM** | A shell command spawned by the JVM. |
-| **Shell via JNI** | The same command spawned from native code, a different vantage point. |
+| **Shell via JNI** | The same command spawned from native code. |
 | **TEE / Attestation** | Hardware-backed key attestation, where it applies. |
 
-Lining the lenses up is the whole idea: when they disagree, something between the app
-and the value is answering differently to different callers. What that means for a
-given value, on a given device, is yours to read.
+Lining the lenses up is the whole idea: the app shows where the readings agree and
+where they differ. What a difference means for a given value, on a given device, is
+yours to read.
 
 ## How a scan runs
 
@@ -52,8 +52,8 @@ cpp/            native_probes.cpp: the native lens, dependency-free
   results stream into the UI as they complete, with a live progress indicator.
 - **Nothing in the background.** No services and no scheduled scans. The app reads only
   while open and closes itself when left idle.
-- **The native layer.** One small `.so`, bound by name through `RegisterNatives`, kept
-  deliberately tiny because it is the part that must be hard to fool.
+- **The native layer.** One small, dependency-free `.so`, bound by name through
+  `RegisterNatives`, kept deliberately tiny and simple.
 
 ## The report
 

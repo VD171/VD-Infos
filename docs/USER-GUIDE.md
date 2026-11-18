@@ -30,10 +30,10 @@ is yours to read, on your own device.
 Android hands a lot of your device's information to every app you install. VD Infos
 shows you an example of what an ordinary app can read, and it does so as a *method
 debugger*: for each piece of information it reads the value through **every method
-that can read it** - `Build.*`, `SystemProperties`, `getprop`, the native
-`__system_property_get`, system managers, content providers, files, syscalls, and
-hardware key attestation (TEE) - and lines them up so you can compare. It is a lens,
-not a verdict machine: it surfaces the readings and leaves the reading of them to you.
+that can read it** - platform APIs, system properties, native calls, system managers,
+content providers, files, syscalls, and hardware key attestation (TEE) - and lines them
+up so you can compare. It is a lens, not a verdict machine: it surfaces the readings and
+leaves the reading of them to you.
 
 ## 2. What it is not
 
@@ -56,7 +56,7 @@ not a verdict machine: it surfaces the readings and leaves the reading of them t
 Each release publishes **two APKs**:
 
 - **SDK_35** - targets the strict modern sandbox. This is the one to use.
-- **SDK_27** - targets an older API level, with a looser SELinux domain. It is useful
+- **SDK_27** - targets an older API level. It is useful
   only for side-by-side comparison; most people do not need it.
 
 Both install on Android 8.0 and newer. Download them from the

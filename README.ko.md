@@ -42,7 +42,7 @@
 
 ---
 
-Android는 매우 강력하고 다재다능한 운영체제이지만, 아무도 말해주지 않는 것은 당신의 모든 개인 정보와 기밀 정보가 설치하는 모든 앱에 노출되어 있다는 점이며, 이런 사생활 침해로부터 스스로를 보호하는 것은 의무입니다. VD Infos는 당신의 기기에서 무엇이 수집될 수 있는지 예시를 보여주며, 이를 *메서드 디버거*로 수행합니다. 각 정보에 대해 **그것을 읽을 수 있는 모든 방법**으로 값을 읽습니다: `Build.*`, `SystemProperties`, `getprop`, 네이티브 `__system_property_get`, 시스템 매니저, content provider, 파일, syscall, 하드웨어 키 attestation(TEE), 그리고 비교할 수 있도록 나란히 정렬합니다. 한 방법이 다른 방법과 어긋날 때, 그 사이의 무언가가 그 표면을 다시 쓰고 있는 것입니다. hook 프레임워크, spoofer, resolver shim입니다. **어떤 정보도 저장, 전송되거나 어떤 파일¹이나 서버로도 전달되지 않습니다**: 모든 것은 기기에서 실행되고, 신원을 담은 값은 당신이 드러내기 전까지 가려지며, 보고서는 당신이 명시적으로 공유하거나 저장할 때만 기기를 떠납니다. 원한다면 방화벽으로 인터넷 접근을 차단하거나 그냥 꺼두세요.
+Android는 매우 강력하고 다재다능한 운영체제이지만, 아무도 말해주지 않는 것은 당신의 모든 개인 정보와 기밀 정보가 설치하는 모든 앱에 노출되어 있다는 점이며, 이런 사생활 침해로부터 스스로를 보호하는 것은 의무입니다. VD Infos는 당신의 기기에서 무엇이 수집될 수 있는지 예시를 보여주며, 이를 *메서드 디버거*로 수행합니다. 각 정보에 대해 **그것을 읽을 수 있는 모든 방법**으로 값을 읽습니다: 프레임워크 API, 네이티브 인터페이스, 셸 명령, 시스템 매니저, content provider, 파일, syscall, 하드웨어 키 attestation(TEE), 그리고 비교할 수 있도록 나란히 정렬합니다. 한 읽기가 다른 읽기와 어긋날 때, 그 사이의 무언가가 그 표면을 다시 쓰고 있는 것입니다. hook 프레임워크, spoofer, resolver shim입니다. **어떤 정보도 저장, 전송되거나 어떤 파일¹이나 서버로도 전달되지 않습니다**: 모든 것은 기기에서 실행되고, 신원을 담은 값은 당신이 드러내기 전까지 가려지며, 보고서는 당신이 명시적으로 공유하거나 저장할 때만 기기를 떠납니다. 원한다면 방화벽으로 인터넷 접근을 차단하거나 그냥 꺼두세요.
 
 > **¹ 예외:** 각 스캔은 전체 보고서를 앱의 비공개 저장소(`files/last_snapshot.json`)에 보관합니다. 앱 자신이나 root만 읽을 수 있고, 다음 스캔이 덮어쓰며, 기기를 벗어나지 않습니다. AI 에이전트가 전체 결과를 읽을 수 있도록 존재합니다. 참고: **AI 에이전트용: JSON으로 된 전체 보고서**.
 
@@ -50,7 +50,7 @@ Android는 매우 강력하고 다재다능한 운영체제이지만, 아무도 
 
 각 항목은 그것을 읽을 수 있는 모든 방법(Java SDK / 네이티브 / shell)으로 읽혀 나란히 비교됩니다:
 
-* **약 488개의 시스템 속성**을 다섯 가지 방식으로 읽습니다: `SystemProperties.get`, bionic의 두 진입점(`__system_property_read_callback`과 92바이트 `__system_property_get`), JVM이 실행하는 `getprop`, 그리고 네이티브 코드에서 `popen`으로 실행하는 `getprop`. `ProcessBuilder`가 실행한 shell 명령과 JVM 없이 실행한 같은 명령은 동일한 관점이 아닙니다. 전자는 root 은닉 프레임워크가 다시 쓰는 표면이고 후자는 아니기 때문입니다.
+* **약 488개의 시스템 속성**을 여러 독립적인 경로로 읽습니다: Java API, 네이티브 속성 인터페이스, 그리고 서로 다른 방식으로 도달하는 `getprop` shell 명령. 그런 다음 나란히 정렬하여 비교합니다. 이 경로들이 모두 같은 계층을 거치지는 않으므로, 한 경로에서는 다시 쓰였지만 다른 경로에서는 그렇지 않은 값은 불일치로 드러납니다.
 * **기기 신원**: 모델, 제조사, 브랜드, device, product, board, hardware, fingerprint, bootloader, build id/tags/type, 각 `Build.*` 필드를 그 모든 `ro.product.*`(system/vendor/odm) 변형, 네이티브, shell과 대조.
 * **식별자**: serial(여러 게터), Android ID(settings와 provider), GSF ID, advertising ID, IMEI/primary IMEI/MEID/IMSI/ICCID, user serial.
 * **전화**: TelephonyManager 표면(통신사, SIM, 네트워크, 로밍…), SubscriptionManager(멀티 SIM), cell info.
@@ -58,13 +58,13 @@ Android는 매우 강력하고 다재다능한 운영체제이지만, 아무도 
 * **커널 / 프로세스 / 시스템**: `uname`, boot id, uptime, UID/PID, SELinux, 시간대, locale, 환경, 실행 중인 서비스/프로세스.
 * **하드웨어 / 미디어**: CPU, 메모리, 센서, 디스플레이, 카메라, system features, GPU, Widevine DRM ID.
 * **패키지 / 계정 / WebView**: 설치된 패키지 목록과 수, 앱별 서명 다이제스트, 이 앱의 서명, 자체 패키지 자기 성찰, intent 해석 열거, 계정, 통화 기록 수, user agent.
-* **샌드박스 준수**: 샌드박스가 **닫아야** 하는 표면(eMMC CID/serial, UFS 및 SoC 신원, `/proc/cmdline`, `/proc/1/*`, `/dev/kmsg`, `/system/build.prop`)과 22개의 `dumpsys` 서비스. 여기서 거부가 곧 답입니다. `EACCES`/`DENIED`가 준수하는 읽기이며, 대신 내용을 넘겨주는 기기는 준수하지 않습니다.
+* **샌드박스 준수**: 적절히 샌드박스된 앱이 도달할 수 없어야 하는 저수준 신원 및 커널 표면과 일련의 `dumpsys` 서비스. 이들에 대해 앱은 접근이 올바르게 거부되는지 확인합니다. 도달할 수 없어야 하는데 도달 가능한 표면은 검토 대상으로 표시됩니다.
 * **광고 식별자**: Play Services 바인더의 GAID와 함께, 키 계열 전체(AAID, OAID/VAID, 화웨이의 `pps_*`)를 세 개의 settings store에서 훑습니다.
-* **Root / hook / 에뮬레이터 탐지기**: `su`/Magisk/KernelSU/APatch/Xposed/LSPosed/Riru의 흔적, `/proc/self/maps`에 주입된 라이브러리, 알려진 패키지, 위험 속성과 에뮬레이터 속성, verified boot state.
+* **Root / hook / 에뮬레이터 탐지기**: 일반적인 root 매니저, hook 프레임워크, 에뮬레이터(Magisk, KernelSU, APatch, Xposed/LSPosed, Riru 등)가 남기는 흔적과 신호, 그리고 verified boot state.
 
 ## 다운로드 및 지원
 
-릴리스마다 두 개의 APK를 게시합니다. **SDK_35** 는 엄격한 최신 샌드박스를 대상으로 하며 이것을 사용하세요. **SDK_27** 은 더 낮은 API 레벨을 대상으로 하여 SELinux 도메인이 느슨하므로 비교에 유용합니다. 둘 다 Android 8.0 이상에 설치됩니다.
+릴리스마다 두 개의 APK를 게시합니다. **SDK_35** 는 엄격한 최신 샌드박스를 대상으로 하며 이것을 사용하세요. **SDK_27** 은 더 낮은 API 레벨을 대상으로 하여 비교에 유용합니다. 둘 다 Android 8.0 이상에 설치됩니다.
 
 * Release (APK): https://github.com/VD171/VD-Infos/releases
 * https://github.com/VD171/VD-Infos
@@ -98,7 +98,7 @@ cpp/            native_probes.cpp: 네이티브 렌즈, 의존성 없음
 
 * **병렬성**: 996개의 프로브가 제한된 permit 수로 기본 dispatcher에 펼쳐지며, 결과는 도착하는 대로 UI로 흘러듭니다.
 * **백그라운드에서 아무것도 하지 않음**: 서비스도 예약된 스캔도 없습니다. 앱은 열려 있는 동안에만 실행되고 방치되면 스스로 닫힙니다.
-* **네이티브 계층**: `RegisterNatives`로 이름에 의해 바인딩되는 작은 `.so`. 속이기 어려워야 하는 부분이기에 의도적으로 아주 작게 유지합니다.
+* **네이티브 계층**: `RegisterNatives`로 이름에 의해 바인딩되는, 의존성 없는 작은 `.so`. 의도적으로 아주 작고 단순하게 유지합니다.
 
 ## 기여하기
 

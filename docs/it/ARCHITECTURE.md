@@ -17,8 +17,8 @@ lettura davanti a te, e leggerle spetta a te farlo sul tuo dispositivo.
   solo mentre è aperta.
 - **Leggibile dalle macchine.** L'intero risultato è un unico documento leggibile dalle macchine, così uno
   strumento ottiene lo stesso quadro di una persona. Vedi [Agenti AI](AI-AGENTS.md).
-- **Piccolo dove conta.** La parte che deve essere difficile da ingannare è mantenuta deliberatamente
-  minuscola.
+- **Piccolo dove conta.** Il componente nativo è mantenuto deliberatamente minuscolo e
+  semplice.
 
 ## Le lenti
 
@@ -30,12 +30,12 @@ possano essere confrontate:
 | **Java / SDK** | L'API della piattaforma che un'app ordinaria chiama. |
 | **Native / JNI** | Lo stesso valore letto dal codice nativo. |
 | **Shell via JVM** | Un comando shell generato dalla JVM. |
-| **Shell via JNI** | Lo stesso comando generato dal codice nativo, un punto di osservazione diverso. |
+| **Shell via JNI** | Lo stesso comando generato dal codice nativo. |
 | **TEE / Attestation** | Attestazione delle chiavi supportata dall'hardware, dove si applica. |
 
-Allineare le lenti è tutta l'idea: quando sono in disaccordo, qualcosa tra l'app
-e il valore risponde in modo diverso a chiamanti diversi. Cosa questo significhi per un dato valore,
-su un dato dispositivo, spetta a te leggerlo.
+Allineare le lenti è tutta l'idea: l'app mostra dove le letture concordano e dove
+differiscono. Cosa significhi una differenza per un dato valore, su un dato dispositivo,
+spetta a te leggerlo.
 
 ## Come viene eseguita una scansione
 
@@ -52,8 +52,8 @@ cpp/            native_probes.cpp: the native lens, dependency-free
   i risultati affluiscono nella UI man mano che si completano, con un indicatore di avanzamento in tempo reale.
 - **Nulla in background.** Nessun servizio e nessuna scansione pianificata. L'app legge solo
   mentre è aperta e si chiude da sola quando viene lasciata inattiva.
-- **Il livello nativo.** Un piccolo `.so`, legato per nome tramite `RegisterNatives`, mantenuto
-  deliberatamente minuscolo perché è la parte che deve essere difficile da ingannare.
+- **Il livello nativo.** Un piccolo `.so` senza dipendenze, legato per nome tramite `RegisterNatives`,
+  mantenuto deliberatamente minuscolo e semplice.
 
 ## Il report
 

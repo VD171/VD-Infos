@@ -42,7 +42,7 @@
 
 ---
 
-Android je nesmírně výkonný a všestranný operační systém; co vám nikdo neřekne, je, že všechny vaše osobní údaje a důvěrné informace jsou dostupné každé aplikaci, kterou nainstalujete, a chránit se proti takovému narušování soukromí je povinnost. VD Infos vám ukazuje příklad toho, co lze z vašeho zařízení zachytit, a dělá to jako *debugger metod*: pro každou informaci čte hodnotu **každou metodou, která ji dokáže přečíst**: `Build.*`, `SystemProperties`, `getprop`, nativní `__system_property_get`, systémové managery, content providery, soubory, syscally a hardwarový attestation klíče (TEE), a seřadí je vedle sebe, abyste mohli porovnat. Když se jedna metoda liší od ostatních, něco mezi tím tu plochu přepisuje: hookovací framework, spoofer, resolver shim. **ŽÁDNÉ INFORMACE SE NEUKLÁDAJÍ, NEODESÍLAJÍ ANI NEPŘENÁŠEJÍ DO ŽÁDNÉHO SOUBORU¹ ČI SERVERU**: vše běží na zařízení, hodnoty nesoucí identitu jsou maskovány, dokud je neodhalíte, a report opustí zařízení jen tehdy, když jej výslovně sdílíte nebo uložíte; chcete-li, zablokujte přístup k internetu firewallem nebo jej prostě vypněte.
+Android je nesmírně výkonný a všestranný operační systém; co vám nikdo neřekne, je, že všechny vaše osobní údaje a důvěrné informace jsou dostupné každé aplikaci, kterou nainstalujete, a chránit se proti takovému narušování soukromí je povinnost. VD Infos vám ukazuje příklad toho, co lze z vašeho zařízení zachytit, a dělá to jako *debugger metod*: pro každou informaci čte hodnotu **každou metodou, která ji dokáže přečíst**: frameworkové API, nativní rozhraní, shellové příkazy, systémové managery, content providery, soubory, syscally a hardwarový attestation klíče (TEE), a seřadí je vedle sebe, abyste mohli porovnat. Když se jedno čtení liší od ostatních, něco mezi tím tu plochu přepisuje: hookovací framework, spoofer, resolver shim. **ŽÁDNÉ INFORMACE SE NEUKLÁDAJÍ, NEODESÍLAJÍ ANI NEPŘENÁŠEJÍ DO ŽÁDNÉHO SOUBORU¹ ČI SERVERU**: vše běží na zařízení, hodnoty nesoucí identitu jsou maskovány, dokud je neodhalíte, a report opustí zařízení jen tehdy, když jej výslovně sdílíte nebo uložíte; chcete-li, zablokujte přístup k internetu firewallem nebo jej prostě vypněte.
 
 > **¹ Výjimka:** každé skenování uloží úplnou zprávu do soukromého úložiště aplikace (`files/last_snapshot.json`). Číst ji může jen samotná aplikace nebo root, další skenování ji přepíše a zařízení nikdy neopustí. Existuje proto, aby AI agenti mohli přečíst úplný výsledek; viz **Pro AI agenty: úplná zpráva v JSON**.
 
@@ -50,7 +50,7 @@ Android je nesmírně výkonný a všestranný operační systém; co vám nikdo
 
 Každá položka se čte každou metodou, která ji dokáže přečíst (Java SDK / nativně / shell), a porovnává vedle sebe:
 
-* **~488 systémových vlastností** čtených PĚTI způsoby: `SystemProperties.get`, oba vstupní body bionicu (`__system_property_read_callback` a 92bajtový `__system_property_get`), `getprop` spuštěný JVM a `getprop` spuštěný z nativního kódu přes `popen`; shellový příkaz spuštěný přes `ProcessBuilder` a tentýž příkaz spuštěný bez JVM nejsou stejný úhel pohledu, protože první je plocha, kterou framework skrývající root přepisuje, a druhý ne.
+* **~488 systémových vlastností** čtených několika nezávislými cestami: přes Java API, nativní rozhraní vlastností a shellový příkaz `getprop` dosažený různými způsoby, pak seřazených vedle sebe a porovnaných. Protože tyto cesty neprocházejí všechny stejnou vrstvou, hodnota přepsaná na jedné, ale ne na jiné se projeví jako rozpor.
 * **Identita zařízení**: model, výrobce, značka, device, product, board, hardware, fingerprint, bootloader, build id/tags/type, každé pole `Build.*` proti všem jeho variantám `ro.product.*` (system/vendor/odm), nativně a přes shell.
 * **Identifikátory**: serial (mnoho getterů), Android ID (settings a provider), GSF ID, advertising ID, IMEI/primary IMEI/MEID/IMSI/ICCID, user serial.
 * **Telefonie**: plocha TelephonyManageru (operátor, SIM, síť, roaming...), SubscriptionManager (multi-SIM), cell info.
@@ -58,13 +58,13 @@ Každá položka se čte každou metodou, která ji dokáže přečíst (Java SD
 * **Jádro / proces / systém**: `uname`, boot id, uptime, UID/PID, SELinux, časové pásmo, locale, prostředí, běžící služby/procesy.
 * **Hardware / média**: CPU, paměť, senzory, displej, fotoaparáty, system features, GPU, Widevine DRM ID.
 * **Balíčky / účty / WebView**: seznam a počet nainstalovaných balíčků, digesty podpisů podle aplikací, podpis této aplikace, introspekce vlastního balíčku, výčty rozlišení intentů, účty, počet záznamů v protokolu hovorů, user agent.
-* **Shoda se sandboxem**: plochy, které má sandbox ZAVŘÍT (CID/serial eMMC, identita UFS a SoC, `/proc/cmdline`, `/proc/1/*`, `/dev/kmsg`, `/system/build.prop`) a 22 služeb `dumpsys`. Zde je odmítnutí odpovědí: `EACCES`/`DENIED` je odpovídající čtení a zařízení, které místo toho obsah vydá, není ve shodě.
+* **Shoda se sandboxem**: nízkoúrovňové identitní a jádrové plochy a sada služeb `dumpsys`, které by správně izolovaná aplikace neměla být schopna dosáhnout. U nich aplikace kontroluje, zda je přístup správně odepřen; plocha dosažitelná tam, kde by neměla být, se označí k přezkoumání.
 * **Reklamní identifikátory**: GAID z binderu Play Services plus celá rodina klíčů (AAID, OAID/VAID a `pps_*` od Huawei) prohledaná ve třech settings store.
-* **Detektory root / hook / emulátoru**: artefakty `su`/Magisk/KernelSU/APatch/Xposed/LSPosed/Riru, injektované knihovny v `/proc/self/maps`, známé balíčky, nebezpečné a emulátorové vlastnosti, verified boot state.
+* **Detektory root / hook / emulátoru**: artefakty a signály, které zanechávají běžné správce rootu, hookovací frameworky a emulátory (Magisk, KernelSU, APatch, Xposed/LSPosed, Riru a podobné), plus verified boot state.
 
 ## Stažení a podpora
 
-Každé vydání publikuje dva APK: **SDK_35** cílí na přísný moderní sandbox a je ten, který se má použít; **SDK_27** cílí na starší úroveň API s volnější doménou SELinux, užitečné pro porovnání. Oba se instalují na Android 8.0 a novější.
+Každé vydání publikuje dva APK: **SDK_35** cílí na přísný moderní sandbox a je ten, který se má použít; **SDK_27** cílí na starší úroveň API, užitečné pro porovnání. Oba se instalují na Android 8.0 a novější.
 
 * Release (APK): https://github.com/VD171/VD-Infos/releases
 * https://github.com/VD171/VD-Infos
@@ -98,7 +98,7 @@ cpp/            native_probes.cpp: nativní čočka, bez závislostí
 
 * **Paralelismus**: 991 sond se rozvětví na výchozím dispatcheru s omezeným počtem povolení; výsledky proudí do UI, jakmile dorazí.
 * **Nic na pozadí**: žádné služby ani plánované skeny; aplikace běží jen když je otevřená a sama se zavře, když zůstane nečinná.
-* **Nativní vrstva**: jedna malá `.so`, vázaná podle jména přes `RegisterNatives`, záměrně nepatrná, protože je to část, kterou musí být těžké oklamat.
+* **Nativní vrstva**: jedna malá `.so` bez závislostí, vázaná podle jména přes `RegisterNatives`, záměrně nepatrná a jednoduchá.
 
 ## Přispívání
 

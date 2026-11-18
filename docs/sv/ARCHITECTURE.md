@@ -16,7 +16,7 @@ och att läsa dem är ditt att göra på din egen enhet.
   medan den är öppen.
 - **Läsbar av maskiner.** Hela resultatet är ett maskinläsbart dokument, så att ett verktyg får
   samma bild som en person gör. Se [AI-agenter](AI-AGENTS.md).
-- **Liten där det betyder något.** Den del som måste vara svår att lura hålls medvetet pytteliten.
+- **Liten där det betyder något.** Den nativa komponenten hålls medvetet pytteliten och enkel.
 
 ## Linserna
 
@@ -27,11 +27,11 @@ En *lins* är ett sätt att läsa ett värde. Samma värde läses genom flera s�
 | **Java / SDK** | Plattforms-API:n som en vanlig app anropar. |
 | **Native / JNI** | Samma värde läst från nativ kod. |
 | **Shell via JVM** | Ett skalkommando som startas av JVM. |
-| **Shell via JNI** | Samma kommando startat från nativ kod, en annan utsiktspunkt. |
+| **Shell via JNI** | Samma kommando startat från nativ kod. |
 | **TEE / Attestation** | Hårdvarubaserad nyckelattestering, där den gäller. |
 
-Att ställa upp linserna är hela idén: när de inte är överens svarar något mellan appen och värdet
-olika till olika anropare. Vad det betyder för ett givet värde, på en given enhet, är ditt att läsa.
+Att ställa upp linserna är hela idén: appen visar var avläsningarna är överens och var de skiljer
+sig. Vad en skillnad betyder för ett givet värde, på en given enhet, är ditt att läsa.
 
 ## Hur en skanning körs
 
@@ -48,8 +48,8 @@ cpp/            native_probes.cpp: the native lens, dependency-free
   resultat strömmar in i gränssnittet allteftersom de slutförs, med en live-förloppsindikator.
 - **Ingenting i bakgrunden.** Inga tjänster och inga schemalagda skanningar. Appen läser endast
   medan den är öppen och stänger sig själv när den lämnas inaktiv.
-- **Det nativa lagret.** En liten `.so`, bunden med namn genom `RegisterNatives`, hållen medvetet
-  pytteliten eftersom det är den del som måste vara svår att lura.
+- **Det nativa lagret.** En liten, beroendefri `.so`, bunden med namn genom `RegisterNatives`, hållen
+  medvetet pytteliten och enkel.
 
 ## Rapporten
 

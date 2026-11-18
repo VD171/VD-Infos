@@ -30,8 +30,8 @@ es tuya para leerla, en tu propio dispositivo.
 Android entrega mucha información de tu dispositivo a cada aplicación que instalas. VD Infos
 te muestra un ejemplo de lo que puede leer una aplicación corriente, y lo hace como un *depurador
 de métodos*: para cada pieza de información lee el valor a través de **cada método
-que puede leerlo** - `Build.*`, `SystemProperties`, `getprop`, el nativo
-`__system_property_get`, los gestores del sistema, los proveedores de contenido, los archivos, las llamadas al sistema, y
+que puede leerlo** - las APIs de plataforma, las propiedades del sistema, las llamadas nativas,
+los gestores del sistema, los proveedores de contenido, los archivos, las llamadas al sistema, y
 la atestación de claves por hardware (TEE) - y los alinea para que puedas comparar. Es una lente,
 no una máquina de veredictos: saca a la luz las lecturas y deja la lectura de ellas en tus manos.
 
@@ -56,8 +56,8 @@ no una máquina de veredictos: saca a la luz las lecturas y deja la lectura de e
 Cada versión publica **dos APK**:
 
 - **SDK_35** - apunta a la sandbox moderna y estricta. Es la que hay que usar.
-- **SDK_27** - apunta a un nivel de API más antiguo, con un dominio SELinux más laxo. Es útil
-  solo para la comparación lado a lado; la mayoría de la gente no la necesita.
+- **SDK_27** - apunta a un nivel de API más antiguo. Es útil solo para la comparación lado a lado;
+  la mayoría de la gente no la necesita.
 
 Ambas se instalan en Android 8.0 y más reciente. Descárgalas desde la página de
 [Lanzamientos](https://github.com/VD171/VD-Infos/releases).

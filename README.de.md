@@ -42,7 +42,7 @@
 
 ---
 
-Android ist ein enorm leistungsfähiges und vielseitiges Betriebssystem; was dir niemand sagt: All deine persönlichen Daten und vertraulichen Informationen stehen jeder App zur Verfügung, die du installierst, und dich gegen diese Eingriffe in die Privatsphäre zu schützen ist eine Pflicht. VD Infos zeigt dir ein Beispiel dessen, was von deinem Gerät erfasst werden kann, und tut das als *Methoden-Debugger*: Für jede Information liest es den Wert über **jede Methode, die ihn lesen kann**: `Build.*`, `SystemProperties`, `getprop`, das native `__system_property_get`, System-Manager, Content Provider, Dateien, Syscalls und Hardware-Key-Attestation (TEE), und stellt sie zum Vergleich nebeneinander. Wenn eine Methode den anderen widerspricht, schreibt etwas dazwischen diese Oberfläche um: ein Hooking-Framework, ein Spoofer, ein Resolver-Shim. **ES WERDEN KEINE INFORMATIONEN GESPEICHERT, GESENDET ODER AN IRGENDEINE DATEI¹ ODER IRGENDEINEN SERVER ÜBERTRAGEN**: alles läuft auf dem Gerät, identitätstragende Werte sind maskiert, bis du sie aufdeckst, und ein Bericht verlässt das Gerät nur, wenn du ihn ausdrücklich teilst oder speicherst; wenn du willst, blockiere den Internetzugang mit einer Firewall oder schalte ihn einfach ab.
+Android ist ein enorm leistungsfähiges und vielseitiges Betriebssystem; was dir niemand sagt: All deine persönlichen Daten und vertraulichen Informationen stehen jeder App zur Verfügung, die du installierst, und dich gegen diese Eingriffe in die Privatsphäre zu schützen ist eine Pflicht. VD Infos zeigt dir ein Beispiel dessen, was von deinem Gerät erfasst werden kann, und tut das als *Methoden-Debugger*: Für jede Information liest es den Wert über **jede Methode, die ihn lesen kann**: Framework-APIs, native Schnittstellen, Shell-Befehle, System-Manager, Content Provider, Dateien, Syscalls und Hardware-Key-Attestation (TEE), und stellt sie zum Vergleich nebeneinander. Wenn eine Lesung den anderen widerspricht, schreibt etwas dazwischen diese Oberfläche um: ein Hooking-Framework, ein Spoofer, ein Resolver-Shim. **ES WERDEN KEINE INFORMATIONEN GESPEICHERT, GESENDET ODER AN IRGENDEINE DATEI¹ ODER IRGENDEINEN SERVER ÜBERTRAGEN**: alles läuft auf dem Gerät, identitätstragende Werte sind maskiert, bis du sie aufdeckst, und ein Bericht verlässt das Gerät nur, wenn du ihn ausdrücklich teilst oder speicherst; wenn du willst, blockiere den Internetzugang mit einer Firewall oder schalte ihn einfach ab.
 
 > **¹ Ausnahme:** jeder Scan legt seinen vollständigen Bericht im privaten Speicher der App ab (`files/last_snapshot.json`). Nur die App selbst oder root können ihn lesen, der nächste Scan überschreibt ihn und er verlässt das Gerät nie. Er existiert, damit KI-Agenten das vollständige Ergebnis lesen können; siehe **Für KI-Agenten: der vollständige Bericht als JSON**.
 
@@ -50,7 +50,7 @@ Android ist ein enorm leistungsfähiges und vielseitiges Betriebssystem; was dir
 
 Jeder Punkt wird über jede Methode gelesen, die ihn lesen kann (Java-SDK / nativ / Shell), nebeneinander verglichen:
 
-* **~488 Systemeigenschaften** auf FÜNF Wegen gelesen: `SystemProperties.get`, beide Einstiegspunkte von bionic (`__system_property_read_callback` und das 92-Byte-`__system_property_get`), von der JVM gestartetes `getprop` und aus nativem Code über `popen` gestartetes `getprop`; ein von `ProcessBuilder` ausgeführter Shell-Befehl und derselbe Befehl ohne JVM sind nicht derselbe Blickwinkel, denn Ersteres ist eine Oberfläche, die ein Root-Verbergungs-Framework umschreibt, Letzteres nicht.
+* **~488 Systemeigenschaften** über mehrere unabhängige Wege gelesen: die Java-API, die native Property-Schnittstelle und der auf unterschiedliche Weise erreichte `getprop`-Shell-Befehl, dann nebeneinander gestellt und verglichen. Da diese Wege nicht alle durch dieselbe Schicht verlaufen, zeigt sich ein Wert, der auf einem, aber nicht auf einem anderen umgeschrieben wurde, als Widerspruch.
 * **Geräteidentität**: Modell, Hersteller, Marke, device, product, board, hardware, fingerprint, bootloader, build id/tags/type, jedes `Build.*`-Feld gegen alle seine `ro.product.*`-Varianten (system/vendor/odm), nativ und Shell.
 * **Kennungen**: serial (viele Getter), Android ID (settings und provider), GSF ID, advertising ID, IMEI/primary IMEI/MEID/IMSI/ICCID, user serial.
 * **Telefonie**: die TelephonyManager-Oberfläche (Betreiber, SIM, Netz, Roaming...), SubscriptionManager (Multi-SIM), cell info.
@@ -58,13 +58,13 @@ Jeder Punkt wird über jede Methode gelesen, die ihn lesen kann (Java-SDK / nati
 * **Kernel / Prozess / System**: `uname`, boot id, uptime, UID/PID, SELinux, Zeitzone, locale, Umgebung, laufende Dienste/Prozesse.
 * **Hardware / Medien**: CPU, Speicher, Sensoren, Display, Kameras, system features, GPU, Widevine-DRM-ID.
 * **Pakete / Konten / WebView**: Liste und Anzahl installierter Pakete, Signatur-Digests pro App, Signatur dieser App, Selbstinspektion des eigenen Pakets, Intent-Auflösungs-Enumerationen, Konten, Anzahl der Anrufliste, user agent.
-* **Sandbox-Konformität**: Oberflächen, die die Sandbox SCHLIESSEN soll (eMMC CID/serial, UFS- und SoC-Identität, `/proc/cmdline`, `/proc/1/*`, `/dev/kmsg`, `/system/build.prop`) und 22 `dumpsys`-Dienste. Hier ist die Verweigerung die Antwort: `EACCES`/`DENIED` ist die konforme Lesung, und ein Gerät, das den Inhalt stattdessen herausgibt, ist nicht konform.
+* **Sandbox-Konformität**: Low-Level-Identitäts- und Kernel-Oberflächen sowie eine Reihe von `dumpsys`-Diensten, die eine ordnungsgemäß isolierte App nicht erreichen können sollte. Für diese prüft die App, ob der Zugriff korrekt verweigert wird; eine Oberfläche, die erreichbar ist, obwohl sie es nicht sein sollte, wird zur Überprüfung markiert.
 * **Werbe-Kennungen**: die GAID vom Play-Services-Binder plus die ganze Schlüsselfamilie (AAID, OAID/VAID und Huaweis `pps_*`), abgesucht über die drei settings stores.
-* **Root- / Hook- / Emulator-Detektoren**: Artefakte von `su`/Magisk/KernelSU/APatch/Xposed/LSPosed/Riru, injizierte Libs in `/proc/self/maps`, bekannte Pakete, gefährliche und Emulator-Eigenschaften, verified boot state.
+* **Root- / Hook- / Emulator-Detektoren**: Artefakte und Signale, die gängige Root-Manager, Hooking-Frameworks und Emulatoren hinterlassen (Magisk, KernelSU, APatch, Xposed/LSPosed, Riru und dergleichen), plus verified boot state.
 
 ## Download und Support
 
-Jedes Release veröffentlicht zwei APKs: **SDK_35** zielt auf die strikte moderne Sandbox und ist das zu verwendende; **SDK_27** zielt auf ein älteres API-Level mit lockererer SELinux-Domäne, nützlich zum Vergleich. Beide lassen sich ab Android 8.0 installieren.
+Jedes Release veröffentlicht zwei APKs: **SDK_35** zielt auf die strikte moderne Sandbox und ist das zu verwendende; **SDK_27** zielt auf ein älteres API-Level, nützlich zum Vergleich. Beide lassen sich ab Android 8.0 installieren.
 
 * Release (APK): https://github.com/VD171/VD-Infos/releases
 * https://github.com/VD171/VD-Infos
@@ -98,7 +98,7 @@ cpp/            native_probes.cpp: die native Linse, ohne Abhängigkeiten
 
 * **Parallelität**: 991 Sonden fächern über den Standard-Dispatcher mit begrenzter Permit-Anzahl auf; die Ergebnisse strömen in die UI, sobald sie eintreffen.
 * **Nichts im Hintergrund**: keine Dienste und keine geplanten Scans; die App läuft nur, solange sie geöffnet ist, und schließt sich selbst, wenn sie untätig bleibt.
-* **Native Schicht**: eine kleine `.so`, per Name über `RegisterNatives` gebunden, bewusst winzig gehalten, weil sie der Teil ist, der schwer zu täuschen sein muss.
+* **Native Schicht**: eine kleine, abhängigkeitsfreie `.so`, per Name über `RegisterNatives` gebunden, bewusst winzig und einfach gehalten.
 
 ## Mitwirken
 

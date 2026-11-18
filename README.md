@@ -47,11 +47,11 @@ is that all your personal details and confidential information are available to
 every application you install, and protecting yourself against these invasions of
 privacy is an obligation. VD Infos shows you an example of what can be captured from
 your device, and it does so as a *method debugger*: for each piece of information it
-reads the value through **every method that can read it**: `Build.*`,
-`SystemProperties`, `getprop`, the native `__system_property_get`, system managers,
-content providers, files, syscalls, and hardware key attestation (TEE), and lines
-them up so you can compare. When one method disagrees with the others, something in
-between is rewriting that surface: a hooking framework, a spoofer, a resolver shim.
+reads the value through **every method that can read it**: framework APIs, native
+interfaces, shell commands, system managers, content providers, files, syscalls, and
+hardware key attestation (TEE), and lines them up so you can compare. When one reading
+disagrees with the others, something in between is rewriting that surface: a hooking
+framework, a spoofer, a resolver shim.
 **NO INFORMATION IS STORED, SENT OR TRANSMITTED TO ANY FILE¹ OR SERVER**: everything
 runs on-device, identity-bearing values are masked until you reveal them, and a
 report only leaves the device when you explicitly share or save it; if you want,
@@ -64,12 +64,10 @@ block internet access with a firewall or just turn it off.
 Each item is read through every method that can read it (Java SDK / native / shell),
 compared side by side:
 
-* **~488 system properties** read FIVE ways: `SystemProperties.get`, both of
-  bionic's entry points (`__system_property_read_callback` and the 92-byte
-  `__system_property_get`), `getprop` spawned by the JVM, and `getprop` spawned
-  from native code through `popen`; a shell command run by `ProcessBuilder` and
-  the same command run without the JVM are not the same vantage point, because
-  the first is a surface a root-hiding framework rewrites and the second is not.
+* **~488 system properties** read through several independent paths: the Java API,
+  the native property interface, and the `getprop` shell command reached different
+  ways, then lined up and compared. Because these paths do not all pass through the
+  same layer, a value rewritten on one but not another shows up as a disagreement.
 * **Device identity**: model, manufacturer, brand, device, product, board, hardware,
   fingerprint, bootloader, build id/tags/type, each `Build.*` field against all its
   `ro.product.*` (system/vendor/odm) variants, native, and shell.
@@ -85,21 +83,20 @@ compared side by side:
   GPU, Widevine DRM ID.
 * **Packages / accounts / WebView**: installed package list and count, per-app
   signing digests, this-app signature, self-package introspection, intent-resolution enumerations, accounts, call-log count, user agent.
-* **Sandbox conformance**: surfaces the sandbox is meant to CLOSE (eMMC CID/serial,
-  UFS and SoC identity, `/proc/cmdline`, `/proc/1/*`, `/dev/kmsg`,
-  `/system/build.prop`) and 22 `dumpsys` services. Here the refusal is the answer:
-  `EACCES`/`DENIED` is the conformant reading, and a device that hands the content
-  over instead is out of conformance.
+* **Sandbox conformance**: low-level identity and kernel surfaces, plus a set of
+  `dumpsys` services, that a properly sandboxed app should not be able to reach. For
+  these the app checks whether access is correctly refused; a surface that is
+  reachable when it should not be is flagged for review.
 * **Advertising identifiers**: the GAID from the Play Services binder, plus the whole
   key family (AAID, OAID/VAID and Huawei's `pps_*`) swept across the three settings
   stores.
-* **Root / hook / emulator detectors**: `su`/Magisk/KernelSU/APatch/Xposed/LSPosed/
-  Riru artifacts, injected libs in `/proc/self/maps`, known packages, dangerous and
-  emulator properties, verified boot state.
+* **Root / hook / emulator detectors**: artifacts and signals left by common root
+  managers, hooking frameworks and emulators (Magisk, KernelSU, APatch, Xposed/LSPosed,
+  Riru and the like), plus verified-boot state.
 
 ## Download and support
 
-Each release publishes two APKs: **SDK_35** targets the strict modern sandbox and is the one to use; **SDK_27** targets an older API level, with a looser SELinux domain, useful for comparison. Both install on Android 8.0 and newer.
+Each release publishes two APKs: **SDK_35** targets the strict modern sandbox and is the one to use; **SDK_27** targets an older API level, useful for comparison. Both install on Android 8.0 and newer.
 
 * Release (APK): https://github.com/VD171/VD-Infos/releases
 * https://github.com/VD171/VD-Infos
@@ -135,8 +132,8 @@ cpp/            native_probes.cpp: the native lens, dependency-free
   permit count; results stream into the UI as they land.
 * **Nothing in the background**: no services and no scheduled scans; the app runs only
   while it is open and closes itself when left idle.
-* **Native layer**: one small `.so`, bound by name via `RegisterNatives`, kept
-  deliberately tiny because it is the part that must be hard to fool.
+* **Native layer**: one small, dependency-free `.so`, bound by name via
+  `RegisterNatives`, kept deliberately tiny and simple.
 
 ## Contributing
 

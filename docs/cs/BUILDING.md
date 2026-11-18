@@ -24,8 +24,7 @@ VD Infos je standardní Android Gradle projekt: Kotlin a Jetpack Compose, s malo
 Toto produkuje **dvě APK**, jedno na flavor:
 
 - **modern** (`SDK_35`) - striktní moderní sandbox, build, který se má použít.
-- **compat** (`SDK_27`) - starší cíl s volnější SELinux doménou, pouze pro srovnání bok po
-  boku.
+- **compat** (`SDK_27`) - starší cíl API, pouze pro srovnání bok po boku.
 
 Výstupy přistanou v:
 
@@ -49,8 +48,7 @@ nepodepsané. Poskytněte svůj vlastní keystore k podepsání svých vlastníc
 
 ## Dva flavory
 
-Aplikace dodává dva flavory záměrně. Cílí na různé úrovně API, a proto spadají do různých
-Android sandbox domén, což je samo o sobě užitečné pro srovnání. Oba se sestavují ze
+Aplikace dodává dva flavory záměrně. Cílí na různé úrovně API a sestavují se ze
 stejného zdroje; liší se jen cíl a pár ošetřených cest kódu. Změna, která se dotýká
 nativního kódu nebo cesty specifické pro flavor, by měla být sestavena a zkontrolována v
 **obou** flavorech, ne jen v tom, ve kterém iterujete.
@@ -60,7 +58,7 @@ nativního kódu nebo cesty specifické pro flavor, by měla být sestavena a zk
 Nativní čočka je jedna, na závislostech nezávislá překladová jednotka C++ sestavená NDK
 jako jedna malá `.so`, vázaná podle názvu přes `RegisterNatives`. Kompiluje se jako
 součást normálního Gradle buildu; není zde žádný samostatný krok. Je držena záměrně
-drobná, protože je to část, kterou musí být těžké oklamat.
+drobná a jednoduchá.
 
 ## Kde věci žijí
 

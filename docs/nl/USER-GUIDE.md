@@ -31,9 +31,9 @@ eigen apparaat.
 Android geeft veel van de informatie van je apparaat door aan elke app die je
 installeert. VD Infos laat je een voorbeeld zien van wat een gewone app kan lezen, en
 het doet dat als een *methode-debugger*: voor elk stukje informatie leest het de waarde
-via **elke methode die haar kan lezen** - `Build.*`, `SystemProperties`, `getprop`, de
-native `__system_property_get`, systeemmanagers, content providers, bestanden,
-syscalls, en hardware key attestation (TEE) - en zet ze naast elkaar zodat je kunt
+via **elke methode die haar kan lezen** - platform-API's, systeemeigenschappen, native
+calls, systeemmanagers, content providers, bestanden, syscalls, en hardware key
+attestation (TEE) - en zet ze naast elkaar zodat je kunt
 vergelijken. Het is een lens, geen oordeelmachine: het brengt de metingen naar boven en
 laat het lezen ervan aan jou over.
 
@@ -59,9 +59,8 @@ laat het lezen ervan aan jou over.
 Elke release publiceert **twee APK's**:
 
 - **SDK_35** - richt zich op de strikte moderne sandbox. Dit is degene om te gebruiken.
-- **SDK_27** - richt zich op een ouder API-niveau, met een lossere SELinux-domein. Het
-  is alleen nuttig voor vergelijking naast elkaar; de meeste mensen hebben het niet
-  nodig.
+- **SDK_27** - richt zich op een ouder API-niveau. Het is alleen nuttig voor
+  vergelijking naast elkaar; de meeste mensen hebben het niet nodig.
 
 Beide installeren op Android 8.0 en nieuwer. Download ze van de
 [Releases](https://github.com/VD171/VD-Infos/releases)-pagina.

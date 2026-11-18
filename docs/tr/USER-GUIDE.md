@@ -29,7 +29,7 @@ herhangi bir belirli bulguyu yorumlamaz: karşılaştırma, kendi cihazınızda,
 Android, cihazınızın bilgilerinin büyük bir bölümünü kurduğunuz her uygulamaya verir. VD Infos size
 sıradan bir uygulamanın neyi okuyabileceğine dair bir örnek gösterir ve bunu bir *metot hata
 ayıklayıcısı* olarak yapar: her bilgi parçası için değeri **onu okuyabilen her metot** aracılığıyla
-okur - `Build.*`, `SystemProperties`, `getprop`, yerel `__system_property_get`, sistem
+okur - platform API'leri, sistem özellikleri, yerel çağrılar, sistem
 yöneticileri, content providers, dosyalar, syscalls ve donanım anahtar doğrulaması (TEE) - ve
 karşılaştırabilmeniz için bunları dizer. O bir mercektir, bir hüküm makinesi değil: okumaları
 yüzeye çıkarır ve onların okunmasını size bırakır.
@@ -55,7 +55,7 @@ yüzeye çıkarır ve onların okunmasını size bırakır.
 Her sürüm **iki APK** yayınlar:
 
 - **SDK_35** - katı modern sanal alanı hedefler. Kullanılacak olan budur.
-- **SDK_27** - daha gevşek bir SELinux alanıyla daha eski bir API düzeyini hedefler. Yalnızca yan
+- **SDK_27** - daha eski bir API düzeyini hedefler. Yalnızca yan
   yana karşılaştırma için kullanışlıdır; çoğu kişinin buna ihtiyacı yoktur.
 
 Her ikisi de Android 8.0 ve daha yenisine kurulur. Bunları

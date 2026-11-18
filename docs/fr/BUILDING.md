@@ -25,8 +25,7 @@ localement.
 Cela produit **deux APK**, un par flavor :
 
 - **modern** (`SDK_35`) - le bac à sable moderne et strict, le build à utiliser.
-- **compat** (`SDK_27`) - une cible plus ancienne avec un domaine SELinux plus laxiste, pour
-  la comparaison côte à côte seulement.
+- **compat** (`SDK_27`) - une cible d'API plus ancienne, pour la comparaison côte à côte seulement.
 
 Les sorties atterrissent dans :
 
@@ -50,8 +49,7 @@ l'APK sort non signé. Fournissez votre propre keystore pour signer vos propres 
 
 ## Les deux flavors
 
-L'application distribue deux flavors à dessein. Ils visent différents niveaux d'API et tombent donc
-dans différents domaines du bac à sable Android, ce qui est en soi utile pour la comparaison. Les deux
+L'application distribue deux flavors à dessein. Ils visent différents niveaux d'API et
 compilent à partir de la même source ; seuls la cible et quelques chemins de code protégés diffèrent. Un
 changement qui touche du code natif ou un chemin spécifique à un flavor devrait être compilé et vérifié dans
 les **deux** flavors, pas seulement celui sur lequel vous itérez.
@@ -60,8 +58,7 @@ les **deux** flavors, pas seulement celui sur lequel vous itérez.
 
 La lentille native est une unique unité de traduction C++ sans dépendance compilée par le NDK en
 un petit `.so`, liée par nom à travers `RegisterNatives`. Elle est compilée dans le cadre du
-build Gradle normal ; il n'y a pas d'étape séparée. Elle est gardée délibérément minuscule parce que c'est
-la partie qui doit être difficile à tromper.
+build Gradle normal ; il n'y a pas d'étape séparée. Elle est gardée délibérément minuscule et simple.
 
 ## Où vivent les choses
 

@@ -25,8 +25,7 @@ reproduceren.
 Dit produceert **twee APK's**, een per flavor:
 
 - **modern** (`SDK_35`) - de strikte moderne sandbox, de build om te gebruiken.
-- **compat** (`SDK_27`) - een ouder doel met een lossere SELinux-domein, alleen voor
-  vergelijking naast elkaar.
+- **compat** (`SDK_27`) - een ouder API-doel, alleen voor vergelijking naast elkaar.
 
 De uitvoer belandt in:
 
@@ -52,8 +51,7 @@ eigen builds te ondertekenen.
 ## De twee flavors
 
 De app levert bewust twee flavors uit. Ze richten zich op verschillende API-niveaus en
-vallen daardoor in verschillende Android-sandboxdomeinen, wat zelf nuttig is voor
-vergelijking. Beide bouwen vanuit dezelfde broncode; alleen het doel en een paar bewaakte
+bouwen vanuit dezelfde broncode; alleen het doel en een paar bewaakte
 codepaden verschillen. Een wijziging die native code of een flavorspecifiek pad raakt,
 zou in **beide** flavors gebouwd en gecontroleerd moeten worden, niet alleen die waarop je
 itereert.
@@ -63,7 +61,7 @@ itereert.
 De native lens is een enkele, afhankelijkheidsvrije C++-vertaaleenheid die door de NDK als
 een kleine `.so` wordt gebouwd, per naam gebonden via `RegisterNatives`. Hij wordt
 gecompileerd als deel van de normale Gradle-build; er is geen aparte stap. Hij wordt
-bewust piepklein gehouden omdat het het deel is dat moeilijk te misleiden moet zijn.
+bewust piepklein en eenvoudig gehouden.
 
 ## Waar de dingen leven
 

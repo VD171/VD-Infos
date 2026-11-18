@@ -29,7 +29,7 @@ giúp bạn bất kỳ phát hiện cụ thể nào: việc đọc phần so sá
 Android trao rất nhiều thông tin về thiết bị của bạn cho mọi ứng dụng mà bạn cài đặt. VD Infos cho
 bạn thấy một ví dụ về những gì một ứng dụng thông thường có thể đọc, và nó làm điều đó như một
 *trình gỡ lỗi phương thức*: với mỗi mẩu thông tin, nó đọc giá trị qua **mọi phương thức có thể đọc
-giá trị đó** - `Build.*`, `SystemProperties`, `getprop`, `__system_property_get` ở tầng native, các
+giá trị đó** - API nền tảng, thuộc tính hệ thống, lệnh gọi native, các
 trình quản lý hệ thống, content provider, tệp, syscall, và chứng thực khóa phần cứng (TEE) - rồi xếp
 chúng cạnh nhau để bạn có thể so sánh. Nó là một thấu kính, không phải một cỗ máy phán xét: nó đưa
 các lần đọc lên bề mặt và để việc đọc chúng lại cho bạn.
@@ -54,7 +54,7 @@ các lần đọc lên bề mặt và để việc đọc chúng lại cho bạn
 Mỗi bản phát hành công bố **hai APK**:
 
 - **SDK_35** - nhắm tới sandbox hiện đại nghiêm ngặt. Đây là bản nên dùng.
-- **SDK_27** - nhắm tới một mức API cũ hơn, với miền SELinux lỏng hơn. Nó chỉ hữu ích cho việc so
+- **SDK_27** - nhắm tới một mức API cũ hơn. Nó chỉ hữu ích cho việc so
   sánh song song; hầu hết mọi người không cần nó.
 
 Cả hai đều cài được trên Android 8.0 trở lên. Tải chúng từ trang

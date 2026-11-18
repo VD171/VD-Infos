@@ -19,7 +19,7 @@ Gerät.
 - **Von Maschinen lesbar.** Das gesamte Ergebnis ist ein maschinenlesbares Dokument,
   sodass ein Werkzeug dasselbe Bild erhält wie ein Mensch. Siehe
   [KI-Agenten](AI-AGENTS.md).
-- **Klein, wo es zählt.** Der Teil, der schwer zu täuschen sein muss, wird bewusst winzig
+- **Klein, wo es zählt.** Die native Komponente wird bewusst winzig und einfach
   gehalten.
 
 ## Die Linsen
@@ -32,12 +32,12 @@ damit sie verglichen werden können:
 | **Java / SDK** | Die Plattform-API, die eine gewöhnliche App aufruft. |
 | **Nativ / JNI** | Derselbe Wert, gelesen aus nativem Code. |
 | **Shell über JVM** | Ein von der JVM erzeugter Shell-Befehl. |
-| **Shell über JNI** | Derselbe Befehl, erzeugt aus nativem Code, ein anderer Blickwinkel. |
+| **Shell über JNI** | Derselbe Befehl, erzeugt aus nativem Code. |
 | **TEE / Attestierung** | Hardwaregestützte Schlüsselattestierung, wo sie zutrifft. |
 
-Die Linsen aufzureihen ist die ganze Idee: wenn sie sich uneinig sind, antwortet etwas
-zwischen der App und dem Wert verschiedenen Aufrufern unterschiedlich. Was das für einen
-bestimmten Wert, auf einem bestimmten Gerät, bedeutet, ist Ihre Sache zu lesen.
+Die Linsen aufzureihen ist die ganze Idee: Die App zeigt, wo die Lesungen übereinstimmen
+und wo sie sich unterscheiden. Was ein Unterschied für einen bestimmten Wert, auf einem
+bestimmten Gerät, bedeutet, ist Ihre Sache zu lesen.
 
 ## Wie ein Scan abläuft
 
@@ -55,8 +55,8 @@ cpp/            native_probes.cpp: the native lens, dependency-free
   sobald sie fertig sind, mit einer Live-Fortschrittsanzeige.
 - **Nichts im Hintergrund.** Keine Dienste und keine geplanten Scans. Die App liest nur,
   während sie geöffnet ist, und schließt sich selbst, wenn sie im Leerlauf bleibt.
-- **Die native Schicht.** Eine kleine `.so`, per Name über `RegisterNatives` gebunden,
-  bewusst winzig gehalten, weil sie der Teil ist, der schwer zu täuschen sein muss.
+- **Die native Schicht.** Eine kleine, abhängigkeitsfreie `.so`, per Name über
+  `RegisterNatives` gebunden, bewusst winzig und einfach gehalten.
 
 ## Der Bericht
 

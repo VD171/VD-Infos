@@ -17,8 +17,8 @@ pembacaan di depan Anda, dan membacanya adalah milik Anda untuk dilakukan di per
   hanya selagi ia terbuka.
 - **Dapat dibaca oleh mesin.** Seluruh hasil adalah satu dokumen yang dapat dibaca mesin, jadi sebuah
   alat mendapat gambaran yang sama dengan yang didapat seseorang. Lihat [Agen AI](AI-AGENTS.md).
-- **Kecil di tempat yang penting.** Bagian yang harus sulit dikelabui dijaga dengan sengaja
-  mungil.
+- **Kecil di tempat yang penting.** Komponen nativa dijaga dengan sengaja mungil dan
+  sederhana.
 
 ## Lensa-lensa
 
@@ -30,12 +30,12 @@ mereka dapat dibandingkan:
 | **Java / SDK** | API platform yang dipanggil oleh aplikasi biasa. |
 | **Native / JNI** | Nilai yang sama dibaca dari kode nativa. |
 | **Shell via JVM** | Perintah shell yang dilahirkan oleh JVM. |
-| **Shell via JNI** | Perintah yang sama dilahirkan dari kode nativa, sebuah sudut pandang yang berbeda. |
+| **Shell via JNI** | Perintah yang sama dilahirkan dari kode nativa. |
 | **TEE / Attestation** | Atestasi kunci yang didukung perangkat keras, di mana ia berlaku. |
 
-Menyejajarkan lensa-lensa adalah seluruh idenya: ketika mereka berbeda pendapat, sesuatu di antara aplikasi
-dan nilai menjawab secara berbeda kepada pemanggil yang berbeda. Apa artinya itu bagi suatu nilai,
-pada suatu perangkat, adalah milik Anda untuk dibaca.
+Menyejajarkan lensa-lensa adalah seluruh idenya: aplikasi menunjukkan di mana bacaan-bacaan itu sepakat
+dan di mana mereka berbeda. Apa arti sebuah perbedaan bagi suatu nilai, pada suatu perangkat, adalah
+milik Anda untuk dibaca.
 
 ## Bagaimana pemindaian berjalan
 
@@ -52,8 +52,8 @@ cpp/            native_probes.cpp: the native lens, dependency-free
   hasil mengalir ke dalam UI saat mereka selesai, dengan indikator kemajuan langsung.
 - **Tidak ada apa pun di latar belakang.** Tanpa layanan dan tanpa pemindaian terjadwal. Aplikasi membaca hanya
   selagi terbuka dan menutup dirinya sendiri ketika dibiarkan menganggur.
-- **Lapisan nativa.** Satu `.so` kecil, diikat berdasarkan nama melalui `RegisterNatives`, dijaga
-  dengan sengaja mungil karena ia adalah bagian yang harus sulit dikelabui.
+- **Lapisan nativa.** Satu `.so` kecil tanpa dependensi, diikat berdasarkan nama melalui `RegisterNatives`,
+  dijaga dengan sengaja mungil dan sederhana.
 
 ## Laporan
 

@@ -30,9 +30,8 @@ milik Anda untuk dibaca, di perangkat Anda sendiri.
 Android menyerahkan banyak informasi perangkat Anda ke setiap aplikasi yang Anda pasang. VD Infos
 menunjukkan kepada Anda sebuah contoh dari apa yang dapat dibaca oleh aplikasi biasa, dan ia melakukannya sebagai *debugger
 metode*: untuk setiap potong informasi ia membaca nilai melalui **setiap metode
-yang dapat membacanya** - `Build.*`, `SystemProperties`, `getprop`, `__system_property_get`
-nativa, system manager, content provider, berkas, syscall, dan
-atestasi kunci perangkat keras (TEE) - dan menyejajarkannya sehingga Anda dapat membandingkan. Ia adalah lensa,
+yang dapat membacanya** - API platform, properti sistem, panggilan nativa, system manager,
+content provider, berkas, syscall, dan atestasi kunci perangkat keras (TEE) - dan menyejajarkannya sehingga Anda dapat membandingkan. Ia adalah lensa,
 bukan mesin vonis: ia memunculkan pembacaan dan menyerahkan pembacaannya kepada Anda.
 
 ## 2. Apa yang bukan
@@ -56,7 +55,7 @@ bukan mesin vonis: ia memunculkan pembacaan dan menyerahkan pembacaannya kepada 
 Setiap rilis menerbitkan **dua APK**:
 
 - **SDK_35** - menargetkan sandbox modern yang ketat. Inilah yang harus digunakan.
-- **SDK_27** - menargetkan level API yang lebih lama, dengan domain SELinux yang lebih longgar. Ia berguna
+- **SDK_27** - menargetkan level API yang lebih lama. Ia berguna
   hanya untuk perbandingan berdampingan; kebanyakan orang tidak membutuhkannya.
 
 Keduanya dipasang pada Android 8.0 dan lebih baru. Unduh keduanya dari halaman

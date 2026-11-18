@@ -24,7 +24,7 @@ nhỏ bằng C++ được dựng qua NDK. CI có thể dựng nó, và bạn có
 Điều này tạo ra **hai APK**, mỗi flavor một cái:
 
 - **modern** (`SDK_35`) - sandbox hiện đại nghiêm ngặt, bản dựng nên dùng.
-- **compat** (`SDK_27`) - một mục tiêu cũ hơn với miền SELinux lỏng hơn, chỉ để so sánh song song.
+- **compat** (`SDK_27`) - một mục tiêu API cũ hơn, chỉ để so sánh song song.
 
 Các đầu ra nằm ở:
 
@@ -48,8 +48,7 @@ cung cấp keystore của riêng bạn để ký các bản dựng của riêng 
 
 ## Hai flavor
 
-Ứng dụng xuất xưởng với hai flavor một cách có chủ đích. Chúng nhắm tới các mức API khác nhau và do
-đó rơi vào các miền sandbox Android khác nhau, điều mà tự nó hữu ích cho việc so sánh. Cả hai đều
+Ứng dụng xuất xưởng với hai flavor một cách có chủ đích. Chúng nhắm tới các mức API khác nhau và
 dựng từ cùng một mã nguồn; chỉ mục tiêu và vài đường mã được bảo vệ là khác. Một thay đổi chạm tới mã
 native hoặc một đường đặc thù theo flavor nên được dựng và kiểm tra trên **cả hai** flavor, không chỉ
 cái bạn đang lặp.
@@ -58,7 +57,7 @@ cái bạn đang lặp.
 
 Thấu kính native là một đơn vị dịch C++ duy nhất, không có phụ thuộc, được NDK dựng thành một `.so`
 nhỏ, được buộc theo tên qua `RegisterNatives`. Nó được biên dịch như một phần của bản dựng Gradle
-thông thường; không có bước riêng. Nó được giữ cố ý bé nhỏ vì nó là phần phải khó đánh lừa.
+thông thường; không có bước riêng. Nó được giữ cố ý bé nhỏ và đơn giản.
 
 ## Các thứ nằm ở đâu
 

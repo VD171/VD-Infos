@@ -25,7 +25,7 @@ secara lokal.
 Ini menghasilkan **dua APK**, satu per flavor:
 
 - **modern** (`SDK_35`) - sandbox modern yang ketat, build yang harus digunakan.
-- **compat** (`SDK_27`) - target lebih lama dengan domain SELinux yang lebih longgar, hanya untuk
+- **compat** (`SDK_27`) - target API lebih lama, hanya untuk
   perbandingan berdampingan.
 
 Keluaran mendarat di:
@@ -50,9 +50,8 @@ APK keluar tanpa tanda tangan. Sediakan keystore Anda sendiri untuk menandatanga
 
 ## Kedua flavor
 
-Aplikasi mengapalkan dua flavor dengan sengaja. Mereka menargetkan level API yang berbeda dan oleh karena itu
-jatuh ke domain sandbox Android yang berbeda, yang itu sendiri berguna untuk perbandingan. Keduanya
-dibangun dari sumber yang sama; hanya target dan beberapa jalur kode yang dijaga yang berbeda. Sebuah
+Aplikasi mengapalkan dua flavor dengan sengaja. Mereka menargetkan level API yang berbeda dan dibangun
+dari sumber yang sama; hanya target dan beberapa jalur kode yang dijaga yang berbeda. Sebuah
 perubahan yang menyentuh kode nativa atau jalur spesifik flavor harus dibangun dan diperiksa di
 **kedua** flavor, bukan hanya yang sedang Anda iterasi.
 
@@ -60,8 +59,7 @@ perubahan yang menyentuh kode nativa atau jalur spesifik flavor harus dibangun d
 
 Lensa nativa adalah satu unit terjemahan C++ tunggal tanpa dependensi yang dibangun oleh NDK sebagai
 satu `.so` kecil, diikat berdasarkan nama melalui `RegisterNatives`. Ia dikompilasi sebagai bagian dari
-build Gradle normal; tidak ada langkah terpisah. Ia dijaga dengan sengaja mungil karena
-ia adalah bagian yang harus sulit dikelabui.
+build Gradle normal; tidak ada langkah terpisah. Ia dijaga dengan sengaja mungil dan sederhana.
 
 ## Di mana hal-hal berada
 
