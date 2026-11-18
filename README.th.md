@@ -23,9 +23,12 @@
 
 <p align="center">
   <a href="https://github.com/VD171/VD-Infos/releases">Releases</a> ·
-  <a href="CATALOG.md">Catalog</a> ·
-  <a href="#contributing">Contributing</a> ·
-  <a href="#for-ai-agents-the-full-report-as-json">AI agents</a> ·
+  <a href="https://github.com/VD171/VD-Infos/wiki">Wiki</a> ·
+  <a href="https://github.com/VD171/VD-Infos/wiki/USER-GUIDE">คู่มือผู้ใช้</a> ·
+  <a href="https://github.com/VD171/VD-Infos/wiki/AI-AGENTS">เอเจนต์ AI</a> ·
+  <a href="https://github.com/VD171/VD-Infos/wiki/EXPORT-FORMAT">รูปแบบการส่งออก</a> ·
+  <a href="https://github.com/VD171/VD-Infos/wiki/ARCHITECTURE">สถาปัตยกรรม</a> ·
+  <a href="CATALOG.md">แคตตาล็อก</a> ·
   <a href="CHANGELOG.md">Changelog</a> ·
   <a href="https://xdaforums.com/t/VD-Infos.4097379/">XDA thread</a>
 </p>
@@ -121,10 +124,15 @@ cpp/            native_probes.cpp: เลนส์เนทีฟ ไม่ม�
 
 ## เอกสาร
 
+- **[Wiki](https://github.com/VD171/VD-Infos/wiki)**: เอกสารทั้งหมด อ่านออนไลน์ได้ใน 22 ภาษา
+- **[คู่มือผู้ใช้](https://github.com/VD171/VD-Infos/wiki/USER-GUIDE)**: การติดตั้ง การเรียกใช้การสแกน การอ่านผลลัพธ์ และการแชร์รายงาน
+- **[สำหรับเอเจนต์ AI](https://github.com/VD171/VD-Infos/wiki/AI-AGENTS)** และ **[รูปแบบการส่งออก](https://github.com/VD171/VD-Infos/wiki/EXPORT-FORMAT)**: รายงานที่เครื่องอ่านได้และสคีมาของมัน
+- **[สถาปัตยกรรม](https://github.com/VD171/VD-Infos/wiki/ARCHITECTURE)** และ **[การสร้าง](https://github.com/VD171/VD-Infos/wiki/BUILDING)**: การทำงานและวิธีสร้าง
+- **[ความเป็นส่วนตัว](https://github.com/VD171/VD-Infos/wiki/PRIVACY)**, **[ความปลอดภัย](https://github.com/VD171/VD-Infos/wiki/SECURITY)** และ **[จรรยาบรรณ](https://github.com/VD171/VD-Infos/wiki/CODE_OF_CONDUCT)**: คำชี้แจงความเป็นส่วนตัวและเอกสารการกำกับดูแล
 - **[แคตตาล็อก](CATALOG.md)**: ข้อมูลอ้างอิงเรื่องการซ่อน root และการตรวจจับ (คู่มือ โมดูล เฟรมเวิร์ก และตัวตรวจจับ)
 - **[บันทึกการเปลี่ยนแปลง](CHANGELOG.md)**: สิ่งที่เปลี่ยนไปในแต่ละรุ่น
-- **[HMA-OSS](HMA-OSS.md)**: โมดูลซ่อนแอปที่การแก้ไขของแอปนี้ต่อยอดมา (ลิงก์ ช่อง และวิธีสนับสนุน)
-- **[การมีส่วนร่วม](README.md#contributing)**: วิธีเพิ่มเป้าหมายการตรวจจับ (ส่วนใหญ่เป็นรายการข้อความธรรมดา ไม่ต้องใช้ Kotlin)
+- **[HMA-OSS](https://github.com/VD171/VD-Infos/wiki/HMA-OSS)**: โมดูลซ่อนแอปที่การแก้ไขของแอปนี้ต่อยอดมา (ลิงก์ ช่อง และวิธีสนับสนุน)
+- **[การมีส่วนร่วม](https://github.com/VD171/VD-Infos/wiki/CONTRIBUTING)**: วิธีเพิ่มเป้าหมายการตรวจจับ (ส่วนใหญ่เป็นรายการข้อความธรรมดา ไม่ต้องใช้ Kotlin)
 
 <!-- /vd-docs -->
 
@@ -162,9 +170,3 @@ VD Infos เป็นเครื่องมือวิจัยและว�
 ## Tags
 
 `android` `privacy` `security` `root-detection` `hook-detection` `spoof-detection` `anti-detection` `tamper-detection` `device-fingerprint` `magisk` `kernelsu` `lsposed` `play-integrity` `attestation` `tee` `keystore` `scanner` `diagnostics` `reverse-engineering` `kotlin`
-
-<!-- doc-footer -->
-
----
-
-> _เอกสารนี้สร้างขึ้นด้วย Claude (Anthropic) และดูแลโดย VD171 ยินดีรับการแก้ไขและการปรับปรุง ดู [Contributing](README.md#contributing)_

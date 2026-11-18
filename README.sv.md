@@ -23,9 +23,12 @@
 
 <p align="center">
   <a href="https://github.com/VD171/VD-Infos/releases">Releases</a> ·
-  <a href="CATALOG.md">Catalog</a> ·
-  <a href="#contributing">Contributing</a> ·
-  <a href="#for-ai-agents-the-full-report-as-json">AI agents</a> ·
+  <a href="https://github.com/VD171/VD-Infos/wiki">Wiki</a> ·
+  <a href="https://github.com/VD171/VD-Infos/wiki/USER-GUIDE">Användarguide</a> ·
+  <a href="https://github.com/VD171/VD-Infos/wiki/AI-AGENTS">AI-agenter</a> ·
+  <a href="https://github.com/VD171/VD-Infos/wiki/EXPORT-FORMAT">Exportformat</a> ·
+  <a href="https://github.com/VD171/VD-Infos/wiki/ARCHITECTURE">Arkitektur</a> ·
+  <a href="CATALOG.md">Katalog</a> ·
   <a href="CHANGELOG.md">Changelog</a> ·
   <a href="https://xdaforums.com/t/VD-Infos.4097379/">XDA thread</a>
 </p>
@@ -121,10 +124,15 @@ Dess länkar, kanaler och hur du stöder det: [HMA-OSS.md](HMA-OSS.md).
 
 ## Dokumentation
 
+- **[Wiki](https://github.com/VD171/VD-Infos/wiki)**: all dokumentation, läsbar online på 22 språk.
+- **[Användarguide](https://github.com/VD171/VD-Infos/wiki/USER-GUIDE)**: installera, köra en skanning, läsa resultatet och dela en rapport.
+- **[För AI-agenter](https://github.com/VD171/VD-Infos/wiki/AI-AGENTS)** och **[Exportformat](https://github.com/VD171/VD-Infos/wiki/EXPORT-FORMAT)**: den maskinläsbara rapporten och dess schema.
+- **[Arkitektur](https://github.com/VD171/VD-Infos/wiki/ARCHITECTURE)** och **[Bygga](https://github.com/VD171/VD-Infos/wiki/BUILDING)**: hur den fungerar och hur du bygger den.
+- **[Integritet](https://github.com/VD171/VD-Infos/wiki/PRIVACY)**, **[Säkerhet](https://github.com/VD171/VD-Infos/wiki/SECURITY)** och **[Uppförandekod](https://github.com/VD171/VD-Infos/wiki/CODE_OF_CONDUCT)**: integritetsförklaringen och styrningsdokumenten.
 - **[Katalog](CATALOG.md)**: referenser för att dölja root och för detektering (guider, moduler, ramverk och detektorer).
 - **[Ändringslogg](CHANGELOG.md)**: vad som ändrats i varje version.
-- **[HMA-OSS](HMA-OSS.md)**: appdöljningsmodulen som appens fixar bygger på (dess länkar, kanaler och hur du stöder den).
-- **[Bidra](README.md#contributing)**: hur du lägger till detekteringsmål (mest vanliga textlistor, ingen Kotlin behövs).
+- **[HMA-OSS](https://github.com/VD171/VD-Infos/wiki/HMA-OSS)**: appdöljningsmodulen som appens fixar bygger på (dess länkar, kanaler och hur du stöder den).
+- **[Bidra](https://github.com/VD171/VD-Infos/wiki/CONTRIBUTING)**: hur du lägger till detekteringsmål (mest vanliga textlistor, ingen Kotlin behövs).
 
 <!-- /vd-docs -->
 
@@ -162,9 +170,3 @@ VD Infos är ett oberoende, inofficiellt forsknings- och diagnostikverktyg. Det 
 ## Tags
 
 `android` `privacy` `security` `root-detection` `hook-detection` `spoof-detection` `anti-detection` `tamper-detection` `device-fingerprint` `magisk` `kernelsu` `lsposed` `play-integrity` `attestation` `tee` `keystore` `scanner` `diagnostics` `reverse-engineering` `kotlin`
-
-<!-- doc-footer -->
-
----
-
-> _Denna dokumentation genererades med Claude (Anthropic) och underhålls av VD171. Rättelser och förbättringar välkomnas; se [Contributing](README.md#contributing)._

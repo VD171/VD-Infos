@@ -23,9 +23,12 @@
 
 <p align="center">
   <a href="https://github.com/VD171/VD-Infos/releases">Releases</a> ·
-  <a href="CATALOG.md">Catalog</a> ·
-  <a href="#contributing">Contributing</a> ·
-  <a href="#for-ai-agents-the-full-report-as-json">AI agents</a> ·
+  <a href="https://github.com/VD171/VD-Infos/wiki">Wiki</a> ·
+  <a href="https://github.com/VD171/VD-Infos/wiki/USER-GUIDE">उपयोगकर्ता मार्गदर्शिका</a> ·
+  <a href="https://github.com/VD171/VD-Infos/wiki/AI-AGENTS">AI एजेंट</a> ·
+  <a href="https://github.com/VD171/VD-Infos/wiki/EXPORT-FORMAT">निर्यात प्रारूप</a> ·
+  <a href="https://github.com/VD171/VD-Infos/wiki/ARCHITECTURE">आर्किटेक्चर</a> ·
+  <a href="CATALOG.md">कैटलॉग</a> ·
   <a href="CHANGELOG.md">Changelog</a> ·
   <a href="https://xdaforums.com/t/VD-Infos.4097379/">XDA thread</a>
 </p>
@@ -121,10 +124,15 @@ root छिपाने और पहचानने के संदर्भ (
 
 ## दस्तावेज़ीकरण
 
+- **[Wiki](https://github.com/VD171/VD-Infos/wiki)**: सारा दस्तावेज़ीकरण, 22 भाषाओं में ऑनलाइन ब्राउज़ करने योग्य।
+- **[उपयोगकर्ता मार्गदर्शिका](https://github.com/VD171/VD-Infos/wiki/USER-GUIDE)**: इंस्टॉल करना, स्कैन चलाना, परिणाम पढ़ना और रिपोर्ट साझा करना।
+- **[AI एजेंट के लिए](https://github.com/VD171/VD-Infos/wiki/AI-AGENTS)** और **[निर्यात प्रारूप](https://github.com/VD171/VD-Infos/wiki/EXPORT-FORMAT)**: मशीन-पठनीय रिपोर्ट और उसका स्कीमा।
+- **[आर्किटेक्चर](https://github.com/VD171/VD-Infos/wiki/ARCHITECTURE)** और **[बिल्डिंग](https://github.com/VD171/VD-Infos/wiki/BUILDING)**: यह कैसे काम करता है और इसे कैसे बिल्ड करें।
+- **[गोपनीयता](https://github.com/VD171/VD-Infos/wiki/PRIVACY)**, **[सुरक्षा](https://github.com/VD171/VD-Infos/wiki/SECURITY)** और **[आचार संहिता](https://github.com/VD171/VD-Infos/wiki/CODE_OF_CONDUCT)**: गोपनीयता कथन और गवर्नेंस दस्तावेज़।
 - **[कैटलॉग](CATALOG.md)**: रूट छिपाने और पहचान से जुड़े संदर्भ (गाइड, मॉड्यूल, फ्रेमवर्क और डिटेक्टर)।
 - **[चेंजलॉग](CHANGELOG.md)**: हर रिलीज़ में क्या बदला।
-- **[HMA-OSS](HMA-OSS.md)**: ऐप-छिपाने वाला मॉड्यूल जिस पर इस ऐप के फिक्स आधारित हैं (इसके लिंक, चैनल और इसे समर्थन देने का तरीका)।
-- **[योगदान](README.md#contributing)**: पहचान लक्ष्य कैसे जोड़ें (ज़्यादातर सादा-पाठ सूचियाँ, Kotlin की ज़रूरत नहीं)।
+- **[HMA-OSS](https://github.com/VD171/VD-Infos/wiki/HMA-OSS)**: ऐप-छिपाने वाला मॉड्यूल जिस पर इस ऐप के फिक्स आधारित हैं (इसके लिंक, चैनल और इसे समर्थन देने का तरीका)।
+- **[योगदान](https://github.com/VD171/VD-Infos/wiki/CONTRIBUTING)**: पहचान लक्ष्य कैसे जोड़ें (ज़्यादातर सादा-पाठ सूचियाँ, Kotlin की ज़रूरत नहीं)।
 
 <!-- /vd-docs -->
 
@@ -162,9 +170,3 @@ VD Infos एक स्वतंत्र, अनौपचारिक शोध 
 ## Tags
 
 `android` `privacy` `security` `root-detection` `hook-detection` `spoof-detection` `anti-detection` `tamper-detection` `device-fingerprint` `magisk` `kernelsu` `lsposed` `play-integrity` `attestation` `tee` `keystore` `scanner` `diagnostics` `reverse-engineering` `kotlin`
-
-<!-- doc-footer -->
-
----
-
-> _यह दस्तावेज़ Claude (Anthropic) से तैयार किया गया है और इसे VD171 द्वारा अनुरक्षित किया जाता है। सुधार और संशोधन का स्वागत है; देखें [Contributing](README.md#contributing)।_

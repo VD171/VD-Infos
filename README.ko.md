@@ -23,9 +23,12 @@
 
 <p align="center">
   <a href="https://github.com/VD171/VD-Infos/releases">Releases</a> ·
-  <a href="CATALOG.md">Catalog</a> ·
-  <a href="#contributing">Contributing</a> ·
-  <a href="#for-ai-agents-the-full-report-as-json">AI agents</a> ·
+  <a href="https://github.com/VD171/VD-Infos/wiki">Wiki</a> ·
+  <a href="https://github.com/VD171/VD-Infos/wiki/USER-GUIDE">사용자 가이드</a> ·
+  <a href="https://github.com/VD171/VD-Infos/wiki/AI-AGENTS">AI 에이전트</a> ·
+  <a href="https://github.com/VD171/VD-Infos/wiki/EXPORT-FORMAT">내보내기 형식</a> ·
+  <a href="https://github.com/VD171/VD-Infos/wiki/ARCHITECTURE">아키텍처</a> ·
+  <a href="CATALOG.md">카탈로그</a> ·
   <a href="CHANGELOG.md">Changelog</a> ·
   <a href="https://xdaforums.com/t/VD-Infos.4097379/">XDA thread</a>
 </p>
@@ -121,10 +124,15 @@ root 은닉 및 탐지 참고자료(가이드, 모듈, 프레임워크, 탐지�
 
 ## 문서
 
+- **[Wiki](https://github.com/VD171/VD-Infos/wiki)**: 모든 문서, 22개 언어로 온라인에서 볼 수 있습니다.
+- **[사용자 가이드](https://github.com/VD171/VD-Infos/wiki/USER-GUIDE)**: 설치, 스캔 실행, 결과 읽기, 보고서 공유.
+- **[AI 에이전트용](https://github.com/VD171/VD-Infos/wiki/AI-AGENTS)** 과 **[내보내기 형식](https://github.com/VD171/VD-Infos/wiki/EXPORT-FORMAT)**: 기계가 읽을 수 있는 보고서와 그 스키마.
+- **[아키텍처](https://github.com/VD171/VD-Infos/wiki/ARCHITECTURE)** 와 **[빌드](https://github.com/VD171/VD-Infos/wiki/BUILDING)**: 작동 방식과 빌드 방법.
+- **[프라이버시](https://github.com/VD171/VD-Infos/wiki/PRIVACY)**, **[보안](https://github.com/VD171/VD-Infos/wiki/SECURITY)**, **[행동 강령](https://github.com/VD171/VD-Infos/wiki/CODE_OF_CONDUCT)**: 개인정보 보호정책과 거버넌스 문서.
 - **[카탈로그](CATALOG.md)**: 루트 숨김과 탐지 관련 참고 자료 (가이드, 모듈, 프레임워크, 탐지기).
 - **[변경 로그](CHANGELOG.md)**: 각 릴리스에서 바뀐 내용.
-- **[HMA-OSS](HMA-OSS.md)**: 이 앱의 수정이 기반으로 삼는 앱 숨김 모듈 (그 링크, 채널, 후원 방법).
-- **[기여하기](README.md#contributing)**: 탐지 대상을 추가하는 방법(대부분 일반 텍스트 목록이며 Kotlin은 필요 없음).
+- **[HMA-OSS](https://github.com/VD171/VD-Infos/wiki/HMA-OSS)**: 이 앱의 수정이 기반으로 삼는 앱 숨김 모듈 (그 링크, 채널, 후원 방법).
+- **[기여하기](https://github.com/VD171/VD-Infos/wiki/CONTRIBUTING)**: 탐지 대상을 추가하는 방법(대부분 일반 텍스트 목록이며 Kotlin은 필요 없음).
 
 <!-- /vd-docs -->
 
@@ -162,9 +170,3 @@ VD Infos는 독립적이고 비공식적인 연구 및 진단 도구입니다. �
 ## Tags
 
 `android` `privacy` `security` `root-detection` `hook-detection` `spoof-detection` `anti-detection` `tamper-detection` `device-fingerprint` `magisk` `kernelsu` `lsposed` `play-integrity` `attestation` `tee` `keystore` `scanner` `diagnostics` `reverse-engineering` `kotlin`
-
-<!-- doc-footer -->
-
----
-
-> _이 문서는 Claude (Anthropic)로 생성되었으며 VD171이 유지 관리합니다. 수정 및 개선을 환영합니다. [Contributing](README.md#contributing)를 참조하세요._

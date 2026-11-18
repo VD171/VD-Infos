@@ -23,9 +23,12 @@
 
 <p align="center">
   <a href="https://github.com/VD171/VD-Infos/releases">Releases</a> ·
-  <a href="CATALOG.md">Catalog</a> ·
-  <a href="#contributing">Contributing</a> ·
-  <a href="#for-ai-agents-the-full-report-as-json">AI agents</a> ·
+  <a href="https://github.com/VD171/VD-Infos/wiki">Wiki</a> ·
+  <a href="https://github.com/VD171/VD-Infos/wiki/USER-GUIDE">Kullanıcı kılavuzu</a> ·
+  <a href="https://github.com/VD171/VD-Infos/wiki/AI-AGENTS">AI ajanları</a> ·
+  <a href="https://github.com/VD171/VD-Infos/wiki/EXPORT-FORMAT">Dışa aktarma biçimi</a> ·
+  <a href="https://github.com/VD171/VD-Infos/wiki/ARCHITECTURE">Mimari</a> ·
+  <a href="CATALOG.md">Katalog</a> ·
   <a href="CHANGELOG.md">Changelog</a> ·
   <a href="https://xdaforums.com/t/VD-Infos.4097379/">XDA thread</a>
 </p>
@@ -121,10 +124,15 @@ Bağlantıları, kanalları ve nasıl destek olabileceğiniz: [HMA-OSS.md](HMA-O
 
 ## Belgeler
 
+- **[Wiki](https://github.com/VD171/VD-Infos/wiki)**: tüm belgeler, 22 dilde çevrimiçi olarak göz atılabilir.
+- **[Kullanıcı kılavuzu](https://github.com/VD171/VD-Infos/wiki/USER-GUIDE)**: kurulum, tarama çalıştırma, sonucu okuma ve rapor paylaşma.
+- **[AI ajanları için](https://github.com/VD171/VD-Infos/wiki/AI-AGENTS)** ve **[Dışa aktarma biçimi](https://github.com/VD171/VD-Infos/wiki/EXPORT-FORMAT)**: makinece okunabilir rapor ve şeması.
+- **[Mimari](https://github.com/VD171/VD-Infos/wiki/ARCHITECTURE)** ve **[Derleme](https://github.com/VD171/VD-Infos/wiki/BUILDING)**: nasıl çalıştığı ve nasıl derlendiği.
+- **[Gizlilik](https://github.com/VD171/VD-Infos/wiki/PRIVACY)**, **[Güvenlik](https://github.com/VD171/VD-Infos/wiki/SECURITY)** ve **[Davranış kuralları](https://github.com/VD171/VD-Infos/wiki/CODE_OF_CONDUCT)**: gizlilik bildirimi ve yönetişim belgeleri.
 - **[Katalog](CATALOG.md)**: root gizleme ve tespit referansları (kılavuzlar, modüller, çerçeveler ve tespit ediciler).
 - **[Değişiklik günlüğü](CHANGELOG.md)**: her sürümde nelerin değiştiği.
-- **[HMA-OSS](HMA-OSS.md)**: uygulamanın düzeltmelerinin dayandığı uygulama gizleme modülü (bağlantıları, kanalları ve ona nasıl destek olunacağı).
-- **[Katkıda bulunma](README.md#contributing)**: tespit hedeflerinin nasıl ekleneceği (çoğunlukla düz metin listeleri, Kotlin gerekmez).
+- **[HMA-OSS](https://github.com/VD171/VD-Infos/wiki/HMA-OSS)**: uygulamanın düzeltmelerinin dayandığı uygulama gizleme modülü (bağlantıları, kanalları ve ona nasıl destek olunacağı).
+- **[Katkıda bulunma](https://github.com/VD171/VD-Infos/wiki/CONTRIBUTING)**: tespit hedeflerinin nasıl ekleneceği (çoğunlukla düz metin listeleri, Kotlin gerekmez).
 
 <!-- /vd-docs -->
 
@@ -162,9 +170,3 @@ VD Infos bağımsız, resmi olmayan bir araştırma ve teşhis aracıdır. Yazı
 ## Tags
 
 `android` `privacy` `security` `root-detection` `hook-detection` `spoof-detection` `anti-detection` `tamper-detection` `device-fingerprint` `magisk` `kernelsu` `lsposed` `play-integrity` `attestation` `tee` `keystore` `scanner` `diagnostics` `reverse-engineering` `kotlin`
-
-<!-- doc-footer -->
-
----
-
-> _Bu belgeler Claude (Anthropic) ile oluşturulmuş olup VD171 tarafından yürütülmektedir. Düzeltmeler ve iyileştirmeler memnuniyetle karşılanır; bkz. [Contributing](README.md#contributing)._

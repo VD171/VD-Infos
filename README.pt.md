@@ -23,9 +23,12 @@
 
 <p align="center">
   <a href="https://github.com/VD171/VD-Infos/releases">Releases</a> ·
-  <a href="CATALOG.md">Catalog</a> ·
-  <a href="#contributing">Contributing</a> ·
-  <a href="#for-ai-agents-the-full-report-as-json">AI agents</a> ·
+  <a href="https://github.com/VD171/VD-Infos/wiki">Wiki</a> ·
+  <a href="https://github.com/VD171/VD-Infos/wiki/USER-GUIDE">Guia do usuário</a> ·
+  <a href="https://github.com/VD171/VD-Infos/wiki/AI-AGENTS">Agentes de IA</a> ·
+  <a href="https://github.com/VD171/VD-Infos/wiki/EXPORT-FORMAT">Formato de exportação</a> ·
+  <a href="https://github.com/VD171/VD-Infos/wiki/ARCHITECTURE">Arquitetura</a> ·
+  <a href="CATALOG.md">Catálogo</a> ·
   <a href="CHANGELOG.md">Changelog</a> ·
   <a href="https://xdaforums.com/t/VD-Infos.4097379/">XDA thread</a>
 </p>
@@ -164,10 +167,15 @@ Seus links, canais e como apoiá-lo: [HMA-OSS.md](HMA-OSS.md).
 
 ## Documentação
 
+- **[Wiki](https://github.com/VD171/VD-Infos/wiki)**: toda a documentação, navegável online em 22 idiomas.
+- **[Guia do usuário](https://github.com/VD171/VD-Infos/wiki/USER-GUIDE)**: instalar, rodar uma varredura, ler o resultado e compartilhar um relatório.
+- **[Para agentes de IA](https://github.com/VD171/VD-Infos/wiki/AI-AGENTS)** e **[Formato de exportação](https://github.com/VD171/VD-Infos/wiki/EXPORT-FORMAT)**: o relatório legível por máquina e seu esquema.
+- **[Arquitetura](https://github.com/VD171/VD-Infos/wiki/ARCHITECTURE)** e **[Compilação](https://github.com/VD171/VD-Infos/wiki/BUILDING)**: como funciona e como compilá-lo.
+- **[Privacidade](https://github.com/VD171/VD-Infos/wiki/PRIVACY)**, **[Segurança](https://github.com/VD171/VD-Infos/wiki/SECURITY)** e **[Código de Conduta](https://github.com/VD171/VD-Infos/wiki/CODE_OF_CONDUCT)**: a declaração de privacidade e os documentos de governança.
 - **[Catálogo](CATALOG.md)**: referências de ocultação de root e detecção (guias, módulos, frameworks e detectores).
 - **[Changelog](CHANGELOG.md)**: o que mudou em cada versão.
-- **[HMA-OSS](HMA-OSS.md)**: o módulo de ocultar apps em que se baseiam as correções do app (seus links, canais e como apoiá-lo).
-- **[Contribuir](README.md#contributing)**: como adicionar alvos de detecção (em geral listas de texto puro, sem precisar de Kotlin).
+- **[HMA-OSS](https://github.com/VD171/VD-Infos/wiki/HMA-OSS)**: o módulo de ocultar apps em que se baseiam as correções do app (seus links, canais e como apoiá-lo).
+- **[Contribuir](https://github.com/VD171/VD-Infos/wiki/CONTRIBUTING)**: como adicionar alvos de detecção (em geral listas de texto puro, sem precisar de Kotlin).
 
 <!-- /vd-docs -->
 
@@ -208,9 +216,3 @@ O VD Infos é uma ferramenta independente e não oficial de pesquisa e diagnóst
 ## Tags
 
 `android` `privacy` `security` `root-detection` `hook-detection` `spoof-detection` `anti-detection` `tamper-detection` `device-fingerprint` `magisk` `kernelsu` `lsposed` `play-integrity` `attestation` `tee` `keystore` `scanner` `diagnostics` `reverse-engineering` `kotlin`
-
-<!-- doc-footer -->
-
----
-
-> _Esta documentação foi gerada com o Claude (Anthropic) e é mantida por VD171. Correções e melhorias são bem-vindas; veja [Contributing](README.md#contributing)._

@@ -23,9 +23,12 @@
 
 <p align="center">
   <a href="https://github.com/VD171/VD-Infos/releases">Releases</a> ·
-  <a href="CATALOG.md">Catalog</a> ·
-  <a href="#contributing">Contributing</a> ·
-  <a href="#for-ai-agents-the-full-report-as-json">AI agents</a> ·
+  <a href="https://github.com/VD171/VD-Infos/wiki">Wiki</a> ·
+  <a href="https://github.com/VD171/VD-Infos/wiki/USER-GUIDE">Uživatelská příručka</a> ·
+  <a href="https://github.com/VD171/VD-Infos/wiki/AI-AGENTS">AI agenti</a> ·
+  <a href="https://github.com/VD171/VD-Infos/wiki/EXPORT-FORMAT">Formát exportu</a> ·
+  <a href="https://github.com/VD171/VD-Infos/wiki/ARCHITECTURE">Architektura</a> ·
+  <a href="CATALOG.md">Katalog</a> ·
   <a href="CHANGELOG.md">Changelog</a> ·
   <a href="https://xdaforums.com/t/VD-Infos.4097379/">XDA thread</a>
 </p>
@@ -121,10 +124,15 @@ Jeho odkazy, kanály a jak jej podpořit: [HMA-OSS.md](HMA-OSS.md).
 
 ## Dokumentace
 
+- **[Wiki](https://github.com/VD171/VD-Infos/wiki)**: veškerá dokumentace, k prohlížení online ve 22 jazycích.
+- **[Uživatelská příručka](https://github.com/VD171/VD-Infos/wiki/USER-GUIDE)**: instalace, spuštění skenu, čtení výsledku a sdílení reportu.
+- **[Pro AI agenty](https://github.com/VD171/VD-Infos/wiki/AI-AGENTS)** a **[Formát exportu](https://github.com/VD171/VD-Infos/wiki/EXPORT-FORMAT)**: strojově čitelný report a jeho schéma.
+- **[Architektura](https://github.com/VD171/VD-Infos/wiki/ARCHITECTURE)** a **[Sestavení](https://github.com/VD171/VD-Infos/wiki/BUILDING)**: jak to funguje a jak to sestavit.
+- **[Soukromí](https://github.com/VD171/VD-Infos/wiki/PRIVACY)**, **[Bezpečnost](https://github.com/VD171/VD-Infos/wiki/SECURITY)** a **[Kodex chování](https://github.com/VD171/VD-Infos/wiki/CODE_OF_CONDUCT)**: prohlášení o soukromí a dokumenty o správě projektu.
 - **[Katalog](CATALOG.md)**: reference ke skrývání rootu a detekci (průvodci, moduly, frameworky a detektory).
 - **[Seznam změn](CHANGELOG.md)**: co se změnilo v každém vydání.
-- **[HMA-OSS](HMA-OSS.md)**: modul pro skrývání aplikací, na kterém stojí opravy této aplikace (jeho odkazy, kanály a jak jej podpořit).
-- **[Přispívání](README.md#contributing)**: jak přidat cíle detekce (většinou prosté textové seznamy, bez potřeby Kotlinu).
+- **[HMA-OSS](https://github.com/VD171/VD-Infos/wiki/HMA-OSS)**: modul pro skrývání aplikací, na kterém stojí opravy této aplikace (jeho odkazy, kanály a jak jej podpořit).
+- **[Přispívání](https://github.com/VD171/VD-Infos/wiki/CONTRIBUTING)**: jak přidat cíle detekce (většinou prosté textové seznamy, bez potřeby Kotlinu).
 
 <!-- /vd-docs -->
 
@@ -162,9 +170,3 @@ VD Infos je nezávislý, neoficiální výzkumný a diagnostický nástroj. Nen�
 ## Tags
 
 `android` `privacy` `security` `root-detection` `hook-detection` `spoof-detection` `anti-detection` `tamper-detection` `device-fingerprint` `magisk` `kernelsu` `lsposed` `play-integrity` `attestation` `tee` `keystore` `scanner` `diagnostics` `reverse-engineering` `kotlin`
-
-<!-- doc-footer -->
-
----
-
-> _Tato dokumentace byla vytvořena pomocí Claude (Anthropic) a spravuje ji VD171. Opravy a vylepšení jsou vítány; viz [Contributing](README.md#contributing)._

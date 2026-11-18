@@ -23,9 +23,12 @@
 
 <p align="center">
   <a href="https://github.com/VD171/VD-Infos/releases">Releases</a> ·
-  <a href="CATALOG.md">Catalog</a> ·
-  <a href="#contributing">Contributing</a> ·
-  <a href="#for-ai-agents-the-full-report-as-json">AI agents</a> ·
+  <a href="https://github.com/VD171/VD-Infos/wiki">Wiki</a> ·
+  <a href="https://github.com/VD171/VD-Infos/wiki/USER-GUIDE">راهنمای کاربر</a> ·
+  <a href="https://github.com/VD171/VD-Infos/wiki/AI-AGENTS">عامل‌های هوش مصنوعی</a> ·
+  <a href="https://github.com/VD171/VD-Infos/wiki/EXPORT-FORMAT">قالب خروجی</a> ·
+  <a href="https://github.com/VD171/VD-Infos/wiki/ARCHITECTURE">معماری</a> ·
+  <a href="CATALOG.md">فهرست</a> ·
   <a href="CHANGELOG.md">Changelog</a> ·
   <a href="https://xdaforums.com/t/VD-Infos.4097379/">XDA thread</a>
 </p>
@@ -121,10 +124,15 @@ cpp/            native_probes.cpp: لنز بومی، بدون وابستگی
 
 ## مستندات
 
+- **[Wiki](https://github.com/VD171/VD-Infos/wiki)**: همهٔ مستندات، قابل مرور آنلاین به ۲۲ زبان.
+- **[راهنمای کاربر](https://github.com/VD171/VD-Infos/wiki/USER-GUIDE)**: نصب، اجرای یک اسکن، خواندن نتیجه و اشتراک‌گذاری یک گزارش.
+- **[برای عامل‌های هوش مصنوعی](https://github.com/VD171/VD-Infos/wiki/AI-AGENTS)** و **[قالب خروجی](https://github.com/VD171/VD-Infos/wiki/EXPORT-FORMAT)**: گزارش قابل‌خواندن توسط ماشین و شِمای آن.
+- **[معماری](https://github.com/VD171/VD-Infos/wiki/ARCHITECTURE)** و **[ساخت](https://github.com/VD171/VD-Infos/wiki/BUILDING)**: چگونه کار می‌کند و چگونه آن را بسازیم.
+- **[حریم خصوصی](https://github.com/VD171/VD-Infos/wiki/PRIVACY)**، **[امنیت](https://github.com/VD171/VD-Infos/wiki/SECURITY)** و **[منشور رفتار](https://github.com/VD171/VD-Infos/wiki/CODE_OF_CONDUCT)**: بیانیهٔ حریم خصوصی و مستندات حاکمیت.
 - **[فهرست](CATALOG.md)**: مراجع پنهان‌سازی روت و شناسایی (راهنماها، ماژول‌ها، چارچوب‌ها و شناساگرها).
 - **[سیاههٔ تغییرات](CHANGELOG.md)**: آنچه در هر نسخه تغییر کرده است.
-- **[HMA-OSS](HMA-OSS.md)**: ماژول پنهان‌سازی برنامه‌ها که اصلاحات این برنامه بر پایهٔ آن است (پیوندها، کانال‌ها و راه حمایت از آن).
-- **[مشارکت](README.md#contributing)**: چگونگی افزودن هدف‌های شناسایی (بیشتر فهرست‌های متنی ساده، بدون نیاز به Kotlin).
+- **[HMA-OSS](https://github.com/VD171/VD-Infos/wiki/HMA-OSS)**: ماژول پنهان‌سازی برنامه‌ها که اصلاحات این برنامه بر پایهٔ آن است (پیوندها، کانال‌ها و راه حمایت از آن).
+- **[مشارکت](https://github.com/VD171/VD-Infos/wiki/CONTRIBUTING)**: چگونگی افزودن هدف‌های شناسایی (بیشتر فهرست‌های متنی ساده، بدون نیاز به Kotlin).
 
 <!-- /vd-docs -->
 
@@ -162,9 +170,3 @@ VD Infos یک ابزار مستقل و غیررسمی پژوهش و عیب‌ی�
 ## برچسب‌ها
 
 `android` `privacy` `security` `root-detection` `hook-detection` `spoof-detection` `anti-detection` `tamper-detection` `device-fingerprint` `magisk` `kernelsu` `lsposed` `play-integrity` `attestation` `tee` `keystore` `scanner` `diagnostics` `reverse-engineering` `kotlin`
-
-<!-- doc-footer -->
-
----
-
-> _این مستندات با Claude (Anthropic) تولید شده و توسط VD171 نگهداری می‌شود. اصلاحات و بهبودها خوش‌آمد است؛ به [Contributing](README.md#contributing) مراجعه کنید._

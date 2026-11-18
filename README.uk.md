@@ -23,9 +23,12 @@
 
 <p align="center">
   <a href="https://github.com/VD171/VD-Infos/releases">Releases</a> ·
-  <a href="CATALOG.md">Catalog</a> ·
-  <a href="#contributing">Contributing</a> ·
-  <a href="#for-ai-agents-the-full-report-as-json">AI agents</a> ·
+  <a href="https://github.com/VD171/VD-Infos/wiki">Вікі</a> ·
+  <a href="https://github.com/VD171/VD-Infos/wiki/USER-GUIDE">Посібник користувача</a> ·
+  <a href="https://github.com/VD171/VD-Infos/wiki/AI-AGENTS">ШІ-агенти</a> ·
+  <a href="https://github.com/VD171/VD-Infos/wiki/EXPORT-FORMAT">Формат експорту</a> ·
+  <a href="https://github.com/VD171/VD-Infos/wiki/ARCHITECTURE">Архітектура</a> ·
+  <a href="CATALOG.md">Каталог</a> ·
   <a href="CHANGELOG.md">Changelog</a> ·
   <a href="https://xdaforums.com/t/VD-Infos.4097379/">XDA thread</a>
 </p>
@@ -121,10 +124,15 @@ cpp/            native_probes.cpp: нативна лінза, без залеж�
 
 ## Документація
 
+- **[Вікі](https://github.com/VD171/VD-Infos/wiki)**: уся документація, доступна онлайн 22 мовами.
+- **[Посібник користувача](https://github.com/VD171/VD-Infos/wiki/USER-GUIDE)**: встановлення, запуск сканування, читання результату та надсилання звіту.
+- **[Для ШІ-агентів](https://github.com/VD171/VD-Infos/wiki/AI-AGENTS)** та **[Формат експорту](https://github.com/VD171/VD-Infos/wiki/EXPORT-FORMAT)**: машиночитний звіт і його схема.
+- **[Архітектура](https://github.com/VD171/VD-Infos/wiki/ARCHITECTURE)** та **[Збірка](https://github.com/VD171/VD-Infos/wiki/BUILDING)**: як це працює і як це зібрати.
+- **[Приватність](https://github.com/VD171/VD-Infos/wiki/PRIVACY)**, **[Безпека](https://github.com/VD171/VD-Infos/wiki/SECURITY)** та **[Кодекс поведінки](https://github.com/VD171/VD-Infos/wiki/CODE_OF_CONDUCT)**: заява про приватність і документи з управління проєктом.
 - **[Каталог](CATALOG.md)**: довідники з приховування root і виявлення (посібники, модулі, фреймворки та детектори).
 - **[Список змін](CHANGELOG.md)**: що змінилося в кожному випуску.
-- **[HMA-OSS](HMA-OSS.md)**: модуль приховування застосунків, на якому ґрунтуються виправлення застосунку (його посилання, канали та як його підтримати).
-- **[Внесок](README.md#contributing)**: як додавати цілі виявлення (здебільшого прості текстові списки, Kotlin не потрібен).
+- **[HMA-OSS](https://github.com/VD171/VD-Infos/wiki/HMA-OSS)**: модуль приховування застосунків, на якому ґрунтуються виправлення застосунку (його посилання, канали та як його підтримати).
+- **[Внесок](https://github.com/VD171/VD-Infos/wiki/CONTRIBUTING)**: як додавати цілі виявлення (здебільшого прості текстові списки, Kotlin не потрібен).
 
 <!-- /vd-docs -->
 
@@ -162,9 +170,3 @@ VD Infos є незалежним, неофіційним інструменто�
 ## Tags
 
 `android` `privacy` `security` `root-detection` `hook-detection` `spoof-detection` `anti-detection` `tamper-detection` `device-fingerprint` `magisk` `kernelsu` `lsposed` `play-integrity` `attestation` `tee` `keystore` `scanner` `diagnostics` `reverse-engineering` `kotlin`
-
-<!-- doc-footer -->
-
----
-
-> _Ця документація створена за допомогою Claude (Anthropic) і підтримується VD171. Виправлення та покращення вітаються; див. [Contributing](README.md#contributing)._

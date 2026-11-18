@@ -23,9 +23,12 @@
 
 <p align="center">
   <a href="https://github.com/VD171/VD-Infos/releases">Releases</a> ·
+  <a href="https://github.com/VD171/VD-Infos/wiki">Wiki</a> ·
+  <a href="https://github.com/VD171/VD-Infos/wiki/USER-GUIDE">User guide</a> ·
+  <a href="https://github.com/VD171/VD-Infos/wiki/AI-AGENTS">AI agents</a> ·
+  <a href="https://github.com/VD171/VD-Infos/wiki/EXPORT-FORMAT">Export format</a> ·
+  <a href="https://github.com/VD171/VD-Infos/wiki/ARCHITECTURE">Architecture</a> ·
   <a href="CATALOG.md">Catalog</a> ·
-  <a href="#contributing">Contributing</a> ·
-  <a href="#for-ai-agents-the-full-report-as-json">AI agents</a> ·
   <a href="CHANGELOG.md">Changelog</a> ·
   <a href="https://xdaforums.com/t/VD-Infos.4097379/">XDA thread</a>
 </p>
@@ -164,10 +167,15 @@ Its links, channels and how to support it: [HMA-OSS.md](HMA-OSS.md).
 
 ## Documentation
 
+- **[Wiki](https://github.com/VD171/VD-Infos/wiki)**: all the docs, browsable online in 22 languages.
+- **[User guide](https://github.com/VD171/VD-Infos/wiki/USER-GUIDE)**: installing, running a scan, reading the result and sharing a report.
+- **[For AI agents](https://github.com/VD171/VD-Infos/wiki/AI-AGENTS)** and **[Export format](https://github.com/VD171/VD-Infos/wiki/EXPORT-FORMAT)**: the machine-readable report and its schema.
+- **[Architecture](https://github.com/VD171/VD-Infos/wiki/ARCHITECTURE)** and **[Building](https://github.com/VD171/VD-Infos/wiki/BUILDING)**: how it works and how to build it.
+- **[Privacy](https://github.com/VD171/VD-Infos/wiki/PRIVACY)**, **[Security](https://github.com/VD171/VD-Infos/wiki/SECURITY)** and **[Code of Conduct](https://github.com/VD171/VD-Infos/wiki/CODE_OF_CONDUCT)**: the privacy statement and the governance docs.
 - **[Catalog](CATALOG.md)**: root-hiding and detection references (guides, modules, frameworks and detectors).
 - **[Changelog](CHANGELOG.md)**: what changed in each release.
-- **[HMA-OSS](HMA-OSS.md)**: the hide-apps module the app's fixes build on (its links, channels and how to support it).
-- **[Contributing](README.md#contributing)**: how to add detection targets (mostly plain-text lists, no Kotlin needed).
+- **[HMA-OSS](https://github.com/VD171/VD-Infos/wiki/HMA-OSS)**: the hide-apps module the app's fixes build on (its links, channels and how to support it).
+- **[Contributing](https://github.com/VD171/VD-Infos/wiki/CONTRIBUTING)**: how to add detection targets (mostly plain-text lists, no Kotlin needed).
 
 <!-- /vd-docs -->
 
@@ -205,9 +213,3 @@ VD Infos is an independent, unofficial research and diagnostics tool. It is not 
 ## Tags
 
 `android` `privacy` `security` `root-detection` `hook-detection` `spoof-detection` `anti-detection` `tamper-detection` `device-fingerprint` `magisk` `kernelsu` `lsposed` `play-integrity` `attestation` `tee` `keystore` `scanner` `diagnostics` `reverse-engineering` `kotlin`
-
-<!-- doc-footer -->
-
----
-
-> _This documentation was generated with Claude (Anthropic) and is maintained by VD171. Corrections and improvements are welcome; see [Contributing](README.md#contributing)._

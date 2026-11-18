@@ -23,9 +23,12 @@
 
 <p align="center">
   <a href="https://github.com/VD171/VD-Infos/releases">Releases</a> ·
-  <a href="CATALOG.md">Catalog</a> ·
-  <a href="#contributing">Contributing</a> ·
-  <a href="#for-ai-agents-the-full-report-as-json">AI agents</a> ·
+  <a href="https://github.com/VD171/VD-Infos/wiki">Wiki</a> ·
+  <a href="https://github.com/VD171/VD-Infos/wiki/USER-GUIDE">ユーザーガイド</a> ·
+  <a href="https://github.com/VD171/VD-Infos/wiki/AI-AGENTS">AI エージェント</a> ·
+  <a href="https://github.com/VD171/VD-Infos/wiki/EXPORT-FORMAT">エクスポート形式</a> ·
+  <a href="https://github.com/VD171/VD-Infos/wiki/ARCHITECTURE">アーキテクチャ</a> ·
+  <a href="CATALOG.md">カタログ</a> ·
   <a href="CHANGELOG.md">Changelog</a> ·
   <a href="https://xdaforums.com/t/VD-Infos.4097379/">XDA thread</a>
 </p>
@@ -121,10 +124,15 @@ root の隠蔽と検出に関する参照（ガイド、モジュール、フレ
 
 ## ドキュメント
 
+- **[Wiki](https://github.com/VD171/VD-Infos/wiki)**: すべてのドキュメント。22 言語でオンライン閲覧できます。
+- **[ユーザーガイド](https://github.com/VD171/VD-Infos/wiki/USER-GUIDE)**: インストール、スキャンの実行、結果の読み取り、レポートの共有。
+- **[AI エージェント向け](https://github.com/VD171/VD-Infos/wiki/AI-AGENTS)** と **[エクスポート形式](https://github.com/VD171/VD-Infos/wiki/EXPORT-FORMAT)**: 機械可読のレポートとそのスキーマ。
+- **[アーキテクチャ](https://github.com/VD171/VD-Infos/wiki/ARCHITECTURE)** と **[ビルド](https://github.com/VD171/VD-Infos/wiki/BUILDING)**: 仕組みとビルド方法。
+- **[プライバシー](https://github.com/VD171/VD-Infos/wiki/PRIVACY)**、**[セキュリティ](https://github.com/VD171/VD-Infos/wiki/SECURITY)**、**[行動規範](https://github.com/VD171/VD-Infos/wiki/CODE_OF_CONDUCT)**: プライバシーに関する声明とガバナンス文書。
 - **[カタログ](CATALOG.md)**: root 隠蔽と検知のリファレンス（ガイド、モジュール、フレームワーク、検知ツール）。
 - **[変更履歴](CHANGELOG.md)**: 各リリースでの変更点。
-- **[HMA-OSS](HMA-OSS.md)**: このアプリの修正が土台とするアプリ隠蔽モジュール（そのリンク、チャンネル、支援方法）。
-- **[コントリビュート](README.md#contributing)**: 検知対象の追加方法（ほとんどはプレーンテキストのリストで、Kotlin は不要）。
+- **[HMA-OSS](https://github.com/VD171/VD-Infos/wiki/HMA-OSS)**: このアプリの修正が土台とするアプリ隠蔽モジュール（そのリンク、チャンネル、支援方法）。
+- **[コントリビュート](https://github.com/VD171/VD-Infos/wiki/CONTRIBUTING)**: 検知対象の追加方法（ほとんどはプレーンテキストのリストで、Kotlin は不要）。
 
 <!-- /vd-docs -->
 
@@ -162,9 +170,3 @@ VD Infos は独立した非公式の研究・診断ツールです。読み取�
 ## Tags
 
 `android` `privacy` `security` `root-detection` `hook-detection` `spoof-detection` `anti-detection` `tamper-detection` `device-fingerprint` `magisk` `kernelsu` `lsposed` `play-integrity` `attestation` `tee` `keystore` `scanner` `diagnostics` `reverse-engineering` `kotlin`
-
-<!-- doc-footer -->
-
----
-
-> _このドキュメントは Claude (Anthropic) で生成され、VD171 によって保守されています。修正や改善を歓迎します。[Contributing](README.md#contributing) を参照してください。_

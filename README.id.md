@@ -23,9 +23,12 @@
 
 <p align="center">
   <a href="https://github.com/VD171/VD-Infos/releases">Releases</a> ·
-  <a href="CATALOG.md">Catalog</a> ·
-  <a href="#contributing">Contributing</a> ·
-  <a href="#for-ai-agents-the-full-report-as-json">AI agents</a> ·
+  <a href="https://github.com/VD171/VD-Infos/wiki">Wiki</a> ·
+  <a href="https://github.com/VD171/VD-Infos/wiki/USER-GUIDE">Panduan pengguna</a> ·
+  <a href="https://github.com/VD171/VD-Infos/wiki/AI-AGENTS">Agen AI</a> ·
+  <a href="https://github.com/VD171/VD-Infos/wiki/EXPORT-FORMAT">Format ekspor</a> ·
+  <a href="https://github.com/VD171/VD-Infos/wiki/ARCHITECTURE">Arsitektur</a> ·
+  <a href="CATALOG.md">Katalog</a> ·
   <a href="CHANGELOG.md">Changelog</a> ·
   <a href="https://xdaforums.com/t/VD-Infos.4097379/">XDA thread</a>
 </p>
@@ -121,10 +124,15 @@ Tautan, kanal, dan cara mendukungnya: [HMA-OSS.md](HMA-OSS.md).
 
 ## Dokumentasi
 
+- **[Wiki](https://github.com/VD171/VD-Infos/wiki)**: semua dokumen, bisa dibaca online dalam 22 bahasa.
+- **[Panduan pengguna](https://github.com/VD171/VD-Infos/wiki/USER-GUIDE)**: memasang, menjalankan pemindaian, membaca hasil, dan membagikan laporan.
+- **[Untuk agen AI](https://github.com/VD171/VD-Infos/wiki/AI-AGENTS)** dan **[Format ekspor](https://github.com/VD171/VD-Infos/wiki/EXPORT-FORMAT)**: laporan yang dapat dibaca mesin dan skemanya.
+- **[Arsitektur](https://github.com/VD171/VD-Infos/wiki/ARCHITECTURE)** dan **[Membangun](https://github.com/VD171/VD-Infos/wiki/BUILDING)**: cara kerjanya dan cara membangunnya.
+- **[Privasi](https://github.com/VD171/VD-Infos/wiki/PRIVACY)**, **[Keamanan](https://github.com/VD171/VD-Infos/wiki/SECURITY)**, dan **[Kode Etik](https://github.com/VD171/VD-Infos/wiki/CODE_OF_CONDUCT)**: pernyataan privasi dan dokumen tata kelola.
 - **[Katalog](CATALOG.md)**: referensi penyembunyian root dan deteksi (panduan, modul, framework, dan detektor).
 - **[Changelog](CHANGELOG.md)**: apa yang berubah di setiap rilis.
-- **[HMA-OSS](HMA-OSS.md)**: modul penyembunyi aplikasi yang menjadi dasar perbaikan aplikasi ini (tautan, kanal, dan cara mendukungnya).
-- **[Berkontribusi](README.md#contributing)**: cara menambahkan target deteksi (sebagian besar daftar teks biasa, tanpa perlu Kotlin).
+- **[HMA-OSS](https://github.com/VD171/VD-Infos/wiki/HMA-OSS)**: modul penyembunyi aplikasi yang menjadi dasar perbaikan aplikasi ini (tautan, kanal, dan cara mendukungnya).
+- **[Berkontribusi](https://github.com/VD171/VD-Infos/wiki/CONTRIBUTING)**: cara menambahkan target deteksi (sebagian besar daftar teks biasa, tanpa perlu Kotlin).
 
 <!-- /vd-docs -->
 
@@ -162,9 +170,3 @@ VD Infos adalah alat riset dan diagnostik independen, tidak resmi. Alat ini tida
 ## Tags
 
 `android` `privacy` `security` `root-detection` `hook-detection` `spoof-detection` `anti-detection` `tamper-detection` `device-fingerprint` `magisk` `kernelsu` `lsposed` `play-integrity` `attestation` `tee` `keystore` `scanner` `diagnostics` `reverse-engineering` `kotlin`
-
-<!-- doc-footer -->
-
----
-
-> _Dokumentasi ini dibuat dengan Claude (Anthropic) dan dikelola oleh VD171. Koreksi dan perbaikan dipersilakan; lihat [Contributing](README.md#contributing)._

@@ -23,9 +23,12 @@
 
 <p align="center">
   <a href="https://github.com/VD171/VD-Infos/releases">Releases</a> ·
-  <a href="CATALOG.md">Catalog</a> ·
-  <a href="#contributing">Contributing</a> ·
-  <a href="#for-ai-agents-the-full-report-as-json">AI agents</a> ·
+  <a href="https://github.com/VD171/VD-Infos/wiki">Wiki</a> ·
+  <a href="https://github.com/VD171/VD-Infos/wiki/USER-GUIDE">用户指南</a> ·
+  <a href="https://github.com/VD171/VD-Infos/wiki/AI-AGENTS">AI 智能体</a> ·
+  <a href="https://github.com/VD171/VD-Infos/wiki/EXPORT-FORMAT">导出格式</a> ·
+  <a href="https://github.com/VD171/VD-Infos/wiki/ARCHITECTURE">架构</a> ·
+  <a href="CATALOG.md">目录</a> ·
   <a href="CHANGELOG.md">Changelog</a> ·
   <a href="https://xdaforums.com/t/VD-Infos.4097379/">XDA thread</a>
 </p>
@@ -121,10 +124,15 @@ Root 隐藏与检测的参考（指南、模块、框架、检测器）收录于
 
 ## 文档
 
+- **[Wiki](https://github.com/VD171/VD-Infos/wiki)**：全部文档，可在线浏览，支持 22 种语言。
+- **[用户指南](https://github.com/VD171/VD-Infos/wiki/USER-GUIDE)**：安装、运行扫描、阅读结果以及分享报告。
+- **[面向 AI 智能体](https://github.com/VD171/VD-Infos/wiki/AI-AGENTS)** 和 **[导出格式](https://github.com/VD171/VD-Infos/wiki/EXPORT-FORMAT)**：机器可读的报告及其模式。
+- **[架构](https://github.com/VD171/VD-Infos/wiki/ARCHITECTURE)** 和 **[构建](https://github.com/VD171/VD-Infos/wiki/BUILDING)**：工作原理以及如何构建。
+- **[隐私](https://github.com/VD171/VD-Infos/wiki/PRIVACY)**、**[安全](https://github.com/VD171/VD-Infos/wiki/SECURITY)** 和 **[行为准则](https://github.com/VD171/VD-Infos/wiki/CODE_OF_CONDUCT)**：隐私声明与治理文档。
 - **[目录](CATALOG.md)**：隐藏 root 与检测相关参考（指南、模块、框架和检测器）。
 - **[更新日志](CHANGELOG.md)**：每个版本的变更。
-- **[HMA-OSS](HMA-OSS.md)**：本应用的修复所依托的隐藏应用模块（它的链接、频道以及支持方式）。
-- **[贡献](README.md#contributing)**：如何添加检测目标（大多是纯文本列表，无需 Kotlin）。
+- **[HMA-OSS](https://github.com/VD171/VD-Infos/wiki/HMA-OSS)**：本应用的修复所依托的隐藏应用模块（它的链接、频道以及支持方式）。
+- **[贡献](https://github.com/VD171/VD-Infos/wiki/CONTRIBUTING)**：如何添加检测目标（大多是纯文本列表，无需 Kotlin）。
 
 <!-- /vd-docs -->
 
@@ -162,9 +170,3 @@ VD Infos 是一款独立的、非官方的研究与诊断工具。它与其读�
 ## Tags
 
 `android` `privacy` `security` `root-detection` `hook-detection` `spoof-detection` `anti-detection` `tamper-detection` `device-fingerprint` `magisk` `kernelsu` `lsposed` `play-integrity` `attestation` `tee` `keystore` `scanner` `diagnostics` `reverse-engineering` `kotlin`
-
-<!-- doc-footer -->
-
----
-
-> _本文档由 Claude (Anthropic) 生成，并由 VD171 维护。欢迎修正和改进；请参阅 [Contributing](README.md#contributing)。_

@@ -23,9 +23,12 @@
 
 <p align="center">
   <a href="https://github.com/VD171/VD-Infos/releases">Releases</a> ·
-  <a href="CATALOG.md">Catalog</a> ·
-  <a href="#contributing">Contributing</a> ·
-  <a href="#for-ai-agents-the-full-report-as-json">AI agents</a> ·
+  <a href="https://github.com/VD171/VD-Infos/wiki">Wiki</a> ·
+  <a href="https://github.com/VD171/VD-Infos/wiki/USER-GUIDE">Hướng dẫn sử dụng</a> ·
+  <a href="https://github.com/VD171/VD-Infos/wiki/AI-AGENTS">Tác nhân AI</a> ·
+  <a href="https://github.com/VD171/VD-Infos/wiki/EXPORT-FORMAT">Định dạng xuất</a> ·
+  <a href="https://github.com/VD171/VD-Infos/wiki/ARCHITECTURE">Kiến trúc</a> ·
+  <a href="CATALOG.md">Danh mục</a> ·
   <a href="CHANGELOG.md">Changelog</a> ·
   <a href="https://xdaforums.com/t/VD-Infos.4097379/">XDA thread</a>
 </p>
@@ -121,10 +124,15 @@ Các liên kết, kênh và cách ủng hộ: [HMA-OSS.md](HMA-OSS.md).
 
 ## Tài liệu
 
+- **[Wiki](https://github.com/VD171/VD-Infos/wiki)**: toàn bộ tài liệu, có thể xem trực tuyến bằng 22 ngôn ngữ.
+- **[Hướng dẫn sử dụng](https://github.com/VD171/VD-Infos/wiki/USER-GUIDE)**: cài đặt, chạy quét, đọc kết quả và chia sẻ báo cáo.
+- **[Dành cho tác nhân AI](https://github.com/VD171/VD-Infos/wiki/AI-AGENTS)** và **[Định dạng xuất](https://github.com/VD171/VD-Infos/wiki/EXPORT-FORMAT)**: báo cáo máy đọc được và lược đồ của nó.
+- **[Kiến trúc](https://github.com/VD171/VD-Infos/wiki/ARCHITECTURE)** và **[Xây dựng](https://github.com/VD171/VD-Infos/wiki/BUILDING)**: cách hoạt động và cách xây dựng.
+- **[Quyền riêng tư](https://github.com/VD171/VD-Infos/wiki/PRIVACY)**, **[Bảo mật](https://github.com/VD171/VD-Infos/wiki/SECURITY)** và **[Quy tắc ứng xử](https://github.com/VD171/VD-Infos/wiki/CODE_OF_CONDUCT)**: tuyên bố về quyền riêng tư và các tài liệu quản trị.
 - **[Danh mục](CATALOG.md)**: các tài liệu tham khảo về ẩn root và phát hiện (hướng dẫn, mô-đun, framework và trình phát hiện).
 - **[Nhật ký thay đổi](CHANGELOG.md)**: những thay đổi trong mỗi bản phát hành.
-- **[HMA-OSS](HMA-OSS.md)**: mô-đun ẩn ứng dụng mà các bản sửa lỗi của ứng dụng dựa trên (các liên kết, kênh và cách ủng hộ nó).
-- **[Đóng góp](README.md#contributing)**: cách thêm mục tiêu phát hiện (chủ yếu là danh sách văn bản thuần, không cần Kotlin).
+- **[HMA-OSS](https://github.com/VD171/VD-Infos/wiki/HMA-OSS)**: mô-đun ẩn ứng dụng mà các bản sửa lỗi của ứng dụng dựa trên (các liên kết, kênh và cách ủng hộ nó).
+- **[Đóng góp](https://github.com/VD171/VD-Infos/wiki/CONTRIBUTING)**: cách thêm mục tiêu phát hiện (chủ yếu là danh sách văn bản thuần, không cần Kotlin).
 
 <!-- /vd-docs -->
 
@@ -162,9 +170,3 @@ VD Infos là một công cụ nghiên cứu và chẩn đoán độc lập, khô
 ## Tags
 
 `android` `privacy` `security` `root-detection` `hook-detection` `spoof-detection` `anti-detection` `tamper-detection` `device-fingerprint` `magisk` `kernelsu` `lsposed` `play-integrity` `attestation` `tee` `keystore` `scanner` `diagnostics` `reverse-engineering` `kotlin`
-
-<!-- doc-footer -->
-
----
-
-> _Tài liệu này được tạo bằng Claude (Anthropic) và được duy trì bởi VD171. Chúng tôi hoan nghênh các chỉnh sửa và cải tiến; xem [Contributing](README.md#contributing)._

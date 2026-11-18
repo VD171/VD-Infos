@@ -1,0 +1,73 @@
+# ======================================================================
+#  VD GOOGLE  ::  your Google services, read on-device
+#  RCS, Google Wallet and Play Integrity attestations: local, no internet.
+#
+#  Copyright (C) 2026  VD171
+#  SPDX-License-Identifier: AGPL-3.0-or-later
+#
+#  Free software under the GNU AGPL v3 or later. NETWORK COPYLEFT: run a
+#  modified version, even as a service, and you MUST offer its source.
+#
+#  Site           : https://vd171.ru
+#  Site           : https://vd.priv8.ru
+#  Source         : https://github.com/VD171/VD-Infos
+#  GitHub         : @VD171 https://github.com/VD171
+#  XDA-Developers : @VD171 https://xdaforums.com/m/vd171.4699873/
+#  XDA thread     : https://xdaforums.com/t/VD-Infos.4097379/
+#  Telegram       : @VD_Priv8 https://t.me/VD_Priv8
+#  Channel        : @Priv8_VD https://t.me/Priv8_VD
+#  Discord        : @VD.Priv8 https://discord.com/users/1296831918989639721
+#  E-mail         : vd.priv8@pm.me
+# ======================================================================
+
+name: Wiki sync
+
+# Mirror docs/ (plus the root CONTRIBUTING/CODE_OF_CONDUCT/SECURITY/CHANGELOG) into the
+# GitHub project Wiki. docs/ is the source of truth; this renders the pages with
+# gen_wiki.sh and pushes them into the separate VD-Google.wiki.git repo. The wiki must be
+# initialized once (create any page in the web UI) before the first run.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'docs/**'
+      - 'CHANGELOG.md'
+      - 'CONTRIBUTING.md'
+      - 'CODE_OF_CONDUCT.md'
+      - 'SECURITY.md'
+      - 'README.md'
+      - '.github/workflows/wiki-sync.yml'
+      - '.github/scripts/gen_wiki.sh'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: wiki-sync
+  cancel-in-progress: true
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Mirror docs/ into the wiki
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -e
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git clone "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.wiki.git" wiki
+          bash .github/scripts/gen_wiki.sh docs wiki
+          cd wiki
+          git add -A
+          if git diff --cached --quiet; then
+            echo "wiki already up to date"
+          else
+            git commit -m "docs: sync from docs/ @ ${GITHUB_SHA}"
+            git push
+          fi
