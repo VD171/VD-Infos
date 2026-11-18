@@ -38,6 +38,7 @@
 <p align="center">
   <img src="images/vdinfos-01.png" height="420"/>
   <img src="images/vdinfos-02.png" height="420"/>
+  <img src="images/vdinfos-03.png" height="420"/>
 </p>
 
 ---
