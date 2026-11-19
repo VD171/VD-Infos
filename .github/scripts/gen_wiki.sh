@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # ======================================================================
-#  VD GOOGLE  ::  your Google services, read on-device
-#  RCS, Google Wallet and Play Integrity attestations: local, no internet.
+#  VD INFOS  ::  method debugger
+#  Read every device info by every method, then compare.
 #
 #  Copyright (C) 2026  VD171
 #  SPDX-License-Identifier: AGPL-3.0-or-later

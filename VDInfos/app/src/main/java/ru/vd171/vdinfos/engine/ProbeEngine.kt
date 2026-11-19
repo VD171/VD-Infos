@@ -1,7 +1,7 @@
 /*
  * ======================================================================
  *  VD INFOS  ::  method debugger
- *  Read every device info by every method, then compare. A divergence is a hook.
+ *  Read every device info by every method, then compare.
  *
  *  Copyright (C) 2026  VD171
  *  SPDX-License-Identifier: AGPL-3.0-or-later
@@ -14,8 +14,9 @@
  *  Source         : https://github.com/VD171/VD-Infos
  *  GitHub         : @VD171 https://github.com/VD171
  *  XDA-Developers : @VD171 https://xdaforums.com/m/vd171.4699873/
+ *  XDA thread     : https://xdaforums.com/t/VD-Infos.4097379/
  *  Telegram       : @VD_Priv8 https://t.me/VD_Priv8
- *  Telegram       : @Priv8_VD https://t.me/Priv8_VD
+ *  Channel        : @Priv8_VD https://t.me/Priv8_VD
  *  Discord        : @VD.Priv8 https://discord.com/users/1296831918989639721
  *  E-mail         : vd.priv8@pm.me
  * ======================================================================
@@ -47,10 +48,22 @@ class ProbeEngine(private val appContext: Context) {
 
     val count: Int get() = tasks.size
 
-    fun scan(concurrency: Int = DEFAULT_CONCURRENCY): Flow<ProbeResult> = channelFlow {
+    private fun defaultConcurrency(): Int {
+        val cores = Runtime.getRuntime().availableProcessors().coerceAtLeast(2)
+        val base = cores * 2
+        val load = runCatching {
+            java.io.File("/proc/loadavg").readText().substringBefore(' ').toDouble()
+        }.getOrDefault(-1.0)
+        if (load < 0.0) return base
+        val floor = (cores / 2).coerceAtLeast(CONCURRENCY_FLOOR)
+        return (base - load).toInt().coerceIn(floor, base)
+    }
+
+    fun scan(concurrency: Int = defaultConcurrency()): Flow<ProbeResult> = channelFlow {
+        runCatching { ru.vd171.vdinfos.iso.IsoMapsClient.prewarm(appContext) }
         val gate = Semaphore(concurrency)
         coroutineScope {
-            for (task in tasks) {
+            for (task in tasks.shuffled()) {
                 launch {
                     gate.withPermit {
                         var values = withTimeoutOrNull(TASK_TIMEOUT_MS) { task.run(appContext) }
@@ -74,11 +87,11 @@ class ProbeEngine(private val appContext: Context) {
         }
     }.flowOn(Dispatchers.IO)
 
-    suspend fun scanAll(concurrency: Int = DEFAULT_CONCURRENCY): List<ProbeResult> =
+    suspend fun scanAll(concurrency: Int = defaultConcurrency()): List<ProbeResult> =
         scan(concurrency).toList()
 
     companion object {
-        const val DEFAULT_CONCURRENCY = 32
+        const val CONCURRENCY_FLOOR = 4
         const val TASK_TIMEOUT_MS = 8000L
     }
 }

@@ -1,7 +1,7 @@
 /*
  * ======================================================================
  *  VD INFOS  ::  method debugger
- *  Read every device info by every method, then compare. A divergence is a hook.
+ *  Read every device info by every method, then compare.
  *
  *  Copyright (C) 2026  VD171
  *  SPDX-License-Identifier: AGPL-3.0-or-later
@@ -14,8 +14,9 @@
  *  Source         : https://github.com/VD171/VD-Infos
  *  GitHub         : @VD171 https://github.com/VD171
  *  XDA-Developers : @VD171 https://xdaforums.com/m/vd171.4699873/
+ *  XDA thread     : https://xdaforums.com/t/VD-Infos.4097379/
  *  Telegram       : @VD_Priv8 https://t.me/VD_Priv8
- *  Telegram       : @Priv8_VD https://t.me/Priv8_VD
+ *  Channel        : @Priv8_VD https://t.me/Priv8_VD
  *  Discord        : @VD.Priv8 https://discord.com/users/1296831918989639721
  *  E-mail         : vd.priv8@pm.me
  * ======================================================================
@@ -196,7 +197,7 @@ object SemanticProbes {
                 "ro.kernel.version=${SystemProps.get("ro.kernel.version")?.ifEmpty { null } ?: Sentinels.ABSENT}" +
                     " uname.release=${NativeBridge.uname()?.release ?: Sentinels.NONE}"
             },
-        ), note = ctx.getString(R.string.note_kernel_version_claim)))
+        )))
         add(probe("kernel:build_date", ctx.getString(R.string.t_kernel_build_date), Category.BOOT, listOf(
             jm("kernel build not newer than the ROM (expected)") { "ok" },
             jm("kernel build (uname) vs ro.build.date.utc") {
@@ -210,7 +211,7 @@ object SemanticProbes {
                     " rom.utc=${SystemProps.get("ro.build.date.utc")}" +
                     " vendor.utc=${SystemProps.get("ro.vendor.build.date.utc")}"
             },
-        ), note = ctx.getString(R.string.note_kernel_build_date)))
+        )))
         add(probe("kernel:config", ctx.getString(R.string.t_kernel_config), Category.INTEGRITY, listOf(
             jm("markers /proc/config.gz (KSU/SUSFS/localversion)") {
                 val raw = runCatching {
@@ -220,14 +221,14 @@ object SemanticProbes {
             },
             smr("zcat /proc/config.gz 2>/dev/null | grep -iE 'CONFIG_KSU|SUSFS|CONFIG_LOCALVERSION=' | head " +
                 "|| echo ${Sentinels.EACCES}", "zcat config.gz | grep", compare = false),
-        ), note = ctx.getString(R.string.note_kernel_config)))
+        )))
         add(probe("kernel:modules", ctx.getString(R.string.t_kernel_module_scan), Category.INTEGRITY, listOf(
             jm("scan /sys/module for ksu/susfs/magisk") { moduleHits() },
             smr("ls /sys/module 2>/dev/null | grep -iE 'ksu|susfs|magisk|zygisk' || echo clean",
                 "ls /sys/module | grep", compare = false),
             smr("grep -iE ' (ksu|susfs|magisk)[a-z_]*\$' /proc/kallsyms 2>/dev/null | head " +
                 "|| echo ${Sentinels.EACCES}", "kallsyms symbol names", compare = false),
-        ), note = ctx.getString(R.string.note_kernel_module_scan)))
+        )))
         add(probe("cpu:abi", ctx.getString(R.string.t_primary_abi), Category.HARDWARE, listOf(
             jm("Build.SUPPORTED_ABIS[0]") { Build.SUPPORTED_ABIS.firstOrNull() },
         ) + propTrio("ro.product.cpu.abi") + listOf(

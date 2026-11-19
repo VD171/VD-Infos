@@ -1,0 +1,34 @@
+{
+  "_meta": {
+    "proposito": "golden vector do parser de atestacao (.17/.25); os 2 apps batem contra ele p/ pegar drift",
+    "autoridade": "VDAttestation._key_attestation (Python) sobre amostras PUBLICAS do AOSP (terceiro)",
+    "regenerar": "python3 attest_golden_gen.py",
+    "doc": "Docs/Android/MAPA_FERRAMENTAL_VD.md (#4 golden-sample)"
+  },
+  "samples": [
+    {
+      "name": "ec_tee",
+      "source": "AOSP android-key-attestation algorithm_EC_SecurityLevel_TEE/cert0",
+      "pem_file": "samples/ec_tee_leaf.pem",
+      "expected": {
+        "format": "ASN1",
+        "attestation_version": 3,
+        "security_level": "tee",
+        "keymaster_version": 4,
+        "algorithm": 3,
+        "key_size": 256,
+        "ec_curve": 1,
+        "root_of_trust": {
+          "verified_boot_key": "0000000000000000000000000000000000000000000000000000000000000000",
+          "device_locked": false,
+          "verified_boot_state": "Unverified",
+          "verified_boot_hash": "728db1274f1f1cf1571de4380b048a554ac4a380e76f5355083529084a937801"
+        },
+        "os_version": 0,
+        "os_patch": 201907,
+        "vendor_patch": 201907,
+        "boot_patch": 201907
+      }
+    }
+  ]
+}

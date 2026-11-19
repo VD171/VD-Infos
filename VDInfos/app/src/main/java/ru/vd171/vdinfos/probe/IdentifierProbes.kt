@@ -1,7 +1,7 @@
 /*
  * ======================================================================
  *  VD INFOS  ::  method debugger
- *  Read every device info by every method, then compare. A divergence is a hook.
+ *  Read every device info by every method, then compare.
  *
  *  Copyright (C) 2026  VD171
  *  SPDX-License-Identifier: AGPL-3.0-or-later
@@ -14,8 +14,9 @@
  *  Source         : https://github.com/VD171/VD-Infos
  *  GitHub         : @VD171 https://github.com/VD171
  *  XDA-Developers : @VD171 https://xdaforums.com/m/vd171.4699873/
+ *  XDA thread     : https://xdaforums.com/t/VD-Infos.4097379/
  *  Telegram       : @VD_Priv8 https://t.me/VD_Priv8
- *  Telegram       : @Priv8_VD https://t.me/Priv8_VD
+ *  Channel        : @Priv8_VD https://t.me/Priv8_VD
  *  Discord        : @VD.Priv8 https://discord.com/users/1296831918989639721
  *  E-mail         : vd.priv8@pm.me
  * ======================================================================
@@ -162,11 +163,11 @@ object IdentifierProbes {
                 gservices(c, GMS_AUTHORITY, "android_id")?.toLongOrNull()
                     ?.let { java.lang.Long.toHexString(it).uppercase() }
             },
-        ), sensitive = true, note = ctx.getString(ru.vd171.vdinfos.R.string.note_gsf)))
+        ), sensitive = true))
         add(probe("id:gsf_raw", ctx.getString(R.string.t_gsf_id_raw), Category.IDENTITY, listOf(
             jm("gsf authority android_id") { c -> gservices(c, GSF_AUTHORITY, "android_id") },
             jm("gms authority android_id") { c -> gservices(c, GMS_AUTHORITY, "android_id") },
-        ), sensitive = true, note = ctx.getString(ru.vd171.vdinfos.R.string.note_gsf)))
+        ), sensitive = true))
 
         add(probe("id:ads", ctx.getString(R.string.t_advertising_id), Category.IDENTITY, listOf(
             jm("GMS IAdvertisingIdService.getId (bind)") { c -> AdvertisingId.id(c) },

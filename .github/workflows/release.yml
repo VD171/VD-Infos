@@ -67,10 +67,12 @@ jobs:
           KEY_ALIAS: ${{ secrets.VDINFOS_KEY_ALIAS }}
           KEY_PASSWORD: ${{ secrets.VDINFOS_KEY_PASSWORD }}
         run: |
-          if [ -z "$KEYSTORE_B64" ]; then
-            echo "::error::VDINFOS_KEYSTORE_B64 secret is not set - cannot sign the release."
-            exit 1
-          fi
+          for v in KEYSTORE_B64 STORE_PASSWORD KEY_ALIAS KEY_PASSWORD; do
+            if [ -z "${!v}" ]; then
+              echo "::error::VDINFOS_${v} secret is not set - cannot sign the release."
+              exit 1
+            fi
+          done
           JKS="$GITHUB_WORKSPACE/VDInfos/vd-release.jks"
           printf '%s' "$KEYSTORE_B64" | base64 -d > "$JKS"
           {

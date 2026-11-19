@@ -1,6 +1,6 @@
 # ======================================================================
-#  VD GOOGLE  ::  your Google services, read on-device
-#  RCS, Google Wallet and Play Integrity attestations: local, no internet.
+#  VD INFOS  ::  method debugger
+#  Read every device info by every method, then compare.
 #
 #  Copyright (C) 2026  VD171
 #  SPDX-License-Identifier: AGPL-3.0-or-later
@@ -24,7 +24,7 @@ name: Wiki sync
 
 # Mirror docs/ (plus the root CONTRIBUTING/CODE_OF_CONDUCT/SECURITY/CHANGELOG) into the
 # GitHub project Wiki. docs/ is the source of truth; this renders the pages with
-# gen_wiki.sh and pushes them into the separate VD-Google.wiki.git repo. The wiki must be
+# gen_wiki.sh and pushes them into the separate VD-Infos.wiki.git repo. The wiki must be
 # initialized once (create any page in the web UI) before the first run.
 
 on:

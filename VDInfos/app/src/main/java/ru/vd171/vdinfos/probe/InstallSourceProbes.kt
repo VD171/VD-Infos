@@ -1,7 +1,7 @@
 /*
  * ======================================================================
  *  VD INFOS  ::  method debugger
- *  Read every device info by every method, then compare. A divergence is a hook.
+ *  Read every device info by every method, then compare.
  *
  *  Copyright (C) 2026  VD171
  *  SPDX-License-Identifier: AGPL-3.0-or-later
@@ -14,8 +14,9 @@
  *  Source         : https://github.com/VD171/VD-Infos
  *  GitHub         : @VD171 https://github.com/VD171
  *  XDA-Developers : @VD171 https://xdaforums.com/m/vd171.4699873/
+ *  XDA thread     : https://xdaforums.com/t/VD-Infos.4097379/
  *  Telegram       : @VD_Priv8 https://t.me/VD_Priv8
- *  Telegram       : @Priv8_VD https://t.me/Priv8_VD
+ *  Channel        : @Priv8_VD https://t.me/Priv8_VD
  *  Discord        : @VD.Priv8 https://discord.com/users/1296831918989639721
  *  E-mail         : vd.priv8@pm.me
  * ======================================================================
@@ -125,7 +126,7 @@ object InstallSourceProbes {
                 val h = (if (rec.any { it in inst }) rec.minOrNull() else inst.minOrNull()) ?: return@jm Sentinels.NONE
                 "$init: ${AssetData.certTag(c, h)}"
             },
-        ), note = ctx.getString(R.string.note_isrc_initiator_sig)))
+        )))
 
         addAll(gapProbes(ctx))
     }
@@ -136,6 +137,7 @@ object InstallSourceProbes {
         val installedInitSig: String?,
         val sigShared: Boolean,
         val pmInst: String?,
+        val pkgSource: Int,
     )
 
     private fun gapProbes(ctx: Context): List<ProbeTask> {
@@ -204,6 +206,16 @@ object InstallSourceProbes {
             add(gap("self_declared_installer", ctx.getString(R.string.t_isrc_gap_self_declared_installer)) { r ->
                 r.inst == r.pkg && !isStore(r.pkg, stores)
             })
+            add(gap("store_installer_pkgsource_other", ctx.getString(R.string.t_isrc_gap_store_pkgsource_other),
+                detail = { r -> "inst=${r.inst} packageSource=${r.pkgSource}" }) { r ->
+                isStore(r.inst, stores) && r.pkgSource >= 0 && r.pkgSource != 0 && r.pkgSource != 2
+            })
+            add(gap("forged_store_install", ctx.getString(R.string.t_isrc_gap_forged_store_install),
+                detail = { r -> "inst=${r.inst} init=${r.init ?: "null"} packageSource=${r.pkgSource}" }) { r ->
+                isStore(r.inst, stores) && (
+                    (r.init != null && !isStore(r.init, stores)) ||
+                        (r.pkgSource >= 0 && r.pkgSource != 0 && r.pkgSource != 2))
+            })
             add(jprobe("isrc:landscape", ctx.getString(R.string.t_isrc_landscape), Category.PACKAGES,
                 source = "install-source scan: apps grouped by installer family") {
                 val rows = cache.value
@@ -252,13 +264,14 @@ object InstallSourceProbes {
             val sys = (ai.flags and ApplicationInfo.FLAG_SYSTEM) != 0 ||
                 (ai.flags and ApplicationInfo.FLAG_UPDATED_SYSTEM_APP) != 0
             var inst: String? = null; var init: String? = null; var orig: String? = null
-            var recSet: Set<String> = emptySet(); var upd: String? = null
+            var recSet: Set<String> = emptySet(); var upd: String? = null; var pkgSource = -99
             if (Build.VERSION.SDK_INT >= 30) runCatching {
                 val si = pm.getInstallSourceInfo(pi.packageName)
                 inst = si.installingPackageName
                 init = si.initiatingPackageName
                 orig = si.originatingPackageName
                 recSet = signingCertSet(si.initiatingPackageSigningInfo)
+                if (Build.VERSION.SDK_INT >= 33) pkgSource = si.packageSource
                 if (Build.VERSION.SDK_INT >= 34) upd = si.updateOwnerPackageName
             } else runCatching {
                 @Suppress("DEPRECATION")
@@ -268,7 +281,7 @@ object InstallSourceProbes {
             val instSet = init?.let { certByPkg[it] } ?: emptySet()
             val shared = recSet.isNotEmpty() && instSet.isNotEmpty() && recSet.any { it in instSet }
             Row(pi.packageName, sys, inst, init, orig, recSet.minOrNull(), upd,
-                instSet.minOrNull(), shared, pmMap[pi.packageName])
+                instSet.minOrNull(), shared, pmMap[pi.packageName], pkgSource)
         }
     }
 }

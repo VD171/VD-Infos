@@ -1,7 +1,7 @@
 /*
  * ======================================================================
  *  VD INFOS  ::  method debugger
- *  Read every device info by every method, then compare. A divergence is a hook.
+ *  Read every device info by every method, then compare.
  *
  *  Copyright (C) 2026  VD171
  *  SPDX-License-Identifier: AGPL-3.0-or-later
@@ -14,8 +14,9 @@
  *  Source         : https://github.com/VD171/VD-Infos
  *  GitHub         : @VD171 https://github.com/VD171
  *  XDA-Developers : @VD171 https://xdaforums.com/m/vd171.4699873/
+ *  XDA thread     : https://xdaforums.com/t/VD-Infos.4097379/
  *  Telegram       : @VD_Priv8 https://t.me/VD_Priv8
- *  Telegram       : @Priv8_VD https://t.me/Priv8_VD
+ *  Channel        : @Priv8_VD https://t.me/Priv8_VD
  *  Discord        : @VD.Priv8 https://discord.com/users/1296831918989639721
  *  E-mail         : vd.priv8@pm.me
  * ======================================================================
@@ -214,6 +215,7 @@ fun AboutDialog(onDismiss: () -> Unit) {
                     AboutRow(Icons.Outlined.Language, null, "https://vd171.ru", "https://vd171.ru")
                     AboutRow(Icons.Outlined.Language, null, "https://vd.priv8.ru", "https://vd.priv8.ru")
                     AboutRow(Icons.AutoMirrored.Outlined.Send, "Telegram", "@VD_Priv8", "https://t.me/VD_Priv8")
+                    AboutRow(Icons.AutoMirrored.Outlined.Send, "Telegram", "@Priv8_VD", "https://t.me/Priv8_VD")
                     AboutRow(Icons.Outlined.Chat, "Discord", "@VD.Priv8", "https://discord.com/users/1296831918989639721")
                     AboutRow(Icons.Outlined.Email, "E-mail", "vd.priv8@pm.me", "mailto:vd.priv8@pm.me")
                     AboutRow(Icons.Outlined.Forum, "XDA", "@VD171", "https://xdaforums.com/m/vd171.4699873/")
@@ -226,6 +228,15 @@ fun AboutDialog(onDismiss: () -> Unit) {
                     AboutRow(Icons.Outlined.OpenInNew, null, "xdaforums.com/t/VD-Infos.4097379", "https://xdaforums.com/t/VD-Infos.4097379/")
                     AboutRow(Icons.Outlined.OpenInNew, null, "@RootDetected on Telegram", "https://t.me/RootDetected")
                     AboutRow(Icons.Outlined.OpenInNew, null, "@BlankAssistance on Telegram", "https://t.me/BlankAssistance")
+                }
+
+                AboutSectionLabel(stringResource(R.string.about_see_also))
+                AboutCard {
+                    AboutRow(Icons.Outlined.OpenInNew, "COPG-VD", "github.com/VD171/COPG-VD", "https://github.com/VD171/COPG-VD")
+                    AboutRow(Icons.Outlined.OpenInNew, "VD Google", "github.com/VD171/VD-Google", "https://github.com/VD171/VD-Google")
+                    AboutRow(Icons.Outlined.OpenInNew, "VD Backup", "github.com/VD171/VD-Backup", "https://github.com/VD171/VD-Backup")
+                    AboutRow(Icons.Outlined.OpenInNew, "VD-dropbear", "github.com/VD171/VD-dropbear", "https://github.com/VD171/VD-dropbear")
+                    AboutRow(Icons.Outlined.OpenInNew, "build.prop (fork of @T3SL4)", "github.com/VictorGabriel7Dev/build.prop", "https://github.com/VictorGabriel7Dev/build.prop")
                 }
 
                 Row(
@@ -310,6 +321,37 @@ fun LanguageDialog(current: String, onCommit: (String) -> Unit) {
                     modifier = Modifier.padding(top = 8.dp, start = 4.dp),
                 )
             }
+        },
+    )
+}
+
+@Composable
+fun UsageAccessDialog(onOpenSettings: () -> Unit, onDismiss: () -> Unit) {
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        confirmButton = {
+            TextButton(onClick = onOpenSettings) { Text(stringResource(R.string.usage_access_open)) }
+        },
+        dismissButton = {
+            TextButton(onClick = onDismiss) { Text(stringResource(R.string.action_close)) }
+        },
+        title = {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Icon(
+                    Icons.Outlined.Shield, null,
+                    modifier = Modifier.size(22.dp),
+                    tint = MaterialTheme.colorScheme.primary,
+                )
+                Spacer(Modifier.width(10.dp))
+                Text(stringResource(R.string.usage_access_title), fontWeight = FontWeight.Bold)
+            }
+        },
+        text = {
+            Text(
+                stringResource(R.string.usage_access_body),
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
         },
     )
 }

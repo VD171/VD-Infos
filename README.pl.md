@@ -97,7 +97,7 @@ ui/             Jetpack Compose, Material 3, dynamiczny kolor, postęp na żywo
 cpp/            native_probes.cpp: natywna soczewka, bez zależności
 ```
 
-* **Równoległość**: 996 sond rozkłada się na domyślnym dispatcherze z ograniczoną liczbą pozwoleń; wyniki napływają do UI w miarę ich pojawiania się.
+* **Równoległość**: Sondy rozkładają się na domyślnym dispatcherze z ograniczoną liczbą pozwoleń; wyniki napływają do UI w miarę ich pojawiania się.
 * **Nic w tle**: brak usług i zaplanowanych skanów; aplikacja działa tylko gdy jest otwarta i sama się zamyka, gdy pozostaje bezczynna.
 * **Warstwa natywna**: mała, pozbawiona zależności `.so`, wiązana po nazwie przez `RegisterNatives`, celowo malutka i prosta.
 

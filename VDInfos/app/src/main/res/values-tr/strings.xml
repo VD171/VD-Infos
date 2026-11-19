@@ -2,7 +2,7 @@
 <!--
     ======================================================================
      VD INFOS  ::  method debugger
-     Read every device info by every method, then compare. A divergence is a hook.
+     Read every device info by every method, then compare.
 
      Copyright (C) 2026  VD171
      SPDX-License-Identifier: AGPL-3.0-or-later
@@ -15,8 +15,9 @@
      Source         : https://github.com/VD171/VD-Infos
      GitHub         : @VD171 https://github.com/VD171
      XDA-Developers : @VD171 https://xdaforums.com/m/vd171.4699873/
+     XDA thread     : https://xdaforums.com/t/VD-Infos.4097379/
      Telegram       : @VD_Priv8 https://t.me/VD_Priv8
-     Telegram       : @Priv8_VD https://t.me/Priv8_VD
+     Channel        : @Priv8_VD https://t.me/Priv8_VD
      Discord        : @VD.Priv8 https://discord.com/users/1296831918989639721
      E-mail         : vd.priv8@pm.me
     ======================================================================
@@ -91,6 +92,7 @@
     <string name="crash_title">Beklenmeyen hata</string>
     <string name="crash_body">Uygulama beklenmeyen bir hatayla karşılaştı. Hiçbir yere hiçbir şey gönderilmedi. Aşağıdaki ayrıntıları kopyalayıp geliştiriciye gönderebilirsiniz.</string>
     <string name="about_project">Proje</string>
+    <string name="about_see_also">Ayrıca bakınız</string>
     <string name="about_support">İndirme ve destek</string>
     <string name="action_clear">Aramayı temizle</string>
     <string name="lang_dialog_title">Dil</string>
@@ -101,29 +103,27 @@
     <!-- Çözüm -->
     <string name="sol_title">Nasıl düzeltilir</string>
     <string name="card_details">Ayrıntılar</string>
-    <string name="sol_boot">Bu, donanım attestation\'ının (TEE) boot durumu hakkında bildirdiği şeydir. Keybox atlatma araçları (TrickyStore, TEE Simulator, OhMyKeyMint) attestation\'ı yalnızca belirttiğiniz uygulamalar için yeniden yazar. Bu uygulamanın paketini bu araçların hedef listesine (ör. target.txt) ekleyin; böylece attestation kilitli cihaz ve yeşil verified boot bildirir.</string>
-    <string name="sol_root_detector">Bu yüklü uygulamalar root, emülatör veya başarısız Play Integrity arar. Burada bulunan paketleri gizleme çerçevenize (HMA-OSS) hedef olarak ekleyin; böylece uygulamalarınız ve root modülleriniz bu dedektörlerden gizlenir.</string>
-    <string name="sol_spoof">Bu ayar, bir uygulamanın kullanabileceği yollar arasında farklı okunuyor (spoof hepsini kapatmıyor). Ayarı HMA-OSS spoof ön ayarlarına ekleyin; böylece her okuma yolu aynı değeri döndürür.</string>
-    <string name="sol_attest_patch">Key attestation, sistem özelliğinden farklı bir yama seviyesi bildiriyor. Bunu keybox aracınızda ayarlayın - TrickyStore için security_patch.txt (bir tarih ya da system=/boot=/vendor=/all= ya da \'prop\'); OhMyKeymint için config.toml içindeki [trust]. İkisi de yalnızca attestation\'ı değiştirir, özellikleri değil.</string>
-    <string name="sol_patch_prop">Build.VERSION.SECURITY_PATCH (framework) ve ro.build.version.security_patch özelliği farklı tarihler gösteriyor. Bunları resetprop ile hizalayın. security_patch.txt ve config.toml burada yardımcı olmaz - yalnızca key attestation\'ı değiştirir, özellikleri değil.</string>
+    <string name="sol_root_detector">Bu kurulu uygulamalar root arar. Burada bulunan paketleri gizleme çerçevene (HMA-OSS) hedef olarak ekle.</string>
+    <string name="sol_attest_patch">Doğrulama, property\'den farklı bir security patch bildiriyor. Onu keybox aracında ayarla (TrickyStore security_patch.txt, OhMyKeymint config.toml [trust]); yalnızca doğrulamayı değiştirir.</string>
+    <string name="sol_patch_prop">Framework ve property farklı patch tarihleri gösterir. Onları resetprop ile hizala; keybox araçları yalnızca doğrulamayı değiştirir, properties\'i değil.</string>
 
-    <string name="note_gsf">Android 16 ve sonrasında yok: Google hizmetleri deposu, Google’ın kendisinin &quot;do.not.use&quot; diye adlandırdığı ve başka uygulamalara yanıt vermeyen Play Services’e taşındı. Her ikisi de yukarıda denenir.</string>
     <string name="t_attestation_app_id">Doğrulama uygulama kimliği (paket + imza)</string>
     <string name="t_dev_ptmx_present">/dev/ptmx var</string>
     <string name="t_documents_providers">Kayıtlı DocumentsProviders</string>
     <string name="t_kernel_modules">Yüklü çekirdek modülleri (KernelSU/SuSFS)</string>
-    <string name="t_kernel_syscall_fingerprint">Syscall parmak iziyle çekirdek sürümü</string>
+    <string name="t_kernel_syscall_fingerprint">Çekirdek sürümü çapraz kontrolü</string>
     <string name="t_key_inside_secure_hw">Anahtar güvenli donanımda (KeyInfo)</string>
     <string name="t_rot_ec_vs_rsa">Doğrulama güven kökü: EC\'ye karşı RSA isteği</string>
     <string name="t_leaf_sig_alg">Doğrulama yaprak sertifikası: anahtar karşısında imza algoritması</string>
     <string name="t_batch_key_ec_vs_rsa">Doğrulama anahtarı: EC zinciri karşısında RSA zinciri</string>
+    <string name="t_native_vs_jvm">Doğrulama: yerel keystore2 vs JVM</string>
     <string name="t_local_tmp_contents">/data/local/tmp içeriği</string>
     <string name="t_native_lib_origin">Yerel kitaplığın kaynağı (dladdr)</string>
     <string name="t_own_debuggable">Bu uygulama: debuggable / hata ayıklama derlemesi</string>
     <string name="t_play_store_version">Play Store / GMS sürümü</string>
     <string name="t_resolv_conf">resolv.conf / DNS yapılandırması</string>
     <string name="t_root_backup_tools">Root yedekleme araçları mevcut</string>
-    <string name="t_su_libc_inline_hook">su: ham syscall\'a karşı libc ve Java</string>
+    <string name="t_su_libc_inline_hook">Katmanlar arası su çözümlemesi</string>
     <string name="t_system_build_prop">/system/build.prop</string>
     <string name="t_system_build_prop_present">/system/build.prop var</string>
     <string name="t_adb_enabled">ADB etkin</string>
@@ -193,7 +193,7 @@
     <string name="t_imei">IMEI</string>
     <string name="t_imsi_subscriber">IMSI (abone)</string>
     <string name="t_incremental">Incremental</string>
-    <string name="t_injected_libs_proc_self_maps">Enjekte edilmiş kütüphaneler (/proc/self/maps)</string>
+    <string name="t_injected_libs_proc_self_maps">Enjekte edilen kitaplıklar</string>
     <string name="t_installed_app_signing_digests">Yüklü uygulama imza özetleri</string>
     <string name="t_installed_applications">Yüklü uygulamalar</string>
     <string name="t_installed_input_methods">Yüklü giriş yöntemleri</string>
@@ -202,14 +202,10 @@
     <string name="t_kernel_release">Çekirdek (sürüm)</string>
     <string name="t_kernel_version">Çekirdek (versiyon)</string>
     <string name="t_kernel_version_string">Çekirdek (sürüm dizesi)</string>
-    <string name="t_kernel_version_claim">Çekirdek sürüm iddiası (ro.kernel.version - uname)</string>
-    <string name="note_kernel_version_claim">ro.kernel.version özelliği çalışan çekirdeği yansıtmalıdır. Gerçek uname release\'inde olmayan bir major.minor iddia ediyorsa, bir resolver özelliği ayarlamış ve altındaki çekirdek başkadır.</string>
-    <string name="t_kernel_build_date">Çekirdek derleme tarihi - ROM</string>
-    <string name="note_kernel_build_date">Önceden derlenmiş bir GKI çekirdeği, dağıtıldığı ROM\'dan eskidir veya onunla eşleşir. ROM birleştirildikten çok sonra derlenen bir çekirdek sonradan yeniden derlenmiş ya da flaşlanmıştır; elle derlenmiş çekirdeğin alışılmış işareti.</string>
+    <string name="t_kernel_version_claim">Çekirdek sürüm iddiası (ro.kernel.version vs uname)</string>
+    <string name="t_kernel_build_date">Çekirdek derleme tarihi vs ROM</string>
     <string name="t_kernel_config">Çekirdek yapılandırması (/proc/config.gz)</string>
-    <string name="note_kernel_config">Çekirdek yapılandırması, okunabildiği yerde, derlenen yamaları adlandırır: KSU, SUSFS, özel bir local version, zorunlu olmayan modül imzalama. Uygulama kum havuzu bu dosyayı sık sık reddeder; eski Android, özel ROM ve root kabuklarında okunur.</string>
     <string name="t_kernel_module_scan">Çekirdek modülleri ve sembolleri</string>
-    <string name="note_kernel_module_scan">/sys/module ve /proc/kallsyms sembol adlarını ksu, susfs ve magisk için tarar; bunları yamalı veya modül yüklü bir çekirdek açığa çıkarır. İki yüzey de sık sık kısıtlıdır; alan izin verdiği yerde okunur.</string>
     <string name="t_kernel_cmdline">Çekirdek cmdline</string>
     <string name="t_kernel_log">Çekirdek günlüğü</string>
     <string name="t_kernel_stat">Çekirdek stat</string>
@@ -286,8 +282,8 @@
     <string name="t_verified_boot_hash_vbmeta_digest">Verified boot hash / vbmeta özeti</string>
     <string name="t_verified_boot_key">Verified boot anahtarı</string>
     <string name="t_verified_boot_state">Verified boot durumu</string>
-    <string name="t_prop_area_tamper">Özellik alanı kurcalaması (delik/bağlam)</string>
-    <string name="t_supplementary_groups">Ek gruplar (3009=AID_READPROC)</string>
+    <string name="t_prop_area_tamper">Sistem özelliği alanı</string>
+    <string name="t_supplementary_groups">Ek gruplar</string>
     <string name="t_version_codename">Sürüm kod adı</string>
     <string name="t_webview_provider">WebView sağlayıcısı</string>
     <string name="t_webview_user_agent">WebView user agent</string>
@@ -323,6 +319,17 @@
     <string name="t_queryintentservices_main">queryIntentServices (MAIN)</string>
     <string name="t_resolveactivity_main_launcher">resolveActivity (MAIN/LAUNCHER)</string>
     <string name="t_su_binary">su ikili dosyası</string>
+    <string name="t_setuid_root">Ayrıcalıklı ikili dosya</string>
+    <string name="t_root_dirs_present">Sistem dizini görünürlüğü</string>
+    <string name="t_maps_isolated">Enjekte edilen modüller</string>
+    <string name="t_inline_hooks">Kod kancaları</string>
+    <string name="t_linker_maps_gap">Gizli kitaplıklar</string>
+    <string name="t_tracerpid_iso">Hata ayıklayıcı bağlı</string>
+    <string name="t_fd_iso">Açık tanıtıcılar</string>
+    <string name="t_selinux_iso">Güvenlik bağlamı</string>
+    <string name="t_su_iso">Süper kullanıcı erişimi</string>
+    <string name="t_prop_dual_iso">Sistem özellikleri</string>
+    <string name="t_smaps_iso">Yazılabilir yürütülebilir bellek</string>
     <string name="t_su_on_path">PATH\'te su</string>
     <string name="t_tel_networkOperatorName">Ağ operatörü adı</string>
     <string name="t_tel_networkOperator">Ağ operatörü (MCC+MNC)</string>
@@ -414,7 +421,7 @@
     <string name="t_isrc_self_originating">Kurulum kaynağı (self): originating</string>
     <string name="t_isrc_self_pkgsource">Kurulum kaynağı (self): packageSource</string>
     <string name="t_isrc_self_initiator_sig">Kurulum kaynağı (self): initiator sertifikası vs kurulu</string>
-    <string name="t_isrc_gap_jvm_store_pm_denies">Tutarsızlık: JVM mağaza installer diyor, pm reddediyor (hook)</string>
+    <string name="t_isrc_gap_jvm_store_pm_denies">Yükleyici: JVM ile pm</string>
     <string name="t_isrc_gap_jvm_pm_other">Tutarsızlık: installer JVM ≠ installer pm (görünürlük)</string>
     <string name="t_isrc_gap_installer_ne_initiating">Tutarsızlık: installer ≠ initiating</string>
     <string name="t_isrc_gap_store_installer_sideload">Tutarsızlık: mağaza installer, initiating sideload</string>
@@ -433,24 +440,16 @@
     <string name="t_installed_applications_diff">Yüklü uygulamalar: farklı (JVM x pm)</string>
     <string name="t_selinux_status">SELinux status sayfası (policyload/seq)</string>
     <string name="t_selinux_policy_probe">SELinux politika sondası (tipler + AVC)</string>
-    <string name="t_manager_doors">Root/Xposed yöneticisi: PackageManager kapısına göre görünürlük</string>
+    <string name="t_manager_doors">Yönetici uygulama görünürlüğü</string>
     <string name="t_net_sock_diag">Netlink sock_diag politikası</string>
-    <string name="n_net_sock_diag">Kısıtlı bir uygulamaya NETLINK_SOCK_DIAG reddedilmeli; yanıt gelmesi netlink politikasının gevşetildiği anlamına gelir.</string>
     <string name="t_mount_peer_gap">Mount peer-group bütünlüğü</string>
-    <string name="n_mount_peer_gap">Peer-group id kümesi her mercekte aynı okunmalı; mercek başına boşluk gizli bir mount demektir.</string>
     <string name="t_mount_fdinfo_mnt">Mount id vs açık tanımlayıcılar</string>
-    <string name="n_mount_fdinfo_mnt">mnt_id\'si mountinfo\'da bulunmayan açık bir tanımlayıcı, görünümden gizlenmiş bir mount\'a işaret eder.</string>
-    <string name="t_proc_readproc_gid">Zygote GID 3009 (AID_READPROC)</string>
-    <string name="n_proc_readproc_gid">Eksik AID_READPROC ek GID\'i, bazı uygulama gizleme modüllerinin bıraktığı bir izdir.</string>
+    <string name="t_proc_readproc_gid">Zygote ek GID\'leri</string>
     <string name="t_proc_fd_graph">Tanımlayıcı sayımı</string>
     <string name="t_mem_anon_exec">Anonim yürütülebilir eşlemeler</string>
-    <string name="n_mem_anon_exec">Kaynak dosyası olmayan yürütülebilir sayfalar tipik enjeksiyon/Zygisk kalıntısıdır; sayı mercekler arasında eşleşmeli.</string>
     <string name="t_kernel_selfbuild">Kendi derlenmiş / yamalı çekirdek</string>
-    <string name="n_kernel_selfbuild">Fabrika çekirdeği -dirty, git veya SUSFS derleme işareti taşımaz; işaretler mercekler arasında eşleşmeli.</string>
     <string name="t_tee_soter">Soter hizmeti vs özellik</string>
-    <string name="n_tee_soter">Tencent\'in Soter hizmet programını, hizmet özelliğinin durumuyla karşılaştırır.</string>
     <string name="t_proc_cgroup_format">cgroup yol biçimi</string>
-    <string name="n_proc_cgroup_format">Klonlanmış / dual-app bir kapsayıcı, birleşik cgroup yolunun kanonik uid_/pid_ biçiminden sapmasına yol açar.</string>
     <string name="t_gpu_vendor">GPU üreticisi</string>
     <string name="t_gpu_renderer">GPU oluşturucusu</string>
     <string name="t_gpu_version">GPU sürümü</string>
@@ -462,32 +461,119 @@
     <string name="t_tel_simSpecificCarrierId">Özel SIM operatör ID</string>
     <string name="t_tel_visualVoicemailPackageName">Görsel sesli mesaj paketi</string>
     <string name="t_keychain_blacklist">Keychain sertifika kara listesi</string>
-    <string name="t_buildprop_vs_runtime">build.prop vs runtime</string>
-    <string name="note_boot_count">boot_count (çerçeve) yalnızca artar; Phenotype_boot_count (Play hizmetleri) onun anlık görüntüsüdür ve geride kalabilir. Yalnızca anlık görüntü boot_count\'un önündeyse ayrışır (bir sıfırlama).</string>
-    <string name="note_isrc_initiator_sig">Sistemin bu uygulama yüklenirken yükleyici için kaydettiği sertifika, yükleyicinin şimdi bildirdiğinden farklı. Buna değiştirilmiş bir yükleyici ya da sahte bir imza yol açar; sistemi yeniden imzalayıp üreticinin orijinal sertifikasını bildiren ROM\'lar (ör. Xiaomi.eu) bunu her cihazda gösterir.</string>
+    <string name="t_buildprop_vs_runtime">Build özelliği tutarlılığı</string>
     <string name="t_concealment">Uygulama gizleme</string>
-    <string name="note_concealment">Uygulama listesinden gizlenmiş ama başka bir PackageManager kapısından (paket bilgisi, createPackageContext, açılan APK\'sı, launch intent) hâlâ erişilebilen bir paket, bir kapıda gizli diğerinde değildir - kısmi bir uygulama gizleyicinin izi.</string>
     <string name="t_prop_variants">Bölüm varyantları: %1$s</string>
     <string name="t_prop_enum">Özellik listeleme vs getprop</string>
-    <string name="note_prop_variants">Aynı sonek her bölümde görünür (system, vendor, product, odm, dlkm...). Her yerde eşleşmesi gereken ama farklılaşan ya da bir soy içinde ayrışan değerler kısmi bir sahteciliği açığa çıkarır - bazı bölümlerde değişmiş, bazılarında değişmemiş bir parmak izi.</string>
-    <string name="note_prop_enum">Özellik alanını yerel olarak listelemek (__system_property_foreach) ve başka bir işlemden gelen getprop ile karşılaştırmak, kabuktan gizlenmiş ya da bir yola enjekte edilmiş ama diğerine edilmemiş bir özelliği açığa çıkarır.</string>
-    <string name="t_dlphdr">Loader modülleri (dl_iterate_phdr)</string>
-    <string name="t_frida_port">Frida port taraması</string>
-    <string name="note_dlphdr">dl_iterate_phdr yüklü modülleri /proc/self/maps üzerinden değil linker üzerinden sayar, dolayısıyla girdisini maps\'ten silen bir hook burada yine listelenir. Bir needle eşleşmesi ya da sistem allowlist\'i dışındaki bir modül sızıntıdır.</string>
+    <string name="t_dlphdr">Yüklü modüller</string>
+    <string name="t_frida_port">Enstrümantasyon bağlantı noktası</string>
     <string name="t_ime_verdict">Klavye bütünlük kararı</string>
     <string name="t_store_authenticity">Mağaza/GMS imza gerçekliği</string>
     <string name="t_devgate">Dev\'e bağlı ayarların tutarlılığı</string>
-    <string name="note_ime_verdict">Bir bankacılık RASP\'ı (PayZapp/Zeta) sistem-dışı olan ve mağaza allowlist\'i dışından kurulmuş her etkin klavyeyi reddeder. Sistem-dışı, mağaza-dışı yükleyicili etkin bir IME işaretlenir.</string>
-    <string name="note_store_authenticity">Play Store, GMS ve GSF Google\'ın imza sertifikasını taşımalıdır. Var olan ama başka bir anahtarla imzalanmış bir mağaza ya da GMS paketi sahte, microG veya yeniden paketlenmiş bir mağazadır.</string>
-    <string name="note_devgate">adb ve diğer Dev\'e bağlı ayarlar yalnızca Geliştirici seçenekleri açıkken değişir. development_settings_enabled=0 iken varsayılan olmayan bir bağlı ayar yalnızca root ya da `settings put` ile ayarlanmış olabilir.</string>
-    <string name="t_maps_exec">Enjekte exec map\'leri (deleted/memfd)</string>
-    <string name="t_anon_minor">Gizli anon-bdev süperbloğu</string>
-    <string name="note_maps_exec">RWX olan (W^X ihlali) ya da ELF sihriyle başlayan bir (deleted)/memfd/ashmem dosyasına dayalı yürütülebilir bir map, dosya sisteminden koparılmış gerçek bir enjekte .so\'dur; ART JIT trambolini bunların hiçbiri değildir ve iyi huylu sayılır. Sistem allowlist\'i dışındaki bir modül de sayılır.</string>
-    <string name="note_anon_minor">Block device\'ı olmayan dosya sistemleri minor\'ünü alttan yoğun global bir anon havuzundan alır. stat() ile mevcut ama bu sürecin mountinfo\'sunda olmayan bir minor, özel bir namespace\'te gizli canlı bir süperbloktur (bir daemon\'ın tmpfs\'i). Eksik minor\'lerin uzun bir dizisi uygulama churn\'üdür ve yok sayılır; kısa bir boşluk ipucudur.</string>
-    <string name="t_sb_tee_signer">StrongBox × TEE imzalayıcı</string>
+    <string name="t_maps_exec">Yürütülebilir bellek eşlemeleri</string>
+    <string name="t_elf_in_anon">Anonim bellekte kod imajı</string>
+    <string name="t_anon_exec_orphan">Dayanaksız yürütülebilir bellek</string>
+    <string name="t_anon_minor">Gizli dosya sistemi</string>
+    <string name="t_sb_tee_signer">StrongBox attestation profili</string>
+    <string name="t_sb_capability">StrongBox capability profili</string>
+    <string name="t_sb_enforced">StrongBox anahtar uygulama düzeyi</string>
+    <string name="t_sb_version">StrongBox doğrulama sürümü</string>
+    <string name="t_sb_chain">StrongBox doğrulama zinciri</string>
+    <string name="t_sb_rkp">StrongBox anahtar provisioning</string>
+    <string name="t_sb_latency">StrongBox anahtar üretim süresi</string>
     <string name="t_local_tmp_list">/data/local/tmp listesi</string>
-    <string name="note_local_tmp_list">/data/local/tmp\'yi getdents64 ile listelemek (ada bakmadan) bir uygulamanın gerçekten ulaşabileceği her kalıntıyı, modülün bıraktıkları dahil, ortaya çıkarır. Kilitli bir cihazda dizin shell\'e aittir ve bir uygulama tarafından listelenemez, dolayısıyla EACCES temiz yanıttır; görünür bir girdi, uygulamanın ulaşabileceği kalıntı demektir.</string>
     <string name="t_nettype_consistency">Ağ türü ile gerçek arayüz</string>
     <string name="t_flagsecure_honored">FLAG_SECURE uygulanıyor (ekran görüntüsü engeli)</string>
+    <string name="t_procnet_frida">Enstrümantasyon yuvası</string>
+    <string name="t_procnet_tun">VPN arayüzü</string>
+    <string name="t_mountinfo_iso">Bağlama girişleri</string>
+    <string name="t_adb_usb_exposure">ADB/USB hata ayıklama açığı</string>
+    <string name="t_anon_elf_struct">Anonim bellekte ELF yapısı</string>
+    <string name="t_atexit_drift">Atexit çalışma zamanı sapması</string>
+    <string name="t_attestation_challenge_echo">Attestation challenge yankısı</string>
+    <string name="t_attest_synth_paradox">Attestation ile çalışma zamanı durumu</string>
+    <string name="t_baseband_coherence">baseband sürüm tutarlılığı</string>
+    <string name="t_datadir_errno_oracle">Paket veri dizini araştırması</string>
+    <string name="t_device_id">Attestation cihaz kimliği ile Build</string>
+    <string name="t_feature_spoof">Sistem özelliği tutarlılığı</string>
+    <string name="t_fingerprint_rebuild">Fingerprint yeniden oluşturma</string>
+    <string name="t_gap_mapped">Bellek eşlemesi kapsamı</string>
+    <string name="t_heap_hook_xref">heap\'te eskimiş referanslar</string>
+    <string name="t_hidden_app_usage_leak">usage stats ile paket görünürlüğü</string>
+    <string name="t_hidden_region_xref">Bellek bölgelerine heap referansları</string>
+    <string name="t_launch_sender_pkg_leak">IntentSender paket görünürlüğü</string>
+    <string name="t_libc_identity">libc imajı tutarlılığı</string>
+    <string name="t_lock_coherence">bootloader kilidi tutarlılığı</string>
+    <string name="t_map_files_leak">Eşlenen dosya kökenleri</string>
+    <string name="t_multiuser_oracle">Kullanıcı / private-space görünürlüğü</string>
+    <string name="t_named_anon_exec">Anonim adlı kod eşlemesi</string>
+    <string name="t_otacerts_signing_key">OTA imzalama anahtarı (otacerts)</string>
+    <string name="t_pairip_wrapper">Uygulama sarmalayıcı taraması</string>
+    <string name="t_phantom_monitor_prop">phantom monitor bayrağı prop\'u</string>
+    <string name="t_phantom_monitor_setting">phantom monitor ayarı</string>
+    <string name="t_platform_signer">Platform imzalayıcısı (android paketi)</string>
+    <string name="t_prov_fingerprint">RKP fingerprint ile cihaz</string>
+    <string name="t_prov_manufacturer">RKP üretici ile cihaz</string>
+    <string name="t_prov_vbmeta_reuse">RKP vbmeta ile runtime</string>
+    <string name="t_prov_verdict">RKP verified boot kararı</string>
+    <string name="t_settings_stock_baseline">Geliştirici/güvenlik ayarları temel çizgisi</string>
+    <string name="t_signature_source">İmzalama sertifikası kaynağı tutarlılığı</string>
+    <string name="t_signature_sweep">İmzalama sertifikası taraması (tüm uygulamalar)</string>
+    <string name="t_signing_keys">İmzalama anahtarları (release-keys bekleniyor)</string>
+    <string name="t_statfs_consistency">Depolama boyutu tutarlılığı</string>
+    <string name="t_verifier_adb_installs">Uygulamaları USB üzerinden doğrula (package verifier)</string>
+    <string name="t_zygisk_loader_footprint">Bellekte yükleyici kalıntısı</string>
+    <string name="t_zygote_gid">Zygote GID tutarlılığı</string>
     <string name="about_trademarks">VD Infos bağımsız, resmi olmayan bir araştırma ve tanılama aracıdır. Okuduğu, tespit ettiği veya adını andığı yazılım, hizmet ya da markaların sahibi olan sağlayıcıların hiçbiriyle bağlantılı değildir, onlar tarafından onaylanmamış veya desteklenmemiştir (Google LLC ve Android Open Source Project dâhil). \"Android\", \"Google\", \"Google Play\", \"Play Integrity\", \"Widevine\" ve diğer tüm ürün adları, logolar ve ticari markalar ilgili sahiplerinin mülkiyetindedir. VD Infos yalnızca cihazınızda hâlihazırda bulunanları okur ve hiçbir yere hiçbir şey göndermez.</string>
+    <string name="note_art_dexopt_self">Sağlık sinyali, root göstergesi değil. Diskte AOT bir base.odex var ama uygulama yorumlanarak çalışıyor (çalıştırılabilir eşleme yok), yani odex reddedilmiş (boot-image güncel değil, ART boot image bir apex güncellemesinden sonra değişti). O zaman hizmet uygulamaları ve Play Protect uygulama doğrulaması zamanında başlayamayabilir. Kullanıcı tarafı vekil; yetkili denetim root tarafındadır.</string>
+    <string name="sol_art_dexopt_self">root olarak yeniden derleyin (pm compile -a -m speed) veya boot image\'i yeniden oluşturmak ve uygulamalara yeniden dexopt yapmak için yeniden başlatın.</string>
+    <string name="sol_atexit_drift">libc çıkış işleyicileri __cxa_atexit ve __cxa_finalize libc içinde çözümlenmelidir. Başka bir kütüphaneye veya anonim bir bölgeye çözümlendiklerinde, Zygisk tarzı bir enjektör araya girmiştir. Enjeksiyonu bu süreçten kaldırın.</string>
+    <string name="sol_baseband_coherence">Modem sürümü hem getRadioVersion hem de gsm.version.baseband ailesi tarafından bildirilir; hepsi aynı ürün yazılımını okur. Bir kaynak uyuşmadığında, bir property sahteciliği bazı takma adları yamalamış ama hepsini değil. Her baseband sürümü kaynağını aynı tutun.</string>
+    <string name="sol_boot">Donanım doğrulaması (TEE) boot durumunu bildirir. Kilitli, doğrulanmış bir aygıt bildirmesi için bu uygulama paketini keybox aracınızın hedef listesine ekleyin.</string>
+    <string name="sol_datadir_errno_oracle">Bir paketin veri dizininde yapılan stat, hiçbir paket sorgusu olmasa bile onu kurulu olarak açığa çıkarabilir. Bu tür paketleri gizleme çerçevenize (HMA-OSS) ekleyin; böylece veri dizinleri yalnızca reddedilmiş değil, yok olarak okunur.</string>
+    <string name="sol_device_id">Doğrulanmış donanım kimliği (brand, device, manufacturer) build özellikleriyle eşleşmiyor, bu yüzden bir doğrulayıcı özelliklerin sahte olduğunu anlayabilir. ro.product.brand, ro.product.device ve ro.product.manufacturer değerlerini donanımca doğrulanmış değerlerle hizalayın (product ve model meşru olarak farklıdır: doğrulama kod adını taşır).</string>
+    <string name="sol_feature_spoof">hasSystemFeature, getSystemAvailableFeatures ve donanım düğümleri bir aygıt özelliği konusunda uyuşmuyor, yani bir özellik bir yoldan gizleniyor veya sahteleniyor ama diğerlerinden değil. Her özellik sorgu yolunun ve donanımın aynı varlığı bildirmesini sağlayın.</string>
+    <string name="sol_fingerprint_rebuild">Build parmak izi, derleme sırasında BRAND/PRODUCT/DEVICE:RELEASE/ID/INCREMENTAL:TYPE/TAGS olarak oluşturulur. Build.FINGERPRINT kendi bileşen alanlarından yapılan bu yeniden oluşturmaya eşit olmadığında, bir sahtecilik parmak izini her bileşeni hizalamadan değiştirmiştir (veya tersi). Parmak izini ve bileşenlerini tutarlı hale getirin.</string>
+    <string name="sol_hidden_app_usage_leak">Bir paket, kurulu paket listesinden dışarıda tutulsa bile usage-stats API\'leri üzerinden ortaya çıkabilir. Bu tür paketleri gizleme çerçevenize (HMA-OSS) ekleyin; böylece yalnızca paket listesinden değil, usage-stats API\'lerinden de gizlenirler.</string>
+    <string name="sol_launch_sender_pkg_leak">Ölçülmüş ROM\'larda döndürülen IntentSender yalnızca (caller, name) ile anahtarlanır: creator alanları çağıranınkidir ve equals yalnızca adla farklılaşır, bu yüzden kurulu/gizli sinyali taşımaz (rastgele var olmayan bir adla karşılaştırmak yanlış pozitiftir). Yalnızca görünür kurulu bir paket ile var olmayan bir ad, çağırandan bağımsız bir alanda farklılaşırsa sızar; öyleyse gizleme çerçevesinin (HMA-OSS) gizli paketler için var olmayana eşdeğeri döndürmesini sağlayın.</string>
+    <string name="sol_libc_identity">Yüklenmiş libc eşlemesi (device ve inode) diskteki libc.so dosyasıyla eşleşmiyor, yani kütüphane değiştirilmiş veya bind-mount edilmiştir (hooklanmış bir libc). Gerçek libc\'yi sunun veya değiştirilen bağlamayı uygulamadan gizleyin.</string>
+    <string name="sol_lock_coherence">Stok, kilitli bir aygıtta her bootloader kilidi ve verified boot özelliği uyumludur: flash.locked=1, verifiedbootstate=green, vbmeta.device_state=locked, garanti tetiklenmemiş. Biri kilitli derken bir diğeri hâlâ kilidi açık okunduğunda, bir sahtecilik bazılarını yamalamış ama hepsini değil. Her kilit özelliğini aynı duruma normalize edin.</string>
+    <string name="sol_otacerts_signing_key">OTA imzalama sertifikası (otacerts.zip) genel AOSP test anahtarıdır, bu yüzden ro.build.tags release-keys iddia etse bile build test imzalı okunur. Dosya yönlendirme modülünüz aracılığıyla release imzalı bir otacerts.zip sunun ve dosya ile özelliklerin uyuşması için ro.*.build.tags değerlerini her bölümde hizalayın.</string>
+    <string name="sol_perm_path_coherence">Aynı izin birkaç kod yoluyla çözümlenir: PackageManager.checkPermission, Context.checkPermission(perm,pid,uid), getPackageInfo(GET_PERMISSIONS) tarafından verilen bayraklar ve düşük düzeyli IPackageManager.checkUidPermission binder\'ı. Dokunulmamış bir sistemde erişilebilir tüm yollar uyumludur ve ayrıcalıklı bir izin (START_ANY_ACTIVITY, INSTALL_PACKAGES, MANAGE_USERS) her birinde reddedilir. Bir izni bir yolda sahteleyen veya gizleyen ama diğerinde değil, ya da normal bir uygulamanın asla tutamayacağı ayrıcalıklı bir izni veren bir hook burada ayrışır. İzinleri her yolda tutarlı çözümleyin; yalnızca bir dedektörün okuduğu yolda bir izni sahtelemeyin.</string>
+    <string name="sol_phantom_monitor">Stok bir aygıt, phantom-process izleyicisinin değiştirilip değiştirilmediğini açığa çıkarmaz. Ayarı gizleme çerçevenizin (HMA-OSS) sahteleme ön ayarlarına ekleyin ki stok bir aygıttaki gibi okunsun ve feature-flag geçersiz kılma özelliğinden kaçının.</string>
+    <string name="sol_platform_signer">Platform (android) paketi imzası, OEM olmayan bir imzalayıcıyı (özel bir ROM veya AOSP test anahtarı) ya da iddia edilen üreticiyle eşleşmeyen bir OEM\'i açığa çıkarır. Platform imzasını (PlayIntegrityFork\'un spoofSignature\'ının yaptığı gibi) sahteleyerek android paketinin iddia edilen OEM\'in platform sertifikasını bildirmesini sağlayın.</string>
+    <string name="sol_prov_fingerprint">RKP parmak izi (RKP sertifikasından) bu aygıtın build parmak iziyle eşleşmiyor, yani keybox farklı bir aygıta aittir. Bu aygıtta sağlanan bir keybox kullanın.</string>
+    <string name="sol_prov_vbmeta_reuse">RKP vbmeta_digest (RKP sertifikasından) aygıtın çalışma zamanı verified boot karmasıyla eşleşmiyor, yani keybox farklı bir aygıtta sağlanmış (yeniden kullanılan veya paylaşılan bir keybox) ya da aygıt sağlamadan sonra güncellenmiştir. Bu aygıtta sağlanan bir keybox kullanın.</string>
+    <string name="sol_prov_verdict">RKP sertifikası aygıt boot\'unu onaylanmamış olarak kaydeder, yani RKP arka ucu bu aygıtı işaretlemiştir. Arka ucun onayladığı bir aygıtta sağlanan bir keybox kullanın.</string>
+    <string name="sol_signature_source">PackageManager kaydından okunan imzalama sertifikası ile diskteki APK dosyasından ayrıştırılan sertifika eşleşmeli ve PackageManager, APK dosyası sertifikasını tanımalıdır (hasSigningCertificate, checkSignatures). Ayrıştıklarında, PackageManager düzeyinde bir hook, gerçek APK\'ye dokunmadan bildirilen imzayı yeniden yazmıştır. Doğrudan bir APK okuması hâlâ gerçek sertifikayı görür.</string>
+    <string name="sol_signature_sweep">Kurulu her uygulama için, PackageManager kaydından gelen imzalama sertifikası ile APK dosyasından ayrıştırılan sertifika bir imzalayıcıyı paylaşır. İki kümesi ayrık olan bir uygulamanın PackageManager imzası sahtelenmiş, diskteki APK ise gerçeğini korumuştur. Anahtar rotasyonu ortak bir imzalayıcıyı korur, bu yüzden işaretlenmez.</string>
+    <string name="sol_signing_keys">Üretim build\'i release-keys ile imzalanır. test-keys veya dev-keys okuyan bir imzalama anahtarı özelliği (herhangi bir yöntemle) özel veya hata ayıklama build\'ini açığa çıkarır. release-keys değerini build.tags genelinde ve bölüm başına *.keys özelliklerinde geri yükleyin.</string>
+    <string name="sol_spoof">Bu ayar tutarlı okunmuyor. Her yolun aynı değeri döndürmesi için HMA-OSS sahteleme ön ayarlarına ekleyin.</string>
+    <string name="sol_statfs_consistency">android.os.StatFs ve yerel statvfs okuması depolama boyutu konusunda uyuşmuyor, yani boyut Java çerçevesi API\'si üzerinden sahtelenmiş ama yerelde değil. StatFs ve yerel yolların aynı değerleri bildirmesini sağlayın.</string>
+    <string name="sol_zygote_gid">Zygote, bir sürece ek GID\'lerini uygulamanın verilen izinlerinden atar: INTERNET 3003\'ü, BLUETOOTH 3002\'yi ima eder ve bu böyle sürer. GID\'i getgroups(2) içinde bulunmayan verilmiş bir izin, bir gizleyicinin zygote izinlerini filtrelediği anlamına gelir: uygulamayı gizler ama herhangi bir uygulamanın kendisi üzerinde okuduğu izin kümesiyle çelişir. Verilmiş izinlerin gerektirdiği GID\'leri sıyırmayın (örneğin, INTERNET verilmişken INET_GID\'i asla kaldırmayın).</string>
+    <string name="summary_all_agreed_mark" translatable="false">🏆 ✓ </string>
+    <string name="t_boot_triad_coherence">Verified boot durumu tutarlılığı</string>
+    <string name="t_build_vs_prop">android.os.Build ile kanonik prop karşılaştırması (kimlik alanı başına)</string>
+    <string name="t_debug_ramdisk">/debug_ramdisk içeriği</string>
+    <string name="t_isrc_gap_forged_store_install">Yükleyici mağaza tutarlılığı</string>
+    <string name="t_isrc_gap_store_pkgsource_other">Boşluk: mağaza yükleyici, packageSource mağaza gibi değil</string>
+    <string name="t_loop_orphan">Sahipsiz loop aygıtları</string>
+    <string name="t_perm_path_coherence">İzin denetimi tutarlılığı</string>
+    <string name="t_rom_identity">SoC ile bildirilen aygıt kimliği karşılaştırması</string>
+    <string name="t_settings_read_gate">Kısıtlı ayar okuma kapısı</string>
+    <string name="t_stock_path_hidden">Sistem yolu görünürlüğü</string>
+    <string name="t_strongbox_level">StrongBox destekli doğrulama düzeyi</string>
+    <string name="t_uid_hidden_running">Çalışan UID\'ler ile paket listesi karşılaştırması</string>
+    <string name="t_uid_priority_fake">Süreç zamanlama önceliği</string>
+    <string name="t_version_cluster">Sürüm durumu kümesi tutarlılığı (release ile preview)</string>
+    <string name="usage_access_body">Kurulu paket listesinden gizlenmiş bir paketi usage-stats API\'leri üzerinden tespit etmek Kullanım erişimi gerektirir. Bunu sistem ayarlarından bu uygulamaya verin, sonra geri dönün.</string>
+    <string name="usage_access_open">Ayarları aç</string>
+    <string name="usage_access_title">Kullanım erişimi gerekli</string>
+    <string name="sol_debug_ramdisk">Stock bir açılışta /debug_ramdisk boştur veya yoktur. Oraya yerleştirilen dosyalar, açılışın erken aşamasında bir root ya da modül payload\'ıdır. /debug_ramdisk\'i yerleştirilmiş içerikten temizleyin ya da bu uygulamanın okuyamayacağı bir namespace içinde tutun.</string>
+    <string name="sol_loop_orphan">Stock bir cihazda her ext4 loop, bu namespace içinde bir sistem bağlaması tarafından desteklenir. Sistem bağlama noktası olmayan bir loop, stock düzenin dışında bağlanmış bir modül veya overlay\'dir. Bu tür loop\'ları bir sistem yolu altına bağlayın ya da bu uygulamanın paylaşmadığı bir mount namespace içinde tutun.</string>
+    <string name="sol_multiuser_oracle">İkincil bir kullanıcı veya özel alan, /data/user/&lt;id&gt; üzerindeki bir stat onu mevcut olarak okurken UserManager onu listelemediğinde sızar. İkisini uyumlu hale getirin: ya kullanıcı veri dizinini ayrıcalıksız bir uygulamanın erişemeyeceği şekilde tutun ya da kendi dizininin hâlâ açığa çıkardığı bir kullanıcıyı gizlemeyin.</string>
+    <string name="sol_prov_manufacturer">RKP üreticisi (RKP sertifikasından) bu cihazla eşleşmiyor, yani keybox farklı bir cihaz için sağlanmış. Bu cihazda sağlanmış bir keybox kullanın.</string>
+    <string name="sol_rom_identity">Dürüst bir cihazda SoC, baseband ve init kimliği, bildirilen marka ve modelle eşleşir. Bir ROM veya donanım kimlik özelliği, iddia edilen cihazla çeliştiğinde, bir fingerprint sahteciliği ürün özelliklerini kapsamış ama donanım özelliklerini kapsamamıştır. Her kimlik yüzeyini (SoC, baseband, init.svc, cpuinfo) sahte cihazla tutarlı tutun.</string>
+    <string name="sol_stock_path_hidden">Standart bir Android sistem yolu stock bir cihazda bulunur, bu yüzden yok olarak okunan bir stock yol, bir gizleme katmanının onu aşırı gizlediği anlamına gelir ki bu başlı başına bir ipucudur. Yalnızca root ve modül yollarını gizleyin, temiz bir cihazda var olan bir yolu asla gizlemeyin.</string>
+    <string name="sol_version_cluster">Stock bir yapı, yayın durumu konusunda kendisiyle uyumludur: kod adı, release-ya-da-preview SDK ve fingerprint belirteci hepsi release olarak okunur ya da hepsi preview olarak okunur, asla karışık değil. Bir sinyal release olarak okunurken bir diğeri preview olarak okunduğunda, bir sahtecilik bazı sürüm özelliklerini değiştirmiş ama hepsini değil. Her sürüm durumu sinyalini aynı kanala hizalayın.</string>
 </resources>

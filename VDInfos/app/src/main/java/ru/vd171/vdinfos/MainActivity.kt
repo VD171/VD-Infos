@@ -1,7 +1,7 @@
 /*
  * ======================================================================
  *  VD INFOS  ::  method debugger
- *  Read every device info by every method, then compare. A divergence is a hook.
+ *  Read every device info by every method, then compare.
  *
  *  Copyright (C) 2026  VD171
  *  SPDX-License-Identifier: AGPL-3.0-or-later
@@ -14,8 +14,9 @@
  *  Source         : https://github.com/VD171/VD-Infos
  *  GitHub         : @VD171 https://github.com/VD171
  *  XDA-Developers : @VD171 https://xdaforums.com/m/vd171.4699873/
+ *  XDA thread     : https://xdaforums.com/t/VD-Infos.4097379/
  *  Telegram       : @VD_Priv8 https://t.me/VD_Priv8
- *  Telegram       : @Priv8_VD https://t.me/Priv8_VD
+ *  Channel        : @Priv8_VD https://t.me/Priv8_VD
  *  Discord        : @VD.Priv8 https://discord.com/users/1296831918989639721
  *  E-mail         : vd.priv8@pm.me
  * ======================================================================
@@ -36,14 +37,18 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import ru.vd171.vdinfos.data.CrashReporter
 import ru.vd171.vdinfos.data.LocaleManager
+import ru.vd171.vdinfos.data.UsageAccess
 import ru.vd171.vdinfos.ui.HomeScreen
 import ru.vd171.vdinfos.ui.components.CrashDialog
 import ru.vd171.vdinfos.ui.components.LanguageDialog
+import ru.vd171.vdinfos.ui.components.UsageAccessDialog
 import ru.vd171.vdinfos.ui.theme.VdInfosTheme
 
 class MainActivity : ComponentActivity() {
 
     private val idleFinish = Runnable { finishAndRemoveTask() }
+
+    private val needUsageAccess = mutableStateOf(false)
 
     override fun attachBaseContext(newBase: Context) {
         super.attachBaseContext(LocaleManager.wrap(newBase))
@@ -57,6 +62,11 @@ class MainActivity : ComponentActivity() {
     override fun onStop() {
         super.onStop()
         if (!isChangingConfigurations) idleHandler.postDelayed(idleFinish, IDLE_FINISH_MS)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        needUsageAccess.value = !UsageAccess.granted(this)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -81,6 +91,15 @@ class MainActivity : ComponentActivity() {
                 var crash by remember { mutableStateOf(CrashReporter.consume(this)) }
                 crash?.let { report ->
                     CrashDialog(report) { crash = null }
+                }
+                if (needUsageAccess.value && !showLang && crash == null) {
+                    UsageAccessDialog(
+                        onOpenSettings = {
+                            runCatching { startActivity(UsageAccess.settingsIntent()) }
+                            needUsageAccess.value = false
+                        },
+                        onDismiss = { needUsageAccess.value = false },
+                    )
                 }
             }
         }

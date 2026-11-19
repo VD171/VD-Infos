@@ -1,0 +1,72 @@
+# ======================================================================
+#  VD INFOS  ::  method debugger
+#  Read every device info by every method, then compare.
+#
+#  Copyright (C) 2026  VD171
+#  SPDX-License-Identifier: AGPL-3.0-or-later
+#
+#  Site           : https://vd171.ru
+#  Site           : https://vd.priv8.ru
+#  Source         : https://github.com/VD171/VD-Infos
+#  GitHub         : @VD171 https://github.com/VD171
+#  XDA-Developers : @VD171 https://xdaforums.com/m/vd171.4699873/
+#  XDA thread     : https://xdaforums.com/t/VD-Infos.4097379/
+#  Telegram       : @VD_Priv8 https://t.me/VD_Priv8
+#  Channel        : @Priv8_VD https://t.me/Priv8_VD
+#  Discord        : @VD.Priv8 https://discord.com/users/1296831918989639721
+#  E-mail         : vd.priv8@pm.me
+# ======================================================================
+#
+# Values that mark a GENERIC system-image identity, not the device's own. The
+# system / system_ext / product partitions commonly ship a generic image (AOSP
+# GSI, a vendor QSSI, a mainline build) whose brand/device/name is generic, so a
+# legit device shows these alongside its real identity on the other partitions.
+# A value matching any line here is dropped BEFORE the cross-partition device-
+# identity vote, so it does not read as a split. The device identity on the real
+# partitions still votes, so a genuine mismatch still shows.
+#
+# Lowercase, one per line. Glob: trailing * = prefix, leading * = suffix,
+# *x* = substring, otherwise an exact match.
+#
+# AOSP / GSI (Google)
+generic*
+aosp_*
+mainline*
+*generic_system*
+*/generic:*
+# Xiaomi QSSI (missi system image, mi* product/vendor/odm names)
+missi*
+miproduct*
+mivendor*
+miodm*
+qssi
+*/missi/missi*
+# OnePlus / OPPO / realme QSSI (ossi system image)
+ossi
+*/ossi/ossi*
+# Generic system-image brand / manufacturer slots
+qti
+qualcomm
+android
+unknown
+# Generic "<x> for arm64" model strings
+*for arm64
+# Transsion (Infinix / Tecno / itel) TSSI stock treble system image (build target
+# sys_tssi_64_armv82, brand Infinix/Tecno, -user release-keys) + its generic ARM
+# target device name FULL-64-ARMV82. The real identity lives on vendor/odm/product,
+# so these generic system-partition values are dropped. A genuine custom/GSI is
+# still caught by the signing-keys split (ro.*.build.tags: test-keys), untouched here.
+tssi
+*/tssi/*
+full-64-armv*
+full-32-armv*
+# Structural (future-proof): recognize a generic system-image identity by its SHAPE, not by a
+# per-OEM entry, so a new vendor's stock treble image never needs a new line here. A vendor
+# single-system-image suffix (*ssi: qssi/missi/ossi/tssi and any future vendor SSI) and a generic
+# ARM build-target device name (*armv*, sys_*) are build-target identities, never a real device
+# codename (verified: zero match across 167 real device identities, Pixel + multi-OEM corpus). A
+# genuine GSI/custom is still caught by the test-keys signing split and the root signals, which do
+# not live in the per-partition device name, so dropping a structurally-generic name hides no tell.
+*ssi
+*armv*
+sys_*

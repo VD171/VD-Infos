@@ -1,7 +1,7 @@
 /*
  * ======================================================================
  *  VD INFOS  ::  method debugger
- *  Read every device info by every method, then compare. A divergence is a hook.
+ *  Read every device info by every method, then compare.
  *
  *  Copyright (C) 2026  VD171
  *  SPDX-License-Identifier: AGPL-3.0-or-later
@@ -14,8 +14,9 @@
  *  Source         : https://github.com/VD171/VD-Infos
  *  GitHub         : @VD171 https://github.com/VD171
  *  XDA-Developers : @VD171 https://xdaforums.com/m/vd171.4699873/
+ *  XDA thread     : https://xdaforums.com/t/VD-Infos.4097379/
  *  Telegram       : @VD_Priv8 https://t.me/VD_Priv8
- *  Telegram       : @Priv8_VD https://t.me/Priv8_VD
+ *  Channel        : @Priv8_VD https://t.me/Priv8_VD
  *  Discord        : @VD.Priv8 https://discord.com/users/1296831918989639721
  *  E-mail         : vd.priv8@pm.me
  * ======================================================================
@@ -92,6 +93,30 @@ object BulkProbes {
                 .sorted().joinToString("\n").ifEmpty { Sentinels.NONE }
         })
 
+        add(jprobe("pkg:pairip_wrapper", ctx.getString(R.string.t_pairip_wrapper), Category.PACKAGES,
+            source = "per-package getPackageInfo(components): com.pairip.* wrapper, flagging off-store installs") { c ->
+            val pm = c.packageManager
+            val compFlags = PackageManager.GET_ACTIVITIES or PackageManager.GET_SERVICES or PackageManager.GET_RECEIVERS
+            pm.getInstalledApplications(0).mapNotNull { ai ->
+                val pkg = ai.packageName
+                val comps = runCatching {
+                    val pi = pm.getPackageInfo(pkg, compFlags)
+                    buildList {
+                        pi.applicationInfo?.className?.let { add(it) }
+                        pi.activities?.forEach { it.name?.let { n -> add(n) } }
+                        pi.services?.forEach { it.name?.let { n -> add(n) } }
+                        pi.receivers?.forEach { it.name?.let { n -> add(n) } }
+                    }
+                }.getOrDefault(emptyList())
+                if (comps.none { it.contains("com.pairip") }) return@mapNotNull null
+                val installer = runCatching {
+                    if (Build.VERSION.SDK_INT >= 30) pm.getInstallSourceInfo(pkg).installingPackageName
+                    else @Suppress("DEPRECATION") pm.getInstallerPackageName(pkg)
+                }.getOrNull()
+                pkg + if (installer != "com.android.vending") " [off-store installer=$installer]" else ""
+            }.sorted().joinToString("\n").ifEmpty { Sentinels.NONE }
+        })
+
         add(jprobe("pkg:uid_groups", ctx.getString(R.string.t_uid_groups), Category.PACKAGES,
             source = "getInstalledApplications(): group by uid, highlight system+user UID sharing") { c ->
             val apps = c.packageManager.getInstalledApplications(0)
@@ -122,7 +147,7 @@ object BulkProbes {
         })
 
         add(jprobe("pkg:updated_system", ctx.getString(R.string.t_updated_system), Category.PACKAGES,
-            source = "getInstalledApplications(): FLAG_UPDATED_SYSTEM_APP - system apps overridden by user install") { c ->
+            source = "getInstalledApplications(): FLAG_UPDATED_SYSTEM_APP, system apps overridden by user install") { c ->
             c.packageManager.getInstalledApplications(0)
                 .filter { ai -> (ai.flags and ApplicationInfo.FLAG_UPDATED_SYSTEM_APP) != 0 }
                 .map { it.packageName }

@@ -2,7 +2,7 @@
 <!--
     ======================================================================
      VD INFOS  ::  method debugger
-     Read every device info by every method, then compare. A divergence is a hook.
+     Read every device info by every method, then compare.
 
      Copyright (C) 2026  VD171
      SPDX-License-Identifier: AGPL-3.0-or-later
@@ -15,8 +15,9 @@
      Source         : https://github.com/VD171/VD-Infos
      GitHub         : @VD171 https://github.com/VD171
      XDA-Developers : @VD171 https://xdaforums.com/m/vd171.4699873/
+     XDA thread     : https://xdaforums.com/t/VD-Infos.4097379/
      Telegram       : @VD_Priv8 https://t.me/VD_Priv8
-     Telegram       : @Priv8_VD https://t.me/Priv8_VD
+     Channel        : @Priv8_VD https://t.me/Priv8_VD
      Discord        : @VD.Priv8 https://discord.com/users/1296831918989639721
      E-mail         : vd.priv8@pm.me
     ======================================================================
@@ -90,6 +91,7 @@
     <string name="crash_title">Galat tak terduga</string>
     <string name="crash_body">Aplikasi mengalami galat yang tidak diduga. Tidak ada yang dikirim ke mana pun. Anda dapat menyalin detail di bawah dan mengirimkannya ke pengembang.</string>
     <string name="about_project">Proyek</string>
+    <string name="about_see_also">Lihat juga</string>
     <string name="about_support">Unduh dan dukungan</string>
     <string name="action_clear">Hapus pencarian</string>
     <string name="lang_dialog_title">Bahasa</string>
@@ -100,29 +102,27 @@
     <!-- Solusi -->
     <string name="sol_title">Cara mengatasi</string>
     <string name="card_details">Detail</string>
-    <string name="sol_boot">Ini yang dilaporkan attestation perangkat keras (TEE) tentang status boot. Bypass keybox (TrickyStore, TEE Simulator, OhMyKeyMint) hanya menulis ulang attestation untuk aplikasi yang Anda tentukan. Tambahkan paket aplikasi ini ke daftar target alat tersebut (mis. target.txt) agar attestation-nya melaporkan perangkat terkunci dengan verified boot hijau.</string>
-    <string name="sol_root_detector">Aplikasi terpasang ini mencari root, emulator, atau Play Integrity yang gagal. Tambahkan paket yang ditemukan di sini ke framework penyembunyian Anda (HMA-OSS) sebagai target, agar aplikasi dan modul root disembunyikan dari detektor ini.</string>
-    <string name="sol_spoof">Setelan ini terbaca berbeda antar jalur yang bisa dipakai aplikasi (spoof tidak menutup semuanya). Tambahkan setelan ke preset spoof HMA-OSS agar setiap jalur baca mengembalikan nilai yang sama.</string>
-    <string name="sol_attest_patch">key attestation melaporkan level patch yang berbeda dari properti sistem. Atur di alat keybox Anda - TrickyStore di security_patch.txt (satu tanggal, atau system=/boot=/vendor=/all=, atau \'prop\'); OhMyKeymint di config.toml pada [trust]. Keduanya hanya mengubah attestation, bukan properti.</string>
-    <string name="sol_patch_prop">Build.VERSION.SECURITY_PATCH (framework) dan properti ro.build.version.security_patch menampilkan tanggal berbeda. Selaraskan dengan resetprop. security_patch.txt dan config.toml tidak membantu di sini - keduanya hanya mengubah key attestation, bukan properti.</string>
+    <string name="sol_root_detector">Aplikasi terpasang ini mencari root. Tambahkan paket yang ditemukan di sini sebagai target di framework penyembunyianmu (HMA-OSS).</string>
+    <string name="sol_attest_patch">Atestasi melaporkan security patch yang berbeda dari property. Setel di alat keybox-mu (TrickyStore security_patch.txt, OhMyKeymint config.toml [trust]); hanya mengubah atestasi.</string>
+    <string name="sol_patch_prop">Framework dan property menampilkan tanggal patch berbeda. Selaraskan dengan resetprop; alat keybox hanya mengubah atestasi, bukan properties.</string>
 
-    <string name="note_gsf">Tidak ada di Android 16 ke atas: penyimpanan layanan Google berpindah ke Play Services, yang pintunya sendiri diberi nama Google &quot;do.not.use&quot; dan tidak menjawab aplikasi lain. Keduanya dicoba di atas.</string>
     <string name="t_attestation_app_id">Id aplikasi atestasi (paket + tanda tangan)</string>
     <string name="t_dev_ptmx_present">/dev/ptmx ada</string>
     <string name="t_documents_providers">DocumentsProviders terdaftar</string>
     <string name="t_kernel_modules">Modul kernel yang dimuat (KernelSU/SuSFS)</string>
-    <string name="t_kernel_syscall_fingerprint">Versi kernel dari sidik syscall</string>
+    <string name="t_kernel_syscall_fingerprint">Pemeriksaan silang versi kernel</string>
     <string name="t_key_inside_secure_hw">Kunci di dalam perangkat keras aman (KeyInfo)</string>
     <string name="t_rot_ec_vs_rsa">Akar kepercayaan atestasi: permintaan EC vs RSA</string>
     <string name="t_leaf_sig_alg">Sertifikat daun atestasi: kunci vs algoritme tanda tangan</string>
     <string name="t_batch_key_ec_vs_rsa">Kunci atestasi: rantai EC vs rantai RSA</string>
+    <string name="t_native_vs_jvm">Atestasi: keystore2 native vs JVM</string>
     <string name="t_local_tmp_contents">Isi /data/local/tmp</string>
     <string name="t_native_lib_origin">Asal pustaka native (dladdr)</string>
     <string name="t_own_debuggable">Aplikasi ini: debuggable / build debug</string>
     <string name="t_play_store_version">Versi Play Store / GMS</string>
     <string name="t_resolv_conf">resolv.conf / konfigurasi DNS</string>
     <string name="t_root_backup_tools">Alat cadangan berbasis root ada</string>
-    <string name="t_su_libc_inline_hook">su: syscall mentah vs libc vs Java</string>
+    <string name="t_su_libc_inline_hook">Resolusi su lintas lapisan</string>
     <string name="t_system_build_prop">/system/build.prop</string>
     <string name="t_system_build_prop_present">/system/build.prop ada</string>
     <string name="t_adb_enabled">ADB aktif</string>
@@ -192,7 +192,7 @@
     <string name="t_imei">IMEI</string>
     <string name="t_imsi_subscriber">IMSI (pelanggan)</string>
     <string name="t_incremental">Incremental</string>
-    <string name="t_injected_libs_proc_self_maps">Lib yang disuntikkan (/proc/self/maps)</string>
+    <string name="t_injected_libs_proc_self_maps">Pustaka yang disuntikkan</string>
     <string name="t_installed_app_signing_digests">Digest tanda tangan aplikasi terpasang</string>
     <string name="t_installed_applications">Aplikasi terpasang</string>
     <string name="t_installed_input_methods">Metode masukan terpasang</string>
@@ -202,13 +202,9 @@
     <string name="t_kernel_version">Kernel (versi)</string>
     <string name="t_kernel_version_string">Kernel (string versi)</string>
     <string name="t_kernel_version_claim">Klaim versi kernel (ro.kernel.version vs uname)</string>
-    <string name="note_kernel_version_claim">Properti ro.kernel.version seharusnya mencerminkan kernel yang berjalan. Jika ia mengklaim major.minor yang tidak dimiliki oleh release uname asli, sebuah resolver menyetel properti sementara kernel di bawahnya berbeda.</string>
     <string name="t_kernel_build_date">Tanggal build kernel vs ROM</string>
-    <string name="note_kernel_build_date">Kernel GKI prabangun lebih lama daripada ROM tempatnya dikirim atau cocok dengannya. Kernel yang dibangun jauh setelah ROM dirakit berarti dibangun ulang atau di-flash belakangan, tanda umum kernel yang dikompilasi manual.</string>
     <string name="t_kernel_config">Konfig kernel (/proc/config.gz)</string>
-    <string name="note_kernel_config">Konfig kernel, di mana bisa dibaca, menyebut patch yang dikompilasi: KSU, SUSFS, local version kustom, penandatanganan modul tak dipaksakan. Sandbox aplikasi sering menolak berkas ini; terbaca di Android lama, ROM kustom, dan shell root.</string>
     <string name="t_kernel_module_scan">Modul dan simbol kernel</string>
-    <string name="note_kernel_module_scan">Memindai /sys/module dan nama simbol /proc/kallsyms untuk ksu, susfs, dan magisk, yang diekspos oleh kernel yang dipatch atau dimuati modul. Kedua permukaan sering dibatasi; terbaca di mana domain mengizinkan.</string>
     <string name="t_kernel_cmdline">cmdline kernel</string>
     <string name="t_kernel_log">Log kernel</string>
     <string name="t_kernel_stat">stat kernel</string>
@@ -285,8 +281,8 @@
     <string name="t_verified_boot_hash_vbmeta_digest">Hash verified boot / digest vbmeta</string>
     <string name="t_verified_boot_key">Kunci verified boot</string>
     <string name="t_verified_boot_state">Status verified boot</string>
-    <string name="t_prop_area_tamper">Pengrusakan area properti (lubang/konteks)</string>
-    <string name="t_supplementary_groups">Grup tambahan (3009=AID_READPROC)</string>
+    <string name="t_prop_area_tamper">Area properti sistem</string>
+    <string name="t_supplementary_groups">Grup tambahan</string>
     <string name="t_version_codename">Nama kode versi</string>
     <string name="t_webview_provider">Penyedia WebView</string>
     <string name="t_webview_user_agent">User agent WebView</string>
@@ -322,6 +318,17 @@
     <string name="t_queryintentservices_main">queryIntentServices (MAIN)</string>
     <string name="t_resolveactivity_main_launcher">resolveActivity (MAIN/LAUNCHER)</string>
     <string name="t_su_binary">biner su</string>
+    <string name="t_setuid_root">Biner istimewa</string>
+    <string name="t_root_dirs_present">Visibilitas direktori sistem</string>
+    <string name="t_maps_isolated">Modul yang disuntikkan</string>
+    <string name="t_inline_hooks">Hook kode</string>
+    <string name="t_linker_maps_gap">Pustaka tersembunyi</string>
+    <string name="t_tracerpid_iso">Debugger terpasang</string>
+    <string name="t_fd_iso">Handle terbuka</string>
+    <string name="t_selinux_iso">Konteks keamanan</string>
+    <string name="t_su_iso">Akses superuser</string>
+    <string name="t_prop_dual_iso">Properti sistem</string>
+    <string name="t_smaps_iso">Memori dapat ditulis dan dieksekusi</string>
     <string name="t_su_on_path">su di PATH</string>
     <string name="t_tel_networkOperatorName">Nama operator jaringan</string>
     <string name="t_tel_networkOperator">Operator jaringan (MCC+MNC)</string>
@@ -413,7 +420,7 @@
     <string name="t_isrc_self_originating">Sumber instalasi (self): originating</string>
     <string name="t_isrc_self_pkgsource">Sumber instalasi (self): packageSource</string>
     <string name="t_isrc_self_initiator_sig">Sumber instalasi (self): cert initiator vs terpasang</string>
-    <string name="t_isrc_gap_jvm_store_pm_denies">Celah: JVM menyebut installer store, pm menyangkal (hook)</string>
+    <string name="t_isrc_gap_jvm_store_pm_denies">Installer: JVM vs pm</string>
     <string name="t_isrc_gap_jvm_pm_other">Celah: installer JVM ≠ installer pm (visibilitas)</string>
     <string name="t_isrc_gap_installer_ne_initiating">Celah: installer ≠ initiating</string>
     <string name="t_isrc_gap_store_installer_sideload">Celah: installer store, initiating sideload</string>
@@ -432,24 +439,16 @@
     <string name="t_installed_applications_diff">Aplikasi terpasang: berbeda (JVM x pm)</string>
     <string name="t_selinux_status">Halaman status SELinux (policyload/seq)</string>
     <string name="t_selinux_policy_probe">Sonda kebijakan SELinux (tipe + AVC)</string>
-    <string name="t_manager_doors">Manajer root/Xposed: visibilitas per pintu PackageManager</string>
+    <string name="t_manager_doors">Visibilitas aplikasi pengelola</string>
     <string name="t_net_sock_diag">Kebijakan Netlink sock_diag</string>
-    <string name="n_net_sock_diag">Aplikasi terbatas harus ditolak NETLINK_SOCK_DIAG; balasan berarti kebijakan netlink dilonggarkan.</string>
     <string name="t_mount_peer_gap">Integritas peer-group mount</string>
-    <string name="n_mount_peer_gap">Kumpulan id peer-group harus terbaca sama di setiap lensa; celah per lensa berarti mount tersembunyi.</string>
     <string name="t_mount_fdinfo_mnt">Mount id vs deskriptor terbuka</string>
-    <string name="n_mount_fdinfo_mnt">Deskriptor terbuka yang mnt_id-nya tidak ada di mountinfo menunjuk ke mount yang disembunyikan dari tampilan.</string>
-    <string name="t_proc_readproc_gid">GID 3009 zygote (AID_READPROC)</string>
-    <string name="n_proc_readproc_gid">Hilangnya GID tambahan AID_READPROC adalah jejak yang ditinggalkan sebagian modul penyembunyi aplikasi.</string>
+    <string name="t_proc_readproc_gid">GID tambahan zygote</string>
     <string name="t_proc_fd_graph">Sensus deskriptor</string>
     <string name="t_mem_anon_exec">Pemetaan eksekutabel anonim</string>
-    <string name="n_mem_anon_exec">Halaman eksekutabel tanpa berkas pendukung adalah residu injeksi/Zygisk yang khas; jumlahnya harus cocok antar lensa.</string>
     <string name="t_kernel_selfbuild">Kernel rakitan sendiri / ditambal</string>
-    <string name="n_kernel_selfbuild">Kernel pabrikan tak membawa penanda build -dirty, git, atau SUSFS; penanda harus cocok antar lensa.</string>
     <string name="t_tee_soter">Layanan Soter vs properti</string>
-    <string name="n_tee_soter">Memeriksa silang program layanan Soter dari Tencent dengan status properti layanannya.</string>
     <string name="t_proc_cgroup_format">Format jalur cgroup</string>
-    <string name="n_proc_cgroup_format">Kontainer klon / dual-app membuat jalur cgroup terpadu menyimpang dari bentuk kanonik uid_/pid_.</string>
     <string name="t_gpu_vendor">Pabrikan GPU</string>
     <string name="t_gpu_renderer">Perender GPU</string>
     <string name="t_gpu_version">Versi GPU</string>
@@ -461,32 +460,119 @@
     <string name="t_tel_simSpecificCarrierId">ID operator SIM spesifik</string>
     <string name="t_tel_visualVoicemailPackageName">Paket pesan suara visual</string>
     <string name="t_keychain_blacklist">Daftar hitam sertifikat Keychain</string>
-    <string name="t_buildprop_vs_runtime">build.prop vs runtime</string>
-    <string name="note_boot_count">boot_count (framework) hanya bertambah; Phenotype_boot_count (layanan Play) adalah snapshot-nya dan bisa tertinggal. Divergen hanya jika snapshot melampaui boot_count (reset).</string>
-    <string name="note_isrc_initiator_sig">Sertifikat yang dicatat sistem untuk penginstal saat aplikasi ini dipasang berbeda dari yang dilaporkan penginstal sekarang. Penyebabnya penginstal yang diganti atau tanda tangan yang dipalsukan; ROM yang menandatangani ulang sistem dan melaporkan sertifikat asli vendor (mis. Xiaomi.eu) menampilkannya di setiap perangkat.</string>
+    <string name="t_buildprop_vs_runtime">Konsistensi properti build</string>
     <string name="t_concealment">Penyembunyian aplikasi</string>
-    <string name="note_concealment">Paket yang disembunyikan dari daftar aplikasi tetapi masih dapat dijangkau lewat pintu PackageManager lain (info paket, createPackageContext, APK yang dibuka, launch intent) tersembunyi di satu pintu tetapi tidak di pintu lain - tanda penyembunyi aplikasi yang parsial.</string>
     <string name="t_prop_variants">Varian per partisi: %1$s</string>
     <string name="t_prop_enum">Enumerasi properti vs getprop</string>
-    <string name="note_prop_variants">Sufiks yang sama muncul per partisi (system, vendor, product, odm, dlkm...). Nilai yang seharusnya cocok di semua tempat tetapi berbeda, atau terbelah dalam satu garis keturunan, membongkar spoof parsial - fingerprint yang diubah di sebagian partisi tetapi tidak di partisi lain.</string>
-    <string name="note_prop_enum">Menghitung area properti secara native (__system_property_foreach) dan membandingkannya dengan getprop dari proses lain membongkar properti yang disembunyikan dari shell atau disuntikkan pada satu jalur tetapi tidak jalur lain.</string>
-    <string name="t_dlphdr">Modul loader (dl_iterate_phdr)</string>
-    <string name="t_frida_port">Pindai port Frida</string>
-    <string name="note_dlphdr">dl_iterate_phdr mendaftar modul yang dimuat lewat linker, bukan lewat /proc/self/maps, jadi hook yang menghapus entrinya dari maps tetap tercantum di sini. Kecocokan needle atau modul di luar allowlist sistem adalah kebocorannya.</string>
+    <string name="t_dlphdr">Modul yang dimuat</string>
+    <string name="t_frida_port">Port instrumentasi</string>
     <string name="t_ime_verdict">Vonis integritas keyboard</string>
     <string name="t_store_authenticity">Keaslian tanda tangan store/GMS</string>
     <string name="t_devgate">Koherensi setelan terkunci-Dev</string>
-    <string name="note_ime_verdict">Sebuah RASP perbankan (PayZapp/Zeta) menolak setiap keyboard aktif yang non-sistem dan dipasang dari luar allowlist store. IME non-sistem yang aktif dengan penginstal non-store ditandai.</string>
-    <string name="note_store_authenticity">Play Store, GMS, dan GSF harus membawa sertifikat penandatanganan Google. Paket store atau GMS yang ada tetapi ditandatangani dengan kunci lain adalah palsu, microG, atau store yang dikemas ulang.</string>
-    <string name="note_devgate">adb dan setelan terkunci-Dev lain hanya berubah saat Opsi pengembang aktif. Setelan terkunci yang non-default saat development_settings_enabled=0 hanya bisa disetel oleh root atau `settings put`.</string>
-    <string name="t_maps_exec">Peta exec tersuntik (deleted/memfd)</string>
-    <string name="t_anon_minor">Superblock anon-bdev tersembunyi</string>
-    <string name="note_maps_exec">Sebuah pemetaan yang dapat dieksekusi dari file (deleted)/memfd/ashmem yang RWX (melanggar W^X) atau diawali magic ELF adalah .so yang benar-benar disuntikkan, terlepas dari sistem berkas; trampolin JIT ART bukan keduanya dan dihitung jinak. Modul di luar allowlist sistem juga dihitung.</string>
-    <string name="note_anon_minor">Sistem berkas tanpa block device mengambil minor-nya dari pool anon global, padat dari bawah. Sebuah minor yang ada via stat() tetapi tak ada di mountinfo proses ini adalah superblock hidup yang tersembunyi di namespace privat (tmpfs sebuah daemon). Deretan panjang minor yang hilang adalah churn per aplikasi dan diabaikan; lubang pendek adalah petunjuknya.</string>
-    <string name="t_sb_tee_signer">Penanda tangan StrongBox × TEE</string>
+    <string name="t_maps_exec">Pemetaan memori dapat dieksekusi</string>
+    <string name="t_elf_in_anon">Image kode di memori anonim</string>
+    <string name="t_anon_exec_orphan">Memori dapat dieksekusi tanpa backing</string>
+    <string name="t_anon_minor">Sistem berkas tersembunyi</string>
+    <string name="t_sb_tee_signer">Profil attestation StrongBox</string>
+    <string name="t_sb_capability">Profil capability StrongBox</string>
+    <string name="t_sb_enforced">Level penerapan kunci StrongBox</string>
+    <string name="t_sb_version">Versi atestasi StrongBox</string>
+    <string name="t_sb_chain">Rantai atestasi StrongBox</string>
+    <string name="t_sb_rkp">Provisioning kunci StrongBox</string>
+    <string name="t_sb_latency">Waktu pembuatan kunci StrongBox</string>
     <string name="t_local_tmp_list">Daftar /data/local/tmp</string>
-    <string name="note_local_tmp_list">Mendaftar /data/local/tmp dengan getdents64 (bukan pencarian nama) memunculkan sisa apa pun yang benar-benar bisa dijangkau aplikasi, termasuk yang dijatuhkan modul. Di perangkat terkunci direktori milik shell dan tak bisa didaftar aplikasi, jadi EACCES adalah jawaban bersih; entri yang terlihat berarti sisa yang bisa dijangkau aplikasi.</string>
     <string name="t_nettype_consistency">Tipe jaringan vs antarmuka asli</string>
     <string name="t_flagsecure_honored">FLAG_SECURE dihormati (blokir tangkapan layar)</string>
+    <string name="t_procnet_frida">Soket instrumentasi</string>
+    <string name="t_procnet_tun">Antarmuka VPN</string>
+    <string name="t_mountinfo_iso">Entri mount</string>
+    <string name="t_adb_usb_exposure">Eksposur debugging ADB/USB</string>
+    <string name="t_anon_elf_struct">Struktur ELF di memori anonim</string>
+    <string name="t_atexit_drift">Drift runtime Atexit</string>
+    <string name="t_attestation_challenge_echo">Echo challenge attestation</string>
+    <string name="t_attest_synth_paradox">Attestation vs status runtime</string>
+    <string name="t_baseband_coherence">Koherensi versi baseband</string>
+    <string name="t_datadir_errno_oracle">Sonda direktori data paket</string>
+    <string name="t_device_id">Identitas perangkat attestation vs Build</string>
+    <string name="t_feature_spoof">Konsistensi fitur sistem</string>
+    <string name="t_fingerprint_rebuild">Rekonstruksi fingerprint</string>
+    <string name="t_gap_mapped">Cakupan peta memori</string>
+    <string name="t_heap_hook_xref">Referensi usang di heap</string>
+    <string name="t_hidden_app_usage_leak">Visibilitas paket via usage stats</string>
+    <string name="t_hidden_region_xref">Referensi heap ke region memori</string>
+    <string name="t_launch_sender_pkg_leak">Visibilitas paket IntentSender</string>
+    <string name="t_libc_identity">Konsistensi image libc</string>
+    <string name="t_lock_coherence">Koherensi kunci bootloader</string>
+    <string name="t_map_files_leak">Asal berkas terpeta</string>
+    <string name="t_multiuser_oracle">Visibilitas pengguna / private-space</string>
+    <string name="t_named_anon_exec">Pemetaan kode bernama anonim</string>
+    <string name="t_otacerts_signing_key">Kunci penandatanganan OTA (otacerts)</string>
+    <string name="t_pairip_wrapper">Pindai wrapper aplikasi</string>
+    <string name="t_phantom_monitor_prop">Prop flag phantom monitor</string>
+    <string name="t_phantom_monitor_setting">Setelan phantom monitor</string>
+    <string name="t_platform_signer">Penanda tangan platform (paket android)</string>
+    <string name="t_prov_fingerprint">Fingerprint RKP vs perangkat</string>
+    <string name="t_prov_manufacturer">Produsen RKP vs perangkat</string>
+    <string name="t_prov_vbmeta_reuse">vbmeta RKP vs runtime</string>
+    <string name="t_prov_verdict">Putusan verified boot RKP</string>
+    <string name="t_settings_stock_baseline">Baseline setelan developer/keamanan</string>
+    <string name="t_signature_source">Koherensi sumber sertifikat penandatanganan</string>
+    <string name="t_signature_sweep">Sapuan sertifikat penandatanganan (semua aplikasi)</string>
+    <string name="t_signing_keys">Kunci penandatanganan (diharapkan release-keys)</string>
+    <string name="t_statfs_consistency">Konsistensi ukuran penyimpanan</string>
+    <string name="t_verifier_adb_installs">Verifikasi aplikasi via USB (package verifier)</string>
+    <string name="t_zygisk_loader_footprint">Residu loader di memori</string>
+    <string name="t_zygote_gid">Konsistensi GID zygote</string>
     <string name="about_trademarks">VD Infos adalah alat riset dan diagnostik yang independen dan tidak resmi. Alat ini tidak berafiliasi dengan, tidak didukung oleh, dan tidak disponsori oleh vendor mana pun yang perangkat lunak, layanan, atau mereknya dibaca, dideteksi, atau disebutkannya (termasuk Google LLC dan Android Open Source Project). \"Android\", \"Google\", \"Google Play\", \"Play Integrity\", \"Widevine\" serta semua nama produk, logo, dan merek dagang lainnya adalah milik pemiliknya masing-masing. VD Infos hanya membaca apa yang sudah ada di perangkat Anda dan tidak mengirimkan apa pun ke mana pun.</string>
+    <string name="note_art_dexopt_self">Sinyal kesehatan, bukan tell root. base.odex AOT ada di disk tetapi aplikasi berjalan ter-interpretasi (tanpa pemetaan executable), artinya odex ditolak (boot-image usang, boot image ART berubah setelah pembaruan apex). Aplikasi layanan dan verifikasi aplikasi Play Protect lalu bisa gagal dimulai tepat waktu. Proksi sisi pengguna; pemeriksaan otoritatif ada di sisi root.</string>
+    <string name="sol_art_dexopt_self">Kompilasi ulang sebagai root (pm compile -a -m speed) atau reboot untuk membuat ulang boot image dan men-dexopt ulang aplikasi.</string>
+    <string name="sol_atexit_drift">Handler keluar libc __cxa_atexit dan __cxa_finalize harus resolve di dalam libc. Ketika keduanya resolve ke pustaka lain atau region anonim, sebuah injector bergaya Zygisk telah menyisipkannya. Hapus injeksi dari proses ini.</string>
+    <string name="sol_baseband_coherence">Versi modem dilaporkan oleh getRadioVersion dan keluarga gsm.version.baseband secara setara; semuanya membaca firmware yang sama. Ketika satu sumber tidak cocok, sebuah spoof properti menambal sebagian alias tetapi tidak semua. Jaga setiap sumber versi baseband tetap identik.</string>
+    <string name="sol_boot">Atestasi perangkat keras (TEE) melaporkan status boot. Tambahkan paket aplikasi ini ke daftar target alat keybox Anda agar melaporkan perangkat yang terkunci dan terverifikasi.</string>
+    <string name="sol_datadir_errno_oracle">stat pada direktori data sebuah paket dapat mengungkapkannya sebagai terpasang bahkan tanpa kueri paket. Tambahkan paket seperti itu ke framework penyembunyian Anda (HMA-OSS) agar direktori datanya terbaca sebagai tidak ada, bukan sekadar ditolak.</string>
+    <string name="sol_device_id">Identitas perangkat keras atestasi (brand, device, manufacturer) tidak cocok dengan properti build, sehingga verifier dapat mengetahui bahwa propertinya di-spoof. Selaraskan ro.product.brand, ro.product.device, dan ro.product.manufacturer dengan nilai yang di-atestasi perangkat keras (product dan model wajar berbeda: atestasi membawa codename).</string>
+    <string name="sol_feature_spoof">hasSystemFeature, getSystemAvailableFeatures, dan node perangkat keras tidak sepakat tentang suatu fitur perangkat, sehingga sebuah fitur disembunyikan atau dipalsukan melalui satu jalur tetapi tidak jalur lain. Buat setiap jalur kueri fitur dan perangkat keras melaporkan keberadaan yang sama.</string>
+    <string name="sol_fingerprint_rebuild">Build fingerprint disusun saat build sebagai BRAND/PRODUCT/DEVICE:RELEASE/ID/INCREMENTAL:TYPE/TAGS. Ketika Build.FINGERPRINT tidak sama dengan rekonstruksi dari field komponennya sendiri, sebuah spoof mengubah fingerprint tanpa menyelaraskan setiap komponen (atau sebaliknya). Buat fingerprint dan komponennya konsisten.</string>
+    <string name="sol_hidden_app_usage_leak">Sebuah paket dapat muncul melalui API usage-stats bahkan ketika disingkirkan dari daftar paket terpasang. Tambahkan paket seperti itu ke framework penyembunyian Anda (HMA-OSS) agar juga tersembunyi dari API usage-stats, bukan hanya dari daftar paket.</string>
+    <string name="sol_launch_sender_pkg_leak">Pada ROM yang terukur, IntentSender yang dikembalikan hanya di-key oleh (caller, name): field creator-nya milik caller dan equals hanya berbeda pada name, sehingga tidak membawa sinyal terpasang/tersembunyi (membandingkan dengan name acak yang tidak ada adalah false positive). Ia hanya bocor jika sebuah paket terpasang yang terlihat dan sebuah name yang tidak ada berbeda pada field yang independen dari caller; jika demikian, buat framework penyembunyian (HMA-OSS) mengembalikan ekuivalen-tidak-ada untuk paket tersembunyi.</string>
+    <string name="sol_libc_identity">Pemetaan libc yang dimuat (device dan inode) tidak cocok dengan file libc.so di disk, sehingga pustaka itu diganti atau di-bind-mount (libc yang di-hook). Sajikan libc asli, atau sembunyikan mount pengganti dari aplikasi.</string>
+    <string name="sol_lock_coherence">Pada perangkat stock yang terkunci, setiap properti bootloader-lock dan verified-boot sepakat: flash.locked=1, verifiedbootstate=green, vbmeta.device_state=locked, warranty untripped. Ketika satu mengklaim terkunci sementara yang lain masih terbaca tidak terkunci, sebuah spoof menambal sebagian tetapi tidak semuanya. Normalkan setiap properti lock ke status yang sama.</string>
+    <string name="sol_otacerts_signing_key">Sertifikat penandatanganan OTA (otacerts.zip) adalah test key AOSP publik, sehingga build terbaca sebagai test-signed bahkan ketika ro.build.tags mengklaim release-keys. Sajikan otacerts.zip yang di-release-sign melalui modul pengalihan file Anda dan selaraskan ro.*.build.tags di setiap partisi agar file dan properti sepakat.</string>
+    <string name="sol_perm_path_coherence">Izin yang sama di-resolve oleh beberapa jalur kode: PackageManager.checkPermission, Context.checkPermission(perm,pid,uid), flag granted dari getPackageInfo(GET_PERMISSIONS), dan binder tingkat rendah IPackageManager.checkUidPermission. Pada sistem yang tidak tersentuh semua jalur yang terjangkau sepakat, dan sebuah izin istimewa (START_ANY_ACTIVITY, INSTALL_PACKAGES, MANAGE_USERS) ditolak pada setiap jalur. Sebuah hook yang memalsukan atau menyembunyikan izin pada satu jalur tetapi tidak pada jalur lain, atau yang memberikan izin istimewa yang tidak mungkin dipegang aplikasi biasa, menyimpang di sini. Resolve izin secara konsisten di setiap jalur; jangan spoof pemberian hanya pada jalur yang kebetulan dibaca detektor.</string>
+    <string name="sol_phantom_monitor">Perangkat stock tidak mengekspos apakah monitor phantom-process diubah. Tambahkan setelan ini ke preset spoof framework penyembunyian Anda (HMA-OSS) agar terbaca seperti pada perangkat stock, dan hindari properti override feature-flag.</string>
+    <string name="sol_platform_signer">Tanda tangan paket platform (android) mengungkapkan penanda tangan non-OEM (ROM kustom atau test key AOSP) atau OEM yang tidak cocok dengan manufacturer yang diklaim. Spoof tanda tangan platform (seperti yang dilakukan spoofSignature milik PlayIntegrityFork) agar paket android melaporkan sertifikat platform OEM yang diklaim.</string>
+    <string name="sol_prov_fingerprint">Fingerprint RKP (dari sertifikat RKP) tidak cocok dengan build fingerprint perangkat ini, sehingga keybox milik perangkat lain. Gunakan keybox yang di-provision pada perangkat ini.</string>
+    <string name="sol_prov_vbmeta_reuse">vbmeta_digest RKP (dari sertifikat RKP) tidak cocok dengan hash verified boot runtime perangkat, sehingga keybox di-provision pada perangkat lain (keybox yang dipakai ulang atau dibagikan) atau perangkat diperbarui setelah provisioning. Gunakan keybox yang di-provision pada perangkat ini.</string>
+    <string name="sol_prov_verdict">Sertifikat RKP mencatat boot perangkat sebagai tidak disetujui, sehingga backend RKP menandai perangkat ini. Gunakan keybox yang di-provision pada perangkat yang disetujui backend.</string>
+    <string name="sol_signature_source">Sertifikat penandatanganan yang dibaca dari catatan PackageManager dan yang di-parse dari file APK di disk harus cocok, dan PackageManager harus mengenali sertifikat file-APK (hasSigningCertificate, checkSignatures). Ketika keduanya menyimpang, sebuah hook tingkat PackageManager menulis ulang tanda tangan yang dilaporkan tanpa menyentuh APK sebenarnya. Pembacaan APK langsung tetap melihat sertifikat asli.</string>
+    <string name="sol_signature_sweep">Untuk setiap aplikasi terpasang, sertifikat penandatanganan dari catatan PackageManager dan yang di-parse dari file APK-nya berbagi satu penanda tangan. Aplikasi yang kedua himpunannya terpisah berarti tanda tangan PackageManager-nya di-spoof sementara APK di disk mempertahankan yang asli. Rotasi kunci mempertahankan penanda tangan bersama, jadi tidak ditandai.</string>
+    <string name="sol_signing_keys">Build produksi ditandatangani dengan release-keys. Properti signing-key yang terbaca test-keys atau dev-keys (dengan metode apa pun) mengungkap build kustom atau debug. Pulihkan release-keys di build.tags dan properti *.keys per-partisi.</string>
+    <string name="sol_spoof">Setelan ini tidak terbaca secara konsisten. Tambahkan ke preset spoof HMA-OSS agar setiap jalur mengembalikan nilai yang sama.</string>
+    <string name="sol_statfs_consistency">android.os.StatFs dan pembacaan statvfs native tidak sepakat soal ukuran penyimpanan, sehingga ukuran di-spoof melalui API framework Java tetapi tidak secara native. Buat jalur StatFs dan native melaporkan nilai yang sama.</string>
+    <string name="sol_zygote_gid">zygote memberikan sebuah proses GID tambahannya dari izin yang diberikan aplikasi: INTERNET menyiratkan 3003, BLUETOOTH 3002, dan seterusnya. Sebuah izin yang diberikan tetapi GID-nya tidak ada di getgroups(2) berarti sebuah penyembunyi menyaring izin zygote: ia menyembunyikan aplikasi tetapi bertentangan dengan himpunan izin, yang dibaca aplikasi mana pun pada dirinya sendiri. Jangan buang GID yang dibutuhkan oleh izin yang diberikan (misalnya, jangan pernah hapus INET_GID selama INTERNET diberikan).</string>
+    <string name="summary_all_agreed_mark" translatable="false">🏆 ✓ </string>
+    <string name="t_boot_triad_coherence">Konsistensi status verified-boot</string>
+    <string name="t_build_vs_prop">android.os.Build vs prop kanonis (per field identitas)</string>
+    <string name="t_debug_ramdisk">Isi /debug_ramdisk</string>
+    <string name="t_isrc_gap_forged_store_install">Koherensi store installer</string>
+    <string name="t_isrc_gap_store_pkgsource_other">Celah: installer store, packageSource tidak mirip store</string>
+    <string name="t_loop_orphan">Perangkat loop yatim</string>
+    <string name="t_perm_path_coherence">Konsistensi pemeriksaan izin</string>
+    <string name="t_rom_identity">SoC vs identitas perangkat yang dideklarasikan</string>
+    <string name="t_settings_read_gate">Gerbang baca setelan terbatas</string>
+    <string name="t_stock_path_hidden">Visibilitas path sistem</string>
+    <string name="t_strongbox_level">Level atestasi dukungan StrongBox</string>
+    <string name="t_uid_hidden_running">UID berjalan vs daftar paket</string>
+    <string name="t_uid_priority_fake">Prioritas penjadwalan proses</string>
+    <string name="t_version_cluster">Koherensi cluster version-state (release vs preview)</string>
+    <string name="usage_access_body">Mendeteksi paket yang disembunyikan dari daftar paket terpasang melalui API usage-stats memerlukan akses Penggunaan. Berikan ke aplikasi ini di setelan sistem, lalu kembali.</string>
+    <string name="usage_access_open">Buka setelan</string>
+    <string name="usage_access_title">Perlu akses Penggunaan</string>
+    <string name="sol_loop_orphan">Pada perangkat stok setiap loop ext4 didukung oleh mount sistem dalam namespace ini. Loop tanpa titik mount sistem adalah modul atau overlay yang di-mount di luar tata letak stok. Mount loop semacam itu di bawah path sistem, atau simpan dalam mount namespace yang tidak dibagikan ke aplikasi ini.</string>
+    <string name="sol_debug_ramdisk">Pada boot stok /debug_ramdisk kosong atau tidak ada. Berkas yang disiapkan di sana adalah payload root atau modul early-boot. Bersihkan konten yang disiapkan di /debug_ramdisk, atau simpan dalam namespace yang tidak dapat dibaca aplikasi ini.</string>
+    <string name="sol_stock_path_hidden">Sebuah path sistem Android standar ada pada perangkat stok, jadi path stok yang terbaca tidak ada berarti lapisan penyembunyian menyembunyikannya secara berlebihan, dan itu sendiri adalah petunjuk. Sembunyikan hanya path root dan modul, jangan pernah path yang ada pada perangkat bersih.</string>
+    <string name="sol_rom_identity">Pada perangkat yang jujur, identitas SoC, baseband dan init cocok dengan merek dan model yang dinyatakan. Ketika sebuah property identitas ROM atau perangkat keras bertentangan dengan perangkat yang diklaim, spoof fingerprint menutupi property produk tetapi bukan yang perangkat keras. Jaga setiap permukaan identitas (SoC, baseband, init.svc, cpuinfo) konsisten dengan perangkat yang di-spoof.</string>
+    <string name="sol_version_cluster">Build stok konsisten dengan dirinya sendiri soal status rilis: codename, SDK release-or-preview dan token fingerprint semuanya terbaca release, atau semuanya terbaca preview, tidak pernah campuran. Ketika satu sinyal terbaca release sementara yang lain terbaca preview, sebuah spoof mengubah sebagian property versi tetapi tidak semuanya. Selaraskan setiap sinyal status-versi ke channel yang sama.</string>
+    <string name="sol_multiuser_oracle">Pengguna sekunder atau ruang privat bocor ketika stat pada /data/user/&lt;id&gt; membacanya ada sementara UserManager tidak mencantumkannya. Buat keduanya konsisten: jaga agar direktori data pengguna tidak terjangkau oleh aplikasi tanpa hak istimewa, atau jangan sembunyikan pengguna yang masih terungkap oleh direktorinya sendiri.</string>
+    <string name="sol_prov_manufacturer">Produsen RKP (dari sertifikat RKP) tidak cocok dengan perangkat ini, jadi keybox diprovisikan untuk perangkat lain. Gunakan keybox yang diprovisikan pada perangkat ini.</string>
 </resources>

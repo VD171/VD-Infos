@@ -2,7 +2,7 @@
 <!--
     ======================================================================
      VD INFOS  ::  method debugger
-     Read every device info by every method, then compare. A divergence is a hook.
+     Read every device info by every method, then compare.
 
      Copyright (C) 2026  VD171
      SPDX-License-Identifier: AGPL-3.0-or-later
@@ -15,8 +15,9 @@
      Source         : https://github.com/VD171/VD-Infos
      GitHub         : @VD171 https://github.com/VD171
      XDA-Developers : @VD171 https://xdaforums.com/m/vd171.4699873/
+     XDA thread     : https://xdaforums.com/t/VD-Infos.4097379/
      Telegram       : @VD_Priv8 https://t.me/VD_Priv8
-     Telegram       : @Priv8_VD https://t.me/Priv8_VD
+     Channel        : @Priv8_VD https://t.me/Priv8_VD
      Discord        : @VD.Priv8 https://discord.com/users/1296831918989639721
      E-mail         : vd.priv8@pm.me
     ======================================================================
@@ -90,6 +91,7 @@
     <string name="crash_title">意外错误</string>
     <string name="crash_body">应用遇到意外错误。没有向任何地方发送任何内容。您可以复制下方详情并发送给开发者。</string>
     <string name="about_project">项目</string>
+    <string name="about_see_also">另请参阅</string>
     <string name="about_support">下载与支持</string>
     <string name="action_clear">清除搜索</string>
     <string name="lang_dialog_title">语言</string>
@@ -100,29 +102,27 @@
     <!-- 解决方案 -->
     <string name="sol_title">如何修复</string>
     <string name="card_details">详情</string>
-    <string name="sol_boot">这是硬件认证 (TEE) 报告的启动状态。keybox 绕过工具（TrickyStore、TEE Simulator、OhMyKeyMint）只会为您指定的应用重写认证。将此应用的包名添加到这些工具的目标列表（如 target.txt），使其认证报告为已锁定设备且 verified boot 为绿色。</string>
-    <string name="sol_root_detector">这些已安装的应用会查找 root、模拟器或失败的 Play Integrity。将此处找到的包名作为目标添加到您的隐藏框架（HMA-OSS），使您的应用和 root 模块对这些检测器隐藏。</string>
-    <string name="sol_spoof">此设置在应用可能使用的各个路径中读取结果不同（spoof 未覆盖全部）。将该设置添加到 HMA-OSS 的 spoof 预设，使每条读取路径都返回相同的值。</string>
-    <string name="sol_attest_patch">key attestation 报告的补丁级别与系统属性不同。在你的 keybox 工具中设置 - TrickyStore 用 security_patch.txt（日期，或 system=/boot=/vendor=/all=，或 \'prop\'）；OhMyKeymint 用 config.toml 的 [trust]。两者都只改 attestation，不改属性。</string>
-    <string name="sol_patch_prop">Build.VERSION.SECURITY_PATCH（框架）与 ro.build.version.security_patch 属性显示的日期不同。用 resetprop 对齐它们。security_patch.txt 和 config.toml 在这里没用 - 它们只改 key attestation，不改属性。</string>
+    <string name="sol_root_detector">这些已安装应用在找 root。把这里找到的包作为目标加入你的隐藏框架（HMA-OSS）。</string>
+    <string name="sol_attest_patch">证明报告的 security patch 与 property 不同。在你的 keybox 工具中设置（TrickyStore security_patch.txt，OhMyKeymint config.toml [trust]）；只改证明。</string>
+    <string name="sol_patch_prop">framework 与 property 显示不同的补丁日期。用 resetprop 对齐；keybox 工具只改证明，不改 properties。</string>
 
-    <string name="note_gsf">在 Android 16 及更高版本中不存在：Google 服务存储已迁移到 Play Services，其入口被 Google 自己命名为 &quot;do.not.use&quot;，且不响应其他应用。以上两者都会尝试。</string>
     <string name="t_attestation_app_id">证明应用 ID（包名 + 签名）</string>
     <string name="t_dev_ptmx_present">存在 /dev/ptmx</string>
     <string name="t_documents_providers">已注册的 DocumentsProviders</string>
     <string name="t_kernel_modules">已加载的内核模块（KernelSU/SuSFS）</string>
-    <string name="t_kernel_syscall_fingerprint">按 syscall 指纹判断的内核版本</string>
+    <string name="t_kernel_syscall_fingerprint">内核版本交叉核对</string>
     <string name="t_key_inside_secure_hw">密钥位于安全硬件中（KeyInfo）</string>
     <string name="t_rot_ec_vs_rsa">证明信任根：EC 与 RSA 请求</string>
     <string name="t_leaf_sig_alg">证明叶证书：密钥与签名算法</string>
     <string name="t_batch_key_ec_vs_rsa">证明密钥：EC 链与 RSA 链</string>
+    <string name="t_native_vs_jvm">证明：原生 keystore2 对比 JVM</string>
     <string name="t_local_tmp_contents">/data/local/tmp 的内容</string>
     <string name="t_native_lib_origin">本地库来源（dladdr）</string>
     <string name="t_own_debuggable">本应用：debuggable / 调试构建</string>
     <string name="t_play_store_version">Play Store / GMS 版本</string>
     <string name="t_resolv_conf">resolv.conf / DNS 配置</string>
     <string name="t_root_backup_tools">存在需要 root 的备份工具</string>
-    <string name="t_su_libc_inline_hook">su：原始 syscall 与 libc、Java 对比</string>
+    <string name="t_su_libc_inline_hook">跨层的 su 解析</string>
     <string name="t_system_build_prop">/system/build.prop</string>
     <string name="t_system_build_prop_present">存在 /system/build.prop</string>
     <string name="t_adb_enabled">ADB 已启用</string>
@@ -192,7 +192,7 @@
     <string name="t_imei">IMEI</string>
     <string name="t_imsi_subscriber">IMSI（订户）</string>
     <string name="t_incremental">Incremental</string>
-    <string name="t_injected_libs_proc_self_maps">注入的库 (/proc/self/maps)</string>
+    <string name="t_injected_libs_proc_self_maps">注入的库</string>
     <string name="t_installed_app_signing_digests">已安装应用签名摘要</string>
     <string name="t_installed_applications">已安装应用程序</string>
     <string name="t_installed_input_methods">已安装的输入法</string>
@@ -202,13 +202,9 @@
     <string name="t_kernel_version">内核（版本）</string>
     <string name="t_kernel_version_string">内核（版本字符串）</string>
     <string name="t_kernel_version_claim">内核版本声明（ro.kernel.version 对比 uname）</string>
-    <string name="note_kernel_version_claim">ro.kernel.version 属性本应反映正在运行的内核。若它声明的 major.minor 与真实 uname release 不符，则是某个解析器设置了该属性，而下面的内核另有其物。</string>
     <string name="t_kernel_build_date">内核编译日期 对比 ROM</string>
-    <string name="note_kernel_build_date">预构建的 GKI 内核比其所在的 ROM 更旧或与之相符。在 ROM 组装很久之后编译的内核是后来重新编译或刷入的，这是手动编译内核的常见迹象。</string>
     <string name="t_kernel_config">内核配置（/proc/config.gz）</string>
-    <string name="note_kernel_config">内核配置在可读时会列出编译进去的补丁：KSU、SUSFS、自定义 local version、未强制的模块签名。应用沙盒常拒绝此文件；在旧版 Android、自定义 ROM 和 root shell 上可读。</string>
     <string name="t_kernel_module_scan">内核模块与符号</string>
-    <string name="note_kernel_module_scan">扫描 /sys/module 和 /proc/kallsyms 的符号名，查找 ksu、susfs 和 magisk，被打补丁或加载模块的内核会暴露它们。两个面通常受限；在域允许处可读。</string>
     <string name="t_kernel_cmdline">内核 cmdline</string>
     <string name="t_kernel_log">内核日志</string>
     <string name="t_kernel_stat">内核 stat</string>
@@ -285,8 +281,8 @@
     <string name="t_verified_boot_hash_vbmeta_digest">Verified boot 哈希 / vbmeta 摘要</string>
     <string name="t_verified_boot_key">Verified boot 密钥</string>
     <string name="t_verified_boot_state">Verified boot 状态</string>
-    <string name="t_prop_area_tamper">属性区域篡改（漏洞/上下文）</string>
-    <string name="t_supplementary_groups">补充组 (3009=AID_READPROC)</string>
+    <string name="t_prop_area_tamper">系统属性区域</string>
+    <string name="t_supplementary_groups">补充组</string>
     <string name="t_version_codename">版本代号</string>
     <string name="t_webview_provider">WebView 提供者</string>
     <string name="t_webview_user_agent">WebView user agent</string>
@@ -322,6 +318,17 @@
     <string name="t_queryintentservices_main">queryIntentServices (MAIN)</string>
     <string name="t_resolveactivity_main_launcher">resolveActivity (MAIN/LAUNCHER)</string>
     <string name="t_su_binary">su 二进制文件</string>
+    <string name="t_setuid_root">特权二进制文件</string>
+    <string name="t_root_dirs_present">系统目录可见性</string>
+    <string name="t_maps_isolated">注入的模块</string>
+    <string name="t_inline_hooks">代码钩子</string>
+    <string name="t_linker_maps_gap">隐藏的库</string>
+    <string name="t_tracerpid_iso">已附加调试器</string>
+    <string name="t_fd_iso">打开的句柄</string>
+    <string name="t_selinux_iso">安全上下文</string>
+    <string name="t_su_iso">超级用户访问</string>
+    <string name="t_prop_dual_iso">系统属性</string>
+    <string name="t_smaps_iso">可写可执行内存</string>
     <string name="t_su_on_path">PATH 中的 su</string>
     <string name="t_tel_networkOperatorName">网络运营商名称</string>
     <string name="t_tel_networkOperator">网络运营商 (MCC+MNC)</string>
@@ -413,7 +420,7 @@
     <string name="t_isrc_self_originating">安装来源 (self): originating</string>
     <string name="t_isrc_self_pkgsource">安装来源 (self): packageSource</string>
     <string name="t_isrc_self_initiator_sig">安装来源 (self): initiator 证书 vs 已安装</string>
-    <string name="t_isrc_gap_jvm_store_pm_denies">差异: JVM 称 store installer，pm 否认 (hook)</string>
+    <string name="t_isrc_gap_jvm_store_pm_denies">安装器：JVM 与 pm</string>
     <string name="t_isrc_gap_jvm_pm_other">差异: installer JVM ≠ installer pm (可见性)</string>
     <string name="t_isrc_gap_installer_ne_initiating">差异: installer ≠ initiating</string>
     <string name="t_isrc_gap_store_installer_sideload">差异: store installer，initiating 为 sideload</string>
@@ -432,24 +439,16 @@
     <string name="t_installed_applications_diff">已安装应用程序: 差异 (JVM x pm)</string>
     <string name="t_selinux_status">SELinux status 页 (policyload/seq)</string>
     <string name="t_selinux_policy_probe">SELinux 策略探针 (类型 + AVC)</string>
-    <string name="t_manager_doors">root/Xposed 管理器：按 PackageManager 入口的可见性</string>
+    <string name="t_manager_doors">管理器应用可见性</string>
     <string name="t_net_sock_diag">Netlink sock_diag 策略</string>
-    <string name="n_net_sock_diag">受限应用应被拒绝 NETLINK_SOCK_DIAG；若有回复，说明 netlink 策略被放宽。</string>
     <string name="t_mount_peer_gap">挂载 peer-group 完整性</string>
-    <string name="n_mount_peer_gap">peer-group id 集合应在每个视角读到相同；某个视角出现缺口即表示存在被隐藏的挂载。</string>
     <string name="t_mount_fdinfo_mnt">挂载 id 与打开的描述符</string>
-    <string name="n_mount_fdinfo_mnt">mnt_id 不在 mountinfo 中的已打开描述符，指向一个从视图中被隐藏的挂载。</string>
-    <string name="t_proc_readproc_gid">zygote 的 GID 3009 (AID_READPROC)</string>
-    <string name="n_proc_readproc_gid">缺失 AID_READPROC 附加 GID 是某些应用隐藏模块留下的痕迹。</string>
+    <string name="t_proc_readproc_gid">zygote 附加 GID</string>
     <string name="t_proc_fd_graph">描述符普查</string>
     <string name="t_mem_anon_exec">匿名可执行映射</string>
-    <string name="n_mem_anon_exec">没有后备文件的可执行页是典型的注入/Zygisk 残留；数量应在各视角间一致。</string>
     <string name="t_kernel_selfbuild">自编译 / 打补丁内核</string>
-    <string name="n_kernel_selfbuild">原厂内核不带 -dirty、git 或 SUSFS 构建标记；标记应在各视角间一致。</string>
     <string name="t_tee_soter">Soter 服务与属性</string>
-    <string name="n_tee_soter">将腾讯 Soter 服务程序与其服务属性状态进行交叉核对。</string>
     <string name="t_proc_cgroup_format">cgroup 路径格式</string>
-    <string name="n_proc_cgroup_format">克隆 / 双开容器会使统一 cgroup 路径偏离规范的 uid_/pid_ 形式。</string>
     <string name="t_gpu_vendor">GPU 制造商</string>
     <string name="t_gpu_renderer">GPU 渲染器</string>
     <string name="t_gpu_version">GPU 版本</string>
@@ -461,32 +460,119 @@
     <string name="t_tel_simSpecificCarrierId">特定 SIM 运营商 ID</string>
     <string name="t_tel_visualVoicemailPackageName">可视语音信箱软件包</string>
     <string name="t_keychain_blacklist">Keychain 证书黑名单</string>
-    <string name="t_buildprop_vs_runtime">build.prop vs runtime</string>
-    <string name="note_boot_count">boot_count（框架）只增不减；Phenotype_boot_count（Play 服务）是其快照，可能滞后。仅当快照超过 boot_count 时才判为分歧（被重置）。</string>
-    <string name="note_isrc_initiator_sig">安装此应用时系统为安装程序记录的证书，与安装程序现在报告的证书不同。原因是安装程序被替换或签名被伪造；重新签名系统并报告厂商原始证书的 ROM（例如 Xiaomi.eu）在每台设备上都会出现此情况。</string>
+    <string name="t_buildprop_vs_runtime">构建属性一致性</string>
     <string name="t_concealment">应用隐藏</string>
-    <string name="note_concealment">从应用列表隐藏但仍可通过 PackageManager 的另一扇门（包信息、createPackageContext、打开的 APK、launch intent）访问的软件包，在一扇门被隐藏而另一扇门没有 - 这是不完整应用隐藏工具的标志。</string>
     <string name="t_prop_variants">分区变体：%1$s</string>
     <string name="t_prop_enum">属性枚举 vs getprop</string>
-    <string name="note_prop_variants">同一后缀会按分区出现（system、vendor、product、odm、dlkm...）。本应处处一致却不同、或在同一血统内分裂的值，会暴露部分伪造 - 指纹只改了部分分区而非全部。</string>
-    <string name="note_prop_enum">用原生方式枚举属性区（__system_property_foreach）并与另一进程的 getprop 对比，可暴露对 shell 隐藏、或只注入到一条路径的属性。</string>
-    <string name="t_dlphdr">加载器模块 (dl_iterate_phdr)</string>
-    <string name="t_frida_port">Frida 端口扫描</string>
-    <string name="note_dlphdr">dl_iterate_phdr 通过链接器而非 /proc/self/maps 枚举已加载模块，因此从 maps 抹掉自身条目的 hook 仍会列在这里。命中 needle 或位于系统允许列表之外的模块即是泄漏。</string>
+    <string name="t_dlphdr">已加载的模块</string>
+    <string name="t_frida_port">插桩端口</string>
     <string name="t_ime_verdict">键盘完整性判定</string>
     <string name="t_store_authenticity">商店/GMS 签名真实性</string>
     <string name="t_devgate">开发者门控设置的一致性</string>
-    <string name="note_ime_verdict">银行 RASP（PayZapp/Zeta）会拒绝任何非系统且从商店允许列表之外安装的已启用键盘。安装来源非商店的非系统已启用输入法会被标记。</string>
-    <string name="note_store_authenticity">Play 商店、GMS 和 GSF 必须带有 Google 的签名证书。存在但由其他密钥签名的商店或 GMS 包即为伪造、microG 或重打包商店。</string>
-    <string name="note_devgate">adb 等开发者门控设置只有在开发者选项开启时才能更改。development_settings_enabled=0 时仍为非默认值的门控设置，只可能由 root 或 `settings put` 设置。</string>
-    <string name="t_maps_exec">注入的可执行映射 (deleted/memfd)</string>
-    <string name="t_anon_minor">隐藏的 anon-bdev 超级块</string>
-    <string name="note_maps_exec">以 (deleted)/memfd/ashmem 文件为后端的可执行映射，若为 RWX（违反 W^X）或以 ELF 魔数开头，即为真正注入且已从文件系统脱钩的 .so；ART 的 JIT 蹦床两者皆非，计为良性。系统允许列表之外的模块也计入。</string>
-    <string name="note_anon_minor">没有块设备的文件系统从全局匿名池取得次设备号，自底部密集分布。经 stat() 存在但在本进程 mountinfo 中缺失的次设备号，是隐藏于私有命名空间的活动超级块（守护进程的 tmpfs）。缺失次设备号的长连续段是按应用的 churn，予以忽略；短空洞才是线索。</string>
-    <string name="t_sb_tee_signer">StrongBox × TEE 签名者</string>
+    <string name="t_maps_exec">可执行内存映射</string>
+    <string name="t_elf_in_anon">匿名内存中的代码映像</string>
+    <string name="t_anon_exec_orphan">无后备的可执行内存</string>
+    <string name="t_anon_minor">隐藏的文件系统</string>
+    <string name="t_sb_tee_signer">StrongBox 认证画像</string>
+    <string name="t_sb_capability">StrongBox capability 配置文件</string>
+    <string name="t_sb_enforced">StrongBox 密钥强制级别</string>
+    <string name="t_sb_version">StrongBox 证明版本</string>
+    <string name="t_sb_chain">StrongBox 证明链</string>
+    <string name="t_sb_rkp">StrongBox 密钥 provisioning</string>
+    <string name="t_sb_latency">StrongBox 密钥生成时延</string>
     <string name="t_local_tmp_list">/data/local/tmp 列表</string>
-    <string name="note_local_tmp_list">用 getdents64 列出 /data/local/tmp（而非按名查找）会显现应用真正能触及的任何残留，包括模块留下的。锁定设备上该目录归 shell 所有、应用无法列出，因此 EACCES 是干净答案；出现条目意味着残留可被应用触及。</string>
     <string name="t_nettype_consistency">网络类型 vs 真实接口</string>
     <string name="t_flagsecure_honored">FLAG_SECURE 生效（禁止截屏）</string>
+    <string name="t_procnet_frida">插桩套接字</string>
+    <string name="t_procnet_tun">VPN 接口</string>
+    <string name="t_mountinfo_iso">挂载项</string>
+    <string name="t_adb_usb_exposure">ADB/USB 调试暴露</string>
+    <string name="t_anon_elf_struct">匿名内存中的 ELF 结构</string>
+    <string name="t_atexit_drift">Atexit 运行时漂移</string>
+    <string name="t_attestation_challenge_echo">认证 challenge 回显</string>
+    <string name="t_attest_synth_paradox">认证与运行时状态</string>
+    <string name="t_baseband_coherence">baseband 版本一致性</string>
+    <string name="t_datadir_errno_oracle">包数据目录探测</string>
+    <string name="t_device_id">认证设备标识与 Build</string>
+    <string name="t_feature_spoof">系统特性一致性</string>
+    <string name="t_fingerprint_rebuild">fingerprint 重建</string>
+    <string name="t_gap_mapped">内存映射覆盖</string>
+    <string name="t_heap_hook_xref">heap 中的陈旧引用</string>
+    <string name="t_hidden_app_usage_leak">经 usage stats 的包可见性</string>
+    <string name="t_hidden_region_xref">heap 指向内存区域的引用</string>
+    <string name="t_launch_sender_pkg_leak">IntentSender 包可见性</string>
+    <string name="t_libc_identity">libc 映像一致性</string>
+    <string name="t_lock_coherence">bootloader 锁一致性</string>
+    <string name="t_map_files_leak">已映射文件的来源</string>
+    <string name="t_multiuser_oracle">用户 / private-space 可见性</string>
+    <string name="t_named_anon_exec">匿名命名的代码映射</string>
+    <string name="t_otacerts_signing_key">OTA 签名密钥 (otacerts)</string>
+    <string name="t_pairip_wrapper">应用包装扫描</string>
+    <string name="t_phantom_monitor_prop">phantom monitor 标志 prop</string>
+    <string name="t_phantom_monitor_setting">phantom monitor 设置</string>
+    <string name="t_platform_signer">平台签名者（android 包）</string>
+    <string name="t_prov_fingerprint">RKP fingerprint 与设备</string>
+    <string name="t_prov_manufacturer">RKP 制造商与设备</string>
+    <string name="t_prov_vbmeta_reuse">RKP vbmeta 与运行时</string>
+    <string name="t_prov_verdict">RKP 的 verified boot 判定</string>
+    <string name="t_settings_stock_baseline">开发者/安全设置基线</string>
+    <string name="t_signature_source">签名证书来源一致性</string>
+    <string name="t_signature_sweep">签名证书扫描（全部应用）</string>
+    <string name="t_signing_keys">签名密钥（应为 release-keys）</string>
+    <string name="t_statfs_consistency">存储容量一致性</string>
+    <string name="t_verifier_adb_installs">通过 USB 验证应用（package verifier）</string>
+    <string name="t_zygisk_loader_footprint">内存中的加载器残留</string>
+    <string name="t_zygote_gid">zygote GID 一致性</string>
     <string name="about_trademarks">VD Infos 是一款独立的非官方研究与诊断工具。它与其所读取、检测或提及的软件、服务或标志所属的任何供应商（包括 Google LLC 和 Android Open Source Project）均无隶属关系，亦未获其认可或赞助。\"Android\"、\"Google\"、\"Google Play\"、\"Play Integrity\"、\"Widevine\" 以及所有其他产品名称、徽标和商标均为其各自所有者的财产。VD Infos 仅读取您设备上已有的内容，不会向任何地方发送任何数据。</string>
+    <string name="note_art_dexopt_self">健康信号，而非 root 迹象。磁盘上存在 AOT base.odex，但应用以解释模式运行（没有可执行映射），说明该 odex 被拒绝（boot-image 过期，apex 更新后 ART boot image 发生了变化）。此时服务类应用和 Play Protect 的应用校验可能来不及及时启动。这是用户侧的代理信号；权威检查在 root 侧。</string>
+    <string name="sol_art_dexopt_self">以 root 重新编译（pm compile -a -m speed），或重启以重新生成 boot image 并对应用重新执行 dexopt。</string>
+    <string name="sol_atexit_drift">libc 的退出处理函数 __cxa_atexit 和 __cxa_finalize 必须解析到 libc 内部。当它们解析到另一个库或匿名区域时，说明有 Zygisk 式注入器拦截了它们。请从该进程中移除此注入。</string>
+    <string name="sol_baseband_coherence">调制解调器版本由 getRadioVersion 和 gsm.version.baseband 系列共同报告；它们读取的是同一份固件。当某个来源不一致时，说明某次 property spoof 只改了部分别名而非全部。请让每个 baseband 版本来源保持一致。</string>
+    <string name="sol_boot">硬件证明（TEE）报告引导状态。把本应用的包加入你的 keybox 工具的目标列表，使其报告设备为已锁定、已验证。</string>
+    <string name="sol_datadir_errno_oracle">对某个包的数据目录执行 stat，即使没有包查询权限也可能暴露它已安装。把这类包加入你的隐藏框架（HMA-OSS），使其数据目录读起来像不存在，而不仅仅是被拒绝访问。</string>
+    <string name="sol_device_id">证明中的硬件身份（brand、device、manufacturer）与 build properties 不一致，因此验证方能看出这些 property 是伪造的。请让 ro.product.brand、ro.product.device 和 ro.product.manufacturer 与硬件证明的值对齐（product 和 model 存在合理差异：证明中携带的是代号 codename）。</string>
+    <string name="sol_feature_spoof">hasSystemFeature、getSystemAvailableFeatures 和硬件节点对某项设备特性的报告不一致，说明某个特性在某条路径上被隐藏或伪造，而在其他路径上没有。请让每条特性查询路径与硬件对该特性是否存在的报告保持一致。</string>
+    <string name="sol_fingerprint_rebuild">build fingerprint 在构建时按 BRAND/PRODUCT/DEVICE:RELEASE/ID/INCREMENTAL:TYPE/TAGS 组成。当 Build.FINGERPRINT 与根据其各组成字段重建出的结果不相等时，说明某次 spoof 改了 fingerprint 却没有对齐每个组成部分（或反之）。请让 fingerprint 与其各组成部分保持一致。</string>
+    <string name="sol_hidden_app_usage_leak">即使某个包被排除在已安装包列表之外，它仍可能通过 usage-stats API 暴露出来。把这类包加入你的隐藏框架（HMA-OSS），使其同样对 usage-stats API 隐藏，而不仅仅是在包列表中隐藏。</string>
+    <string name="sol_launch_sender_pkg_leak">在实测过的 ROM 上，返回的 IntentSender 仅以 (caller, name) 为键：其 creator 字段就是调用方的，equals 仅因 name 不同而不同，因此它不携带已安装/已隐藏的信号（拿它与一个随机的不存在的 name 比较会产生误报）。只有当一个可见的已安装包与一个不存在的 name 在某个与调用方无关的字段上不同时，才会发生泄露；若如此，请让隐藏框架（HMA-OSS）对隐藏的包返回与不存在等价的结果。</string>
+    <string name="sol_libc_identity">已加载的 libc 映射（device 和 inode）与磁盘上的 libc.so 文件不一致，说明该库被替换或被 bind-mount（一个被 hook 的 libc）。请提供真正的 libc，或对应用隐藏这个替换挂载。</string>
+    <string name="sol_lock_coherence">在原厂已锁定的设备上，每个 bootloader 锁定和 verified boot property 都一致：flash.locked=1、verifiedbootstate=green、vbmeta.device_state=locked、保修未触发。当其中一个声称已锁定而另一个仍读作未锁定时，说明某次 spoof 只改了部分而非全部。请把每个锁定 property 规整为同一状态。</string>
+    <string name="sol_otacerts_signing_key">OTA 签名证书（otacerts.zip）是公开的 AOSP test key，因此即使 ro.build.tags 声称 release-keys，该 build 仍读作 test-signed。请通过你的文件重定向模块提供一个 release 签名的 otacerts.zip，并在每个分区上对齐 ro.*.build.tags，使文件与 property 一致。</string>
+    <string name="sol_perm_path_coherence">同一个权限由多条代码路径解析：PackageManager.checkPermission、Context.checkPermission(perm,pid,uid)、getPackageInfo(GET_PERMISSIONS) 的授予标志，以及底层的 IPackageManager.checkUidPermission binder。在未被改动的系统上，所有可达路径都一致，而特权权限（START_ANY_ACTIVITY、INSTALL_PACKAGES、MANAGE_USERS）在每条路径上都被拒绝。如果某个 hook 在一条路径上伪造或隐藏权限而在另一条上没有，或者授予了普通应用永远不可能持有的特权权限，就会在这里出现分歧。请在每条路径上一致地解析权限；不要只在检测器恰好读取的那条路径上伪造授予。</string>
+    <string name="sol_phantom_monitor">原厂设备不会暴露 phantom-process monitor 是否被改动过。把该 setting 加入你的隐藏框架（HMA-OSS）的 spoof 预设，使其读起来与原厂设备一致，并避免使用那个 feature-flag 覆盖 property。</string>
+    <string name="sol_platform_signer">平台（android）包的签名暴露出一个非 OEM 签名方（自定义 ROM 或 AOSP test key），或者一个与所声称 manufacturer 不符的 OEM。请伪造平台签名（如 PlayIntegrityFork 的 spoofSignature 所做的那样），使 android 包报告所声称 OEM 的平台证书。</string>
+    <string name="sol_prov_fingerprint">RKP fingerprint（来自 RKP 证书）与本设备的 build fingerprint 不一致，说明该 keybox 属于另一台设备。请使用在本设备上 provision 的 keybox。</string>
+    <string name="sol_prov_vbmeta_reuse">RKP vbmeta_digest（来自 RKP 证书）与设备运行时的 verified boot 哈希不一致，说明该 keybox 是在另一台设备上 provision 的（被复用或共享的 keybox），或者设备在 provision 之后被更新过。请使用在本设备上 provision 的 keybox。</string>
+    <string name="sol_prov_verdict">RKP 证书将设备引导记录为未获批准，说明 RKP 后端标记了本设备。请使用在后端已批准的设备上 provision 的 keybox。</string>
+    <string name="sol_signature_source">从 PackageManager 记录读取的签名证书，必须与从磁盘上 APK 文件解析出的证书一致，而且 PackageManager 必须认可该 APK 文件的证书（hasSigningCertificate、checkSignatures）。当二者出现分歧时，说明某个 PackageManager 层的 hook 改写了所报告的签名，却没有动真正的 APK。直接读取 APK 仍会看到真实的证书。</string>
+    <string name="sol_signature_sweep">对每个已安装应用，来自 PackageManager 记录的签名证书与从其 APK 文件解析出的证书应共享一个签名方。若某个应用这两组证书完全不相交，说明它的 PackageManager 签名被伪造，而磁盘上的 APK 仍保留着真实签名。密钥轮换会保留一个共同的签名方，因此不会被标记。</string>
+    <string name="sol_signing_keys">生产 build 使用 release-keys 签名。签名密钥的 property（以任何方法读取）若显示 test-keys 或 dev-keys，就会暴露自定义或调试 build。请在 build.tags 和各分区的 *.keys property 上恢复 release-keys。</string>
+    <string name="sol_spoof">这个 setting 读取不一致。把它加入 HMA-OSS 的 spoof 预设，使每条路径都返回相同的值。</string>
+    <string name="sol_statfs_consistency">android.os.StatFs 与原生 statvfs 读取的存储容量不一致，说明容量是通过 Java framework API 伪造的，而原生层没有。请让 StatFs 路径与原生路径报告相同的值。</string>
+    <string name="sol_zygote_gid">zygote 根据应用已授予的权限为进程分配附加 GID：INTERNET 对应 3003，BLUETOOTH 对应 3002，依此类推。若某个已授予权限对应的 GID 在 getgroups(2) 中缺失，说明有隐藏工具过滤了 zygote 权限：它隐藏了应用，却与权限集合相矛盾，而任何应用都能读取自身的权限集合。不要剥离已授予权限所需的 GID（例如，在 INTERNET 已授予时，绝不要移除 INET_GID）。</string>
+    <string name="summary_all_agreed_mark" translatable="false">🏆 ✓ </string>
+    <string name="t_boot_triad_coherence">verified boot 状态一致性</string>
+    <string name="t_build_vs_prop">android.os.Build 对比规范 prop（按身份字段）</string>
+    <string name="t_debug_ramdisk">/debug_ramdisk 内容</string>
+    <string name="t_isrc_gap_forged_store_install">安装器商店一致性</string>
+    <string name="t_isrc_gap_store_pkgsource_other">差异：商店安装器，但 packageSource 不像商店</string>
+    <string name="t_loop_orphan">孤立的 loop 设备</string>
+    <string name="t_perm_path_coherence">权限检查一致性</string>
+    <string name="t_rom_identity">SoC 对比声称的设备身份</string>
+    <string name="t_settings_read_gate">受限 setting 读取门控</string>
+    <string name="t_stock_path_hidden">系统路径可见性</string>
+    <string name="t_strongbox_level">StrongBox 支持的证明等级</string>
+    <string name="t_uid_hidden_running">运行中的 UID 对比包列表</string>
+    <string name="t_uid_priority_fake">进程调度优先级</string>
+    <string name="t_version_cluster">版本状态集群一致性（release 对比 preview）</string>
+    <string name="usage_access_body">通过 usage-stats API 检测被排除在已安装包列表之外的包，需要使用情况访问权限（Usage access）。请在系统设置中授予本应用该权限，然后再回来。</string>
+    <string name="usage_access_open">打开设置</string>
+    <string name="usage_access_title">需要使用情况访问权限</string>
+    <string name="sol_debug_ramdisk">在原厂启动时，/debug_ramdisk 为空或不存在。放置在那里的文件是启动早期的 root 或模块 payload。请清除 /debug_ramdisk 中放置的内容，或将其保留在本应用无法读取的 namespace 中。</string>
+    <string name="sol_loop_orphan">在原厂设备上，每个 ext4 loop 都由此 namespace 中的一个系统挂载支撑。没有系统挂载点的 loop 是挂载在原厂布局之外的模块或 overlay。请将此类 loop 挂载到某个系统路径下，或将它们保留在本应用不共享的 mount namespace 中。</string>
+    <string name="sol_multiuser_oracle">当对 /data/user/&lt;id&gt; 的 stat 读取显示其存在，而 UserManager 并未将其列出时，次要用户或私密空间就会泄露。请让两者保持一致：要么使用户数据目录对非特权应用不可访问，要么不要隐藏一个其自身目录仍会暴露的用户。</string>
+    <string name="sol_prov_manufacturer">RKP 厂商（来自 RKP 证书）与本设备不匹配，因此该 keybox 是为另一台设备配发的。请使用在本设备上配发的 keybox。</string>
+    <string name="sol_rom_identity">在诚实的设备上，SoC、baseband 和 init 身份与所声明的品牌和型号相符。当某个 ROM 或硬件身份属性与所声称的设备相矛盾时，说明 fingerprint 伪造覆盖了产品属性，却未覆盖硬件属性。请让每一处身份面（SoC、baseband、init.svc、cpuinfo）都与被伪造的设备保持一致。</string>
+    <string name="sol_stock_path_hidden">标准的 Android 系统路径在原厂设备上是存在的，因此一个被读取为缺失的原厂路径，意味着某个隐藏层对它过度隐藏，而这本身就是一个破绽。只隐藏 root 和模块路径，绝不要隐藏在干净设备上存在的路径。</string>
+    <string name="sol_version_cluster">原厂构建在其发布状态上是自洽的：代号、release 或 preview 的 SDK 以及 fingerprint 令牌要么全部读作 release，要么全部读作 preview，绝不混杂。当一个信号读作 release 而另一个读作 preview 时，说明伪造改动了部分版本属性却未改动全部。请将每一个版本状态信号对齐到同一通道。</string>
 </resources>

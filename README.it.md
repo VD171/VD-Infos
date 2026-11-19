@@ -97,7 +97,7 @@ ui/             Jetpack Compose, Material 3, colore dinamico, progresso live
 cpp/            native_probes.cpp: la lente nativa, senza dipendenze
 ```
 
-* **Parallelismo**: 991 sonde si diramano sul dispatcher predefinito con un numero di permessi limitato; i risultati confluiscono nella UI man mano che arrivano.
+* **Parallelismo**: Le sonde si diramano sul dispatcher predefinito con un numero di permessi limitato; i risultati confluiscono nella UI man mano che arrivano.
 * **Niente in background**: nessun servizio né scansioni pianificate; l'app gira solo mentre è aperta e si chiude da sola quando resta inattiva.
 * **Livello nativo**: un piccolo `.so` senza dipendenze, collegato per nome tramite `RegisterNatives`, tenuto deliberatamente minuscolo e semplice.
 

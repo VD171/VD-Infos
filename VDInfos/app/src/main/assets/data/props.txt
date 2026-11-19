@@ -1,6 +1,6 @@
 # ======================================================================
 #  VD INFOS  ::  method debugger
-#  Read every device info by every method, then compare. A divergence is a hook.
+#  Read every device info by every method, then compare.
 #
 #  Copyright (C) 2026  VD171
 #  SPDX-License-Identifier: AGPL-3.0-or-later
@@ -13,8 +13,9 @@
 #  Source         : https://github.com/VD171/VD-Infos
 #  GitHub         : @VD171 https://github.com/VD171
 #  XDA-Developers : @VD171 https://xdaforums.com/m/vd171.4699873/
+#  XDA thread     : https://xdaforums.com/t/VD-Infos.4097379/
 #  Telegram       : @VD_Priv8 https://t.me/VD_Priv8
-#  Telegram       : @Priv8_VD https://t.me/Priv8_VD
+#  Channel        : @Priv8_VD https://t.me/Priv8_VD
 #  Discord        : @VD.Priv8 https://discord.com/users/1296831918989639721
 #  E-mail         : vd.priv8@pm.me
 # ======================================================================
@@ -104,6 +105,8 @@ BOOT	ro.boot.selinux
 BOOT	ro.boot.vbmeta.device_state
 INTEGRITY	ro.boot.verifiedbootstate
 INTEGRITY	ro.boot.veritymode
+INTEGRITY	magisk.version
+INTEGRITY	magisk.version.code
 BOOT	ro.boot.warranty_bit
 BOOT	ro.bootloader @bootloader*
 BOOT	ro.boot.bootloader @bootloader
@@ -160,6 +163,8 @@ BUILD	ro.build.flavor
 BUILD	ro.build.hardware
 BUILD	ro.build.host @host*
 BUILD	ro.build.id @buildid*
+BUILD	ro.build.uuid
+BUILD	ro.system_dlkm.build.uuid
 BUILD	ro.build.manufacturer
 BUILD	ro.build.model
 BUILD	ro.build.name
@@ -507,6 +512,16 @@ INTEGRITY	security.perf_harden
 INTEGRITY	selinux.reload_policy
 INTEGRITY	selinux.sec.restorecon
 INTEGRITY	service.adb.root
+INTEGRITY	ro.build.keys
+INTEGRITY	ro.bootimage.keys
+INTEGRITY	ro.product.keys
+INTEGRITY	ro.system.keys
+INTEGRITY	ro.system_ext.keys
+INTEGRITY	ro.vendor.keys
+INTEGRITY	ro.odm.keys
+INTEGRITY	ro.vendor_dlkm.keys
+INTEGRITY	ro.odm_dlkm.keys
+INTEGRITY	ro.oem.keys
 SYSTEM	sys.usb.config
 SYSTEM	sys.usb.ffs.ready
 SYSTEM	sys.usb.state
@@ -533,3 +548,4 @@ BOOT	ro.boot.device
 SYSTEM	sys.kernel.firstboot
 SYSTEM	sys.system_server.start_elapsed
 SYSTEM	sys.system_server.start_uptime
+INTEGRITY	ro.boot.vbmeta.digest

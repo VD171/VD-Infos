@@ -2,7 +2,7 @@
 <!--
     ======================================================================
      VD INFOS  ::  method debugger
-     Read every device info by every method, then compare. A divergence is a hook.
+     Read every device info by every method, then compare.
 
      Copyright (C) 2026  VD171
      SPDX-License-Identifier: AGPL-3.0-or-later
@@ -15,8 +15,9 @@
      Source         : https://github.com/VD171/VD-Infos
      GitHub         : @VD171 https://github.com/VD171
      XDA-Developers : @VD171 https://xdaforums.com/m/vd171.4699873/
+     XDA thread     : https://xdaforums.com/t/VD-Infos.4097379/
      Telegram       : @VD_Priv8 https://t.me/VD_Priv8
-     Telegram       : @Priv8_VD https://t.me/Priv8_VD
+     Channel        : @Priv8_VD https://t.me/Priv8_VD
      Discord        : @VD.Priv8 https://discord.com/users/1296831918989639721
      E-mail         : vd.priv8@pm.me
     ======================================================================
@@ -90,6 +91,7 @@
     <string name="crash_title">예기치 않은 오류</string>
     <string name="crash_body">앱에서 예기치 않은 오류가 발생했습니다. 어디에도 아무것도 전송되지 않았습니다. 아래 세부 정보를 복사하여 개발자에게 보낼 수 있습니다.</string>
     <string name="about_project">프로젝트</string>
+    <string name="about_see_also">관련 앱</string>
     <string name="about_support">다운로드 및 지원</string>
     <string name="action_clear">검색 지우기</string>
     <string name="lang_dialog_title">언어</string>
@@ -100,29 +102,27 @@
     <!-- 해결 방법 -->
     <string name="sol_title">해결 방법</string>
     <string name="card_details">세부 정보</string>
-    <string name="sol_boot">이것은 하드웨어 attestation(TEE)이 부팅 상태에 대해 보고하는 내용입니다. keybox 우회 도구(TrickyStore, TEE Simulator, OhMyKeyMint)는 지정한 앱에 대해서만 attestation을 다시 씁니다. 이 앱의 패키지를 해당 도구의 대상 목록(예: target.txt)에 추가하면 attestation이 잠긴 기기와 녹색 verified boot를 보고하게 됩니다.</string>
-    <string name="sol_root_detector">이 설치된 앱들은 root, 에뮬레이터 또는 실패한 Play Integrity를 찾습니다. 여기서 발견된 패키지를 은폐 프레임워크(HMA-OSS)에 대상으로 추가하면 앱과 root 모듈이 이 감지기로부터 숨겨집니다.</string>
-    <string name="sol_spoof">이 설정은 앱이 사용할 수 있는 경로마다 다르게 읽힙니다(spoof가 모두를 다루지 않음). 설정을 HMA-OSS의 spoof 프리셋에 추가하면 모든 읽기 경로가 같은 값을 반환합니다.</string>
-    <string name="sol_attest_patch">key attestation이 시스템 속성과 다른 패치 수준을 보고합니다. keybox 도구에서 설정하세요 - TrickyStore는 security_patch.txt(날짜, 또는 system=/boot=/vendor=/all=, 또는 \'prop\'); OhMyKeymint는 config.toml의 [trust]. 둘 다 attestation만 바꾸고 속성은 바꾸지 않습니다.</string>
-    <string name="sol_patch_prop">Build.VERSION.SECURITY_PATCH(프레임워크)와 ro.build.version.security_patch 속성이 서로 다른 날짜를 표시합니다. resetprop로 맞추세요. security_patch.txt와 config.toml은 여기서 도움이 안 됩니다 - key attestation만 바꾸고 속성은 바꾸지 않습니다.</string>
+    <string name="sol_root_detector">이 설치된 앱들은 root를 찾는다. 여기서 찾은 패키지를 은닉 프레임워크(HMA-OSS)에 대상으로 추가하라.</string>
+    <string name="sol_attest_patch">증명이 property와 다른 security patch를 보고한다. keybox 도구에서 설정하라(TrickyStore security_patch.txt, OhMyKeymint config.toml [trust]); 증명만 바꾼다.</string>
+    <string name="sol_patch_prop">framework와 property가 다른 패치 날짜를 보인다. resetprop로 맞춰라; keybox 도구는 증명만 바꾸며 properties는 바꾸지 않는다.</string>
 
-    <string name="note_gsf">Android 16 이상에서는 없음: Google 서비스 저장소가 Play Services로 이동했으며, 그 입구를 Google이 직접 &quot;do.not.use&quot;로 명명했고 다른 앱에 응답하지 않습니다. 위에서 둘 다 시도합니다.</string>
     <string name="t_attestation_app_id">증명 애플리케이션 ID(패키지 + 서명)</string>
     <string name="t_dev_ptmx_present">/dev/ptmx 있음</string>
     <string name="t_documents_providers">등록된 DocumentsProviders</string>
     <string name="t_kernel_modules">로드된 커널 모듈(KernelSU/SuSFS)</string>
-    <string name="t_kernel_syscall_fingerprint">syscall 지문으로 본 커널 버전</string>
+    <string name="t_kernel_syscall_fingerprint">커널 버전 교차 확인</string>
     <string name="t_key_inside_secure_hw">보안 하드웨어 내부의 키(KeyInfo)</string>
     <string name="t_rot_ec_vs_rsa">증명 신뢰 루트: EC 대 RSA 요청</string>
     <string name="t_leaf_sig_alg">증명 리프 인증서: 키 대 서명 알고리즘</string>
     <string name="t_batch_key_ec_vs_rsa">증명 키: EC 체인 대 RSA 체인</string>
+    <string name="t_native_vs_jvm">증명: 네이티브 keystore2 vs JVM</string>
     <string name="t_local_tmp_contents">/data/local/tmp 내용</string>
     <string name="t_native_lib_origin">네이티브 라이브러리 출처(dladdr)</string>
     <string name="t_own_debuggable">이 앱: debuggable / 디버그 빌드</string>
     <string name="t_play_store_version">Play 스토어 / GMS 버전</string>
     <string name="t_resolv_conf">resolv.conf / DNS 설정</string>
     <string name="t_root_backup_tools">루트 백업 도구 존재</string>
-    <string name="t_su_libc_inline_hook">su: 원시 syscall 대 libc 대 Java</string>
+    <string name="t_su_libc_inline_hook">계층 간 su 해석</string>
     <string name="t_system_build_prop">/system/build.prop</string>
     <string name="t_system_build_prop_present">/system/build.prop 있음</string>
     <string name="t_adb_enabled">ADB 사용 설정됨</string>
@@ -192,7 +192,7 @@
     <string name="t_imei">IMEI</string>
     <string name="t_imsi_subscriber">IMSI(가입자)</string>
     <string name="t_incremental">Incremental</string>
-    <string name="t_injected_libs_proc_self_maps">주입된 라이브러리 (/proc/self/maps)</string>
+    <string name="t_injected_libs_proc_self_maps">주입된 라이브러리</string>
     <string name="t_installed_app_signing_digests">설치된 앱 서명 다이제스트</string>
     <string name="t_installed_applications">설치된 애플리케이션</string>
     <string name="t_installed_input_methods">설치된 입력기</string>
@@ -202,13 +202,9 @@
     <string name="t_kernel_version">커널(버전)</string>
     <string name="t_kernel_version_string">커널 (버전 문자열)</string>
     <string name="t_kernel_version_claim">커널 버전 주장 (ro.kernel.version 대 uname)</string>
-    <string name="note_kernel_version_claim">ro.kernel.version 속성은 실행 중인 커널을 반영해야 합니다. 실제 uname release에 없는 major.minor를 주장한다면, 리졸버가 속성을 설정했고 그 아래 커널은 다른 것입니다.</string>
     <string name="t_kernel_build_date">커널 빌드 날짜 대 ROM</string>
-    <string name="note_kernel_build_date">미리 빌드된 GKI 커널은 함께 배포되는 ROM보다 오래되었거나 일치합니다. ROM 조립보다 한참 뒤에 빌드된 커널은 나중에 다시 빌드했거나 플래시한 것으로, 수동 컴파일 커널의 흔한 신호입니다.</string>
     <string name="t_kernel_config">커널 설정 (/proc/config.gz)</string>
-    <string name="note_kernel_config">커널 설정은 읽을 수 있는 경우 컴파일된 패치를 알려 줍니다: KSU, SUSFS, 사용자 지정 local version, 강제되지 않은 모듈 서명. 앱 샌드박스는 이 파일을 자주 거부합니다. 오래된 Android, 커스텀 ROM, 루트 셸에서 읽힙니다.</string>
     <string name="t_kernel_module_scan">커널 모듈과 심볼</string>
-    <string name="note_kernel_module_scan">/sys/module와 /proc/kallsyms 심볼 이름에서 ksu, susfs, magisk를 스캔합니다. 패치되었거나 모듈이 로드된 커널이 노출합니다. 두 표면 모두 자주 제한되며, 도메인이 허용하는 곳에서 읽힙니다.</string>
     <string name="t_kernel_cmdline">커널 cmdline</string>
     <string name="t_kernel_log">커널 로그</string>
     <string name="t_kernel_stat">커널 stat</string>
@@ -285,8 +281,8 @@
     <string name="t_verified_boot_hash_vbmeta_digest">Verified boot 해시 / vbmeta 다이제스트</string>
     <string name="t_verified_boot_key">Verified boot 키</string>
     <string name="t_verified_boot_state">Verified boot 상태</string>
-    <string name="t_prop_area_tamper">속성 영역 변조(구멍/컨텍스트)</string>
-    <string name="t_supplementary_groups">보조 그룹 (3009=AID_READPROC)</string>
+    <string name="t_prop_area_tamper">시스템 속성 영역</string>
+    <string name="t_supplementary_groups">보조 그룹</string>
     <string name="t_version_codename">버전 코드네임</string>
     <string name="t_webview_provider">WebView 공급자</string>
     <string name="t_webview_user_agent">WebView user agent</string>
@@ -322,6 +318,17 @@
     <string name="t_queryintentservices_main">queryIntentServices (MAIN)</string>
     <string name="t_resolveactivity_main_launcher">resolveActivity (MAIN/LAUNCHER)</string>
     <string name="t_su_binary">su 바이너리</string>
+    <string name="t_setuid_root">권한 있는 바이너리</string>
+    <string name="t_root_dirs_present">시스템 디렉터리 가시성</string>
+    <string name="t_maps_isolated">주입된 모듈</string>
+    <string name="t_inline_hooks">코드 후크</string>
+    <string name="t_linker_maps_gap">숨겨진 라이브러리</string>
+    <string name="t_tracerpid_iso">디버거 연결됨</string>
+    <string name="t_fd_iso">열린 핸들</string>
+    <string name="t_selinux_iso">보안 컨텍스트</string>
+    <string name="t_su_iso">슈퍼유저 접근</string>
+    <string name="t_prop_dual_iso">시스템 속성</string>
+    <string name="t_smaps_iso">쓰기 가능 실행 메모리</string>
     <string name="t_su_on_path">PATH의 su</string>
     <string name="t_tel_networkOperatorName">네트워크 사업자 이름</string>
     <string name="t_tel_networkOperator">네트워크 사업자 (MCC+MNC)</string>
@@ -413,7 +420,7 @@
     <string name="t_isrc_self_originating">설치 출처 (self): originating</string>
     <string name="t_isrc_self_pkgsource">설치 출처 (self): packageSource</string>
     <string name="t_isrc_self_initiator_sig">설치 출처 (self): initiator 인증서 vs 설치됨</string>
-    <string name="t_isrc_gap_jvm_store_pm_denies">불일치: JVM은 store installer라 하나 pm은 부인 (hook)</string>
+    <string name="t_isrc_gap_jvm_store_pm_denies">설치자: JVM 대 pm</string>
     <string name="t_isrc_gap_jvm_pm_other">불일치: installer JVM ≠ installer pm (가시성)</string>
     <string name="t_isrc_gap_installer_ne_initiating">불일치: installer ≠ initiating</string>
     <string name="t_isrc_gap_store_installer_sideload">불일치: store installer, initiating은 sideload</string>
@@ -432,24 +439,16 @@
     <string name="t_installed_applications_diff">설치된 애플리케이션: 불일치 (JVM x pm)</string>
     <string name="t_selinux_status">SELinux status 페이지 (policyload/seq)</string>
     <string name="t_selinux_policy_probe">SELinux 정책 프로브 (타입 + AVC)</string>
-    <string name="t_manager_doors">root/Xposed 매니저: PackageManager 통로별 가시성</string>
+    <string name="t_manager_doors">관리자 앱 가시성</string>
     <string name="t_net_sock_diag">Netlink sock_diag 정책</string>
-    <string name="n_net_sock_diag">제한된 앱은 NETLINK_SOCK_DIAG가 거부되어야 하며, 응답이 오면 netlink 정책이 완화된 것이다.</string>
     <string name="t_mount_peer_gap">마운트 peer-group 무결성</string>
-    <string name="n_mount_peer_gap">peer-group id 집합은 모든 렌즈에서 동일하게 읽혀야 하며, 렌즈별 공백은 숨겨진 마운트를 뜻한다.</string>
     <string name="t_mount_fdinfo_mnt">마운트 id 대 열린 디스크립터</string>
-    <string name="n_mount_fdinfo_mnt">mnt_id가 mountinfo에 없는 열린 디스크립터는 뷰에서 숨겨진 마운트를 가리킨다.</string>
-    <string name="t_proc_readproc_gid">zygote GID 3009 (AID_READPROC)</string>
-    <string name="n_proc_readproc_gid">AID_READPROC 보조 GID 누락은 일부 앱 은닉 모듈이 남기는 흔적이다.</string>
+    <string name="t_proc_readproc_gid">zygote 보조 GID</string>
     <string name="t_proc_fd_graph">디스크립터 집계</string>
     <string name="t_mem_anon_exec">익명 실행 매핑</string>
-    <string name="n_mem_anon_exec">백업 파일이 없는 실행 페이지는 전형적인 인젝션/Zygisk 잔여물이며, 개수는 렌즈 간에 일치해야 한다.</string>
     <string name="t_kernel_selfbuild">자체 빌드 / 패치된 커널</string>
-    <string name="n_kernel_selfbuild">정품 커널은 -dirty, git, SUSFS 빌드 표식을 갖지 않으며, 표식은 렌즈 간에 일치해야 한다.</string>
     <string name="t_tee_soter">Soter 서비스 대 속성</string>
-    <string name="n_tee_soter">Tencent의 Soter 서비스 프로그램을 그 서비스 속성 상태와 교차 확인한다.</string>
     <string name="t_proc_cgroup_format">cgroup 경로 형식</string>
-    <string name="n_proc_cgroup_format">복제 / 듀얼 앱 컨테이너는 통합 cgroup 경로를 정규 uid_/pid_ 형식에서 벗어나게 한다.</string>
     <string name="t_gpu_vendor">GPU 제조사</string>
     <string name="t_gpu_renderer">GPU 렌더러</string>
     <string name="t_gpu_version">GPU 버전</string>
@@ -461,32 +460,119 @@
     <string name="t_tel_simSpecificCarrierId">특정 SIM 사업자 ID</string>
     <string name="t_tel_visualVoicemailPackageName">비주얼 보이스메일 패키지</string>
     <string name="t_keychain_blacklist">Keychain 인증서 차단 목록</string>
-    <string name="t_buildprop_vs_runtime">build.prop vs runtime</string>
-    <string name="note_boot_count">boot_count(프레임워크)는 증가만 함. Phenotype_boot_count(Play 서비스)는 그 스냅샷이며 뒤처질 수 있음. 스냅샷이 boot_count를 앞설 때만 불일치(초기화).</string>
-    <string name="note_isrc_initiator_sig">이 앱이 설치될 때 시스템이 설치 프로그램에 대해 기록한 인증서가 설치 프로그램이 지금 보고하는 인증서와 다릅니다. 교체된 설치 프로그램이나 위조된 서명이 원인이며, 시스템을 다시 서명하고 제조사 원본 인증서를 보고하는 ROM(예: Xiaomi.eu)은 모든 기기에서 이를 보여줍니다.</string>
+    <string name="t_buildprop_vs_runtime">build 속성 일관성</string>
     <string name="t_concealment">앱 은폐</string>
-    <string name="note_concealment">앱 목록에서 숨겨졌지만 PackageManager의 다른 문(패키지 정보, createPackageContext, 열린 APK, launch intent)으로 여전히 접근되는 패키지는 한 문에서는 숨겨지고 다른 문에서는 아닙니다 - 불완전한 앱 은폐 도구의 흔적입니다.</string>
     <string name="t_prop_variants">파티션별 변형: %1$s</string>
     <string name="t_prop_enum">속성 열거 vs getprop</string>
-    <string name="note_prop_variants">같은 접미사가 파티션마다 나타납니다(system, vendor, product, odm, dlkm...). 어디서나 일치해야 하는데 다르거나 한 계통 안에서 갈라지는 값은 부분 스푸핑을 드러냅니다 - 일부 파티션만 바뀐 지문입니다.</string>
-    <string name="note_prop_enum">속성 영역을 네이티브로 열거(__system_property_foreach)하여 다른 프로세스의 getprop와 대조하면 셸에서 숨겨졌거나 한 경로에만 주입된 속성이 드러납니다.</string>
-    <string name="t_dlphdr">로더 모듈 (dl_iterate_phdr)</string>
-    <string name="t_frida_port">Frida 포트 스캔</string>
-    <string name="note_dlphdr">dl_iterate_phdr는 로드된 모듈을 /proc/self/maps가 아니라 링커를 통해 열거하므로, maps에서 자기 항목을 지운 후크도 여기에는 나열됩니다. needle 일치나 시스템 허용 목록 밖의 모듈이 누출입니다.</string>
+    <string name="t_dlphdr">로드된 모듈</string>
+    <string name="t_frida_port">계측 포트</string>
     <string name="t_ime_verdict">키보드 무결성 판정</string>
     <string name="t_store_authenticity">스토어/GMS 서명 진위</string>
     <string name="t_devgate">개발자 제한 설정의 일관성</string>
-    <string name="note_ime_verdict">금융 RASP(PayZapp/Zeta)는 비시스템이면서 스토어 허용 목록 밖에서 설치된 활성 키보드를 모두 거부합니다. 스토어 외 설치자의 비시스템 활성 IME는 표시됩니다.</string>
-    <string name="note_store_authenticity">Play 스토어, GMS, GSF는 Google의 서명 인증서를 지녀야 합니다. 존재하지만 다른 키로 서명된 스토어나 GMS 패키지는 가짜, microG 또는 재패키징된 스토어입니다.</string>
-    <string name="note_devgate">adb 등 개발자 제한 설정은 개발자 옵션이 켜져 있을 때만 바뀝니다. development_settings_enabled=0 인데 기본값이 아닌 제한 설정은 root나 `settings put`으로만 설정될 수 있었습니다.</string>
-    <string name="t_maps_exec">주입된 실행 매핑 (deleted/memfd)</string>
-    <string name="t_anon_minor">숨겨진 anon-bdev 슈퍼블록</string>
-    <string name="note_maps_exec">(deleted)/memfd/ashmem 파일에 기반한 실행 매핑이 RWX(W^X 위반)이거나 ELF 매직으로 시작하면 파일시스템에서 분리된 실제 주입 .so입니다. ART의 JIT 트램폴린은 둘 다 아니며 양성으로 셉니다. 시스템 허용 목록 밖 모듈도 셉니다.</string>
-    <string name="note_anon_minor">블록 장치가 없는 파일시스템은 아래부터 촘촘한 전역 anon 풀에서 minor를 가져옵니다. stat()로는 있지만 이 프로세스의 mountinfo에는 없는 minor는 사설 네임스페이스에 숨은 살아있는 슈퍼블록(데몬의 tmpfs)입니다. 빠진 minor가 길게 이어지면 앱별 churn이라 무시하고, 짧은 구멍이 단서입니다.</string>
-    <string name="t_sb_tee_signer">StrongBox × TEE 서명자</string>
+    <string name="t_maps_exec">실행 가능 메모리 매핑</string>
+    <string name="t_elf_in_anon">익명 메모리의 코드 이미지</string>
+    <string name="t_anon_exec_orphan">뒷받침 없는 실행 가능 메모리</string>
+    <string name="t_anon_minor">숨겨진 파일 시스템</string>
+    <string name="t_sb_tee_signer">StrongBox attestation 프로필</string>
+    <string name="t_sb_capability">StrongBox capability 프로파일</string>
+    <string name="t_sb_enforced">StrongBox 키 적용 수준</string>
+    <string name="t_sb_version">StrongBox 증명 버전</string>
+    <string name="t_sb_chain">StrongBox 증명 체인</string>
+    <string name="t_sb_rkp">StrongBox 키 provisioning</string>
+    <string name="t_sb_latency">StrongBox 키 생성 타이밍</string>
     <string name="t_local_tmp_list">/data/local/tmp 목록</string>
-    <string name="note_local_tmp_list">getdents64로 /data/local/tmp를 나열하면(이름 조회가 아님) 모듈이 남긴 것을 포함해 앱이 실제로 접근 가능한 모든 잔여물이 드러납니다. 잠긴 기기에서는 이 디렉터리가 shell 소유라 앱이 나열할 수 없어 EACCES가 정상 답이며, 보이는 항목은 앱이 접근 가능한 잔여물을 뜻합니다.</string>
     <string name="t_nettype_consistency">네트워크 유형 vs 실제 인터페이스</string>
     <string name="t_flagsecure_honored">FLAG_SECURE 준수 (스크린샷 차단)</string>
+    <string name="t_procnet_frida">계측 소켓</string>
+    <string name="t_procnet_tun">VPN 인터페이스</string>
+    <string name="t_mountinfo_iso">마운트 항목</string>
+    <string name="t_adb_usb_exposure">ADB/USB 디버깅 노출</string>
+    <string name="t_anon_elf_struct">익명 메모리의 ELF 구조</string>
+    <string name="t_atexit_drift">Atexit 런타임 드리프트</string>
+    <string name="t_attestation_challenge_echo">Attestation 챌린지 에코</string>
+    <string name="t_attest_synth_paradox">Attestation 대 런타임 상태</string>
+    <string name="t_baseband_coherence">baseband 버전 일관성</string>
+    <string name="t_datadir_errno_oracle">패키지 데이터 디렉터리 조사</string>
+    <string name="t_device_id">Attestation 기기 신원 대 Build</string>
+    <string name="t_feature_spoof">시스템 기능 일관성</string>
+    <string name="t_fingerprint_rebuild">fingerprint 재구성</string>
+    <string name="t_gap_mapped">메모리 맵 커버리지</string>
+    <string name="t_heap_hook_xref">heap의 오래된 참조</string>
+    <string name="t_hidden_app_usage_leak">usage stats를 통한 패키지 가시성</string>
+    <string name="t_hidden_region_xref">메모리 영역에 대한 heap 참조</string>
+    <string name="t_launch_sender_pkg_leak">IntentSender 패키지 가시성</string>
+    <string name="t_libc_identity">libc 이미지 일관성</string>
+    <string name="t_lock_coherence">bootloader 잠금 일관성</string>
+    <string name="t_map_files_leak">매핑된 파일 출처</string>
+    <string name="t_multiuser_oracle">사용자 / private-space 가시성</string>
+    <string name="t_named_anon_exec">익명 이름 코드 매핑</string>
+    <string name="t_otacerts_signing_key">OTA 서명 키 (otacerts)</string>
+    <string name="t_pairip_wrapper">앱 래퍼 스캔</string>
+    <string name="t_phantom_monitor_prop">phantom monitor 플래그 prop</string>
+    <string name="t_phantom_monitor_setting">phantom monitor 설정</string>
+    <string name="t_platform_signer">플랫폼 서명자 (android 패키지)</string>
+    <string name="t_prov_fingerprint">RKP fingerprint 대 기기</string>
+    <string name="t_prov_manufacturer">RKP 제조사 대 기기</string>
+    <string name="t_prov_vbmeta_reuse">RKP vbmeta 대 런타임</string>
+    <string name="t_prov_verdict">RKP verified boot 판정</string>
+    <string name="t_settings_stock_baseline">개발자/보안 설정 기준선</string>
+    <string name="t_signature_source">서명 인증서 출처 일관성</string>
+    <string name="t_signature_sweep">서명 인증서 스윕 (모든 앱)</string>
+    <string name="t_signing_keys">서명 키 (release-keys 예상)</string>
+    <string name="t_statfs_consistency">저장소 크기 일관성</string>
+    <string name="t_verifier_adb_installs">USB로 앱 검증 (package verifier)</string>
+    <string name="t_zygisk_loader_footprint">메모리의 로더 잔여물</string>
+    <string name="t_zygote_gid">zygote GID 일관성</string>
     <string name="about_trademarks">VD Infos는 독립적인 비공식 조사 및 진단 도구입니다. 이 도구가 읽거나 감지하거나 명칭을 언급하는 소프트웨어, 서비스 또는 표장을 보유한 어떠한 공급업체(Google LLC 및 Android Open Source Project 포함)와도 제휴, 보증 또는 후원 관계가 없습니다. \"Android\", \"Google\", \"Google Play\", \"Play Integrity\", \"Widevine\" 및 기타 모든 제품명, 로고, 상표는 각 소유자의 자산입니다. VD Infos는 사용자의 기기에 이미 있는 것만 읽으며 어디에도 아무것도 전송하지 않습니다.</string>
+    <string name="note_art_dexopt_self">상태 신호이며 root의 흔적이 아닙니다. AOT base.odex가 디스크에 존재하지만 앱은 인터프리터로 실행되고 있어(실행 가능한 매핑 없음) odex가 거부되었음을 의미합니다(boot-image가 오래되었고, apex 업데이트 후 ART boot image가 변경됨). 그 결과 서비스 계열 앱과 Play Protect 앱 검증이 제때 시작하지 못할 수 있습니다. 사용자 측의 대리 판정이며, 확정적인 확인은 root 측에서 이루어집니다.</string>
+    <string name="sol_art_dexopt_self">root로 다시 컴파일하거나(pm compile -a -m speed) 재부팅하여 boot image를 다시 생성하고 앱을 다시 dexopt하세요.</string>
+    <string name="sol_atexit_drift">libc 종료 핸들러 __cxa_atexit와 __cxa_finalize는 libc 내부에서 해석되어야 합니다. 다른 라이브러리나 익명 영역으로 해석되면 Zygisk 방식의 인젝터가 이들에 끼어든 것입니다. 이 프로세스에서 인젝션을 제거하세요.</string>
+    <string name="sol_baseband_coherence">모뎀 버전은 getRadioVersion과 gsm.version.baseband 계열에서 모두 보고되며, 전부 같은 펌웨어를 읽습니다. 한 출처만 어긋나면 속성 스푸핑이 일부 별칭만 수정하고 전부를 수정하지 않은 것입니다. 모든 baseband 버전 출처를 동일하게 유지하세요.</string>
+    <string name="sol_boot">하드웨어 인증(TEE)이 부팅 상태를 보고합니다. 이 앱 패키지를 keybox 도구의 대상 목록에 추가하여 잠긴 검증된 기기로 보고되도록 하세요.</string>
+    <string name="sol_datadir_errno_oracle">패키지의 데이터 디렉터리에 대한 stat은 패키지 조회가 없어도 설치됨을 드러낼 수 있습니다. 그런 패키지를 은닉 프레임워크(HMA-OSS)에 추가하여 데이터 디렉터리가 단지 거부되는 것이 아니라 존재하지 않는 것으로 읽히도록 하세요.</string>
+    <string name="sol_device_id">인증된 하드웨어 식별 정보(brand, device, manufacturer)가 빌드 속성과 일치하지 않아 검증자가 속성이 스푸핑되었음을 알 수 있습니다. ro.product.brand, ro.product.device, ro.product.manufacturer를 하드웨어 인증 값에 맞추세요(product와 model은 정당하게 다릅니다. 인증은 코드명을 담습니다).</string>
+    <string name="sol_feature_spoof">hasSystemFeature, getSystemAvailableFeatures, 하드웨어 노드가 어떤 기기 기능에 대해 서로 어긋나, 한 경로로만 기능이 숨겨지거나 위조되고 다른 경로에서는 그렇지 않습니다. 모든 기능 조회 경로와 하드웨어가 동일한 유무를 보고하도록 하세요.</string>
+    <string name="sol_fingerprint_rebuild">빌드 지문은 빌드 시점에 BRAND/PRODUCT/DEVICE:RELEASE/ID/INCREMENTAL:TYPE/TAGS로 구성됩니다. Build.FINGERPRINT가 자신의 구성 필드로부터의 재구성과 같지 않으면, 스푸핑이 모든 구성 요소를 맞추지 않고 지문을 변경한 것입니다(또는 그 반대). 지문과 그 구성 요소를 일관되게 만드세요.</string>
+    <string name="sol_hidden_app_usage_leak">패키지는 설치된 패키지 목록에서 제외되어 있어도 usage-stats API를 통해 드러날 수 있습니다. 그런 패키지를 은닉 프레임워크(HMA-OSS)에 추가하여 패키지 목록뿐 아니라 usage-stats API에서도 숨겨지도록 하세요.</string>
+    <string name="sol_launch_sender_pkg_leak">측정된 ROM에서 반환되는 IntentSender는 (caller, name)만으로 식별됩니다. creator 필드는 호출자의 것이고 equals는 name만으로 구분되므로 설치/은닉 신호를 담지 않습니다(존재하지 않는 임의의 name과 비교하는 것은 오탐입니다). 보이는 설치된 패키지와 존재하지 않는 name이 호출자와 무관한 필드에서 다를 때만 누출됩니다. 그 경우 은닉 프레임워크(HMA-OSS)가 숨겨진 패키지에 대해 \'존재하지 않음\'과 동등한 결과를 반환하도록 하세요.</string>
+    <string name="sol_libc_identity">로드된 libc 매핑(device와 inode)이 디스크의 libc.so 파일과 일치하지 않아 라이브러리가 교체되었거나 bind-mount되었습니다(후킹된 libc). 진짜 libc를 제공하거나 교체 마운트를 앱에서 숨기세요.</string>
+    <string name="sol_lock_coherence">정품 잠금 기기에서는 모든 부트로더 잠금 및 verified-boot 속성이 일치합니다. flash.locked=1, verifiedbootstate=green, vbmeta.device_state=locked이며 보증은 해제되지 않았습니다. 하나는 잠김이라고 하면서 다른 하나는 여전히 잠금 해제로 읽히면, 스푸핑이 일부만 수정하고 전부를 수정하지 않은 것입니다. 모든 잠금 속성을 같은 상태로 정규화하세요.</string>
+    <string name="sol_otacerts_signing_key">OTA 서명 인증서(otacerts.zip)가 공개 AOSP 테스트 키라서, ro.build.tags가 release-keys를 주장해도 빌드가 테스트 서명으로 읽힙니다. 파일 리디렉션 모듈을 통해 release 서명된 otacerts.zip을 제공하고 모든 파티션에서 ro.*.build.tags를 맞춰 파일과 속성이 일치하도록 하세요.</string>
+    <string name="sol_perm_path_coherence">같은 권한은 여러 코드 경로로 해석됩니다. PackageManager.checkPermission, Context.checkPermission(perm,pid,uid), getPackageInfo(GET_PERMISSIONS)의 부여 플래그, 저수준 IPackageManager.checkUidPermission 바인더입니다. 손대지 않은 시스템에서는 도달 가능한 모든 경로가 일치하며, 특권 권한(START_ANY_ACTIVITY, INSTALL_PACKAGES, MANAGE_USERS)은 어디서나 거부됩니다. 한 경로에서만 권한을 위조하거나 숨기는 후킹, 또는 일반 앱이 결코 가질 수 없는 특권 권한을 부여하는 후킹은 여기서 어긋납니다. 모든 경로에서 권한을 일관되게 해석하세요. 탐지기가 우연히 읽는 경로에서만 부여를 스푸핑하지 마세요.</string>
+    <string name="sol_phantom_monitor">정품 기기는 phantom 프로세스 모니터가 변경되었는지 노출하지 않습니다. 이 설정을 은닉 프레임워크(HMA-OSS) 스푸핑 프리셋에 추가하여 정품 기기처럼 읽히도록 하고, feature-flag 재정의 속성은 피하세요.</string>
+    <string name="sol_platform_signer">플랫폼(android) 패키지 서명이 OEM이 아닌 서명자(커스텀 ROM 또는 AOSP 테스트 키)나, 주장하는 manufacturer와 일치하지 않는 OEM을 드러냅니다. 플랫폼 서명을 스푸핑하여(PlayIntegrityFork의 spoofSignature처럼) android 패키지가 주장하는 OEM의 플랫폼 인증서를 보고하도록 하세요.</string>
+    <string name="sol_prov_fingerprint">RKP 지문(RKP 인증서에서 나온)이 이 기기의 빌드 지문과 일치하지 않아 keybox가 다른 기기의 것입니다. 이 기기에서 프로비저닝된 keybox를 사용하세요.</string>
+    <string name="sol_prov_vbmeta_reuse">RKP vbmeta_digest(RKP 인증서에서 나온)가 기기 런타임 verified boot 해시와 일치하지 않아, keybox가 다른 기기에서 프로비저닝되었거나(재사용되거나 공유된 keybox) 프로비저닝 후 기기가 업데이트된 것입니다. 이 기기에서 프로비저닝된 keybox를 사용하세요.</string>
+    <string name="sol_prov_verdict">RKP 인증서가 기기 부팅을 승인되지 않음으로 기록하여, RKP 백엔드가 이 기기를 플래그 처리했습니다. 백엔드가 승인한 기기에서 프로비저닝된 keybox를 사용하세요.</string>
+    <string name="sol_signature_source">PackageManager 레코드에서 읽은 서명 인증서와 디스크의 APK 파일에서 파싱한 인증서는 일치해야 하며, PackageManager는 APK 파일 인증서를 인식해야 합니다(hasSigningCertificate, checkSignatures). 이들이 어긋나면 PackageManager 수준의 후킹이 실제 APK는 건드리지 않고 보고되는 서명을 다시 쓴 것입니다. APK를 직접 읽으면 여전히 진짜 인증서가 보입니다.</string>
+    <string name="sol_signature_sweep">설치된 모든 앱에 대해, PackageManager 레코드의 서명 인증서와 그 APK 파일에서 파싱한 인증서는 서명자를 공유합니다. 두 집합이 서로소인 앱은 디스크의 APK가 진짜를 유지한 채 PackageManager 서명이 스푸핑된 것입니다. 키 교체는 공통 서명자를 유지하므로 플래그 처리되지 않습니다.</string>
+    <string name="sol_signing_keys">프로덕션 빌드는 release-keys로 서명됩니다. 서명 키 속성이 (어떤 방법으로든) test-keys 또는 dev-keys로 읽히면 커스텀 또는 디버그 빌드가 드러납니다. build.tags와 파티션별 *.keys 속성 전반에서 release-keys를 복원하세요.</string>
+    <string name="sol_spoof">이 설정은 일관되게 읽히지 않습니다. HMA-OSS 스푸핑 프리셋에 추가하여 모든 경로가 같은 값을 반환하도록 하세요.</string>
+    <string name="sol_statfs_consistency">android.os.StatFs와 네이티브 statvfs 읽기가 저장 용량에 대해 어긋나, 용량이 Java 프레임워크 API를 통해 스푸핑되고 네이티브에서는 그렇지 않습니다. StatFs 경로와 네이티브 경로가 같은 값을 보고하도록 하세요.</string>
+    <string name="sol_zygote_gid">zygote는 앱에 부여된 권한으로부터 프로세스의 보조 GID를 할당합니다. INTERNET은 3003, BLUETOOTH는 3002 등입니다. 부여된 권한의 GID가 getgroups(2)에 없다면 은닉 도구가 zygote 권한을 걸러낸 것입니다. 앱은 숨기지만, 어떤 앱이든 자신에 대해 읽을 수 있는 권한 집합과 모순됩니다. 부여된 권한이 요구하는 GID를 제거하지 마세요(예를 들어 INTERNET이 부여된 동안 INET_GID를 절대 제거하지 마세요).</string>
+    <string name="summary_all_agreed_mark" translatable="false">🏆 ✓ </string>
+    <string name="t_boot_triad_coherence">verified-boot 상태 일관성</string>
+    <string name="t_build_vs_prop">android.os.Build와 정규 속성 비교(식별 필드별)</string>
+    <string name="t_debug_ramdisk">/debug_ramdisk 내용</string>
+    <string name="t_isrc_gap_forged_store_install">설치 프로그램 스토어 일관성</string>
+    <string name="t_isrc_gap_store_pkgsource_other">불일치: 스토어 설치 프로그램이나 packageSource가 스토어와 다름</string>
+    <string name="t_loop_orphan">고아 loop 장치</string>
+    <string name="t_perm_path_coherence">권한 확인 일관성</string>
+    <string name="t_rom_identity">SoC와 선언된 기기 식별 정보 비교</string>
+    <string name="t_settings_read_gate">제한된 설정 읽기 게이트</string>
+    <string name="t_stock_path_hidden">시스템 경로 가시성</string>
+    <string name="t_strongbox_level">StrongBox 기반 인증 수준</string>
+    <string name="t_uid_hidden_running">실행 중인 UID와 패키지 목록 비교</string>
+    <string name="t_uid_priority_fake">프로세스 스케줄링 우선순위</string>
+    <string name="t_version_cluster">버전 상태 클러스터 일관성(release와 preview)</string>
+    <string name="usage_access_body">설치된 패키지 목록에서 숨겨진 패키지를 usage-stats API로 감지하려면 사용 정보 접근 권한이 필요합니다. 시스템 설정에서 이 앱에 부여한 뒤 돌아오세요.</string>
+    <string name="usage_access_open">설정 열기</string>
+    <string name="usage_access_title">사용 정보 접근 권한 필요</string>
+    <string name="sol_loop_orphan">스톡 기기에서는 모든 ext4 loop 가 이 namespace 의 시스템 마운트로 뒷받침됩니다. 시스템 마운트 지점이 없는 loop 는 스톡 레이아웃 밖에서 마운트된 모듈 또는 오버레이입니다. 그런 loop 를 시스템 경로 아래에 마운트하거나, 이 앱이 공유하지 않는 마운트 namespace 에 보관하세요.</string>
+    <string name="sol_debug_ramdisk">스톡 부팅에서 /debug_ramdisk 는 비어 있거나 존재하지 않습니다. 거기에 배치된 파일은 early-boot root 또는 모듈 페이로드입니다. /debug_ramdisk 에서 배치된 내용을 비우거나, 이 앱이 읽을 수 없는 namespace 에 보관하세요.</string>
+    <string name="sol_stock_path_hidden">표준 Android 시스템 경로는 스톡 기기에 존재하므로, 스톡 경로가 없는 것으로 읽힌다면 숨김 계층이 그것을 과도하게 숨기고 있다는 뜻이며, 그 자체가 단서입니다. root 와 모듈 경로만 숨기고, 깨끗한 기기에 존재하는 경로는 절대 숨기지 마세요.</string>
+    <string name="sol_rom_identity">정직한 기기에서는 SoC, baseband, init 신원이 선언된 브랜드 및 모델과 일치합니다. ROM 또는 하드웨어 신원 property 가 주장된 기기와 모순되면, fingerprint 스푸핑이 제품 property 는 가렸지만 하드웨어 property 는 가리지 못한 것입니다. 모든 신원 표면(SoC, baseband, init.svc, cpuinfo)을 스푸핑한 기기와 일관되게 유지하세요.</string>
+    <string name="sol_version_cluster">스톡 빌드는 자신의 릴리스 상태에 대해 일관됩니다. codename, release-or-preview SDK, fingerprint 토큰이 모두 release 로 읽히거나 모두 preview 로 읽히며, 섞이는 일이 없습니다. 한 신호가 release 로 읽히는 반면 다른 신호가 preview 로 읽힌다면, 스푸핑이 일부 버전 property 는 바꿨지만 전부는 아닙니다. 모든 version-state 신호를 같은 채널에 맞추세요.</string>
+    <string name="sol_multiuser_oracle">/data/user/&lt;id&gt; 에 대한 stat 이 존재한다고 읽는 반면 UserManager 가 그것을 나열하지 않으면 보조 사용자나 프라이빗 공간이 노출됩니다. 둘을 일치시키세요. 사용자 데이터 디렉터리를 권한 없는 앱이 도달할 수 없게 유지하거나, 자신의 디렉터리가 여전히 드러내는 사용자를 숨기지 마세요.</string>
+    <string name="sol_prov_manufacturer">RKP 제조사(RKP 인증서 기준)가 이 기기와 일치하지 않으므로, keybox 가 다른 기기용으로 프로비저닝되었습니다. 이 기기에서 프로비저닝된 keybox 를 사용하세요.</string>
 </resources>

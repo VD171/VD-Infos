@@ -1,7 +1,7 @@
 /*
  * ======================================================================
  *  VD INFOS  ::  method debugger
- *  Read every device info by every method, then compare. A divergence is a hook.
+ *  Read every device info by every method, then compare.
  *
  *  Copyright (C) 2026  VD171
  *  SPDX-License-Identifier: AGPL-3.0-or-later
@@ -14,8 +14,9 @@
  *  Source         : https://github.com/VD171/VD-Infos
  *  GitHub         : @VD171 https://github.com/VD171
  *  XDA-Developers : @VD171 https://xdaforums.com/m/vd171.4699873/
+ *  XDA thread     : https://xdaforums.com/t/VD-Infos.4097379/
  *  Telegram       : @VD_Priv8 https://t.me/VD_Priv8
- *  Telegram       : @Priv8_VD https://t.me/Priv8_VD
+ *  Channel        : @Priv8_VD https://t.me/Priv8_VD
  *  Discord        : @VD.Priv8 https://discord.com/users/1296831918989639721
  *  E-mail         : vd.priv8@pm.me
  * ======================================================================
@@ -70,5 +71,35 @@ object BuildProbes {
           solution = ctx.getString(R.string.sol_patch_prop)) { Build.VERSION.SECURITY_PATCH }
         b("VERSION.MEDIA_PERFORMANCE_CLASS", Category.BUILD) { if (Build.VERSION.SDK_INT >= 31) Build.VERSION.MEDIA_PERFORMANCE_CLASS.toString() else null }
         b("SUPPORTED_ABIS.is64bit", Category.HARDWARE) { android.os.Process.is64Bit().toString() }
+
+        val bvp: List<Triple<String, String, () -> String?>> = listOf(
+            Triple("FINGERPRINT", "ro.build.fingerprint") { Build.FINGERPRINT },
+            Triple("MODEL", "ro.product.model") { Build.MODEL },
+            Triple("BRAND", "ro.product.brand") { Build.BRAND },
+            Triple("DEVICE", "ro.product.device") { Build.DEVICE },
+            Triple("PRODUCT", "ro.product.name") { Build.PRODUCT },
+            Triple("MANUFACTURER", "ro.product.manufacturer") { Build.MANUFACTURER },
+            Triple("ID", "ro.build.id") { Build.ID },
+            Triple("DISPLAY", "ro.build.display.id") { Build.DISPLAY },
+            Triple("HARDWARE", "ro.hardware") { Build.HARDWARE },
+            Triple("BOARD", "ro.product.board") { Build.BOARD },
+            Triple("HOST", "ro.build.host") { Build.HOST },
+            Triple("USER", "ro.build.user") { Build.USER },
+            Triple("TAGS", "ro.build.tags") { Build.TAGS },
+            Triple("TYPE", "ro.build.type") { Build.TYPE },
+            Triple("VERSION.INCREMENTAL", "ro.build.version.incremental") { Build.VERSION.INCREMENTAL },
+            Triple("VERSION.SECURITY_PATCH", "ro.build.version.security_patch") { Build.VERSION.SECURITY_PATCH },
+        )
+        fun bv(t: Triple<String, String, () -> String?>) = (runCatching { t.third() }.getOrNull() ?: "").trim()
+        fun pv(t: Triple<String, String, () -> String?>) = (SystemProps.get(t.second) ?: "").trim()
+        add(probe("build.field:build_vs_prop", ctx.getString(R.string.t_build_vs_prop), Category.FINGERPRINT, listOf(
+            jm("android.os.Build (JNI)") { bvp.joinToString("\n") { "${it.first}=${bv(it)}" } },
+            jm("canonical ro.* prop") { bvp.joinToString("\n") { "${it.first}=${pv(it)}" } },
+            jm("fields where Build != prop", compare = false) {
+                bvp.filter { bv(it) != pv(it) }
+                    .joinToString("\n") { "${it.first}: Build=${bv(it)} | ${it.second}=${pv(it)}" }
+                    .ifEmpty { "none" }
+            },
+        )))
     }
 }

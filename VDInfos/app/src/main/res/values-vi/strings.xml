@@ -2,7 +2,7 @@
 <!--
     ======================================================================
      VD INFOS  ::  method debugger
-     Read every device info by every method, then compare. A divergence is a hook.
+     Read every device info by every method, then compare.
 
      Copyright (C) 2026  VD171
      SPDX-License-Identifier: AGPL-3.0-or-later
@@ -15,8 +15,9 @@
      Source         : https://github.com/VD171/VD-Infos
      GitHub         : @VD171 https://github.com/VD171
      XDA-Developers : @VD171 https://xdaforums.com/m/vd171.4699873/
+     XDA thread     : https://xdaforums.com/t/VD-Infos.4097379/
      Telegram       : @VD_Priv8 https://t.me/VD_Priv8
-     Telegram       : @Priv8_VD https://t.me/Priv8_VD
+     Channel        : @Priv8_VD https://t.me/Priv8_VD
      Discord        : @VD.Priv8 https://discord.com/users/1296831918989639721
      E-mail         : vd.priv8@pm.me
     ======================================================================
@@ -90,6 +91,7 @@
     <string name="crash_title">Lỗi không mong đợi</string>
     <string name="crash_body">Ứng dụng gặp phải lỗi không mong đợi. Không có gì được gửi đi đâu cả. Bạn có thể sao chép chi tiết bên dưới và gửi cho nhà phát triển.</string>
     <string name="about_project">Dự án</string>
+    <string name="about_see_also">Xem thêm</string>
     <string name="about_support">Tải xuống và hỗ trợ</string>
     <string name="action_clear">Xóa tìm kiếm</string>
     <string name="lang_dialog_title">Ngôn ngữ</string>
@@ -100,29 +102,27 @@
     <!-- Giải pháp -->
     <string name="sol_title">Cách khắc phục</string>
     <string name="card_details">Chi tiết</string>
-    <string name="sol_boot">Đây là những gì attestation phần cứng (TEE) báo cáo về trạng thái boot. Các công cụ vượt qua keybox (TrickyStore, TEE Simulator, OhMyKeyMint) chỉ viết lại attestation cho các ứng dụng bạn chỉ định. Thêm gói của ứng dụng này vào danh sách mục tiêu của các công cụ đó (ví dụ target.txt) để attestation của nó báo cáo thiết bị đã khóa với verified boot màu xanh.</string>
-    <string name="sol_root_detector">Các ứng dụng đã cài đặt này tìm kiếm root, giả lập hoặc Play Integrity thất bại. Thêm các gói tìm thấy ở đây làm mục tiêu vào framework ẩn của bạn (HMA-OSS) để ứng dụng và mô-đun root của bạn được ẩn khỏi các trình phát hiện này.</string>
-    <string name="sol_spoof">Cài đặt này được đọc khác nhau qua các đường dẫn mà một ứng dụng có thể dùng (spoof không bao phủ tất cả). Thêm cài đặt vào preset spoof của HMA-OSS để mọi đường dẫn đọc trả về cùng một giá trị.</string>
-    <string name="sol_attest_patch">key attestation báo mức vá khác với thuộc tính hệ thống. Đặt trong công cụ keybox của bạn - TrickyStore ở security_patch.txt (một ngày, hoặc system=/boot=/vendor=/all=, hoặc \'prop\'); OhMyKeymint ở config.toml trong [trust]. Cả hai chỉ đổi attestation, không đổi thuộc tính.</string>
-    <string name="sol_patch_prop">Build.VERSION.SECURITY_PATCH (framework) và thuộc tính ro.build.version.security_patch hiển thị ngày khác nhau. Căn chỉnh bằng resetprop. security_patch.txt và config.toml không giúp được ở đây - chúng chỉ đổi key attestation, không đổi thuộc tính.</string>
+    <string name="sol_root_detector">Các ứng dụng đã cài này tìm root. Thêm các gói tìm thấy ở đây làm mục tiêu trong framework ẩn của bạn (HMA-OSS).</string>
+    <string name="sol_attest_patch">Chứng thực báo một security patch khác với property. Đặt nó trong công cụ keybox (TrickyStore security_patch.txt, OhMyKeymint config.toml [trust]); chỉ đổi chứng thực.</string>
+    <string name="sol_patch_prop">Framework và property cho thấy ngày patch khác nhau. Căn chúng bằng resetprop; công cụ keybox chỉ đổi chứng thực, không đổi properties.</string>
 
-    <string name="note_gsf">Không có trên Android 16 trở lên: kho dịch vụ Google đã chuyển vào Play Services, cửa của nó được chính Google đặt tên &quot;do.not.use&quot; và không trả lời các ứng dụng khác. Cả hai đều được thử ở trên.</string>
     <string name="t_attestation_app_id">Id ứng dụng trong chứng thực (gói + chữ ký)</string>
     <string name="t_dev_ptmx_present">/dev/ptmx tồn tại</string>
     <string name="t_documents_providers">DocumentsProviders đã đăng ký</string>
     <string name="t_kernel_modules">Mô-đun nhân đã nạp (KernelSU/SuSFS)</string>
-    <string name="t_kernel_syscall_fingerprint">Phiên bản nhân theo dấu vân syscall</string>
+    <string name="t_kernel_syscall_fingerprint">Đối chiếu phiên bản nhân</string>
     <string name="t_key_inside_secure_hw">Khóa nằm trong phần cứng bảo mật (KeyInfo)</string>
     <string name="t_rot_ec_vs_rsa">Gốc tin cậy của chứng thực: yêu cầu EC so với RSA</string>
     <string name="t_leaf_sig_alg">Chứng chỉ lá của chứng thực: khóa so với thuật toán chữ ký</string>
     <string name="t_batch_key_ec_vs_rsa">Khóa chứng thực: chuỗi EC so với chuỗi RSA</string>
+    <string name="t_native_vs_jvm">Chứng thực: keystore2 native vs JVM</string>
     <string name="t_local_tmp_contents">Nội dung /data/local/tmp</string>
     <string name="t_native_lib_origin">Nguồn gốc thư viện native (dladdr)</string>
     <string name="t_own_debuggable">Ứng dụng này: debuggable / bản dựng debug</string>
     <string name="t_play_store_version">Phiên bản Play Store / GMS</string>
     <string name="t_resolv_conf">resolv.conf / cấu hình DNS</string>
     <string name="t_root_backup_tools">Có công cụ sao lưu cần root</string>
-    <string name="t_su_libc_inline_hook">su: syscall thô so với libc và Java</string>
+    <string name="t_su_libc_inline_hook">Phân giải su qua các tầng</string>
     <string name="t_system_build_prop">/system/build.prop</string>
     <string name="t_system_build_prop_present">/system/build.prop tồn tại</string>
     <string name="t_adb_enabled">ADB đã bật</string>
@@ -192,7 +192,7 @@
     <string name="t_imei">IMEI</string>
     <string name="t_imsi_subscriber">IMSI (thuê bao)</string>
     <string name="t_incremental">Incremental</string>
-    <string name="t_injected_libs_proc_self_maps">Thư viện được tiêm (/proc/self/maps)</string>
+    <string name="t_injected_libs_proc_self_maps">Thư viện được chèn</string>
     <string name="t_installed_app_signing_digests">Digest chữ ký ứng dụng đã cài</string>
     <string name="t_installed_applications">Ứng dụng đã cài đặt</string>
     <string name="t_installed_input_methods">Phương thức nhập đã cài</string>
@@ -202,13 +202,9 @@
     <string name="t_kernel_version">Kernel (phiên bản)</string>
     <string name="t_kernel_version_string">Kernel (chuỗi phiên bản)</string>
     <string name="t_kernel_version_claim">Tuyên bố phiên bản kernel (ro.kernel.version so với uname)</string>
-    <string name="note_kernel_version_claim">Thuộc tính ro.kernel.version phải phản ánh kernel đang chạy. Nếu nó tuyên bố một major.minor mà release uname thật không có, thì một resolver đã đặt thuộc tính trong khi kernel bên dưới là cái khác.</string>
     <string name="t_kernel_build_date">Ngày build kernel so với ROM</string>
-    <string name="note_kernel_build_date">Một kernel GKI dựng sẵn cũ hơn hoặc khớp với ROM mà nó đi kèm. Một kernel được build sau khi ROM lắp ráp một thời gian dài đã được dựng lại hoặc flash về sau, dấu hiệu thường thấy của kernel biên dịch thủ công.</string>
     <string name="t_kernel_config">Cấu hình kernel (/proc/config.gz)</string>
-    <string name="note_kernel_config">Cấu hình kernel, nơi đọc được, nêu các bản vá đã biên dịch vào: KSU, SUSFS, local version tùy chỉnh, ký module không bắt buộc. Sandbox ứng dụng thường từ chối tệp này; nó đọc được trên Android cũ, ROM tùy chỉnh và shell root.</string>
     <string name="t_kernel_module_scan">Module và ký hiệu kernel</string>
-    <string name="note_kernel_module_scan">Quét /sys/module và tên ký hiệu trong /proc/kallsyms tìm ksu, susfs và magisk mà một kernel đã vá hoặc nạp module để lộ. Cả hai bề mặt thường bị hạn chế; chúng đọc được ở nơi domain cho phép.</string>
     <string name="t_kernel_cmdline">cmdline kernel</string>
     <string name="t_kernel_log">Nhật ký kernel</string>
     <string name="t_kernel_stat">stat kernel</string>
@@ -285,8 +281,8 @@
     <string name="t_verified_boot_hash_vbmeta_digest">Hash verified boot / digest vbmeta</string>
     <string name="t_verified_boot_key">Khóa verified boot</string>
     <string name="t_verified_boot_state">Trạng thái verified boot</string>
-    <string name="t_prop_area_tamper">Can thiệp vùng property (lỗ hổng/ngữ cảnh)</string>
-    <string name="t_supplementary_groups">Nhóm bổ sung (3009=AID_READPROC)</string>
+    <string name="t_prop_area_tamper">Vùng thuộc tính hệ thống</string>
+    <string name="t_supplementary_groups">Nhóm bổ sung</string>
     <string name="t_version_codename">Tên mã phiên bản</string>
     <string name="t_webview_provider">Nhà cung cấp WebView</string>
     <string name="t_webview_user_agent">User agent WebView</string>
@@ -322,6 +318,17 @@
     <string name="t_queryintentservices_main">queryIntentServices (MAIN)</string>
     <string name="t_resolveactivity_main_launcher">resolveActivity (MAIN/LAUNCHER)</string>
     <string name="t_su_binary">tệp nhị phân su</string>
+    <string name="t_setuid_root">Tệp nhị phân đặc quyền</string>
+    <string name="t_root_dirs_present">Khả năng hiển thị thư mục hệ thống</string>
+    <string name="t_maps_isolated">Mô-đun được chèn</string>
+    <string name="t_inline_hooks">Hook mã</string>
+    <string name="t_linker_maps_gap">Thư viện ẩn</string>
+    <string name="t_tracerpid_iso">Trình gỡ lỗi đã đính kèm</string>
+    <string name="t_fd_iso">Handle đang mở</string>
+    <string name="t_selinux_iso">Ngữ cảnh bảo mật</string>
+    <string name="t_su_iso">Quyền truy cập siêu người dùng</string>
+    <string name="t_prop_dual_iso">Thuộc tính hệ thống</string>
+    <string name="t_smaps_iso">Bộ nhớ thực thi ghi được</string>
     <string name="t_su_on_path">su trong PATH</string>
     <string name="t_tel_networkOperatorName">Tên nhà mạng</string>
     <string name="t_tel_networkOperator">Nhà mạng (MCC+MNC)</string>
@@ -413,7 +420,7 @@
     <string name="t_isrc_self_originating">Nguồn cài đặt (self): originating</string>
     <string name="t_isrc_self_pkgsource">Nguồn cài đặt (self): packageSource</string>
     <string name="t_isrc_self_initiator_sig">Nguồn cài đặt (self): cert của initiator vs đã cài</string>
-    <string name="t_isrc_gap_jvm_store_pm_denies">Khác biệt: JVM báo installer của store, pm phủ nhận (hook)</string>
+    <string name="t_isrc_gap_jvm_store_pm_denies">Trình cài đặt: JVM so với pm</string>
     <string name="t_isrc_gap_jvm_pm_other">Khác biệt: installer JVM ≠ installer pm (khả năng thấy)</string>
     <string name="t_isrc_gap_installer_ne_initiating">Khác biệt: installer ≠ initiating</string>
     <string name="t_isrc_gap_store_installer_sideload">Khác biệt: installer của store, initiating sideload</string>
@@ -432,24 +439,16 @@
     <string name="t_installed_applications_diff">Ứng dụng đã cài đặt: khác biệt (JVM x pm)</string>
     <string name="t_selinux_status">Trang status SELinux (policyload/seq)</string>
     <string name="t_selinux_policy_probe">Thăm dò chính sách SELinux (kiểu + AVC)</string>
-    <string name="t_manager_doors">Trình quản lý root/Xposed: khả năng thấy theo cửa PackageManager</string>
+    <string name="t_manager_doors">Khả năng hiển thị ứng dụng quản lý</string>
     <string name="t_net_sock_diag">Chính sách Netlink sock_diag</string>
-    <string name="n_net_sock_diag">Ứng dụng bị giới hạn phải bị từ chối NETLINK_SOCK_DIAG; có phản hồi nghĩa là chính sách netlink đã bị nới lỏng.</string>
     <string name="t_mount_peer_gap">Tính toàn vẹn peer-group của mount</string>
-    <string name="n_mount_peer_gap">Tập id peer-group phải đọc giống nhau qua mọi lăng kính; một lỗ hổng theo lăng kính nghĩa là có mount bị ẩn.</string>
     <string name="t_mount_fdinfo_mnt">Mount id vs mô tả tệp đang mở</string>
-    <string name="n_mount_fdinfo_mnt">Một mô tả đang mở có mnt_id vắng trong mountinfo trỏ tới một mount bị ẩn khỏi khung nhìn.</string>
-    <string name="t_proc_readproc_gid">GID 3009 của zygote (AID_READPROC)</string>
-    <string name="n_proc_readproc_gid">Thiếu GID bổ sung AID_READPROC là dấu vết mà một số mô-đun ẩn ứng dụng để lại.</string>
+    <string name="t_proc_readproc_gid">GID bổ sung của zygote</string>
     <string name="t_proc_fd_graph">Kiểm đếm mô tả tệp</string>
     <string name="t_mem_anon_exec">Ánh xạ khả thi ẩn danh</string>
-    <string name="n_mem_anon_exec">Trang khả thi không có tệp nền là cặn tiêm/Zygisk điển hình; số lượng phải khớp giữa các lăng kính.</string>
     <string name="t_kernel_selfbuild">Nhân tự biên dịch / vá</string>
-    <string name="n_kernel_selfbuild">Nhân gốc không mang dấu build -dirty, git hay SUSFS; các dấu phải khớp giữa các lăng kính.</string>
     <string name="t_tee_soter">Dịch vụ Soter vs thuộc tính</string>
-    <string name="n_tee_soter">Đối chiếu chương trình dịch vụ Soter của Tencent với trạng thái thuộc tính dịch vụ của nó.</string>
     <string name="t_proc_cgroup_format">Định dạng đường dẫn cgroup</string>
-    <string name="n_proc_cgroup_format">Một container nhân bản / dual-app khiến đường dẫn cgroup hợp nhất lệch khỏi dạng chuẩn uid_/pid_.</string>
     <string name="t_gpu_vendor">Nhà sản xuất GPU</string>
     <string name="t_gpu_renderer">Trình kết xuất GPU</string>
     <string name="t_gpu_version">Phiên bản GPU</string>
@@ -461,32 +460,119 @@
     <string name="t_tel_simSpecificCarrierId">ID nhà mạng SIM cụ thể</string>
     <string name="t_tel_visualVoicemailPackageName">Gói thư thoại trực quan</string>
     <string name="t_keychain_blacklist">Danh sách đen chứng chỉ Keychain</string>
-    <string name="t_buildprop_vs_runtime">build.prop vs runtime</string>
-    <string name="note_boot_count">boot_count (framework) chỉ tăng; Phenotype_boot_count (Dịch vụ Play) là ảnh chụp của nó và có thể trễ. Chỉ phân kỳ khi ảnh chụp vượt boot_count (một lần đặt lại).</string>
-    <string name="note_isrc_initiator_sig">Chứng chỉ mà hệ thống ghi lại cho trình cài đặt khi ứng dụng này được cài khác với chứng chỉ trình cài đặt báo hiện tại. Nguyên nhân là trình cài đặt bị thay thế hoặc chữ ký bị giả mạo; các ROM ký lại hệ thống và báo chứng chỉ gốc của nhà sản xuất (vd. Xiaomi.eu) hiển thị điều này trên mọi thiết bị.</string>
+    <string name="t_buildprop_vs_runtime">Tính nhất quán thuộc tính build</string>
     <string name="t_concealment">Ẩn ứng dụng</string>
-    <string name="note_concealment">Một gói bị ẩn khỏi danh sách ứng dụng nhưng vẫn truy cập được qua cửa khác của PackageManager (thông tin gói, createPackageContext, APK đã mở, launch intent) thì bị ẩn ở cửa này mà không ở cửa kia - dấu hiệu của trình ẩn ứng dụng chưa hoàn chỉnh.</string>
     <string name="t_prop_variants">Biến thể theo phân vùng: %1$s</string>
     <string name="t_prop_enum">Liệt kê property vs getprop</string>
-    <string name="note_prop_variants">Cùng một hậu tố xuất hiện theo phân vùng (system, vendor, product, odm, dlkm...). Giá trị lẽ ra phải khớp ở mọi nơi nhưng lại khác, hoặc tách nhau trong cùng một dòng, để lộ một spoof cục bộ - fingerprint bị đổi ở vài phân vùng mà không ở những phân vùng khác.</string>
-    <string name="note_prop_enum">Liệt kê vùng property bằng native (__system_property_foreach) rồi so với getprop từ tiến trình khác sẽ lộ ra một property bị giấu khỏi shell hoặc được tiêm vào một đường mà không vào đường kia.</string>
-    <string name="t_dlphdr">Mô-đun của loader (dl_iterate_phdr)</string>
-    <string name="t_frida_port">Quét cổng Frida</string>
-    <string name="note_dlphdr">dl_iterate_phdr liệt kê các mô-đun đã nạp qua trình liên kết, không qua /proc/self/maps, nên một hook xóa mục của nó khỏi maps vẫn được liệt kê ở đây. Một needle khớp hoặc một mô-đun ngoài allowlist hệ thống là chỗ rò rỉ.</string>
+    <string name="t_dlphdr">Mô-đun đã tải</string>
+    <string name="t_frida_port">Cổng đo lường</string>
     <string name="t_ime_verdict">Phán quyết toàn vẹn bàn phím</string>
     <string name="t_store_authenticity">Tính xác thực chữ ký của store/GMS</string>
     <string name="t_devgate">Tính nhất quán của cài đặt khóa theo Dev</string>
-    <string name="note_ime_verdict">Một RASP ngân hàng (PayZapp/Zeta) từ chối mọi bàn phím được bật mà là phi hệ thống và cài từ ngoài allowlist store. Một IME phi hệ thống được bật với trình cài ngoài store bị gắn cờ.</string>
-    <string name="note_store_authenticity">Play Store, GMS và GSF phải mang chứng chỉ ký của Google. Một gói store hoặc GMS có mặt nhưng được ký bằng khóa khác là hàng giả, microG hoặc store đóng gói lại.</string>
-    <string name="note_devgate">adb và các cài đặt khóa theo Dev khác chỉ đổi khi Tùy chọn nhà phát triển bật. Một cài đặt khóa khác mặc định khi development_settings_enabled=0 chỉ có thể được đặt bởi root hoặc `settings put`.</string>
-    <string name="t_maps_exec">Vùng exec bị tiêm (deleted/memfd)</string>
-    <string name="t_anon_minor">Superblock anon-bdev ẩn</string>
-    <string name="note_maps_exec">Một vùng thực thi từ tệp (deleted)/memfd/ashmem mà hoặc RWX (vi phạm W^X) hoặc bắt đầu bằng magic ELF là một .so bị tiêm thật, đã tách khỏi hệ thống tệp; trampoline JIT của ART không phải cả hai và được tính là lành tính. Một mô-đun ngoài allowlist hệ thống cũng được tính.</string>
-    <string name="note_anon_minor">Các hệ thống tệp không có thiết bị khối lấy minor từ một pool anon toàn cục, dày từ dưới lên. Một minor có mặt qua stat() nhưng vắng trong mountinfo của tiến trình này là một superblock đang sống ẩn trong một namespace riêng (tmpfs của một daemon). Một dải dài các minor thiếu là churn theo ứng dụng và bị bỏ qua; một lỗ ngắn là dấu hiệu.</string>
-    <string name="t_sb_tee_signer">Bên ký StrongBox × TEE</string>
+    <string name="t_maps_exec">Ánh xạ bộ nhớ thực thi</string>
+    <string name="t_elf_in_anon">Ảnh mã trong bộ nhớ ẩn danh</string>
+    <string name="t_anon_exec_orphan">Bộ nhớ thực thi không nền</string>
+    <string name="t_anon_minor">Hệ thống tập tin ẩn</string>
+    <string name="t_sb_tee_signer">Hồ sơ chứng thực StrongBox</string>
+    <string name="t_sb_capability">Hồ sơ capability StrongBox</string>
+    <string name="t_sb_enforced">Mức thực thi khóa StrongBox</string>
+    <string name="t_sb_version">Phiên bản chứng thực StrongBox</string>
+    <string name="t_sb_chain">Chuỗi chứng thực StrongBox</string>
+    <string name="t_sb_rkp">Provisioning khóa StrongBox</string>
+    <string name="t_sb_latency">Thời gian tạo khóa StrongBox</string>
     <string name="t_local_tmp_list">Liệt kê /data/local/tmp</string>
-    <string name="note_local_tmp_list">Liệt kê /data/local/tmp bằng getdents64 (không tra theo tên) làm lộ mọi tàn dư mà một ứng dụng thực sự chạm tới, gồm cả thứ mô-đun thả ra. Trên thiết bị khóa, thư mục thuộc shell và ứng dụng không liệt kê được, nên EACCES là câu trả lời sạch; một mục hiện ra nghĩa là tàn dư ứng dụng chạm tới được.</string>
     <string name="t_nettype_consistency">Loại mạng so với giao diện thực</string>
     <string name="t_flagsecure_honored">FLAG_SECURE được tôn trọng (chặn ảnh chụp)</string>
+    <string name="t_procnet_frida">Socket đo lường</string>
+    <string name="t_procnet_tun">Giao diện VPN</string>
+    <string name="t_mountinfo_iso">Mục gắn kết</string>
+    <string name="t_adb_usb_exposure">Lộ gỡ lỗi ADB/USB</string>
+    <string name="t_anon_elf_struct">Cấu trúc ELF trong bộ nhớ ẩn danh</string>
+    <string name="t_atexit_drift">Trôi runtime Atexit</string>
+    <string name="t_attestation_challenge_echo">Tiếng vọng challenge attestation</string>
+    <string name="t_attest_synth_paradox">Attestation so với trạng thái runtime</string>
+    <string name="t_baseband_coherence">Tính nhất quán phiên bản baseband</string>
+    <string name="t_datadir_errno_oracle">Dò thư mục dữ liệu gói</string>
+    <string name="t_device_id">Danh tính thiết bị từ attestation so với Build</string>
+    <string name="t_feature_spoof">Tính nhất quán tính năng hệ thống</string>
+    <string name="t_fingerprint_rebuild">Tái dựng fingerprint</string>
+    <string name="t_gap_mapped">Độ phủ bản đồ bộ nhớ</string>
+    <string name="t_heap_hook_xref">Tham chiếu cũ trong heap</string>
+    <string name="t_hidden_app_usage_leak">Hiển thị gói qua usage stats</string>
+    <string name="t_hidden_region_xref">Tham chiếu heap tới vùng bộ nhớ</string>
+    <string name="t_launch_sender_pkg_leak">Hiển thị gói IntentSender</string>
+    <string name="t_libc_identity">Tính nhất quán ảnh libc</string>
+    <string name="t_lock_coherence">Tính nhất quán khóa bootloader</string>
+    <string name="t_map_files_leak">Nguồn gốc tệp được ánh xạ</string>
+    <string name="t_multiuser_oracle">Hiển thị người dùng / private-space</string>
+    <string name="t_named_anon_exec">Ánh xạ mã tên ẩn danh</string>
+    <string name="t_otacerts_signing_key">Khóa ký OTA (otacerts)</string>
+    <string name="t_pairip_wrapper">Quét wrapper ứng dụng</string>
+    <string name="t_phantom_monitor_prop">prop cờ phantom monitor</string>
+    <string name="t_phantom_monitor_setting">Cài đặt phantom monitor</string>
+    <string name="t_platform_signer">Bên ký nền tảng (gói android)</string>
+    <string name="t_prov_fingerprint">RKP fingerprint so với thiết bị</string>
+    <string name="t_prov_manufacturer">Nhà sản xuất RKP so với thiết bị</string>
+    <string name="t_prov_vbmeta_reuse">RKP vbmeta so với runtime</string>
+    <string name="t_prov_verdict">Phán quyết verified boot từ RKP</string>
+    <string name="t_settings_stock_baseline">Đường cơ sở cài đặt nhà phát triển/bảo mật</string>
+    <string name="t_signature_source">Tính nhất quán nguồn chứng chỉ ký</string>
+    <string name="t_signature_sweep">Quét chứng chỉ ký (tất cả ứng dụng)</string>
+    <string name="t_signing_keys">Khóa ký (kỳ vọng release-keys)</string>
+    <string name="t_statfs_consistency">Tính nhất quán kích thước lưu trữ</string>
+    <string name="t_verifier_adb_installs">Xác minh ứng dụng qua USB (package verifier)</string>
+    <string name="t_zygisk_loader_footprint">Dấu vết loader trong bộ nhớ</string>
+    <string name="t_zygote_gid">Tính nhất quán GID zygote</string>
     <string name="about_trademarks">VD Infos là một công cụ nghiên cứu và chẩn đoán độc lập, không chính thức. Công cụ này không liên kết với, không được chứng thực bởi, cũng không được tài trợ bởi bất kỳ nhà cung cấp nào mà nó đọc, phát hiện hoặc nêu tên phần mềm, dịch vụ hay nhãn hiệu của họ (bao gồm Google LLC và Android Open Source Project). \"Android\", \"Google\", \"Google Play\", \"Play Integrity\", \"Widevine\" cùng tất cả các tên sản phẩm, biểu trưng và nhãn hiệu khác là tài sản của các chủ sở hữu tương ứng. VD Infos chỉ đọc những gì đã có trên thiết bị của bạn và không gửi bất cứ thứ gì đi đâu cả.</string>
+    <string name="note_art_dexopt_self">Tín hiệu sức khỏe, không phải dấu hiệu root. Trên đĩa có AOT base.odex nhưng ứng dụng chạy ở chế độ thông dịch (không có vùng ánh xạ thực thi), nghĩa là odex đã bị từ chối (boot-image đã cũ, ART boot image thay đổi sau một bản cập nhật apex). Khi đó các ứng dụng dịch vụ và việc xác minh ứng dụng của Play Protect có thể không kịp khởi động đúng lúc. Đây là tín hiệu gián tiếp phía người dùng; kiểm tra có thẩm quyền nằm ở phía root.</string>
+    <string name="sol_art_dexopt_self">Biên dịch lại với quyền root (pm compile -a -m speed) hoặc khởi động lại để tạo lại boot image và chạy lại dexopt cho các ứng dụng.</string>
+    <string name="sol_atexit_drift">Các hàm xử lý thoát của libc là __cxa_atexit và __cxa_finalize phải phân giải bên trong libc. Khi chúng phân giải sang một thư viện khác hoặc một vùng ẩn danh, nghĩa là một trình tiêm kiểu Zygisk đã chen vào. Hãy gỡ phần tiêm này khỏi tiến trình.</string>
+    <string name="sol_baseband_coherence">Phiên bản modem được báo cáo bởi getRadioVersion và cả nhóm gsm.version.baseband; tất cả đều đọc cùng một firmware. Khi một nguồn không khớp, nghĩa là một lần spoof property đã vá một số alias nhưng không phải tất cả. Hãy giữ mọi nguồn phiên bản baseband giống hệt nhau.</string>
+    <string name="sol_boot">Chứng thực phần cứng (TEE) báo cáo trạng thái boot. Thêm gói của ứng dụng này vào danh sách mục tiêu của công cụ keybox để nó báo cáo thiết bị đã khóa và đã xác minh.</string>
+    <string name="sol_datadir_errno_oracle">Một lệnh stat trên thư mục dữ liệu của một gói có thể để lộ rằng nó đã được cài, ngay cả khi không có quyền truy vấn gói. Thêm những gói như vậy vào framework ẩn của bạn (HMA-OSS) để thư mục dữ liệu của chúng đọc như không tồn tại, chứ không chỉ là bị từ chối.</string>
+    <string name="sol_device_id">Danh tính phần cứng trong chứng thực (brand, device, manufacturer) không khớp với build properties, nên bên xác minh có thể biết các property bị giả mạo. Hãy căn ro.product.brand, ro.product.device và ro.product.manufacturer khớp với các giá trị được chứng thực bởi phần cứng (product và model khác nhau một cách hợp lệ: chứng thực mang theo tên mã codename).</string>
+    <string name="sol_feature_spoof">hasSystemFeature, getSystemAvailableFeatures và các node phần cứng không thống nhất về một tính năng của thiết bị, nên một tính năng bị ẩn hoặc làm giả qua một đường dẫn nhưng không qua các đường còn lại. Hãy làm cho mọi đường truy vấn tính năng và phần cứng báo cáo cùng một sự hiện diện.</string>
+    <string name="sol_fingerprint_rebuild">build fingerprint được ghép tại thời điểm build theo dạng BRAND/PRODUCT/DEVICE:RELEASE/ID/INCREMENTAL:TYPE/TAGS. Khi Build.FINGERPRINT không bằng kết quả dựng lại từ chính các trường thành phần của nó, nghĩa là một lần spoof đã đổi fingerprint mà không căn mọi thành phần (hoặc ngược lại). Hãy làm cho fingerprint và các thành phần của nó nhất quán.</string>
+    <string name="sol_hidden_app_usage_leak">Một gói có thể lộ ra qua các API usage-stats ngay cả khi nó bị giữ ngoài danh sách gói đã cài. Thêm những gói như vậy vào framework ẩn của bạn (HMA-OSS) để chúng cũng được ẩn khỏi các API usage-stats, chứ không chỉ khỏi danh sách gói.</string>
+    <string name="sol_launch_sender_pkg_leak">Trên các ROM đã đo, IntentSender trả về chỉ được khóa theo (caller, name): các trường creator của nó là của bên gọi và equals chỉ khác ở name, nên nó không mang tín hiệu đã cài/đã ẩn (so với một name không tồn tại ngẫu nhiên sẽ là dương tính giả). Nó chỉ rò rỉ nếu một gói đã cài hiển thị và một name không tồn tại khác nhau ở một trường độc lập với bên gọi; nếu vậy, hãy làm cho framework ẩn (HMA-OSS) trả về kết quả tương đương không tồn tại cho các gói đã ẩn.</string>
+    <string name="sol_libc_identity">Vùng ánh xạ libc đã nạp (device và inode) không khớp với tệp libc.so trên đĩa, nên thư viện đã bị thay thế hoặc bind-mount (một libc bị hook). Hãy cung cấp libc chính gốc, hoặc ẩn mount thay thế đó khỏi ứng dụng.</string>
+    <string name="sol_lock_coherence">Trên thiết bị gốc đã khóa, mọi property khóa bootloader và verified boot đều khớp: flash.locked=1, verifiedbootstate=green, vbmeta.device_state=locked, bảo hành chưa bị kích hoạt. Khi một cái báo đã khóa trong khi cái khác vẫn đọc là chưa khóa, nghĩa là một lần spoof đã vá một số nhưng không phải tất cả. Hãy chuẩn hóa mọi property khóa về cùng một trạng thái.</string>
+    <string name="sol_otacerts_signing_key">Chứng chỉ ký OTA (otacerts.zip) là AOSP test key công khai, nên build đọc là test-signed ngay cả khi ro.build.tags khai là release-keys. Hãy cung cấp một otacerts.zip ký release qua module chuyển hướng tệp của bạn và căn ro.*.build.tags trên mọi phân vùng để tệp và các property khớp nhau.</string>
+    <string name="sol_perm_path_coherence">Cùng một quyền được phân giải qua nhiều đường dẫn code: PackageManager.checkPermission, Context.checkPermission(perm,pid,uid), các cờ đã cấp của getPackageInfo(GET_PERMISSIONS), và binder cấp thấp IPackageManager.checkUidPermission. Trên một hệ thống chưa bị đụng đến, mọi đường dẫn tiếp cận được đều thống nhất, và một quyền đặc quyền (START_ANY_ACTIVITY, INSTALL_PACKAGES, MANAGE_USERS) đều bị từ chối trên mỗi đường. Một hook giả mạo hoặc ẩn một quyền trên đường này nhưng không trên đường khác, hoặc cấp một quyền đặc quyền mà một ứng dụng bình thường không bao giờ có được, sẽ phân kỳ ở đây. Hãy phân giải quyền nhất quán trên mọi đường dẫn; đừng giả mạo việc cấp quyền chỉ trên đường mà một bộ dò tình cờ đọc.</string>
+    <string name="sol_phantom_monitor">Thiết bị gốc không để lộ việc phantom-process monitor có bị thay đổi hay không. Thêm setting này vào các preset spoof của framework ẩn (HMA-OSS) để nó đọc như trên thiết bị gốc, và tránh property ghi đè feature-flag.</string>
+    <string name="sol_platform_signer">Chữ ký của gói nền tảng (android) để lộ một bên ký không phải OEM (một ROM tùy chỉnh hoặc AOSP test key), hoặc một OEM không khớp với manufacturer được khai. Hãy giả mạo chữ ký nền tảng (như spoofSignature của PlayIntegrityFork) để gói android báo cáo chứng chỉ nền tảng của OEM được khai.</string>
+    <string name="sol_prov_fingerprint">RKP fingerprint (từ chứng chỉ RKP) không khớp với build fingerprint của thiết bị này, nên keybox thuộc về một thiết bị khác. Hãy dùng một keybox được provision trên chính thiết bị này.</string>
+    <string name="sol_prov_vbmeta_reuse">RKP vbmeta_digest (từ chứng chỉ RKP) không khớp với hash verified boot của thiết bị lúc chạy, nên keybox đã được provision trên một thiết bị khác (một keybox dùng lại hoặc dùng chung) hoặc thiết bị đã được cập nhật sau khi provision. Hãy dùng một keybox được provision trên chính thiết bị này.</string>
+    <string name="sol_prov_verdict">Chứng chỉ RKP ghi nhận quá trình boot của thiết bị là không được chấp thuận, nên backend RKP đã gắn cờ thiết bị này. Hãy dùng một keybox được provision trên một thiết bị mà backend đã chấp thuận.</string>
+    <string name="sol_signature_source">Chứng chỉ ký đọc từ bản ghi PackageManager và chứng chỉ phân tích từ tệp APK trên đĩa phải khớp nhau, và PackageManager phải nhận ra chứng chỉ của tệp APK (hasSigningCertificate, checkSignatures). Khi chúng phân kỳ, nghĩa là một hook ở cấp PackageManager đã viết lại chữ ký được báo cáo mà không đụng đến APK thật. Đọc trực tiếp APK vẫn thấy chứng chỉ thật.</string>
+    <string name="sol_signature_sweep">Với mọi ứng dụng đã cài, chứng chỉ ký từ bản ghi PackageManager và chứng chỉ phân tích từ tệp APK của nó phải chung một bên ký. Một ứng dụng mà hai tập này rời nhau hoàn toàn thì chữ ký PackageManager của nó đã bị giả mạo trong khi APK trên đĩa vẫn giữ chữ ký thật. Xoay vòng khóa vẫn giữ một bên ký chung, nên không bị gắn cờ.</string>
+    <string name="sol_signing_keys">Một build production được ký bằng release-keys. Một property khóa ký đọc ra test-keys hoặc dev-keys (bằng bất kỳ phương pháp nào) sẽ để lộ một build tùy chỉnh hoặc debug. Hãy khôi phục release-keys trên build.tags và các property *.keys theo từng phân vùng.</string>
+    <string name="sol_spoof">Setting này đọc không nhất quán. Thêm nó vào các preset spoof của HMA-OSS để mọi đường dẫn trả về cùng một giá trị.</string>
+    <string name="sol_statfs_consistency">android.os.StatFs và số đọc statvfs gốc không thống nhất về kích thước lưu trữ, nên kích thước bị giả mạo qua API framework Java chứ không ở tầng gốc. Hãy làm cho đường StatFs và đường gốc báo cáo cùng các giá trị.</string>
+    <string name="sol_zygote_gid">zygote gán cho một tiến trình các GID bổ sung dựa trên các quyền đã cấp của ứng dụng: INTERNET ngụ ý 3003, BLUETOOTH 3002, v.v. Một quyền đã cấp mà GID của nó vắng mặt trong getgroups(2) nghĩa là một trình ẩn đã lọc các quyền zygote: nó ẩn ứng dụng nhưng lại mâu thuẫn với tập quyền, điều mà bất kỳ ứng dụng nào cũng đọc được trên chính nó. Đừng tước các GID mà các quyền đã cấp yêu cầu (ví dụ, đừng bao giờ gỡ INET_GID khi INTERNET đang được cấp).</string>
+    <string name="summary_all_agreed_mark" translatable="false">🏆 ✓ </string>
+    <string name="t_boot_triad_coherence">Tính nhất quán trạng thái verified boot</string>
+    <string name="t_build_vs_prop">android.os.Build đối chiếu prop chuẩn (theo từng trường danh tính)</string>
+    <string name="t_debug_ramdisk">Nội dung /debug_ramdisk</string>
+    <string name="t_isrc_gap_forged_store_install">Tính nhất quán cửa hàng cài đặt</string>
+    <string name="t_isrc_gap_store_pkgsource_other">Khác biệt: trình cài là cửa hàng, packageSource không giống cửa hàng</string>
+    <string name="t_loop_orphan">Thiết bị loop mồ côi</string>
+    <string name="t_perm_path_coherence">Tính nhất quán kiểm tra quyền</string>
+    <string name="t_rom_identity">SoC đối chiếu danh tính thiết bị được khai</string>
+    <string name="t_settings_read_gate">Cổng đọc setting bị hạn chế</string>
+    <string name="t_stock_path_hidden">Khả năng thấy đường dẫn hệ thống</string>
+    <string name="t_strongbox_level">Mức chứng thực dựa trên StrongBox</string>
+    <string name="t_uid_hidden_running">UID đang chạy đối chiếu danh sách gói</string>
+    <string name="t_uid_priority_fake">Độ ưu tiên lập lịch tiến trình</string>
+    <string name="t_version_cluster">Tính nhất quán cụm trạng thái phiên bản (release đối chiếu preview)</string>
+    <string name="usage_access_body">Phát hiện một gói bị ẩn khỏi danh sách gói đã cài thông qua các API usage-stats cần quyền Truy cập mức sử dụng (Usage access). Hãy cấp quyền đó cho ứng dụng này trong cài đặt hệ thống, rồi quay lại.</string>
+    <string name="usage_access_open">Mở cài đặt</string>
+    <string name="usage_access_title">Cần quyền truy cập mức sử dụng</string>
+    <string name="sol_debug_ramdisk">Khi khởi động stock, /debug_ramdisk rỗng hoặc không tồn tại. Các tập tin được đặt ở đó là payload của root hoặc mô-đun trong giai đoạn đầu khởi động. Hãy xóa nội dung đã đặt khỏi /debug_ramdisk, hoặc giữ nó trong một namespace mà ứng dụng này không đọc được.</string>
+    <string name="sol_loop_orphan">Trên thiết bị stock, mỗi ext4 loop đều được một mount hệ thống trong namespace này hậu thuẫn. Một loop không có điểm mount hệ thống là một mô-đun hoặc overlay được mount bên ngoài bố cục stock. Hãy mount những loop như vậy dưới một đường dẫn hệ thống, hoặc giữ chúng trong một mount namespace mà ứng dụng này không chia sẻ.</string>
+    <string name="sol_multiuser_oracle">Một người dùng phụ hoặc không gian riêng tư bị lộ khi một lệnh stat trên /data/user/&lt;id&gt; đọc thấy nó hiện diện trong khi UserManager không liệt kê nó. Hãy làm cho hai bên khớp nhau: hoặc giữ thư mục dữ liệu người dùng không thể truy cập được đối với một ứng dụng không đặc quyền, hoặc đừng ẩn một người dùng mà chính thư mục của họ vẫn để lộ.</string>
+    <string name="sol_prov_manufacturer">Nhà sản xuất RKP (từ chứng chỉ RKP) không khớp với thiết bị này, nên keybox đã được cấp cho một thiết bị khác. Hãy dùng một keybox được cấp trên thiết bị này.</string>
+    <string name="sol_rom_identity">Trên một thiết bị trung thực, SoC, baseband và danh tính init khớp với thương hiệu và kiểu máy đã khai báo. Khi một thuộc tính danh tính ROM hoặc phần cứng mâu thuẫn với thiết bị được tuyên bố, một màn giả mạo fingerprint đã che các thuộc tính sản phẩm nhưng không che các thuộc tính phần cứng. Hãy giữ mọi bề mặt danh tính (SoC, baseband, init.svc, cpuinfo) nhất quán với thiết bị bị giả mạo.</string>
+    <string name="sol_stock_path_hidden">Một đường dẫn hệ thống Android tiêu chuẩn hiện diện trên thiết bị stock, nên một đường dẫn stock bị đọc thấy là vắng mặt nghĩa là một lớp che giấu đang che nó quá mức, và bản thân điều đó là một dấu hiệu. Chỉ ẩn các đường dẫn root và mô-đun, không bao giờ ẩn một đường dẫn tồn tại trên một thiết bị sạch.</string>
+    <string name="sol_version_cluster">Một bản dựng stock nhất quán với chính nó về trạng thái phát hành: tên mã, SDK release-hoặc-preview và token fingerprint đều đọc là release, hoặc đều đọc là preview, không bao giờ lẫn lộn. Khi một tín hiệu đọc là release trong khi một tín hiệu khác đọc là preview, một màn giả mạo đã thay đổi một số thuộc tính phiên bản nhưng không phải tất cả. Hãy căn chỉnh mọi tín hiệu trạng thái phiên bản về cùng một kênh.</string>
 </resources>

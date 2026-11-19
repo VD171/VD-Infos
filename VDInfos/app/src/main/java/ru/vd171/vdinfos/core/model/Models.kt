@@ -1,7 +1,7 @@
 /*
  * ======================================================================
  *  VD INFOS  ::  method debugger
- *  Read every device info by every method, then compare. A divergence is a hook.
+ *  Read every device info by every method, then compare.
  *
  *  Copyright (C) 2026  VD171
  *  SPDX-License-Identifier: AGPL-3.0-or-later
@@ -14,8 +14,9 @@
  *  Source         : https://github.com/VD171/VD-Infos
  *  GitHub         : @VD171 https://github.com/VD171
  *  XDA-Developers : @VD171 https://xdaforums.com/m/vd171.4699873/
+ *  XDA thread     : https://xdaforums.com/t/VD-Infos.4097379/
  *  Telegram       : @VD_Priv8 https://t.me/VD_Priv8
- *  Telegram       : @Priv8_VD https://t.me/Priv8_VD
+ *  Channel        : @Priv8_VD https://t.me/Priv8_VD
  *  Discord        : @VD.Priv8 https://discord.com/users/1296831918989639721
  *  E-mail         : vd.priv8@pm.me
  * ======================================================================
@@ -117,7 +118,7 @@ data class ProbeResult(
             val comparable = if (hasNonShellValue)
                 voting.filterNot { it.lens.isShell && isRefusal(it.value!!) } else voting
             if (comparable.size == 1) return Verdict.SINGLE
-            val norm = comparable.map { normalise(it.value!!) }
+            val norm = comparable.map { canonRefusal(normalise(it.value!!)) }
             val polarity = norm.map { BOOLEAN_WORDS[it] }
             if (polarity.all { it != null }) {
                 return if (polarity.toSet().size == 1) Verdict.MATCH else Verdict.MISMATCH
@@ -134,12 +135,15 @@ data class ProbeResult(
 
         private fun isRefusal(v: String): Boolean = v.trim().uppercase() in Sentinels.REFUSALS
 
+        private fun canonRefusal(norm: String): String =
+            if (norm.uppercase() in Sentinels.REFUSALS) "«refused»" else norm
+
         fun isInstrumentFailure(v: String): Boolean {
             val t = v.trim()
             return t in Sentinels.FAILURES || Sentinels.FAILURE_PREFIXES.any { t.startsWith(it) }
         }
 
         private fun normalise(v: String): String =
-            v.trim().trim('"').replace(Regex("\\s+"), " ").lowercase()
+            v.trim().trim('"').replace(Regex("""\\([,; ])"""), "$1").replace(Regex("\\s+"), " ").lowercase()
     }
 }

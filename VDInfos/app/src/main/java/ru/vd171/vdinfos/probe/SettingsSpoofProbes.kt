@@ -1,7 +1,7 @@
 /*
  * ======================================================================
  *  VD INFOS  ::  method debugger
- *  Read every device info by every method, then compare. A divergence is a hook.
+ *  Read every device info by every method, then compare.
  *
  *  Copyright (C) 2026  VD171
  *  SPDX-License-Identifier: AGPL-3.0-or-later
@@ -14,8 +14,9 @@
  *  Source         : https://github.com/VD171/VD-Infos
  *  GitHub         : @VD171 https://github.com/VD171
  *  XDA-Developers : @VD171 https://xdaforums.com/m/vd171.4699873/
+ *  XDA thread     : https://xdaforums.com/t/VD-Infos.4097379/
  *  Telegram       : @VD_Priv8 https://t.me/VD_Priv8
- *  Telegram       : @Priv8_VD https://t.me/Priv8_VD
+ *  Channel        : @Priv8_VD https://t.me/Priv8_VD
  *  Discord        : @VD.Priv8 https://discord.com/users/1296831918989639721
  *  E-mail         : vd.priv8@pm.me
  * ======================================================================
@@ -33,6 +34,41 @@ import ru.vd171.vdinfos.engine.ProbeTask
 object SettingsSpoofProbes {
 
     private val STORES = listOf("global", "secure", "system")
+
+    private val STOCK_BASELINE: List<Triple<String, String, String?>> = listOf(
+        Triple("secure", "ota_disable_automatic_update", null),
+        Triple("secure", "install_non_market_apps", null),
+        Triple("secure", "unknown_sources_default_reversed", null),
+        Triple("secure", "verifier_verify_adb_installs", null),
+        Triple("secure", "package_verifier_user_consent", null),
+        Triple("secure", "adb_enabled", null),
+        Triple("secure", "adb_wifi_enabled", null),
+        Triple("secure", "development_settings_enabled", null),
+        Triple("system", "ota_disable_automatic_update", null),
+        Triple("system", "install_non_market_apps", null),
+        Triple("system", "unknown_sources_default_reversed", null),
+        Triple("system", "verifier_verify_adb_installs", null),
+        Triple("system", "package_verifier_user_consent", null),
+        Triple("system", "adb_enabled", null),
+        Triple("system", "adb_wifi_enabled", null),
+        Triple("system", "development_settings_enabled", null),
+        Triple("global", "ota_disable_automatic_update", null),
+        Triple("global", "install_non_market_apps", null),
+        Triple("global", "unknown_sources_default_reversed", null),
+        Triple("global", "verifier_verify_adb_installs", null),
+        Triple("global", "package_verifier_user_consent", null),
+        Triple("global", "adb_enabled", "0"),
+        Triple("global", "adb_wifi_enabled", "0"),
+        Triple("global", "development_settings_enabled", "0"),
+    )
+
+    private fun checkBaseline(c: Context, read: (Context, String, String) -> String?): String {
+        val bad = STOCK_BASELINE.mapNotNull { (ns, k, want) ->
+            val got = read(c, ns, k)?.takeIf { it.isNotEmpty() }
+            if (got == want) null else "$ns.$k=${got ?: "null"}(want=${want ?: "null"})"
+        }
+        return if (bad.isEmpty()) "baseline-ok" else "DIVERGE: " + bad.joinToString(" | ")
+    }
 
     private fun uriOf(store: String): Uri = when (store) {
         "global" -> Settings.Global.CONTENT_URI
@@ -124,8 +160,30 @@ object SettingsSpoofProbes {
         return out.joinToString("\n")
     }
 
+    fun matrixJson(ctx: Context): String {
+        val root = org.json.JSONObject()
+        root.put("takenAt", System.currentTimeMillis())
+        val results = org.json.JSONObject()
+        for ((k, _) in AssetData.spoofKeys(ctx)) {
+            val m = org.json.JSONObject()
+            m.put("getString", sweep(ctx, k, ::pGetString) ?: org.json.JSONObject.NULL)
+            m.put("query_appended", sweep(ctx, k, ::pAppended) ?: org.json.JSONObject.NULL)
+            m.put("query_selection", sweep(ctx, k, ::pSelection) ?: org.json.JSONObject.NULL)
+            m.put("query_bulk", sweep(ctx, k, ::pBulk) ?: org.json.JSONObject.NULL)
+            m.put("call", sweep(ctx, k, ::pCall) ?: org.json.JSONObject.NULL)
+            results.put(k, m)
+        }
+        root.put("results", results)
+        return root.toString()
+    }
+
     fun tasks(ctx: Context): List<ProbeTask> = buildList {
         val keys = AssetData.spoofKeys(ctx)
+
+        add(probe("settings:stock_baseline", ctx.getString(R.string.t_settings_stock_baseline), Category.INTEGRITY, listOf(
+            jm("app-view (getString, what a RASP reads) vs baseline: INFO; raw DB is root-only", compare = false) { c -> checkBaseline(c, ::pGetString) },
+            jm("app-side call GET_<ns> per-key vs baseline: INFO; @hide return code default/null, not raw", compare = false) { c -> checkBaseline(c, ::pCall) },
+        ), sensitive = false, solution = ctx.getString(R.string.sol_spoof)))
 
         add(probe("spoof:sweep", ctx.getString(R.string.t_spoof_sweep), Category.INTEGRITY, listOf(
             jm("provider bulk vs API getString, all keys (3 stores)", compare = false) { c ->

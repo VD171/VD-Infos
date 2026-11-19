@@ -1,7 +1,7 @@
 /*
  * ======================================================================
  *  VD INFOS  ::  method debugger
- *  Read every device info by every method, then compare. A divergence is a hook.
+ *  Read every device info by every method, then compare.
  *
  *  Copyright (C) 2026  VD171
  *  SPDX-License-Identifier: AGPL-3.0-or-later
@@ -14,8 +14,9 @@
  *  Source         : https://github.com/VD171/VD-Infos
  *  GitHub         : @VD171 https://github.com/VD171
  *  XDA-Developers : @VD171 https://xdaforums.com/m/vd171.4699873/
+ *  XDA thread     : https://xdaforums.com/t/VD-Infos.4097379/
  *  Telegram       : @VD_Priv8 https://t.me/VD_Priv8
- *  Telegram       : @Priv8_VD https://t.me/Priv8_VD
+ *  Channel        : @Priv8_VD https://t.me/Priv8_VD
  *  Discord        : @VD.Priv8 https://discord.com/users/1296831918989639721
  *  E-mail         : vd.priv8@pm.me
  * ======================================================================
@@ -71,11 +72,12 @@ object AssetData {
         if (p.size < 2) null else Partition(p[0], p[1], p.drop(2))
     }
 
-    data class PropFamily(val base: String, val field: String, val lineageScoped: Boolean)
+    data class PropFamily(val base: String, val field: String, val lineageScoped: Boolean, val vote: Boolean = true)
 
     fun propFamilies(ctx: Context): List<PropFamily> = lines(ctx, "data/prop_families.txt").mapNotNull {
         val p = it.split(Regex("\\s+")).filter { s -> s.isNotEmpty() }
-        if (p.size < 3) null else PropFamily(p[0], p[1], p[2].equals("lineage", ignoreCase = true))
+        if (p.size < 3) null
+        else PropFamily(p[0], p[1], p[2].equals("lineage", ignoreCase = true), p.getOrNull(3)?.equals("info", true) != true)
     }
 
     data class PropEntry(val category: Category, val key: String, val sensitive: Boolean)

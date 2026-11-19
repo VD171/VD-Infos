@@ -2,7 +2,7 @@
 <!--
     ======================================================================
      VD INFOS  ::  method debugger
-     Read every device info by every method, then compare. A divergence is a hook.
+     Read every device info by every method, then compare.
 
      Copyright (C) 2026  VD171
      SPDX-License-Identifier: AGPL-3.0-or-later
@@ -15,8 +15,9 @@
      Source         : https://github.com/VD171/VD-Infos
      GitHub         : @VD171 https://github.com/VD171
      XDA-Developers : @VD171 https://xdaforums.com/m/vd171.4699873/
+     XDA thread     : https://xdaforums.com/t/VD-Infos.4097379/
      Telegram       : @VD_Priv8 https://t.me/VD_Priv8
-     Telegram       : @Priv8_VD https://t.me/Priv8_VD
+     Channel        : @Priv8_VD https://t.me/Priv8_VD
      Discord        : @VD.Priv8 https://discord.com/users/1296831918989639721
      E-mail         : vd.priv8@pm.me
     ======================================================================
@@ -93,6 +94,7 @@
     <string name="crash_title">Neočekávaná chyba</string>
     <string name="crash_body">Aplikace narazila na neočekávanou chybu. Nikam nebylo nic odesláno. Níže uvedené podrobnosti můžete zkopírovat a odeslat vývojáři.</string>
     <string name="about_project">Projekt</string>
+    <string name="about_see_also">Viz také</string>
     <string name="about_support">Stažení a podpora</string>
     <string name="action_clear">Vymazat hledání</string>
     <string name="lang_dialog_title">Jazyk</string>
@@ -103,29 +105,27 @@
     <!-- Řešení -->
     <string name="sol_title">Jak opravit</string>
     <string name="card_details">Podrobnosti</string>
-    <string name="sol_boot">Toto hlásí hardwarové attestation (TEE) o stavu bootu. Nástroje obcházející keybox (TrickyStore, TEE Simulator, OhMyKeyMint) přepisují attestation pouze pro aplikace, které zadáte. Přidejte balíček této aplikace do seznamu cílů těchto nástrojů (např. target.txt), aby jeho attestation hlásilo uzamčené zařízení se zeleným verified boot.</string>
-    <string name="sol_root_detector">Tyto nainstalované aplikace hledají root, emulátor nebo neúspěšný Play Integrity. Přidejte zde nalezené balíčky jako cíle do svého skrývacího frameworku (HMA-OSS), aby vaše aplikace a root moduly byly před těmito detektory skryté.</string>
-    <string name="sol_spoof">Toto nastavení se čte odlišně napříč cestami, které aplikace může použít (spoof nepokrývá všechny). Přidejte nastavení do spoof presetů HMA-OSS, aby každá cesta čtení vracela stejnou hodnotu.</string>
-    <string name="sol_attest_patch">Key attestation hlásí jinou úroveň záplaty než systémová vlastnost. Nastavte to v nástroji keybox - TrickyStore v security_patch.txt (datum, nebo system=/boot=/vendor=/all=, nebo \'prop\'); OhMyKeymint v config.toml v sekci [trust]. Oba mění jen atestaci, ne vlastnosti.</string>
-    <string name="sol_patch_prop">Build.VERSION.SECURITY_PATCH (framework) a vlastnost ro.build.version.security_patch ukazují různá data. Srovnejte je pomocí resetprop. security_patch.txt a config.toml zde nepomohou - mění jen key attestation, ne vlastnosti.</string>
+    <string name="sol_root_detector">Tyto nainstalované aplikace hledají root. Přidej zde nalezené balíčky jako cíle do svého frameworku skrývání (HMA-OSS).</string>
+    <string name="sol_attest_patch">Atestace hlásí jiný security patch než property. Nastav ho v nástroji keybox (TrickyStore security_patch.txt, OhMyKeymint config.toml [trust]); mění jen atestaci.</string>
+    <string name="sol_patch_prop">Framework a property ukazují různá data patche. Srovnej je přes resetprop; nástroje keybox mění jen atestaci, ne properties.</string>
 
-    <string name="note_gsf">Chybí v Androidu 16 a novějším: úložiště služeb Google se přesunulo do Play Services, jejichž vlastní dveře Google pojmenoval &quot;do.not.use&quot; a které neodpovídají jiným aplikacím. Obojí se zkouší výše.</string>
     <string name="t_attestation_app_id">ID aplikace v atestaci (balíček + podpis)</string>
     <string name="t_dev_ptmx_present">/dev/ptmx přítomen</string>
     <string name="t_documents_providers">Registrované DocumentsProviders</string>
     <string name="t_kernel_modules">Načtené moduly jádra (KernelSU/SuSFS)</string>
-    <string name="t_kernel_syscall_fingerprint">Verze jádra podle otisku syscallů</string>
+    <string name="t_kernel_syscall_fingerprint">Křížová kontrola verze jádra</string>
     <string name="t_key_inside_secure_hw">Klíč v zabezpečeném hardwaru (KeyInfo)</string>
     <string name="t_rot_ec_vs_rsa">Kořen důvěry atestace: požadavek EC vs RSA</string>
     <string name="t_leaf_sig_alg">Listový certifikát atestace: klíč vs algoritmus podpisu</string>
     <string name="t_batch_key_ec_vs_rsa">Klíč atestace: řetězec EC vs řetězec RSA</string>
+    <string name="t_native_vs_jvm">Atestace: nativní keystore2 vs JVM</string>
     <string name="t_local_tmp_contents">Obsah /data/local/tmp</string>
     <string name="t_native_lib_origin">Původ nativní knihovny (dladdr)</string>
     <string name="t_own_debuggable">Tato aplikace: debuggable / ladicí build</string>
     <string name="t_play_store_version">Verze Play Store / GMS</string>
     <string name="t_resolv_conf">resolv.conf / konfigurace DNS</string>
     <string name="t_root_backup_tools">Přítomné zálohovací nástroje s rootem</string>
-    <string name="t_su_libc_inline_hook">su: surový syscall vs libc vs Java</string>
+    <string name="t_su_libc_inline_hook">Rozpoznání su napříč vrstvami</string>
     <string name="t_system_build_prop">/system/build.prop</string>
     <string name="t_system_build_prop_present">/system/build.prop přítomen</string>
     <string name="t_adb_enabled">ADB povoleno</string>
@@ -195,7 +195,7 @@
     <string name="t_imei">IMEI</string>
     <string name="t_imsi_subscriber">IMSI (účastník)</string>
     <string name="t_incremental">Incremental</string>
-    <string name="t_injected_libs_proc_self_maps">Injektované knihovny (/proc/self/maps)</string>
+    <string name="t_injected_libs_proc_self_maps">Vložené knihovny</string>
     <string name="t_installed_app_signing_digests">Otisky podpisů nainstalovaných aplikací</string>
     <string name="t_installed_applications">Nainstalované aplikace</string>
     <string name="t_installed_input_methods">Nainstalované metody zadávání</string>
@@ -205,13 +205,9 @@
     <string name="t_kernel_version">Jádro (verze)</string>
     <string name="t_kernel_version_string">Jádro (řetězec verze)</string>
     <string name="t_kernel_version_claim">Tvrzení o verzi jádra (ro.kernel.version vs uname)</string>
-    <string name="note_kernel_version_claim">Vlastnost ro.kernel.version má odrážet běžící jádro. Pokud tvrdí major.minor, který skutečná verze uname nemá, nastavil vlastnost resolver, zatímco jádro pod ním je jiné.</string>
     <string name="t_kernel_build_date">Datum sestavení jádra vs ROM</string>
-    <string name="note_kernel_build_date">Předsestavené GKI jádro je starší než ROM, ve kterém je dodáno, nebo mu odpovídá. Jádro sestavené dlouho po sestavení ROM bylo přebudováno nebo naflashováno později, což je obvyklá známka ručně kompilovaného jádra.</string>
     <string name="t_kernel_config">Konfigurace jádra (/proc/config.gz)</string>
-    <string name="note_kernel_config">Konfigurace jádra, kde je čitelná, jmenuje zakompilované záplaty: KSU, SUSFS, vlastní local version, nevynucené podepisování modulů. Sandbox aplikace tento soubor často zakáže; čte se na starším Androidu, custom ROM a root shellech.</string>
     <string name="t_kernel_module_scan">Moduly a symboly jádra</string>
-    <string name="note_kernel_module_scan">Prohledá /sys/module a názvy symbolů /proc/kallsyms na ksu, susfs a magisk, které záplatované nebo moduly nahrané jádro odhalí. Obě plochy jsou často omezené; čtou se tam, kde to doména dovolí.</string>
     <string name="t_kernel_cmdline">cmdline jádra</string>
     <string name="t_kernel_log">Protokol jádra</string>
     <string name="t_kernel_stat">stat jádra</string>
@@ -288,8 +284,8 @@
     <string name="t_verified_boot_hash_vbmeta_digest">Hash verified boot / otisk vbmeta</string>
     <string name="t_verified_boot_key">Klíč verified boot</string>
     <string name="t_verified_boot_state">Stav verified boot</string>
-    <string name="t_prop_area_tamper">Manipulace s oblastí vlastností (díra/kontext)</string>
-    <string name="t_supplementary_groups">Doplňkové skupiny (3009=AID_READPROC)</string>
+    <string name="t_prop_area_tamper">Oblast systémových vlastností</string>
+    <string name="t_supplementary_groups">Doplňkové skupiny</string>
     <string name="t_version_codename">Kódové označení verze</string>
     <string name="t_webview_provider">Poskytovatel WebView</string>
     <string name="t_webview_user_agent">User agent WebView</string>
@@ -325,6 +321,17 @@
     <string name="t_queryintentservices_main">queryIntentServices (MAIN)</string>
     <string name="t_resolveactivity_main_launcher">resolveActivity (MAIN/LAUNCHER)</string>
     <string name="t_su_binary">binárka su</string>
+    <string name="t_setuid_root">Privilegovaný binární soubor</string>
+    <string name="t_root_dirs_present">Viditelnost systémových adresářů</string>
+    <string name="t_maps_isolated">Vložené moduly</string>
+    <string name="t_inline_hooks">Háky v kódu</string>
+    <string name="t_linker_maps_gap">Skryté knihovny</string>
+    <string name="t_tracerpid_iso">Připojený ladicí program</string>
+    <string name="t_fd_iso">Otevřené popisovače</string>
+    <string name="t_selinux_iso">Bezpečnostní kontext</string>
+    <string name="t_su_iso">Přístup superuživatele</string>
+    <string name="t_prop_dual_iso">Vlastnosti systému</string>
+    <string name="t_smaps_iso">Zapisovatelná spustitelná paměť</string>
     <string name="t_su_on_path">su v PATH</string>
     <string name="t_tel_networkOperatorName">Název operátora sítě</string>
     <string name="t_tel_networkOperator">Operátor sítě (MCC+MNC)</string>
@@ -416,7 +423,7 @@
     <string name="t_isrc_self_originating">Zdroj instalace (self): originating</string>
     <string name="t_isrc_self_pkgsource">Zdroj instalace (self): packageSource</string>
     <string name="t_isrc_self_initiator_sig">Zdroj instalace (self): cert initiatora vs nainstalováno</string>
-    <string name="t_isrc_gap_jvm_store_pm_denies">Nesoulad: JVM hlásí installer z obchodu, pm popírá (hook)</string>
+    <string name="t_isrc_gap_jvm_store_pm_denies">Installer: JVM vs pm</string>
     <string name="t_isrc_gap_jvm_pm_other">Nesoulad: installer JVM ≠ installer pm (viditelnost)</string>
     <string name="t_isrc_gap_installer_ne_initiating">Nesoulad: installer ≠ initiating</string>
     <string name="t_isrc_gap_store_installer_sideload">Nesoulad: installer z obchodu, initiating sideload</string>
@@ -435,24 +442,16 @@
     <string name="t_installed_applications_diff">Nainstalované aplikace: odlišné (JVM x pm)</string>
     <string name="t_selinux_status">Stránka status SELinux (policyload/seq)</string>
     <string name="t_selinux_policy_probe">Sonda politiky SELinux (typy + AVC)</string>
-    <string name="t_manager_doors">Správce root/Xposed: viditelnost podle dveří PackageManageru</string>
+    <string name="t_manager_doors">Viditelnost aplikace správce</string>
     <string name="t_net_sock_diag">Zásada Netlink sock_diag</string>
-    <string name="n_net_sock_diag">Omezené aplikaci musí být NETLINK_SOCK_DIAG odepřen; odpověď znamená, že zásada netlink byla uvolněna.</string>
     <string name="t_mount_peer_gap">Integrita peer-group připojení</string>
-    <string name="n_mount_peer_gap">Množina id peer-group musí být stejná přes každou čočku; mezera na čočce znamená skryté připojení.</string>
     <string name="t_mount_fdinfo_mnt">Mount id vs otevřené deskriptory</string>
-    <string name="n_mount_fdinfo_mnt">Otevřený deskriptor, jehož mnt_id chybí v mountinfo, ukazuje na připojení skryté před pohledem.</string>
-    <string name="t_proc_readproc_gid">GID 3009 zygote (AID_READPROC)</string>
-    <string name="n_proc_readproc_gid">Chybějící doplňkový GID AID_READPROC je stopa, kterou zanechávají některé moduly skrývání aplikací.</string>
+    <string name="t_proc_readproc_gid">Doplňkové GID zygote</string>
     <string name="t_proc_fd_graph">Sčítání deskriptorů</string>
     <string name="t_mem_anon_exec">Anonymní spustitelná mapování</string>
-    <string name="n_mem_anon_exec">Spustitelné stránky bez podkladového souboru jsou typický zbytek injekce/Zygisk; počet se musí shodovat mezi čočkami.</string>
     <string name="t_kernel_selfbuild">Vlastní / patchované jádro</string>
-    <string name="n_kernel_selfbuild">Tovární jádro nenese značku -dirty, git ani SUSFS; markery se musí shodovat mezi čočkami.</string>
     <string name="t_tee_soter">Služba Soter vs vlastnost</string>
-    <string name="n_tee_soter">Porovnává servisní program Soter od Tencentu se stavem jeho servisní vlastnosti.</string>
     <string name="t_proc_cgroup_format">Formát cesty cgroup</string>
-    <string name="n_proc_cgroup_format">Klonovaný / dual-app kontejner způsobí, že se jednotná cesta cgroup odchýlí od kanonického tvaru uid_/pid_.</string>
     <string name="t_gpu_vendor">Výrobce GPU</string>
     <string name="t_gpu_renderer">Renderer GPU</string>
     <string name="t_gpu_version">Verze GPU</string>
@@ -464,32 +463,119 @@
     <string name="t_tel_simSpecificCarrierId">ID konkrétního operátora SIM</string>
     <string name="t_tel_visualVoicemailPackageName">Balíček vizuální hlasové schránky</string>
     <string name="t_keychain_blacklist">Černá listina certifikátů Keychain</string>
-    <string name="t_buildprop_vs_runtime">build.prop vs runtime</string>
-    <string name="note_boot_count">boot_count (framework) jen roste; Phenotype_boot_count (Služby Play) je jeho snímek a může zaostávat. Odlišné jen když je snímek před boot_count (reset).</string>
-    <string name="note_isrc_initiator_sig">Certifikát, který systém zaznamenal pro instalátor při instalaci této aplikace, se liší od toho, který instalátor hlásí nyní. Způsobuje to nahrazený instalátor nebo podvržený podpis; ROM, které systém znovu podepisují a hlásí původní certifikát výrobce (např. Xiaomi.eu), to ukazují na každém zařízení.</string>
+    <string name="t_buildprop_vs_runtime">Konzistence build vlastností</string>
     <string name="t_concealment">Skrývání aplikací</string>
-    <string name="note_concealment">Balíček skrytý ze seznamu aplikací, ale stále dosažitelný jinými dveřmi PackageManageru (informace o balíčku, createPackageContext, otevřený APK, launch intent), je skrytý u jedněch dveří, ale ne u druhých - značka neúplného skrývače aplikací.</string>
     <string name="t_prop_variants">Varianty podle oddílů: %1$s</string>
     <string name="t_prop_enum">Výčet vlastností vs getprop</string>
-    <string name="note_prop_variants">Stejná přípona se objevuje u každého oddílu (system, vendor, product, odm, dlkm...). Hodnoty, které by se měly všude shodovat, ale liší se, nebo se rozejdou v rámci jedné linie, odhalují částečný spoof - fingerprint změněný na některých oddílech a na jiných ne.</string>
-    <string name="note_prop_enum">Nativní výčet oblasti vlastností (__system_property_foreach) a jeho porovnání s getprop z jiného procesu odhalí vlastnost skrytou před shellem nebo vloženou do jedné cesty, ale ne do druhé.</string>
-    <string name="t_dlphdr">Moduly loaderu (dl_iterate_phdr)</string>
-    <string name="t_frida_port">Sken portu Frida</string>
-    <string name="note_dlphdr">dl_iterate_phdr vyjmenovává načtené moduly přes linker, ne přes /proc/self/maps, takže hook, který smaže svůj záznam z maps, je tu stejně uveden. Zásah needle nebo modul mimo systémový allowlist je únik.</string>
+    <string name="t_dlphdr">Načtené moduly</string>
+    <string name="t_frida_port">Port instrumentace</string>
     <string name="t_ime_verdict">Verdikt integrity klávesnice</string>
     <string name="t_store_authenticity">Pravost podpisu obchodu/GMS</string>
     <string name="t_devgate">Koherence nastavení vázaných na Dev</string>
-    <string name="note_ime_verdict">Bankovní RASP (PayZapp/Zeta) odmítá každou zapnutou klávesnici, která je nesystémová a nainstalovaná mimo allowlist obchodů. Zapnutý nesystémový IME s instalátorem mimo obchod je označen.</string>
-    <string name="note_store_authenticity">Play Store, GMS a GSF musí nést podpisový certifikát Googlu. Balíček obchodu nebo GMS přítomný, ale podepsaný jiným klíčem, je podvrh, microG nebo přebalený obchod.</string>
-    <string name="note_devgate">adb a další nastavení vázaná na Dev se mění jen se zapnutými Možnostmi pro vývojáře. Vázané nastavení, které není výchozí při development_settings_enabled=0, mohlo být nastaveno jen rootem nebo `settings put`.</string>
-    <string name="t_maps_exec">Injektované exec mapy (deleted/memfd)</string>
-    <string name="t_anon_minor">Skrytý superblok anon-bdev</string>
-    <string name="note_maps_exec">Spustitelné mapování souboru (deleted)/memfd/ashmem, které je buď RWX (porušuje W^X), nebo začíná ELF magií, je skutečné injektované .so odpojené od souborového systému; JIT trampolína ART není ani jedno a počítá se jako neškodná. Modul mimo systémový allowlist se také počítá.</string>
-    <string name="note_anon_minor">Souborové systémy bez blokového zařízení berou svůj minor z globálního anon poolu, hustého odspodu. Minor přítomný přes stat(), ale chybějící v mountinfo tohoto procesu, je živý superblok skrytý v privátním namespace (tmpfs démona). Dlouhá série chybějících minorů je churn aplikací a ignoruje se; krátká díra je signál.</string>
-    <string name="t_sb_tee_signer">Podepisovatel StrongBox × TEE</string>
+    <string name="t_maps_exec">Spustitelná paměťová mapování</string>
+    <string name="t_elf_in_anon">Obraz kódu v anonymní paměti</string>
+    <string name="t_anon_exec_orphan">Nepodložená spustitelná paměť</string>
+    <string name="t_anon_minor">Skrytý souborový systém</string>
+    <string name="t_sb_tee_signer">Profil StrongBox atestace</string>
+    <string name="t_sb_capability">Profil capability StrongBox</string>
+    <string name="t_sb_enforced">Úroveň vynucení klíče StrongBox</string>
+    <string name="t_sb_version">Verze atestace StrongBox</string>
+    <string name="t_sb_chain">Řetězec atestace StrongBox</string>
+    <string name="t_sb_rkp">Provisioning klíče StrongBox</string>
+    <string name="t_sb_latency">Časování generování klíče StrongBox</string>
     <string name="t_local_tmp_list">Výpis /data/local/tmp</string>
-    <string name="note_local_tmp_list">Výpis /data/local/tmp přes getdents64 (ne podle jména) odhalí jakýkoli zbytek, na který aplikace skutečně dosáhne, včetně toho, co modul upustí. Na zamčeném zařízení adresář patří shellu a aplikace jej nemůže vypsat, takže EACCES je čistá odpověď; viditelná položka znamená zbytek dosažitelný aplikací.</string>
     <string name="t_nettype_consistency">Typ sítě vs. skutečné rozhraní</string>
     <string name="t_flagsecure_honored">FLAG_SECURE dodržen (blok snímku)</string>
+    <string name="t_procnet_frida">Soket instrumentace</string>
+    <string name="t_procnet_tun">Rozhraní VPN</string>
+    <string name="t_mountinfo_iso">Záznamy připojení</string>
+    <string name="t_adb_usb_exposure">Expozice ladění ADB/USB</string>
+    <string name="t_anon_elf_struct">Struktura ELF v anonymní paměti</string>
+    <string name="t_atexit_drift">Odchylka běhu Atexit</string>
+    <string name="t_attestation_challenge_echo">Echo challenge atestace</string>
+    <string name="t_attest_synth_paradox">Atestace vs stav za běhu</string>
+    <string name="t_baseband_coherence">Koherence verze baseband</string>
+    <string name="t_datadir_errno_oracle">Sonda datového adresáře balíčku</string>
+    <string name="t_device_id">Identita zařízení z attestace vs Build</string>
+    <string name="t_feature_spoof">Konzistence systémových funkcí</string>
+    <string name="t_fingerprint_rebuild">Rekonstrukce fingerprintu</string>
+    <string name="t_gap_mapped">Pokrytí paměťové mapy</string>
+    <string name="t_heap_hook_xref">Zastaralé odkazy v heap</string>
+    <string name="t_hidden_app_usage_leak">Viditelnost balíčku přes usage stats</string>
+    <string name="t_hidden_region_xref">Odkazy z heap na paměťové oblasti</string>
+    <string name="t_launch_sender_pkg_leak">Viditelnost balíčku IntentSender</string>
+    <string name="t_libc_identity">Konzistence obrazu libc</string>
+    <string name="t_lock_coherence">Koherence zámku bootloaderu</string>
+    <string name="t_map_files_leak">Původ mapovaných souborů</string>
+    <string name="t_multiuser_oracle">Viditelnost uživatele / private-space</string>
+    <string name="t_named_anon_exec">Anonymně pojmenované mapování kódu</string>
+    <string name="t_otacerts_signing_key">Podpisový klíč OTA (otacerts)</string>
+    <string name="t_pairip_wrapper">Sken wrapperu aplikace</string>
+    <string name="t_phantom_monitor_prop">Prop příznaku phantom monitoru</string>
+    <string name="t_phantom_monitor_setting">Nastavení phantom monitoru</string>
+    <string name="t_platform_signer">Podepisovatel platformy (balíček android)</string>
+    <string name="t_prov_fingerprint">RKP fingerprint vs zařízení</string>
+    <string name="t_prov_manufacturer">RKP výrobce vs zařízení</string>
+    <string name="t_prov_vbmeta_reuse">RKP vbmeta vs runtime</string>
+    <string name="t_prov_verdict">RKP verdikt verified boot</string>
+    <string name="t_settings_stock_baseline">Baseline nastavení vývojáře/zabezpečení</string>
+    <string name="t_signature_source">Koherence zdroje podpisového certifikátu</string>
+    <string name="t_signature_sweep">Sken podpisového certifikátu (všechny aplikace)</string>
+    <string name="t_signing_keys">Podpisové klíče (očekává se release-keys)</string>
+    <string name="t_statfs_consistency">Konzistence velikosti úložiště</string>
+    <string name="t_verifier_adb_installs">Ověřovat aplikace přes USB (package verifier)</string>
+    <string name="t_zygisk_loader_footprint">Zbytek loaderu v paměti</string>
+    <string name="t_zygote_gid">Konzistence GID zygote</string>
     <string name="about_trademarks">VD Infos je nezávislý, neoficiální výzkumný a diagnostický nástroj. Není spojen s žádným z dodavatelů, jejichž software, služby nebo značky čte, detekuje či pojmenovává, ani jimi není podporován nebo sponzorován (včetně Google LLC a Android Open Source Project). \"Android\", \"Google\", \"Google Play\", \"Play Integrity\", \"Widevine\" a všechny ostatní názvy produktů, loga a ochranné známky jsou majetkem svých příslušných vlastníků. VD Infos čte pouze to, co se již nachází ve vašem zařízení, a nikam nic neodesílá.</string>
+    <string name="note_art_dexopt_self">Zdravotní signál, nikoli známka rootu. Na disku existuje AOT soubor base.odex, ale aplikace běží interpretovaně (žádné spustitelné mapování), což znamená, že odex byl odmítnut (boot-image je zastaralý, obraz ART boot se změnil po aktualizaci apex). Servisní aplikace a ověřování aplikací v Play Protect se pak nemusí stíhnout včas spustit. Zástupný ukazatel na straně uživatele; autoritativní kontrola je na straně rootu.</string>
+    <string name="sol_art_dexopt_self">Překompilujte jako root (pm compile -a -m speed) nebo restartujte, čímž se znovu vygeneruje boot image a provede se znovu dexopt aplikací.</string>
+    <string name="sol_atexit_drift">Ukončovací obslužné rutiny libc __cxa_atexit a __cxa_finalize se musí rozřešit uvnitř libc. Když se rozřeší do jiné knihovny nebo anonymní oblasti, vložil se mezi ně injektor ve stylu Zygisku. Odstraňte injekci z tohoto procesu.</string>
+    <string name="sol_baseband_coherence">Verzi modemu hlásí getRadioVersion i rodina gsm.version.baseband; všechny čtou stejný firmware. Když se jeden zdroj liší, podvržení vlastnosti opravilo některé aliasy, ale ne všechny. Udržujte všechny zdroje verze baseband shodné.</string>
+    <string name="sol_boot">Hardwarová atestace (TEE) hlásí stav spuštění. Přidejte balíček této aplikace do seznamu cílů svého nástroje keybox, aby hlásil uzamčené, ověřené zařízení.</string>
+    <string name="sol_datadir_errno_oracle">Příkaz stat na datovém adresáři balíčku jej může odhalit jako nainstalovaný i bez dotazu na balíčky. Přidejte takové balíčky do svého skrývacího frameworku (HMA-OSS), aby se jejich datové adresáře četly jako neexistující, nejen jako odepřené.</string>
+    <string name="sol_device_id">Hardwarová identita z atestace (brand, device, manufacturer) neodpovídá vlastnostem buildu, takže ověřovatel pozná, že jsou vlastnosti podvržené. Sjednoťte ro.product.brand, ro.product.device a ro.product.manufacturer s hodnotami atestovanými hardwarem (product a model se legitimně liší: atestace nese kódové jméno).</string>
+    <string name="sol_feature_spoof">hasSystemFeature, getSystemAvailableFeatures a hardwarové uzly se neshodují v otázce funkce zařízení, takže je funkce skryta nebo předstírána jednou cestou, ale ne ostatními. Zajistěte, aby každá cesta dotazu na funkci i hardware hlásily stejnou přítomnost.</string>
+    <string name="sol_fingerprint_rebuild">Otisk buildu se sestavuje v době buildu jako BRAND/PRODUCT/DEVICE:RELEASE/ID/INCREMENTAL:TYPE/TAGS. Když se Build.FINGERPRINT nerovná této rekonstrukci z vlastních složkových polí, podvržení změnilo otisk, aniž by sjednotilo každou složku (nebo naopak). Zajistěte konzistenci otisku a jeho složek.</string>
+    <string name="sol_hidden_app_usage_leak">Balíček se může vynořit přes API usage-stats i tehdy, když je držen mimo seznam nainstalovaných balíčků. Přidejte takové balíčky do svého skrývacího frameworku (HMA-OSS), aby byly skryty i před API usage-stats, nejen před seznamem balíčků.</string>
+    <string name="sol_launch_sender_pkg_leak">Na proměřených ROM je vrácený IntentSender klíčován pouze dvojicí (caller, name): jeho pole tvůrce jsou pole volajícího a equals se liší jen názvem, takže nenese žádný signál nainstalováno/skryto (porovnání s náhodným neexistujícím názvem je falešně pozitivní). Prozradí se jen tehdy, pokud se viditelný nainstalovaný balíček a neexistující název liší v poli nezávislém na volajícím; pokud ano, přimějte skrývací framework (HMA-OSS), aby pro skryté balíčky vracel ekvivalent neexistujícího.</string>
+    <string name="sol_libc_identity">Namapování načtené libc (device a inode) neodpovídá souboru libc.so na disku, takže knihovna byla nahrazena nebo připojena bind-mountem (hooknutá libc). Poskytněte pravou libc, nebo skryjte náhradní připojení před aplikací.</string>
+    <string name="sol_lock_coherence">Na stock uzamčeném zařízení souhlasí každá vlastnost zámku bootloaderu a verified-boot: flash.locked=1, verifiedbootstate=green, vbmeta.device_state=locked, záruka neporušena. Když jedna tvrdí uzamčeno, zatímco jiná stále čte odemčeno, podvržení opravilo některé, ale ne všechny. Normalizujte každou vlastnost zámku na stejný stav.</string>
+    <string name="sol_otacerts_signing_key">Podpisový certifikát OTA (otacerts.zip) je veřejný testovací klíč AOSP, takže build se čte jako podepsaný testovacím klíčem, i když ro.build.tags tvrdí release-keys. Poskytněte otacerts.zip podepsaný release klíčem přes svůj modul pro přesměrování souborů a sjednoťte ro.*.build.tags napříč každým oddílem, aby se soubor a vlastnosti shodovaly.</string>
+    <string name="sol_perm_path_coherence">Stejné oprávnění rozřešuje několik kódových cest: PackageManager.checkPermission, Context.checkPermission(perm,pid,uid), udělené příznaky z getPackageInfo(GET_PERMISSIONS) a nízkoúrovňový binder IPackageManager.checkUidPermission. Na nedotčeném systému se všechny dosažitelné cesty shodují a privilegované oprávnění (START_ANY_ACTIVITY, INSTALL_PACKAGES, MANAGE_USERS) je na každé z nich odepřeno. Hook, který podvrhne nebo skryje oprávnění na jedné cestě, ale ne na jiné, nebo který udělí privilegované oprávnění, jež běžná aplikace nikdy mít nemůže, se zde rozchází. Rozřešujte oprávnění konzistentně napříč každou cestou; nepodvrhujte udělení jen na té cestě, kterou detektor náhodou čte.</string>
+    <string name="sol_phantom_monitor">Stock zařízení neprozrazuje, zda byl monitor fantomových procesů změněn. Přidejte toto nastavení do předvoleb podvržení svého skrývacího frameworku (HMA-OSS), aby se četlo jako na stock zařízení, a vyhněte se vlastnosti pro přepsání feature-flag.</string>
+    <string name="sol_platform_signer">Podpis balíčku platformy (android) odhaluje podepisovatele mimo OEM (custom ROM nebo testovací klíč AOSP) nebo OEM, který neodpovídá uváděnému výrobci. Podvrhněte podpis platformy (jak to dělá spoofSignature v PlayIntegrityForku), aby balíček android hlásil certifikát platformy uváděného OEM.</string>
+    <string name="sol_prov_fingerprint">Otisk RKP (z certifikátu RKP) neodpovídá otisku buildu tohoto zařízení, takže keybox patří jinému zařízení. Použijte keybox vytvořený pro toto zařízení.</string>
+    <string name="sol_prov_vbmeta_reuse">Hodnota vbmeta_digest z RKP (z certifikátu RKP) neodpovídá runtime hashi verified boot zařízení, takže keybox byl vytvořen na jiném zařízení (znovu použitý nebo sdílený keybox) nebo bylo zařízení po vytvoření aktualizováno. Použijte keybox vytvořený pro toto zařízení.</string>
+    <string name="sol_prov_verdict">Certifikát RKP zaznamenává spuštění zařízení jako neschválené, takže backend RKP toto zařízení označil. Použijte keybox vytvořený na zařízení, které backend schválil.</string>
+    <string name="sol_signature_source">Podpisový certifikát přečtený ze záznamu PackageManageru a ten rozparsovaný ze souboru APK na disku se musí shodovat a PackageManager musí certifikát ze souboru APK rozpoznat (hasSigningCertificate, checkSignatures). Když se rozcházejí, hook na úrovni PackageManageru přepsal hlášený podpis, aniž by se dotkl skutečného APK. Přímé čtení APK stále vidí pravý certifikát.</string>
+    <string name="sol_signature_sweep">U každé nainstalované aplikace sdílí podpisový certifikát ze záznamu PackageManageru a ten rozparsovaný z jejího souboru APK společného podepisovatele. Aplikace, jejíž dvě sady jsou disjunktní, má podvržený podpis v PackageManageru, zatímco APK na disku si ponechalo pravý. Rotace klíčů ponechává společného podepisovatele, takže se neoznačuje.</string>
+    <string name="sol_signing_keys">Produkční build je podepsán klíči release-keys. Vlastnost podpisového klíče čtoucí test-keys nebo dev-keys (jakoukoli metodou) odhaluje custom nebo ladící build. Obnovte release-keys napříč build.tags a vlastnostmi *.keys jednotlivých oddílů.</string>
+    <string name="sol_spoof">Toto nastavení se nečte konzistentně. Přidejte jej do předvoleb podvržení HMA-OSS, aby každá cesta vracela stejnou hodnotu.</string>
+    <string name="sol_statfs_consistency">android.os.StatFs a nativní čtení statvfs se neshodují na velikosti úložiště, takže velikost je podvržena přes API frameworku Javy, ale nikoli nativně. Zajistěte, aby cesty StatFs a nativní cesta hlásily stejné hodnoty.</string>
+    <string name="sol_zygote_gid">Zygote přiděluje procesu jeho doplňkové GID z oprávnění udělených aplikaci: INTERNET znamená 3003, BLUETOOTH 3002 a tak dále. Udělené oprávnění, jehož GID v getgroups(2) chybí, znamená, že skrývač filtroval oprávnění zygoty: skryje aplikaci, ale odporuje sadě oprávnění, kterou si každá aplikace čte sama o sobě. Neodebírejte GID, které udělená oprávnění vyžadují (například nikdy neodebírejte INET_GID, dokud je uděleno INTERNET).</string>
+    <string name="summary_all_agreed_mark" translatable="false">🏆 ✓ </string>
+    <string name="t_boot_triad_coherence">Konzistence stavu verified-boot</string>
+    <string name="t_build_vs_prop">android.os.Build vs. kanonická vlastnost (podle pole identity)</string>
+    <string name="t_debug_ramdisk">Obsah /debug_ramdisk</string>
+    <string name="t_isrc_gap_forged_store_install">Koherence obchodu instalátoru</string>
+    <string name="t_isrc_gap_store_pkgsource_other">Mezera: instalátor obchod, packageSource nevypadá jako z obchodu</string>
+    <string name="t_loop_orphan">Osiřelá loop zařízení</string>
+    <string name="t_perm_path_coherence">Konzistence kontroly oprávnění</string>
+    <string name="t_rom_identity">SoC vs. deklarovaná identita zařízení</string>
+    <string name="t_settings_read_gate">Brána čtení omezeného nastavení</string>
+    <string name="t_stock_path_hidden">Viditelnost systémové cesty</string>
+    <string name="t_strongbox_level">Úroveň atestace podložená StrongBoxem</string>
+    <string name="t_uid_hidden_running">Běžící UID vs. seznam balíčků</string>
+    <string name="t_uid_priority_fake">Priorita plánování procesu</string>
+    <string name="t_version_cluster">Koherence shluku stavu verze (release vs. preview)</string>
+    <string name="usage_access_body">Detekce balíčku skrytého ze seznamu nainstalovaných balíčků přes API usage-stats vyžaduje přístup k údajům o využití. Udělte jej této aplikaci v nastavení systému a pak se vraťte.</string>
+    <string name="usage_access_open">Otevřít nastavení</string>
+    <string name="usage_access_title">Je potřeba přístup k využití</string>
+    <string name="sol_debug_ramdisk">Při továrním bootu je /debug_ramdisk prázdný nebo chybí. Soubory tam připravené jsou root pro raný boot nebo payload modulu. Vyčisti /debug_ramdisk od připraveného obsahu, nebo ho drž v namespace, který tato aplikace nemůže číst.</string>
+    <string name="sol_loop_orphan">Na továrním zařízení je každý ext4 loop podepřen systémovým připojením v tomto namespace. Loop bez systémového bodu připojení je modul nebo overlay připojený mimo tovární rozvržení. Připoj takové loopy pod systémovou cestu, nebo je drž v mount namespace, který tato aplikace nesdílí.</string>
+    <string name="sol_multiuser_oracle">Sekundární uživatel nebo soukromý prostor prosákne, když ho stat na /data/user/&lt;id&gt; čte jako přítomný, zatímco UserManager ho neuvádí. Uveď obojí do souladu: buď drž datový adresář uživatele nedosažitelný pro neprivilegovanou aplikaci, nebo neskrývej uživatele, kterého jeho vlastní adresář stále prozrazuje.</string>
+    <string name="sol_prov_manufacturer">Výrobce RKP (z certifikátu RKP) neodpovídá tomuto zařízení, takže keybox byl zřízen pro jiné zařízení. Použij keybox zřízený na tomto zařízení.</string>
+    <string name="sol_rom_identity">Na poctivém zařízení SoC, baseband a identita init odpovídají deklarované značce a modelu. Když vlastnost identity ROM nebo hardwaru odporuje tvrzenému zařízení, spoof fingerprintu pokryl vlastnosti produktu, ale ne hardwarové. Drž každou plochu identity (SoC, baseband, init.svc, cpuinfo) v souladu se spoofnutým zařízením.</string>
+    <string name="sol_stock_path_hidden">Standardní systémová cesta Androidu je na továrním zařízení přítomná, takže tovární cesta, která se čte jako chybějící, znamená, že ji skrývací vrstva skrývá příliš, což je samo o sobě tell. Skrývej jen cesty root a modulů, nikdy cestu, která existuje na čistém zařízení.</string>
+    <string name="sol_version_cluster">Tovární build se sám se sebou shoduje na svém stavu vydání: codename, release-nebo-preview SDK a token fingerprintu se čtou všechny jako release, nebo všechny jako preview, nikdy smíšeně. Když se jeden signál čte jako release, zatímco jiný jako preview, spoof změnil některé vlastnosti verze, ale ne všechny. Zarovnej každý signál stavu verze na stejný kanál.</string>
 </resources>

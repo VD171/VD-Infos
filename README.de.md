@@ -97,7 +97,7 @@ ui/             Jetpack Compose, Material 3, dynamische Farbe, Live-Fortschritt
 cpp/            native_probes.cpp: die native Linse, ohne Abhängigkeiten
 ```
 
-* **Parallelität**: 991 Sonden fächern über den Standard-Dispatcher mit begrenzter Permit-Anzahl auf; die Ergebnisse strömen in die UI, sobald sie eintreffen.
+* **Parallelität**: Die Sonden fächern über den Standard-Dispatcher mit begrenzter Permit-Anzahl auf; die Ergebnisse strömen in die UI, sobald sie eintreffen.
 * **Nichts im Hintergrund**: keine Dienste und keine geplanten Scans; die App läuft nur, solange sie geöffnet ist, und schließt sich selbst, wenn sie untätig bleibt.
 * **Native Schicht**: eine kleine, abhängigkeitsfreie `.so`, per Name über `RegisterNatives` gebunden, bewusst winzig und einfach gehalten.
 

@@ -1,7 +1,7 @@
 /*
  * ======================================================================
  *  VD INFOS  ::  method debugger
- *  Read every device info by every method, then compare. A divergence is a hook.
+ *  Read every device info by every method, then compare.
  *
  *  Copyright (C) 2026  VD171
  *  SPDX-License-Identifier: AGPL-3.0-or-later
@@ -14,8 +14,9 @@
  *  Source         : https://github.com/VD171/VD-Infos
  *  GitHub         : @VD171 https://github.com/VD171
  *  XDA-Developers : @VD171 https://xdaforums.com/m/vd171.4699873/
+ *  XDA thread     : https://xdaforums.com/t/VD-Infos.4097379/
  *  Telegram       : @VD_Priv8 https://t.me/VD_Priv8
- *  Telegram       : @Priv8_VD https://t.me/Priv8_VD
+ *  Channel        : @Priv8_VD https://t.me/Priv8_VD
  *  Discord        : @VD.Priv8 https://discord.com/users/1296831918989639721
  *  E-mail         : vd.priv8@pm.me
  * ======================================================================
@@ -30,6 +31,10 @@ import ru.vd171.vdinfos.core.model.Lens
 import ru.vd171.vdinfos.core.model.ProbeSpec
 import ru.vd171.vdinfos.engine.ProbeTask
 import ru.vd171.vdinfos.engine.measure
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
+import kotlinx.coroutines.coroutineScope
 
 class Method(
     val lens: Lens, val source: String, val compare: Boolean = true,
@@ -73,7 +78,11 @@ fun probe(
         } else listOf(m)
     }
     return ProbeTask(ProbeSpec(id, title, cat, full.map { it.lens }.toSet(), note, sensitive, solution)) { ctx ->
-        full.map { m -> measure(m.lens, m.source, m.compare, m.tag, reveal = m.reveal?.invoke(ctx)) { m.read(ctx) } }
+        coroutineScope {
+            full.map { m ->
+                async(Dispatchers.IO) { measure(m.lens, m.source, m.compare, m.tag, reveal = runCatching { m.reveal?.invoke(ctx) }.getOrNull()) { m.read(ctx) } }
+            }.awaitAll()
+        }
     }
 }
 

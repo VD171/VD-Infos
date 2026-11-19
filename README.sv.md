@@ -97,7 +97,7 @@ ui/             Jetpack Compose, Material 3, dynamisk färg, live-förlopp
 cpp/            native_probes.cpp: den nativa linsen, beroendefri
 ```
 
-* **Parallellism**: 996 sonder fördelas över standard-dispatchern med ett begränsat antal tillstånd; resultaten strömmar in i UI:t allteftersom de landar.
+* **Parallellism**: Sonderna fördelas över standard-dispatchern med ett begränsat antal tillstånd; resultaten strömmar in i UI:t allteftersom de landar.
 * **Inget i bakgrunden**: inga tjänster och inga schemalagda skanningar; appen körs bara medan den är öppen och stänger sig själv när den lämnas inaktiv.
 * **Nativt lager**: en liten, beroendefri `.so`, bunden vid namn via `RegisterNatives`, avsiktligt pytteliten och enkel.
 

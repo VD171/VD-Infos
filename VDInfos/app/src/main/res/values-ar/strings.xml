@@ -2,7 +2,7 @@
 <!--
     ======================================================================
      VD INFOS  ::  method debugger
-     Read every device info by every method, then compare. A divergence is a hook.
+     Read every device info by every method, then compare.
 
      Copyright (C) 2026  VD171
      SPDX-License-Identifier: AGPL-3.0-or-later
@@ -15,8 +15,9 @@
      Source         : https://github.com/VD171/VD-Infos
      GitHub         : @VD171 https://github.com/VD171
      XDA-Developers : @VD171 https://xdaforums.com/m/vd171.4699873/
+     XDA thread     : https://xdaforums.com/t/VD-Infos.4097379/
      Telegram       : @VD_Priv8 https://t.me/VD_Priv8
-     Telegram       : @Priv8_VD https://t.me/Priv8_VD
+     Channel        : @Priv8_VD https://t.me/Priv8_VD
      Discord        : @VD.Priv8 https://discord.com/users/1296831918989639721
      E-mail         : vd.priv8@pm.me
     ======================================================================
@@ -95,6 +96,7 @@
     <string name="crash_title">خطأ غير متوقع</string>
     <string name="crash_body">واجه التطبيق خطأً غير متوقع. لم يُرسَل أي شيء إلى أي مكان. يمكنك نسخ التفاصيل أدناه وإرسالها إلى المطوّر.</string>
     <string name="about_project">المشروع</string>
+    <string name="about_see_also">انظر أيضًا</string>
     <string name="about_support">التنزيل والدعم</string>
     <string name="action_clear">مسح البحث</string>
     <string name="lang_dialog_title">اللغة</string>
@@ -105,29 +107,27 @@
     <!-- الحل -->
     <string name="sol_title">كيفية الإصلاح</string>
     <string name="card_details">التفاصيل</string>
-    <string name="sol_boot">هذا ما تُبلّغ عنه attestation العتادية (TEE) بشأن حالة الإقلاع. أدوات تجاوز keybox (TrickyStore وTEE Simulator وOhMyKeyMint) تعيد كتابة attestation فقط للتطبيقات التي تحدّدها. أضف حزمة هذا التطبيق إلى قائمة أهداف تلك الأدوات (مثل target.txt) حتى تُبلّغ attestation الخاصة به عن جهاز مقفل مع verified boot أخضر.</string>
-    <string name="sol_root_detector">هذه التطبيقات المثبّتة تبحث عن root أو محاكٍ أو Play Integrity فاشل. أضف الحزم المكتشفة هنا كأهداف إلى إطار الإخفاء لديك (HMA-OSS) حتى تُخفى تطبيقاتك ووحدات root عن هذه الكواشف.</string>
-    <string name="sol_spoof">تُقرأ هذه الإعدادات بشكل مختلف عبر المسارات التي قد يستخدمها التطبيق (spoof لا يغطيها كلها). أضف الإعداد إلى إعدادات spoof المسبقة في HMA-OSS حتى يُرجع كل مسار قراءة القيمة نفسها.</string>
-    <string name="sol_attest_patch">تُبلّغ key attestation عن مستوى ترقيع يختلف عن خاصية النظام. اضبطه في أداة keybox لديك - TrickyStore في security_patch.txt (تاريخ، أو system=/boot=/vendor=/all=، أو \'prop\')؛ OhMyKeymint في config.toml ضمن [trust]. كلاهما يغيّر الـattestation فقط، لا الخصائص.</string>
-    <string name="sol_patch_prop">يُظهر Build.VERSION.SECURITY_PATCH (إطار العمل) والخاصية ro.build.version.security_patch تاريخين مختلفين. وائم بينهما باستخدام resetprop. لا يفيد security_patch.txt ولا config.toml هنا - فهما يغيّران key attestation فقط، لا الخصائص.</string>
+    <string name="sol_root_detector">هذه التطبيقات المثبَّتة تبحث عن root. أضِف الحزم المكتشفة هنا كأهداف في إطار الإخفاء لديك (HMA-OSS).</string>
+    <string name="sol_attest_patch">يُبلّغ التصديق عن security patch مختلف عن property. اضبطه في أداة keybox لديك (TrickyStore security_patch.txt، OhMyKeymint config.toml [trust])؛ يغيّر التصديق فقط.</string>
+    <string name="sol_patch_prop">يُظهر framework وproperty تواريخ رقع مختلفة. وائم بينها بـ resetprop؛ أدوات keybox تغيّر التصديق فقط، لا properties.</string>
 
-    <string name="note_gsf">غير موجود في Android 16 وما بعده: انتقل مخزن خدمات Google إلى Play Services، الذي سمّت Google بابه &quot;do.not.use&quot; ولا يستجيب للتطبيقات الأخرى. يُجرَّب كلاهما أعلاه.</string>
     <string name="t_attestation_app_id">معرّف تطبيق التصديق (الحزمة + التوقيع)</string>
     <string name="t_dev_ptmx_present">‏/dev/ptmx موجود</string>
     <string name="t_documents_providers">DocumentsProviders المسجّلة</string>
     <string name="t_kernel_modules">وحدات النواة المُحمّلة (KernelSU/SuSFS)</string>
-    <string name="t_kernel_syscall_fingerprint">إصدار النواة عبر بصمة استدعاءات النظام</string>
+    <string name="t_kernel_syscall_fingerprint">فحص متقاطع لإصدار النواة</string>
     <string name="t_key_inside_secure_hw">المفتاح داخل عتاد آمن (KeyInfo)</string>
     <string name="t_rot_ec_vs_rsa">جذر الثقة في التصديق: طلب EC مقابل RSA</string>
     <string name="t_leaf_sig_alg">ورقة التصديق: المفتاح مقابل خوارزمية التوقيع</string>
     <string name="t_batch_key_ec_vs_rsa">مفتاح التصديق: سلسلة EC مقابل سلسلة RSA</string>
+    <string name="t_native_vs_jvm">التصديق: keystore2 الأصلي مقابل JVM</string>
     <string name="t_local_tmp_contents">محتويات /data/local/tmp</string>
     <string name="t_native_lib_origin">مصدر المكتبة الأصلية (dladdr)</string>
     <string name="t_own_debuggable">هذا التطبيق: debuggable / بناء تصحيح</string>
     <string name="t_play_store_version">إصدار Play Store / GMS</string>
     <string name="t_resolv_conf">resolv.conf / إعداد DNS</string>
     <string name="t_root_backup_tools">أدوات نسخ احتياطي تتطلب الروت موجودة</string>
-    <string name="t_su_libc_inline_hook">su: استدعاء نظام خام مقابل libc وJava</string>
+    <string name="t_su_libc_inline_hook">تحليل su عبر الطبقات</string>
     <string name="t_system_build_prop">/system/build.prop</string>
     <string name="t_system_build_prop_present">‏/system/build.prop موجود</string>
     <string name="t_adb_enabled">ADB مُفعّل</string>
@@ -197,7 +197,7 @@
     <string name="t_imei">IMEI</string>
     <string name="t_imsi_subscriber">IMSI (المشترك)</string>
     <string name="t_incremental">Incremental</string>
-    <string name="t_injected_libs_proc_self_maps">مكتبات محقونة (/proc/self/maps)</string>
+    <string name="t_injected_libs_proc_self_maps">مكتبات محقونة</string>
     <string name="t_installed_app_signing_digests">بصمات توقيع التطبيقات المثبّتة</string>
     <string name="t_installed_applications">التطبيقات المثبّتة</string>
     <string name="t_installed_input_methods">طرق الإدخال المثبّتة</string>
@@ -207,13 +207,9 @@
     <string name="t_kernel_version">النواة (الإصدار)</string>
     <string name="t_kernel_version_string">النواة (سلسلة الإصدار)</string>
     <string name="t_kernel_version_claim">ادعاء إصدار النواة (ro.kernel.version مقابل uname)</string>
-    <string name="note_kernel_version_claim">من المفترض أن تعكس خاصية ro.kernel.version النواة العاملة. إذا ادّعت major.minor لا يطابقه إصدار uname الحقيقي، فإن محوّلًا ضبط الخاصية بينما النواة تحتها نواة أخرى.</string>
     <string name="t_kernel_build_date">تاريخ بناء النواة مقابل ROM</string>
-    <string name="note_kernel_build_date">نواة GKI مسبقة البناء أقدم من الـ ROM الذي تُشحن فيه أو تطابقه. النواة التي بُنيت بعد تجميع الـ ROM بوقت طويل أُعيد بناؤها أو تفليشها لاحقًا، وهي العلامة المعتادة على نواة مُجمَّعة يدويًا.</string>
     <string name="t_kernel_config">إعداد النواة (‎/proc/config.gz)</string>
-    <string name="note_kernel_config">إعداد النواة، حيث يمكن قراءته، يذكر التصحيحات المضمّنة: KSU وSUSFS ونسخة محلية مخصصة وتوقيع وحدات غير مُلزَم. غالبًا ما يمنع صندوق التطبيق هذا الملف؛ ويُقرأ على أندرويد الأقدم وROM المخصصة وأصداف الروت.</string>
     <string name="t_kernel_module_scan">وحدات النواة ورموزها</string>
-    <string name="note_kernel_module_scan">يمسح ‎/sys/module وأسماء رموز ‎/proc/kallsyms بحثًا عن ksu وsusfs وmagisk التي تكشفها نواة مُرقّعة أو مُحمّلة بوحدات. كلا السطحين مقيّدان غالبًا؛ ويُقرآن حيث يسمح النطاق.</string>
     <string name="t_kernel_cmdline">cmdline النواة</string>
     <string name="t_kernel_log">سجل النواة</string>
     <string name="t_kernel_stat">stat النواة</string>
@@ -290,8 +286,8 @@
     <string name="t_verified_boot_hash_vbmeta_digest">تجزئة verified boot / بصمة vbmeta</string>
     <string name="t_verified_boot_key">مفتاح verified boot</string>
     <string name="t_verified_boot_state">حالة verified boot</string>
-    <string name="t_prop_area_tamper">تلاعب بمنطقة property (ثغرة/سياق)</string>
-    <string name="t_supplementary_groups">مجموعات تكميلية (3009=AID_READPROC)</string>
+    <string name="t_prop_area_tamper">منطقة خصائص النظام</string>
+    <string name="t_supplementary_groups">مجموعات تكميلية</string>
     <string name="t_version_codename">الاسم الرمزي للإصدار</string>
     <string name="t_webview_provider">مزوّد WebView</string>
     <string name="t_webview_user_agent">user agent لـ WebView</string>
@@ -327,6 +323,17 @@
     <string name="t_queryintentservices_main">queryIntentServices (MAIN)</string>
     <string name="t_resolveactivity_main_launcher">resolveActivity (MAIN/LAUNCHER)</string>
     <string name="t_su_binary">ثنائي su</string>
+    <string name="t_setuid_root">ملف ثنائي مميز</string>
+    <string name="t_root_dirs_present">ظهور أدلة النظام</string>
+    <string name="t_maps_isolated">وحدات محقونة</string>
+    <string name="t_inline_hooks">خطافات الكود</string>
+    <string name="t_linker_maps_gap">مكتبات مخفية</string>
+    <string name="t_tracerpid_iso">مصحح أخطاء مرفق</string>
+    <string name="t_fd_iso">المقابض المفتوحة</string>
+    <string name="t_selinux_iso">سياق الأمان</string>
+    <string name="t_su_iso">وصول المستخدم الخارق</string>
+    <string name="t_prop_dual_iso">خصائص النظام</string>
+    <string name="t_smaps_iso">ذاكرة قابلة للكتابة والتنفيذ</string>
     <string name="t_su_on_path">su في PATH</string>
     <string name="t_tel_networkOperatorName">اسم مشغّل الشبكة</string>
     <string name="t_tel_networkOperator">مشغّل الشبكة (MCC+MNC)</string>
@@ -418,7 +425,7 @@
     <string name="t_isrc_self_originating">مصدر التثبيت (self): originating</string>
     <string name="t_isrc_self_pkgsource">مصدر التثبيت (self): packageSource</string>
     <string name="t_isrc_self_initiator_sig">مصدر التثبيت (self): شهادة الـ initiator مقابل المثبَّت</string>
-    <string name="t_isrc_gap_jvm_store_pm_denies">فجوة: JVM يذكر installer متجر، pm ينفي (hook)</string>
+    <string name="t_isrc_gap_jvm_store_pm_denies">المثبِّت: JVM مقابل pm</string>
     <string name="t_isrc_gap_jvm_pm_other">فجوة: installer JVM ≠ installer pm (الرؤية)</string>
     <string name="t_isrc_gap_installer_ne_initiating">فجوة: installer ≠ initiating</string>
     <string name="t_isrc_gap_store_installer_sideload">فجوة: installer متجر، initiating sideload</string>
@@ -437,24 +444,16 @@
     <string name="t_installed_applications_diff">التطبيقات المثبّتة: متباينة (JVM x pm)</string>
     <string name="t_selinux_status">صفحة status الخاصة بـ SELinux (policyload/seq)</string>
     <string name="t_selinux_policy_probe">مسبار سياسة SELinux (الأنواع + AVC)</string>
-    <string name="t_manager_doors">مدير root/Xposed: الرؤية حسب باب PackageManager</string>
+    <string name="t_manager_doors">ظهور تطبيق المدير</string>
     <string name="t_net_sock_diag">سياسة Netlink sock_diag</string>
-    <string name="n_net_sock_diag">يجب رفض NETLINK_SOCK_DIAG لتطبيق مقيَّد؛ ووصول رد يعني أن سياسة netlink جرى تخفيفها.</string>
     <string name="t_mount_peer_gap">سلامة peer-group للتحميلات</string>
-    <string name="n_mount_peer_gap">يجب أن تُقرأ مجموعة معرّفات peer-group نفسها عبر كل عدسة؛ وجود فجوة في عدسة يعني تحميلاً مخفيًا.</string>
     <string name="t_mount_fdinfo_mnt">معرّف التحميل مقابل الواصفات المفتوحة</string>
-    <string name="n_mount_fdinfo_mnt">واصف مفتوح لا يوجد mnt_id الخاص به في mountinfo يشير إلى تحميل مخفي عن العرض.</string>
-    <string name="t_proc_readproc_gid">GID 3009 لِـ zygote (AID_READPROC)</string>
-    <string name="n_proc_readproc_gid">غياب GID الإضافي AID_READPROC أثر تتركه بعض وحدات إخفاء التطبيقات.</string>
+    <string name="t_proc_readproc_gid">GIDs تكميلية لِـ zygote</string>
     <string name="t_proc_fd_graph">إحصاء الواصفات</string>
     <string name="t_mem_anon_exec">تخطيطات تنفيذية مجهولة</string>
-    <string name="n_mem_anon_exec">الصفحات التنفيذية بلا ملف داعم بقايا حقن/Zygisk نموذجية؛ ويجب أن يتطابق العدد بين العدسات.</string>
     <string name="t_kernel_selfbuild">نواة مُجمَّعة ذاتيًا / مُرقَّعة</string>
-    <string name="n_kernel_selfbuild">النواة الأصلية لا تحمل علامة بناء -dirty أو git أو SUSFS؛ ويجب أن تتطابق العلامات بين العدسات.</string>
     <string name="t_tee_soter">خدمة Soter مقابل الخاصية</string>
-    <string name="n_tee_soter">تقارن برنامج خدمة Soter من Tencent بحالة خاصية خدمته.</string>
     <string name="t_proc_cgroup_format">تنسيق مسار cgroup</string>
-    <string name="n_proc_cgroup_format">الحاوية المستنسخة / ثنائية التطبيق تجعل مسار cgroup الموحّد ينحرف عن الصيغة القياسية uid_/pid_.</string>
     <string name="t_gpu_vendor">مُصنّع GPU</string>
     <string name="t_gpu_renderer">مُصيّر GPU</string>
     <string name="t_gpu_version">إصدار GPU</string>
@@ -466,32 +465,119 @@
     <string name="t_tel_simSpecificCarrierId">معرّف مشغّل SIM المحدّد</string>
     <string name="t_tel_visualVoicemailPackageName">حزمة البريد الصوتي المرئي</string>
     <string name="t_keychain_blacklist">القائمة السوداء لشهادات Keychain</string>
-    <string name="t_buildprop_vs_runtime">build.prop vs runtime</string>
-    <string name="note_boot_count">boot_count (الإطار) يزداد فقط؛ Phenotype_boot_count (خدمات Play) هو لقطته وقد يتأخّر. يتباين فقط إذا تجاوزت اللقطة boot_count (إعادة تعيين).</string>
-    <string name="note_isrc_initiator_sig">الشهادة التي سجّلها النظام للمثبّت عند تثبيت هذا التطبيق تختلف عن التي يبلّغ عنها المثبّت الآن. يسبب ذلك مثبّت مستبدَل أو توقيع مزيّف؛ والرومات التي تعيد توقيع النظام وتبلّغ عن الشهادة الأصلية للمصنّع (مثل Xiaomi.eu) تُظهر ذلك على كل جهاز.</string>
+    <string name="t_buildprop_vs_runtime">اتساق خصائص build</string>
     <string name="t_concealment">إخفاء التطبيقات</string>
-    <string name="note_concealment">الحزمة المخفية من قائمة التطبيقات لكن ما زال يمكن الوصول إليها عبر باب آخر في PackageManager (معلومات الحزمة، createPackageContext، ملف APK المفتوح، launch intent) مخفية من باب دون آخر - علامة أداة إخفاء تطبيقات ناقصة.</string>
     <string name="t_prop_variants">متغيّرات حسب القسم: %1$s</string>
     <string name="t_prop_enum">تعداد الخصائص مقابل getprop</string>
-    <string name="note_prop_variants">تظهر اللاحقة نفسها لكل قسم (system, vendor, product, odm, dlkm...). القيم التي يجب أن تتطابق في كل مكان لكنها تختلف، أو التي تنقسم داخل السلالة نفسها، تكشف تزييفًا جزئيًا - بصمة غُيّرت في بعض الأقسام دون غيرها.</string>
-    <string name="note_prop_enum">تعداد منطقة الخصائص أصلاً (__system_property_foreach) ومقارنته مع getprop من عملية أخرى يكشف خاصية مخفية عن الصدفة أو محقونة في مسار دون آخر.</string>
-    <string name="t_dlphdr">وحدات المُحمِّل (dl_iterate_phdr)</string>
-    <string name="t_frida_port">فحص منفذ Frida</string>
-    <string name="note_dlphdr">يعدّد dl_iterate_phdr الوحدات المحمّلة عبر الرابط، لا عبر /proc/self/maps، لذا فإن هوكًا يمحو إدخاله من maps يظل مدرجًا هنا. تطابق needle أو وحدة خارج قائمة النظام المسموح بها هو التسريب.</string>
+    <string name="t_dlphdr">وحدات محمّلة</string>
+    <string name="t_frida_port">منفذ القياس</string>
     <string name="t_ime_verdict">حكم سلامة لوحة المفاتيح</string>
     <string name="t_store_authenticity">موثوقية توقيع المتجر/GMS</string>
     <string name="t_devgate">اتساق الإعدادات المقيّدة بوضع المطور</string>
-    <string name="note_ime_verdict">يرفض RASP مصرفي (PayZapp/Zeta) أي لوحة مفاتيح مُفعّلة غير نظامية ومثبّتة خارج قائمة المتاجر المسموح بها. يُعلَّم أي IME غير نظامي مُفعّل بمثبّت من خارج المتجر.</string>
-    <string name="note_store_authenticity">يجب أن تحمل Play Store وGMS وGSF شهادة توقيع Google. وجود حزمة متجر أو GMS موقّعة بمفتاح مختلف يعني متجرًا مزيّفًا أو microG أو متجرًا مُعاد تحزيمه.</string>
-    <string name="note_devgate">لا تتغيّر adb والإعدادات الأخرى المقيّدة بوضع المطور إلا وخيارات المطور مفعّلة. إعداد مقيّد غير افتراضي مع development_settings_enabled=0 لا يمكن أن يكون قد ضُبط إلا عبر الجذر أو `settings put`.</string>
-    <string name="t_maps_exec">خرائط exec محقونة (deleted/memfd)</string>
-    <string name="t_anon_minor">كتلة فائقة anon-bdev مخفية</string>
-    <string name="note_maps_exec">التعيين القابل للتنفيذ المدعوم بملف (deleted)/memfd/ashmem الذي يكون RWX (ينتهك W^X) أو يبدأ بسحر ELF هو ملف .so محقون حقيقي منفصل عن نظام الملفات؛ ترامبولين JIT الخاص بـ ART ليس أيًّا منهما ويُحتسب حميدًا. الوحدة خارج قائمة النظام المسموح بها تُحتسب أيضًا.</string>
-    <string name="note_anon_minor">أنظمة الملفات بلا جهاز كتلي تأخذ الـ minor من تجمّع anon عالمي، كثيف من الأسفل. minor موجود عبر stat() لكنه غائب من mountinfo لهذه العملية هو كتلة فائقة حية مخبّأة في مساحة أسماء خاصة (tmpfs لخفي). سلسلة طويلة من minor مفقودة هي churn لكل تطبيق وتُتجاهل؛ الثقب القصير هو الدليل.</string>
-    <string name="t_sb_tee_signer">موقّع StrongBox × TEE</string>
+    <string name="t_maps_exec">تعيينات ذاكرة قابلة للتنفيذ</string>
+    <string name="t_elf_in_anon">صورة كود في ذاكرة مجهولة</string>
+    <string name="t_anon_exec_orphan">ذاكرة تنفيذ غير مدعومة</string>
+    <string name="t_anon_minor">نظام ملفات مخفي</string>
+    <string name="t_sb_tee_signer">ملف إثبات StrongBox</string>
+    <string name="t_sb_capability">ملف تعريف capability لـ StrongBox</string>
+    <string name="t_sb_enforced">مستوى فرض مفتاح StrongBox</string>
+    <string name="t_sb_version">إصدار تصديق StrongBox</string>
+    <string name="t_sb_chain">سلسلة تصديق StrongBox</string>
+    <string name="t_sb_rkp">provisioning مفتاح StrongBox</string>
+    <string name="t_sb_latency">توقيت توليد مفتاح StrongBox</string>
     <string name="t_local_tmp_list">سرد /data/local/tmp</string>
-    <string name="note_local_tmp_list">سرد /data/local/tmp عبر getdents64 (لا بحث بالاسم) يُظهر أي بقايا يمكن للتطبيق الوصول إليها فعلاً، بما فيها ما يسقطه الوحدة. على جهاز مقفل يملك الدليل الـ shell ولا يمكن للتطبيق سرده، فيكون EACCES هو الجواب النظيف؛ ووجود إدخال ظاهر يعني بقايا يصل إليها التطبيق.</string>
     <string name="t_nettype_consistency">نوع الشبكة مقابل الواجهة الحقيقية</string>
     <string name="t_flagsecure_honored">احترام FLAG_SECURE (حظر لقطة الشاشة)</string>
+    <string name="t_procnet_frida">مقبس القياس</string>
+    <string name="t_procnet_tun">واجهة VPN</string>
+    <string name="t_mountinfo_iso">إدخالات التركيب</string>
+    <string name="t_adb_usb_exposure">كشف تصحيح ADB/USB</string>
+    <string name="t_anon_elf_struct">بنية ELF في ذاكرة مجهولة</string>
+    <string name="t_atexit_drift">انحراف وقت تشغيل Atexit</string>
+    <string name="t_attestation_challenge_echo">صدى تحدي الإثبات</string>
+    <string name="t_attest_synth_paradox">الإثبات مقابل حالة التشغيل</string>
+    <string name="t_baseband_coherence">اتساق إصدار baseband</string>
+    <string name="t_datadir_errno_oracle">فحص دليل بيانات الحزمة</string>
+    <string name="t_device_id">هوية جهاز الإثبات مقابل Build</string>
+    <string name="t_feature_spoof">اتساق ميزات النظام</string>
+    <string name="t_fingerprint_rebuild">إعادة بناء البصمة</string>
+    <string name="t_gap_mapped">تغطية خريطة الذاكرة</string>
+    <string name="t_heap_hook_xref">مراجع قديمة في الـheap</string>
+    <string name="t_hidden_app_usage_leak">ظهور الحزمة عبر usage stats</string>
+    <string name="t_hidden_region_xref">مراجع heap إلى مناطق الذاكرة</string>
+    <string name="t_launch_sender_pkg_leak">ظهور حزمة IntentSender</string>
+    <string name="t_libc_identity">اتساق صورة libc</string>
+    <string name="t_lock_coherence">اتساق قفل bootloader</string>
+    <string name="t_map_files_leak">أصول الملفات المُعيَّنة</string>
+    <string name="t_multiuser_oracle">ظهور المستخدم / المساحة الخاصة</string>
+    <string name="t_named_anon_exec">تعيين كود باسم مجهول</string>
+    <string name="t_otacerts_signing_key">مفتاح توقيع OTA (otacerts)</string>
+    <string name="t_pairip_wrapper">فحص غلاف التطبيق</string>
+    <string name="t_phantom_monitor_prop">خاصية علم مراقبة phantom</string>
+    <string name="t_phantom_monitor_setting">إعداد مراقبة phantom</string>
+    <string name="t_platform_signer">موقِّع المنصة (حزمة android)</string>
+    <string name="t_prov_fingerprint">بصمة RKP مقابل الجهاز</string>
+    <string name="t_prov_manufacturer">مُصنِّع RKP مقابل الجهاز</string>
+    <string name="t_prov_vbmeta_reuse">vbmeta من RKP مقابل وقت التشغيل</string>
+    <string name="t_prov_verdict">حكم verified boot من RKP</string>
+    <string name="t_settings_stock_baseline">خط أساس إعدادات المطور/الأمان</string>
+    <string name="t_signature_source">اتساق مصدر شهادة التوقيع</string>
+    <string name="t_signature_sweep">مسح شهادة التوقيع (كل التطبيقات)</string>
+    <string name="t_signing_keys">مفاتيح التوقيع (المتوقع release-keys)</string>
+    <string name="t_statfs_consistency">اتساق حجم التخزين</string>
+    <string name="t_verifier_adb_installs">التحقق من التطبيقات عبر USB (package verifier)</string>
+    <string name="t_zygisk_loader_footprint">بقايا المحمّل في الذاكرة</string>
+    <string name="t_zygote_gid">اتساق GID لِـ zygote</string>
     <string name="about_trademarks">VD Infos أداة بحث وتشخيص مستقلة وغير رسمية. وهي ليست تابعة لأي من المورّدين الذين تقرأ برامجهم أو خدماتهم أو علاماتهم أو تكتشفها أو تسمّيها، ولا معتمدة منهم ولا برعايتهم (بما في ذلك Google LLC و Android Open Source Project). إن \"Android\" و\"Google\" و\"Google Play\" و\"Play Integrity\" و\"Widevine\" وجميع أسماء المنتجات والشعارات والعلامات التجارية الأخرى هي ملك لأصحابها المعنيين. تقرأ VD Infos فقط ما هو موجود بالفعل على جهازك ولا ترسل أي شيء إلى أي مكان.</string>
+    <string name="note_art_dexopt_self">إشارة سلامة، وليست دليلاً على التجذير. يوجد ملف base.odex مُصَرَّف مسبقاً (AOT) على القرص لكن التطبيق يعمل بالتفسير (لا يوجد تخطيط تنفيذي)، ما يعني أن ملف odex رُفض (boot-image قديم، تغيّرت صورة إقلاع ART بعد تحديث apex). عندها قد تفشل تطبيقات الخدمات والتحقق من التطبيقات في Play Protect في البدء في الوقت المناسب. مؤشر من جانب المستخدم؛ الفحص الموثوق يكون من جانب الجذر.</string>
+    <string name="sol_art_dexopt_self">أعد التصريف بصلاحية الجذر (pm compile -a -m speed) أو أعد التشغيل لإعادة توليد صورة الإقلاع وإعادة dexopt للتطبيقات.</string>
+    <string name="sol_atexit_drift">يجب أن تُحَل معالجات الخروج في libc وهي __cxa_atexit و __cxa_finalize داخل libc. عندما تُحَل إلى مكتبة أخرى أو منطقة مجهولة، يكون حاقن بأسلوب Zygisk قد اعترضها. أزل الحقن من هذه العملية.</string>
+    <string name="sol_baseband_coherence">يُبلّغ عن إصدار المودم عبر getRadioVersion وعائلة gsm.version.baseband على حد سواء؛ وكلها تقرأ البرنامج الثابت نفسه. عندما يختلف أحد المصادر، يكون تزييف خاصية قد عدّل بعض الأسماء المستعارة دون كلها. أبقِ كل مصادر إصدار الـ baseband متطابقة.</string>
+    <string name="sol_boot">يُبلّغ تصديق العتاد (TEE) عن حالة الإقلاع. أضف حزمة هذا التطبيق إلى قائمة أهداف أداة keybox لديك كي تُبلّغ عن جهاز مقفل ومُتحقَّق منه.</string>
+    <string name="sol_datadir_errno_oracle">قد يكشف استدعاء stat على دليل بيانات حزمة أنها مُثبّتة حتى دون استعلام عن الحزم. أضف هذه الحزم إلى إطار الإخفاء لديك (HMA-OSS) كي تُقرأ أدلة بياناتها على أنها غير موجودة، لا مرفوضة فحسب.</string>
+    <string name="sol_device_id">هوية العتاد في التصديق (brand و device و manufacturer) لا تطابق خصائص البناء، فيستطيع المُتحقّق معرفة أن الخصائص مزيّفة. طابِق ro.product.brand و ro.product.device و ro.product.manufacturer مع القيم المصدّق عليها من العتاد (يختلف product و model بشكل مشروع: التصديق يحمل الاسم الرمزي).</string>
+    <string name="sol_feature_spoof">يختلف hasSystemFeature و getSystemAvailableFeatures وعُقد العتاد حول إحدى ميزات الجهاز، فتكون ميزة مخفية أو مزيّفة عبر مسار دون المسارات الأخرى. اجعل كل مسار للاستعلام عن الميزات والعتاد يُبلّغ عن الوجود نفسه.</string>
+    <string name="sol_fingerprint_rebuild">تُركّب بصمة البناء وقت البناء بالصيغة BRAND/PRODUCT/DEVICE:RELEASE/ID/INCREMENTAL:TYPE/TAGS. عندما لا تساوي Build.FINGERPRINT إعادة التركيب هذه من حقول مكوّناتها، يكون تزييف قد غيّر البصمة دون مطابقة كل مكوّن (أو العكس). اجعل البصمة ومكوّناتها متسقة.</string>
+    <string name="sol_hidden_app_usage_leak">قد تظهر حزمة عبر واجهات usage-stats حتى عندما تُبقى خارج قائمة الحزم المثبّتة. أضف هذه الحزم إلى إطار الإخفاء لديك (HMA-OSS) كي تُخفى من واجهات usage-stats أيضاً، لا من قائمة الحزم فقط.</string>
+    <string name="sol_launch_sender_pkg_leak">على الرومات المدروسة، يُفهرَس كائن IntentSender المُعاد بـ (caller, name) فقط: حقول منشئه هي حقول المستدعي و equals يختلف بالاسم وحده، فلا يحمل أي إشارة مثبّت/مخفي (المقارنة مع اسم عشوائي غير موجود نتيجة إيجابية زائفة). لا يتسرّب إلا إذا اختلفت حزمة مثبّتة ظاهرة واسم غير موجود في حقل مستقل عن المستدعي؛ وعندها اجعل إطار الإخفاء (HMA-OSS) يُعيد ما يعادل غير الموجود للحزم المخفية.</string>
+    <string name="sol_libc_identity">تخطيط libc المُحمّل (device و inode) لا يطابق ملف libc.so على القرص، فقد استُبدلت المكتبة أو رُبطت بالتركيب (libc مُعترَضة). قدّم libc الأصلية، أو أخفِ تركيب الاستبدال عن التطبيق.</string>
+    <string name="sol_lock_coherence">على جهاز أصلي مقفل تتفق كل خصائص قفل الـ bootloader والإقلاع المُتحقَّق منه: flash.locked=1 و verifiedbootstate=green و vbmeta.device_state=locked والضمان غير مُفعّل. عندما تدّعي إحداها القفل بينما لا تزال أخرى تُقرأ مفتوحة، يكون تزييف قد عدّل بعضها دون كلها. وحّد كل خصائص القفل على الحالة نفسها.</string>
+    <string name="sol_otacerts_signing_key">شهادة توقيع OTA (otacerts.zip) هي مفتاح اختبار AOSP العام، فيُقرأ البناء على أنه موقّع باختبار حتى عندما تدّعي ro.build.tags أنها release-keys. قدّم ملف otacerts.zip موقّعاً بـ release عبر وحدة إعادة توجيه الملفات لديك وطابِق ro.*.build.tags عبر كل قسم كي يتفق الملف والخصائص.</string>
+    <string name="sol_perm_path_coherence">يُحَل الإذن نفسه عبر عدة مسارات برمجية: PackageManager.checkPermission و Context.checkPermission(perm,pid,uid) والأعلام الممنوحة في getPackageInfo(GET_PERMISSIONS) وواجهة binder منخفضة المستوى IPackageManager.checkUidPermission. على نظام سليم تتفق كل المسارات التي يمكن بلوغها، ويكون إذن مميّز (START_ANY_ACTIVITY و INSTALL_PACKAGES و MANAGE_USERS) مرفوضاً في كلٍ منها. أي اعتراض يزيّف أو يخفي إذناً على مسار دون آخر، أو يمنح إذناً مميّزاً لا يملكه تطبيق عادي أبداً، يتباين هنا. حُل الأذونات باتساق عبر كل مسار؛ لا تزيّف منحاً على المسار الذي يصادف أن يقرأه كاشف فقط.</string>
+    <string name="sol_phantom_monitor">لا يكشف الجهاز الأصلي ما إذا كان مراقِب العمليات الوهمية (phantom-process) قد غُيّر. أضف الإعداد إلى إعدادات التزييف المسبقة في إطار الإخفاء لديك (HMA-OSS) كي يُقرأ كما على جهاز أصلي، وتجنّب خاصية تجاوز feature-flag.</string>
+    <string name="sol_platform_signer">يكشف توقيع حزمة المنصة (android) موقّعاً ليس من OEM (روم مخصص أو مفتاح اختبار AOSP) أو OEM لا يطابق المُصنّع المُدّعى. زيّف توقيع المنصة (كما يفعل spoofSignature في PlayIntegrityFork) كي تُبلّغ حزمة android عن شهادة منصة OEM المُدّعى.</string>
+    <string name="sol_prov_fingerprint">بصمة RKP (من شهادة RKP) لا تطابق بصمة بناء هذا الجهاز، فالـ keybox يخص جهازاً آخر. استخدم keybox مُهيّأً على هذا الجهاز.</string>
+    <string name="sol_prov_vbmeta_reuse">قيمة vbmeta_digest في RKP (من شهادة RKP) لا تطابق تجزئة الإقلاع المُتحقَّق منه وقت التشغيل للجهاز، فالـ keybox هُيّئ على جهاز آخر (keybox معاد استخدامه أو مُشترك) أو حُدّث الجهاز بعد التهيئة. استخدم keybox مُهيّأً على هذا الجهاز.</string>
+    <string name="sol_prov_verdict">تسجّل شهادة RKP إقلاع الجهاز على أنه غير مُعتمد، فقد وسم الخادم الخلفي لـ RKP هذا الجهاز. استخدم keybox مُهيّأً على جهاز اعتمده الخادم الخلفي.</string>
+    <string name="sol_signature_source">يجب أن تتطابق شهادة التوقيع المقروءة من سجل PackageManager مع تلك المُحلّلة من ملف APK على القرص، ويجب أن يتعرّف PackageManager على شهادة ملف APK (hasSigningCertificate و checkSignatures). عندما تتباينان، يكون اعتراض على مستوى PackageManager قد أعاد كتابة التوقيع المُبلّغ عنه دون المساس بملف APK الفعلي. قراءة APK مباشرة لا تزال ترى الشهادة الحقيقية.</string>
+    <string name="sol_signature_sweep">لكل تطبيق مثبّت، تشترك شهادة التوقيع من سجل PackageManager مع تلك المُحلّلة من ملف APK الخاص به في موقّع واحد. أي تطبيق تكون مجموعتاه منفصلتين قد زُيّف توقيعه في PackageManager بينما احتفظ APK على القرص بالتوقيع الحقيقي. تدوير المفاتيح يُبقي موقّعاً مشتركاً، فلا يُوسَم.</string>
+    <string name="sol_signing_keys">يُوقّع بناء الإنتاج بـ release-keys. أي خاصية مفتاح توقيع تُقرأ test-keys أو dev-keys (بأي طريقة) تكشف بناءً مخصصاً أو بناء تصحيح. أعد release-keys عبر build.tags وخصائص *.keys لكل قسم.</string>
+    <string name="sol_spoof">لا يُقرأ هذا الإعداد باتساق. أضفه إلى إعدادات التزييف المسبقة في HMA-OSS كي يُعيد كل مسار القيمة نفسها.</string>
+    <string name="sol_statfs_consistency">تختلف قراءة android.os.StatFs وقراءة statvfs الأصلية حول حجم التخزين، فالحجم مزيّف عبر واجهة إطار Java لا أصلياً. اجعل مساري StatFs والمسار الأصلي يُبلّغان القيم نفسها.</string>
+    <string name="sol_zygote_gid">يُسنِد الـ zygote إلى العملية معرّفات مجموعاتها التكميلية (GIDs) من الأذونات الممنوحة للتطبيق: INTERNET يعني 3003 و BLUETOOTH يعني 3002 وهكذا. أي إذن ممنوح يغيب معرّف مجموعته عن getgroups(2) يعني أن مُخفياً رشّح أذونات الـ zygote: فهو يخفي التطبيق لكنه يناقض مجموعة الأذونات التي يقرأها أي تطبيق عن نفسه. لا تنزع معرّفات المجموعات التي تتطلبها الأذونات الممنوحة (مثلاً، لا تُزل INET_GID أبداً بينما INTERNET ممنوح).</string>
+    <string name="summary_all_agreed_mark" translatable="false">🏆 ✓ </string>
+    <string name="t_boot_triad_coherence">اتساق حالة الإقلاع المُتحقَّق منه</string>
+    <string name="t_build_vs_prop">android.os.Build مقابل الخاصية المرجعية (لكل حقل هوية)</string>
+    <string name="t_debug_ramdisk">محتويات /debug_ramdisk</string>
+    <string name="t_isrc_gap_forged_store_install">اتساق متجر المُثبّت</string>
+    <string name="t_isrc_gap_store_pkgsource_other">فجوة: مُثبّت من متجر، و packageSource ليس كمتجر</string>
+    <string name="t_loop_orphan">أجهزة loop يتيمة</string>
+    <string name="t_perm_path_coherence">اتساق فحص الأذونات</string>
+    <string name="t_rom_identity">SoC مقابل هوية الجهاز المُعلَنة</string>
+    <string name="t_settings_read_gate">بوابة قراءة الإعداد المقيّد</string>
+    <string name="t_stock_path_hidden">ظهور مسار النظام</string>
+    <string name="t_strongbox_level">مستوى التصديق المدعوم بـ StrongBox</string>
+    <string name="t_uid_hidden_running">معرّفات UID قيد التشغيل مقابل قائمة الحزم</string>
+    <string name="t_uid_priority_fake">أولوية جدولة العملية</string>
+    <string name="t_version_cluster">اتساق مجموعة حالة الإصدار (إصدار نهائي مقابل معاينة)</string>
+    <string name="usage_access_body">يتطلب اكتشاف حزمة مخفية من قائمة الحزم المثبّتة عبر واجهات usage-stats إذنَ الوصول إلى بيانات الاستخدام (Usage access). امنحه لهذا التطبيق في إعدادات النظام ثم عُد.</string>
+    <string name="usage_access_open">فتح الإعدادات</string>
+    <string name="usage_access_title">إذن الوصول إلى الاستخدام مطلوب</string>
+    <string name="sol_debug_ramdisk">عند الإقلاع المصنعي يكون /debug_ramdisk فارغًا أو غير موجود. الملفات المهيأة هناك هي root للإقلاع المبكر أو حمولة وحدة. امسح المحتوى المهيأ من /debug_ramdisk، أو احتفظ به في namespace لا يستطيع هذا التطبيق قراءته.</string>
+    <string name="sol_loop_orphan">على جهاز مصنعي كل loop من نوع ext4 مدعوم بتثبيت نظام في هذا namespace. أي loop بلا نقطة تثبيت نظام هو وحدة أو overlay مُثبَّت خارج التخطيط المصنعي. ثبّت هذه الـ loops تحت مسار نظام، أو احتفظ بها في mount namespace لا يشاركه هذا التطبيق.</string>
+    <string name="sol_multiuser_oracle">يتسرب مستخدم ثانوي أو مساحة خاصة عندما يقرأه stat على /data/user/&lt;id&gt; كموجود بينما لا يدرجه UserManager. اجعل الاثنين متفقين: إمّا أن تبقي دليل بيانات المستخدم غير قابل للوصول لتطبيق غير مميّز، أو لا تُخفِ مستخدمًا ما زال دليله الخاص يكشفه.</string>
+    <string name="sol_prov_manufacturer">مُصنّع RKP (من شهادة RKP) لا يطابق هذا الجهاز، لذا تم تجهيز الـ keybox لجهاز مختلف. استخدم keybox مُجهَّزًا على هذا الجهاز.</string>
+    <string name="sol_rom_identity">على جهاز صادق تتطابق هوية SoC وbaseband وinit مع العلامة التجارية والطراز المُعلنين. عندما تتعارض خاصية هوية ROM أو عتاد مع الجهاز المُدّعى، فإن تزييف fingerprint غطّى خصائص المنتج دون خصائص العتاد. أبقِ كل سطح هوية (SoC، baseband، init.svc، cpuinfo) متسقًا مع الجهاز المُزيَّف.</string>
+    <string name="sol_stock_path_hidden">مسار نظام Android القياسي موجود على جهاز مصنعي، لذا فإن مسارًا مصنعيًا يُقرأ كغائب يعني أن طبقة إخفاء تُبالغ في إخفائه، وهذا بحد ذاته tell. أخفِ مسارات root والوحدات فقط، ولا تُخفِ أبدًا مسارًا موجودًا على جهاز نظيف.</string>
+    <string name="sol_version_cluster">البناء المصنعي يتفق مع نفسه حول حالة إصداره: codename وSDK من نوع release-أو-preview ورمز fingerprint تُقرأ كلها release، أو كلها preview، دون خلط أبدًا. عندما تُقرأ إشارة كـ release بينما تُقرأ أخرى كـ preview، فإن تزييفًا غيّر بعض خصائص الإصدار دون جميعها. حاذِ كل إشارة حالة إصدار إلى القناة نفسها.</string>
 </resources>

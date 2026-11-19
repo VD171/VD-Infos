@@ -1,0 +1,48 @@
+# ======================================================================
+#  VD INFOS  ::  method debugger
+#  Read every device info by every method, then compare.
+#
+#  Copyright (C) 2026  VD171
+#  SPDX-License-Identifier: AGPL-3.0-or-later
+#
+#  Site           : https://vd171.ru
+#  Site           : https://vd.priv8.ru
+#  Source         : https://github.com/VD171/VD-Infos
+#  GitHub         : @VD171 https://github.com/VD171
+#  XDA-Developers : @VD171 https://xdaforums.com/m/vd171.4699873/
+#  XDA thread     : https://xdaforums.com/t/VD-Infos.4097379/
+#  Telegram       : @VD_Priv8 https://t.me/VD_Priv8
+#  Channel        : @Priv8_VD https://t.me/Priv8_VD
+#  Discord        : @VD.Priv8 https://discord.com/users/1296831918989639721
+#  E-mail         : vd.priv8@pm.me
+# ======================================================================
+#
+# Region / market suffixes appended to a device identity on some partitions but
+# not others. A stock device legitimately carries the same codename with a region
+# suffix on one partition (ro.product.product.name = merlin_global) and bare on
+# another (ro.product.odm.name = merlin), or dash-joined (Transsion ro.product.
+# name = KM6-RU vs KM6-OP). Both are the SAME device, so the per-partition
+# "Variants by partition" probe must treat them as one identity, not a divergence.
+#
+# A trailing "[-_]<suffix>" is stripped from an identity value before the
+# cross-partition comparison, but ONLY when the suffix is one of these market
+# codes AND the part before it is at least 2 chars - so a real codename is never
+# collapsed into a different device (merlin != dandelion stays a divergence).
+# Measured on the corpus: strips the merlin/merlin_global and KM6-RU/KM6-OP false
+# divergences, 0 cross-device false merges. One code per line, lowercase.
+#
+global
+row
+ww
+eea
+emea
+apac
+latam
+mea
+me
+na
+eu
+in
+cn
+ru
+op

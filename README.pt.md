@@ -28,7 +28,7 @@
   <a href="https://github.com/VD171/VD-Infos/wiki/AI-AGENTS">Agentes de IA</a> ·
   <a href="https://github.com/VD171/VD-Infos/wiki/EXPORT-FORMAT">Formato de exportação</a> ·
   <a href="https://github.com/VD171/VD-Infos/wiki/ARCHITECTURE">Arquitetura</a> ·
-  <a href="CATALOG.md">Catálogo</a> ·
+  <a href="CATALOG.pt.md">Catálogo</a> ·
   <a href="CHANGELOG.md">Changelog</a> ·
   <a href="https://xdaforums.com/t/VD-Infos.4097379/">XDA thread</a>
 </p>
@@ -131,7 +131,7 @@ ui/             Jetpack Compose, Material 3, cor dinâmica, progresso ao vivo
 cpp/            native_probes.cpp: a lente nativa, sem dependências
 ```
 
-* **Paralelismo**: 996 sondas em fan-out no dispatcher default com concorrência
+* **Paralelismo**: As sondas em fan-out no dispatcher default com concorrência
   limitada; os resultados entram no UI conforme chegam.
 * **Nada em background**: sem serviços nem varreduras agendadas; o app roda só
   enquanto está aberto e se fecha sozinho quando fica ocioso.
@@ -172,7 +172,7 @@ Seus links, canais e como apoiá-lo: [HMA-OSS.md](HMA-OSS.md).
 - **[Para agentes de IA](https://github.com/VD171/VD-Infos/wiki/AI-AGENTS)** e **[Formato de exportação](https://github.com/VD171/VD-Infos/wiki/EXPORT-FORMAT)**: o relatório legível por máquina e seu esquema.
 - **[Arquitetura](https://github.com/VD171/VD-Infos/wiki/ARCHITECTURE)** e **[Compilação](https://github.com/VD171/VD-Infos/wiki/BUILDING)**: como funciona e como compilá-lo.
 - **[Privacidade](https://github.com/VD171/VD-Infos/wiki/PRIVACY)**, **[Segurança](https://github.com/VD171/VD-Infos/wiki/SECURITY)** e **[Código de Conduta](https://github.com/VD171/VD-Infos/wiki/CODE_OF_CONDUCT)**: a declaração de privacidade e os documentos de governança.
-- **[Catálogo](CATALOG.md)**: referências de ocultação de root e detecção (guias, módulos, frameworks e detectores).
+- **[Catálogo](CATALOG.pt.md)**: referências de ocultação de root e detecção (guias, módulos, frameworks e detectores).
 - **[Changelog](CHANGELOG.md)**: o que mudou em cada versão.
 - **[HMA-OSS](https://github.com/VD171/VD-Infos/wiki/HMA-OSS)**: o módulo de ocultar apps em que se baseiam as correções do app (seus links, canais e como apoiá-lo).
 - **[Contribuir](https://github.com/VD171/VD-Infos/wiki/CONTRIBUTING)**: como adicionar alvos de detecção (em geral listas de texto puro, sem precisar de Kotlin).

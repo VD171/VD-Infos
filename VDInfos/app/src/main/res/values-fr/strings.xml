@@ -2,7 +2,7 @@
 <!--
     ======================================================================
      VD INFOS  ::  method debugger
-     Read every device info by every method, then compare. A divergence is a hook.
+     Read every device info by every method, then compare.
 
      Copyright (C) 2026  VD171
      SPDX-License-Identifier: AGPL-3.0-or-later
@@ -15,8 +15,9 @@
      Source         : https://github.com/VD171/VD-Infos
      GitHub         : @VD171 https://github.com/VD171
      XDA-Developers : @VD171 https://xdaforums.com/m/vd171.4699873/
+     XDA thread     : https://xdaforums.com/t/VD-Infos.4097379/
      Telegram       : @VD_Priv8 https://t.me/VD_Priv8
-     Telegram       : @Priv8_VD https://t.me/Priv8_VD
+     Channel        : @Priv8_VD https://t.me/Priv8_VD
      Discord        : @VD.Priv8 https://discord.com/users/1296831918989639721
      E-mail         : vd.priv8@pm.me
     ======================================================================
@@ -91,29 +92,30 @@
     <string name="crash_title">Erreur inattendue</string>
     <string name="crash_body">L\'application a rencontré une erreur imprévue. Rien n\'a été envoyé nulle part. Vous pouvez copier les détails ci-dessous et les envoyer au développeur.</string>
     <string name="about_project">Projet</string>
+    <string name="about_see_also">Voir aussi</string>
     <string name="about_support">Téléchargement et support</string>
     <string name="action_clear">Effacer la recherche</string>
     <string name="lang_dialog_title">Langue</string>
     <string name="lang_dialog_body">Choisissez la langue de l\'app, ou suivez le réglage du système.</string>
     <string name="lang_system_default">Par défaut du système</string>
     <string name="lang_apply">Appliquer</string>
-    <string name="note_gsf">Absent sur Android 16 et versions ultérieures : le magasin des services Google est passé dans Play Services, dont Google a nommé la porte &quot;do.not.use&quot; et qui ne répond pas aux autres applications. Les deux sont essayées ci-dessus.</string>
     <string name="t_attestation_app_id">Id d\'application de l\'attestation (paquet + signature)</string>
     <string name="t_dev_ptmx_present">/dev/ptmx présent</string>
     <string name="t_documents_providers">DocumentsProviders enregistrés</string>
     <string name="t_kernel_modules">Modules du noyau chargés (KernelSU/SuSFS)</string>
-    <string name="t_kernel_syscall_fingerprint">Version du noyau par empreinte des syscalls</string>
+    <string name="t_kernel_syscall_fingerprint">Recoupement de la version du noyau</string>
     <string name="t_key_inside_secure_hw">Clé dans le matériel sécurisé (KeyInfo)</string>
     <string name="t_rot_ec_vs_rsa">Racine de confiance de l\'attestation : requête EC vs RSA</string>
     <string name="t_leaf_sig_alg">Feuille de l\'attestation : clé vs algorithme de signature</string>
     <string name="t_batch_key_ec_vs_rsa">Clé d\'attestation : chaîne EC vs chaîne RSA</string>
+    <string name="t_native_vs_jvm">Attestation : keystore2 natif vs JVM</string>
     <string name="t_local_tmp_contents">Contenu de /data/local/tmp</string>
     <string name="t_native_lib_origin">Origine de la bibliothèque native (dladdr)</string>
     <string name="t_own_debuggable">Cette app : debuggable / build de débogage</string>
     <string name="t_play_store_version">Version de Play Store / GMS</string>
     <string name="t_resolv_conf">resolv.conf / configuration DNS</string>
     <string name="t_root_backup_tools">Outils de sauvegarde root présents</string>
-    <string name="t_su_libc_inline_hook">su : syscall brut vs libc vs Java</string>
+    <string name="t_su_libc_inline_hook">Résolution de su entre les couches</string>
     <string name="t_system_build_prop">/system/build.prop</string>
     <string name="t_system_build_prop_present">/system/build.prop présent</string>
     <string name="t_adb_enabled">ADB activé</string>
@@ -183,7 +185,7 @@
     <string name="t_imei">IMEI</string>
     <string name="t_imsi_subscriber">IMSI (abonné)</string>
     <string name="t_incremental">Incremental</string>
-    <string name="t_injected_libs_proc_self_maps">Bibliothèques injectées (/proc/self/maps)</string>
+    <string name="t_injected_libs_proc_self_maps">Bibliothèques injectées</string>
     <string name="t_installed_app_signing_digests">Empreintes de signature des applications installées</string>
     <string name="t_installed_applications">Applications installées</string>
     <string name="t_installed_input_methods">Méthodes de saisie installées</string>
@@ -193,13 +195,9 @@
     <string name="t_kernel_version">Kernel (version)</string>
     <string name="t_kernel_version_string">Noyau (chaîne de version)</string>
     <string name="t_kernel_version_claim">Version revendiquée du noyau (ro.kernel.version vs uname)</string>
-    <string name="note_kernel_version_claim">La propriété ro.kernel.version est censée refléter le noyau en cours. Si elle revendique un major.minor que la version uname réelle n\'a pas, un resolver a fixé la propriété alors que le noyau en dessous est un autre.</string>
     <string name="t_kernel_build_date">Date de build du noyau vs ROM</string>
-    <string name="note_kernel_build_date">Un noyau GKI préconstruit est plus ancien que la ROM dans laquelle il est livré, ou correspond à celle-ci. Un noyau construit bien après l\'assemblage de la ROM a été reconstruit ou flashé plus tard, le signe habituel d\'un noyau compilé à la main.</string>
     <string name="t_kernel_config">Config du noyau (/proc/config.gz)</string>
-    <string name="note_kernel_config">La config du noyau, là où elle est lisible, nomme les correctifs compilés : KSU, SUSFS, une local version personnalisée, une signature de modules non imposée. Le bac à sable de l\'app refuse souvent ce fichier ; il se lit sur Android ancien, les ROM personnalisées et les shells root.</string>
     <string name="t_kernel_module_scan">Modules et symboles du noyau</string>
-    <string name="note_kernel_module_scan">Parcourt /sys/module et les noms de symboles de /proc/kallsyms pour ksu, susfs et magisk, qu\'un noyau patché ou chargé de modules expose. Les deux surfaces sont souvent restreintes ; elles se lisent là où le domaine l\'autorise.</string>
     <string name="t_kernel_cmdline">cmdline du kernel</string>
     <string name="t_kernel_log">Journal du kernel</string>
     <string name="t_kernel_stat">stat du kernel</string>
@@ -276,8 +274,8 @@
     <string name="t_verified_boot_hash_vbmeta_digest">Hash du verified boot / digest vbmeta</string>
     <string name="t_verified_boot_key">Clé du verified boot</string>
     <string name="t_verified_boot_state">État du verified boot</string>
-    <string name="t_prop_area_tamper">Altération de la zone de propriétés (trous/contextes)</string>
-    <string name="t_supplementary_groups">Groupes supplémentaires (3009=AID_READPROC)</string>
+    <string name="t_prop_area_tamper">Zone des propriétés système</string>
+    <string name="t_supplementary_groups">Groupes supplémentaires</string>
     <string name="t_version_codename">Nom de code de la version</string>
     <string name="t_webview_provider">Fournisseur de la WebView</string>
     <string name="t_webview_user_agent">User agent de la WebView</string>
@@ -313,6 +311,17 @@
     <string name="t_queryintentservices_main">queryIntentServices (MAIN)</string>
     <string name="t_resolveactivity_main_launcher">resolveActivity (MAIN/LAUNCHER)</string>
     <string name="t_su_binary">binaire su</string>
+    <string name="t_setuid_root">Binaire privilégié</string>
+    <string name="t_root_dirs_present">Visibilité des répertoires système</string>
+    <string name="t_maps_isolated">Modules injectés</string>
+    <string name="t_inline_hooks">Hooks de code</string>
+    <string name="t_linker_maps_gap">Bibliothèques cachées</string>
+    <string name="t_tracerpid_iso">Débogueur attaché</string>
+    <string name="t_fd_iso">Descripteurs ouverts</string>
+    <string name="t_selinux_iso">Contexte de sécurité</string>
+    <string name="t_su_iso">Accès superutilisateur</string>
+    <string name="t_prop_dual_iso">Propriétés système</string>
+    <string name="t_smaps_iso">Mémoire exécutable inscriptible</string>
     <string name="t_su_on_path">su dans le PATH</string>
     <string name="t_tel_networkOperatorName">Nom de l\'opérateur réseau</string>
     <string name="t_tel_networkOperator">Opérateur réseau (MCC+MNC)</string>
@@ -401,11 +410,9 @@
     <!-- Solutions -->
     <string name="sol_title">Comment corriger</string>
     <string name="card_details">Détails</string>
-    <string name="sol_boot">Voici ce que l\'attestation matérielle (TEE) indique sur l\'état du boot. Un contournement par keybox (TrickyStore, TEE Simulator, OhMyKeyMint) ne réécrit l\'attestation que pour les applications que vous lui indiquez. Ajoutez le paquet de cette application à la liste des cibles de cet outil (p. ex. target.txt) pour que son attestation indique un appareil verrouillé avec un verified boot vert.</string>
-    <string name="sol_root_detector">Ces applications installées cherchent le root, des émulateurs ou un Play Integrity en échec. Ajoutez les paquets trouvés ici à votre framework de dissimulation (HMA-OSS) comme cibles, afin que les applications et modules de root soient masqués de ces détecteurs.</string>
-    <string name="sol_spoof">Ce paramètre se lit différemment selon la voie qu\'une application utilise pour le lire (le spoof ne les couvre pas toutes). Ajoutez le paramètre aux presets de spoof de HMA-OSS pour que chaque voie de lecture renvoie la même valeur.</string>
-    <string name="sol_attest_patch">La key attestation indique un niveau de correctif différent de la propriété système. Configurez-le dans votre outil de keybox : TrickyStore dans security_patch.txt (une date, ou system=/boot=/vendor=/all=, ou \'prop\') ; OhMyKeymint dans config.toml sous [trust]. Les deux ne changent que l\'attestation, pas les propriétés.</string>
-    <string name="sol_patch_prop">Build.VERSION.SECURITY_PATCH (framework) et la propriété ro.build.version.security_patch affichent des dates différentes. Alignez-les avec resetprop. security_patch.txt et config.toml n\'aident pas ici : ils ne changent que la key attestation, pas les propriétés.</string>
+    <string name="sol_root_detector">Ces apps installées cherchent le root. Ajoutez les paquets trouvés ici comme cibles dans votre framework de masquage (HMA-OSS).</string>
+    <string name="sol_attest_patch">L\'attestation rapporte un security patch différent de la property. Définissez-le dans votre outil keybox (TrickyStore security_patch.txt, OhMyKeymint config.toml [trust]) ; ne change que l\'attestation.</string>
+    <string name="sol_patch_prop">Le framework et la property montrent des dates de patch différentes. Alignez-les avec resetprop ; les outils keybox ne changent que l\'attestation, pas les properties.</string>
     <string name="t_zero_width_names">Noms à caractères de largeur nulle / invisibles</string>
     <string name="err_probe_timeout">délai dépassé pour la sonde</string>
     <string name="t_isrc_self_installer">Source d\'installation (self) : installer</string>
@@ -413,7 +420,7 @@
     <string name="t_isrc_self_originating">Source d\'installation (self) : originating</string>
     <string name="t_isrc_self_pkgsource">Source d\'installation (self) : packageSource</string>
     <string name="t_isrc_self_initiator_sig">Source d\'installation (self) : cert de l\'initiator vs installé</string>
-    <string name="t_isrc_gap_jvm_store_pm_denies">Écart : JVM annonce un installer de store, pm le nie (hook)</string>
+    <string name="t_isrc_gap_jvm_store_pm_denies">Installateur : JVM vs pm</string>
     <string name="t_isrc_gap_jvm_pm_other">Écart : installer JVM ≠ installer pm (visibilité)</string>
     <string name="t_isrc_gap_installer_ne_initiating">Écart : installer ≠ initiating</string>
     <string name="t_isrc_gap_store_installer_sideload">Écart : installer de store, initiating sideload</string>
@@ -432,24 +439,16 @@
     <string name="t_installed_applications_diff">Applications installées : divergents (JVM x pm)</string>
     <string name="t_selinux_status">Page status SELinux (policyload/seq)</string>
     <string name="t_selinux_policy_probe">Sonde de politique SELinux (types + AVC)</string>
-    <string name="t_manager_doors">Manager root/Xposed : visibilité par porte du PackageManager</string>
+    <string name="t_manager_doors">Visibilité de l\'app de gestion</string>
     <string name="t_net_sock_diag">Politique Netlink sock_diag</string>
-    <string name="n_net_sock_diag">Une app confinée doit se voir refuser NETLINK_SOCK_DIAG ; une réponse signifie que la politique netlink a été assouplie.</string>
     <string name="t_mount_peer_gap">Intégrité du peer-group de montages</string>
-    <string name="n_mount_peer_gap">L\'ensemble des ids de peer-group doit être identique par chaque lentille ; un trou par lentille indique un montage caché.</string>
     <string name="t_mount_fdinfo_mnt">Mount id vs descripteurs ouverts</string>
-    <string name="n_mount_fdinfo_mnt">Un descripteur ouvert dont le mnt_id est absent de mountinfo pointe vers un montage caché de la vue.</string>
-    <string name="t_proc_readproc_gid">GID 3009 du zygote (AID_READPROC)</string>
-    <string name="n_proc_readproc_gid">L\'absence du GID supplémentaire AID_READPROC est une trace laissée par certains modules de masquage d\'apps.</string>
+    <string name="t_proc_readproc_gid">GID supplémentaires du zygote</string>
     <string name="t_proc_fd_graph">Recensement des descripteurs</string>
     <string name="t_mem_anon_exec">Mappages exécutables anonymes</string>
-    <string name="n_mem_anon_exec">Des pages exécutables sans fichier d\'origine sont un résidu typique d\'injection/Zygisk ; le compte doit concorder entre lentilles.</string>
     <string name="t_kernel_selfbuild">Noyau compilé / patché</string>
-    <string name="n_kernel_selfbuild">Un noyau d\'origine ne porte aucune marque -dirty, git ou SUSFS ; les marqueurs doivent concorder entre lentilles.</string>
     <string name="t_tee_soter">Service Soter vs propriété</string>
-    <string name="n_tee_soter">Recoupe le programme de service Soter de Tencent avec l\'état de sa propriété de service.</string>
     <string name="t_proc_cgroup_format">Format du chemin cgroup</string>
-    <string name="n_proc_cgroup_format">Un conteneur cloné / dual-app fait diverger le chemin cgroup unifié de la forme canonique uid_/pid_.</string>
     <string name="t_gpu_vendor">Fabricant du GPU</string>
     <string name="t_gpu_renderer">Moteur de rendu du GPU</string>
     <string name="t_gpu_version">Version du GPU</string>
@@ -461,32 +460,119 @@
     <string name="t_tel_simSpecificCarrierId">ID de l\'opérateur SIM spécifique</string>
     <string name="t_tel_visualVoicemailPackageName">Paquet de messagerie vocale visuelle</string>
     <string name="t_keychain_blacklist">Liste noire de certificats du Keychain</string>
-    <string name="t_buildprop_vs_runtime">build.prop vs runtime</string>
-    <string name="note_boot_count">boot_count (framework) ne fait qu\'augmenter ; Phenotype_boot_count (Play services) en est l\'instantané et peut être en retard. Divergent seulement si l\'instantané dépasse boot_count (une réinitialisation).</string>
-    <string name="note_isrc_initiator_sig">Le certificat que le système a enregistré pour l\'installateur lors de l\'installation de cette app diffère de celui que l\'installateur déclare maintenant. Un installateur remplacé ou une signature usurpée en est la cause ; les ROM qui re-signent le système et déclarent le certificat d\'origine du fabricant (ex. Xiaomi.eu) l\'affichent sur tous les appareils.</string>
+    <string name="t_buildprop_vs_runtime">Cohérence des propriétés de build</string>
     <string name="t_concealment">Dissimulation d\'apps</string>
-    <string name="note_concealment">Un paquet caché de la liste des apps mais encore accessible par une autre porte du PackageManager (infos du paquet, createPackageContext, son APK ouvert, le launch intent) est dissimulé d\'une porte mais pas d\'une autre - la marque d\'un masqueur d\'apps partiel.</string>
     <string name="t_prop_variants">Variantes par partition : %1$s</string>
     <string name="t_prop_enum">Énumération des propriétés vs getprop</string>
-    <string name="note_prop_variants">Le même suffixe apparaît par partition (system, vendor, product, odm, dlkm...). Des valeurs qui devraient concorder partout mais diffèrent, ou qui divergent au sein d\'une même lignée, révèlent un spoof partiel - une empreinte modifiée sur certaines partitions et pas d\'autres.</string>
-    <string name="note_prop_enum">Énumérer la zone de propriétés en natif (__system_property_foreach) et la comparer au getprop d\'un autre processus révèle une propriété cachée du shell ou injectée sur un chemin mais pas l\'autre.</string>
-    <string name="t_dlphdr">Modules du loader (dl_iterate_phdr)</string>
-    <string name="t_frida_port">Scan de port Frida</string>
-    <string name="note_dlphdr">dl_iterate_phdr énumère les modules chargés via le linker, pas via /proc/self/maps, donc un hook qui efface son entrée du maps apparaît quand même ici. Un needle ou un module hors de l\'allowlist système est la fuite.</string>
+    <string name="t_dlphdr">Modules chargés</string>
+    <string name="t_frida_port">Port d\'instrumentation</string>
     <string name="t_ime_verdict">Verdict d\'intégrité du clavier</string>
     <string name="t_store_authenticity">Authenticité de la signature du store/GMS</string>
     <string name="t_devgate">Cohérence des réglages verrouillés par Dev</string>
-    <string name="note_ime_verdict">Un RASP bancaire (PayZapp/Zeta) rejette tout clavier activé non-système et installé hors d\'une allowlist de stores. Un IME activé non-système avec un installateur hors store est signalé.</string>
-    <string name="note_store_authenticity">Le Play Store, GMS et GSF doivent porter le certificat de signature de Google. Un paquet de store ou GMS présent mais signé par une autre clé est un faux, microG ou un store repackagé.</string>
-    <string name="note_devgate">adb et d\'autres réglages verrouillés par Dev ne changent qu\'avec les Options développeur activées. Un réglage verrouillé non-défaut avec development_settings_enabled=0 n\'a pu être posé que par root ou `settings put`.</string>
-    <string name="t_maps_exec">Mappages exec injectés (deleted/memfd)</string>
-    <string name="t_anon_minor">Superbloc anon-bdev caché</string>
-    <string name="note_maps_exec">Un mappage exécutable adossé à un fichier (deleted)/memfd/ashmem qui est soit RWX (viole W^X) soit commence par le magic ELF est un vrai .so injecté, détaché du système de fichiers ; le trampoline JIT de l\'ART n\'est ni l\'un ni l\'autre et compte comme bénin. Un module hors de l\'allowlist système compte aussi.</string>
-    <string name="note_anon_minor">Les systèmes de fichiers sans périphérique bloc tirent leur minor d\'un pool anon global, dense par le bas. Un minor présent via stat() mais absent du mountinfo de ce processus est un superbloc vivant caché dans un namespace privé (le tmpfs d\'un daemon). Une longue série de minors manquants est du churn par appli et ignorée ; un trou court est l\'indice.</string>
-    <string name="t_sb_tee_signer">Signataire StrongBox × TEE</string>
+    <string name="t_maps_exec">Mappages de mémoire exécutable</string>
+    <string name="t_elf_in_anon">Image de code en mémoire anonyme</string>
+    <string name="t_anon_exec_orphan">Mémoire exécutable sans support</string>
+    <string name="t_anon_minor">Système de fichiers caché</string>
+    <string name="t_sb_tee_signer">Profil d\'attestation StrongBox</string>
+    <string name="t_sb_capability">Profil des capabilities StrongBox</string>
+    <string name="t_sb_enforced">Niveau d\'application de la clé StrongBox</string>
+    <string name="t_sb_version">Version d\'attestation StrongBox</string>
+    <string name="t_sb_chain">Chaîne d\'attestation StrongBox</string>
+    <string name="t_sb_rkp">Provisionnement de clé StrongBox</string>
+    <string name="t_sb_latency">Temps de génération de clé StrongBox</string>
     <string name="t_local_tmp_list">Listage de /data/local/tmp</string>
-    <string name="note_local_tmp_list">Lister /data/local/tmp avec getdents64 (pas par nom) fait apparaître tout résidu qu\'une appli peut réellement atteindre, y compris ce que le module dépose. Sur un appareil verrouillé le répertoire appartient au shell et n\'est pas listable par une appli, donc EACCES est la réponse propre ; une entrée visible signifie un résidu atteignable par l\'appli.</string>
     <string name="t_nettype_consistency">Type de réseau vs interface réelle</string>
     <string name="t_flagsecure_honored">FLAG_SECURE respecté (blocage capture)</string>
+    <string name="t_procnet_frida">Socket d\'instrumentation</string>
+    <string name="t_procnet_tun">Interface VPN</string>
+    <string name="t_mountinfo_iso">Entrées de montage</string>
+    <string name="t_adb_usb_exposure">Exposition du débogage ADB/USB</string>
+    <string name="t_anon_elf_struct">Structure ELF en mémoire anonyme</string>
+    <string name="t_atexit_drift">Dérive d\'exécution Atexit</string>
+    <string name="t_attestation_challenge_echo">Écho du challenge d\'attestation</string>
+    <string name="t_attest_synth_paradox">Attestation vs état d\'exécution</string>
+    <string name="t_baseband_coherence">Cohérence de version baseband</string>
+    <string name="t_datadir_errno_oracle">Sonde du répertoire de données du package</string>
+    <string name="t_device_id">Identité d\'appareil d\'attestation vs Build</string>
+    <string name="t_feature_spoof">Cohérence des features système</string>
+    <string name="t_fingerprint_rebuild">Reconstruction du fingerprint</string>
+    <string name="t_gap_mapped">Couverture de la carte mémoire</string>
+    <string name="t_heap_hook_xref">Références obsolètes dans le heap</string>
+    <string name="t_hidden_app_usage_leak">Visibilité des paquets via usage stats</string>
+    <string name="t_hidden_region_xref">Références du heap vers des régions mémoire</string>
+    <string name="t_launch_sender_pkg_leak">Visibilité du package IntentSender</string>
+    <string name="t_libc_identity">Cohérence de l\'image libc</string>
+    <string name="t_lock_coherence">Cohérence du verrou bootloader</string>
+    <string name="t_map_files_leak">Origines des fichiers mappés</string>
+    <string name="t_multiuser_oracle">Visibilité utilisateur / private-space</string>
+    <string name="t_named_anon_exec">Mappage de code à nom anonyme</string>
+    <string name="t_otacerts_signing_key">Clé de signature OTA (otacerts)</string>
+    <string name="t_pairip_wrapper">Scan du wrapper d\'app</string>
+    <string name="t_phantom_monitor_prop">Prop du flag phantom monitor</string>
+    <string name="t_phantom_monitor_setting">Paramètre phantom monitor</string>
+    <string name="t_platform_signer">Signataire de la plateforme (package android)</string>
+    <string name="t_prov_fingerprint">Fingerprint RKP vs appareil</string>
+    <string name="t_prov_manufacturer">Fabricant RKP vs appareil</string>
+    <string name="t_prov_vbmeta_reuse">vbmeta RKP vs runtime</string>
+    <string name="t_prov_verdict">Verdict verified boot RKP</string>
+    <string name="t_settings_stock_baseline">Référence des paramètres développeur/sécurité</string>
+    <string name="t_signature_source">Cohérence de la source du certificat de signature</string>
+    <string name="t_signature_sweep">Balayage du certificat de signature (toutes les apps)</string>
+    <string name="t_signing_keys">Clés de signature (release-keys attendu)</string>
+    <string name="t_statfs_consistency">Cohérence de la taille de stockage</string>
+    <string name="t_verifier_adb_installs">Vérifier les apps via USB (package verifier)</string>
+    <string name="t_zygisk_loader_footprint">Résidu du loader en mémoire</string>
+    <string name="t_zygote_gid">Cohérence des GID du zygote</string>
     <string name="about_trademarks">VD Infos est un outil indépendant et non officiel de recherche et de diagnostic. Il n\'est ni affilié, ni approuvé, ni parrainé par aucun des fournisseurs dont il lit, détecte ou nomme les logiciels, services ou marques (y compris Google LLC et l\'Android Open Source Project). \"Android\", \"Google\", \"Google Play\", \"Play Integrity\", \"Widevine\" ainsi que tous les autres noms de produits, logos et marques déposées sont la propriété de leurs détenteurs respectifs. VD Infos lit uniquement ce qui se trouve déjà sur votre appareil et n\'envoie rien nulle part.</string>
+    <string name="note_art_dexopt_self">Signal de santé, pas un indice de root. Un base.odex AOT existe sur le disque mais l\'app s\'exécute en mode interprété (aucun mappage exécutable), ce qui signifie que l\'odex a été rejeté (image de démarrage périmée, l\'image de démarrage ART a changé après une mise à jour apex). Les apps de service et la vérification des apps par Play Protect peuvent alors ne pas démarrer à temps. Proxy côté utilisateur ; la vérification faisant autorité se fait côté root.</string>
+    <string name="sol_art_dexopt_self">Recompilez en tant que root (pm compile -a -m speed) ou redémarrez pour régénérer l\'image de démarrage et refaire le dexopt des apps.</string>
+    <string name="sol_atexit_drift">Les gestionnaires de sortie de libc __cxa_atexit et __cxa_finalize doivent se résoudre à l\'intérieur de libc. Lorsqu\'ils se résolvent vers une autre bibliothèque ou une région anonyme, un injecteur de type Zygisk les a interceptés. Retirez l\'injection de ce processus.</string>
+    <string name="sol_baseband_coherence">La version du modem est rapportée aussi bien par getRadioVersion que par la famille gsm.version.baseband ; toutes lisent le même firmware. Quand une source diverge, un spoof de propriétés a patché certains alias mais pas tous. Gardez toutes les sources de la version du baseband identiques.</string>
+    <string name="sol_boot">L\'attestation matérielle (TEE) rapporte l\'état de démarrage. Ajoutez le paquet de cette app à la liste des cibles de votre outil de keybox pour qu\'il rapporte un appareil verrouillé et vérifié.</string>
+    <string name="sol_datadir_errno_oracle">Un stat sur le répertoire de données d\'un paquet peut le révéler comme installé même sans aucune requête de paquet. Ajoutez de tels paquets à votre framework de masquage (HMA-OSS) pour que leurs répertoires de données soient lus comme absents, et pas seulement refusés.</string>
+    <string name="sol_device_id">L\'identité matérielle attestée (brand, device, manufacturer) ne correspond pas aux propriétés de build, de sorte qu\'un vérificateur peut détecter que les propriétés sont falsifiées. Alignez ro.product.brand, ro.product.device et ro.product.manufacturer sur les valeurs attestées par le matériel (product et model diffèrent légitimement : l\'attestation porte le codename).</string>
+    <string name="sol_feature_spoof">hasSystemFeature, getSystemAvailableFeatures et les nœuds matériels divergent au sujet d\'une fonctionnalité de l\'appareil, donc une fonctionnalité est masquée ou simulée par une voie mais pas par les autres. Faites en sorte que chaque voie d\'interrogation de fonctionnalité et le rapport matériel indiquent la même présence.</string>
+    <string name="sol_fingerprint_rebuild">Le fingerprint de build est composé au moment du build sous la forme BRAND/PRODUCT/DEVICE:RELEASE/ID/INCREMENTAL:TYPE/TAGS. Quand Build.FINGERPRINT n\'est pas égal à cette reconstruction à partir de ses propres champs de composants, un spoof a changé le fingerprint sans aligner chaque composant (ou l\'inverse). Rendez le fingerprint et ses composants cohérents.</string>
+    <string name="sol_hidden_app_usage_leak">Un paquet peut apparaître via les API usage-stats même lorsqu\'il est tenu à l\'écart de la liste des paquets installés. Ajoutez de tels paquets à votre framework de masquage (HMA-OSS) pour qu\'ils soient aussi masqués des API usage-stats, et pas seulement de la liste des paquets.</string>
+    <string name="sol_launch_sender_pkg_leak">Sur les ROMs mesurées, l\'IntentSender renvoyé n\'est identifié que par (caller, name) : ses champs de créateur sont ceux du caller et equals ne diffère que par le name, donc il ne porte aucun signal installé/masqué (le comparer à un name absent aléatoire est un faux positif). Il ne fuit que si un paquet installé visible et un name absent diffèrent par un champ indépendant du caller ; dans ce cas, faites en sorte que le framework de masquage (HMA-OSS) renvoie l\'équivalent absent pour les paquets masqués.</string>
+    <string name="sol_libc_identity">Le mappage libc chargé (device et inode) ne correspond pas au fichier libc.so sur le disque, donc la bibliothèque a été remplacée ou montée en bind (une libc hookée). Servez la libc authentique, ou masquez le montage de remplacement à l\'app.</string>
+    <string name="sol_lock_coherence">Sur un appareil stock verrouillé, chaque propriété de verrouillage du bootloader et de verified boot concorde : flash.locked=1, verifiedbootstate=green, vbmeta.device_state=locked, garantie non déclenchée. Quand l\'une annonce verrouillé alors qu\'une autre lit encore déverrouillé, un spoof en a patché certaines mais pas toutes. Normalisez toutes les propriétés de verrouillage au même état.</string>
+    <string name="sol_otacerts_signing_key">Le certificat de signature OTA (otacerts.zip) est la clé de test publique d\'AOSP, donc le build est lu comme test-signed même quand ro.build.tags annonce release-keys. Servez un otacerts.zip signé release via votre module de redirection de fichiers et alignez ro.*.build.tags sur toutes les partitions pour que le fichier et les propriétés concordent.</string>
+    <string name="sol_perm_path_coherence">La même permission est résolue par plusieurs voies de code : PackageManager.checkPermission, Context.checkPermission(perm,pid,uid), les flags accordés de getPackageInfo(GET_PERMISSIONS) et le binder de bas niveau IPackageManager.checkUidPermission. Sur un système intact, toutes les voies atteignables concordent, et une permission privilégiée (START_ANY_ACTIVITY, INSTALL_PACKAGES, MANAGE_USERS) est refusée sur chacune. Un hook qui falsifie ou masque une permission sur une voie mais pas sur une autre, ou qui accorde une permission privilégiée qu\'une app normale ne peut jamais détenir, diverge ici. Résolvez les permissions de manière cohérente sur toutes les voies ; ne falsifiez pas un octroi uniquement sur la voie qu\'un détecteur lit par hasard.</string>
+    <string name="sol_phantom_monitor">Un appareil stock n\'expose pas si le moniteur de processus phantom a été modifié. Ajoutez ce réglage aux presets de spoof de votre framework de masquage (HMA-OSS) pour qu\'il soit lu comme sur un appareil stock, et évitez la propriété d\'override du feature-flag.</string>
+    <string name="sol_platform_signer">La signature du paquet platform (android) révèle un signataire non OEM (une ROM personnalisée ou la clé de test AOSP) ou un OEM qui ne correspond pas au fabricant annoncé. Falsifiez la signature de plateforme (comme le fait spoofSignature de PlayIntegrityFork) pour que le paquet android rapporte le certificat de plateforme de l\'OEM annoncé.</string>
+    <string name="sol_prov_fingerprint">Le fingerprint RKP (du certificat RKP) ne correspond pas au fingerprint de build de cet appareil, donc le keybox appartient à un autre appareil. Utilisez un keybox provisionné sur cet appareil.</string>
+    <string name="sol_prov_vbmeta_reuse">Le vbmeta_digest RKP (du certificat RKP) ne correspond pas au hash de verified boot au runtime de l\'appareil, donc le keybox a été provisionné sur un autre appareil (un keybox réutilisé ou partagé) ou l\'appareil a été mis à jour après le provisionnement. Utilisez un keybox provisionné sur cet appareil.</string>
+    <string name="sol_prov_verdict">Le certificat RKP enregistre le démarrage de l\'appareil comme non approuvé, donc le backend RKP a signalé cet appareil. Utilisez un keybox provisionné sur un appareil que le backend a approuvé.</string>
+    <string name="sol_signature_source">Le certificat de signature lu depuis l\'enregistrement de PackageManager et celui analysé depuis le fichier APK sur le disque doivent correspondre, et PackageManager doit reconnaître le certificat du fichier APK (hasSigningCertificate, checkSignatures). Quand ils divergent, un hook au niveau de PackageManager a réécrit la signature rapportée sans toucher à l\'APK réel. Une lecture directe de l\'APK voit toujours le vrai certificat.</string>
+    <string name="sol_signature_sweep">Pour chaque app installée, le certificat de signature de l\'enregistrement de PackageManager et celui analysé depuis son fichier APK partagent un signataire. Une app dont les deux ensembles sont disjoints a vu sa signature PackageManager falsifiée alors que l\'APK sur le disque a gardé la vraie. La rotation de clés conserve un signataire commun, elle n\'est donc pas signalée.</string>
+    <string name="sol_signing_keys">Un build de production est signé avec release-keys. Une propriété de clé de signature lisant test-keys ou dev-keys (par quelque méthode que ce soit) expose un build personnalisé ou de debug. Restaurez release-keys sur build.tags et les propriétés *.keys de chaque partition.</string>
+    <string name="sol_spoof">Ce réglage ne se lit pas de manière cohérente. Ajoutez-le aux presets de spoof de HMA-OSS pour que toutes les voies renvoient la même valeur.</string>
+    <string name="sol_statfs_consistency">android.os.StatFs et la lecture native statvfs divergent sur la taille de stockage, donc la taille est falsifiée via l\'API du framework Java mais pas nativement. Faites en sorte que les voies StatFs et native rapportent les mêmes valeurs.</string>
+    <string name="sol_zygote_gid">Le zygote attribue à un processus ses GID supplémentaires à partir des permissions accordées à l\'app : INTERNET implique 3003, BLUETOOTH 3002, et ainsi de suite. Une permission accordée dont le GID est absent de getgroups(2) signifie qu\'un masqueur a filtré les permissions du zygote : il masque l\'app mais contredit l\'ensemble des permissions, que toute app lit sur elle-même. Ne retirez pas les GID que des permissions accordées exigent (par exemple, ne supprimez jamais INET_GID tant que INTERNET est accordé).</string>
+    <string name="summary_all_agreed_mark" translatable="false">🏆 ✓ </string>
+    <string name="t_boot_triad_coherence">Cohérence de l\'état de verified boot</string>
+    <string name="t_build_vs_prop">android.os.Build vs prop canonique (par champ d\'identité)</string>
+    <string name="t_debug_ramdisk">Contenu de /debug_ramdisk</string>
+    <string name="t_isrc_gap_forged_store_install">Cohérence du store installateur</string>
+    <string name="t_isrc_gap_store_pkgsource_other">Écart : installateur store, packageSource non conforme à un store</string>
+    <string name="t_loop_orphan">Périphériques loop orphelins</string>
+    <string name="t_perm_path_coherence">Cohérence de la vérification des permissions</string>
+    <string name="t_rom_identity">SoC vs identité d\'appareil déclarée</string>
+    <string name="t_settings_read_gate">Barrière de lecture des réglages restreints</string>
+    <string name="t_stock_path_hidden">Visibilité des chemins système</string>
+    <string name="t_strongbox_level">Niveau d\'attestation adossée à StrongBox</string>
+    <string name="t_uid_hidden_running">UID en cours d\'exécution vs liste des paquets</string>
+    <string name="t_uid_priority_fake">Priorité d\'ordonnancement du processus</string>
+    <string name="t_version_cluster">Cohérence du cluster d\'état de version (release vs preview)</string>
+    <string name="usage_access_body">Détecter un paquet masqué de la liste des paquets installés via les API usage-stats nécessite l\'accès à l\'utilisation. Accordez-le à cette app dans les réglages système, puis revenez.</string>
+    <string name="usage_access_open">Ouvrir les réglages</string>
+    <string name="usage_access_title">Accès à l\'utilisation requis</string>
+    <string name="sol_debug_ramdisk">Sur un démarrage d\'origine, /debug_ramdisk est vide ou absent. Les fichiers déposés là sont une root de démarrage précoce ou une charge de module. Nettoie /debug_ramdisk du contenu déposé, ou garde-le dans un namespace que cette app ne peut pas lire.</string>
+    <string name="sol_loop_orphan">Sur un appareil d\'origine, chaque loop ext4 est adossé à un montage système dans ce namespace. Un loop sans point de montage système est un module ou un overlay monté en dehors de la disposition d\'origine. Monte ces loops sous un chemin système, ou garde-les dans un namespace de montage que cette app ne partage pas.</string>
+    <string name="sol_multiuser_oracle">Un utilisateur secondaire ou un espace privé fuit quand un stat sur /data/user/&lt;id&gt; le lit comme présent alors que UserManager ne le liste pas. Mets les deux en accord : soit garde le répertoire de données de l\'utilisateur inaccessible à une app sans privilège, soit ne masque pas un utilisateur que son propre répertoire révèle encore.</string>
+    <string name="sol_prov_manufacturer">Le fabricant RKP (issu du certificat RKP) ne correspond pas à cet appareil, la keybox a donc été provisionnée pour un autre appareil. Utilise une keybox provisionnée sur cet appareil.</string>
+    <string name="sol_rom_identity">Sur un appareil honnête, le SoC, le baseband et l\'identité init correspondent à la marque et au modèle déclarés. Quand une propriété d\'identité de ROM ou de matériel contredit l\'appareil revendiqué, un spoof de fingerprint a couvert les props produit mais pas celles du matériel. Garde chaque surface d\'identité (SoC, baseband, init.svc, cpuinfo) cohérente avec l\'appareil usurpé.</string>
+    <string name="sol_stock_path_hidden">Un chemin système Android standard est présent sur un appareil d\'origine ; un chemin d\'origine lu comme absent signifie donc qu\'une couche de masquage le masque de trop, ce qui est en soi un tell. Masque uniquement les chemins de root et de modules, jamais un chemin qui existe sur un appareil propre.</string>
+    <string name="sol_version_cluster">Une build d\'origine est d\'accord avec elle-même sur son état de release : codename, SDK release-ou-preview et token de fingerprint se lisent tous comme release, ou tous comme preview, jamais un mélange. Quand un signal se lit comme release alors qu\'un autre se lit comme preview, un spoof a changé certaines props de version mais pas toutes. Aligne chaque signal d\'état de version sur le même canal.</string>
 </resources>

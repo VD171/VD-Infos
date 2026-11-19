@@ -1,7 +1,7 @@
 /*
  * ======================================================================
  *  VD INFOS  ::  method debugger
- *  Read every device info by every method, then compare. A divergence is a hook.
+ *  Read every device info by every method, then compare.
  *
  *  Copyright (C) 2026  VD171
  *  SPDX-License-Identifier: AGPL-3.0-or-later
@@ -14,8 +14,9 @@
  *  Source         : https://github.com/VD171/VD-Infos
  *  GitHub         : @VD171 https://github.com/VD171
  *  XDA-Developers : @VD171 https://xdaforums.com/m/vd171.4699873/
+ *  XDA thread     : https://xdaforums.com/t/VD-Infos.4097379/
  *  Telegram       : @VD_Priv8 https://t.me/VD_Priv8
- *  Telegram       : @Priv8_VD https://t.me/Priv8_VD
+ *  Channel        : @Priv8_VD https://t.me/Priv8_VD
  *  Discord        : @VD.Priv8 https://discord.com/users/1296831918989639721
  *  E-mail         : vd.priv8@pm.me
  * ======================================================================
@@ -38,10 +39,29 @@ object Exporter {
 
     private val json = Json { prettyPrint = true; encodeDefaults = true }
 
-    fun toJson(snapshot: Snapshot): String =
-        json.encodeToString(Snapshot.serializer(), snapshot)
+    private const val REDACTED = "[redacted - sensitive]"
 
-    fun toText(snapshot: Snapshot): String = buildString {
+    private fun redactSensitive(snapshot: Snapshot): Snapshot = snapshot.copy(
+        results = snapshot.results.map { r ->
+            if (!r.spec.sensitive) r
+            else r.copy(
+                values = r.values.map { v ->
+                    v.copy(
+                        value = v.value?.let { REDACTED },
+                        detail = v.detail?.let { REDACTED },
+                        reveal = v.reveal?.let { REDACTED },
+                    )
+                },
+                detail = r.detail?.let { REDACTED },
+            )
+        }
+    )
+
+    fun toJson(snapshot: Snapshot): String =
+        json.encodeToString(Snapshot.serializer(), redactSensitive(snapshot))
+
+    fun toText(rawSnapshot: Snapshot): String = buildString {
+        val snapshot = redactSensitive(rawSnapshot)
         val stamp = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US).format(Date(snapshot.takenAt))
         appendLine("VD Infos ${snapshot.appVersion} - $stamp")
         val mismatches = snapshot.results.filter { it.verdict == Verdict.MISMATCH }

@@ -97,7 +97,7 @@ ui/             Jetpack Compose, Material 3, dynamická barva, živý průběh
 cpp/            native_probes.cpp: nativní čočka, bez závislostí
 ```
 
-* **Paralelismus**: 991 sond se rozvětví na výchozím dispatcheru s omezeným počtem povolení; výsledky proudí do UI, jakmile dorazí.
+* **Paralelismus**: Sondy se rozvětví na výchozím dispatcheru s omezeným počtem povolení; výsledky proudí do UI, jakmile dorazí.
 * **Nic na pozadí**: žádné služby ani plánované skeny; aplikace běží jen když je otevřená a sama se zavře, když zůstane nečinná.
 * **Nativní vrstva**: jedna malá `.so` bez závislostí, vázaná podle jména přes `RegisterNatives`, záměrně nepatrná a jednoduchá.
 

@@ -97,7 +97,7 @@ ui/             Jetpack Compose, Material 3, màu động, tiến trình trực 
 cpp/            native_probes.cpp: ống kính native, không phụ thuộc
 ```
 
-* **Song song**: 996 thăm dò tỏa ra trên dispatcher mặc định với số giấy phép giới hạn; kết quả chảy vào UI ngay khi đến.
+* **Song song**: Các thăm dò tỏa ra trên dispatcher mặc định với số giấy phép giới hạn; kết quả chảy vào UI ngay khi đến.
 * **Không có gì ở nền**: không dịch vụ và không quét theo lịch; ứng dụng chỉ chạy khi đang mở và tự đóng khi bị bỏ không.
 * **Lớp native**: một `.so` nhỏ, không phụ thuộc, liên kết theo tên qua `RegisterNatives`, được giữ cố ý tí hon và đơn giản.
 

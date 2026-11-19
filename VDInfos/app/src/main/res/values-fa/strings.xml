@@ -2,7 +2,7 @@
 <!--
     ======================================================================
      VD INFOS  ::  method debugger
-     Read every device info by every method, then compare. A divergence is a hook.
+     Read every device info by every method, then compare.
 
      Copyright (C) 2026  VD171
      SPDX-License-Identifier: AGPL-3.0-or-later
@@ -15,8 +15,9 @@
      Source         : https://github.com/VD171/VD-Infos
      GitHub         : @VD171 https://github.com/VD171
      XDA-Developers : @VD171 https://xdaforums.com/m/vd171.4699873/
+     XDA thread     : https://xdaforums.com/t/VD-Infos.4097379/
      Telegram       : @VD_Priv8 https://t.me/VD_Priv8
-     Telegram       : @Priv8_VD https://t.me/Priv8_VD
+     Channel        : @Priv8_VD https://t.me/Priv8_VD
      Discord        : @VD.Priv8 https://discord.com/users/1296831918989639721
      E-mail         : vd.priv8@pm.me
     ======================================================================
@@ -91,6 +92,7 @@
     <string name="crash_title">خطای غیرمنتظره</string>
     <string name="crash_body">برنامه با خطای غیرمنتظره‌ای مواجه شد. چیزی به هیچ جایی ارسال نشد. می‌توانید جزئیات زیر را کپی کرده و برای توسعه‌دهنده ارسال کنید.</string>
     <string name="about_project">پروژه</string>
+    <string name="about_see_also">همچنین ببینید</string>
     <string name="about_support">دانلود و پشتیبانی</string>
     <string name="action_clear">پاک کردن جستجو</string>
     <string name="lang_dialog_title">زبان</string>
@@ -101,29 +103,27 @@
     <!-- راه‌حل -->
     <string name="sol_title">چگونه رفع کنیم</string>
     <string name="card_details">جزئیات</string>
-    <string name="sol_boot">این چیزی است که attestation سخت‌افزاری (TEE) درباره وضعیت بوت گزارش می‌دهد. ابزارهای دور زدن keybox (TrickyStore، TEE Simulator، OhMyKeyMint) فقط برای برنامه‌هایی که مشخص می‌کنید attestation را بازنویسی می‌کنند. بسته این برنامه را به فهرست هدف این ابزارها (مثلاً target.txt) اضافه کنید تا attestation آن دستگاه قفل‌شده با verified boot سبز را گزارش دهد.</string>
-    <string name="sol_root_detector">این برنامه‌های نصب‌شده به دنبال root، شبیه‌ساز یا Play Integrity ناموفق می‌گردند. بسته‌های یافت‌شده در اینجا را به عنوان هدف به چارچوب پنهان‌سازی خود (HMA-OSS) اضافه کنید تا برنامه‌ها و ماژول‌های root شما از این آشکارسازها پنهان بمانند.</string>
-    <string name="sol_spoof">این تنظیم در مسیرهایی که یک برنامه ممکن است استفاده کند متفاوت خوانده می‌شود (spoof همه را پوشش نمی‌دهد). این تنظیم را به پیش‌تنظیم‌های spoof در HMA-OSS اضافه کنید تا هر مسیر خواندن همان مقدار را برگرداند.</string>
-    <string name="sol_attest_patch">key attestation سطح وصله‌ای متفاوت از ویژگی سیستم گزارش می‌کند. آن را در ابزار keybox خود تنظیم کنید - TrickyStore در security_patch.txt (یک تاریخ، یا system=/boot=/vendor=/all=، یا \'prop\')؛ OhMyKeymint در config.toml زیر [trust]. هر دو فقط attestation را تغییر می‌دهند، نه ویژگی‌ها را.</string>
-    <string name="sol_patch_prop">Build.VERSION.SECURITY_PATCH (فریم‌ورک) و ویژگی ro.build.version.security_patch تاریخ‌های متفاوتی نشان می‌دهند. آن‌ها را با resetprop هم‌تراز کنید. security_patch.txt و config.toml اینجا کمکی نمی‌کنند - فقط key attestation را تغییر می‌دهند، نه ویژگی‌ها را.</string>
+    <string name="sol_root_detector">این اپ‌های نصب‌شده دنبال root می‌گردند. بسته‌های یافته‌شده اینجا را به‌عنوان هدف به چارچوب پنهان‌سازی‌ات (HMA-OSS) اضافه کن.</string>
+    <string name="sol_attest_patch">گواهی security patchی متفاوت از property گزارش می‌دهد. آن را در ابزار keybox خود تنظیم کن (TrickyStore security_patch.txt، OhMyKeymint config.toml [trust])؛ تنها گواهی را تغییر می‌دهد.</string>
+    <string name="sol_patch_prop">framework و property تاریخ‌های وصلهٔ متفاوت نشان می‌دهند. آن‌ها را با resetprop هم‌تراز کن؛ ابزارهای keybox تنها گواهی را تغییر می‌دهند، نه properties را.</string>
 
-    <string name="note_gsf">در اندروید ۱۶ و بالاتر وجود ندارد: مخزن سرویس‌های Google به Play Services منتقل شد که خود Google درِ آن را &quot;do.not.use&quot; نامیده و به برنامه‌های دیگر پاسخ نمی‌دهد. هر دو در بالا امتحان می‌شوند.</string>
     <string name="t_attestation_app_id">شناسه برنامه در گواهی‌سنجی (بسته + امضا)</string>
     <string name="t_dev_ptmx_present">/dev/ptmx موجود است</string>
     <string name="t_documents_providers">DocumentsProviders ثبت‌شده</string>
     <string name="t_kernel_modules">ماژول‌های بارگذاری‌شده هسته (KernelSU/SuSFS)</string>
-    <string name="t_kernel_syscall_fingerprint">نسخه هسته بر پایه اثرانگشت syscall</string>
+    <string name="t_kernel_syscall_fingerprint">بررسی متقاطع نسخه هسته</string>
     <string name="t_key_inside_secure_hw">کلید درون سخت‌افزار امن (KeyInfo)</string>
     <string name="t_rot_ec_vs_rsa">ریشه اعتماد گواهی: درخواست EC در برابر RSA</string>
     <string name="t_leaf_sig_alg">گواهی برگ: کلید در برابر الگوریتم امضا</string>
     <string name="t_batch_key_ec_vs_rsa">کلید گواهی: زنجیره EC در برابر زنجیره RSA</string>
+    <string name="t_native_vs_jvm">گواهی: keystore2 بومی در برابر JVM</string>
     <string name="t_local_tmp_contents">محتوای /data/local/tmp</string>
     <string name="t_native_lib_origin">خاستگاه کتابخانه بومی (dladdr)</string>
     <string name="t_own_debuggable">این برنامه: debuggable / ساخت اشکال‌زدایی</string>
     <string name="t_play_store_version">نسخه Play Store / GMS</string>
     <string name="t_resolv_conf">resolv.conf / پیکربندی DNS</string>
     <string name="t_root_backup_tools">ابزارهای پشتیبان‌گیری روت موجود است</string>
-    <string name="t_su_libc_inline_hook">su: syscall خام در برابر libc و Java</string>
+    <string name="t_su_libc_inline_hook">یافتن su در میان لایه‌ها</string>
     <string name="t_system_build_prop">/system/build.prop</string>
     <string name="t_system_build_prop_present">/system/build.prop موجود است</string>
     <string name="t_adb_enabled">ADB فعال</string>
@@ -193,7 +193,7 @@
     <string name="t_imei">IMEI</string>
     <string name="t_imsi_subscriber">IMSI (مشترک)</string>
     <string name="t_incremental">Incremental</string>
-    <string name="t_injected_libs_proc_self_maps">کتابخانه‌های تزریق‌شده (/proc/self/maps)</string>
+    <string name="t_injected_libs_proc_self_maps">کتابخانه‌های تزریق‌شده</string>
     <string name="t_installed_app_signing_digests">چکیده امضای برنامه‌های نصب‌شده</string>
     <string name="t_installed_applications">برنامه‌های نصب‌شده</string>
     <string name="t_installed_input_methods">روش‌های ورودی نصب‌شده</string>
@@ -203,13 +203,9 @@
     <string name="t_kernel_version">کرنل (نسخه)</string>
     <string name="t_kernel_version_string">هسته (رشتهٔ نسخه)</string>
     <string name="t_kernel_version_claim">ادعای نسخهٔ هسته (ro.kernel.version در برابر uname)</string>
-    <string name="note_kernel_version_claim">ویژگی ro.kernel.version باید بازتاب هستهٔ در حال اجرا باشد. اگر major.minor ای ادعا کند که نسخهٔ واقعی uname آن را ندارد، یک resolver ویژگی را تنظیم کرده در حالی که هستهٔ زیرین چیز دیگری است.</string>
     <string name="t_kernel_build_date">تاریخ ساخت هسته در برابر ROM</string>
-    <string name="note_kernel_build_date">هستهٔ GKI از پیش ساخته‌شده از ROM ای که در آن عرضه می‌شود قدیمی‌تر است یا با آن مطابق است. هسته‌ای که مدتی پس از مونتاژ ROM ساخته شده، بعداً بازسازی یا فلش شده است، نشانهٔ معمول هستهٔ دستی‌کامپایل‌شده.</string>
     <string name="t_kernel_config">پیکربندی هسته (‎/proc/config.gz)</string>
-    <string name="note_kernel_config">پیکربندی هسته، جایی که خواندنی باشد، وصله‌های کامپایل‌شده را نام می‌برد: KSU، SUSFS، نسخهٔ محلی سفارشی، امضای ماژول اجبارنشده. سندباکس برنامه اغلب این فایل را رد می‌کند؛ روی اندروید قدیمی، ROM سفارشی و شل روت خوانده می‌شود.</string>
     <string name="t_kernel_module_scan">ماژول‌ها و نمادهای هسته</string>
-    <string name="note_kernel_module_scan">‎/sys/module و نام نمادهای ‎/proc/kallsyms را برای ksu، susfs و magisk می‌کاود که هستهٔ وصله‌شده یا ماژول‌بارگذاری‌شده آشکار می‌کند. هر دو سطح اغلب محدودند؛ جایی که دامنه اجازه دهد خوانده می‌شوند.</string>
     <string name="t_kernel_cmdline">cmdline کرنل</string>
     <string name="t_kernel_log">گزارش کرنل</string>
     <string name="t_kernel_stat">stat کرنل</string>
@@ -286,8 +282,8 @@
     <string name="t_verified_boot_hash_vbmeta_digest">هش verified boot / چکیده vbmeta</string>
     <string name="t_verified_boot_key">کلید verified boot</string>
     <string name="t_verified_boot_state">وضعیت verified boot</string>
-    <string name="t_prop_area_tamper">دستکاری ناحیه property (حفره/زمینه)</string>
-    <string name="t_supplementary_groups">گروه‌های تکمیلی (3009=AID_READPROC)</string>
+    <string name="t_prop_area_tamper">ناحیه ویژگی سیستم</string>
+    <string name="t_supplementary_groups">گروه‌های تکمیلی</string>
     <string name="t_version_codename">نام رمز نسخه</string>
     <string name="t_webview_provider">ارائه‌دهنده WebView</string>
     <string name="t_webview_user_agent">user agent WebView</string>
@@ -323,6 +319,17 @@
     <string name="t_queryintentservices_main">queryIntentServices (MAIN)</string>
     <string name="t_resolveactivity_main_launcher">resolveActivity (MAIN/LAUNCHER)</string>
     <string name="t_su_binary">باینری su</string>
+    <string name="t_setuid_root">باینری ممتاز</string>
+    <string name="t_root_dirs_present">نمایان بودن دایرکتوری سیستم</string>
+    <string name="t_maps_isolated">ماژول‌های تزریق‌شده</string>
+    <string name="t_inline_hooks">قلاب‌های کد</string>
+    <string name="t_linker_maps_gap">کتابخانه‌های پنهان</string>
+    <string name="t_tracerpid_iso">اشکال‌زدا متصل</string>
+    <string name="t_fd_iso">دسته‌های باز</string>
+    <string name="t_selinux_iso">زمینه امنیتی</string>
+    <string name="t_su_iso">دسترسی ابرکاربر</string>
+    <string name="t_prop_dual_iso">ویژگی‌های سیستم</string>
+    <string name="t_smaps_iso">حافظه قابل‌نوشتن و اجرایی</string>
     <string name="t_su_on_path">su در PATH</string>
     <string name="t_tel_networkOperatorName">نام اپراتور شبکه</string>
     <string name="t_tel_networkOperator">اپراتور شبکه (MCC+MNC)</string>
@@ -414,7 +421,7 @@
     <string name="t_isrc_self_originating">منبع نصب (self): originating</string>
     <string name="t_isrc_self_pkgsource">منبع نصب (self): packageSource</string>
     <string name="t_isrc_self_initiator_sig">منبع نصب (self): گواهی initiator در برابر نصب‌شده</string>
-    <string name="t_isrc_gap_jvm_store_pm_denies">ناهمخوانی: JVM installer فروشگاه می‌گوید، pm رد می‌کند (hook)</string>
+    <string name="t_isrc_gap_jvm_store_pm_denies">نصب‌کننده: JVM در برابر pm</string>
     <string name="t_isrc_gap_jvm_pm_other">ناهمخوانی: installer JVM ≠ installer pm (دیده‌شدن)</string>
     <string name="t_isrc_gap_installer_ne_initiating">ناهمخوانی: installer ≠ initiating</string>
     <string name="t_isrc_gap_store_installer_sideload">ناهمخوانی: installer فروشگاه، initiating sideload</string>
@@ -433,24 +440,16 @@
     <string name="t_installed_applications_diff">برنامه‌های نصب‌شده: متفاوت (JVM x pm)</string>
     <string name="t_selinux_status">صفحهٔ status سلینوکس (policyload/seq)</string>
     <string name="t_selinux_policy_probe">کاوشگر سیاست SELinux (نوع‌ها + AVC)</string>
-    <string name="t_manager_doors">مدیر root/Xposed: دیده‌شدن بر پایهٔ درِ PackageManager</string>
+    <string name="t_manager_doors">نمایان بودن اپ مدیر</string>
     <string name="t_net_sock_diag">سیاست Netlink sock_diag</string>
-    <string name="n_net_sock_diag">برنامهٔ محدودشده باید NETLINK_SOCK_DIAG را رد شود؛ رسیدن پاسخ یعنی سیاست netlink سست شده است.</string>
     <string name="t_mount_peer_gap">یکپارچگی peer-group سوارسازی‌ها</string>
-    <string name="n_mount_peer_gap">مجموعهٔ شناسه‌های peer-group باید از هر عدسه یکسان خوانده شود؛ شکاف در یک عدسه یعنی سوارسازی پنهان.</string>
     <string name="t_mount_fdinfo_mnt">شناسهٔ سوارسازی در برابر توصیف‌گرهای باز</string>
-    <string name="n_mount_fdinfo_mnt">توصیف‌گر بازی که mnt_id آن در mountinfo نیست به سوارسازی پنهان از دید اشاره دارد.</string>
-    <string name="t_proc_readproc_gid">GID 3009 زایگوت (AID_READPROC)</string>
-    <string name="n_proc_readproc_gid">نبود GID مکمل AID_READPROC ردی است که برخی ماژول‌های پنهان‌سازی برنامه بر جای می‌گذارند.</string>
+    <string name="t_proc_readproc_gid">GIDهای تکمیلی زایگوت</string>
     <string name="t_proc_fd_graph">سرشماری توصیف‌گرها</string>
     <string name="t_mem_anon_exec">نگاشت‌های اجراییِ بی‌نام</string>
-    <string name="n_mem_anon_exec">صفحات اجرایی بدون فایل پشتیبان باقی‌ماندهٔ معمول تزریق/Zygisk هستند؛ شمار باید میان عدسه‌ها یکسان باشد.</string>
     <string name="t_kernel_selfbuild">هستهٔ خودساخته / وصله‌خورده</string>
-    <string name="n_kernel_selfbuild">هستهٔ کارخانه نشانهٔ ساخت -dirty، git یا SUSFS ندارد؛ نشانه‌ها باید میان عدسه‌ها یکسان باشند.</string>
     <string name="t_tee_soter">سرویس Soter در برابر ویژگی</string>
-    <string name="n_tee_soter">برنامهٔ سرویس Soter از Tencent را با وضعیت ویژگی سرویس آن مقابله می‌کند.</string>
     <string name="t_proc_cgroup_format">قالب مسیر cgroup</string>
-    <string name="n_proc_cgroup_format">کانتینر همتاسازی‌شده / دو-برنامه‌ای مسیر یکپارچهٔ cgroup را از شکل متعارف uid_/pid_ منحرف می‌کند.</string>
     <string name="t_gpu_vendor">سازنده GPU</string>
     <string name="t_gpu_renderer">رندرگر GPU</string>
     <string name="t_gpu_version">نسخه GPU</string>
@@ -462,32 +461,119 @@
     <string name="t_tel_simSpecificCarrierId">شناسه اپراتور خاص SIM</string>
     <string name="t_tel_visualVoicemailPackageName">بسته پست صوتی تصویری</string>
     <string name="t_keychain_blacklist">فهرست سیاه گواهی‌های Keychain</string>
-    <string name="t_buildprop_vs_runtime">build.prop vs runtime</string>
-    <string name="note_boot_count">boot_count (فریم‌ورک) فقط زیاد می‌شود؛ Phenotype_boot_count (سرویس‌های Play) عکس فوری آن است و ممکن است عقب بماند. فقط وقتی واگرا است که عکس فوری از boot_count جلوتر باشد (ریست).</string>
-    <string name="note_isrc_initiator_sig">گواهی‌ای که سیستم هنگام نصب این برنامه برای نصب‌کننده ثبت کرد با گواهی‌ای که نصب‌کننده اکنون گزارش می‌دهد فرق دارد. علت آن نصب‌کننده جایگزین‌شده یا امضای جعلی است؛ رام‌هایی که سیستم را دوباره امضا می‌کنند و گواهی اصلی سازنده را گزارش می‌دهند (مثلاً Xiaomi.eu) این را روی هر دستگاهی نشان می‌دهند.</string>
+    <string name="t_buildprop_vs_runtime">انسجام ویژگی‌های build</string>
     <string name="t_concealment">پنهان‌سازی برنامه‌ها</string>
-    <string name="note_concealment">بسته‌ای که از فهرست برنامه‌ها پنهان شده اما هنوز از در دیگری از PackageManager (اطلاعات بسته، createPackageContext، APK باز‌شده، launch intent) قابل دسترسی است، از یک در پنهان است و از در دیگر نه - نشانه یک پنهان‌کننده برنامه ناقص.</string>
     <string name="t_prop_variants">گونه‌ها بر پایه پارتیشن: %1$s</string>
     <string name="t_prop_enum">شمارش خصیصه‌ها در برابر getprop</string>
-    <string name="note_prop_variants">همان پسوند برای هر پارتیشن ظاهر می‌شود (system, vendor, product, odm, dlkm...). مقادیری که باید همه‌جا یکسان باشند اما فرق دارند، یا در یک دودمان از هم جدا می‌شوند، یک جعل جزئی را آشکار می‌کنند - اثری که در برخی پارتیشن‌ها تغییر کرده و در بقیه نه.</string>
-    <string name="note_prop_enum">شمارش ناحیه خصیصه‌ها به‌صورت بومی (__system_property_foreach) و مقایسه با getprop از یک فرایند دیگر، خصیصه‌ای را که از پوسته پنهان شده یا تنها در یک مسیر تزریق شده آشکار می‌کند.</string>
-    <string name="t_dlphdr">ماژول‌های لودر (dl_iterate_phdr)</string>
-    <string name="t_frida_port">اسکن پورت Frida</string>
-    <string name="note_dlphdr">dl_iterate_phdr ماژول‌های بارگذاری‌شده را از طریق لینکر شمارش می‌کند، نه از طریق /proc/self/maps، پس هوکی که ورودی‌اش را از maps پاک کند باز هم اینجا فهرست می‌شود. تطابق needle یا ماژولی خارج از فهرست مجاز سیستم همان نشت است.</string>
+    <string name="t_dlphdr">ماژول‌های بارگذاری‌شده</string>
+    <string name="t_frida_port">پورت ابزاردقیق</string>
     <string name="t_ime_verdict">حکم یکپارچگی صفحه‌کلید</string>
     <string name="t_store_authenticity">اصالت امضای فروشگاه/GMS</string>
     <string name="t_devgate">همخوانی تنظیمات وابسته به حالت توسعه‌دهنده</string>
-    <string name="note_ime_verdict">یک RASP بانکی (PayZapp/Zeta) هر صفحه‌کلید فعالِ غیرسیستمی که خارج از فهرست مجاز فروشگاه‌ها نصب شده را رد می‌کند. یک IME فعال غیرسیستمی با نصب‌کننده خارج فروشگاه علامت‌گذاری می‌شود.</string>
-    <string name="note_store_authenticity">Play Store، GMS و GSF باید گواهی امضای Google را داشته باشند. بسته فروشگاه یا GMS موجود اما امضاشده با کلید دیگر، جعلی، microG یا فروشگاه بسته‌بندی‌مجدد است.</string>
-    <string name="note_devgate">adb و دیگر تنظیمات وابسته به حالت توسعه‌دهنده فقط با روشن‌بودن گزینه‌های توسعه‌دهنده تغییر می‌کنند. تنظیم وابسته‌ای که با development_settings_enabled=0 غیرپیش‌فرض مانده، تنها با روت یا `settings put` قابل تنظیم بوده است.</string>
-    <string name="t_maps_exec">نگاشت‌های exec تزریق‌شده (deleted/memfd)</string>
-    <string name="t_anon_minor">سوپربلاک anon-bdev پنهان</string>
-    <string name="note_maps_exec">نگاشت اجرایی متکی بر فایل (deleted)/memfd/ashmem که یا RWX است (نقض W^X) یا با امضای ELF آغاز می‌شود، یک .so تزریق‌شده واقعی جدا از سیستم فایل است؛ ترامپولین JIT در ART هیچ‌کدام نیست و بی‌خطر شمرده می‌شود. ماژول خارج از فهرست مجاز سیستم هم شمرده می‌شود.</string>
-    <string name="note_anon_minor">سیستم‌های فایل بدون دستگاه بلوکی minor خود را از یک استخر anon سراسری، متراکم از پایین، می‌گیرند. minorی که با stat() هست اما در mountinfo این فرایند نیست، یک سوپربلاک زنده پنهان در فضای‌نام خصوصی است (tmpfs یک دیمن). یک دنباله بلند از minorهای گم‌شده churn هر برنامه است و نادیده گرفته می‌شود؛ حفره کوتاه همان نشانه است.</string>
-    <string name="t_sb_tee_signer">امضاکننده StrongBox × TEE</string>
+    <string name="t_maps_exec">نگاشت‌های حافظه اجرایی</string>
+    <string name="t_elf_in_anon">ایمیج کد در حافظه ناشناس</string>
+    <string name="t_anon_exec_orphan">حافظه اجرایی بدون پشتوانه</string>
+    <string name="t_anon_minor">سیستم فایل پنهان</string>
+    <string name="t_sb_tee_signer">پروفایل attestation StrongBox</string>
+    <string name="t_sb_capability">پروفایل capability StrongBox</string>
+    <string name="t_sb_enforced">سطح اعمال کلید StrongBox</string>
+    <string name="t_sb_version">نسخه گواهی StrongBox</string>
+    <string name="t_sb_chain">زنجیره گواهی StrongBox</string>
+    <string name="t_sb_rkp">provisioning کلید StrongBox</string>
+    <string name="t_sb_latency">زمان‌بندی تولید کلید StrongBox</string>
     <string name="t_local_tmp_list">فهرست /data/local/tmp</string>
-    <string name="note_local_tmp_list">فهرست‌کردن /data/local/tmp با getdents64 (نه جست‌وجوی نام) هر باقی‌مانده‌ای را که یک برنامه واقعاً به آن می‌رسد آشکار می‌کند، از جمله آنچه ماژول می‌ریزد. در دستگاه قفل، این پوشه مال shell است و برنامه نمی‌تواند آن را فهرست کند، پس EACCES پاسخ تمیز است؛ یک ورودی دیده‌شده یعنی باقی‌مانده در دسترس برنامه.</string>
     <string name="t_nettype_consistency">نوع شبکه در برابر رابط واقعی</string>
     <string name="t_flagsecure_honored">رعایت FLAG_SECURE (مسدودسازی اسکرین‌شات)</string>
+    <string name="t_procnet_frida">سوکت ابزاردقیق</string>
+    <string name="t_procnet_tun">رابط VPN</string>
+    <string name="t_mountinfo_iso">ورودی‌های mount</string>
+    <string name="t_adb_usb_exposure">افشای اشکال‌زدایی ADB/USB</string>
+    <string name="t_anon_elf_struct">ساختار ELF در حافظه ناشناس</string>
+    <string name="t_atexit_drift">رانش زمان اجرای Atexit</string>
+    <string name="t_attestation_challenge_echo">اکوی چالش attestation</string>
+    <string name="t_attest_synth_paradox">attestation در برابر وضعیت runtime</string>
+    <string name="t_baseband_coherence">انسجام نسخه baseband</string>
+    <string name="t_datadir_errno_oracle">کاوش دایرکتوری داده پکیج</string>
+    <string name="t_device_id">هویت دستگاه attestation در برابر Build</string>
+    <string name="t_feature_spoof">سازگاری ویژگی‌های سیستم</string>
+    <string name="t_fingerprint_rebuild">بازسازی fingerprint</string>
+    <string name="t_gap_mapped">پوشش نگاشت حافظه</string>
+    <string name="t_heap_hook_xref">ارجاعات کهنه در heap</string>
+    <string name="t_hidden_app_usage_leak">دید پکیج از طریق usage stats</string>
+    <string name="t_hidden_region_xref">ارجاعات heap به نواحی حافظه</string>
+    <string name="t_launch_sender_pkg_leak">دید پکیج IntentSender</string>
+    <string name="t_libc_identity">انسجام ایمیج libc</string>
+    <string name="t_lock_coherence">انسجام قفل bootloader</string>
+    <string name="t_map_files_leak">منشأ فایل‌های نگاشته</string>
+    <string name="t_multiuser_oracle">دید کاربر / private-space</string>
+    <string name="t_named_anon_exec">نگاشت کد با نام ناشناس</string>
+    <string name="t_otacerts_signing_key">کلید امضای OTA (otacerts)</string>
+    <string name="t_pairip_wrapper">اسکن wrapper اپ</string>
+    <string name="t_phantom_monitor_prop">prop پرچم phantom monitor</string>
+    <string name="t_phantom_monitor_setting">تنظیم phantom monitor</string>
+    <string name="t_platform_signer">امضاکننده پلتفرم (پکیج android)</string>
+    <string name="t_prov_fingerprint">fingerprint RKP در برابر دستگاه</string>
+    <string name="t_prov_manufacturer">سازنده RKP در برابر دستگاه</string>
+    <string name="t_prov_vbmeta_reuse">vbmeta از RKP در برابر runtime</string>
+    <string name="t_prov_verdict">حکم verified boot از RKP</string>
+    <string name="t_settings_stock_baseline">خط پایه تنظیمات توسعه‌دهنده/امنیت</string>
+    <string name="t_signature_source">انسجام منبع گواهی امضا</string>
+    <string name="t_signature_sweep">جاروب گواهی امضا (همه اپ‌ها)</string>
+    <string name="t_signing_keys">کلیدهای امضا (انتظار release-keys)</string>
+    <string name="t_statfs_consistency">انسجام اندازه حافظه ذخیره‌سازی</string>
+    <string name="t_verifier_adb_installs">بررسی اپ‌ها از طریق USB (package verifier)</string>
+    <string name="t_zygisk_loader_footprint">باقیمانده لودر در حافظه</string>
+    <string name="t_zygote_gid">انسجام GID زایگوت</string>
     <string name="about_trademarks">VD Infos یک ابزار پژوهش و عیب‌یابی مستقل و غیررسمی است. این ابزار به هیچ‌یک از عرضه‌کنندگانی که نرم‌افزار، خدمات یا نشان‌های آن‌ها را می‌خواند، شناسایی می‌کند یا نام می‌برد وابسته نیست و مورد تأیید یا حمایت مالی آن‌ها نیز قرار ندارد (از جمله Google LLC و Android Open Source Project). \"Android\"، \"Google\"، \"Google Play\"، \"Play Integrity\"، \"Widevine\" و تمامی نام‌های محصول، نشان‌واره‌ها و علائم تجاری دیگر، متعلق به صاحبان مربوط به خود هستند. VD Infos تنها آنچه را که از پیش روی دستگاه شما وجود دارد می‌خواند و چیزی را به هیچ‌کجا ارسال نمی‌کند.</string>
+    <string name="note_art_dexopt_self">نشانه سلامت، نه نشانه روت. یک base.odex از نوع AOT روی دیسک وجود دارد اما اپ به‌صورت تفسیری اجرا می‌شود (بدون نگاشت اجرایی)، یعنی odex رد شده است (تصویر بوت قدیمی شده؛ تصویر بوت ART پس از یک به‌روزرسانی apex تغییر کرده است). در این حالت ممکن است اپ‌های سرویس و بررسی اپ‌های Play Protect به‌موقع راه‌اندازی نشوند. این یک پراکسی سمت کاربر است؛ بررسی معتبر سمت روت انجام می‌شود.</string>
+    <string name="sol_art_dexopt_self">به‌عنوان روت دوباره کامپایل کنید (pm compile -a -m speed) یا دستگاه را ری‌استارت کنید تا تصویر بوت بازسازی و dexopt اپ‌ها دوباره انجام شود.</string>
+    <string name="sol_atexit_drift">کنترل‌گرهای خروج libc یعنی __cxa_atexit و __cxa_finalize باید داخل libc رزالو شوند. وقتی به کتابخانه‌ای دیگر یا ناحیه‌ای ناشناس رزالو می‌شوند، یک تزریق‌کننده از نوع Zygisk آن‌ها را دستکاری کرده است. تزریق را از این فرایند حذف کنید.</string>
+    <string name="sol_baseband_coherence">نسخه مودم را هم getRadioVersion و هم خانواده gsm.version.baseband گزارش می‌کنند؛ همه آن‌ها یک firmware را می‌خوانند. وقتی یک منبع ناسازگار است، یک spoof ویژگی‌ها برخی نام‌های مستعار را وصله کرده اما نه همه را. همه منابع نسخه baseband را یکسان نگه دارید.</string>
+    <string name="sol_boot">گواهی سخت‌افزاری (TEE) وضعیت بوت را گزارش می‌کند. بسته این اپ را به فهرست اهداف ابزار keybox خود اضافه کنید تا دستگاهی قفل‌شده و verified گزارش شود.</string>
+    <string name="sol_datadir_errno_oracle">یک stat روی دایرکتوری داده یک بسته می‌تواند آن را حتی بدون هیچ کوئری بسته‌ای به‌عنوان نصب‌شده آشکار کند. چنین بسته‌هایی را به چارچوب پنهان‌سازی خود (HMA-OSS) اضافه کنید تا دایرکتوری داده‌شان به‌جای صرفاً رد شده، غایب خوانده شود.</string>
+    <string name="sol_device_id">هویت سخت‌افزار گواهی‌شده (brand، device، manufacturer) با propertyهای build همخوانی ندارد، بنابراین یک راستی‌آزما می‌تواند تشخیص دهد که propertyها جعلی‌اند. ro.product.brand، ro.product.device و ro.product.manufacturer را با مقادیر گواهی‌شده سخت‌افزار هماهنگ کنید (product و model به‌طور مشروع متفاوت‌اند: گواهی codename را حمل می‌کند).</string>
+    <string name="sol_feature_spoof">hasSystemFeature، getSystemAvailableFeatures و نودهای سخت‌افزاری درباره یک ویژگی دستگاه با هم اختلاف دارند، پس یک ویژگی از یک مسیر پنهان یا جعل شده اما از مسیرهای دیگر نه. کاری کنید همه مسیرهای کوئری ویژگی و گزارش سخت‌افزار حضور یکسانی نشان دهند.</string>
+    <string name="sol_fingerprint_rebuild">fingerprint مربوط به build در زمان build به‌شکل BRAND/PRODUCT/DEVICE:RELEASE/ID/INCREMENTAL:TYPE/TAGS ساخته می‌شود. وقتی Build.FINGERPRINT با بازسازی آن از روی فیلدهای مؤلفه خودش برابر نیست، یک spoof فینگرپرینت را بدون هماهنگ‌سازی همه مؤلفه‌ها (یا برعکس) تغییر داده است. فینگرپرینت و مؤلفه‌هایش را سازگار کنید.</string>
+    <string name="sol_hidden_app_usage_leak">یک بسته می‌تواند از طریق APIهای usage-stats آشکار شود حتی وقتی از فهرست بسته‌های نصب‌شده بیرون نگه داشته شده است. چنین بسته‌هایی را به چارچوب پنهان‌سازی خود (HMA-OSS) اضافه کنید تا از APIهای usage-stats هم پنهان شوند، نه فقط از فهرست بسته‌ها.</string>
+    <string name="sol_launch_sender_pkg_leak">در ROMهای measured، IntentSender بازگردانده‌شده فقط با (caller، name) کلید می‌خورد: فیلدهای سازنده آن متعلق به caller است و equals تنها در name تفاوت دارد، پس هیچ سیگنال نصب‌شده/پنهان را حمل نمی‌کند (مقایسه با یک name غایب تصادفی یک مثبت کاذب است). تنها در صورتی نشت می‌کند که یک بسته نصب‌شده نمایان و یک name غایب در فیلدی مستقل از caller تفاوت داشته باشند؛ در این صورت کاری کنید چارچوب پنهان‌سازی (HMA-OSS) برای بسته‌های پنهان معادلِ غایب را بازگرداند.</string>
+    <string name="sol_libc_identity">نگاشت libc بارگذاری‌شده (device و inode) با فایل libc.so روی دیسک همخوانی ندارد، پس کتابخانه جایگزین یا bind-mount شده است (یک libc هوک‌شده). libc اصیل را ارائه دهید، یا mount جایگزین را از اپ پنهان کنید.</string>
+    <string name="sol_lock_coherence">در یک دستگاه stock قفل‌شده هر property مربوط به قفل bootloader و verified boot سازگار است: flash.locked=1، verifiedbootstate=green، vbmeta.device_state=locked، گارانتی دست‌نخورده. وقتی یکی قفل‌شده را اعلام می‌کند درحالی‌که دیگری هنوز باز خوانده می‌شود، یک spoof برخی را وصله کرده اما نه همه را. همه propertyهای قفل را به یک وضعیت یکسان نرمال کنید.</string>
+    <string name="sol_otacerts_signing_key">گواهی امضای OTA (otacerts.zip) همان کلید test عمومی AOSP است، پس build به‌صورت test-signed خوانده می‌شود حتی وقتی ro.build.tags ادعای release-keys دارد. یک otacerts.zip امضاشده با release را از طریق ماژول هدایت فایل خود ارائه دهید و ro.*.build.tags را در همه پارتیشن‌ها هماهنگ کنید تا فایل و propertyها همخوان شوند.</string>
+    <string name="sol_perm_path_coherence">یک مجوز واحد توسط چند مسیر کد رزالو می‌شود: PackageManager.checkPermission، Context.checkPermission(perm,pid,uid)، فلگ‌های اعطاشده getPackageInfo(GET_PERMISSIONS) و binder سطح‌پایین IPackageManager.checkUidPermission. در یک سیستم دست‌نخورده همه مسیرهای در دسترس سازگارند، و یک مجوز ممتاز (START_ANY_ACTIVITY، INSTALL_PACKAGES، MANAGE_USERS) در همه آن‌ها رد شده است. یک هوک که مجوزی را روی یک مسیر جعل یا پنهان می‌کند اما روی مسیر دیگر نه، یا مجوزی ممتاز را که یک اپ معمولی هرگز نمی‌تواند داشته باشد اعطا می‌کند، اینجا واگرا می‌شود. مجوزها را به‌طور سازگار در همه مسیرها رزالو کنید؛ یک اعطا را فقط روی مسیری که یک آشکارساز اتفاقی می‌خواند جعل نکنید.</string>
+    <string name="sol_phantom_monitor">یک دستگاه stock آشکار نمی‌کند که آیا مانیتور فرایند phantom تغییر کرده است. این تنظیم را به پیش‌تنظیم‌های spoof چارچوب پنهان‌سازی خود (HMA-OSS) اضافه کنید تا مانند یک دستگاه stock خوانده شود، و از property مربوط به override فیچر-فلگ پرهیز کنید.</string>
+    <string name="sol_platform_signer">امضای بسته platform (android) یک امضاکننده غیر OEM (یک ROM سفارشی یا کلید test AOSP) یا یک OEM را که با سازنده ادعاشده همخوانی ندارد آشکار می‌کند. امضای platform را جعل کنید (همان‌طور که spoofSignature از PlayIntegrityFork انجام می‌دهد) تا بسته android گواهی platform مربوط به OEM ادعاشده را گزارش کند.</string>
+    <string name="sol_prov_fingerprint">fingerprint مربوط به RKP (از گواهی RKP) با fingerprint مربوط به build این دستگاه همخوانی ندارد، پس keybox به دستگاهی دیگر تعلق دارد. از keyboxی استفاده کنید که روی این دستگاه provision شده باشد.</string>
+    <string name="sol_prov_vbmeta_reuse">vbmeta_digest مربوط به RKP (از گواهی RKP) با هش verified boot زمان اجرای دستگاه همخوانی ندارد، پس keybox روی دستگاهی دیگر provision شده است (یک keybox بازاستفاده‌شده یا مشترک) یا دستگاه پس از provisioning به‌روزرسانی شده است. از keyboxی استفاده کنید که روی این دستگاه provision شده باشد.</string>
+    <string name="sol_prov_verdict">گواهی RKP بوت دستگاه را به‌عنوان تأییدنشده ثبت می‌کند، پس backend مربوط به RKP این دستگاه را علامت زده است. از keyboxی استفاده کنید که روی دستگاهی provision شده باشد که backend آن را تأیید کرده است.</string>
+    <string name="sol_signature_source">گواهی امضای خوانده‌شده از رکورد PackageManager و گواهی تجزیه‌شده از فایل APK روی دیسک باید یکسان باشند، و PackageManager باید گواهی فایل APK را بشناسد (hasSigningCertificate، checkSignatures). وقتی واگرا می‌شوند، یک هوک در سطح PackageManager امضای گزارش‌شده را بدون دست‌زدن به APK واقعی بازنویسی کرده است. یک خواندن مستقیم APK همچنان گواهی واقعی را می‌بیند.</string>
+    <string name="sol_signature_sweep">برای هر اپ نصب‌شده، گواهی امضای رکورد PackageManager و گواهی تجزیه‌شده از فایل APK آن یک امضاکننده مشترک دارند. اپی که این دو مجموعه‌اش هیچ اشتراکی ندارند، امضای PackageManager آن جعل شده درحالی‌که APK روی دیسک امضای واقعی را حفظ کرده است. چرخش کلید یک امضاکننده مشترک را حفظ می‌کند، پس علامت زده نمی‌شود.</string>
+    <string name="sol_signing_keys">یک build تولیدی با release-keys امضا می‌شود. یک property کلید امضا که test-keys یا dev-keys را بخواند (به هر روشی) یک build سفارشی یا دیباگ را افشا می‌کند. release-keys را در build.tags و propertyهای *.keys هر پارتیشن بازگردانید.</string>
+    <string name="sol_spoof">این تنظیم به‌طور سازگار خوانده نمی‌شود. آن را به پیش‌تنظیم‌های spoof مربوط به HMA-OSS اضافه کنید تا همه مسیرها مقدار یکسانی بازگردانند.</string>
+    <string name="sol_statfs_consistency">android.os.StatFs و خواندن بومی statvfs درباره اندازه ذخیره‌سازی با هم اختلاف دارند، پس اندازه از طریق API چارچوب Java جعل شده اما به‌صورت بومی نه. کاری کنید مسیرهای StatFs و بومی مقادیر یکسانی گزارش کنند.</string>
+    <string name="sol_zygote_gid">zygote به هر فرایند GIDهای تکمیلی‌اش را از روی مجوزهای اعطاشده اپ تخصیص می‌دهد: INTERNET یعنی 3003، BLUETOOTH یعنی 3002، و به همین ترتیب. یک مجوز اعطاشده که GID آن در getgroups(2) غایب است یعنی یک پنهان‌کننده مجوزهای zygote را فیلتر کرده است: اپ را پنهان می‌کند اما با مجموعه مجوزها که هر اپ درباره خودش می‌خواند تناقض دارد. GIDهایی را که مجوزهای اعطاشده لازم دارند حذف نکنید (برای مثال، تا وقتی INTERNET اعطا شده هرگز INET_GID را حذف نکنید).</string>
+    <string name="summary_all_agreed_mark" translatable="false">🏆 ✓ </string>
+    <string name="t_boot_triad_coherence">سازگاری وضعیت verified boot</string>
+    <string name="t_build_vs_prop">android.os.Build در برابر prop متعارف (به‌ازای هر فیلد هویت)</string>
+    <string name="t_debug_ramdisk">محتوای /debug_ramdisk</string>
+    <string name="t_isrc_gap_forged_store_install">سازگاری فروشگاه نصب‌کننده</string>
+    <string name="t_isrc_gap_store_pkgsource_other">شکاف: نصب‌کننده فروشگاه، packageSource شبیه فروشگاه نیست</string>
+    <string name="t_loop_orphan">دستگاه‌های loop یتیم</string>
+    <string name="t_perm_path_coherence">سازگاری بررسی مجوز</string>
+    <string name="t_rom_identity">SoC در برابر هویت دستگاه اعلام‌شده</string>
+    <string name="t_settings_read_gate">دروازه خواندن تنظیم محدودشده</string>
+    <string name="t_stock_path_hidden">نمایانی مسیرهای سیستم</string>
+    <string name="t_strongbox_level">سطح گواهی پشتیبانی‌شده با StrongBox</string>
+    <string name="t_uid_hidden_running">UIDهای در حال اجرا در برابر فهرست بسته‌ها</string>
+    <string name="t_uid_priority_fake">اولویت زمان‌بندی فرایند</string>
+    <string name="t_version_cluster">سازگاری خوشه وضعیت نسخه (release در برابر preview)</string>
+    <string name="usage_access_body">تشخیص بسته‌ای که از فهرست بسته‌های نصب‌شده پنهان شده از طریق APIهای usage-stats به دسترسی Usage نیاز دارد. آن را در تنظیمات سیستم به این اپ بدهید و سپس بازگردید.</string>
+    <string name="usage_access_open">باز کردن تنظیمات</string>
+    <string name="usage_access_title">دسترسی Usage لازم است</string>
+    <string name="sol_debug_ramdisk">در بوت کارخانه‌ای، /debug_ramdisk خالی یا غایب است. فایل‌های مرحله‌بندی‌شده در آنجا یک root بوت اولیه یا payload ماژول هستند. محتوای مرحله‌بندی‌شده را از /debug_ramdisk پاک کن، یا آن را در namespace نگه دار که این برنامه نتواند بخواند.</string>
+    <string name="sol_loop_orphan">روی یک دستگاه کارخانه‌ای هر loop از نوع ext4 توسط یک mount سیستمی در این namespace پشتیبانی می‌شود. یک loop بدون نقطه‌ی mount سیستمی، یک ماژول یا overlay است که خارج از چیدمان کارخانه‌ای سوار شده. چنین loopهایی را زیر یک مسیر سیستمی سوار کن، یا آن‌ها را در یک mount namespace نگه دار که این برنامه به اشتراک نمی‌گذارد.</string>
+    <string name="sol_multiuser_oracle">یک کاربر ثانویه یا فضای خصوصی وقتی لو می‌رود که stat روی /data/user/&lt;id&gt; آن را موجود بخواند در حالی که UserManager آن را فهرست نمی‌کند. این دو را هم‌راستا کن: یا دایرکتوری داده‌ی کاربر را برای برنامه‌ی بدون امتیاز دست‌نیافتنی نگه دار، یا کاربری را که دایرکتوری خودش هنوز آشکارش می‌کند پنهان نکن.</string>
+    <string name="sol_prov_manufacturer">سازنده‌ی RKP (از گواهی RKP) با این دستگاه مطابقت ندارد، پس keybox برای دستگاه دیگری تدارک دیده شده است. از keybox تدارک‌دیده‌شده روی همین دستگاه استفاده کن.</string>
+    <string name="sol_rom_identity">روی یک دستگاه صادق، هویت SoC، baseband و init با برند و مدل اعلام‌شده مطابقت دارد. وقتی یک ویژگی هویتی ROM یا سخت‌افزار با دستگاه ادعاشده در تضاد است، یک spoof از fingerprint، propهای محصول را پوشانده اما propهای سخت‌افزار را نه. هر سطح هویتی (SoC، baseband، init.svc، cpuinfo) را با دستگاه spoofشده سازگار نگه دار.</string>
+    <string name="sol_stock_path_hidden">یک مسیر سیستمی استاندارد Android روی دستگاه کارخانه‌ای حاضر است، پس مسیری کارخانه‌ای که غایب خوانده می‌شود یعنی یک لایه‌ی پنهان‌سازی بیش از حد آن را پنهان می‌کند، که خودش یک tell است. فقط مسیرهای root و ماژول را پنهان کن، هرگز مسیری که روی دستگاه تمیز وجود دارد.</string>
+    <string name="sol_version_cluster">یک build کارخانه‌ای درباره‌ی وضعیت انتشار خود با خودش هم‌نظر است: codename، SDK از نوع release-یا-preview و توکن fingerprint همگی release خوانده می‌شوند، یا همگی preview، هرگز مخلوط. وقتی یک سیگنال release خوانده می‌شود در حالی که دیگری preview خوانده می‌شود، یک spoof برخی propهای نسخه را تغییر داده اما نه همه را. هر سیگنال وضعیت نسخه را به همان کانال هم‌راستا کن.</string>
 </resources>

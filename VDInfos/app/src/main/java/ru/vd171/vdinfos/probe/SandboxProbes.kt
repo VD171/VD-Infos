@@ -1,7 +1,7 @@
 /*
  * ======================================================================
  *  VD INFOS  ::  method debugger
- *  Read every device info by every method, then compare. A divergence is a hook.
+ *  Read every device info by every method, then compare.
  *
  *  Copyright (C) 2026  VD171
  *  SPDX-License-Identifier: AGPL-3.0-or-later
@@ -14,8 +14,9 @@
  *  Source         : https://github.com/VD171/VD-Infos
  *  GitHub         : @VD171 https://github.com/VD171
  *  XDA-Developers : @VD171 https://xdaforums.com/m/vd171.4699873/
+ *  XDA thread     : https://xdaforums.com/t/VD-Infos.4097379/
  *  Telegram       : @VD_Priv8 https://t.me/VD_Priv8
- *  Telegram       : @Priv8_VD https://t.me/Priv8_VD
+ *  Channel        : @Priv8_VD https://t.me/Priv8_VD
  *  Discord        : @VD.Priv8 https://discord.com/users/1296831918989639721
  *  E-mail         : vd.priv8@pm.me
  * ======================================================================
@@ -37,10 +38,11 @@ object SandboxProbes {
     } catch (t: Throwable) {
         val m = t.message.orEmpty()
         when {
-            m.contains(Sentinels.EACCES) -> Sentinels.EACCES
-            m.contains("ENOENT") -> "ENOENT"
-            m.contains(Sentinels.EPERM) -> Sentinels.EPERM
-            m.contains("EISDIR") -> "EISDIR"
+            m.contains(Sentinels.EACCES) || m.contains("Permission denied", true) -> Sentinels.EACCES
+            m.contains("ENOENT") || m.contains("No such file", true) -> "ENOENT"
+            m.contains(Sentinels.EPERM) || m.contains("Operation not permitted", true) -> Sentinels.EPERM
+            m.contains("EISDIR") || m.contains("Is a directory", true) -> "EISDIR"
+            m.contains("ENOTDIR") || m.contains("Not a directory", true) -> "ENOTDIR"
             else -> t.javaClass.simpleName
         }
     }

@@ -2,7 +2,7 @@
 <!--
     ======================================================================
      VD INFOS  ::  method debugger
-     Read every device info by every method, then compare. A divergence is a hook.
+     Read every device info by every method, then compare.
 
      Copyright (C) 2026  VD171
      SPDX-License-Identifier: AGPL-3.0-or-later
@@ -15,8 +15,9 @@
      Source         : https://github.com/VD171/VD-Infos
      GitHub         : @VD171 https://github.com/VD171
      XDA-Developers : @VD171 https://xdaforums.com/m/vd171.4699873/
+     XDA thread     : https://xdaforums.com/t/VD-Infos.4097379/
      Telegram       : @VD_Priv8 https://t.me/VD_Priv8
-     Telegram       : @Priv8_VD https://t.me/Priv8_VD
+     Channel        : @Priv8_VD https://t.me/Priv8_VD
      Discord        : @VD.Priv8 https://discord.com/users/1296831918989639721
      E-mail         : vd.priv8@pm.me
     ======================================================================
@@ -91,6 +92,7 @@
     <string name="crash_title">Oväntat fel</string>
     <string name="crash_body">Appen stötte på ett oväntat fel. Ingenting har skickats någonstans. Du kan kopiera detaljerna nedan och skicka dem till utvecklaren.</string>
     <string name="about_project">Projekt</string>
+    <string name="about_see_also">Se även</string>
     <string name="about_support">Nedladdning och support</string>
     <string name="action_clear">Rensa sökning</string>
     <string name="lang_dialog_title">Språk</string>
@@ -101,29 +103,27 @@
     <!-- Lösning -->
     <string name="sol_title">Så här åtgärdar du</string>
     <string name="card_details">Detaljer</string>
-    <string name="sol_boot">Detta är vad hårdvaru-attestation (TEE) rapporterar om bootstatus. Verktyg som kringgår keybox (TrickyStore, TEE Simulator, OhMyKeyMint) skriver om attestation endast för appar du anger. Lägg till den här appens paket i verktygens mållista (t.ex. target.txt) så att dess attestation rapporterar en låst enhet med grön verified boot.</string>
-    <string name="sol_root_detector">Dessa installerade appar letar efter root, emulator eller misslyckad Play Integrity. Lägg till paketen som hittats här som mål i ditt döljramverk (HMA-OSS) så att dina appar och rootmoduler döljs för dessa detektorer.</string>
-    <string name="sol_spoof">Den här inställningen läses olika via de vägar en app kan använda (spoof täcker inte alla). Lägg till inställningen i HMA-OSS spoof-förinställningar så att varje läsväg returnerar samma värde.</string>
-    <string name="sol_attest_patch">Key attestation rapporterar en annan patchnivå än systemegenskapen. Ställ in det i ditt keybox-verktyg - TrickyStore i security_patch.txt (ett datum, eller system=/boot=/vendor=/all=, eller \'prop\'); OhMyKeymint i config.toml under [trust]. Båda ändrar bara attestationen, inte egenskaperna.</string>
-    <string name="sol_patch_prop">Build.VERSION.SECURITY_PATCH (framework) och egenskapen ro.build.version.security_patch visar olika datum. Justera dem med resetprop. security_patch.txt och config.toml hjälper inte här - de ändrar bara key attestation, inte egenskaperna.</string>
+    <string name="sol_root_detector">Dessa installerade appar letar efter root. Lägg till paketen som hittas här som mål i ditt döljramverk (HMA-OSS).</string>
+    <string name="sol_attest_patch">Attestering rapporterar en annan security patch än property. Ställ in den i ditt keybox-verktyg (TrickyStore security_patch.txt, OhMyKeymint config.toml [trust]); ändrar bara attesteringen.</string>
+    <string name="sol_patch_prop">Framework och property visar olika patch-datum. Jämka dem med resetprop; keybox-verktyg ändrar bara attesteringen, inte properties.</string>
 
-    <string name="note_gsf">Saknas på Android 16 och senare: Google-tjänsternas lager flyttade till Play Services, vars egen dörr Google döpte till &quot;do.not.use&quot; och som inte svarar andra appar. Båda prövas ovan.</string>
     <string name="t_attestation_app_id">Attesteringens app-id (paket + signatur)</string>
     <string name="t_dev_ptmx_present">/dev/ptmx finns</string>
     <string name="t_documents_providers">Registrerade DocumentsProviders</string>
     <string name="t_kernel_modules">Laddade kärnmoduler (KernelSU/SuSFS)</string>
-    <string name="t_kernel_syscall_fingerprint">Kärnversion via syscall-fingeravtryck</string>
+    <string name="t_kernel_syscall_fingerprint">Korskontroll av kärnversion</string>
     <string name="t_key_inside_secure_hw">Nyckel i säker hårdvara (KeyInfo)</string>
     <string name="t_rot_ec_vs_rsa">Attesteringens förtroenderot: EC- mot RSA-begäran</string>
     <string name="t_leaf_sig_alg">Attesteringens lövcertifikat: nyckel mot signaturalgoritm</string>
     <string name="t_batch_key_ec_vs_rsa">Attesteringsnyckel: EC-kedja mot RSA-kedja</string>
+    <string name="t_native_vs_jvm">Attestering: native keystore2 vs JVM</string>
     <string name="t_local_tmp_contents">Innehåll i /data/local/tmp</string>
     <string name="t_native_lib_origin">Det nativa bibliotekets ursprung (dladdr)</string>
     <string name="t_own_debuggable">Den här appen: debuggable / debug-bygge</string>
     <string name="t_play_store_version">Version av Play Store / GMS</string>
     <string name="t_resolv_conf">resolv.conf / DNS-konfiguration</string>
     <string name="t_root_backup_tools">Root-baserade säkerhetskopieringsverktyg finns</string>
-    <string name="t_su_libc_inline_hook">su: rå syscall mot libc mot Java</string>
+    <string name="t_su_libc_inline_hook">su-upplösning över lager</string>
     <string name="t_system_build_prop">/system/build.prop</string>
     <string name="t_system_build_prop_present">/system/build.prop finns</string>
     <string name="t_adb_enabled">ADB aktiverat</string>
@@ -193,7 +193,7 @@
     <string name="t_imei">IMEI</string>
     <string name="t_imsi_subscriber">IMSI (abonnent)</string>
     <string name="t_incremental">Incremental</string>
-    <string name="t_injected_libs_proc_self_maps">Injicerade libbar (/proc/self/maps)</string>
+    <string name="t_injected_libs_proc_self_maps">Injicerade bibliotek</string>
     <string name="t_installed_app_signing_digests">Signeringsdigester för installerade appar</string>
     <string name="t_installed_applications">Installerade applikationer</string>
     <string name="t_installed_input_methods">Installerade inmatningsmetoder</string>
@@ -203,13 +203,9 @@
     <string name="t_kernel_version">Kärna (version)</string>
     <string name="t_kernel_version_string">Kärna (versionssträng)</string>
     <string name="t_kernel_version_claim">Kärnans versionspåstående (ro.kernel.version vs uname)</string>
-    <string name="note_kernel_version_claim">Egenskapen ro.kernel.version ska spegla den körande kärnan. Om den påstår ett major.minor som den riktiga uname-releasen inte har, har en resolver satt egenskapen medan kärnan under är en annan.</string>
     <string name="t_kernel_build_date">Kärnans byggdatum vs ROM</string>
-    <string name="note_kernel_build_date">En förbyggd GKI-kärna är äldre än eller matchar den ROM den levereras i. En kärna byggd långt efter att ROM:en sattes samman har byggts om eller flashats senare, det vanliga tecknet på en handkompilerad kärna.</string>
     <string name="t_kernel_config">Kärnkonfiguration (/proc/config.gz)</string>
-    <string name="note_kernel_config">Kärnkonfigurationen namnger, där den är läsbar, de inkompilerade patcharna: KSU, SUSFS, en egen local version, ej framtvingad modulsignering. Appens sandlåda nekar ofta denna fil; den läses på äldre Android, custom-ROM och root-shells.</string>
     <string name="t_kernel_module_scan">Kärnmoduler och symboler</string>
-    <string name="note_kernel_module_scan">Söker igenom /sys/module och symbolnamnen i /proc/kallsyms efter ksu, susfs och magisk, som en patchad eller modulladdad kärna exponerar. Båda ytorna är ofta begränsade; de läses där domänen tillåter.</string>
     <string name="t_kernel_cmdline">kärna cmdline</string>
     <string name="t_kernel_log">Kärnlogg</string>
     <string name="t_kernel_stat">kärna stat</string>
@@ -286,8 +282,8 @@
     <string name="t_verified_boot_hash_vbmeta_digest">Verified boot hash / vbmeta-digest</string>
     <string name="t_verified_boot_key">Verified boot-nyckel</string>
     <string name="t_verified_boot_state">Verified boot-status</string>
-    <string name="t_prop_area_tamper">Manipulering av propertyområde (hål/kontext)</string>
-    <string name="t_supplementary_groups">Kompletterande grupper (3009=AID_READPROC)</string>
+    <string name="t_prop_area_tamper">Systemegenskapsområde</string>
+    <string name="t_supplementary_groups">Tilläggsgrupper</string>
     <string name="t_version_codename">Versionens kodnamn</string>
     <string name="t_webview_provider">WebView-leverantör</string>
     <string name="t_webview_user_agent">WebView user agent</string>
@@ -323,6 +319,17 @@
     <string name="t_queryintentservices_main">queryIntentServices (MAIN)</string>
     <string name="t_resolveactivity_main_launcher">resolveActivity (MAIN/LAUNCHER)</string>
     <string name="t_su_binary">su-binär</string>
+    <string name="t_setuid_root">Privilegierad binärfil</string>
+    <string name="t_root_dirs_present">Synlighet för systemkataloger</string>
+    <string name="t_maps_isolated">Injicerade moduler</string>
+    <string name="t_inline_hooks">Kodhookar</string>
+    <string name="t_linker_maps_gap">Dolda bibliotek</string>
+    <string name="t_tracerpid_iso">Felsökare ansluten</string>
+    <string name="t_fd_iso">Öppna handtag</string>
+    <string name="t_selinux_iso">Säkerhetskontext</string>
+    <string name="t_su_iso">Superanvändaråtkomst</string>
+    <string name="t_prop_dual_iso">Systemegenskaper</string>
+    <string name="t_smaps_iso">Skrivbart körbart minne</string>
     <string name="t_su_on_path">su i PATH</string>
     <string name="t_tel_networkOperatorName">Nätverksoperatörsnamn</string>
     <string name="t_tel_networkOperator">Nätverksoperatör (MCC+MNC)</string>
@@ -414,7 +421,7 @@
     <string name="t_isrc_self_originating">Installationskälla (self): originating</string>
     <string name="t_isrc_self_pkgsource">Installationskälla (self): packageSource</string>
     <string name="t_isrc_self_initiator_sig">Installationskälla (self): initiator-cert vs installerad</string>
-    <string name="t_isrc_gap_jvm_store_pm_denies">Avvikelse: JVM anger store-installer, pm nekar (hook)</string>
+    <string name="t_isrc_gap_jvm_store_pm_denies">Installerare: JVM vs. pm</string>
     <string name="t_isrc_gap_jvm_pm_other">Avvikelse: installer JVM ≠ installer pm (synlighet)</string>
     <string name="t_isrc_gap_installer_ne_initiating">Avvikelse: installer ≠ initiating</string>
     <string name="t_isrc_gap_store_installer_sideload">Avvikelse: store-installer, initiating sideload</string>
@@ -433,24 +440,16 @@
     <string name="t_installed_applications_diff">Installerade applikationer: avvikande (JVM x pm)</string>
     <string name="t_selinux_status">SELinux statussida (policyload/seq)</string>
     <string name="t_selinux_policy_probe">SELinux-policysond (typer + AVC)</string>
-    <string name="t_manager_doors">Root/Xposed-hanterare: synlighet per PackageManager-dörr</string>
+    <string name="t_manager_doors">Synlighet för hanterarapp</string>
     <string name="t_net_sock_diag">Netlink sock_diag-policy</string>
-    <string name="n_net_sock_diag">En begränsad app måste nekas NETLINK_SOCK_DIAG; ett svar betyder att netlink-policyn har luckrats upp.</string>
     <string name="t_mount_peer_gap">Integritet för monteringars peer-group</string>
-    <string name="n_mount_peer_gap">Peer-group-id-mängden måste läsas lika genom varje lins; en lucka per lins innebär en dold montering.</string>
     <string name="t_mount_fdinfo_mnt">Mount-id vs öppna deskriptorer</string>
-    <string name="n_mount_fdinfo_mnt">En öppen deskriptor vars mnt_id saknas i mountinfo pekar på en montering dold från vyn.</string>
-    <string name="t_proc_readproc_gid">Zygote-GID 3009 (AID_READPROC)</string>
-    <string name="n_proc_readproc_gid">Ett saknat AID_READPROC-tilläggs-GID är ett spår som vissa appdöljningsmoduler lämnar.</string>
+    <string name="t_proc_readproc_gid">Zygotes kompletterande GID:er</string>
     <string name="t_proc_fd_graph">Deskriptorräkning</string>
     <string name="t_mem_anon_exec">Anonyma körbara mappningar</string>
-    <string name="n_mem_anon_exec">Körbara sidor utan bakomliggande fil är typisk injektions-/Zygisk-rest; antalet måste stämma mellan linserna.</string>
     <string name="t_kernel_selfbuild">Egenbyggd / patchad kärna</string>
-    <string name="n_kernel_selfbuild">En fabrikskärna bär ingen -dirty-, git- eller SUSFS-byggmarkör; markörerna måste stämma mellan linserna.</string>
     <string name="t_tee_soter">Soter-tjänst vs egenskap</string>
-    <string name="n_tee_soter">Stämmer av Tencents Soter-tjänstprogram mot dess tjänsteegenskaps tillstånd.</string>
     <string name="t_proc_cgroup_format">cgroup-sökvägsformat</string>
-    <string name="n_proc_cgroup_format">En klonad / dual-app-container får den enhetliga cgroup-sökvägen att avvika från den kanoniska uid_/pid_-formen.</string>
     <string name="t_gpu_vendor">GPU-tillverkare</string>
     <string name="t_gpu_renderer">GPU-renderare</string>
     <string name="t_gpu_version">GPU-version</string>
@@ -462,32 +461,119 @@
     <string name="t_tel_simSpecificCarrierId">Specifikt SIM-operatörs-ID</string>
     <string name="t_tel_visualVoicemailPackageName">Paket för visuell röstbrevlåda</string>
     <string name="t_keychain_blacklist">Keychain-certifikatsvartlista</string>
-    <string name="t_buildprop_vs_runtime">build.prop vs runtime</string>
-    <string name="note_boot_count">boot_count (ramverk) växer bara; Phenotype_boot_count (Play-tjänster) är dess ögonblicksbild och kan släpa efter. Avvikande endast om ögonblicksbilden ligger före boot_count (en återställning).</string>
-    <string name="note_isrc_initiator_sig">Certifikatet som systemet registrerade för installeraren när den här appen installerades skiljer sig från det installeraren rapporterar nu. En utbytt installerare eller en förfalskad signatur orsakar det; ROM:ar som signerar om systemet och rapporterar tillverkarens originalcertifikat (t.ex. Xiaomi.eu) visar det på alla enheter.</string>
+    <string name="t_buildprop_vs_runtime">Build-egenskapens konsistens</string>
     <string name="t_concealment">Appdöljning</string>
-    <string name="note_concealment">Ett paket som döljs från applistan men ändå nås genom en annan PackageManager-dörr (paketinfo, createPackageContext, dess öppnade APK, launch intent) är dolt vid en dörr men inte en annan - kännetecknet för en ofullständig appdöljare.</string>
     <string name="t_prop_variants">Partitionsvarianter: %1$s</string>
     <string name="t_prop_enum">Egenskapsuppräkning vs getprop</string>
-    <string name="note_prop_variants">Samma suffix finns per partition (system, vendor, product, odm, dlkm...). Värden som borde stämma överallt men skiljer sig, eller som delar sig inom en linje, avslöjar en delvis spoof - ett fingeravtryck ändrat på vissa partitioner men inte andra.</string>
-    <string name="note_prop_enum">Att räkna upp egenskapsområdet nativt (__system_property_foreach) och jämföra med getprop från en annan process avslöjar en egenskap som är dold för skalet eller injicerad i en väg men inte den andra.</string>
-    <string name="t_dlphdr">Loader-moduler (dl_iterate_phdr)</string>
-    <string name="t_frida_port">Frida-portskanning</string>
-    <string name="note_dlphdr">dl_iterate_phdr räknar upp de laddade modulerna via länkaren, inte via /proc/self/maps, så en hook som rensar sin post från maps listas ändå här. En needle-träff eller en modul utanför systemets allowlist är läckan.</string>
+    <string name="t_dlphdr">Laddade moduler</string>
+    <string name="t_frida_port">Instrumenteringsport</string>
     <string name="t_ime_verdict">Tangentbordets integritetsutlåtande</string>
     <string name="t_store_authenticity">Äkthet för butik-/GMS-signatur</string>
     <string name="t_devgate">Koherens för Dev-låsta inställningar</string>
-    <string name="note_ime_verdict">En bank-RASP (PayZapp/Zeta) avvisar varje aktiverat tangentbord som är icke-system och installerat utanför en butik-allowlist. Ett aktiverat icke-system-IME med icke-butiksinstallerare flaggas.</string>
-    <string name="note_store_authenticity">Play Store, GMS och GSF måste bära Googles signeringscertifikat. Ett butiks- eller GMS-paket som finns men är signerat med en annan nyckel är en förfalskning, microG eller en ompaketerad butik.</string>
-    <string name="note_devgate">adb och andra Dev-låsta inställningar ändras bara med Utvecklaralternativ på. En låst inställning som inte är standard vid development_settings_enabled=0 kan bara ha satts via root eller `settings put`.</string>
-    <string name="t_maps_exec">Injicerade exec-mappningar (deleted/memfd)</string>
-    <string name="t_anon_minor">Dolt anon-bdev-superblock</string>
-    <string name="note_maps_exec">En körbar mappning som backas av en (deleted)/memfd/ashmem-fil som antingen är RWX (bryter W^X) eller börjar med ELF-magin är en riktig injicerad .so, frikopplad från filsystemet; ART:s JIT-trampolin är ingetdera och räknas som godartad. En modul utanför systemets allowlist räknas också.</string>
-    <string name="note_anon_minor">Filsystem utan blockenhet hämtar sin minor från en global anon-pool, tät underifrån. En minor som finns via stat() men saknas i den här processens mountinfo är ett levande superblock dolt i en privat namespace (en daemons tmpfs). En lång rad saknade minorer är app-churn och ignoreras; ett kort hål är tecknet.</string>
-    <string name="t_sb_tee_signer">StrongBox- vs. TEE-signerare</string>
+    <string name="t_maps_exec">Körbara minnesmappningar</string>
+    <string name="t_elf_in_anon">Kodavbildning i anonymt minne</string>
+    <string name="t_anon_exec_orphan">Icke-backat körbart minne</string>
+    <string name="t_anon_minor">Dolt filsystem</string>
+    <string name="t_sb_tee_signer">StrongBox-attesteringsprofil</string>
+    <string name="t_sb_capability">StrongBox-capability-profil</string>
+    <string name="t_sb_enforced">StrongBox-nyckelns efterlevnadsnivå</string>
+    <string name="t_sb_version">StrongBox-attesteringsversion</string>
+    <string name="t_sb_chain">StrongBox-attesteringskedja</string>
+    <string name="t_sb_rkp">StrongBox-nyckel-provisioning</string>
+    <string name="t_sb_latency">StrongBox-nyckelgenereringstid</string>
     <string name="t_local_tmp_list">Listning av /data/local/tmp</string>
-    <string name="note_local_tmp_list">Att lista /data/local/tmp med getdents64 (inte en namnuppslagning) visar varje rest en app faktiskt når, inklusive det modulen släpper. På en låst enhet ägs katalogen av shell och kan inte listas av en app, så EACCES är det rena svaret; en synlig post betyder app-nåbar rest.</string>
     <string name="t_nettype_consistency">Nätverkstyp vs verkligt gränssnitt</string>
     <string name="t_flagsecure_honored">FLAG_SECURE respekteras (skärmdumpsblock)</string>
+    <string name="t_procnet_frida">Instrumenteringssocket</string>
+    <string name="t_procnet_tun">VPN-gränssnitt</string>
+    <string name="t_mountinfo_iso">Monteringsposter</string>
+    <string name="t_adb_usb_exposure">ADB/USB-felsökningsexponering</string>
+    <string name="t_anon_elf_struct">ELF-struktur i anonymt minne</string>
+    <string name="t_atexit_drift">Atexit-körtidsavvikelse</string>
+    <string name="t_attestation_challenge_echo">Attestation-challenge-eko</string>
+    <string name="t_attest_synth_paradox">Attestation vs. körningstillstånd</string>
+    <string name="t_baseband_coherence">Baseband-versionskoherens</string>
+    <string name="t_datadir_errno_oracle">Sondering av paketets datakatalog</string>
+    <string name="t_device_id">Attestation-enhetsidentitet vs. Build</string>
+    <string name="t_feature_spoof">Konsistens för systemfunktioner</string>
+    <string name="t_fingerprint_rebuild">Fingerprint-rekonstruktion</string>
+    <string name="t_gap_mapped">Täckning av minnesmappning</string>
+    <string name="t_heap_hook_xref">Inaktuella referenser i heap</string>
+    <string name="t_hidden_app_usage_leak">Paketsynlighet via usage stats</string>
+    <string name="t_hidden_region_xref">Heap-referenser till minnesregioner</string>
+    <string name="t_launch_sender_pkg_leak">IntentSender-paketsynlighet</string>
+    <string name="t_libc_identity">libc-avbildningens konsistens</string>
+    <string name="t_lock_coherence">Bootloader-låskoherens</string>
+    <string name="t_map_files_leak">Ursprung för mappade filer</string>
+    <string name="t_multiuser_oracle">Synlighet för användare / private-space</string>
+    <string name="t_named_anon_exec">Kodmappning med anonymt namn</string>
+    <string name="t_otacerts_signing_key">OTA-signeringsnyckel (otacerts)</string>
+    <string name="t_pairip_wrapper">App-wrapperskanning</string>
+    <string name="t_phantom_monitor_prop">Phantom-monitor-flaggprop</string>
+    <string name="t_phantom_monitor_setting">Phantom-monitor-inställning</string>
+    <string name="t_platform_signer">Plattformssignerare (android-paket)</string>
+    <string name="t_prov_fingerprint">RKP-fingerprint vs. enhet</string>
+    <string name="t_prov_manufacturer">RKP-tillverkare vs. enhet</string>
+    <string name="t_prov_vbmeta_reuse">RKP vbmeta vs. runtime</string>
+    <string name="t_prov_verdict">RKP verified boot-utslag</string>
+    <string name="t_settings_stock_baseline">Baslinje för utvecklar-/säkerhetsinställningar</string>
+    <string name="t_signature_source">Koherens för signeringscertifikatets källa</string>
+    <string name="t_signature_sweep">Signeringscertifikat-svep (alla appar)</string>
+    <string name="t_signing_keys">Signeringsnycklar (release-keys förväntas)</string>
+    <string name="t_statfs_consistency">Lagringsstorlekens konsistens</string>
+    <string name="t_verifier_adb_installs">Verifiera appar via USB (package verifier)</string>
+    <string name="t_zygisk_loader_footprint">Loaderrester i minnet</string>
+    <string name="t_zygote_gid">Zygote-GID-konsistens</string>
     <string name="about_trademarks">VD Infos är ett oberoende, inofficiellt forsknings- och diagnostikverktyg. Det är inte anslutet till, godkänt av eller sponsrat av någon av de leverantörer vars programvara, tjänster eller märken det läser, upptäcker eller namnger (inklusive Google LLC och Android Open Source Project). \"Android\", \"Google\", \"Google Play\", \"Play Integrity\", \"Widevine\" och alla andra produktnamn, logotyper och varumärken tillhör sina respektive ägare. VD Infos läser endast det som redan finns på din enhet och skickar ingenting någonstans.</string>
+    <string name="note_art_dexopt_self">Hälsosignal, inte ett root-tecken. En AOT base.odex finns på disk men appen körs tolkad (ingen körbar mappning), vilket betyder att odex:en avvisades (boot-image inaktuell, ART boot-image ändrades efter en apex-uppdatering). Tjänsteappar och Play Protect-appverifiering kan då misslyckas att starta i tid. Proxy på användarsidan; den auktoritativa kontrollen sker på root-sidan.</string>
+    <string name="sol_art_dexopt_self">Kompilera om som root (pm compile -a -m speed) eller starta om för att återskapa boot-imagen och köra dexopt på apparna igen.</string>
+    <string name="sol_atexit_drift">libc-avslutshanterarna __cxa_atexit och __cxa_finalize måste resolva inuti libc. När de resolvar till ett annat bibliotek eller en anonym region har en injektor av Zygisk-typ lagt sig emellan. Ta bort injektionen från den här processen.</string>
+    <string name="sol_baseband_coherence">Modemversionen rapporteras av både getRadioVersion och gsm.version.baseband-familjen; de läser alla samma firmware. När en källa avviker har en egenskapsförfalskning patchat vissa alias men inte alla. Håll varje källa för baseband-version identisk.</string>
+    <string name="sol_boot">Hårdvaruattestering (TEE) rapporterar boot-tillståndet. Lägg till det här appaketet i målet för ditt keybox-verktyg så att det rapporterar en låst, verifierad enhet.</string>
+    <string name="sol_datadir_errno_oracle">En stat på ett pakets datakatalog kan avslöja att det är installerat även utan paketfråga. Lägg till sådana paket i ditt döljningsramverk (HMA-OSS) så att deras datakataloger läses som frånvarande, inte bara nekade.</string>
+    <string name="sol_device_id">Den attesterade hårdvaruidentiteten (brand, device, manufacturer) matchar inte build-egenskaperna, så en verifierare kan avgöra att egenskaperna är förfalskade. Justera ro.product.brand, ro.product.device och ro.product.manufacturer så att de stämmer med de hårdvaruattesterade värdena (product och model skiljer sig legitimt: attesteringen bär kodnamnet).</string>
+    <string name="sol_feature_spoof">hasSystemFeature, getSystemAvailableFeatures och hårdvarunoderna är oense om en enhetsfunktion, så en funktion döljs eller fejkas via en väg men inte de andra. Se till att varje väg för funktionsförfrågan och hårdvaran rapporterar samma närvaro.</string>
+    <string name="sol_fingerprint_rebuild">Build-fingeravtrycket sätts samman vid byggtid som BRAND/PRODUCT/DEVICE:RELEASE/ID/INCREMENTAL:TYPE/TAGS. När Build.FINGERPRINT inte är lika med den återuppbyggnaden från sina egna komponentfält har en förfalskning ändrat fingeravtrycket utan att justera varje komponent (eller tvärtom). Gör fingeravtrycket och dess komponenter konsistenta.</string>
+    <string name="sol_hidden_app_usage_leak">Ett paket kan dyka upp via usage-stats-API:erna även när det hålls utanför listan över installerade paket. Lägg till sådana paket i ditt döljningsramverk (HMA-OSS) så att de döljs även från usage-stats-API:erna, inte bara från paketlistan.</string>
+    <string name="sol_launch_sender_pkg_leak">På uppmätta ROM:ar nycklas den returnerade IntentSender endast av (caller, name): dess creator-fält är anroparens och equals skiljer sig enbart på namnet, så den bär ingen signal om installerad/dold (att jämföra mot ett slumpmässigt frånvarande namn är en falsk positiv). Den läcker bara om ett synligt installerat paket och ett frånvarande namn skiljer sig på ett anroparoberoende fält; om så är fallet, låt döljningsramverket (HMA-OSS) returnera motsvarigheten för frånvarande för dolda paket.</string>
+    <string name="sol_libc_identity">Den inlästa libc-mappningen (device och inode) matchar inte filen libc.so på disk, så biblioteket byttes ut eller bind-monterades (en hookad libc). Tillhandahåll den äkta libc, eller dölj ersättningsmonteringen från appen.</string>
+    <string name="sol_lock_coherence">På en stock låst enhet är varje egenskap för bootloader-lås och verified boot överens: flash.locked=1, verifiedbootstate=green, vbmeta.device_state=locked, garanti ej utlöst. När en hävdar låst medan en annan fortfarande läser olåst har en förfalskning patchat några men inte alla. Normalisera varje låsegenskap till samma tillstånd.</string>
+    <string name="sol_otacerts_signing_key">OTA-signeringscertifikatet (otacerts.zip) är den publika AOSP-testnyckeln, så bygget läses som test-signerat även när ro.build.tags hävdar release-keys. Tillhandahåll en release-signerad otacerts.zip via din filomdirigeringsmodul och justera ro.*.build.tags över varje partition så att filen och egenskaperna stämmer överens.</string>
+    <string name="sol_perm_path_coherence">Samma behörighet resolvas av flera kodvägar: PackageManager.checkPermission, Context.checkPermission(perm,pid,uid), de beviljade flaggorna i getPackageInfo(GET_PERMISSIONS) och lågnivåbindaren IPackageManager.checkUidPermission. På ett orört system är alla nåbara vägar överens, och en privilegierad behörighet (START_ANY_ACTIVITY, INSTALL_PACKAGES, MANAGE_USERS) nekas på var och en. En hook som förfalskar eller döljer en behörighet på en väg men inte en annan, eller som beviljar en privilegierad behörighet som en vanlig app aldrig kan inneha, avviker här. Resolva behörigheter konsekvent över varje väg; förfalska inte en beviljning på enbart den väg som en detektor råkar läsa.</string>
+    <string name="sol_phantom_monitor">En stock enhet avslöjar inte om phantom-process-övervakaren ändrats. Lägg till inställningen i förfalskningsförinställningarna i ditt döljningsramverk (HMA-OSS) så att den läses som på en stock enhet, och undvik egenskapen som åsidosätter feature-flaggan.</string>
+    <string name="sol_platform_signer">Signaturen för plattformspaketet (android) avslöjar en icke-OEM-signerare (en anpassad ROM eller AOSP-testnyckeln) eller en OEM som inte matchar den uppgivna tillverkaren. Förfalska plattformssignaturen (som PlayIntegrityForks spoofSignature gör) så att android-paketet rapporterar den uppgivna OEM:ens plattformscertifikat.</string>
+    <string name="sol_prov_fingerprint">RKP-fingeravtrycket (från RKP-certifikatet) matchar inte den här enhetens build-fingeravtryck, så keyboxen tillhör en annan enhet. Använd en keybox som provisionerats på den här enheten.</string>
+    <string name="sol_prov_vbmeta_reuse">RKP vbmeta_digest (från RKP-certifikatet) matchar inte enhetens verified boot-hash vid körning, så keyboxen provisionerades på en annan enhet (en återanvänd eller delad keybox) eller enheten uppdaterades efter provisioneringen. Använd en keybox som provisionerats på den här enheten.</string>
+    <string name="sol_prov_verdict">RKP-certifikatet registrerar enhetens boot som ej godkänd, så RKP-backend flaggade den här enheten. Använd en keybox som provisionerats på en enhet som backend godkänt.</string>
+    <string name="sol_signature_source">Signeringscertifikatet som läses från PackageManager-posten och det som tolkas från APK-filen på disk måste matcha, och PackageManager måste känna igen APK-filens certifikat (hasSigningCertificate, checkSignatures). När de avviker har en hook på PackageManager-nivå skrivit om den rapporterade signaturen utan att röra själva APK:en. En direkt APK-läsning ser fortfarande det äkta certifikatet.</string>
+    <string name="sol_signature_sweep">För varje installerad app delar signeringscertifikatet från PackageManager-posten och det som tolkas från dess APK-fil en signerare. En app vars två uppsättningar är disjunkta har fått sin PackageManager-signatur förfalskad medan APK:en på disk behöll den äkta. Nyckelrotation behåller en gemensam signerare, så den flaggas inte.</string>
+    <string name="sol_signing_keys">Ett produktionsbygge är signerat med release-keys. En signeringsnyckelegenskap som läser test-keys eller dev-keys (med någon metod) avslöjar ett anpassat bygge eller felsökningsbygge. Återställ release-keys över build.tags och de partitionsvisa *.keys-egenskaperna.</string>
+    <string name="sol_spoof">Den här inställningen läses inte konsekvent. Lägg till den i HMA-OSS förfalskningsförinställningar så att varje väg returnerar samma värde.</string>
+    <string name="sol_statfs_consistency">android.os.StatFs och den inbyggda statvfs-läsningen är oense om lagringsstorleken, så storleken förfalskas via Java-ramverkets API men inte inbyggt. Se till att StatFs-vägen och den inbyggda vägen rapporterar samma värden.</string>
+    <string name="sol_zygote_gid">Zygoten tilldelar en process dess kompletterande GID:n från appens beviljade behörigheter: INTERNET innebär 3003, BLUETOOTH 3002 och så vidare. En beviljad behörighet vars GID saknas i getgroups(2) betyder att ett döljningsverktyg filtrerat zygote-behörigheterna: det döljer appen men motsäger behörighetsuppsättningen, som vilken app som helst läser på sig själv. Ta inte bort GID:n som beviljade behörigheter kräver (ta till exempel aldrig bort INET_GID medan INTERNET är beviljad).</string>
+    <string name="summary_all_agreed_mark" translatable="false">🏆 ✓ </string>
+    <string name="t_boot_triad_coherence">Konsistens i verified boot-tillstånd</string>
+    <string name="t_build_vs_prop">android.os.Build mot kanonisk prop (per identitetsfält)</string>
+    <string name="t_debug_ramdisk">Innehåll i /debug_ramdisk</string>
+    <string name="t_isrc_gap_forged_store_install">Konsistens i butiksinstallerare</string>
+    <string name="t_isrc_gap_store_pkgsource_other">Avvikelse: butiksinstallerare, packageSource inte butikslik</string>
+    <string name="t_loop_orphan">Föräldralösa loop-enheter</string>
+    <string name="t_perm_path_coherence">Konsistens i behörighetskontroll</string>
+    <string name="t_rom_identity">SoC mot deklarerad enhetsidentitet</string>
+    <string name="t_settings_read_gate">Lässpärr för begränsad inställning</string>
+    <string name="t_stock_path_hidden">Synlighet för systemsökväg</string>
+    <string name="t_strongbox_level">StrongBox-baserad attesteringsnivå</string>
+    <string name="t_uid_hidden_running">Körande UID mot paketlista</string>
+    <string name="t_uid_priority_fake">Processernas schemaläggningsprioritet</string>
+    <string name="t_version_cluster">Konsistens i versionsklustret (release mot preview)</string>
+    <string name="usage_access_body">För att upptäcka ett paket som dolts från listan över installerade paket via usage-stats-API:erna krävs Användningsåtkomst. Bevilja den till den här appen i systeminställningarna och kom sedan tillbaka.</string>
+    <string name="usage_access_open">Öppna inställningar</string>
+    <string name="usage_access_title">Användningsåtkomst krävs</string>
+    <string name="sol_debug_ramdisk">Vid en stock-boot är /debug_ramdisk tom eller saknas. Filer som placerats där är en root- eller modul-payload tidigt i uppstarten. Rensa /debug_ramdisk från placerat innehåll, eller håll det i ett namespace som den här appen inte kan läsa.</string>
+    <string name="sol_loop_orphan">På en stock-enhet backas varje ext4-loop av en systemmontering i det här namespace. En loop utan systemmonteringspunkt är en modul eller overlay monterad utanför stock-upplägget. Montera sådana loopar under en systemsökväg, eller håll dem i ett mount-namespace som den här appen inte delar.</string>
+    <string name="sol_multiuser_oracle">En sekundär användare eller ett privat utrymme läcker när en stat på /data/user/&lt;id&gt; läser den som närvarande medan UserManager inte listar den. Få de två att stämma överens: håll antingen användarens datakatalog oåtkomlig för en icke-privilegierad app, eller dölj inte en användare som dess egen katalog ändå avslöjar.</string>
+    <string name="sol_prov_manufacturer">RKP-tillverkaren (från RKP-certifikatet) stämmer inte med den här enheten, så keyboxen tilldelades en annan enhet. Använd en keybox som tilldelats på den här enheten.</string>
+    <string name="sol_rom_identity">På en ärlig enhet matchar SoC, baseband och init-identitet det angivna varumärket och modellen. När en ROM- eller hårdvaruidentitetsegenskap motsäger den påstådda enheten täckte en fingerprint-spoof produktegenskaperna men inte hårdvaruegenskaperna. Håll varje identitetsyta (SoC, baseband, init.svc, cpuinfo) förenlig med den spoofade enheten.</string>
+    <string name="sol_stock_path_hidden">En standardsystemsökväg i Android finns på en stock-enhet, så en stock-sökväg som läses som frånvarande betyder att ett döljande lager överdöljer den, vilket i sig är en avslöjare. Dölj bara root- och modulsökvägar, aldrig en sökväg som finns på en ren enhet.</string>
+    <string name="sol_version_cluster">Ett stock-bygge är överens med sig självt om sitt utgåvetillstånd: kodnamn, release-eller-preview-SDK och fingerprint-token läses alla som release, eller alla som preview, aldrig blandat. När en signal läses som release medan en annan läses som preview ändrade en spoof vissa versionsegenskaper men inte alla. Rikta in varje versionstillståndssignal mot samma kanal.</string>
 </resources>

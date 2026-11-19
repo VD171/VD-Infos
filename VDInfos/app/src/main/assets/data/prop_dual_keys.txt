@@ -1,0 +1,19 @@
+# Sensitive props read two ways per process: native __system_property_get and
+# JVM SystemProperties.get. A native vs JVM divergence in any process is a prop
+# read hooked on one path only (resetprop / SystemProperties override).
+ro.build.tags
+ro.build.type
+ro.debuggable
+ro.secure
+ro.boot.verifiedbootstate
+ro.boot.flash.locked
+ro.boot.vbmeta.device_state
+ro.boot.vbmeta.digest
+init.svc.adbd
+service.adb.root
+sys.oem_unlock_allowed
+ro.build.fingerprint
+ro.product.model
+ro.product.device
+ro.boot.veritymode
+ro.oem_unlock_supported

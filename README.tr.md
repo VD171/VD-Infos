@@ -97,7 +97,7 @@ ui/             Jetpack Compose, Material 3, dinamik renk, canlı ilerleme
 cpp/            native_probes.cpp: native lens, bağımlılıksız
 ```
 
-* **Paralellik**: 996 sonda, sınırlı izin sayısıyla varsayılan dispatcher üzerinde dağılır; sonuçlar geldikçe UI'ye akar.
+* **Paralellik**: Sondalar, sınırlı izin sayısıyla varsayılan dispatcher üzerinde dağılır; sonuçlar geldikçe UI'ye akar.
 * **Arka planda hiçbir şey yok**: hizmet yok, zamanlanmış tarama yok; uygulama yalnızca açıkken çalışır ve boşta bırakılınca kendini kapatır.
 * **Native katman**: `RegisterNatives` ile ada göre bağlanan, bağımlılığı olmayan küçük bir `.so`, bilerek minik ve basit tutulur.
 

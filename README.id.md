@@ -97,7 +97,7 @@ ui/             Jetpack Compose, Material 3, warna dinamis, progres langsung
 cpp/            native_probes.cpp: lensa native, tanpa dependensi
 ```
 
-* **Paralelisme**: 991 probe menyebar di dispatcher default dengan jumlah izin terbatas; hasil mengalir ke UI begitu tiba.
+* **Paralelisme**: Probe menyebar di dispatcher default dengan jumlah izin terbatas; hasil mengalir ke UI begitu tiba.
 * **Tidak ada di latar belakang**: tanpa layanan dan tanpa pemindaian terjadwal; aplikasi berjalan hanya saat terbuka dan menutup sendiri ketika dibiarkan menganggur.
 * **Lapisan native**: satu `.so` kecil tanpa dependensi, diikat berdasarkan nama lewat `RegisterNatives`, sengaja dibuat mungil dan sederhana.
 

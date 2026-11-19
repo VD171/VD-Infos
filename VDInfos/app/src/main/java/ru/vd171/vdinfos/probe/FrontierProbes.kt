@@ -1,7 +1,7 @@
 /*
  * ======================================================================
  *  VD INFOS  ::  method debugger
- *  Read every device info by every method, then compare. A divergence is a hook.
+ *  Read every device info by every method, then compare.
  *
  *  Copyright (C) 2026  VD171
  *  SPDX-License-Identifier: AGPL-3.0-or-later
@@ -14,8 +14,9 @@
  *  Source         : https://github.com/VD171/VD-Infos
  *  GitHub         : @VD171 https://github.com/VD171
  *  XDA-Developers : @VD171 https://xdaforums.com/m/vd171.4699873/
+ *  XDA thread     : https://xdaforums.com/t/VD-Infos.4097379/
  *  Telegram       : @VD_Priv8 https://t.me/VD_Priv8
- *  Telegram       : @Priv8_VD https://t.me/Priv8_VD
+ *  Channel        : @Priv8_VD https://t.me/Priv8_VD
  *  Discord        : @VD.Priv8 https://discord.com/users/1296831918989639721
  *  E-mail         : vd.priv8@pm.me
  * ======================================================================
@@ -88,7 +89,7 @@ object FrontierProbes {
 
         add(probe("net:sock_diag", ctx.getString(R.string.t_net_sock_diag), Category.NETWORK, listOf(
             nm("NETLINK_SOCK_DIAG create+dump") { NativeBridge.sockDiag() },
-        ), note = ctx.getString(R.string.n_net_sock_diag)))
+        )))
 
         add(probe("mount:peer_gap", ctx.getString(R.string.t_mount_peer_gap), Category.INTEGRITY, listOf(
             jm("peer-groups /proc/self/mountinfo") {
@@ -100,18 +101,18 @@ object FrontierProbes {
             smr("grep -oE '(shared|master):[0-9]+' /proc/$PID/mountinfo | sort -u | " +
                 "wc -l | awk '{print \"peers=\" \$1}'",
                 "peer-groups (sh)", compare = false),
-        ), note = ctx.getString(R.string.n_mount_peer_gap)))
+        )))
 
         add(probe("mount:fdinfo_mnt", ctx.getString(R.string.t_mount_fdinfo_mnt), Category.INTEGRITY, listOf(
             jm("fdinfo mnt_id vs mountinfo") { fdinfoOrphan() },
-        ), note = ctx.getString(R.string.n_mount_fdinfo_mnt)))
+        )))
 
         add(probe("proc:readproc_gid", ctx.getString(R.string.t_proc_readproc_gid), Category.PROCESS, listOf(
             jm("Groups line /proc/self/status") { gid3009(runCatching { File("/proc/self/status").readText() }.getOrNull()) },
             nm("Groups line (native read)") { gid3009(NativeBridge.readFileOrReason("/proc/self/status")) },
             smr("awk -F: '/^Groups:/{print (\$2 ~ /(^| )3009( |\$)/)?\"present\":\"missing\"}' /proc/$PID/status",
                 "Groups 3009 (sh)", compare = false),
-        ), note = ctx.getString(R.string.n_proc_readproc_gid)))
+        )))
 
         add(probe("proc:fd_graph", ctx.getString(R.string.t_proc_fd_graph), Category.PROCESS, listOf(
             jm("census /proc/self/fd", compare = false) { fdCensus() },
@@ -128,7 +129,7 @@ object FrontierProbes {
                 """if(p=="" || p ~ /^\[anon:/ || p ~ /\(deleted\)/ || p ~ /^memfd:/ || """ +
                 """p ~ /^\/dev\/ashmem/ || p ~ /^\/data\//) n++ } END{print "anon_x=" n+0}' /proc/$PID/maps""",
                 "scan maps (sh)", compare = false),
-        ), note = ctx.getString(R.string.n_mem_anon_exec)))
+        )))
 
         add(probe("kernel:selfbuild", ctx.getString(R.string.t_kernel_selfbuild), Category.SYSTEM, listOf(
             jm("markers /proc/version") { kernelMarkers(runCatching { File("/proc/version").readText() }.getOrNull()) },
@@ -139,16 +140,16 @@ object FrontierProbes {
                 kernelProvenance(runCatching { File("/proc/version").readText() }.getOrNull())
             },
             smr("uname -a", "uname -a (raw)", compare = false),
-        ), note = ctx.getString(R.string.n_kernel_selfbuild)))
+        )))
 
         add(probe("tee:soter", ctx.getString(R.string.t_tee_soter), Category.SECURITY, listOf(
             smr("if [ -e /system/bin/soterserver ] || service list 2>/dev/null | grep -qi soter; " +
                 "then echo present; else echo absent; fi", "soter program", compare = false),
-        ), note = ctx.getString(R.string.n_tee_soter)))
+        )))
 
         add(probe("proc:cgroup_format", ctx.getString(R.string.t_proc_cgroup_format), Category.INTEGRITY, listOf(
             jm("validate /proc/self/cgroup") { cgroupFormat(runCatching { File("/proc/self/cgroup").readText() }.getOrNull()) },
-        ), note = ctx.getString(R.string.n_proc_cgroup_format)))
+        )))
     }
 
     private fun gid3009(status: String?): String? {

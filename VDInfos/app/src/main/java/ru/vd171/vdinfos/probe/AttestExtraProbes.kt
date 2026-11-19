@@ -1,7 +1,7 @@
 /*
  * ======================================================================
  *  VD INFOS  ::  method debugger
- *  Read every device info by every method, then compare. A divergence is a hook.
+ *  Read every device info by every method, then compare.
  *
  *  Copyright (C) 2026  VD171
  *  SPDX-License-Identifier: AGPL-3.0-or-later
@@ -14,8 +14,9 @@
  *  Source         : https://github.com/VD171/VD-Infos
  *  GitHub         : @VD171 https://github.com/VD171
  *  XDA-Developers : @VD171 https://xdaforums.com/m/vd171.4699873/
+ *  XDA thread     : https://xdaforums.com/t/VD-Infos.4097379/
  *  Telegram       : @VD_Priv8 https://t.me/VD_Priv8
- *  Telegram       : @Priv8_VD https://t.me/Priv8_VD
+ *  Channel        : @Priv8_VD https://t.me/Priv8_VD
  *  Discord        : @VD.Priv8 https://discord.com/users/1296831918989639721
  *  E-mail         : vd.priv8@pm.me
  * ======================================================================
@@ -97,21 +98,28 @@ object AttestExtraProbes {
 
     private fun rsaLeaf(): Attestation.Record? =
         Attestation.recordRsa?.takeIf { it.leafKeyAlg?.contains("RSA", true) == true }
-    private fun rsaLeafExpected(): String? = rsaLeaf()?.let { "RSA" }
+    private fun rsaLeafIsRkp(): Boolean =
+        rsaLeaf()?.let { it.provisioningByStructure == "rkp" || it.provisioningInfo != null } == true
+    private fun rsaLeafExpected(): String? = rsaLeaf()?.let { if (rsaLeafIsRkp()) "EC" else "RSA" }
     private fun rsaLeafSigFamily(): String? {
         if (Attestation.recordRsa == null) return "ABSENT (keybox has no RSA key)"
         val sig = rsaLeaf()?.leafSigAlg ?: return null
         return when {
             sig.contains("RSA", true) -> "RSA"
-            sig.contains("EC", true) -> "EC (RSA leaf signed by the EC keybox)"
+            sig.contains("EC", true) -> "EC"
             else -> sig
         }
     }
     private fun rsaLeafDetail(): String {
         val rsa = Attestation.recordRsa
         val ec = Attestation.recordPlain ?: Attestation.record
+        val note = rsaLeaf()?.let {
+            if (rsaLeafIsRkp()) "RKP chain (EC-only attestation key): an RSA leaf is ECDSA-signed by design"
+            else "batch keybox (not RKP): an RSA leaf must be RSA-signed; EC here is a real divergence"
+        }
         return "RSA leaf: key=${rsa?.leafKeyAlg ?: "-"} sig=${rsa?.leafSigAlg ?: "-"}\n" +
-            "EC leaf:  key=${ec?.leafKeyAlg ?: "-"} sig=${ec?.leafSigAlg ?: "-"}"
+            "EC leaf:  key=${ec?.leafKeyAlg ?: "-"} sig=${ec?.leafSigAlg ?: "-"}" +
+            (note?.let { "\n$it" } ?: "")
     }
 
     private fun batchKeyEc(): Attestation.Record? = Attestation.recordPlain ?: Attestation.record
@@ -121,10 +129,11 @@ object AttestExtraProbes {
         val rsa = Attestation.recordRsa ?: return null
         ec.signerSpkiHex ?: ec.signerSerial ?: return null
         rsa.signerSpkiHex ?: rsa.signerSerial ?: return null
+        val remoteProvisioned = ec.provisioning == "rkp" || rsa.provisioning == "rkp"
         val tells = buildList {
             val sharedSerial = ec.signerSerial != null && ec.signerSerial == rsa.signerSerial
             val sharedKey = ec.signerSpkiHex != null && ec.signerSpkiHex == rsa.signerSpkiHex
-            if (sharedSerial || sharedKey)
+            if ((sharedSerial || sharedKey) && !remoteProvisioned)
                 add("SHARED signer (one attestation key signs EC and RSA = keybox EC-only)")
             if (ec.signerSubjectSerialNo != null && rsa.signerSubjectSerialNo != null &&
                 ec.signerSubjectSerialNo != rsa.signerSubjectSerialNo)
@@ -135,8 +144,45 @@ object AttestExtraProbes {
     private fun batchKeyDetail(fp: Boolean): String {
         val ec = batchKeyEc(); val rsa = Attestation.recordRsa
         fun s(x: String?) = (if (fp) serialFp(x) else x) ?: "-"
-        return "EC chain:  serial=${s(ec?.signerSerial)} key=${ec?.signerSpkiHex ?: "-"} id=${s(ec?.signerSubjectSerialNo)}\n" +
+        return "provisioning: EC=${ec?.provisioning ?: "-"} RSA=${rsa?.provisioning ?: "-"}\n" +
+            "EC chain:  serial=${s(ec?.signerSerial)} key=${ec?.signerSpkiHex ?: "-"} id=${s(ec?.signerSubjectSerialNo)}\n" +
             "RSA chain: serial=${s(rsa?.signerSerial)} key=${rsa?.signerSpkiHex ?: "-"} id=${s(rsa?.signerSubjectSerialNo)}"
+    }
+
+    private fun nativeRec(): Attestation.Record? = Attestation.recordNative
+    private fun jvmRec(): Attestation.Record? = Attestation.recordPlain ?: Attestation.record
+
+    private fun nativeVsJvmExpected(): String? {
+        if (!NativeBridge.ks2Available) return null
+        nativeRec() ?: return null
+        jvmRec() ?: return null
+        return OK
+    }
+
+    private fun nativeVsJvmVerdict(): String? {
+        if (!NativeBridge.ks2Available) return null
+        val nat = nativeRec() ?: return null
+        val jvm = jvmRec() ?: return null
+        val tells = buildList {
+            if (nat.challengeHex != Attestation.CHALLENGE_NAT_HEX)
+                add("native challenge echo != 92B request (binder path faked)")
+            if (nat.securityLevel != jvm.securityLevel)
+                add("securityLevel native=${nat.securityLevel} jvm=${jvm.securityLevel}")
+            if (rotTuple(nat) != rotTuple(jvm))
+                add("root of trust native!=jvm (one path rewrites boot state)")
+            if (nat.signerSerial != null && jvm.signerSerial != null && nat.signerSerial != jvm.signerSerial)
+                add("batch signer serial native!=jvm")
+            if (nat.signerSpkiHex != null && jvm.signerSpkiHex != null && nat.signerSpkiHex != jvm.signerSpkiHex)
+                add("batch signer key native!=jvm")
+        }
+        return if (tells.isEmpty()) OK else tells.joinToString("; ")
+    }
+
+    private fun nativeVsJvmDetail(fp: Boolean): String {
+        val nat = nativeRec(); val jvm = jvmRec()
+        fun s(x: String?) = (if (fp) serialFp(x) else x) ?: "-"
+        return "native: chal=${nat?.challengeHex?.take(24) ?: "-"} sec=${nat?.securityLevel ?: "-"} ${rotTuple(nat) ?: "-"} signer=${s(nat?.signerSerial)}\n" +
+            "jvm:    chal=${jvm?.challengeHex?.take(24) ?: "-"} sec=${jvm?.securityLevel ?: "-"} ${rotTuple(jvm) ?: "-"} signer=${s(jvm?.signerSerial)}"
     }
 
     fun tasks(ctx: Context): List<ProbeTask> = buildList {
@@ -209,7 +255,7 @@ object AttestExtraProbes {
         ), solution = ctx.getString(R.string.sol_boot)))
 
         add(probe("attest:leaf_sig_alg", ctx.getString(R.string.t_leaf_sig_alg), Category.INTEGRITY, listOf(
-            am("expected: an RSA key's leaf is signed by an RSA key") { rsaLeafExpected() },
+            am("expected RSA-leaf signer (RSA on batch keybox, EC under RKP)") { rsaLeafExpected() },
             am("RSA attestation leaf signature family") { rsaLeafSigFamily() },
             am("leaf key vs signature algorithm", compare = false) { rsaLeafDetail() },
         ), solution = ctx.getString(R.string.sol_boot)))
@@ -221,6 +267,91 @@ object AttestExtraProbes {
                 reveal = { batchKeyDetail(fp = false) },
                 read = { batchKeyDetail(fp = true) }),
         ), solution = ctx.getString(R.string.sol_boot)))
+
+        add(probe("attest:native_vs_jvm", ctx.getString(R.string.t_native_vs_jvm), Category.INTEGRITY, listOf(
+            am("native keystore2 lens", compare = false) {
+                when {
+                    !NativeBridge.ks2Available -> "unavailable (API<33 or load failed)"
+                    Attestation.recordNative == null -> "present, no chain (${Attestation.errorNative ?: "?"})"
+                    else -> "present"
+                }
+            },
+            am("expected: native keystore2 chain matches JVM chain", tag = "92B") { nativeVsJvmExpected() },
+            am("native keystore2 vs JVM attestation", tag = "92B") { nativeVsJvmVerdict() },
+            amReveal("native vs JVM (challenge / sec / rot / signer)",
+                reveal = { nativeVsJvmDetail(fp = false) },
+                read = { nativeVsJvmDetail(fp = true) }),
+        ), solution = ctx.getString(R.string.sol_boot)))
+
+        add(probe("attest:sb_capability", ctx.getString(R.string.t_sb_capability), Category.INTEGRITY, listOf(
+            jm("StrongBox keystore feature", compare = false) { c ->
+                if (c.packageManager.hasSystemFeature(FEATURE_STRONGBOX)) "present" else "absent"
+            },
+            jm("expected: a secure element rejects unsupported params") { c ->
+                if (!c.packageManager.hasSystemFeature(FEATURE_STRONGBOX)) return@jm null
+                "all-rejected"
+            },
+            jm("params a secure element must reject") { c ->
+                if (!c.packageManager.hasSystemFeature(FEATURE_STRONGBOX)) return@jm null
+                val cap = Attestation.sbCapability() ?: return@jm null
+                if (cap.contains("accepted")) "accepts-unsupported" else "all-rejected"
+            },
+            jm("per-param result", compare = false) { c ->
+                if (!c.packageManager.hasSystemFeature(FEATURE_STRONGBOX)) return@jm null
+                Attestation.sbCapability()
+            },
+        ), solution = ctx.getString(R.string.sol_boot)))
+
+        add(probe("attest:sb_enforced", ctx.getString(R.string.t_sb_enforced), Category.INTEGRITY, listOf(
+            jm("expected: rootOfTrust is hardware-enforced") { c ->
+                if (!c.packageManager.hasSystemFeature(FEATURE_STRONGBOX)) return@jm null
+                if (Attestation.recordStrongBox == null) return@jm null
+                "hw"
+            },
+            am("StrongBox key rootOfTrust enforcement level") { Attestation.recordStrongBox?.rotLevel },
+            am("StrongBox key origin/purpose enforcement", compare = false) {
+                val r = Attestation.recordStrongBox ?: return@am null
+                "origin=${r.originLevel ?: "-"} purpose=${r.purposeLevel ?: "-"}"
+            },
+        ), solution = ctx.getString(R.string.sol_boot)))
+
+        add(probe("attest:sb_version", ctx.getString(R.string.t_sb_version), Category.INTEGRITY, listOf(
+            am("attestation/keymaster version (TEE)", compare = false) {
+                Attestation.record?.let { "att=${it.attestationVersion} km=${it.keymasterVersion}" }
+            },
+            am("attestation/keymaster version (StrongBox)", compare = false) {
+                Attestation.recordStrongBox?.let { "att=${it.attestationVersion} km=${it.keymasterVersion}" }
+            },
+            am("moduleHash present (keymaster>=300)", compare = false) {
+                val r = Attestation.recordStrongBox ?: Attestation.record ?: return@am null
+                if (r.keymasterVersion >= 300) (if (r.moduleHashHex != null) "present" else "absent") else "n/a"
+            },
+        ), solution = ctx.getString(R.string.sol_boot)))
+
+        add(probe("attest:sb_chain", ctx.getString(R.string.t_sb_chain), Category.INTEGRITY, listOf(
+            am("certificate chain (TEE: len / root)", compare = false) {
+                Attestation.record?.let { "len=${it.chainLen} root=${it.rootName ?: "-"}" }
+            },
+            am("certificate chain (StrongBox: len / root)", compare = false) {
+                Attestation.recordStrongBox?.let { "len=${it.chainLen} root=${it.rootName ?: "-"}" }
+            },
+        ), solution = ctx.getString(R.string.sol_boot)))
+
+        add(probe("attest:sb_rkp", ctx.getString(R.string.t_sb_rkp), Category.INTEGRITY, listOf(
+            am("provisioning (TEE)", compare = false) {
+                Attestation.record?.let { "${it.provisioning ?: "-"} info=${if (it.provisioningInfo != null) "present" else "absent"}" }
+            },
+            am("provisioning (StrongBox)", compare = false) {
+                Attestation.recordStrongBox?.let { "${it.provisioning ?: "-"} info=${if (it.provisioningInfo != null) "present" else "absent"}" }
+            },
+        ), solution = ctx.getString(R.string.sol_boot)))
+
+        add(probe("attest:sb_latency", ctx.getString(R.string.t_sb_latency), Category.INTEGRITY, listOf(
+            jm("StrongBox keystore feature", compare = false) { c ->
+                if (c.packageManager.hasSystemFeature(FEATURE_STRONGBOX)) "present" else "absent"
+            },
+            am("StrongBox vs TEE key-gen time", compare = false) { Attestation.sbVsTeeLatency() },
+        )))
 
         add(probe("attest:app_id", ctx.getString(R.string.t_attestation_app_id), Category.INTEGRITY, listOf(
             am("attestation attestationApplicationId", compare = false) { Attestation.record?.attestationAppId },
