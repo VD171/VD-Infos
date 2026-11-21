@@ -188,11 +188,11 @@ object NativeBridge {
         }
     }
 
-    data class AnonHoles(val holeCount: Int, val holes: String, val churnRuns: Int, val churnMinors: Int, val window: Int)
+    data class AnonHoles(val stableCount: Int, val holes: String, val churnRuns: Int, val churnMinors: Int, val window: Int, val rawCount: Int)
 
     fun anonHoles(): AnonHoles? = guard {
-        nAnonHoles()?.split('\t')?.takeIf { it.size == 5 }?.let {
-            AnonHoles(it[0].toIntOrNull() ?: 0, it[1], it[2].toIntOrNull() ?: 0, it[3].toIntOrNull() ?: 0, it[4].toIntOrNull() ?: 0)
+        nAnonHoles()?.split('\t')?.takeIf { it.size == 6 }?.let {
+            AnonHoles(it[0].toIntOrNull() ?: 0, it[1], it[2].toIntOrNull() ?: 0, it[3].toIntOrNull() ?: 0, it[4].toIntOrNull() ?: 0, it[5].toIntOrNull() ?: 0)
         }
     }
 

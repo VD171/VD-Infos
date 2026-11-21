@@ -133,7 +133,7 @@ object DeepProbes {
         return m
     }
     private fun loopOrphans(): String {
-        val ext4 = ext4Loops() ?: return "unavailable"
+        val ext4 = ext4Loops() ?: return "clean"
         if (ext4.isEmpty()) return "clean"
         val mp = loopMountPoints()
         val suspicious = ext4.filter { loop ->

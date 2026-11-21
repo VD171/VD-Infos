@@ -529,6 +529,8 @@
     <string name="sol_atexit_drift">libc の終了ハンドラ __cxa_atexit と __cxa_finalize は libc 内で解決されなければなりません。別のライブラリや匿名領域に解決される場合、Zygisk 方式のインジェクタがこれらに割り込んでいます。このプロセスからインジェクションを取り除いてください。</string>
     <string name="sol_baseband_coherence">モデムのバージョンは getRadioVersion と gsm.version.baseband 系のいずれからも報告され、すべて同じファームウェアを読み取ります。ある取得元だけ食い違う場合、プロパティ偽装が一部のエイリアスだけを改変し、すべては改変していません。baseband バージョンのすべての取得元を同一に保ってください。</string>
     <string name="sol_boot">ハードウェア認証（TEE）がブート状態を報告します。このアプリのパッケージを keybox ツールのターゲット一覧に追加し、ロックされた検証済みデバイスとして報告されるようにしてください。</string>
+    <string name="sol_attest_consistency">これらのプローブは、同じデバイスを示すはずの2つの認証経路を相互に照合します：EC チェーンと RSA チェーン、ネイティブ keystore2 チェーンとマネージドチェーン、またはリーフ署名と期待される keybox タイプ。食い違いは、一方の経路だけが書き換えられてもう一方はそのまま、または共有された keybox が使われていることを意味します。keybox ツールをすべての認証経路に向け、すべてが一致した状態を保つようにしてください。</string>
+    <string name="sol_secure_hw">鍵はセキュアハードウェア、すなわち TEE または StrongBox セキュアエレメントの中に存在すべきで、これらはサポートしない鍵パラメータを拒否します。ソフトウェアのセキュリティレベル、またはサポートされないパラメータを受け入れる StrongBox は、セキュアハードウェアがエミュレートされていることを意味します。本物のセキュアハードウェアを備えたデバイス、またはそれを忠実に再現するツールを使用してください。</string>
     <string name="sol_datadir_errno_oracle">パッケージのデータディレクトリに対する stat は、パッケージ照会がなくてもインストール済みであることを明らかにしてしまうことがあります。そのようなパッケージを隠蔽フレームワーク（HMA-OSS）に追加し、データディレクトリが単に拒否されるのではなく、存在しないものとして読み取られるようにしてください。</string>
     <string name="sol_device_id">認証されたハードウェアの識別情報（brand、device、manufacturer）がビルドプロパティと一致しないため、検証側はプロパティが偽装されていると判別できます。ro.product.brand、ro.product.device、ro.product.manufacturer をハードウェア認証値に揃えてください（product と model は正当に異なります。認証はコードネームを含みます）。</string>
     <string name="sol_feature_spoof">hasSystemFeature、getSystemAvailableFeatures、ハードウェアノードがあるデバイス機能について食い違っており、ある経路だけで機能が隠されたり偽装されたりして、他の経路では行われていません。すべての機能照会経路とハードウェアが同じ有無を報告するようにしてください。</string>

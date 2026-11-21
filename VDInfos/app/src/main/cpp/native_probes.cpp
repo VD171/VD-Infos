@@ -1956,20 +1956,7 @@ static bool statAnonMinor(const char* path, int& out) {
     return true;
 }
 
-jstring nAnonHoles(JNIEnv* env, jobject) {
-    int flr = -1;
-    const char* floors[] = {"/tmp", "/dev/cpuset", "/sys/fs/cgroup", nullptr};
-    for (int i = 0; floors[i]; i++) { int m; if (statAnonMinor(floors[i], m) && m > flr) flr = m; }
-    std::string pkg = readFileRaw("/proc/self/cmdline", 512);
-    size_t nul = pkg.find('\0'); if (nul != std::string::npos) pkg.resize(nul);
-    size_t colon = pkg.find(':'); if (colon != std::string::npos) pkg.resize(colon);
-    std::vector<std::string> ceils = {"/storage/emulated/0/Android/data/.nomedia",
-                                      "/storage/emulated/0/Android/obb/.nomedia"};
-    if (!pkg.empty()) ceils.push_back("/storage/emulated/0/Android/data/" + pkg);
-    ceils.push_back("/storage/emulated/0"); ceils.push_back("/storage/emulated");
-    int ceil = -1;
-    for (auto& cp : ceils) { int m; if (statAnonMinor(cp.c_str(), m)) { ceil = m; break; } }
-    if (flr < 0 || ceil <= flr) return toJstring(env, "0\tNENHUM(ok)\t0\t0\t0");
+static std::set<int> anonPresentSet(const std::string& pkg) {
     std::set<int> present;
     std::string mi = readFileRaw("/proc/self/mountinfo", 1u << 20);
     size_t pos = 0;
@@ -1986,19 +1973,48 @@ jstring nAnonHoles(JNIEnv* env, jobject) {
                        (pkg.find('.') != std::string::npos && rt.find(pkg) != std::string::npos);
         if (!appPriv) present.insert(mn);
     }
-    std::string holes; int nholes = 0, churnRuns = 0, churnMin = 0;
+    return present;
+}
+
+static std::set<int> anonShortHoles(const std::set<int>& present, int flr, int ceil, int& churnRuns, int& churnMin) {
+    std::set<int> holes; churnRuns = 0; churnMin = 0;
     int m = flr + 1;
     while (m < ceil) {
         if (present.find(m) != present.end()) { m++; continue; }
         int run = m; while (run < ceil && present.find(run) == present.end()) run++;
         int len = run - m;
         if (len > 10) { churnRuns++; churnMin += len; }
-        else for (int k = m; k < run; k++) { if (!holes.empty()) holes += ","; holes += std::to_string(k); nholes++; }
+        else for (int k = m; k < run; k++) holes.insert(k);
         m = run;
     }
-    std::string out = std::to_string(nholes) + "\t" + (holes.empty() ? "NENHUM(ok)" : holes) + "\t" +
+    return holes;
+}
+
+jstring nAnonHoles(JNIEnv* env, jobject) {
+    int flr = -1;
+    const char* floors[] = {"/tmp", "/dev/cpuset", "/sys/fs/cgroup", nullptr};
+    for (int i = 0; floors[i]; i++) { int m; if (statAnonMinor(floors[i], m) && m > flr) flr = m; }
+    std::string pkg = readFileRaw("/proc/self/cmdline", 512);
+    size_t nul = pkg.find('\0'); if (nul != std::string::npos) pkg.resize(nul);
+    size_t colon = pkg.find(':'); if (colon != std::string::npos) pkg.resize(colon);
+    std::vector<std::string> ceils = {"/storage/emulated/0/Android/data/.nomedia",
+                                      "/storage/emulated/0/Android/obb/.nomedia"};
+    if (!pkg.empty()) ceils.push_back("/storage/emulated/0/Android/data/" + pkg);
+    ceils.push_back("/storage/emulated/0"); ceils.push_back("/storage/emulated");
+    int ceil = -1;
+    for (auto& cp : ceils) { int m; if (statAnonMinor(cp.c_str(), m)) { ceil = m; break; } }
+    if (flr < 0 || ceil <= flr) return toJstring(env, "0\tNENHUM(ok)\t0\t0\t0\t0");
+    int churnRuns = 0, churnMin = 0, churnRuns2 = 0, churnMin2 = 0;
+    std::set<int> firstHoles = anonShortHoles(anonPresentSet(pkg), flr, ceil, churnRuns, churnMin);
+    usleep(25000);
+    std::set<int> secondHoles = anonShortHoles(anonPresentSet(pkg), flr, ceil, churnRuns2, churnMin2);
+    std::string holes; int stable = 0;
+    for (int k : firstHoles) if (secondHoles.find(k) != secondHoles.end()) {
+        if (!holes.empty()) holes += ","; holes += std::to_string(k); stable++;
+    }
+    std::string out = std::to_string(stable) + "\t" + (holes.empty() ? "NENHUM(ok)" : holes) + "\t" +
                       std::to_string(churnRuns) + "\t" + std::to_string(churnMin) + "\t" +
-                      std::to_string(ceil - flr - 1);
+                      std::to_string(ceil - flr - 1) + "\t" + std::to_string(static_cast<int>(firstHoles.size()));
     return toJstring(env, out);
 }
 

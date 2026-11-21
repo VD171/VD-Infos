@@ -529,6 +529,8 @@
     <string name="sol_atexit_drift">libc 종료 핸들러 __cxa_atexit와 __cxa_finalize는 libc 내부에서 해석되어야 합니다. 다른 라이브러리나 익명 영역으로 해석되면 Zygisk 방식의 인젝터가 이들에 끼어든 것입니다. 이 프로세스에서 인젝션을 제거하세요.</string>
     <string name="sol_baseband_coherence">모뎀 버전은 getRadioVersion과 gsm.version.baseband 계열에서 모두 보고되며, 전부 같은 펌웨어를 읽습니다. 한 출처만 어긋나면 속성 스푸핑이 일부 별칭만 수정하고 전부를 수정하지 않은 것입니다. 모든 baseband 버전 출처를 동일하게 유지하세요.</string>
     <string name="sol_boot">하드웨어 인증(TEE)이 부팅 상태를 보고합니다. 이 앱 패키지를 keybox 도구의 대상 목록에 추가하여 잠긴 검증된 기기로 보고되도록 하세요.</string>
+    <string name="sol_attest_consistency">이 프로브들은 같은 기기를 나타내야 하는 두 증명 경로를 교차 검증합니다: EC 체인 대 RSA 체인, 네이티브 keystore2 체인 대 매니지드 체인, 또는 리프 서명 대 기대되는 keybox 유형. 불일치는 한쪽 경로만 다시 쓰이고 다른 쪽은 그대로이거나, 공유된 keybox가 사용 중임을 뜻합니다. keybox 도구가 모든 증명 경로를 대상으로 하도록 하여 모두 일관성을 유지하세요.</string>
+    <string name="sol_secure_hw">키는 보안 하드웨어, 즉 TEE 또는 StrongBox 보안 요소 안에 있어야 하며, 이는 지원하지 않는 키 파라미터를 거부합니다. 소프트웨어 보안 수준이거나 지원되지 않는 파라미터를 받아들이는 StrongBox는 보안 하드웨어가 에뮬레이트되었음을 뜻합니다. 진짜 보안 하드웨어를 갖춘 기기나 이를 충실히 모사하는 도구를 사용하세요.</string>
     <string name="sol_datadir_errno_oracle">패키지의 데이터 디렉터리에 대한 stat은 패키지 조회가 없어도 설치됨을 드러낼 수 있습니다. 그런 패키지를 은닉 프레임워크(HMA-OSS)에 추가하여 데이터 디렉터리가 단지 거부되는 것이 아니라 존재하지 않는 것으로 읽히도록 하세요.</string>
     <string name="sol_device_id">인증된 하드웨어 식별 정보(brand, device, manufacturer)가 빌드 속성과 일치하지 않아 검증자가 속성이 스푸핑되었음을 알 수 있습니다. ro.product.brand, ro.product.device, ro.product.manufacturer를 하드웨어 인증 값에 맞추세요(product와 model은 정당하게 다릅니다. 인증은 코드명을 담습니다).</string>
     <string name="sol_feature_spoof">hasSystemFeature, getSystemAvailableFeatures, 하드웨어 노드가 어떤 기기 기능에 대해 서로 어긋나, 한 경로로만 기능이 숨겨지거나 위조되고 다른 경로에서는 그렇지 않습니다. 모든 기능 조회 경로와 하드웨어가 동일한 유무를 보고하도록 하세요.</string>

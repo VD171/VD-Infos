@@ -902,12 +902,12 @@ object IntegrityProbes {
         )))
 
         add(probe("integrity:anon_minor", ctx.getString(R.string.t_anon_minor), Category.INTEGRITY, listOf(
-            jm("no hidden anon-bdev superblock (expected)", compare = false) { "0" },
-            jm("anon-minor holes (short runs only)", compare = false) {
-                NativeBridge.anonHoles()?.holeCount?.toString() ?: Sentinels.NONE
+            jm("expected: no stable hidden anon-bdev superblock") { "0" },
+            jm("stable anon-minor holes (short runs, confirmed across two reads)") {
+                NativeBridge.anonHoles()?.stableCount?.toString() ?: Sentinels.NONE
             },
             jm("detail", compare = false) {
-                NativeBridge.anonHoles()?.let { "holes=${it.holes}\nchurn=runs${it.churnRuns}/minors${it.churnMinors}\nwindow=${it.window}" } ?: Sentinels.NONE
+                NativeBridge.anonHoles()?.let { "stable=${it.stableCount} raw=${it.rawCount} holes=${it.holes}\nchurn=runs${it.churnRuns}/minors${it.churnMinors}\nwindow=${it.window}" } ?: Sentinels.NONE
             },
         )))
 

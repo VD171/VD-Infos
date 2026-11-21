@@ -62,6 +62,10 @@ object ProbeRegistry {
             addAll(FrontierProbes.tasks(context))
             addAll(SettingsSpoofProbes.tasks(context))
         }
+        val duplicateIds = all.groupingBy { it.spec.id }.eachCount().filterValues { it > 1 }.keys
+        if (duplicateIds.isNotEmpty()) {
+            error("duplicate probe ids: ${duplicateIds.sorted().joinToString()}")
+        }
         return all.associateBy { it.spec.id }.values.toList()
     }
 

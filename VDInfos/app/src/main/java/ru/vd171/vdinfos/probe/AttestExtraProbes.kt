@@ -245,20 +245,20 @@ object AttestExtraProbes {
                 if (Build.VERSION.SDK_INT >= 31) keyInfo()?.let { secLevelName(it.securityLevel) } else null
             },
             am("attestation record securityLevel", compare = false) { Attestation.record?.securityLevel },
-        ), solution = ctx.getString(R.string.sol_boot)))
+        ), solution = ctx.getString(R.string.sol_secure_hw)))
 
         add(probe("attest:rot_ec_vs_rsa", ctx.getString(R.string.t_rot_ec_vs_rsa), Category.INTEGRITY, listOf(
             am("EC chain (sec/boot/locked/rot/root)", compare = false) { fmtAttest(Attestation.record) },
             am("RSA chain (sec/boot/locked/rot/root)", compare = false) { fmtAttest(Attestation.recordRsa) },
             am("root of trust via EC request") { rotTuple(Attestation.record) },
             am("root of trust via RSA request") { rotTuple(Attestation.recordRsa) },
-        ), solution = ctx.getString(R.string.sol_boot)))
+        ), solution = ctx.getString(R.string.sol_attest_consistency)))
 
         add(probe("attest:leaf_sig_alg", ctx.getString(R.string.t_leaf_sig_alg), Category.INTEGRITY, listOf(
             am("expected RSA-leaf signer (RSA on batch keybox, EC under RKP)") { rsaLeafExpected() },
             am("RSA attestation leaf signature family") { rsaLeafSigFamily() },
             am("leaf key vs signature algorithm", compare = false) { rsaLeafDetail() },
-        ), solution = ctx.getString(R.string.sol_boot)))
+        ), solution = ctx.getString(R.string.sol_attest_consistency)))
 
         add(probe("attest:batch_key_ec_vs_rsa", ctx.getString(R.string.t_batch_key_ec_vs_rsa), Category.INTEGRITY, listOf(
             am("expected: distinct key, same device identity") { batchKeyExpected() },
@@ -266,7 +266,7 @@ object AttestExtraProbes {
             amReveal("batch cert: EC vs RSA (serial / key / id)",
                 reveal = { batchKeyDetail(fp = false) },
                 read = { batchKeyDetail(fp = true) }),
-        ), solution = ctx.getString(R.string.sol_boot)))
+        ), solution = ctx.getString(R.string.sol_attest_consistency)))
 
         add(probe("attest:native_vs_jvm", ctx.getString(R.string.t_native_vs_jvm), Category.INTEGRITY, listOf(
             am("native keystore2 lens", compare = false) {
@@ -281,7 +281,7 @@ object AttestExtraProbes {
             amReveal("native vs JVM (challenge / sec / rot / signer)",
                 reveal = { nativeVsJvmDetail(fp = false) },
                 read = { nativeVsJvmDetail(fp = true) }),
-        ), solution = ctx.getString(R.string.sol_boot)))
+        ), solution = ctx.getString(R.string.sol_attest_consistency)))
 
         add(probe("attest:sb_capability", ctx.getString(R.string.t_sb_capability), Category.INTEGRITY, listOf(
             jm("StrongBox keystore feature", compare = false) { c ->
@@ -300,7 +300,7 @@ object AttestExtraProbes {
                 if (!c.packageManager.hasSystemFeature(FEATURE_STRONGBOX)) return@jm null
                 Attestation.sbCapability()
             },
-        ), solution = ctx.getString(R.string.sol_boot)))
+        ), solution = ctx.getString(R.string.sol_secure_hw)))
 
         add(probe("attest:sb_enforced", ctx.getString(R.string.t_sb_enforced), Category.INTEGRITY, listOf(
             jm("expected: rootOfTrust is hardware-enforced") { c ->

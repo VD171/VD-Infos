@@ -529,6 +529,8 @@
     <string name="sol_atexit_drift">libc 的退出处理函数 __cxa_atexit 和 __cxa_finalize 必须解析到 libc 内部。当它们解析到另一个库或匿名区域时，说明有 Zygisk 式注入器拦截了它们。请从该进程中移除此注入。</string>
     <string name="sol_baseband_coherence">调制解调器版本由 getRadioVersion 和 gsm.version.baseband 系列共同报告；它们读取的是同一份固件。当某个来源不一致时，说明某次 property spoof 只改了部分别名而非全部。请让每个 baseband 版本来源保持一致。</string>
     <string name="sol_boot">硬件证明（TEE）报告引导状态。把本应用的包加入你的 keybox 工具的目标列表，使其报告设备为已锁定、已验证。</string>
+    <string name="sol_attest_consistency">这些探针交叉核对两条本应描述同一设备的证明路径：EC 链对比 RSA 链、原生 keystore2 链对比托管链，或叶签名对比预期的 keybox 类型。出现不一致，说明其中一条路径被改写而另一条没有，或正在使用共享的 keybox。让你的 keybox 工具针对每一条证明路径，使它们全部保持一致。</string>
+    <string name="sol_secure_hw">密钥应位于安全硬件中：TEE，或 StrongBox 安全元件（它会拒绝不支持的密钥参数）。若为软件安全级别，或 StrongBox 接受了不支持的参数，则说明安全硬件是模拟的。请使用具备真正安全硬件的设备，或能忠实模拟它的工具。</string>
     <string name="sol_datadir_errno_oracle">对某个包的数据目录执行 stat，即使没有包查询权限也可能暴露它已安装。把这类包加入你的隐藏框架（HMA-OSS），使其数据目录读起来像不存在，而不仅仅是被拒绝访问。</string>
     <string name="sol_device_id">证明中的硬件身份（brand、device、manufacturer）与 build properties 不一致，因此验证方能看出这些 property 是伪造的。请让 ro.product.brand、ro.product.device 和 ro.product.manufacturer 与硬件证明的值对齐（product 和 model 存在合理差异：证明中携带的是代号 codename）。</string>
     <string name="sol_feature_spoof">hasSystemFeature、getSystemAvailableFeatures 和硬件节点对某项设备特性的报告不一致，说明某个特性在某条路径上被隐藏或伪造，而在其他路径上没有。请让每条特性查询路径与硬件对该特性是否存在的报告保持一致。</string>

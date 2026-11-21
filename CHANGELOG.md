@@ -6,6 +6,14 @@ The 2.x line is a ground-up rewrite; the last public 1.x release was
 [v1.11-beta6](https://github.com/VD171/VD-Infos/releases/tag/v1.11-beta6)
 (2024-12-02). Everything between it and 2.00 is the rewrite described below.
 
+## [2.24] - 2026-11-21
+
+- **`integrity:anon_minor` now votes, and is churn-aware.** The probe maps anonymous block-device (major 0) minor numbers through `/proc/self/mountinfo` to spot a superblock that is allocated but not listed, the fingerprint of a concealed mount. It stayed informational because a single read also catches the free slots the managed runtime churns through; it now reads the hole set twice and votes only on the ones present in both, so a persistent concealed superblock turns the card red while the runtime noise does not. Long runs stay classified as churn, and the detail lens shows the stable count against the raw one.
+- **Attestation cross-checks carry their own fix hints.** `attest:rot_ec_vs_rsa`, `attest:leaf_sig_alg`, `attest:batch_key_ec_vs_rsa` and `attest:native_vs_jvm` compare two attestation paths that must describe the same device, and `attest:key_secure_hw`/`attest:sb_capability` read secure-hardware behavior. All of them previously showed the boot-state hint, which only fits the boot and provisioning probes; they now carry two new hints (attestation-path consistency, and secure hardware), translated across every locale. `sol_boot` stays on the boot, enforcement, version, chain and RKP probes.
+- **`integrity:loop_orphan` no longer reports a false divergence** when `/proc/fs/ext4` is unreadable: an unreadable source is a non-voting result now, instead of a mismatch against the clean baseline.
+- **Duplicate probe ids fail fast at registry build** instead of silently dropping a probe from the scan.
+- **Project:** the public repository gained a CI workflow (Android lint on both flavors plus a JSON check), issue and pull-request templates, and a two-job release workflow.
+
 ## [2.23] - 2026-11-19
 
 - **Seven probe solution hints corrected.** `integrity:loop_orphan`, `integrity:debug_ramdisk`, `integrity:stock_path_hidden`, `integrity:rom_identity`, `dev:version_cluster`, `integrity:multiuser_oracle` and `attest:prov_manufacturer` each displayed a neighboring probe's fix text (for example the path-visibility probe read as lock-state advice); each now carries its own solution, translated across every locale.

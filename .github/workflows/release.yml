@@ -21,6 +21,18 @@
 # ======================================================================
 name: Release
 
+# CI release in two jobs. `build` signs both APK flavors (modern + compat; the
+# signing key is injected from encrypted secrets at build time and wiped after)
+# and uploads them as an artifact. `publish` runs behind the `release-approval`
+# environment: the run pauses for a required reviewer to look at the built
+# artifact and approve the deployment (approving is not publishing, so the
+# release is authored by github-actions[bot], never a person). The reviewer and
+# the environment are configured once by the owner in repo Settings, not here.
+# The human gate to start a release is pushing the tag. Never draft: true, never
+# the UI Publish button, never a PAT. Actions are pinned by commit SHA; the
+# artifact up/download pair is kept in the same v4 era (upload v4.5.0 +
+# download v4.3.0).
+
 on:
   push:
     tags:
@@ -56,9 +68,15 @@ jobs:
 
       - name: Set up Android SDK
         uses: android-actions/setup-android@9fc6c4e9069bf8d3d10b2204b1fb8f6ef7065407 # v3.2.2
+        with:
+          packages: ''
 
-      - name: Install NDK + CMake
-        run: sdkmanager "ndk;27.0.12077973" "cmake;3.22.1"
+      - name: Install SDK packages (platform, build-tools, NDK, CMake)
+        run: sdkmanager "platforms;android-35" "build-tools;35.0.1" "ndk;27.0.12077973" "cmake;3.22.1"
+
+      - name: Use the runner JDK (drop the local Studio java.home pin)
+        working-directory: VDInfos
+        run: sed -i '/^org.gradle.java.home=/d' gradle.properties
 
       - name: Inject signing material
         env:
@@ -99,6 +117,7 @@ jobs:
           APKSIGNER=$(ls "$ANDROID_HOME"/build-tools/*/apksigner | sort -V | tail -1)
           for a in dist/*.apk; do
             echo "== $a =="
+            "$APKSIGNER" verify "$a"
             "$APKSIGNER" verify --print-certs "$a" | grep -iE 'certificate DN|Verified using v2|Verified using v3' || true
           done
 
@@ -109,11 +128,50 @@ jobs:
           path: dist/*.apk
           if-no-files-found: error
 
-      - name: Draft release (tag only)
-        if: startsWith(github.ref, 'refs/tags/')
+  publish:
+    needs: build
+    if: startsWith(github.ref, 'refs/tags/')
+    runs-on: ubuntu-latest
+    # Owner-configured gate: required reviewer approves the deployment (not the
+    # publish), so the release stays authored by github-actions[bot].
+    environment: release-approval
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+
+      - name: Download build artifacts
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
+        with:
+          name: vdinfos-apks
+          path: dist
+
+      - name: Prepare release notes
+        run: |
+          VER="${GITHUB_REF_NAME#v}"
+          awk -v h="## [$VER]" 'index($0,h)==1{f=1;next} f&&/^## \[/{exit} f{print}' CHANGELOG.md > body.md
+          if [ ! -s body.md ]; then echo "See the commit history for the changes in this version." > body.md; fi
+          printf '\n---\n\n📣 Join the channel for updates: @Priv8_VD https://t.me/Priv8_VD\n' >> body.md
+          cat body.md
+
+      - name: Publish release (bot-authored, no draft)
         uses: softprops/action-gh-release@e7a8f85e1c67a31e6ed99a94b41bd0b71bbee6b8 # v2.0.9
         with:
-          draft: true
+          draft: false
+          name: VD Infos ${{ github.ref_name }}
+          body_path: body.md
           files: dist/*.apk
           fail_on_unmatched_files: true
-          generate_release_notes: false
+
+      - name: Assert release author is github-actions[bot]
+        env:
+          GH_TOKEN: ${{ github.token }}
+          VER: ${{ github.ref_name }}
+        run: |
+          author="$(gh release view "$VER" --json author -q '.author.login')"
+          if [ "$author" != "github-actions[bot]" ]; then
+            echo "::error::Release $VER was authored by '$author', not github-actions[bot] - auditability rule violated. The release step must use github.token, never a user PAT."
+            exit 1
+          fi
+          echo "Release author verified: github-actions[bot]"
