@@ -181,14 +181,15 @@ Seus links, canais e como apoiá-lo: [HMA-OSS.md](HMA-OSS.md).
 
 ## Veja também
 
-Projetos irmãos do mesmo autor:
-
-- **[VDGoogle](https://github.com/VD171/VD-Google)**: seus serviços Google (RCS, Wallet, atestações do Play Integrity), lidos no seu aparelho sem internet.
-- **[VDBackup](https://github.com/VD171/VD-Backup)**: backup e restauração completos de apps e dados como root, controlados inteiramente por uma WebUI.
-- **[COPG-VD](https://github.com/VD171/COPG-VD)**: um spoofer de dispositivo que transforma um fingerprint novo num perfil coerente e consistente.
-- **[VD-dropbear](https://github.com/VD171/VD-dropbear)**: um daemon SSH standalone com root (Dropbear).
-
-Pixel `build.prop`: **[@VictorGabriel7Dev/build.prop](https://github.com/VictorGabriel7Dev/build.prop)** (fork of @T3SL4).
+- **[COPG-VD](https://github.com/VD171/COPG-VD)**: spoofing do fingerprint global do dispositivo / Play Integrity, no dispositivo inteiro com escopo por app e uma WebUI.
+- **[VDBackup](https://github.com/VD171/VD-Backup)**: backup e restauração completos de apps e dados como root, conduzidos inteiramente por uma WebUI.
+- **[VD-dropbear](https://github.com/VD171/VD-dropbear)**: um daemon SSH independente com root (Dropbear).
+- **[VDGoogle](https://github.com/VD171/VD-Google)**: seus serviços Google (RCS, Wallet, atestações do Play Integrity), lidos no seu dispositivo sem internet.
+- **[VDInstaller](https://github.com/VD171/VD-Installer)**: um instalador sideload com root e sem atrito para APKs únicos, em lote e divididos, com um interruptor para o verificador do Play Protect e falsificação da origem de instalação.
+- **[VDLiveUpdate](https://github.com/VD171/VDLiveUpdate)**: um motor de autoatualização incremental e sem flash, embarcado em módulos KernelSU/APatch/Magisk.
+- **[VD-Modules](https://github.com/VD171/VD-Modules)**: nosso repositório de módulos para MMRL/WebUI-X (instale todos estes pelo seu gerenciador root).
+- **[@VictorGabriel7Dev/build.prop](https://github.com/VictorGabriel7Dev/build.prop)**: um conjunto de dados de fingerprints `build.prop` de Pixel (fork de @T3SL4).
+- **[@VictorGabriel7Dev/mtproto-store](https://github.com/VictorGabriel7Dev/mtproto-store)**: use o Telegram como um object store a partir de uma pequena CLI em Go.
 
 ## Contatos
 

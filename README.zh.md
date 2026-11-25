@@ -139,14 +139,15 @@ Root 隐藏与检测的参考（指南、模块、框架、检测器）收录于
 
 ## 另请参阅
 
-同一作者的姊妹项目：
-
-- **[VDGoogle](https://github.com/VD171/VD-Google)**：你的 Google 服务（RCS、Wallet、Play Integrity 认证），在你的设备上读取，无需联网。
-- **[VDBackup](https://github.com/VD171/VD-Backup)**：以 root 身份完整备份与恢复应用及数据，全程由 WebUI 驱动。
-- **[COPG-VD](https://github.com/VD171/COPG-VD)**：一款设备伪装器，将全新的 fingerprint 转化为连贯一致的配置。
-- **[VD-dropbear](https://github.com/VD171/VD-dropbear)**：一个独立的 root 化 SSH 守护进程（Dropbear）。
-
-Pixel `build.prop`: **[@VictorGabriel7Dev/build.prop](https://github.com/VictorGabriel7Dev/build.prop)** (fork of @T3SL4).
+- **[COPG-VD](https://github.com/VD171/COPG-VD)**：全局设备 fingerprint / Play Integrity 伪装，作用于整机并支持按应用划分范围，带 WebUI。
+- **[VDBackup](https://github.com/VD171/VD-Backup)**：以 root 身份对应用和数据进行完整备份与恢复，全程由 WebUI 驱动。
+- **[VD-dropbear](https://github.com/VD171/VD-dropbear)**：一个独立的 root SSH 守护进程 (Dropbear)。
+- **[VDGoogle](https://github.com/VD171/VD-Google)**：在你的设备上无需联网即可读取你的 Google 服务 (RCS、Wallet、Play Integrity 证明)。
+- **[VDInstaller](https://github.com/VD171/VD-Installer)**：一个面向单个、批量和拆分 APK 的无摩擦 root 侧载安装器，带有 Play Protect 验证器开关和安装来源伪装。
+- **[VDLiveUpdate](https://github.com/VD171/VDLiveUpdate)**：一个无需刷入的增量自更新引擎，嵌入到 KernelSU/APatch/Magisk 模块中。
+- **[VD-Modules](https://github.com/VD171/VD-Modules)**：我们的 MMRL/WebUI-X 模块仓库（从你的 root 管理器安装以上全部）。
+- **[@VictorGabriel7Dev/build.prop](https://github.com/VictorGabriel7Dev/build.prop)**：一份 Pixel `build.prop` fingerprint 数据集（@T3SL4 的 fork）。
+- **[@VictorGabriel7Dev/mtproto-store](https://github.com/VictorGabriel7Dev/mtproto-store)**：通过一个小巧的 Go CLI 把 Telegram 当作对象存储来使用。
 
 ## 联系方式
 

@@ -139,14 +139,15 @@ cpp/            native_probes.cpp: العدسة الأصلية، دون تبعي
 
 ## انظر أيضًا
 
-مشاريع شقيقة للمؤلف نفسه:
-
-- **[VDGoogle](https://github.com/VD171/VD-Google)**: خدمات Google الخاصة بك (RCS، Wallet، attestations الخاصة بـ Play Integrity)، تُقرأ على جهازك دون إنترنت.
-- **[VDBackup](https://github.com/VD171/VD-Backup)**: نسخ احتياطي واستعادة كاملان للتطبيقات والبيانات بصلاحيات root، مُدارة بالكامل من WebUI.
-- **[COPG-VD](https://github.com/VD171/COPG-VD)**: spoofer للجهاز يحوّل fingerprint جديدًا إلى ملف تعريف متماسك ومتسق.
-- **[VD-dropbear](https://github.com/VD171/VD-dropbear)**: خادم SSH مستقل يعمل بصلاحيات الروت (Dropbear).
-
-Pixel `build.prop`: **[@VictorGabriel7Dev/build.prop](https://github.com/VictorGabriel7Dev/build.prop)** (fork من @T3SL4).
+- **[COPG-VD](https://github.com/VD171/COPG-VD)**: تزييف fingerprint الجهاز العام / Play Integrity، على مستوى الجهاز كامل مع نطاق لكل تطبيق وواجهة WebUI.
+- **[VDBackup](https://github.com/VD171/VD-Backup)**: نسخ احتياطي واستعادة كاملان للتطبيقات والبيانات كـ root، يُدار بالكامل من واجهة ويب.
+- **[VD-dropbear](https://github.com/VD171/VD-dropbear)**: خادم SSH مستقل يعمل بصلاحيات الجذر (Dropbear).
+- **[VDGoogle](https://github.com/VD171/VD-Google)**: خدمات Google لديك (RCS، Wallet، شهادات Play Integrity)، تُقرأ على جهازك دون إنترنت.
+- **[VDInstaller](https://github.com/VD171/VD-Installer)**: مثبّت تحميل جانبي بصلاحيات الجذر وبلا احتكاك لحزم APK المفردة والمجمّعة والمقسّمة، مع مفتاح لمدقّق Play Protect وانتحال مصدر التثبيت.
+- **[VDLiveUpdate](https://github.com/VD171/VDLiveUpdate)**: محرك تحديث ذاتي تزايدي بلا فلاش، مدمج في وحدات KernelSU/APatch/Magisk.
+- **[VD-Modules](https://github.com/VD171/VD-Modules)**: مستودع وحداتنا لـ MMRL/WebUI-X (ثبّت كل هذه من مدير الـ root لديك).
+- **[@VictorGabriel7Dev/build.prop](https://github.com/VictorGabriel7Dev/build.prop)**: مجموعة بيانات من fingerprints الخاصة بـ `build.prop` من Pixel (fork من @T3SL4).
+- **[@VictorGabriel7Dev/mtproto-store](https://github.com/VictorGabriel7Dev/mtproto-store)**: استخدم Telegram كمخزن كائنات عبر أداة سطر أوامر صغيرة بلغة Go.
 
 ## جهات الاتصال
 

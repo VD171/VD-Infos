@@ -139,14 +139,15 @@ Seine Links, Kanäle und wie man es unterstützt: [HMA-OSS.md](HMA-OSS.md).
 
 ## Siehe auch
 
-Schwesterprojekte desselben Autors:
-
-- **[VDGoogle](https://github.com/VD171/VD-Google)**: deine Google-Dienste (RCS, Wallet, Play-Integrity-Attestierungen), auf deinem Gerät gelesen, ohne Internet.
-- **[VDBackup](https://github.com/VD171/VD-Backup)**: vollständige Sicherung und Wiederherstellung von Apps und Daten als root, komplett über eine WebUI gesteuert.
-- **[COPG-VD](https://github.com/VD171/COPG-VD)**: ein Geräte-Spoofer, der einen frischen Fingerprint in ein kohärentes, konsistentes Profil verwandelt.
+- **[COPG-VD](https://github.com/VD171/COPG-VD)**: Spoofing des globalen Geräte-fingerprints / Play Integrity, geräteweit mit App-spezifischem Geltungsbereich und einer WebUI.
+- **[VDBackup](https://github.com/VD171/VD-Backup)**: vollständiges Backup und Wiederherstellen von Apps und Daten als Root, komplett über eine WebUI gesteuert.
 - **[VD-dropbear](https://github.com/VD171/VD-dropbear)**: ein eigenständiger gerooteter SSH-Daemon (Dropbear).
-
-Pixel `build.prop`: **[@VictorGabriel7Dev/build.prop](https://github.com/VictorGabriel7Dev/build.prop)** (Fork von @T3SL4).
+- **[VDGoogle](https://github.com/VD171/VD-Google)**: deine Google-Dienste (RCS, Wallet, Play-Integrity-Attestierungen), auf deinem Gerät ohne Internet gelesen.
+- **[VDInstaller](https://github.com/VD171/VD-Installer)**: ein reibungsloser Root-Sideload-Installer für einzelne, Batch- und Split-APKs, mit einem Play-Protect-Verifier-Schalter und Fälschung der Installationsquelle.
+- **[VDLiveUpdate](https://github.com/VD171/VDLiveUpdate)**: eine flashlose, inkrementelle Selbstaktualisierungs-Engine, eingebettet in KernelSU/APatch/Magisk-Module.
+- **[VD-Modules](https://github.com/VD171/VD-Modules)**: unser Modul-Repository für MMRL/WebUI-X (installiere all dies aus deinem Root-Manager).
+- **[@VictorGabriel7Dev/build.prop](https://github.com/VictorGabriel7Dev/build.prop)**: ein Datensatz von Pixel-`build.prop`-fingerprints (Fork von @T3SL4).
+- **[@VictorGabriel7Dev/mtproto-store](https://github.com/VictorGabriel7Dev/mtproto-store)**: nutze Telegram als Objektspeicher über ein winziges Go-CLI.
 
 ## Kontakte
 

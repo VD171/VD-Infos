@@ -139,14 +139,15 @@ Jego linki, kanały i jak go wesprzeć: [HMA-OSS.md](HMA-OSS.md).
 
 ## Zobacz także
 
-Projekty siostrzane tego samego autora:
-
-- **[VDGoogle](https://github.com/VD171/VD-Google)**: twoje usługi Google (RCS, Wallet, atestacje Play Integrity), odczytane na urządzeniu bez internetu.
+- **[COPG-VD](https://github.com/VD171/COPG-VD)**: podszywanie się pod globalny fingerprint urządzenia / Play Integrity, dla całego urządzenia z zakresem dla poszczególnych aplikacji i WebUI.
 - **[VDBackup](https://github.com/VD171/VD-Backup)**: pełna kopia zapasowa i przywracanie aplikacji oraz danych jako root, sterowane w całości z WebUI.
-- **[COPG-VD](https://github.com/VD171/COPG-VD)**: spoofer urządzenia, który zamienia świeży fingerprint w spójny, konsekwentny profil.
-- **[VD-dropbear](https://github.com/VD171/VD-dropbear)**: samodzielny, rootowany demon SSH (Dropbear).
-
-Pixel `build.prop`: **[@VictorGabriel7Dev/build.prop](https://github.com/VictorGabriel7Dev/build.prop)** (fork of @T3SL4).
+- **[VD-dropbear](https://github.com/VD171/VD-dropbear)**: samodzielny zrootowany demon SSH (Dropbear).
+- **[VDGoogle](https://github.com/VD171/VD-Google)**: Twoje usługi Google (RCS, Wallet, atestacje Play Integrity) odczytywane na Twoim urządzeniu bez internetu.
+- **[VDInstaller](https://github.com/VD171/VD-Installer)**: bezproblemowy rootowy instalator sideload dla pojedynczych, wsadowych i podzielonych APK, z przełącznikiem weryfikatora Play Protect i podszywaniem źródła instalacji.
+- **[VDLiveUpdate](https://github.com/VD171/VDLiveUpdate)**: bezflashowy, przyrostowy silnik samoaktualizacji, wbudowany w moduły KernelSU/APatch/Magisk.
+- **[VD-Modules](https://github.com/VD171/VD-Modules)**: nasze repozytorium modułów dla MMRL/WebUI-X (zainstaluj je wszystkie z menedżera roota).
+- **[@VictorGabriel7Dev/build.prop](https://github.com/VictorGabriel7Dev/build.prop)**: zbiór danych fingerprintów `build.prop` z Pixeli (fork @T3SL4).
+- **[@VictorGabriel7Dev/mtproto-store](https://github.com/VictorGabriel7Dev/mtproto-store)**: użyj Telegrama jako magazynu obiektów z małego CLI w Go.
 
 ## Kontakt
 

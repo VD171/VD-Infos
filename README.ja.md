@@ -139,14 +139,15 @@ root の隠蔽と検出に関する参照（ガイド、モジュール、フレ
 
 ## 関連アプリ
 
-同じ作者による姉妹プロジェクト:
-
-- **[VDGoogle](https://github.com/VD171/VD-Google)**: あなたの Google サービス（RCS、Wallet、Play Integrity の attestation）を、インターネットなしで端末上で読み取ります。
-- **[VDBackup](https://github.com/VD171/VD-Backup)**: アプリとデータの完全なバックアップと復元を root で行い、すべて WebUI から操作します。
-- **[COPG-VD](https://github.com/VD171/COPG-VD)**: 新しい fingerprint を一貫性のあるまとまった profile に変えるデバイス spoofer。
-- **[VD-dropbear](https://github.com/VD171/VD-dropbear)**: 単独で動作する root 権限の SSH デーモン（Dropbear）。
-
-Pixel `build.prop`: **[@VictorGabriel7Dev/build.prop](https://github.com/VictorGabriel7Dev/build.prop)** (fork of @T3SL4).
+- **[COPG-VD](https://github.com/VD171/COPG-VD)**: グローバルなデバイス fingerprint / Play Integrity の spoofing。デバイス全体に適用でき、アプリごとのスコープと WebUI を備える。
+- **[VDBackup](https://github.com/VD171/VD-Backup)**: root としてアプリとデータを丸ごとバックアップ・復元し、すべて WebUI から操作します。
+- **[VD-dropbear](https://github.com/VD171/VD-dropbear)**: 単体で動く root 権限の SSH デーモン (Dropbear)。
+- **[VDGoogle](https://github.com/VD171/VD-Google)**: あなたの Google サービス (RCS、Wallet、Play Integrity の構成証明) を、インターネットなしでデバイス上で読み取ります。
+- **[VDInstaller](https://github.com/VD171/VD-Installer)**: 単一・バッチ・分割 APK に対応した、摩擦のない root サイドロードインストーラーで、Play Protect 検証のトグルとインストール元の偽装を備えます。
+- **[VDLiveUpdate](https://github.com/VD171/VDLiveUpdate)**: フラッシュ不要の増分セルフアップデートエンジンで、KernelSU/APatch/Magisk モジュールに組み込まれます。
+- **[VD-Modules](https://github.com/VD171/VD-Modules)**: MMRL/WebUI-X 向けの私たちのモジュールリポジトリ（これらすべてを root マネージャーからインストールできます）。
+- **[@VictorGabriel7Dev/build.prop](https://github.com/VictorGabriel7Dev/build.prop)**: Pixel の `build.prop` fingerprint のデータセット（@T3SL4 の fork）。
+- **[@VictorGabriel7Dev/mtproto-store](https://github.com/VictorGabriel7Dev/mtproto-store)**: 小さな Go 製 CLI から Telegram をオブジェクトストアとして使う。
 
 ## 連絡先
 

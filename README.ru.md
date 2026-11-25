@@ -139,14 +139,15 @@ cpp/            native_probes.cpp: нативная линза, без зави�
 
 ## Смотрите также
 
-Родственные проекты того же автора:
-
-- **[VDGoogle](https://github.com/VD171/VD-Google)**: ваши сервисы Google (RCS, Wallet, аттестации Play Integrity), прочитанные на устройстве без интернета.
+- **[COPG-VD](https://github.com/VD171/COPG-VD)**: подмена глобального fingerprint устройства / Play Integrity, для всего устройства с областью действия для каждого приложения и WebUI.
 - **[VDBackup](https://github.com/VD171/VD-Backup)**: полное резервное копирование и восстановление приложений и данных с правами root, полностью управляемое из WebUI.
-- **[COPG-VD](https://github.com/VD171/COPG-VD)**: спуфер устройства, который превращает свежий fingerprint в связный, целостный профиль.
-- **[VD-dropbear](https://github.com/VD171/VD-dropbear)**: автономный SSH-демон с правами root (Dropbear).
-
-Pixel `build.prop`: **[@VictorGabriel7Dev/build.prop](https://github.com/VictorGabriel7Dev/build.prop)** (fork of @T3SL4).
+- **[VD-dropbear](https://github.com/VD171/VD-dropbear)**: автономный SSH-демон с root-правами (Dropbear).
+- **[VDGoogle](https://github.com/VD171/VD-Google)**: ваши сервисы Google (RCS, Wallet, аттестации Play Integrity), читаемые на вашем устройстве без интернета.
+- **[VDInstaller](https://github.com/VD171/VD-Installer)**: беспроблемный root-установщик sideload для одиночных, пакетных и раздельных APK, с переключателем верификатора Play Protect и подменой источника установки.
+- **[VDLiveUpdate](https://github.com/VD171/VDLiveUpdate)**: безфлешевый инкрементальный движок самообновления, встроенный в модули KernelSU/APatch/Magisk.
+- **[VD-Modules](https://github.com/VD171/VD-Modules)**: наш репозиторий модулей для MMRL/WebUI-X (установите всё это из вашего root-менеджера).
+- **[@VictorGabriel7Dev/build.prop](https://github.com/VictorGabriel7Dev/build.prop)**: набор данных fingerprint-ов `build.prop` от Pixel (форк @T3SL4).
+- **[@VictorGabriel7Dev/mtproto-store](https://github.com/VictorGabriel7Dev/mtproto-store)**: используйте Telegram как объектное хранилище из крошечного CLI на Go.
 
 ## Контакты
 

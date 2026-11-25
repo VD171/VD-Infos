@@ -139,14 +139,15 @@ Dess länkar, kanaler och hur du stöder det: [HMA-OSS.md](HMA-OSS.md).
 
 ## Se även
 
-Systerprojekt av samma upphovsperson:
-
-- **[VDGoogle](https://github.com/VD171/VD-Google)**: dina Google-tjänster (RCS, Wallet, Play Integrity-attesteringar), lästa på din enhet utan internet.
+- **[COPG-VD](https://github.com/VD171/COPG-VD)**: spoofing av enhetens globala fingerprint / Play Integrity, för hela enheten med omfattning per app och ett WebUI.
 - **[VDBackup](https://github.com/VD171/VD-Backup)**: fullständig säkerhetskopiering och återställning av appar och data som root, helt styrd från ett WebUI.
-- **[COPG-VD](https://github.com/VD171/COPG-VD)**: en enhetsspoofer som förvandlar ett nytt fingerprint till en sammanhängande, konsekvent profil.
 - **[VD-dropbear](https://github.com/VD171/VD-dropbear)**: en fristående rootad SSH-daemon (Dropbear).
-
-Pixel `build.prop`: **[@VictorGabriel7Dev/build.prop](https://github.com/VictorGabriel7Dev/build.prop)** (fork of @T3SL4).
+- **[VDGoogle](https://github.com/VD171/VD-Google)**: dina Google-tjänster (RCS, Wallet, Play Integrity-attesteringar), lästa på din enhet utan internet.
+- **[VDInstaller](https://github.com/VD171/VD-Installer)**: en friktionsfri root-sideload-installerare för enskilda, batch- och split-APK:er, med en växel för Play Protect-verifieraren och förfalskning av installationskällan.
+- **[VDLiveUpdate](https://github.com/VD171/VDLiveUpdate)**: en flashfri, inkrementell självuppdateringsmotor, inbäddad i KernelSU/APatch/Magisk-moduler.
+- **[VD-Modules](https://github.com/VD171/VD-Modules)**: vårt modulrepositorium för MMRL/WebUI-X (installera allt detta från din root-hanterare).
+- **[@VictorGabriel7Dev/build.prop](https://github.com/VictorGabriel7Dev/build.prop)**: en datamängd med Pixel-`build.prop`-fingerprints (fork av @T3SL4).
+- **[@VictorGabriel7Dev/mtproto-store](https://github.com/VictorGabriel7Dev/mtproto-store)**: använd Telegram som ett objektlager från ett litet Go-CLI.
 
 ## Kontakt
 

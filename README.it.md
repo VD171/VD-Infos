@@ -139,14 +139,15 @@ I suoi link, i canali e come sostenerlo: [HMA-OSS.md](HMA-OSS.md).
 
 ## Vedi anche
 
-Progetti fratelli dello stesso autore:
-
-- **[VDGoogle](https://github.com/VD171/VD-Google)**: i tuoi servizi Google (RCS, Wallet, attestation di Play Integrity), letti sul tuo dispositivo senza internet.
+- **[COPG-VD](https://github.com/VD171/COPG-VD)**: spoofing del fingerprint globale del dispositivo / Play Integrity, sull'intero dispositivo con ambito per app e una WebUI.
 - **[VDBackup](https://github.com/VD171/VD-Backup)**: backup e ripristino completi di app e dati come root, gestiti interamente da una WebUI.
-- **[COPG-VD](https://github.com/VD171/COPG-VD)**: uno spoofer di dispositivo che trasforma un fingerprint nuovo in un profilo coerente e consistente.
-- **[VD-dropbear](https://github.com/VD171/VD-dropbear)**: un demone SSH autonomo con permessi di root (Dropbear).
-
-Pixel `build.prop`: **[@VictorGabriel7Dev/build.prop](https://github.com/VictorGabriel7Dev/build.prop)** (fork of @T3SL4).
+- **[VD-dropbear](https://github.com/VD171/VD-dropbear)**: un demone SSH autonomo con i permessi di root (Dropbear).
+- **[VDGoogle](https://github.com/VD171/VD-Google)**: i tuoi servizi Google (RCS, Wallet, attestazioni di Play Integrity), letti sul tuo dispositivo senza internet.
+- **[VDInstaller](https://github.com/VD171/VD-Installer)**: un installer sideload con root e senza attriti per APK singoli, in batch e split, con un interruttore per il verificatore Play Protect e lo spoofing della sorgente di installazione.
+- **[VDLiveUpdate](https://github.com/VD171/VDLiveUpdate)**: un motore di autoaggiornamento incrementale e senza flash, integrato nei moduli KernelSU/APatch/Magisk.
+- **[VD-Modules](https://github.com/VD171/VD-Modules)**: il nostro repository di moduli per MMRL/WebUI-X (installa tutti questi dal tuo gestore root).
+- **[@VictorGabriel7Dev/build.prop](https://github.com/VictorGabriel7Dev/build.prop)**: un dataset di fingerprint `build.prop` dei Pixel (fork di @T3SL4).
+- **[@VictorGabriel7Dev/mtproto-store](https://github.com/VictorGabriel7Dev/mtproto-store)**: usa Telegram come object store da una piccola CLI in Go.
 
 ## Contacts
 

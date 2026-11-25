@@ -139,14 +139,15 @@ Jeho odkazy, kanály a jak jej podpořit: [HMA-OSS.md](HMA-OSS.md).
 
 ## Viz také
 
-Sourozenecké projekty téhož autora:
-
-- **[VDGoogle](https://github.com/VD171/VD-Google)**: vaše služby Google (RCS, Wallet, atestace Play Integrity), čtené na vašem zařízení bez internetu.
-- **[VDBackup](https://github.com/VD171/VD-Backup)**: úplné zálohování a obnova aplikací a dat jako root, řízené celé z WebUI.
-- **[COPG-VD](https://github.com/VD171/COPG-VD)**: spoofer zařízení, který z čerstvého fingerprintu udělá koherentní, konzistentní profil.
+- **[COPG-VD](https://github.com/VD171/COPG-VD)**: podvržení globálního fingerprintu zařízení / Play Integrity, pro celé zařízení s rozsahem pro jednotlivé aplikace a WebUI.
+- **[VDBackup](https://github.com/VD171/VD-Backup)**: kompletní záloha a obnova aplikací a dat jako root, řízená zcela z WebUI.
 - **[VD-dropbear](https://github.com/VD171/VD-dropbear)**: samostatný rootovaný SSH démon (Dropbear).
-
-Pixel `build.prop`: **[@VictorGabriel7Dev/build.prop](https://github.com/VictorGabriel7Dev/build.prop)** (fork od @T3SL4).
+- **[VDGoogle](https://github.com/VD171/VD-Google)**: vaše služby Google (RCS, Wallet, atestace Play Integrity) čtené na vašem zařízení bez internetu.
+- **[VDInstaller](https://github.com/VD171/VD-Installer)**: bezproblémový rootový sideload instalátor pro jednotlivé, dávkové a rozdělené APK, s přepínačem ověřování Play Protect a podvržením zdroje instalace.
+- **[VDLiveUpdate](https://github.com/VD171/VDLiveUpdate)**: bezflashový, inkrementální engine pro samoaktualizaci, vestavěný do modulů KernelSU/APatch/Magisk.
+- **[VD-Modules](https://github.com/VD171/VD-Modules)**: naše úložiště modulů pro MMRL/WebUI-X (vše z tohoto nainstalujete ze svého root manageru).
+- **[@VictorGabriel7Dev/build.prop](https://github.com/VictorGabriel7Dev/build.prop)**: datová sada fingerprintů `build.prop` od Pixelů (fork @T3SL4).
+- **[@VictorGabriel7Dev/mtproto-store](https://github.com/VictorGabriel7Dev/mtproto-store)**: použijte Telegram jako úložiště objektů z malého Go CLI.
 
 ## Kontakty
 

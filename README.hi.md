@@ -139,14 +139,15 @@ root छिपाने और पहचानने के संदर्भ (
 
 ## यह भी देखें
 
-उसी लेखक की सहोदर परियोजनाएँ:
-
-- **[VDGoogle](https://github.com/VD171/VD-Google)**: आपकी Google सेवाएँ (RCS, Wallet, Play Integrity attestations), बिना इंटरनेट के आपके डिवाइस पर पढ़ी गईं।
-- **[VDBackup](https://github.com/VD171/VD-Backup)**: root के रूप में पूरा ऐप और डेटा बैकअप और पुनर्स्थापन, पूरी तरह WebUI से संचालित।
-- **[COPG-VD](https://github.com/VD171/COPG-VD)**: एक डिवाइस स्पूफर जो एक नए fingerprint को एक सुसंगत, समरूप प्रोफ़ाइल में बदल देता है।
-- **[VD-dropbear](https://github.com/VD171/VD-dropbear)**: एक स्वतंत्र रूटेड SSH डेमॉन (Dropbear)।
-
-Pixel `build.prop`: **[@VictorGabriel7Dev/build.prop](https://github.com/VictorGabriel7Dev/build.prop)** (fork of @T3SL4).
+- **[COPG-VD](https://github.com/VD171/COPG-VD)**: ग्लोबल डिवाइस fingerprint / Play Integrity स्पूफिंग, पूरे डिवाइस पर प्रति-ऐप स्कोप और एक WebUI के साथ।
+- **[VDBackup](https://github.com/VD171/VD-Backup)**: रूट के रूप में ऐप और डेटा का पूरा बैकअप और रिस्टोर, पूरी तरह WebUI से संचालित।
+- **[VD-dropbear](https://github.com/VD171/VD-dropbear)**: एक स्वतंत्र रूटेड SSH डीमन (Dropbear)।
+- **[VDGoogle](https://github.com/VD171/VD-Google)**: आपकी Google सेवाएँ (RCS, Wallet, Play Integrity प्रमाणन), बिना इंटरनेट के आपके डिवाइस पर पढ़ी जाती हैं।
+- **[VDInstaller](https://github.com/VD171/VD-Installer)**: एकल, बैच और स्प्लिट APK के लिए एक घर्षण-रहित रूट साइडलोड इंस्टॉलर, जिसमें Play Protect वेरिफायर टॉगल और इंस्टॉल-सोर्स स्पूफिंग शामिल है।
+- **[VDLiveUpdate](https://github.com/VD171/VDLiveUpdate)**: KernelSU/APatch/Magisk मॉड्यूल में एम्बेडेड एक फ्लैशलेस, इंक्रीमेंटल सेल्फ-अपडेट इंजन।
+- **[VD-Modules](https://github.com/VD171/VD-Modules)**: MMRL/WebUI-X के लिए हमारा मॉड्यूल रिपॉज़िटरी (इन सभी को अपने root मैनेजर से इंस्टॉल करें)।
+- **[@VictorGabriel7Dev/build.prop](https://github.com/VictorGabriel7Dev/build.prop)**: Pixel `build.prop` fingerprints का एक डेटासेट (@T3SL4 का fork)।
+- **[@VictorGabriel7Dev/mtproto-store](https://github.com/VictorGabriel7Dev/mtproto-store)**: एक छोटे Go CLI से Telegram को ऑब्जेक्ट स्टोर की तरह इस्तेमाल करें।
 
 ## Contacts
 

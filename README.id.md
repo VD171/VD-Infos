@@ -139,14 +139,15 @@ Tautan, kanal, dan cara mendukungnya: [HMA-OSS.md](HMA-OSS.md).
 
 ## Lihat juga
 
-Proyek saudara dari penulis yang sama:
-
-- **[VDGoogle](https://github.com/VD171/VD-Google)**: layanan Google Anda (RCS, Wallet, attestation Play Integrity), dibaca di perangkat Anda tanpa internet.
-- **[VDBackup](https://github.com/VD171/VD-Backup)**: pencadangan dan pemulihan penuh aplikasi dan data sebagai root, dikendalikan sepenuhnya dari WebUI.
-- **[COPG-VD](https://github.com/VD171/COPG-VD)**: pengusur (spoofer) perangkat yang mengubah fingerprint baru menjadi profil yang koheren dan konsisten.
-- **[VD-dropbear](https://github.com/VD171/VD-dropbear)**: daemon SSH mandiri dengan akses root (Dropbear).
-
-Pixel `build.prop`: **[@VictorGabriel7Dev/build.prop](https://github.com/VictorGabriel7Dev/build.prop)** (fork of @T3SL4).
+- **[COPG-VD](https://github.com/VD171/COPG-VD)**: spoofing fingerprint perangkat global / Play Integrity, seluruh perangkat dengan cakupan per-aplikasi dan sebuah WebUI.
+- **[VDBackup](https://github.com/VD171/VD-Backup)**: pencadangan dan pemulihan aplikasi serta data secara penuh sebagai root, dikendalikan sepenuhnya dari sebuah WebUI.
+- **[VD-dropbear](https://github.com/VD171/VD-dropbear)**: sebuah daemon SSH mandiri dengan akses root (Dropbear).
+- **[VDGoogle](https://github.com/VD171/VD-Google)**: layanan Google Anda (RCS, Wallet, atestasi Play Integrity), dibaca di perangkat Anda tanpa internet.
+- **[VDInstaller](https://github.com/VD171/VD-Installer)**: sebuah pemasang sideload ber-root tanpa hambatan untuk APK tunggal, batch, dan split, dengan sakelar verifier Play Protect dan pemalsuan sumber pemasangan.
+- **[VDLiveUpdate](https://github.com/VD171/VDLiveUpdate)**: sebuah mesin pembaruan-mandiri inkremental tanpa flash, tertanam di dalam modul KernelSU/APatch/Magisk.
+- **[VD-Modules](https://github.com/VD171/VD-Modules)**: repositori modul kami untuk MMRL/WebUI-X (pasang semua ini dari root manager Anda).
+- **[@VictorGabriel7Dev/build.prop](https://github.com/VictorGabriel7Dev/build.prop)**: sebuah dataset fingerprint `build.prop` Pixel (fork dari @T3SL4).
+- **[@VictorGabriel7Dev/mtproto-store](https://github.com/VictorGabriel7Dev/mtproto-store)**: gunakan Telegram sebagai object store dari sebuah CLI Go mungil.
 
 ## Contacts
 

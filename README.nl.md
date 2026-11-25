@@ -139,14 +139,15 @@ Zijn links, kanalen en hoe je het steunt: [HMA-OSS.md](HMA-OSS.md).
 
 ## Zie ook
 
-Zusterprojecten van dezelfde auteur:
-
-- **[VDGoogle](https://github.com/VD171/VD-Google)**: je Google-diensten (RCS, Wallet, Play Integrity-attestations), op je toestel gelezen zonder internet.
-- **[VDBackup](https://github.com/VD171/VD-Backup)**: volledige back-up en herstel van apps en gegevens als root, volledig aangestuurd vanuit een WebUI.
-- **[COPG-VD](https://github.com/VD171/COPG-VD)**: een toestelspoofer die een verse fingerprint omzet in een coherent, consistent profiel.
+- **[COPG-VD](https://github.com/VD171/COPG-VD)**: spoofing van de globale apparaat-fingerprint / Play Integrity, voor het hele apparaat met een bereik per app en een WebUI.
+- **[VDBackup](https://github.com/VD171/VD-Backup)**: volledige back-up en herstel van apps en data als root, geheel aangestuurd vanuit een WebUI.
 - **[VD-dropbear](https://github.com/VD171/VD-dropbear)**: een op zichzelf staande geroote SSH-daemon (Dropbear).
-
-Pixel `build.prop`: **[@VictorGabriel7Dev/build.prop](https://github.com/VictorGabriel7Dev/build.prop)** (fork of @T3SL4).
+- **[VDGoogle](https://github.com/VD171/VD-Google)**: je Google-diensten (RCS, Wallet, Play Integrity-attestaties), op je apparaat gelezen zonder internet.
+- **[VDInstaller](https://github.com/VD171/VD-Installer)**: een wrijvingsloze root-sideload-installer voor losse, batch- en split-APK's, met een Play Protect-verifier-schakelaar en vervalsing van de installatiebron.
+- **[VDLiveUpdate](https://github.com/VD171/VDLiveUpdate)**: een flashloze, incrementele zelfupdate-engine, ingebed in KernelSU/APatch/Magisk-modules.
+- **[VD-Modules](https://github.com/VD171/VD-Modules)**: onze module-repository voor MMRL/WebUI-X (installeer dit allemaal vanuit je root-manager).
+- **[@VictorGabriel7Dev/build.prop](https://github.com/VictorGabriel7Dev/build.prop)**: een dataset van Pixel-`build.prop`-fingerprints (fork van @T3SL4).
+- **[@VictorGabriel7Dev/mtproto-store](https://github.com/VictorGabriel7Dev/mtproto-store)**: gebruik Telegram als objectopslag vanuit een kleine Go-CLI.
 
 ## Contact
 

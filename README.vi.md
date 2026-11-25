@@ -139,14 +139,15 @@ Các liên kết, kênh và cách ủng hộ: [HMA-OSS.md](HMA-OSS.md).
 
 ## Xem thêm
 
-Các dự án anh em của cùng tác giả:
-
-- **[VDGoogle](https://github.com/VD171/VD-Google)**: các dịch vụ Google của bạn (RCS, Wallet, attestation Play Integrity), đọc ngay trên thiết bị của bạn mà không cần internet.
+- **[COPG-VD](https://github.com/VD171/COPG-VD)**: giả mạo fingerprint toàn cục của thiết bị / Play Integrity, trên toàn thiết bị với phạm vi theo từng ứng dụng và một WebUI.
 - **[VDBackup](https://github.com/VD171/VD-Backup)**: sao lưu và khôi phục toàn bộ ứng dụng và dữ liệu với quyền root, điều khiển hoàn toàn từ một WebUI.
-- **[COPG-VD](https://github.com/VD171/COPG-VD)**: một trình giả mạo thiết bị biến một fingerprint mới tinh thành một hồ sơ mạch lạc, nhất quán.
 - **[VD-dropbear](https://github.com/VD171/VD-dropbear)**: một SSH daemon độc lập chạy với quyền root (Dropbear).
-
-Pixel `build.prop`: **[@VictorGabriel7Dev/build.prop](https://github.com/VictorGabriel7Dev/build.prop)** (fork of @T3SL4).
+- **[VDGoogle](https://github.com/VD171/VD-Google)**: các dịch vụ Google của bạn (RCS, Wallet, các chứng thực Play Integrity), đọc ngay trên thiết bị của bạn mà không cần internet.
+- **[VDInstaller](https://github.com/VD171/VD-Installer)**: một trình cài đặt sideload với quyền root không ma sát cho các APK đơn, hàng loạt và phân tách, với công tắc trình xác minh Play Protect và giả mạo nguồn cài đặt.
+- **[VDLiveUpdate](https://github.com/VD171/VDLiveUpdate)**: một engine tự cập nhật tăng dần không cần flash, được nhúng vào các module KernelSU/APatch/Magisk.
+- **[VD-Modules](https://github.com/VD171/VD-Modules)**: kho mô-đun của chúng tôi cho MMRL/WebUI-X (cài đặt tất cả những thứ này từ trình quản lý root của bạn).
+- **[@VictorGabriel7Dev/build.prop](https://github.com/VictorGabriel7Dev/build.prop)**: một bộ dữ liệu fingerprint `build.prop` của Pixel (fork của @T3SL4).
+- **[@VictorGabriel7Dev/mtproto-store](https://github.com/VictorGabriel7Dev/mtproto-store)**: dùng Telegram như một object store từ một CLI Go nhỏ gọn.
 
 ## Liên hệ
 

@@ -139,14 +139,15 @@ cpp/            native_probes.cpp: нативна лінза, без залеж�
 
 ## Дивіться також
 
-Споріднені проєкти того самого автора:
-
+- **[COPG-VD](https://github.com/VD171/COPG-VD)**: підміна глобального fingerprint пристрою / Play Integrity, для всього пристрою з областю дії для кожного застосунку та WebUI.
+- **[VDBackup](https://github.com/VD171/VD-Backup)**: повне резервне копіювання та відновлення застосунків і даних із правами root, повністю кероване з WebUI.
+- **[VD-dropbear](https://github.com/VD171/VD-dropbear)**: автономний SSH-демон із root-правами (Dropbear).
 - **[VDGoogle](https://github.com/VD171/VD-Google)**: ваші сервіси Google (RCS, Wallet, атестації Play Integrity), прочитані на вашому пристрої без інтернету.
-- **[VDBackup](https://github.com/VD171/VD-Backup)**: повне резервне копіювання й відновлення застосунків і даних з правами root, кероване повністю з WebUI.
-- **[COPG-VD](https://github.com/VD171/COPG-VD)**: спуфер пристрою, що перетворює свіжий fingerprint на узгоджений, послідовний профіль.
-- **[VD-dropbear](https://github.com/VD171/VD-dropbear)**: автономний SSH-демон із правами root (Dropbear).
-
-Pixel `build.prop`: **[@VictorGabriel7Dev/build.prop](https://github.com/VictorGabriel7Dev/build.prop)** (fork of @T3SL4).
+- **[VDInstaller](https://github.com/VD171/VD-Installer)**: безперешкодний root-інсталятор sideload для одиночних, пакетних і розділених APK, з перемикачем верифікатора Play Protect та підробкою джерела встановлення.
+- **[VDLiveUpdate](https://github.com/VD171/VDLiveUpdate)**: безфлешевий інкрементальний рушій самооновлення, вбудований у модулі KernelSU/APatch/Magisk.
+- **[VD-Modules](https://github.com/VD171/VD-Modules)**: наш репозиторій модулів для MMRL/WebUI-X (встановіть усе це з вашого root-менеджера).
+- **[@VictorGabriel7Dev/build.prop](https://github.com/VictorGabriel7Dev/build.prop)**: набір даних fingerprint-ів `build.prop` від Pixel (форк @T3SL4).
+- **[@VictorGabriel7Dev/mtproto-store](https://github.com/VictorGabriel7Dev/mtproto-store)**: використовуйте Telegram як об'єктне сховище з крихітного CLI на Go.
 
 ## Контакти
 

@@ -139,14 +139,15 @@ cpp/            native_probes.cpp: لنز بومی، بدون وابستگی
 
 ## همچنین ببینید
 
-پروژه‌های خواهر از همان نویسنده:
-
-- **[VDGoogle](https://github.com/VD171/VD-Google)**: سرویس‌های Google شما (RCS، Wallet، گواهی‌های Play Integrity)، خوانده‌شده روی دستگاه شما بدون اینترنت.
-- **[VDBackup](https://github.com/VD171/VD-Backup)**: پشتیبان‌گیری و بازیابی کامل برنامه‌ها و داده‌ها به‌صورت root، که به‌طور کامل از یک WebUI اداره می‌شود.
-- **[COPG-VD](https://github.com/VD171/COPG-VD)**: یک جعل‌کننده دستگاه که یک fingerprint تازه را به یک نمایه منسجم و سازگار تبدیل می‌کند.
-- **[VD-dropbear](https://github.com/VD171/VD-dropbear)**: یک دیمن SSH مستقل با دسترسی روت (Dropbear).
-
-Pixel `build.prop`: **[@VictorGabriel7Dev/build.prop](https://github.com/VictorGabriel7Dev/build.prop)** (فورک از @T3SL4).
+- **[COPG-VD](https://github.com/VD171/COPG-VD)**: جعل fingerprint سراسری دستگاه / Play Integrity، در کل دستگاه با دامنه‌ی هر برنامه و یک WebUI.
+- **[VDBackup](https://github.com/VD171/VD-Backup)**: پشتیبان‌گیری و بازیابی کامل اپ و داده به‌صورت روت، که به‌طور کامل از یک WebUI رانده می‌شود.
+- **[VD-dropbear](https://github.com/VD171/VD-dropbear)**: یک سرویس SSH مستقل با دسترسی روت (Dropbear).
+- **[VDGoogle](https://github.com/VD171/VD-Google)**: سرویس‌های Google شما (RCS، Wallet، گواهی‌های Play Integrity)، روی دستگاهتان و بدون اینترنت خوانده می‌شوند.
+- **[VDInstaller](https://github.com/VD171/VD-Installer)**: یک نصب‌کنندهٔ ساید‌لود روت‌شدهٔ بدون‌اصطکاک برای APKهای تکی، دسته‌ای و تقسیم‌شده، همراه با کلید تأییدکنندهٔ Play Protect و جعل منبع نصب.
+- **[VDLiveUpdate](https://github.com/VD171/VDLiveUpdate)**: یک موتور خودبه‌روزرسانی افزایشی و بدون فلش، تعبیه‌شده در ماژول‌های KernelSU/APatch/Magisk.
+- **[VD-Modules](https://github.com/VD171/VD-Modules)**: مخزن ماژول‌های ما برای MMRL/WebUI-X (همه‌ی این‌ها را از مدیر root خود نصب کنید).
+- **[@VictorGabriel7Dev/build.prop](https://github.com/VictorGabriel7Dev/build.prop)**: یک مجموعه‌داده از fingerprintهای `build.prop` پیکسل (fork از @T3SL4).
+- **[@VictorGabriel7Dev/mtproto-store](https://github.com/VictorGabriel7Dev/mtproto-store)**: از Telegram به‌عنوان یک object store از طریق یک CLI کوچک Go استفاده کنید.
 
 ## تماس
 

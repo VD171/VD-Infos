@@ -139,14 +139,15 @@ Sus enlaces, canales y cómo apoyarlo: [HMA-OSS.md](HMA-OSS.md).
 
 ## Ver también
 
-Proyectos hermanos del mismo autor:
-
-- **[VDGoogle](https://github.com/VD171/VD-Google)**: tus servicios de Google (RCS, Wallet, atestaciones de Play Integrity), leídos en tu dispositivo sin internet.
-- **[VDBackup](https://github.com/VD171/VD-Backup)**: copia de seguridad y restauración completa de apps y datos como root, gestionada por completo desde una WebUI.
-- **[COPG-VD](https://github.com/VD171/COPG-VD)**: un spoofer de dispositivo que convierte un fingerprint nuevo en un perfil coherente y consistente.
+- **[COPG-VD](https://github.com/VD171/COPG-VD)**: spoofing del fingerprint global del dispositivo / Play Integrity, para todo el dispositivo con alcance por app y una WebUI.
+- **[VDBackup](https://github.com/VD171/VD-Backup)**: copia de seguridad y restauración completas de apps y datos como root, gobernadas por entero desde una WebUI.
 - **[VD-dropbear](https://github.com/VD171/VD-dropbear)**: un demonio SSH independiente con root (Dropbear).
-
-Pixel `build.prop`: **[@VictorGabriel7Dev/build.prop](https://github.com/VictorGabriel7Dev/build.prop)** (fork de @T3SL4).
+- **[VDGoogle](https://github.com/VD171/VD-Google)**: tus servicios de Google (RCS, Wallet, atestaciones de Play Integrity), leídos en tu dispositivo sin internet.
+- **[VDInstaller](https://github.com/VD171/VD-Installer)**: un instalador sideload con root y sin fricción para APK individuales, por lotes y divididos, con un interruptor para el verificador de Play Protect y suplantación del origen de instalación.
+- **[VDLiveUpdate](https://github.com/VD171/VDLiveUpdate)**: un motor de autoactualización incremental y sin flasheo, integrado en módulos KernelSU/APatch/Magisk.
+- **[VD-Modules](https://github.com/VD171/VD-Modules)**: nuestro repositorio de módulos para MMRL/WebUI-X (instala todos estos desde tu gestor root).
+- **[@VictorGabriel7Dev/build.prop](https://github.com/VictorGabriel7Dev/build.prop)**: un conjunto de datos de fingerprints de `build.prop` de Pixel (fork de @T3SL4).
+- **[@VictorGabriel7Dev/mtproto-store](https://github.com/VictorGabriel7Dev/mtproto-store)**: usa Telegram como almacén de objetos desde una pequeña CLI en Go.
 
 ## Contactos
 
